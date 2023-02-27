@@ -123,7 +123,7 @@ export default function About({
           </p> */}
         </div>
         <div className="">
-          <Gallery />
+          <Gallery  />
         </div>
         <div
           className="flex flex-col gap-16 animate-in sm:animate-none md:gap-24"
@@ -132,13 +132,13 @@ export default function About({
           <Section heading="About" headingAlignment="left">
             <div className="flex flex-col gap-6">
               <p>
-              Hello world, I'm Brian Ruiz! 
+              Hello world, I&apos;m Brian Ruiz! 
               
               
               </p>
 
               <p>
-              I'm a full stack engineer currently working at <a className="underline" href="https://hines.com" target="__blank">Hines</a>
+              I&apos;m a full stack engineer currently working at <a className="underline" href="https://hines.com" target="__blank">Hines</a>
                 , one of the largest private real estate investors in the world. I have a passion for design and am always looking for ways to incorporate it into my work. 
 
               </p>

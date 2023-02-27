@@ -45,7 +45,7 @@ export default function Home({ posts, projects }: HomeProps) {
             </div>
           </div>
           <p className="text-primary max-w-xl">
-            Hey, I'm Brian Ruiz, a software engineer who loves building cool things with code.
+            Hey, I&apos;m Brian Ruiz, a software engineer who loves building cool things with code.
             In addition to coding, I also make YouTube videos, where I focus on tech, creative vlogs, and personal development.
           </p>
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-secondary">
