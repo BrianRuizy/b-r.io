@@ -1,13 +1,14 @@
+import { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import cn from "clsx";
 import localFont from "@next/font/local";
 
-import imageGotland from "public/gallery/gotland.jpg";
-import imageRun from "public/gallery/running.jpg";
-import imageSkate from "public/gallery/skate.jpg";
-import imageTrailrun from "public/gallery/trailrun.jpg";
-import { ReactNode } from "react";
+import texas from "public/gallery/texas.jpg";
+import couple from "public/gallery/couple.jpg";
+import colorado from "public/gallery/colorado.jpg";
+import cowboy from "public/gallery/cowboy.webp";
+
 import Activity, { ActivityType } from "./Activity";
 import Link from "./Link";
 import Halo from "./Halo";
@@ -144,37 +145,48 @@ export default function Gallery({
     <>
       <section className="flex gap-4 h-[268px] relative">
         <Photo
-          src={imageGotland}
+          src={couple}
           meta="2021-07-12"
           alt="Samuel Kraft in Gotland"
-          width={314}
-          height={229}
+          width={324}
+          height={239}
           rotate={-6}
           left={-86}
           index={1}
         />
         <Photo
-          src={imageSkate}
+          src={cowboy}
           meta="2017-07-04"
           alt="Samuel skateboarding"
-          width={180}
-          height={240}
+          width={230}
+          height={250}
           rotate={6.3}
-          left={198}
+          left={188}
           index={2}
           flipDirection="left"
         />
-        <Photo
-          src={imageRun}
+         <Photo
+          src={texas}
           meta="2021-05-20"
           alt="Samuel running in the sunset"
-          width={270}
-          height={225}
+          width={280}
+          height={235}
           rotate={-5.4}
           left={343}
           index={3}
         />
-        {lastActivity.photos ? (
+        <Photo
+          src={colorado}
+          meta="2022-09-10"
+          alt={"Trail Run view"}
+          width={220}
+          height={260}
+          rotate={7.6}
+          left={587}
+          index={4}
+          flipDirection="left"
+        />
+        {/* {lastActivity.photos ? (
           <Photo
             src={lastActivity.photos.primary.urls["600"]}
             meta={
@@ -210,7 +222,8 @@ export default function Gallery({
             index={4}
             flipDirection="left"
           />
-        )}
+        )} */}
+       
       </section>
     </>
   );

@@ -1,7 +1,12 @@
-@import "@radix-ui/colors/sand.css";
-@import "@radix-ui/colors/sandA.css";
-@import "@radix-ui/colors/sandDark.css";
-@import "@radix-ui/colors/sandDarkA.css";
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/grayA.css";
+@import "@radix-ui/colors/grayDark.css";
+@import "@radix-ui/colors/grayDarkA.css";
+
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/violet.css";
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,13 +19,13 @@
     --brandTinted: rgb(227 131 86 / 20%);
 
     /* legacy vars from blogposts */
-    --bg: var(--sand1);
-    --boxBg: var(--sand4);
+    --bg: var(--gray1);
+    --boxBg: var(--gray4);
   }
 
   .dark-theme {
     --blurBackground: rgb(15 15 15 / 95%);
-    --headerBackground: rgb(21 21 20 / 80%);
+    --headerBackground: rgb(21 21 20 / 100%);
   }
 
   .main-header {
@@ -28,11 +33,11 @@
   }
 
   .arc-theme {
-    --sand1: var(--arc-palette-background);
-    --sand12: var(--arc-palette-foregroundPrimary);
-    --sand11: var(--arc-palette-foregroundSecondary);
-    --sandA4: var(--arc-palette-hover);
-    --sand4: var(--arc-palette-hover);
+    --gray1: var(--arc-palette-background);
+    --gray12: var(--arc-palette-foregroundPrimary);
+    --gray11: var(--arc-palette-foregroundSecondary);
+    --grayA4: var(--arc-palette-hover);
+    --gray4: var(--arc-palette-hover);
     --bg: var(--arc-palette-background);
     --boxBg: var(--arc-palette-focus);
     --blurBackground: var(--arc-palette-backgroundExtra);
@@ -83,12 +88,12 @@
 }
 
 .prose {
-  --tw-prose-body: var(--sand12);
-  --tw-prose-bold: var(--sand12);
-  --tw-prose-links: var(--sand12);
-  --tw-prose-headings: var(--sand12);
-  --tw-prose-code: var(--sand12);
-  --tw-prose-quotes: var(--sand11);
+  --tw-prose-body: var(--gray12);
+  --tw-prose-bold: var(--gray12);
+  --tw-prose-links: var(--gray12);
+  --tw-prose-headings: var(--gray12);
+  --tw-prose-code: var(--gray12);
+  --tw-prose-quotes: var(--gray11);
 }
 
 input[type="search"]::-webkit-search-cancel-button {
@@ -107,6 +112,13 @@ input:-webkit-autofill:focus {
     #e38244 0%,
     #ebad64 100%
   );
+}
+
+.text-gradient {
+  background: linear-gradient(140deg, #D2A8FF , #F778BA , #FF7B72 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
 }
 
 .like-button {
@@ -177,7 +189,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  background: #322931;
+  background: #21252b;
 }
 
 @media (min-width: 480px) {

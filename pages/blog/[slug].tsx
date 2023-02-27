@@ -58,6 +58,18 @@ export default function Post({ post, related }: PostProps) {
 
       <div className="flex flex-col gap-20">
         <article>
+          <div className="flex flex-col gap-3">
+            <p className="text-secondary font-medium">
+              <time dateTime={post.publishedAt} className="border-l pl-2">
+                {formatDate(post.publishedAt)}
+              </time>
+              {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
+              <HitCounter slug={post.slug} />
+            </p>
+            <h1 className="text-3xl mg:text-4xl font-bold tracking-tight leading-tight">{post.title}</h1>
+          </div>
+
+          <div className="h-8" />
           {post.slug === "spring-parallax-framer-motion-guide" ? (
             <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
               <div className="absolute inset-0">
@@ -88,22 +100,12 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+32px)] -ml-4 md:rounded-xl max-w-none border  border-primary"
+              className="w-[calc(100%+96px)] -ml-12 md:rounded-xl max-w-none md:border  border-primary"
               priority
             />
           )}
           <div className="h-8" />
-          <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold">{post.title}</h1>
-            <p className="text-secondary">
-              <time dateTime={post.publishedAt}>
-                {formatDate(post.publishedAt)}
-              </time>
-              {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
-              <HitCounter slug={post.slug} />
-            </p>
-          </div>
-          <div className="h-8" />
+        
           <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
             <Component components={MDXComponents} />
           </div>

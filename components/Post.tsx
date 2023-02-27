@@ -26,7 +26,7 @@ export default function Post({ post, mousePosition }: PostProps) {
   const imageOffset = 22;
 
   return (
-    <li className="py-2.5 group">
+    <li className="py-3 group">
       <div className="transition-opacity">
         {image && mousePosition && (
           <motion.div
@@ -51,7 +51,7 @@ export default function Post({ post, mousePosition }: PostProps) {
           <Link href={`/blog/${slug}`}>
             {title}
             {showNewBadge && (
-              <span className="inline-block px-1.5 py-[1px] relative -top-[2px] font-bold ml-2 text-[10px] uppercase rounded-full brand-gradient text-white">
+              <span className="inline-block relative -top-[1px] font-bold ml-3 text-sm uppercase text-gradient">
                 New
               </span>
             )}

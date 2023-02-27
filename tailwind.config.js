@@ -11,27 +11,27 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        primary: "var(--sand12)",
-        secondary: "var(--sand11)",
+        primary: "var(--gray12)",
+        secondary: "var(--gray11)",
       },
       backgroundColor: {
-        primary: "var(--sand1)",
-        secondary: "var(--sand4)",
-        secondaryA: "var(--sandA4)",
-        tertiary: "var(--sand3)",
+        primary: "var(--gray1)",
+        secondary: "var(--gray4)",
+        secondaryA: "var(--grayA4)",
+        tertiary: "var(--gray3)",
         blur: "var(--blurBackground)",
         header: "var(--headerBackground)",
       },
       borderColor: {
-        primary: "var(--sand6)",
+        primary: "var(--gray6)",
       },
       ringOffsetColor: {
-        primary: "var(--sand12)",
+        primary: "var(--gray12)",
       },
       keyframes: {
         in: {
-          "0%": { transform: "translateY(18px)", opacity: 0 },
-          "100%": { transform: "translateY(0)", opacity: 1 },
+          "0%": { transform: "trangrayY(18px)", opacity: 0 },
+          "100%": { transform: "trangrayY(0)", opacity: 1 },
         },
       },
       animation: {
@@ -39,5 +39,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require('@tailwindcss/line-clamp'),
+  ],
 };
