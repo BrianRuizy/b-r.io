@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
             rel="pingback"
             href="https://webmention.io/samuelkraft.com/xmlrpc"
           />
-          <link href="https://github.com/samuelkraft" rel="me" />
+          <link href="https://github.com/brianruizy" rel="me" />
         </Head>
         <body>
           <Main />

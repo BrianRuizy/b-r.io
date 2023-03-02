@@ -69,7 +69,7 @@ All your aliases are stored in the global git config located in `~home/<username
 
 ```bash
 [user]
-  name = Samuel Kraft
+  name = Brian Ruiz
   email = samuelkraft@me.com
 [alias]
   newmr = "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD -o merge_request.create; }; f"

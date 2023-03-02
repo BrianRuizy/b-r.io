@@ -21,7 +21,7 @@ type PostProps = {
 };
 
 export default function Post({ post, related }: PostProps) {
-  const seoTitle = `${post.title} | Samuel Kraft`;
+  const seoTitle = `${post.title} | Brian Ruiz`;
   const seoDesc = `${post.summary}`;
   const url = `https://samuelkraft.com/blog/${post.slug}`;
   const Component = useMDXComponent(post.body.code);
@@ -46,7 +46,7 @@ export default function Post({ post, related }: PostProps) {
               alt: post.title,
             },
           ],
-          site_name: "Samuel Kraft",
+          site_name: "Brian Ruiz",
           type: "article",
           article: {
             publishedTime: post.publishedAt,
@@ -60,7 +60,7 @@ export default function Post({ post, related }: PostProps) {
         <article>
           <div className="flex flex-col gap-3">
             <p className="text-secondary font-medium">
-              <time dateTime={post.publishedAt} className="border-l pl-2">
+              <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
               </time>
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
@@ -100,13 +100,13 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+96px)] -ml-12 md:rounded-xl max-w-none md:border  border-primary"
+              className="w-[calc(100%+48px)] -ml-6 md:rounded-xl max-w-none border  border-primary"
               priority
             />
           )}
           <div className="h-8" />
         
-          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
+          <div className="prose lg:prose-lg prose-h2:text-lg prose-h2:mb-2 ">
             <Component components={MDXComponents} />
           </div>
         </article>

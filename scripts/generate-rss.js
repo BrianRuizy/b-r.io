@@ -6,7 +6,7 @@ const matter = require("gray-matter");
 
 async function generate() {
   const feed = new RSS({
-    title: "Samuel Kraft",
+    title: "Brian Ruiz",
     site_url: "https://samuelkraft.com",
     feed_url: "https://samuelkraft.com/feed.xml",
   });

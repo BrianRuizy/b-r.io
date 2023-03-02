@@ -1,17 +1,17 @@
 import { DefaultSeo } from "next-seo";
 
 const config = {
-  title: "Samuel Kraft - Design engineer",
-  description: "I design & build interfaces",
+  title: "Brian Ruiz",
+  description: "Software engineer, and content creator",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://samuelkraft.com",
-    site_name: "Samuel Kraft",
+    url: "https://b-r.io",
+    site_name: "Brian Ruiz",
     images: [
       {
         url: "https://samuelkraft.com/og.jpg",
-        alt: "Samuel Kraft",
+        alt: "Brian Ruiz",
       },
     ],
   },

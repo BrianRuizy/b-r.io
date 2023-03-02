@@ -9,7 +9,7 @@ import couple from "public/gallery/couple.jpg";
 import colorado from "public/gallery/colorado.jpg";
 import cowboy from "public/gallery/cowboy.webp";
 
-import Activity, { ActivityType } from "./Activity";
+// import Activity, { ActivityType } from "./Activity";
 import Link from "./Link";
 import Halo from "./Halo";
 
@@ -136,18 +136,14 @@ function Photo({
   );
 }
 
-export default function Gallery({
-  lastActivity,
-}: {
-  lastActivity: ActivityType;
-}) {
+export default function Gallery() {
   return (
     <>
       <section className="flex gap-4 h-[268px] relative">
         <Photo
           src={couple}
           meta="2021-07-12"
-          alt="Samuel Kraft in Gotland"
+          alt="Brian Ruiz in Gotland"
           width={324}
           height={239}
           rotate={-6}
@@ -182,48 +178,10 @@ export default function Gallery({
           width={220}
           height={260}
           rotate={7.6}
-          left={587}
+          left={557}
           index={4}
           flipDirection="left"
         />
-        {/* {lastActivity.photos ? (
-          <Photo
-            src={lastActivity.photos.primary.urls["600"]}
-            meta={
-              <span className="flex flex-col gap-3">
-                <span className="block">{lastActivity.name}</span>
-                <Link
-                  href={`https://www.strava.com/activities/${lastActivity.id}`}
-                >
-                  See on Strava ↗
-                </Link>
-              </span>
-            }
-            alt={lastActivity.name}
-            filename={`last-${lastActivity.sport_type}.jpg`}
-            width={190}
-            height={253}
-            rotate={7.6}
-            left={587}
-            index={4}
-            flipDirection="left"
-          >
-            <Activity activity={lastActivity} />
-          </Photo>
-        ) : (
-          <Photo
-            src={imageTrailrun}
-            meta="2022-09-10"
-            alt={"Trail Run view"}
-            width={190}
-            height={253}
-            rotate={7.6}
-            left={587}
-            index={4}
-            flipDirection="left"
-          />
-        )} */}
-       
       </section>
     </>
   );

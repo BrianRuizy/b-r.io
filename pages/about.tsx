@@ -16,7 +16,7 @@ import perishipLogo from "public/projects/periship-logo.jpeg";
 import camsLogo from "public/projects/cams-logo.png";
 import uhdLogo from "public/projects/uhd.png";
 
-import { FaYoutube, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 import notionLogo from "public/projects/notion-logo.png";
 import strengthLogo from "public/projects/strength-logo.png";
@@ -25,9 +25,26 @@ import avatar from "public/avatar.png";
 import { getActivities, getActivity } from "lib/strava";
 
 export const connectLinks = [
-  { label: "Email", href: "mailto:samuelkraft@me.com", logo: notionLogo },
-  { label: "Twitter", href: "https://twitter.com/samuelkraft" },
-  { label: "GitHub", href: "https://github.com/samuelkraft" },
+  { 
+    label: "YouTube", 
+    href: "https://www.youtube.com/@brianruizy", 
+    icon: <FaYoutube /> 
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/brianruizy",
+    icon: <FaGithub />,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/brianruizy/",
+    icon: <FaInstagram />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/brianruizy/",
+    icon: <FaLinkedin />,
+  }
 ];
 
 const workplaces = [
@@ -61,40 +78,12 @@ const workplaces = [
   },
 ];
 
-const sideProjects = [
-  {
-    title: "Trail Routes",
-    description: "Mapping platform built with react, mapbox, swiftUI",
-    imageSrc: trailroutesLogo,
-    link: "https://github.com/samuelkraft/routes",
-  },
-  {
-    title: "notion-blog-nextjs",
-    description: "Next.js starter repo with a blog powered by Notion",
-    imageSrc: notionLogo,
-    link: "https://github.com/samuelkraft/notion-blog-nextjs",
-  },
-  {
-    title: "Strength",
-    description: "iOS & WatchOS strength tracking app",
-    imageSrc: strengthLogo,
-    link: "https://samuelkraft.github.io/strength/",
-  },
-  {
-    title: "samuelkraft-next",
-    description: "The website you are looking at!",
-    imageSrc: avatar,
-    link: "https://github.com/samuelkraft/samuelkraft-next",
-  },
-];
-
-const seoTitle = "About | Samuel Kraft";
+const seoTitle = "About | Brian Ruiz";
 const seoDesc =
   "A designer/frontend developer hybrid that loves to build great products with delightful interfaces.";
 
-export default function About({
-  // lastActivity,
-}: {
+export default function About({}: // lastActivity,
+{
   // lastActivity: ActivityType;
 }) {
   return (
@@ -106,7 +95,7 @@ export default function About({
           title: seoTitle,
           description: seoDesc,
           url: `https://samuelkraft.com/about/`,
-          site_name: "Samuel Kraft",
+          site_name: "Brian Ruiz",
         }}
         twitter={{
           cardType: "summary_large_image",
@@ -114,16 +103,18 @@ export default function About({
       />
       <div className="flex flex-col gap-16 md:gap-24">
         <div>
-          <h1 className="animate-in text-3xl font-bold tracking-tight">About Me</h1>
-          {/* <p
+          <h1 className="animate-in text-3xl font-bold tracking-tight">
+            About Me
+          </h1>
+          <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            A bit about me
-          </p> */}
+            A glimpse about myself.
+          </p>
         </div>
-        <div className="">
-          <Gallery  />
+        <div>
+          <Gallery />
         </div>
         <div
           className="flex flex-col gap-16 animate-in sm:animate-none md:gap-24"
@@ -131,49 +122,74 @@ export default function About({
         >
           <Section heading="About" headingAlignment="left">
             <div className="flex flex-col gap-6">
+              <p>Hello world, I&apos;m Brian Ruiz!</p>
+
               <p>
-              Hello world, I&apos;m Brian Ruiz! 
-              
-              
+                I&apos;m a full stack engineer currently working at{" "}
+                <a
+                  className="underline"
+                  href="https://hines.com"
+                  target="__blank"
+                >
+                  Hines
+                </a>
+                , one of the largest private real estate investors in the world.
+                I have a passion for design and am always looking for ways to
+                incorporate it into my work.
               </p>
-
               <p>
-              I&apos;m a full stack engineer currently working at <a className="underline" href="https://hines.com" target="__blank">Hines</a>
-                , one of the largest private real estate investors in the world. I have a passion for design and am always looking for ways to incorporate it into my work. 
-
-              </p>
-              <p>
-              In addition to coding, I also make <a className="underline" href="https://www.youtube.com/channel/UCZ8J2J2QZ8ZQZ8ZQZ8ZQZ8Q" target="__blank">YouTube</a> videos, where I focus on tech, creative vlogs, and personal development. Try finding me anywhere else at @brianruizy
-
+                In addition to coding, I also make{" "}
+                <a
+                  className="underline"
+                  href="https://www.youtube.com/channel/UCZ8J2J2QZ8ZQZ8ZQZ8ZQZ8Q"
+                  target="__blank"
+                >
+                  YouTube
+                </a>{" "}
+                videos, where I focus on tech, creative vlogs, and personal
+                development. Try finding me anywhere else at @brianruizy
               </p>
             </div>
-            
           </Section>
 
           <Section heading="Connect" headingAlignment="left">
-            <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-2 animated-list">
+            <div className="flex flex-col w-full gap-8">
+              <p>Let&apos;s get connected! Or if you&apos;d prefer you can also send me an email here {' '}
+                <Link href="mailto:contact@b-r.io">contact@b-r.io</Link>
+              </p>
+              <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
                 {connectLinks.map((link) => (
-                  <div className="transition-opacity w-full border rounded-lg p-4 col-span-1 border-primary" key={link.label}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </div>
+                  <li className="transition-opacity col-span-1" key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="transition-opacity no-underline w-full border rounded-lg p-4 border-primary inline-grid"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl">{link.icon}</span>
+                        {link.label}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 ml-auto text-secondary">
+                          <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
+            </div>
           </Section>
 
           <Section heading="Work" headingAlignment="left">
             <div className="flex flex-col w-full gap-8">
+              <p>{new Date().getFullYear() - 2019}+ years of development experience.</p>
               <p>
-                {new Date().getFullYear() - 2019}+ years of dev experience.
+                I started my career teaching others how to code, which I will
+                always be appreciative of. Then I worked at a few small local
+                companies. Now I am at Hines, one of the largest
+                real-estate investors.
               </p>
               <Workplaces items={workplaces} />
             </div>
           </Section>
-          {/* <Section heading="Side projects" headingAlignment="left">
-            <div className="flex flex-col w-full gap-8">
-              <p>I enjoy hacking on the side.</p>
-              <Workplaces items={sideProjects} />
-            </div>
-          </Section> */}
         </div>
       </div>
     </>

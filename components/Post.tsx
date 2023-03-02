@@ -51,11 +51,12 @@ export default function Post({ post, mousePosition }: PostProps) {
           <Link href={`/blog/${slug}`}>
             {title}
             {showNewBadge && (
-              <span className="inline-block relative -top-[1px] font-bold ml-3 text-sm uppercase text-gradient">
+              <span className="inline-block relative -top-[1px] font-medium ml-3 text-xs uppercase text-gradient">
                 New
               </span>
             )}
           </Link>
+          {/* <Image src={image} alt={title} width={imageWidth} height={imageHeight} /> */}
         </Section>
       </div>
     </li>

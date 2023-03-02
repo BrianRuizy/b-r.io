@@ -9,7 +9,7 @@ import Link from "components/Link";
 
 export default function NewsletterPage() {
   const { query } = useRouter();
-  const seoTitle = "Newsletter | Samuel Kraft";
+  const seoTitle = "Newsletter | Brian Ruiz";
   const seoDesc =
     "A newsletter in the realm between design & development. Learn animations, CSS, web development tips & tricks and creating delightful and useful interfaces!";
 
@@ -22,7 +22,7 @@ export default function NewsletterPage() {
           title: seoTitle,
           url: `https://samuelkraft.com/newsletter/`,
           description: seoDesc,
-          site_name: "Samuel Kraft",
+          site_name: "Brian Ruiz",
         }}
         twitter={{
           cardType: "summary_large_image",

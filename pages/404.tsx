@@ -4,7 +4,7 @@ import Head from "next/head";
 const Custom404 = (): JSX.Element => (
   <>
     <Head>
-      <title>404 | Samuel Kraft</title>
+      <title>404 | Brian Ruiz</title>
     </Head>
     <div className="flex flex-col gap-2">
       <h1>404 - Page not found</h1>

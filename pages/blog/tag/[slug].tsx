@@ -18,7 +18,7 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
   const { slug } = query as { slug: string };
   const tag = slug.replace("-", " ");
 
-  const seoTitle = `${tag} | Samuel Kraft`;
+  const seoTitle = `${tag} | Brian Ruiz`;
   const seoDesc = `Posts &amp; tutorials about ${tag}`;
   const url = `https://samuelkraft.com/blog/tag/${tag}`;
 
