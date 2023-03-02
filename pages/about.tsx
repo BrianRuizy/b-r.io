@@ -1,28 +1,17 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { NextSeo } from "next-seo";
 
 import Link from "components/Link";
 import Section from "components/Section";
 import Workplaces from "components/Workplaces";
 import Gallery from "components/Gallery";
-// import { ActivityType } from "components/Activity";
 
-// import bitrefillLogo from "public/projects/bitrefill-logo.png";
-import tracklibLogo from "public/projects/tracklib-logo.png";
-import styleroomLogo from "public/projects/styleroom-logo.png";
-import trailroutesLogo from "public/projects/trailroutes-logo.png";
 import hinesLogo from "public/projects/hines-logo.jpeg";
 import perishipLogo from "public/projects/periship-logo.jpeg";
 import camsLogo from "public/projects/cams-logo.png";
 import uhdLogo from "public/projects/uhd.png";
 
 import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-
-import notionLogo from "public/projects/notion-logo.png";
-import strengthLogo from "public/projects/strength-logo.png";
-import avatar from "public/avatar.png";
-
-import { getActivities, getActivity } from "lib/strava";
 
 export const connectLinks = [
   { 
@@ -117,7 +106,7 @@ export default function About({}: // lastActivity,
           <Gallery />
         </div>
         <div
-          className="flex flex-col gap-16 animate-in sm:animate-none md:gap-24"
+          className="flex flex-col gap-16 animate-in md:gap-24"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Section heading="About" headingAlignment="left">
