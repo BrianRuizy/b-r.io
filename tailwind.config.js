@@ -13,6 +13,7 @@ module.exports = {
       textColor: {
         primary: "var(--gray12)",
         secondary: "var(--gray11)",
+        brand: "var(--brand)",
       },
       backgroundColor: {
         primary: "var(--gray1)",

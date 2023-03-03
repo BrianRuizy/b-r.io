@@ -14,6 +14,16 @@ import uhdLogo from "public/projects/uhd.png";
 import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export const connectLinks = [
+  {
+    label: "Email",
+    href: "mailto:contact@b-r.io",
+    icon: 
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+      </svg>
+,
+  },
   { 
     label: "YouTube", 
     href: "https://www.youtube.com/@brianruizy", 
@@ -24,11 +34,11 @@ export const connectLinks = [
     href: "https://github.com/brianruizy",
     icon: <FaGithub />,
   },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/brianruizy/",
-    icon: <FaInstagram />,
-  },
+  // {
+  //   label: "Instagram",
+  //   href: "https://www.instagram.com/brianruizy/",
+  //   icon: <FaInstagram />,
+  // },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/brianruizy/",
@@ -93,7 +103,7 @@ export default function About({}: // lastActivity,
       <div className="flex flex-col gap-16 md:gap-24">
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
-            About Me
+            About
           </h1>
           <p
             className="text-secondary animate-in"
@@ -102,7 +112,7 @@ export default function About({}: // lastActivity,
             A glimpse about myself.
           </p>
         </div>
-        <div>
+        <div className="hidden lg:block">
           <Gallery />
         </div>
         <div
@@ -143,9 +153,6 @@ export default function About({}: // lastActivity,
 
           <Section heading="Connect" headingAlignment="left">
             <div className="flex flex-col w-full gap-8">
-              <p>Let&apos;s get connected! Or if you&apos;d prefer you can also send me an email here {' '}
-                <Link href="mailto:contact@b-r.io">contact@b-r.io</Link>
-              </p>
               <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
                 {connectLinks.map((link) => (
                   <li className="transition-opacity col-span-1" key={link.label}>

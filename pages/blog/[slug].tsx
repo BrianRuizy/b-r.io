@@ -59,6 +59,8 @@ export default function Post({ post, related }: PostProps) {
       <div className="flex flex-col gap-20">
         <article>
           <div className="flex flex-col gap-3">
+            <h1 className="text-3xl font-bold tracking-tight leading-tight">{post.title}</h1>
+
             <p className="text-secondary font-medium">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
@@ -66,7 +68,6 @@ export default function Post({ post, related }: PostProps) {
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
               <HitCounter slug={post.slug} />
             </p>
-            <h1 className="text-3xl mg:text-4xl font-bold tracking-tight leading-tight">{post.title}</h1>
           </div>
 
           <div className="h-8" />
@@ -106,7 +107,7 @@ export default function Post({ post, related }: PostProps) {
           )}
           <div className="h-8" />
         
-          <div className="prose lg:prose-lg prose-h2:text-lg prose-h2:mb-2 ">
+          <div className="prose  ">
             <Component components={MDXComponents} />
           </div>
         </article>

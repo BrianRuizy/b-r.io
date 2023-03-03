@@ -47,17 +47,22 @@ export default function Post({ post, mousePosition }: PostProps) {
             />
           </motion.div>
         )}
-        <Section heading={formatDate(publishedAt)}>
-          <Link href={`/blog/${slug}`}>
-            {title}
-            {showNewBadge && (
-              <span className="inline-block relative -top-[1px] font-medium ml-3 text-xs uppercase text-gradient">
-                New
-              </span>
-            )}
-          </Link>
-          {/* <Image src={image} alt={title} width={imageWidth} height={imageHeight} /> */}
-        </Section>
+        <div className="flex justify-between gap-6">
+
+          <Section heading={formatDate(publishedAt)}>
+            <Link href={`/blog/${slug}`}>
+              <span className="font-medium leading-tight">{title}</span>
+              {showNewBadge && (
+                <span className="inline-block relative -top-[1px] font-semibold ml-3 text-xs uppercase text-gradient">
+                  New
+                </span>
+              )}
+            </Link>
+          </Section>
+          <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative shadow-sm">
+            <Image src={image} alt={title} fill className="object-cover rounded "/>
+          </div>
+        </div>
       </div>
     </li>
   );

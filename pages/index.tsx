@@ -6,14 +6,13 @@ import { pick } from "@contentlayer/client";
 import Link from "components/Link";
 import Section from "components/Section";
 import PostList from "components/postlist";
-import Gallery from "components/Gallery";
 import avatar from "public/avatar.png";
 
 import BitrefillGraphic from "components/projects/BitrefillGraphic";
 import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
 import TracklibGraphic from "components/projects/TracklibGraphic";
 
-import { FaYoutube, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaYoutube, FaGithub } from "react-icons/fa";
 
 
 type HomeProps = {
@@ -99,7 +98,7 @@ export default function Home({ posts, projects }: HomeProps) {
                     </Link>
                     <div className="flex flex-col gap-1">
                       <Link href={`/project/${project.slug}`} >
-                        <h3>{project.title}</h3>
+                        <h3 className="font-medium">{project.title}</h3>
                       </Link>
                       <p className="text-secondary line-clamp-3">{project.description}</p>
                     </div>
@@ -124,7 +123,7 @@ export default function Home({ posts, projects }: HomeProps) {
           <PostList posts={posts} />
        
         </div>
-        <div
+        {/* <div
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 4 } as React.CSSProperties}
         >
@@ -136,7 +135,7 @@ export default function Home({ posts, projects }: HomeProps) {
           </div>
           <PostList posts={posts} />
         
-        </div>
+        </div> */}
       </div>
     </>
   );

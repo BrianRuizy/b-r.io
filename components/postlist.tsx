@@ -54,9 +54,9 @@ export default function PostList({ posts }: PostListProps) {
     >
       {posts.length === 0 && <p>No posts found</p>}
       {posts.map((post) => (
-        <>
+        
           <Post key={post.slug} post={post} mousePosition={mousePosition} />
-        </>
+        
       ))}
     </ul>
   );
