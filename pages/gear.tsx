@@ -28,8 +28,6 @@ export default function Gear() {
               <div className="space-y-1">
                 <h3 className="font-medium">16-inch MacBook Pro</h3>
                 <p className="text-secondary">
-                  My main computer is a 16-inch MacBook Pro (2019) with 2.6
-                  GHz 6-Core Intel Core i7, 16 GB 2667 MHz DDR4, and 1 TB SSD.
                   I use it for everything from coding to video editing.
                 </p>
               </div>

@@ -101,7 +101,7 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border  border-primary"
+              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border-none md:border  border-primary"
               priority
             />
           )}

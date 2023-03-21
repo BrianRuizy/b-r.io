@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import { NextSeo } from "next-seo";
 
 import Link from "components/Link";
@@ -12,6 +12,9 @@ import camsLogo from "public/projects/cams-logo.png";
 import uhdLogo from "public/projects/uhd.png";
 
 import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+import meandlily from "public/gallery/meandlily.jpg";
+import colorado from "public/gallery/colorado.jpg";
 
 export const connectLinks = [
   {
@@ -34,11 +37,11 @@ export const connectLinks = [
     href: "https://github.com/brianruizy",
     icon: <FaGithub />,
   },
-  // {
-  //   label: "Instagram",
-  //   href: "https://www.instagram.com/brianruizy/",
-  //   icon: <FaInstagram />,
-  // },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/brianruizy/",
+    icon: <FaInstagram />,
+  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/brianruizy/",
@@ -101,7 +104,7 @@ export default function About({}: // lastActivity,
         }}
       />
       <div className="flex flex-col gap-16 md:gap-24">
-        {/* <div>
+        <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
             About
           </h1>
@@ -111,7 +114,30 @@ export default function About({}: // lastActivity,
           >
             A glimpse about myself.
           </p>
-        </div> */}
+        </div>
+        <div
+          className="lg:hidden animate-in mb-8"
+          style={{ "--index": 2 } as React.CSSProperties}
+        >
+          <Image
+            src={meandlily}
+            alt={"me and lily"}
+            width={324}
+            height={139}
+            className="relative h-60 inset-0 object-cover bg-gray-400 pointer-events-none rounded-2xl -rotate-6"
+            quality={100}
+            priority
+          />
+          <Image
+            src={colorado}
+            alt={"me and lily"}
+            width={220}
+            height={260}
+            className="absolute w-48 inset-0 object-cover bg-gray-400 pointer-events-none rounded-2xl rotate-6 left-[46%] md:left-[60%] md:w-56 top-12"
+            quality={100}
+            priority
+          />
+        </div>
         <div className="hidden lg:block">
           <Gallery />
         </div>
@@ -155,7 +181,10 @@ export default function About({}: // lastActivity,
             <div className="flex flex-col w-full gap-8">
               <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
                 {connectLinks.map((link) => (
-                  <li className="transition-opacity col-span-1" key={link.label}>
+                  <li
+                    className="transition-opacity col-span-1"
+                    key={link.label}
+                  >
                     <Link
                       href={link.href}
                       className="transition-opacity no-underline w-full border rounded-lg p-4 border-primary inline-grid"
@@ -163,8 +192,17 @@ export default function About({}: // lastActivity,
                       <div className="flex items-center gap-3">
                         <span className="text-xl">{link.icon}</span>
                         {link.label}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 ml-auto text-secondary">
-                          <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className="w-5 h-5 ml-auto text-secondary"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </div>
                     </Link>
@@ -176,12 +214,15 @@ export default function About({}: // lastActivity,
 
           <Section heading="Work" headingAlignment="left">
             <div className="flex flex-col w-full gap-8">
-              <p>{new Date().getFullYear() - 2019}+ years of development experience.</p>
+              <p>
+                {new Date().getFullYear() - 2019}+ years of development
+                experience.
+              </p>
               <p>
                 I started my career teaching others how to code, which I will
                 always be appreciative of. Then I worked at a few small local
-                companies. Now I am at Hines, one of the largest
-                real-estate investors.
+                companies. Now I am at Hines, one of the largest real-estate
+                investors.
               </p>
               <Workplaces items={workplaces} />
             </div>
@@ -191,21 +232,3 @@ export default function About({}: // lastActivity,
     </>
   );
 }
-
-// export const getStaticProps = async () => {
-//   const activities: ActivityType[] = await getActivities();
-//   const lastNonVirtualActivityWithPhoto = activities
-//     .filter((activity) =>
-//       ["Run", "TrailRun", "Bike", "Swim", "Hike"].includes(activity.sport_type)
-//     )
-//     .find((activity) => activity.total_photo_count > 0);
-//   const activity = await getActivity(
-//     lastNonVirtualActivityWithPhoto?.id as number
-//   );
-//   return {
-//     props: {
-//       lastActivity: activity,
-//     },
-//     revalidate: 3600,
-//   };
-// };

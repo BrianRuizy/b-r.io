@@ -59,7 +59,7 @@ export default function MyApp({
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="antialiased  bg-primary text-primary width-full">
+      <div className="antialiased bg-primary text-primary width-full">
         <Header />
         {getLayout(<Component {...pageProps} />)}
       </div>
