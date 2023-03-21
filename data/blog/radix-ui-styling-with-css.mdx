@@ -5,7 +5,8 @@ summary: 'Quick tip for styling Radix Primitives with plain CSS, CSS Modules, Va
 tags: ["CSS", "React", "Radix UI"]
 ---
 
----
+
+If you take accessibility seriously (you should), [Radix UI](https://www.radix-ui.com) by [Modulz](https://modulz.app) is a really great library that takes care of all the hard things about building accessible components: If you take accessibility seriously (you should), [Radix UI](https://www.radix-ui.com) by [Modulz](https://modulz.app) is a really great library that takes care of all the hard things about building accessible components:
 
 If you take accessibility seriously (you should), [Radix UI](https://www.radix-ui.com) by [Modulz](https://modulz.app) is a really great library that takes care of all the hard things about building accessible components:
 
@@ -20,7 +21,7 @@ If you take accessibility seriously (you should), [Radix UI](https://www.radix-u
 
 Styling a primitive out of the box is super easy as all primitives accept className as a prop
 
-```tsx
+```tsx showLineNumbers
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 <AccordionPrimivite.Root className={styles.root}>
@@ -30,7 +31,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 Most often you won't use the primitives out-of-the-box like this though. Chances are high that you want to incorporate Radix primitives into your own design system and add extra styles. If you want to expose the same API to the design system consumer you'll need to re-export the Primitives. [The docs](https://www.radix-ui.com/docs/primitives/overview/styling) explain how easily you can do this with Stitches/CSS-IN-JS:
 
-```tsx
+```tsx showLineNumbers
 import { styled } from '@stitches/react';
 import * as Accordion from '@radix-ui/react-accordion';
 
@@ -45,7 +46,7 @@ const StyledPanel = styled(Accordion.Panel, {
 
 Very clean! What about plain css,  vanilla extract or any other css solution?
 
-```tsx
+```tsx showLineNumbers
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
@@ -88,7 +89,7 @@ Since we are not changing anything about the component, simply adding a classNam
 
 Lets create a file called `withClassName` that will contain the HOC:
 
-```tsx
+```tsx showLineNumbers
 import { ComponentProps, createElement, JSXElementConstructor } from 'react';
 
 export const withClassName = <T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>>(
@@ -112,7 +113,7 @@ The code accepts a component (in this case a radix Primitive) and a list of clas
 
 Now we can refactor our example above:
 
-```tsx {3-6}
+```tsx {3-6} showLineNumbers
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { withClassName } from './withClassName'

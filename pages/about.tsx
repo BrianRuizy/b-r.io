@@ -13,24 +13,29 @@ import uhdLogo from "public/projects/uhd.png";
 
 import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
-import meandlily from "public/gallery/meandlily.jpg";
+import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
 
 export const connectLinks = [
   {
     label: "Email",
     href: "mailto:contact@b-r.io",
-    icon: 
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="w-5 h-5"
+      >
         <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
         <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
       </svg>
-,
+    ),
   },
-  { 
-    label: "YouTube", 
-    href: "https://www.youtube.com/@brianruizy", 
-    icon: <FaYoutube /> 
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@brianruizy",
+    icon: <FaYoutube />,
   },
   {
     label: "GitHub",
@@ -46,7 +51,7 @@ export const connectLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/brianruizy/",
     icon: <FaLinkedin />,
-  }
+  },
 ];
 
 const workplaces = [
@@ -106,37 +111,43 @@ export default function About({}: // lastActivity,
       <div className="flex flex-col gap-16 md:gap-24">
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
-            About
+            About Me
           </h1>
           <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            A glimpse about myself.
+            Just a quick glimpse.
           </p>
         </div>
-        <div
-          className="lg:hidden animate-in mb-8"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <Image
-            src={meandlily}
-            alt={"me and lily"}
-            width={324}
-            height={139}
-            className="relative h-60 inset-0 object-cover bg-gray-400 pointer-events-none rounded-2xl -rotate-6"
-            quality={100}
-            priority
-          />
-          <Image
-            src={colorado}
-            alt={"me and lily"}
-            width={220}
-            height={260}
-            className="absolute w-48 inset-0 object-cover bg-gray-400 pointer-events-none rounded-2xl rotate-6 left-[46%] md:left-[60%] md:w-56 top-12"
-            quality={100}
-            priority
-          />
+        <div className="lg:hidden mb-8">
+          <div
+            className="animate-in"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
+            <Image
+              src={meLily}
+              alt={"me and lily"}
+              width={324}
+              height={139}
+              className="relative h-60 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl -rotate-6"
+              priority
+            />
+          </div>
+
+          <div
+            className="animate-in"
+            style={{ "--index": 2 } as React.CSSProperties}
+          >
+            <Image
+              src={colorado}
+              alt={"me and lily"}
+              width={220}
+              height={260}
+              className="absolute w-48 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl rotate-6 left-[46%] md:left-[60%] md:w-56 -top-48"
+              priority
+            />
+          </div>
         </div>
         <div className="hidden lg:block">
           <Gallery />

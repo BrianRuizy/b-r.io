@@ -41,14 +41,13 @@ export default function ThemeSwitcher() {
         {({ open }) => {
           const iconClassName = cn(
             "w-5 h-5 hover:text-primary transition-colors",
-            open ? "text-primary" : "text-secondary"
+            open ? "text-secondary" : "text-secondary"
           );
           return (
-            <div className="relative mt-1">
+            <div className="relative">
               <Listbox.Button
                 className={cn(
                   "relative w-8 h-8 cursor-default rounded-full flex items-center justify-center focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300",
-                  open && "bg-secondaryA"
                 )}
               >
                 {resolvedTheme === "dark" ? (

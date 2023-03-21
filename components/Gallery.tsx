@@ -5,9 +5,9 @@ import cn from "clsx";
 import localFont from "@next/font/local";
 
 import texas from "public/gallery/texas.jpg";
-import meandlily from "public/gallery/meandlily.jpg";
+import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
-import cowboy from "public/gallery/cowboy.webp";
+import cowboy from "public/gallery/cowboy-bike.webp";
 
 // import Activity, { ActivityType } from "./Activity";
 import Link from "./Link";
@@ -141,7 +141,7 @@ export default function Gallery() {
     <>
       <section className="flex gap-4 h-[268px] relative">
         <Photo
-          src={meandlily}
+          src={meLily}
           meta="2021-07-12"
           alt="Brian Ruiz in Gotland"
           width={324}

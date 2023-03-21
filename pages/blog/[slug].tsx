@@ -59,7 +59,7 @@ export default function Post({ post, related }: PostProps) {
       <div className="flex flex-col gap-20">
         <article>
           <div className="flex flex-col gap-3">
-            <p className="text-sm text-secondary">
+            <p className="text-tertiary">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
               </time>
@@ -105,7 +105,7 @@ export default function Post({ post, related }: PostProps) {
               priority
             />
           )}
-          <div className="h-32" />
+          <div className="h-16" />
         
           <div className="prose">
             <Component components={MDXComponents} />
@@ -116,8 +116,8 @@ export default function Post({ post, related }: PostProps) {
 
         <Tags tags={post.tags} />
 
-        <div className="flex flex-col gap-4">
-          <h3 className="text-xl">Subscribe</h3>
+        <div className="flex flex-col gap-6">
+          <h2>Subscribe</h2>
           <p className="text-secondary">
             Get an email when i write new posts. Learn animation techniques,
             CSS, design systems and more
@@ -126,8 +126,8 @@ export default function Post({ post, related }: PostProps) {
         </div>
 
         {related.length ? (
-          <div className="flex flex-col items-start gap-10">
-            <h3 className="text-xl">Related posts</h3>
+          <div className="flex flex-col items-start gap-6">
+            <h2>Related posts</h2>
             <div className="will-change-transform">
               <PostList posts={related} />
             </div>
