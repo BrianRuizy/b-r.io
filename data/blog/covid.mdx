@@ -1,0 +1,64 @@
+---
+title: 'How to create a COVID dashboard with Python'
+publishedAt: '2023-03-01'
+summary: 'Our application gained over 50k visits and received code contributions from open-source developers around the world.'
+tags: ["Big Data", "Python"]
+---
+
+## Why start this project?
+
+When I started this side project there were not too many dashboards or sites to track data for the Coronavirus pandemic, other than the very popular web app created by John Hopkins University. My idea was to create an open-source version that encouraged collaboration to derive some creative design and functional ideas. And, that’s precisely what this project became.
+
+> COVID-19 is an infectious disease caused by a newly discovered coronavirus. The best way to prevent and slow down transmission is to be well informed. — who.int (2020)
+
+We have [contributors from all over the world](github.com) —Spain, Poland, India, and various places in the USA— who came together to create something useful and meaningful. Furthermore, the site has accumulated over 10k visits as shown by web analytics. And, the project is still being maintained and improved upon, thanks to the help of developers.
+
+---
+
+## Where the data comes from?
+
+A large portion of the data comes from one of the original data repositories tracking COVID-19 cases, Johns Hopkins University CSSE2019-ncov data repository. Additional data was collected from Our World in Data GitHub data repository. Lastly, to fill in some requirements we retrieved data for daily cases from New York Times COVID GitHub data repository.
+
+For this project, it was crucial to have accurate, and trustworthy datasets. Which explains why the multiple aforementioned sources were diligently picked. In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
+
+```python showLineNumbers
+import pandas as pd
+
+def confirmed_report():
+  # Returns time series version of total cases confirmed globally
+  df = pd.read_csv('https://raw...CSSEGISandData/...csv')
+  return df
+```
+
+
+```js {3-4} showLineNumbers
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+
+```jsx {1,7-13} title="pages/index.tsx" showLineNumbers
+import Image from 'next/image';
+
+function BlurImage() {
+  return (
+    <a href="#" className="group">
+      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+        <Image
+          alt=""
+          src="https://bit.ly/placeholder-img"
+          layout="fill"
+          objectFit="cover"
+          className="group-hover:opacity-75"
+        />
+      </div>
+      <h3 className="mt-4 text-sm text-gray-700">Lee Robinson</h3>
+      <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+    </a>
+  );
+}
+```
+
+For this project, it was crucial to have accurate, and trustworthy datasets. Which explains why the multiple aforementioned sources were diligently picked. In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.

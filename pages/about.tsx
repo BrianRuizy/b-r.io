@@ -101,7 +101,7 @@ export default function About({}: // lastActivity,
         }}
       />
       <div className="flex flex-col gap-16 md:gap-24">
-        <div>
+        {/* <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
             About
           </h1>
@@ -111,7 +111,7 @@ export default function About({}: // lastActivity,
           >
             A glimpse about myself.
           </p>
-        </div>
+        </div> */}
         <div className="hidden lg:block">
           <Gallery />
         </div>

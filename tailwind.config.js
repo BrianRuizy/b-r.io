@@ -13,6 +13,7 @@ module.exports = {
       textColor: {
         primary: "var(--gray12)",
         secondary: "var(--gray11)",
+        tertiary: "var(--gray9)",
         brand: "var(--brand)",
       },
       backgroundColor: {
@@ -31,8 +32,8 @@ module.exports = {
       },
       keyframes: {
         in: {
-          "0%": { transform: "trangrayY(18px)", opacity: 0 },
-          "100%": { transform: "trangrayY(0)", opacity: 1 },
+          "0%": { transform: "translateY(18px)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
         },
       },
       animation: {

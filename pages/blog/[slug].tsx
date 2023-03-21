@@ -59,20 +59,20 @@ export default function Post({ post, related }: PostProps) {
       <div className="flex flex-col gap-20">
         <article>
           <div className="flex flex-col gap-3">
-            <h1 className="text-3xl font-bold tracking-tight leading-tight">{post.title}</h1>
-
-            <p className="text-secondary font-medium">
+            <p className="text-sm text-secondary">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
               </time>
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
               <HitCounter slug={post.slug} />
             </p>
+            <h1 className="text-3xl font-bold tracking-tight leading-tight">{post.title}</h1>
+            <p className="text-xl text-secondary">{post.summary}</p>
           </div>
 
           <div className="h-8" />
           {post.slug === "spring-parallax-framer-motion-guide" ? (
-            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
+            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-lg">
               <div className="absolute inset-0">
                 <Parallax offset={100}>
                   <Image
@@ -101,13 +101,13 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 md:rounded-xl max-w-none border  border-primary"
+              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border  border-primary"
               priority
             />
           )}
-          <div className="h-8" />
+          <div className="h-32" />
         
-          <div className="prose  ">
+          <div className="prose">
             <Component components={MDXComponents} />
           </div>
         </article>

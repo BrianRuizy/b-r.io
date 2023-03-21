@@ -32,7 +32,7 @@ export default function Post({ post, mousePosition }: PostProps) {
           <motion.div
             animate={{
               top: mousePosition.y - imageHeight - imageOffset,
-              left: mousePosition.x + imageOffset,
+              left: mousePosition.x - imageWidth / 2,
             }}
             initial={false}
             transition={{ ease: "easeOut" }}
@@ -47,20 +47,12 @@ export default function Post({ post, mousePosition }: PostProps) {
             />
           </motion.div>
         )}
-        <div className="flex justify-between gap-6">
-
+        <div className="flex justify-between gap-6 items-center">
           <Section heading={formatDate(publishedAt)}>
-            <Link href={`/blog/${slug}`}>
-              <span className="font-medium leading-tight">{title}</span>
-              {showNewBadge && (
-                <span className="inline-block relative -top-[1px] font-semibold ml-3 text-xs uppercase text-gradient">
-                  New
-                </span>
-              )}
-            </Link>
+            <Link href={`/blog/${slug}`} className="font-medium leading-tight">{title}</Link>
           </Section>
           <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative shadow-sm">
-            <Image src={image} alt={title} fill className="object-cover rounded "/>
+            <Image src={image} alt={title} fill className="object-cover rounded"/>
           </div>
         </div>
       </div>

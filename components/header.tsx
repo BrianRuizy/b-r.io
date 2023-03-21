@@ -13,8 +13,8 @@ const links = [
 
 export default function Header() {
   return (
-    <header className="relative top-0 z-10 main-header">
-      <nav className="px-4 md:px-6 py-5 md:py-10 lg max-w-[700px] mx-auto flex justify-between items-center ">
+    <header className="sticky top-0 z-10 main-header backdrop-blur-md bg-header">
+      <nav className="px-4 md:px-6 py-4 lg max-w-[700px] mx-auto flex justify-between items-center ">
         <Link href="/" className="shrink-0 text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"

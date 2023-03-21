@@ -39,6 +39,19 @@ const Page = ({ children }: PageProps): JSX.Element => (
 )
 ```
 
+```JSX {5}
+const Page = ({ children }: PageProps): JSX.Element => (
+  <div className={styles.container}>
+    <Header />
+    <main className={styles.main}>
+      <PageTransition>{children}</PageTransition>
+    </main>
+    <Footer />
+  </div>
+)
+```
+
+
 Framer motion have a couple of different apis to use, and since we want to animate the entry of our children we'll use [AnimatePresence](https://www.framer.com/api/motion/animate-presence/) and [motion components](https://www.framer.com/api/motion/component/). AnimatePresence will animate components when they are added or removed from the React tree. Let's replace our placeholder div with AnimatePresence and nest a motion component that will contain our animation logic.
 
 ```tsx

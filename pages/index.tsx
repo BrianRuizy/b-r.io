@@ -8,7 +8,6 @@ import Section from "components/Section";
 import PostList from "components/postlist";
 import avatar from "public/avatar.png";
 
-import BitrefillGraphic from "components/projects/BitrefillGraphic";
 import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
 import TracklibGraphic from "components/projects/TracklibGraphic";
 
@@ -88,12 +87,11 @@ export default function Home({ posts, projects }: HomeProps) {
           <h2>Selected projects</h2>
           <ul className="relative flex gap-8 md:gap-16 flex-nowrap overflow-x-scroll snap-x md:overflow-auto snap-mandatory md:flex-col -mx-6 px-6 scroll-pl-6 touch-auto">
             {projects.map((project) => (
-              <li key={project.title} className="snap-start min-w-[90%]">
+              <li key={project.title} className="snap-start min-w-[80%]">
                 <Section heading={project.time}>
                   <div className="flex flex-col gap-5">
                     <Link href={`/project/${project.slug}`}>
                       {project.slug === "tracklib" && <TracklibGraphic />}
-                      {project.slug === "bitrefill" && <BitrefillGraphic />}
                       {project.slug === "trailroutes" && <TrailRoutesGraphic />}
                     </Link>
                     <div className="flex flex-col gap-1">
