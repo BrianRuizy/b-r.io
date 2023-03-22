@@ -1,6 +1,63 @@
 import Section from "components/Section";
 
+interface ItemProps {
+  title: string;
+  description: string;
+}
+
+const Item = ({ title, description }: ItemProps) => (
+  <li className="flex gap-4 items-center">
+    <div className="bg-tertiary rounded-lg border border-primary overflow-hidden aspect-square w-[4rem] min-w-[4rem] h-16"></div>
+    <div>
+      <h3 className="text-primary">{title}</h3>
+      <p className="text-sm text-secondary line-clamp-1 mb-1">{description}</p>
+    </div>
+    <a className="ml-auto text-sm rounded-full px-3 bg-secondary text-blue w-fit">Get</a>
+
+  </li>
+);
+
+const gear = [
+  {
+    category: "Computer",
+    title: "16-inch MacBook Pro",
+    description: "A Real Workhorse",
+  },
+  {
+    category: "Computer",
+    title: "16-inch MacBook Pro",
+    description: "My main computer lorem",
+  },
+  {
+    category: "Computer",
+    title: "16-inch MacBook Pro",
+    description: "My main computer lorem",
+  },
+  {
+    category: "Camera",
+    title: "16-inch MacBook Pro",
+    description: "I lorem",
+  },
+  {
+    category: "Computer",
+    title: "16-inch MacBook Pro",
+    description: "My main lorem)",
+  },
+  {
+    category: "Computer",
+    title: "16-inch MacBook Pro",
+    description: "My main computer lorem",
+  },
+];
+
 export default function Gear() {
+  const categories = gear.reduce((acc, item) => {
+    if (!acc.includes(item.category)) {
+      acc.push(item.category);
+    }
+    return acc;
+  }, [] as string[]);
+
   return (
     <>
       <div className="flex flex-col gap-20 md:gap-28">
@@ -9,74 +66,34 @@ export default function Gear() {
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <div>
-            <h1 className="animate-in text-3xl font-bold tracking-tight">
-              My Gear
-            </h1>
-            <p
-              className="animate-in text-secondary"
-            >
-              Things I use and recommend.
-            </p>
+            <h1 className="animate-in text-3xl font-bold tracking-tight">My Gear</h1>
+            <p className="animate-in text-secondary">Things I use and recommend.</p>
           </div>
         </div>
         <div
           className="flex flex-col gap-16 animate-in md:gap-24"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          <Section heading="Workstation" headingAlignment="left">
-            <div className="flex flex-col gap-6">
-              <div className="space-y-1">
-                <h3 className="font-medium">16-inch MacBook Pro</h3>
-                <p className="text-secondary">
-                  I use it for everything from coding to video editing.
-                </p>
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-medium">16-inch MacBook Pro</h3>
-                <p className="text-secondary">
-                  My main computer is a 16-inch MacBook Pro (2019) with 2.6
-                  GHz 6-Core Intel Core i7, 16 GB 2667 MHz DDR4, and 1 TB SSD.
-                  I use it for everything from coding to video editing.
-                </p>
-              </div>
-            </div>
-          </Section>
-          <Section heading="Camera" headingAlignment="left">
-            <div className="flex flex-col gap-6">
-              <div className="space-y-1">
-                <h3 className="font-medium">DJI Mini 3 Pro</h3>
-                <p className="text-secondary">
-                  The DJI Mini 3 Pro is a great drone for beginners. It has a
-                  4K camera, 30 minutes of flight time, and a 3-axis gimbal.
-                </p>
-              </div>{" "}
-              <div className="space-y-1">
-                <h3 className="font-medium">Nikon Z6 Mirrorless</h3>
-                <p className="text-secondary">
-                  The Nikon Z6 is a great camera for hybrid shooting (photo
-                  and video). It has a 24.5MP full-frame sensor, 273-point
-                  autofocus system, and 4K video.
-                </p>
-              </div>
-            </div>
-          </Section>
-          <Section heading="Camera" headingAlignment="left">
-            <div className="flex flex-col gap-6">
-              <div className="space-y-1">
-                <h3 className="font-medium">DJI Mini 3 Pro</h3>
-                <p className="text-secondary">
-                  The DJI Mini 3 Pro is a great drone for beginners. It has a
-                  4K camera, 30 minutes of flight time, and a 3-axis gimbal.
-                </p>
-              </div>{" "}
-              <div className="space-y-1">
-                <h3 className="font-medium">Nikon Z6 Mirrorless</h3>
-                <p className="text-secondary">
-                  The Nikon Z6 is a great camera for hybrid shooting
-                </p>
-              </div>
-            </div>
-          </Section>
+          {categories.map((category, index) => (
+            <section className="flex flex-col gap-4 " key={index}>
+              <h2>{category}</h2>
+              <ul className="grid md:grid-cols-2 gap-6 animated-list">
+                {gear.map((item, index) => {
+                  if (item.category === category) {
+                    return (
+                      <Item
+                        key={index}
+                        title={item.title}
+                        description={item.description}
+                      />
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </ul>
+            </section>
+          ))}
         </div>
       </div>
     </>
