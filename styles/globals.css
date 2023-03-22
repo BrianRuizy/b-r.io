@@ -33,7 +33,7 @@
 
   .dark-theme {
     --blurBackground: rgb(15 15 15 / 95%);
-    --headerBackground: rgb(21 21 20 / 90%);
+    --headerBackground: hsl(0, 0%, 8.5%, 0.9);
   }
 
   
@@ -200,7 +200,7 @@ input:-webkit-autofill:focus {
 }
 
 pre[class*="language-"] {
-  @apply text-xs text-[13px]
+  @apply text-xs text-[13px];
 }
 
 .code-highlight {
