@@ -22,7 +22,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
   if (isInternalLink) {
     return (
       <Link {...props} href={href} legacyBehavior>
-        <a>{props.children}</a>
+        {props.children}
       </Link>
     );
   }
