@@ -25,7 +25,7 @@ export default function CustomImage({
   return (
     <div
       className={cn(
-        "not-prose w-full",
+        "not-prose w-full my-4",
         breakout ? "bg-tertiary" : "",
         (rounded || breakout) && "rounded-2xl overflow-hidden"
       )}
@@ -42,7 +42,7 @@ export default function CustomImage({
         {caption && (
           <figcaption
             className={cn(
-              "text-sm text-secondary",
+              "text-sm text-tertiary text-center my-2",
               breakout && "max-w-[700px] px-6 w-full mx-auto "
             )}
           >
