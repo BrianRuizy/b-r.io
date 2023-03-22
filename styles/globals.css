@@ -226,9 +226,9 @@ pre[class*="language-"] {
 }
 
 .highlight-line {
-  margin-left: -32px;
-  margin-right: -32px;
-  padding-left: 32px;
+  margin-left: -24px;
+  margin-right: -24px;
+  padding-left: 24px;
   background-color: hsl(0, 0%, 15.8%, .75); /* Set highlight bg color */
   border-left: 4px solid #e1bde2; /* Set highlight accent border color */
 }

@@ -68,7 +68,7 @@
  
  /* Code blocks */
  pre[class*="language-"] {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
     overflow: auto;
     @apply rounded;
  }
@@ -444,7 +444,7 @@
      background-color: #1a1a1a;
      border-radius: 0.3em;
      margin: 2rem 0 1rem;
-     padding: 1.5rem 2rem;
+     padding: 1.5rem;
      overflow: auto;
      /* border: 1px solid rgba(255, 255, 255, 0.12); */
 

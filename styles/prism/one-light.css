@@ -65,7 +65,7 @@
  
  /* Code blocks */
  pre[class*="language-"] {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
     overflow: auto;
     border-radius: 0.3em;
  }
@@ -430,7 +430,7 @@
     background-color: #fafafa;
     border-radius: 0.3em;
     margin: 2rem 0 1rem;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
     overflow: auto;
     border: 1px solid rgba(0, 0, 0, 0.12);
 }
