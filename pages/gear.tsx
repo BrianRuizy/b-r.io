@@ -176,13 +176,6 @@ const gear = [
     link: "https://amzn.to/3DJd86G",
   },
   {
-    name: "Brevite Backpack",
-    category: "Camera Gear",
-    image: "https://m.media-amazon.com/images/I/61kuICMElAL._AC_SL1500_.jpg",
-    description: "Compact Camera Backpack - A Minimalist & Travel-friendly",
-    link: "https://amzn.to/3U5PTJo",
-  },
-  {
     name: "Nikon Z6 Full Frame Mirrorless",
     category: "Camera Gear",
     image: "https://m.media-amazon.com/images/I/61h9UPZ40TL._AC_SL1000_.jpg",
@@ -240,5 +233,12 @@ const gear = [
     image: "https://m.media-amazon.com/images/I/61FTKuvhBeL._AC_SL1500_.jpg",
     description: "Mini Flexible Tripod Stand, Universal use",
     link: "https://amzn.to/3Elzw6G",
+  },
+  {
+    name: "Brevite Backpack",
+    category: "Other",
+    image: "https://m.media-amazon.com/images/I/61kuICMElAL._AC_SL1500_.jpg",
+    description: "Compact Camera Backpack - A Minimalist & Travel-friendly",
+    link: "https://amzn.to/3U5PTJo",
   },
 ];

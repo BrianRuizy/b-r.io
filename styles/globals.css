@@ -33,7 +33,8 @@
 
   .dark-theme {
     --blurBackground: rgb(15 15 15 / 95%);
-    --headerBackground: hsl(0, 0%, 8.5%, 0.9);
+    --headerBackground: hsl(0, 0%, 7%, 0.9);
+    --gray1: hsl(0, 0%, 7.0%);
   }
 
   
