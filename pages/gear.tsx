@@ -3,16 +3,18 @@ import Image, { StaticImageData } from "next/image";
 import Logi from "public/gear/logi.jpeg";
 import Copilot from "public/gear/copilot.jpeg";
 
+import Warning from "components/warning";
+
 interface ItemProps {
   title: string;
-  description: string;  
+  description: string;
   image: string | StaticImageData;
   link: string;
   sponsored?: boolean;
 }
 
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
-  <li className="flex gap-4 items-center py-4">
+  <li className="flex gap-4 items-center">
     <div className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem]">
       <Image
         src={image}
@@ -38,12 +40,10 @@ const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
         >
           Get
         </a>
-        { sponsored && (
+        {sponsored && (
           <p className="mt-1 text-center text-xs text-tertiary">Sponsored</p>
         )}
-
       </div>
-
     </div>
   </li>
 );
@@ -58,48 +58,60 @@ export default function Gear() {
 
   return (
     <>
-      <div className="flex flex-col gap-20 md:gap-28">
-        <div
-          className="flex flex-col gap-8 animate-in"
-          style={{ "--index": 1 } as React.CSSProperties}
-        >
+      <div className="flex flex-col gap-16 md:gap-24">
+        <div className="flex flex-col gap-8 animate-in">
           <div>
             <h1 className="animate-in text-3xl font-bold tracking-tight">
-              My Gear
+              Gear
             </h1>
-            <p className="animate-in text-secondary">
-              Some of the things I use.
+            <p
+              className="animate-in text-secondary"
+              style={{ "--index": 1 } as React.CSSProperties}
+            >
+              My toolbox.
             </p>
           </div>
+          <div
+            className="-mt-7 animate-in"
+            style={{ "--index": 2 } as React.CSSProperties}
+          >
+            <Warning type="info">
+              <p className="text-secondary">
+                This is a list of the gear I actually own and recommend. The
+                affiliate links come at no extra cost but it does however help
+                support my content creation!
+              </p>
+            </Warning>
+          </div>
         </div>
-        <div
-          className="flex flex-col gap-16 animate-in md:gap-24"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          {categories.map((category, index) => (
-            <section className="flex flex-col gap-8" key={index}>
-              <h2>{category}</h2>
-              <ul className="grid md:grid-cols-2 gap-x-6 animated-list">
-                {gear.map((item, index) => {
-                  if (item.category === category) {
-                    return (
-                      <Item
-                        key={index}
-                        title={item.name}
-                        description={item.description}
-                        image={item.image}
-                        link={item.link}
-                        sponsored={item.sponsored}
-                      />
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
-              </ul>
-            </section>
-          ))}
-        </div>
+
+        {categories.map((category, index) => (
+          <section
+            className="flex flex-col gap-8 animate-in"
+            key={index}
+            style={{ "--index": 3 } as React.CSSProperties}
+          >
+            <h2 className="text-secondary">{category}</h2>
+            <ul className="grid md:grid-cols-2 gap-x-6 gap-y-8 animated-list">
+              {gear.map((item, index) => {
+                if (item.category === category) {
+                  return (
+                    <Item
+                      key={index}
+                      title={item.name}
+                      description={item.description}
+                      image={item.image}
+                      link={item.link}
+                      sponsored={item.sponsored}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </ul>
+          </section>
+        ))}
       </div>
     </>
   );

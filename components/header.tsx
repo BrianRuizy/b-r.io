@@ -70,7 +70,7 @@ export default function Header() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-blur backdrop-blur-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Popover.Panel className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-blur backdrop-blur-lg focus:outline-none sm:text-sm border border-primary">
               <div className="grid">
                 { links.map((link) => (
                   <Link 

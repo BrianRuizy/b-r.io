@@ -154,7 +154,7 @@ export default function About({}: // lastActivity,
         </div>
         <div
           className="flex flex-col gap-16 animate-in md:gap-24"
-          style={{ "--index": 2 } as React.CSSProperties}
+          style={{ "--index": 3 } as React.CSSProperties}
         >
           <Section heading="About" headingAlignment="left">
             <div className="flex flex-col gap-6">

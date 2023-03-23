@@ -58,7 +58,10 @@ export default function Post({ post, related }: PostProps) {
 
       <div className="flex flex-col gap-20">
         <article>
-          <div className="flex flex-col gap-3">
+          <div 
+            className="flex flex-col gap-3 animate-in"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
             <p className="text-tertiary">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
@@ -72,7 +75,7 @@ export default function Post({ post, related }: PostProps) {
 
           <div className="h-8" />
           {post.slug === "spring-parallax-framer-motion-guide" ? (
-            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-lg">
+            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-lg animate-in">
               <div className="absolute inset-0">
                 <Parallax offset={100}>
                   <Image
@@ -101,13 +104,16 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border-none md:border  border-primary"
+              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border-none md:border border-primary animate-in"
               priority
             />
           )}
           <div className="h-16" />
         
-          <div className="prose">
+          <div className="prose animate-in"
+          style={{ "--index": 3 } as React.CSSProperties}
+
+          >
             <Component components={MDXComponents} />
           </div>
         </article>
