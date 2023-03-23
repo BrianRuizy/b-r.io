@@ -2,8 +2,10 @@ import Image, { StaticImageData } from "next/image";
 
 import Logi from "public/gear/logi.jpeg";
 import Copilot from "public/gear/copilot.jpeg";
+import Akiflow from "public/gear/akiflow.webp";
+import Dex from "public/gear/dex.webp";
 
-import Warning from "components/warning";
+import { IconInfo } from "components/Icons";
 
 interface ItemProps {
   title: string;
@@ -15,18 +17,17 @@ interface ItemProps {
 
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
   <li className="flex gap-4 items-center">
-    <div className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem]">
+    <div className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow">
       <Image
         src={image}
         alt={title}
-        className="relative object-center object-cover w-full h-full z-0"
+        className="object-center object-cover w-full h-full"
         fill
       />
-      <div className="z-10 relative w-full h-full shadow-[inset_0_0px_4px_0_rgba(0,0,0,.15)] rounded-xl "></div>
     </div>
     <div className="grow flex justify-between gap-2 items-center">
       <div className="space-y-1">
-        <h3 className="text-primary line-clamp-2 leading-tight">{title}</h3>
+        <h3 className="text-primary line-clamp-2 leading-tight font-medium">{title}</h3>
         <p className="text-secondary line-clamp-2 leading-tight text-sm">
           {description}
         </p>
@@ -71,18 +72,13 @@ export default function Gear() {
               My toolbox.
             </p>
           </div>
-          <div
-            className="-mt-7 animate-in"
+          <p className="max-w-lg animate-in "
             style={{ "--index": 2 } as React.CSSProperties}
           >
-            <Warning type="info">
-              <p className="text-secondary">
-                This is a list of the gear I actually own and recommend. The
-                affiliate links come at no extra cost but it does however help
-                support my content creation!
-              </p>
-            </Warning>
-          </div>
+            This is gear I actually own and recommend. The affiliate links
+            come at no extra cost, but it does however help support my content
+            creation.
+          </p>
         </div>
 
         {categories.map((category, index) => (
@@ -118,21 +114,39 @@ export default function Gear() {
 }
 
 const gear = [
+
   {
     name: "Copilot Money",
     category: "Software",
     image: Copilot,
-    description: "Budgeting App, I use it to track my spending.",
+    description: "Spending, investing, net worth. Elegant graphs and interface",
     link: "https://copilot.money/",
     sponsored: true,
   },
   {
-    name: "Duolingo - Language Lessons",
+    name: "Akiflow",
     category: "Software",
-    image: Copilot,
-    description: "Budgeting App, I use it to track my spending.",
+    image: Akiflow,
+    description:
+      "Ultimate time blocking platform. Personal task manager and calendar application",
     link: "https://copilot.money/",
     sponsored: true,
+  },
+  {
+    name: "Dex - Personal CRM",
+    category: "Software",
+    image: Dex,
+    description: "Build stronger relationships",
+    link: "https://copilot.money/",
+    sponsored: true,
+  },
+  {
+    name: "Logitech MX Master Mouse",
+    category: "Desk Setup",
+    image: Logi,
+    description:
+      "Ergonomic and comfortable to be used for all day use, love the scrolling!",
+    link: "https://amzn.to/3U5syHG",
   },
   {
     name: "Orbitkey Desk Mat",
@@ -157,14 +171,7 @@ const gear = [
     description: "USB-C Artisan Braided, Mechanical Keyboards",
     link: "https://amzn.to/3NSznKR",
   },
-  {
-    name: "Logitech MX Master 3S Mouse",
-    category: "Desk Setup",
-    image: Logi,
-    description:
-      "Ergonomic and comfortable to be used for all day use, love the scrolling!",
-    link: "https://amzn.to/3U5syHG",
-  },
+ 
   {
     name: "BenQ ScreenBar Monitor Light",
     category: "Desk Setup",

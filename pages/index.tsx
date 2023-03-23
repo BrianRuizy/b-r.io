@@ -78,7 +78,7 @@ export default function Home({ posts, projects }: HomeProps) {
             </ul>
           </div>
           <p
-            className="text-primary max-w-xl animate-in"
+            className="text-primary max-w-lg animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             Hi, I&apos;m Brian Ruiz, a software engineer who loves building cool
@@ -112,7 +112,7 @@ export default function Home({ posts, projects }: HomeProps) {
 
             <li className="transition-opacity">
               <Link
-                href="/about"
+                href="https://youtube.com/@brianruizy?sub_confirmation=1"
                 className="flex gap-2 items-center no-underline"
               >
                 <svg
@@ -127,7 +127,7 @@ export default function Home({ posts, projects }: HomeProps) {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Subscribe to newsletter</span>
+                <span>Subscribe to channel</span>
               </Link>
             </li>
           </ul>

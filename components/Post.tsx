@@ -23,7 +23,7 @@ export default function Post({ post, mousePosition }: PostProps) {
     30;
   const imageHeight = 150;
   const imageWidth = 300;
-  const imageOffset = 22;
+  const imageOffset = 24;
 
   return (
     <li className="py-3 group">
