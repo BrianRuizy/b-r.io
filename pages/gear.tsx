@@ -1,12 +1,12 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import Logi from "public/gear/logi.jpeg";
 import Copilot from "public/gear/copilot.jpeg";
 
 interface ItemProps {
   title: string;
-  description: string;
-  image: string;
+  description: string;  
+  image: string | StaticImageData;
   link: string;
   sponsored?: boolean;
 }
