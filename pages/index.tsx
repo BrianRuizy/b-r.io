@@ -77,18 +77,17 @@ export default function Home({ posts, projects }: HomeProps) {
               </li>
             </ul>
           </div>
-          <p className="text-primary max-w-xl animate-in"
+          <p
+            className="text-primary max-w-xl animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
-
           >
-            Hi, I&apos;m Brian Ruiz, a software engineer who loves building
-            cool things with code. In addition to coding, I also make YouTube
-            videos, where I focus on tech, creative vlogs, and personal
-            development.
+            Hi, I&apos;m Brian Ruiz, a software engineer who loves building cool
+            things with code. In addition to coding, I also make YouTube videos,
+            where I focus on tech, creative vlogs, and personal development.
           </p>
-          <ul className="flex flex-col md:flex-row gap-2 md:gap-6 text-secondary animated-list animate-in"
+          <ul
+            className="flex flex-col md:flex-row gap-2 md:gap-6 text-secondary animated-list animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
-          
           >
             <li className="transition-opacity">
               <Link
@@ -134,7 +133,7 @@ export default function Home({ posts, projects }: HomeProps) {
           </ul>
         </div>
         <div
-          className="flex flex-col gap-4 animate-in"
+          className="flex flex-col gap-8 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <h2>Selected projects</h2>
@@ -166,17 +165,12 @@ export default function Home({ posts, projects }: HomeProps) {
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
         >
-          <div className="flex justify-between">
-            <h2>Latest Blogs</h2>
+          <h2>Latest Blogs</h2>
 
-            <Link
-              href="/blog"
-              className="items-start hover:underline text-secondary"
-            >
-              See All
-            </Link>
-          </div>
           <PostList posts={posts} />
+          <Link href="/blog" className="items-start underline">
+            See All
+          </Link>
         </div>
       </div>
     </>
