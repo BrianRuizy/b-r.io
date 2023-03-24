@@ -21,7 +21,7 @@ export default function Header() {
   const pathname = `/${router.pathname.split("/")[1]}`; // active paths on dynamic subpages
 
   return (
-    <header className="sticky top-0 z-10 main-header backdrop-blur-md bg-primary animate-in-reverse md:bg-header">
+    <header className="sticky top-0 z-10 main-header backdrop-blur-md bg-primary  md:bg-header">
       <nav className="px-4 md:px-6 py-3 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
         <Link href="/" className="shrink-0 text-primary">
           <svg
