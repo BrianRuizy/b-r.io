@@ -51,7 +51,7 @@ export default function Post({ post, mousePosition }: PostProps) {
           <Section heading={formatDate(publishedAt)}>
             <Link href={`/blog/${slug}`} className="font-medium leading-tight">{title}</Link>
           </Section>
-          <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative shadow-sm">
+          <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative drop-shadow-sm">
             <Image src={image} alt={title} fill className="object-cover rounded"/>
           </div>
         </div>

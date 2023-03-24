@@ -16,7 +16,7 @@ export default function TracklibGraphic() {
 
   return (
     <div
-      className="relative overflow-hidden bg-black h-[283px] rounded-xl"
+      className="relative overflow-hidden bg-[#1C1C1C] h-[283px] rounded-xl"
       ref={ref}
     >
       <Halo strength={resolvedTheme === "light" ? 15 : 8}>
