@@ -20,7 +20,6 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-
 export default function MyApp({
   Component,
   pageProps,
@@ -28,7 +27,7 @@ export default function MyApp({
   const getLayout =
     Component.getLayout ??
     ((page) => (
-      <main className="px-6 md:px-6 pt-20 pb-24 md:pb-44 max-w-[700px] mx-auto ring-offset-primary ">
+      <main className="px-6 md:px-6 pt-16 pb-24 md:pt-20 md:pb-44 max-w-[700px] mx-auto ring-offset-primary ">
         {page}
       </main>
     ));
@@ -54,7 +53,6 @@ export default function MyApp({
         arc: "arc-theme",
       }}
     >
-
       <SEO />
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

@@ -189,7 +189,7 @@ export default function About({}: // lastActivity,
           </Section>
 
           <Section heading="Connect" headingAlignment="left">
-            <div className="flex flex-col w-full gap-8">
+            <div className="flex flex-col w-full gap-8" >
               <p>Have a question or just want to chat? Feel free to {" "}
                 <a href="mailto:contact@b-r.io" className="underline">email me</a>
                 {" "}anytime (contact@b-r.io). Try finding me anywhere else at @brianruizy</p>
