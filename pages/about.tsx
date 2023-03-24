@@ -144,7 +144,7 @@ export default function About({}: // lastActivity,
               alt={"me and lily"}
               width={220}
               height={260}
-              className="absolute w-48 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl rotate-6 left-[46%] md:left-[60%] md:w-56 -top-48"
+              className="absolute w-48 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl rotate-6 left-[45%] md:left-[60%] md:w-56 -top-48"
               priority
             />
           </div>
