@@ -30,7 +30,7 @@
 
  code[class*="language-"],
  pre[class*="language-"] {
-     background: hsl(0, 0%, 11.0%);
+     /* background: hsl(0, 0%, 11.0%); */
      color: hsl(220, 14%, 81%);
      text-shadow: 0 1px rgba(0, 0, 0, 0.3);
      font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
@@ -440,24 +440,3 @@
      fill: transparent;
  }
 
- .gatsby-highlight {
-     background-color: #1a1a1a;
-     border-radius: 0.3em;
-     margin: 2rem 0 1rem;
-     padding: 1.5rem;
-     overflow: auto;
-     /* border: 1px solid rgba(255, 255, 255, 0.12); */
-
- }
-
-@media screen and (max-width: 600px) {
-    .gatsby-highlight {
-        padding: 1rem;
-    }
-}
-
- .gatsby-highlight pre[class*="language-"].line-numbers {
-     padding: 0;
-     padding-left: 2.8em;
-     overflow: initial;
- }

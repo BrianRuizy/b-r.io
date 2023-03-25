@@ -1,7 +1,7 @@
 ---
 title: 'First Place At A Microsoft Hackathon'
 publishedAt: '2022-09-07'
-summary: 'The application idea would leverage the latest of Microsoft Azure and Machine Learning to help solve a $6.4 billion infrastructure issue.'
+summary: 'Leveraging the latest of Microsoft Azure Machine Learning to help solve a $6.4 billion infrastructure issue.'
 tags: ["CSS", "SVG"]
 ---
 
@@ -15,7 +15,10 @@ The technology we opted for the project revolved heavily around Python. For the 
 
 Python also allowed us to create data visualizations —matplotlib— of our data which we used to tweak the algorithm. All of this was tied togther with the Microsoft Azure platform. From storing the data (CSV’s and images) in Azure, to using the Azure Machine Learning platform to train the model.
 
-![](https://brianruizy.com/static/f1577426c45e122c22a3aefcd0f5a7d8/58e7d/tech.png)
+- Python 
+- Azure Logic Apps
+- Azure Computer Vision
+
 
 ## Our Idea and Proposal
 
@@ -34,17 +37,20 @@ Every modern smartphone is equipped with very accurate telemetry systems. For ex
 
 One of the difficulties with this approach was that logging every high acceleration movement may result in false positives of a road pothole. Below is also a time-series data visualization of the accelerometer data, generated with matplotlib.
 
-```python
+```python showLineNumbers
 import pandas as pd
 import matplotlib.pyplot as plt
+
 df = pd.read_csv('/home/br/Downloads/testdata.csv')
 df['Time'] = pd.to_datetime(df.Time, format='%Y-%m-%d %H:%M:%S:%f')
+
 columns = [
   'ACCELEROMETER X (m/s²)', 
   'ACCELEROMETER Y (m/s²)',
   'ACCELEROMETER Z (m/s²)', 
   'Time'
 ]
+
 df[columns].plot(x='Time')
 plt.show()
 ```
@@ -69,14 +75,17 @@ From the start, the idea was to keep the interface as intuitive as possible to m
 
 ### 4. Geocoding / Mapping
 
-Finally, we needed to plot our GPS data so the city could take action. Our collected data included latitude, longitude, altitude, and location accuracy. Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
+Finally, we needed to plot our GPS data so the city could take action. Our collected data included latitude, longitude, altitude, and location accuracy. `import folium`
+Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
 
-```python
+
+```python showLineNumbers
 import folium
 import pandas as pd
 
 SF_COORDINATES = (37.76, -122.45)
 map = folium.Map(location=SF_COORDINATES, zoom_start=12)
+
 for each in df.iterrows():
   map.simple_marker(
     location = [each[1]['Y'],each[1]['X']], 

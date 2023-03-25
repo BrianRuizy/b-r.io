@@ -3,6 +3,8 @@ import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import list from "public/projects/tracklib/list.png";
+import hero from "public/projects/hero.png";
+
 import { useRef } from "react";
 
 export default function TracklibGraphic() {
@@ -16,7 +18,7 @@ export default function TracklibGraphic() {
 
   return (
     <div
-      className="relative overflow-hidden bg-[#1C1C1C] h-[283px] rounded-xl"
+      className="relative overflow-hidden from-neutral-700 bg-gradient-to-br to-gray-900 h-[283px] rounded-xl"
       ref={ref}
     >
       <Halo strength={resolvedTheme === "light" ? 15 : 8}>
@@ -25,11 +27,12 @@ export default function TracklibGraphic() {
           style={{ y }}
         >
           <Image
-            src={list}
+            src={hero}
             alt="Tracklib listing"
             width={350}
             height={268}
             sizes="350px"
+            className="scale-125"
           />
         </motion.div>
         <svg

@@ -72,7 +72,7 @@ export default function Gear() {
               My toolbox.
             </p>
           </div>
-          <p className="max-w-lg animate-in "
+          <p className="max-w-lg animate-in text-secondary"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             This is gear I actually own and recommend. The affiliate links
@@ -87,7 +87,7 @@ export default function Gear() {
             key={index}
             style={{ "--index": 3 } as React.CSSProperties}
           >
-            <h2 className="text-secondary">{category}</h2>
+            <h2>{category}</h2>
             <ul className="grid md:grid-cols-2 gap-x-6 gap-y-8 animated-list">
               {gear.map((item, index) => {
                 if (item.category === category) {

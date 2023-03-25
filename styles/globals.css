@@ -199,8 +199,10 @@ input:-webkit-autofill:focus {
   @apply text-tertiary border-primary font-normal;
 }
 
+
+/* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px];
+  @apply text-xs text-[13px] border border-secondary rounded-lg bg-[#1c1c1c];
 }
 
 .code-highlight {
@@ -237,7 +239,7 @@ pre[class*="language-"] {
   display: inline-block;
   width: 1rem;
   text-align: right;
-  margin-right: 16px;
+  margin-right: 20px;
   margin-left: -8px;
   color: rgb(220, 217, 230); /* Line number color */
   opacity: 0.3;
