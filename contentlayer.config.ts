@@ -33,33 +33,14 @@ export const Post = defineDocumentType(() => ({
     publishedAt: { type: "string", required: true },
     updatedAt: { type: "string", required: false },
     tags: { type: "json", required: false },
+    featured: { type: "boolean", required: false },
   },
   computedFields: postComputedFields,
 }));
 
-const projectComputedFields: ComputedFields = {
-  slug: {
-    type: "string",
-    resolve: (doc) => getSlug(doc),
-  },
-};
-
-export const Project = defineDocumentType(() => ({
-  name: "Project",
-  filePathPattern: `project/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: { type: "string", required: true },
-    description: { type: "string", required: true },
-    time: { type: "string", required: true },
-    url: { type: "string", required: false },
-  },
-  computedFields: projectComputedFields,
-}));
-
 export default makeSource({
   contentDirPath: "data",
-  documentTypes: [Post, Project],
+  documentTypes: [Post],
   mdx: {
     rehypePlugins: [rehypePrism],
     remarkPlugins: [codeTitle],

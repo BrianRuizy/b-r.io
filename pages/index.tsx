@@ -1,24 +1,24 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
-import { allPosts, allProjects, Post, Project } from ".contentlayer/generated";
+import { allPosts, Post } from ".contentlayer/generated";
 import { pick } from "@contentlayer/client";
+import { FaYoutube, FaGithub } from "react-icons/fa";
 
 import Link from "components/Link";
 import Section from "components/Section";
 import PostList from "components/postlist";
-import avatar from "public/avatar.png";
-
 import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
-import TracklibGraphic from "components/projects/TracklibGraphic";
+import CovidGraphic from "components/featured/CovidGraphic";
 
-import { FaYoutube, FaGithub } from "react-icons/fa";
+import avatar from "public/avatar.png";
+import { formatDate } from "lib/formatdate";
 
 type HomeProps = {
   posts: Post[];
-  projects: Project[];
+  featured: Post[];
 };
 
-export default function Home({ posts, projects }: HomeProps) {
+export default function Home({ posts, featured }: HomeProps) {
   return (
     <>
       <div className="flex flex-col gap-16 md:gap-24">
@@ -109,7 +109,6 @@ export default function Home({ posts, projects }: HomeProps) {
                 <span>Email me</span>
               </Link>
             </li>
-
             <li className="transition-opacity">
               <Link
                 href="https://youtube.com/@brianruizy?sub_confirmation=1"
@@ -136,22 +135,25 @@ export default function Home({ posts, projects }: HomeProps) {
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          <h2>Selected projects</h2>
+          <h2>Featured</h2>
           <ul className="relative flex gap-8 md:gap-16 flex-nowrap overflow-x-scroll snap-x md:overflow-auto snap-mandatory md:flex-col -mx-6 px-6 scroll-pl-6 touch-auto">
-            {projects.map((project) => (
-              <li key={project.title} className="snap-start min-w-[80%]">
-                <Section heading={project.time}>
-                  <div className="flex flex-col gap-5">
-                    <Link href={`/project/${project.slug}`}>
-                      {project.slug === "tracklib" && <TracklibGraphic />}
-                      {project.slug === "trailroutes" && <TrailRoutesGraphic />}
+            {featured.map((post) => (
+              <li key={post.title} className="snap-start min-w-[85%]">
+                <Section heading={formatDate(post.publishedAt)}>
+                  <div className="flex flex-col gap-6">
+                    <Link href={`/blog/${post.slug}`}>
+                      {post.slug === "covid" && <CovidGraphic />}
+                      {post.slug === "mapbox-static-image-api" && <TrailRoutesGraphic /> }
                     </Link>
-                    <div className="flex flex-col gap-1">
-                      <Link href={`/project/${project.slug}`}>
-                        <h3 className="font-medium">{project.title}</h3>
+                    <div className="flex flex-col gap-3">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="font-medium leading-tight hover:underline line-clamp-2"
+                      >
+                        {post.title}
                       </Link>
                       <p className="text-secondary line-clamp-3">
-                        {project.description}
+                        {post.summary}
                       </p>
                     </div>
                   </div>
@@ -160,13 +162,11 @@ export default function Home({ posts, projects }: HomeProps) {
             ))}
           </ul>
         </div>
-
         <div
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <h2>Latest Blogs</h2>
-
           <PostList posts={posts} />
           <Link href="/blog" className="items-start underline">
             See All
@@ -183,14 +183,17 @@ export const getStaticProps: GetStaticProps = async () => {
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
+    .filter((post) => !post.featured)
     .filter((_, i) => i < 4)
     .map((post) => pick(post, ["slug", "title", "publishedAt", "image"]));
 
-  const projects = allProjects.map((post) =>
-    pick(post, ["slug", "title", "description", "time"])
-  );
+  const featured = allPosts
+    .filter((post) => post.featured)
+    .map((post) =>
+      pick(post, ["slug", "title", "publishedAt", "image", "summary"])
+    );
 
   return {
-    props: { posts, projects },
+    props: { posts, featured },
   };
 };
