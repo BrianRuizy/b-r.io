@@ -2,7 +2,7 @@ import Halo from "components/Halo";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import hero from "public/projects/hero.png";
+import hero from "public/featured/hero.png";
 
 import { useRef } from "react";
 

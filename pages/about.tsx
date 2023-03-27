@@ -6,10 +6,10 @@ import Section from "components/Section";
 import Workplaces from "components/Workplaces";
 import Gallery from "components/Gallery";
 
-import hinesLogo from "public/projects/hines-logo.jpeg";
-import perishipLogo from "public/projects/periship-logo.jpeg";
-import camsLogo from "public/projects/cams-logo.png";
-import uhdLogo from "public/projects/uhd.png";
+import hinesLogo from "public/work/hines-logo.jpeg";
+import perishipLogo from "public/work/periship-logo.jpeg";
+import camsLogo from "public/work/cams-logo.png";
+import uhdLogo from "public/work/uhd.png";
 
 import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
@@ -17,21 +17,21 @@ import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
 
 export const connectLinks = [
-  // {
-  //   label: "Email",
-  //   href: "mailto:contact@b-r.io",
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       viewBox="0 0 20 20"
-  //       fill="currentColor"
-  //       className="w-5 h-5"
-  //     >
-  //       <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-  //       <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-  //     </svg>
-  //   ),
-  // },
+  {
+    label: "Email",
+    href: "mailto:contact@b-r.io",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="w-5 h-5"
+      >
+        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+      </svg>
+    ),
+  },
   {
     label: "YouTube",
     href: "https://www.youtube.com/@brianruizy",
@@ -57,29 +57,29 @@ export const connectLinks = [
 const workplaces = [
   {
     title: "Full Stack Engineer",
-    description: "Hines",
-    time: "2022 -",
+    company: "Hines",
+    time: "2022 - Present",
     imageSrc: hinesLogo,
     link: "https://hines.com",
   },
   {
     title: "Software Engineer",
-    description: "PeriShip",
+    company: "PeriShip",
     time: "2021 - 2022",
     imageSrc: perishipLogo,
     link: "https://peripharma.com/",
   },
   {
     title: "Python Developer",
-    description: "CAMS",
+    company: "CAMS",
     time: "2019 - 2020",
     imageSrc: camsLogo,
     link: "https://camstex.com",
   },
   {
     title: "Coding Camp Instructor",
-    description: "University of Houston",
-    time: "2019",
+    company: "University of Houston",
+    time: "Summer 2019",
     imageSrc: uhdLogo,
     link: "https://www.uhd.edu/",
   },
@@ -191,8 +191,8 @@ export default function About({}: // lastActivity,
           <Section heading="Connect" headingAlignment="left">
             <div className="flex flex-col w-full gap-8" >
               <p>Have a question or just want to chat? Feel free to {" "}
-                <a href="mailto:contact@b-r.io" className="underline">email me</a>
-                {" "}anytime (contact@b-r.io). Try finding me anywhere else at @brianruizy</p>
+                <a href="mailto:contact@b-r.io" className="underline">email me</a>.
+                {' '}Try finding me anywhere else at @brianruizy</p>
               <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
                 {connectLinks.map((link) => (
                   <li
@@ -229,14 +229,13 @@ export default function About({}: // lastActivity,
           <Section heading="Work" headingAlignment="left">
             <div className="flex flex-col w-full gap-8">
               <p>
-                {new Date().getFullYear() - 2019}+ years of development
+                {new Date().getFullYear() - 2019}+ years of professional development
                 experience.
               </p>
               <p>
                 I started my career teaching others how to code, which I will
                 always be appreciative of. Then I worked at a few small local
-                companies. Now I am at Hines, one of the largest real-estate
-                investors.
+                companies. Now I am working with systems at a bigger scale with Hines.
               </p>
               <Workplaces items={workplaces} />
             </div>

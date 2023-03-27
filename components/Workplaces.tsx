@@ -1,36 +1,40 @@
 import Link from "components/Link";
 import Image, { StaticImageData } from "next/image";
-import { Fragment } from "react";
+import cn from "clsx";
 
 type Workplace = {
   title: string;
-  description: string;
+  company: string;
   imageSrc: string | StaticImageData;
   time?: string;
   link?: string;
 };
 
-function Workplace({ title, description, imageSrc, time, link }: Workplace) {
+function Workplace({ title, company, imageSrc, time, link }: Workplace) {
   const content = (
     <>
       <div className="flex items-center gap-4">
         <Image
           src={imageSrc}
-          alt={description}
+          alt={company}
           width={48}
           height={48}
-          className="rounded-full"
+          className={
+            cn("rounded-full", 
+            company === 'University of Houston' && "bg-white",
+            
+          )}
         />
         <div className="flex flex-col gap-px">
           <p className={link ? "external-arrow" : ""}>{title}</p>
-          <p className="text-secondary">{description}</p>
+          <p className="text-secondary">{company}</p>
         </div>
       </div>
       {time && <p className="text-secondary">{time}</p>}
     </>
   );
   return (
-    <li className="transition-opacity" key={description}>
+    <li className="transition-opacity" key={company}>
       {link ? (
         <Link
           href={link}

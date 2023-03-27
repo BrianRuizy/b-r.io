@@ -58,7 +58,7 @@ export default function Post({ post, related }: PostProps) {
 
       <div className="flex flex-col gap-20">
         <article>
-          <div className="flex flex-col gap-3 animate-in">
+          <div className="flex flex-col gap-3 animate-in text-center max-w-lg mx-auto">
             <p className="text-tertiary">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
@@ -66,7 +66,7 @@ export default function Post({ post, related }: PostProps) {
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
               <HitCounter slug={post.slug} />
             </p>
-            <h1 className="text-3xl font-bold tracking-tight leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight leading-tight">
               {post.title}
             </h1>
             <p
@@ -111,7 +111,7 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none border-none md:border border-primary animate-in"
+              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none animate-in"
               style={{ "--index": 2 } as React.CSSProperties}
               priority
             />
