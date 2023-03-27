@@ -67,7 +67,6 @@ export default function Project({ project, rest }: ProjectProps) {
           </div>
           <div className="h-12" />
           <div className="prose project prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
-            <hr />
             <Component components={MDXComponents} />
           </div>
         </article>

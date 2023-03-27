@@ -121,7 +121,6 @@ export default function Post({ post, related }: PostProps) {
             className="prose animate-in"
             style={{ "--index": 3 } as React.CSSProperties}
           >
-            <hr />
             <Component components={MDXComponents} />
           </div>
         </article>
