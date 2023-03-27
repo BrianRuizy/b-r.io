@@ -42,12 +42,10 @@ export default function Project({ project, rest }: ProjectProps) {
           ],
         }}
       />
-
       <div className="flex flex-col gap-20">
         <article>
           <div className="h-20" />
-          <div className="flex flex-col gap-3 px-4 md:px-6 py-2 max-w-[700px] mx-auto ">
-            <h1 className="text-2xl font-semibold">{project.title}</h1>
+          <div className="flex flex-col gap-3 animate-in px-4 md:px-6 py-2 max-w-[700px] mx-auto ">
             <div className="flex gap-3">
               <p className="text-secondary">{project.time}</p>
               {project.url && (
@@ -57,11 +55,19 @@ export default function Project({ project, rest }: ProjectProps) {
                 </>
               )}
             </div>
-            {project.description}
+            <h1 className="text-3xl font-bold tracking-tight leading-tight">
+              {project.title}
+            </h1>
+            <p
+              className="text-secondary animate-in"
+              style={{ "--index": 1 } as React.CSSProperties}
+            >
+              {project.description}
+            </p>
           </div>
-
           <div className="h-12" />
           <div className="prose project prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
+            <hr />
             <Component components={MDXComponents} />
           </div>
         </article>

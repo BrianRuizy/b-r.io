@@ -9,10 +9,11 @@ Mapbox is one of the nicest way to embed custom dynamic maps in an app as there 
 
 <Image
   alt="Nyckelviken Trail Route"
-  caption="Custom Open Graph Image for Nyckelviken Trail Route"
+  caption="Custom Open Graph Image for Nyckelviken Trail Route, this is a longder ficaption now to test how it will break and look"
   src={'/blog/mapbox-static-image-api/nyckelviken.png'}
   width={1012}
   height={516}
+  rounded
 />
 
 The code used looks like this:
@@ -109,6 +110,7 @@ https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/
   src={'/blog/mapbox-static-image-api/example.png'}
   width={1000}
   height={600}
+  rounded
 />
 
 First we have specified the style of the map, in this case `streets-v11`. [Their documentation](https://docs.mapbox.com/api/maps/styles/#mapbox-styles) lists all the available styles. I've mainly used the `outdoors-v11` style but you can also desig a custom one specific for your needs. 
@@ -201,6 +203,7 @@ If you have ever used Sketch, Photoshop or another application that uses layers 
   src={'/blog/mapbox-static-image-api/layers.png'}
   width={1406}
   height={592}
+  rounded
 />
 
 In the code below I am adding a gradient *before* I add the text, that way the gradient will be positioned beneath the text in the final image.
@@ -263,6 +266,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
   src={'/blog/mapbox-static-image-api/grona_atrail.png'}
   width={1012}
   height={516}
+  rounded
 />
 
 <Image
@@ -271,6 +275,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
   src={'/blog/mapbox-static-image-api/nyckelviken.png'}
   width={1012}
   height={516}
+  rounded
 />
 
 <Image
@@ -279,6 +284,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
   src={'/blog/mapbox-static-image-api/booleden_varmdoleden.png'}
   width={1012}
   height={516}
+  rounded
 />
 
 If you liked this post please let me know by pressing ❤️ below!

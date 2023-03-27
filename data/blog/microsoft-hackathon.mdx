@@ -63,7 +63,15 @@ This part was more difficult to implement, but this was our second layer for pre
 We used Azure Logic Apps to import our road image frames to the cloud, and with OpenCV were able to register a model to start analyzing our content with the conveniently named Azure microservice Computer Vision.
 
 
-![Dashcam Footage](https://miro.medium.com/max/1200/0*KS2_n2hz7Lrqyn_L.gif)
+
+<Image 
+  src="https://miro.medium.com/max/1200/0*KS2_n2hz7Lrqyn_L.gif" 
+  alt="Dashcam Footage" 
+  width={1000}
+  height={600}
+  caption="Dashcam Footage concept, showing idea of live capturing and prediction of potholes."
+  rounded
+/>
 
 ### 3. The Interface
 
@@ -95,7 +103,16 @@ for each in df.iterrows():
 display(map)
 ```
 
-![San Francisco](https://miro.medium.com/max/1400/0*PYSGLUaVid-vzeHr.png)
+
+<Image 
+  src="https://miro.medium.com/max/1400/0*PYSGLUaVid-vzeHr.png" 
+  alt="San Francisco" 
+  width={1000}
+  height={600}
+  caption="Map of san francisco with potholes marked. Notice the clustering of entries, which is important for confirming a pothole."
+  rounded
+/>
+
 
 ---
 

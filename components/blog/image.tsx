@@ -25,9 +25,9 @@ export default function CustomImage({
   return (
     <div
       className={cn(
-        "not-prose w-full my-4",
+        "not-prose w-full my-8",
         breakout ? "bg-tertiary" : "",
-        (rounded || breakout) && "rounded-2xl overflow-hidden"
+        (rounded || breakout) && "rounded-lg overflow-hidden"
       )}
     >
       <figure className={cn("flex flex-col", breakout ? "gap-4" : "gap-2")}>
@@ -36,13 +36,17 @@ export default function CustomImage({
           width={width}
           height={height}
           alt={alt}
-          className="w-full h-auto"
           priority={priority}
+          className={cn(
+            "w-full h-auto",
+            breakout ? "bg-tertiary" : "",
+            (rounded || breakout) && "rounded-lg overflow-hidden"
+          )}
         />
         {caption && (
           <figcaption
             className={cn(
-              "text-sm text-tertiary text-center my-2",
+              "text-xs leading-tight text-tertiary text-center mx-auto my-2 font-medium max-w-lg",
               breakout && "max-w-[700px] px-6 w-full mx-auto "
             )}
           >

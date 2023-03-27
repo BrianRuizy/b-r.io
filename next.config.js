@@ -3,7 +3,7 @@ const { withContentlayer } = require("next-contentlayer"); // eslint-disable-lin
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['tailwindui.com', 'images.unsplash.com', 'cdn.dribbble.com', "m.media-amazon.com", "ik.imagekit.io"],
+    domains: ['tailwindui.com', 'images.unsplash.com', 'cdn.dribbble.com', "m.media-amazon.com", "ik.imagekit.io", "miro.medium.com"],
     remotePatterns: [
       {
         protocol: "https",

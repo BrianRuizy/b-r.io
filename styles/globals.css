@@ -35,7 +35,6 @@
     --blurBackground: rgb(0 0 0 / 95%);
     --headerBackground: hsl(0, 0%, 8.5%, 0.9);
   }
-
   
   .dark-theme .prose {
     --tw-prose-headings: var(--gray12);
@@ -202,7 +201,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] border border-secondary rounded-lg bg-[#1c1c1c];
+  @apply text-xs text-[13px] border border-secondary rounded bg-[#1c1c1c];
 }
 
 .code-highlight {

@@ -117,11 +117,11 @@ export default function Post({ post, related }: PostProps) {
             />
           )}
           <div className="h-16" />
-
           <div
             className="prose animate-in"
             style={{ "--index": 3 } as React.CSSProperties}
           >
+            <hr />
             <Component components={MDXComponents} />
           </div>
         </article>

@@ -12,7 +12,7 @@ export default function Video({
       loop={autoPlay}
       muted={autoPlay}
       controls={!autoPlay}
-      className="w-full overflow-hidden rounded-2xl"
+      className="w-full overflow-hidden rounded-xl"
     >
       <source src={src} type="video/mp4" />
       Sorry, your browser doesn&apos;t support embedded videos.

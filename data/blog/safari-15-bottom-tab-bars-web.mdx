@@ -43,6 +43,8 @@ The new Safari 15 now has a tab bar floating at the bottom of the screen. At fir
   Sorry, your browser doesn't support embedded videos.
 </video>
 
+---
+
 ## Fixing Tab Bar Overlap with Safe Areas
 
 Thankfully solving this issue is very easy by using the `env()` CSS function together with `safe-area-inset-bottom`. This API was shipped with iOS 11 making it possible to customize how websites render when using devices with a notch. By inspecting pinterests code we can see that their tab bar has a fixed position anchored to the bottom, the relevant parts look something like this:
@@ -87,6 +89,8 @@ Be sure to use `env()` every time something is anchored to the bottom of the scr
 You can learn more about respecting the safe-area in [this excellent article](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) published on the webkit blog or Apple's WWDC session called [Design for Safari 15](https://developer.apple.com/videos/play/wwdc2021/10029/?time=777&t=66) (Relevent part starts around 13 minutes in).
 
 The best way to see if you got it right is to use a physical device with iOS 15, but if you don't have access to one you can download the Xcode 13 beta from [Apples developer portal](https://developer.apple.com/download/) and use an iOS 15 simulator by going to `Xcode > Open Developer Tool > Simulator`
+
+---
 
 ## Tab Bar UX in iOS 15
 
