@@ -1,10 +1,10 @@
+import { useRef } from "react";
+import Image from "next/image";
 import Halo from "components/Halo";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import { useTheme } from "next-themes";
-import Image from "next/image";
-import hero from "public/featured/hero.png";
 
-import { useRef } from "react";
+import covidMockup from "public/featured/covidMockup.png";
 
 export default function CovidGraphic() {
   const ref = useRef(null);
@@ -17,20 +17,16 @@ export default function CovidGraphic() {
 
   return (
     <div
-      className="relative rounded-xl overflow-hidden bg-gradient-to-bl from-neutral-900 to-neutral-800 h-[283px] border border-primary will-change-transform"
+      className="relative rounded-xl bg-tertiary border border-primary overflow-hidden h-[283px] will-change-transform"
       ref={ref}
     >
       <Halo strength={resolvedTheme === "light" ? 15 : 8}>
-        <motion.div
-          className="w-[400px] absolute -right-10 z-20 -bottom-10"
-          style={{ y }}
-        >
+        <motion.div className="z-20" style={{ y }}>
           <Image
-            src={hero}
+            src={covidMockup}
             alt="Covid Dashboard Mockup"
             width={610}
             height={400}
-            className="scale-150"
           />
         </motion.div>
       </Halo>

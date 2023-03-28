@@ -34,7 +34,7 @@ const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
       </div>
       <div>
         <a
-          className="ml-auto text-sm rounded-full px-4 py-1 bg-secondary h-fit"
+          className="ml-auto text-sm rounded-full px-4 py-1 bg-secondary h-fit hover:bg-tertiary"
           href={link}
           target="_blank"
           rel="noopener noreferrer"

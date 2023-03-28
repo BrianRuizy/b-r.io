@@ -189,8 +189,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const featured = allPosts
     .filter((post) => post.featured)
+
     .map((post) =>
       pick(post, ["slug", "title", "publishedAt", "image", "summary"])
+    
+
     );
 
   return {

@@ -34,6 +34,7 @@ export const Post = defineDocumentType(() => ({
     updatedAt: { type: "string", required: false },
     tags: { type: "json", required: false },
     featured: { type: "boolean", required: false },
+    shortTitle : { type: "string", required: false, default: ""},
   },
   computedFields: postComputedFields,
 }));
