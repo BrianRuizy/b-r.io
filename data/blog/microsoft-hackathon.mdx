@@ -1,5 +1,5 @@
 ---
-title: 'This app idea got us 1st place at a Microsoft Hackathon'
+title: 'This App Idea Got Us 1st Place at a Microsoft Hackathon'
 publishedAt: '2019-12-15'
 summary: 'Leveraging the latest of Microsoft Azure Machine Learning to help solve a $6.4 billion infrastructure issue.'
 tags: ["CSS", "SVG"]
@@ -15,23 +15,26 @@ The technology we opted for the project revolved heavily around Python. For the 
 
 Python also allowed us to create data visualizations —matplotlib— of our data which we used to tweak the algorithm. All of this was tied together with the Microsoft Azure platform. From storing the data (CSV’s and images) in Azure, to using the Azure Machine Learning platform to train the model.
 
-- Python 
-- Azure Logic Apps
-- Azure Computer Vision
-
+<Image 
+  src="/blog/microsoft-hackathon/tech.webp"
+  alt="Tech Stack"
+  width={1000}
+  height={600}
+/>
 
 ## Our Idea and Proposal
 
 After juggling several ideas we settled on the issue of road potholes. We discovered that potholes cost American drivers $6.4 billion per year, which is in repair and insurance costs. A single pothole may cause are up to $300 per year per vehicle (2016), while the average price to repair a pothole is on average $30 — $50 per pothole. Thus the effort to aid this issue can be cost-effective.
-
-Looking at our challenge from a high level we need the following components or stages, to be able to solve the problem. Also, we need to design a 2-layer confirmation of a road pothole. The first is the active dashboard camera, and the second uses the user’s phone telemetry data, such as GPS and accelerometer modules.
 
 - Data collection and analysis
 - Pothole probability algorithm
 - Minimal Interface
 - Data visualization/mapping
 
-### 1. Analyzing mobile telemetry data
+Looking at our challenge from a high level we need the following components or stages, to be able to solve the problem. Also, we need to design a 2-layer confirmation of a road pothole. The first is the active dashboard camera, and the second uses the user’s phone telemetry data, such as GPS and accelerometer modules.
+
+
+### Analyzing mobile telemetry data
 
 Every modern smartphone is equipped with very accurate telemetry systems. For example, the GPS and accelerometer, which we leveraged for location and to track any abrupt movement indicating a pothole on the road.
 
@@ -56,7 +59,7 @@ plt.show()
 ```
 
 
-### 2. Live computer vision
+### Live computer vision
 
 This part was more difficult to implement, but this was our second layer for the prediction of potholes, implementation is done with some guidance from the Azure cloud architects.
 
@@ -73,15 +76,23 @@ We used Azure Logic Apps to import our road image frames to the cloud, and with 
   rounded
 />
 
-### 3. The Interface
+### The Interface
 
 From the start, the idea was to keep the interface as intuitive as possible to minimize driving distractions. Therefore, we intended to create an interface that would show a dialog box only when our system predicted there to be a pothole, from there the user would confirm if so.
 
+Unfortunately, we didn't have enough time to implement both the backend logic and the front-end interface. However, I created a mockup of the interface, which captures the essence of the idea, and it's a good example with emphasis on a minimal user experience.
 
-![Intuitive interface mockup](https://miro.medium.com/max/1400/0*tMtJgK7gjlD9taii.png)
+<Image 
+  src="/blog/microsoft-hackathon/mockup-clear.png" 
+  alt="Dashcam Footage" 
+  width={1080}
+  height={799}
+  className="bg-tertiary"
+  caption="Demonstrating the idea of a simple pop-up modal to confirm a pothole. This is crucial to keep the driver's attention on the road."
+  rounded
+/>
 
-
-### 4. Geocoding / Mapping
+### Geocoding / Mapping
 
 Finally, we needed to plot our GPS data so the city could take action. Our collected data including latitude, longitude, altitude, and location accuracy. `import folium`
 Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
@@ -113,13 +124,19 @@ display(map)
   rounded
 />
 
-
 ---
 
 ## The Final Result
 
-By the time the hackathon countdown ended, we were able to design and implement a viable solution that would achieve our initial idea. Nevertheless, this was achieved thanks to our strong team collaboration and efforts, and some sprinkled guidance from the MS architecture team.
+By the time the hackathon countdown ended, we were able to design and implement a viable solution that would best present our initial idea --keep in mind this was a 24-hour challenge. Nevertheless, this was achieved thanks to our strong team collaboration and efforts, and some sprinkled guidance from the MS architecture team.
 
 After presenting our MVP (minimum viable product), the judges called a draw for first place. Having won the competition granted us credits to some of Microsoft Azure cloud services like storage and processing. And, the company which hosted the competition granted us seats at their co-working space, which we could use to continue the development of our application and idea.
 
-![The Bump.it team from UHD](https://miro.medium.com/max/1400/0*v0plg9CmtcGd_IyZ.jpg)
+<Image 
+  src="https://miro.medium.com/max/1400/0*v0plg9CmtcGd_IyZ.jpg" 
+  alt="The Bump.it team from UHD" 
+  width={1000}
+  height={600}
+  caption="The Bump.it team from UHD"
+  rounded
+/>

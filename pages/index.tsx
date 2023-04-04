@@ -7,7 +7,6 @@ import { FaYoutube, FaGithub } from "react-icons/fa";
 import Link from "components/Link";
 import Section from "components/Section";
 import PostList from "components/postlist";
-import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
 import CovidGraphic from "components/featured/CovidGraphic";
 
 import avatar from "public/avatar.png";
@@ -48,18 +47,6 @@ export default function Home({ posts, featured }: HomeProps) {
             <ul className="space-y-2 animated-list">
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
-                  <FaGithub className="text-xl" />
-                  908 All Repository Stars
-                </p>
-              </li>
-              <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
-                  <FaYoutube className="text-xl" />
-                  24,908 YouTube Subscribers
-                </p>
-              </li>
-              <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -72,7 +59,19 @@ export default function Home({ posts, featured }: HomeProps) {
                       clipRule="evenodd"
                     />
                   </svg>
-                  2,908 Social Media Followers
+                  2,908 Portfolio Visits
+                </p>
+              </li>
+              <li className="transition-opacity">
+                <p className="flex gap-3 items-center">
+                  <FaGithub className="text-xl" />
+                  908 Repository Stars
+                </p>
+              </li>
+              <li className="transition-opacity">
+                <p className="flex gap-3 items-center">
+                  <FaYoutube className="text-xl" />
+                  24,908 YouTube Subscribers
                 </p>
               </li>
             </ul>
@@ -131,7 +130,7 @@ export default function Home({ posts, featured }: HomeProps) {
             </li>
           </ul>
         </div>
-        <div
+        {/* <div
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
@@ -161,7 +160,7 @@ export default function Home({ posts, featured }: HomeProps) {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
         <div
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}

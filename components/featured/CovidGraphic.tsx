@@ -17,11 +17,11 @@ export default function CovidGraphic() {
 
   return (
     <div
-      className="relative rounded-xl bg-tertiary border border-primary overflow-hidden h-[283px] will-change-transform"
+      className="relative rounded-xl bg-tertiary overflow-hidden h-[283px] will-change-transform border border-primary"
       ref={ref}
     >
       <Halo strength={resolvedTheme === "light" ? 15 : 8}>
-        <motion.div className="z-20" style={{ y }}>
+        <motion.div className="absolute z-20" style={{ y }}>
           <Image
             src={covidMockup}
             alt="Covid Dashboard Mockup"

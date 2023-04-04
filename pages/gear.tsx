@@ -4,6 +4,7 @@ import Logi from "public/gear/logi.jpeg";
 import Copilot from "public/gear/copilot.jpeg";
 import Akiflow from "public/gear/akiflow.webp";
 import Dex from "public/gear/dex.webp";
+import Nikon from "public/gear/nikon.png";
 
 import { IconInfo } from "components/Icons";
 
@@ -121,7 +122,6 @@ const gear = [
     image: Copilot,
     description: "Spending, investing, net worth. Elegant graphs and interface",
     link: "https://copilot.money/",
-    sponsored: true,
   },
   {
     name: "Akiflow",
@@ -197,12 +197,12 @@ const gear = [
   {
     name: "Nikon Z6 Full Frame Mirrorless",
     category: "Camera Gear",
-    image: "https://m.media-amazon.com/images/I/61h9UPZ40TL._AC_SL1000_.jpg",
+    image: Nikon,
     description: "Love the Z6 because it's great for photos and videos.",
     link: "https://amzn.to/3T1CvGa",
   },
   {
-    name: "Nikon NIKKOR Z 28mm f/2.8",
+    name: "Nikon Z 28mm f/2.8",
     category: "Camera Gear",
     image:
       "https://ik.imagekit.io/kit/products/e4/bb/nikkor-z-28mm-f-2-8-e4bbd44f78ee3423c2db3a13f117e0e8.png?tr=dpr-1,cm-pad_resize,bg-FFFFFF,q-80,w-270,h-270",
@@ -210,7 +210,7 @@ const gear = [
     link: "https://amzn.to/3To5UdA",
   },
   {
-    name: "NIKON NIKKOR Z 50mm f/1.8 S",
+    name: "NIKON Z 50mm f/1.8 S",
     category: "Camera Gear",
     image: "https://m.media-amazon.com/images/I/61u8mYpACQL._AC_SL1500_.jpg",
     description: "One of my main sit down lenses, with awesome bokeh.",

@@ -40,13 +40,13 @@ export default function CustomImage({
           className={cn(
             "w-full h-auto",
             breakout ? "bg-tertiary" : "",
-            (rounded || breakout) && "rounded-lg overflow-hidden"
+            (rounded || breakout) && "rounded-lg overflow-hidden bg-tertiary"
           )}
         />
         {caption && (
           <figcaption
             className={cn(
-              "text-xs leading-tight text-tertiary text-center mx-auto my-2 font-medium max-w-lg",
+              "my-2 text-xs leading-tight text-tertiary font-medium max-w-md mx-auto text-center",
               breakout && "max-w-[700px] px-6 w-full mx-auto "
             )}
           >
