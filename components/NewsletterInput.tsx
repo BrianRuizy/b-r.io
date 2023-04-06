@@ -40,6 +40,7 @@ export default function NewsletterInput() {
   return (
     <form onSubmit={subscribe}>
       <Input
+        disabled
         id="email"
         type="email"
         placeholder="Email address…"

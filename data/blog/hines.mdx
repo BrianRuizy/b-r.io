@@ -1,5 +1,5 @@
 ---
-title: 'Innovating the global real estate investment industry with tech'
+title: 'Innovating the real estate investment industry with tech'
 publishedAt: '2021-09-01'
 summary: 'A quick walkthrough overview of the project setup and the technology stack we used.'
 tags: ["Big Data", "Python"]
@@ -7,43 +7,118 @@ tags: ["Big Data", "Python"]
 shortTitle: 'Covid Dashboard'
 ---
 
-At CAMS —Consolidated Asset Mangement Services— the founding principle is to add value through superior management and operation of our clients’ infrastructure assets. However, we found an area of opportunity after observing that the company’s clients —who were asset owners— did not have access to succinct and real-time information on the financial and operational performance of individual assets.
 
-Building the eTRAC platform
-eTRAC is a CAMS proprietary software marketed as a (PaaS) —platform as a service— which provides real-time financial intelligence for energy generation assets. The goal of the platform was to effectively consolidate all the data that was being collected and have the available data visualizations at any given moment.
+## Joining Hines
 
-This was very valuable for providing insights into the data to the clients of the company, and internal Asset Managers who could use it for statistical analysis. Furthermore, our software monitored terabytes of real-time and forecasted data such as system conditions and price reports from multiple energy projects like conventional power plants, to renewable energy sources like wind farms.
+In May 2021, I joined the application development team at Hines —one of the largest privately held real estate investors and managers in the world. Our team is responsible for building a suite of applications that help Hines manage its $81.7B Portfolio of Assets Under Management, serving 27 countries worldwide, and doing so successfully for over 64 years.
 
-We hired Brian to support the agile development of a new application, that we were rolling out to some of our private equity clients. —Rick Knauth (VP)
+## Transforming the industry
 
-Picture with the team
-Josh Bryant, me, Rick Knauth
-My contributions to key features
-lorem ipsum Eos ut et iusto. Sequi dicta ut qui esse perspiciatis voluptatem error nisi. Non nemo repellendus ut exercitationem molestiae error veniam. Cum natus illo quisquam ut delectus voluptatem. Nam voluptas ut sint. Corrupti qui odio voluptas ipsa non corporis cum aut.
+At Hines, we believe strongly in pushing the boundaries to shape the future and build a better world by getting into a state of mind of innovation. It is a goal to transform the real estate industry by placing innovation at the very core of the company. Best said by the company’s founder:
 
-Aut omnis quas voluptatem molestias voluptatem. Et sit architecto sed accusamus omnis qui. The following are some of the key characteristics and selling points for the eTRAC platform:
+What differentiates Hines is <mark>a tailored approach to global real estate investing</mark>. We continue to evaluate and incorporate new technologies, as opposed to only using cookie-cutter solutions.
 
-Automated web scraping
-Real time monitoring and forecasts
-Mobile and cross-platform responsive
-1. Building the data pipeline
-I worked hands on with the automated data pipeline for the eTRAC project. This was my first experience with cloud computing and big-data (most of which came from ERCOT), but I quickly absorbed what it meant to work on AWS EC2 Linux nodes, how to access and store files from scalable AWS S3 buckets, and other tools and services like Docker and SSH.
 
-Once our data was processed and cleaned with defined Pandas + NumPy fuctions(s), the site would then render matplotlib based data visualizations onto the respective Flask web applications. And, all of this was being continuously repeated and updated by the minute.
+> I believe we can always improve, either by rethinking existing ways of doing things, or by thinking outside the box. This is innovation.
+> --Gerald D. Hines
 
-technology used
-3. Responsive web design
-Although our applications were very powerful and provided our clients a great amount of insight into their data, the user interface and overall user-experience left more to be desired.
+![](cases.png)
 
-mockup ui
-New mobile interface
-Therefore, outside of my regular office hours, I took the initiative to layout some mockups and wireframing using Figma, and presented them to the lead engineer. After getting the approval I designed and implemented a device responsive grid using Bootstrap.
+---
 
-He (Brian) also demonstrated a talent for UI / UX, by designing a new interface that was intuitive, fast, and accessible. Our customers were very pleased!
+## My contributions
 
-My approach was to create a user experience where all the operations were intuitive and not overwhelming given the large amount of functionality. Considering that an estimated 70% of web traffic comes from mobile devices, this is something that cannot be overseen. A good UI not only gives a good looking website but can also lead to potential customers and increased user satisfaction, along building a positive brand image.
+Working with Hines has allowed me to work with some of the most talented and passionate people in the industry. Let’s take a look at some of the things I’ve done at Hines: Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. My Contributions to the team includes
 
-responsive ui
-Mockup across all devices
-Conclusion
-In the end, we were able to create a new SaaS application that was easy to use, and provided our clients with a great amount of information.
+let’s take a look at some of the things I’ve done at Hines: Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+- Product Design (UI/UX)
+- Full-stack Software Engineering
+
+### I. Design Systems
+I’m firm on the idea that you can’t have a good product without good design. Praesent malesuada diam quis leo maximus consectetur. Praesent at dapibus elit. Donec vitae orci eu nisi efficitur facilisis. Praesent malesuada diam quis leo maximus consectetur. Praesent at dapibus elit. Donec vitae orci eu nisi efficitur facilisis.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ornare consequat aliquam. Nulla condimentum eros et arcu tristique, vitae sollicitudin libero elementum. Mauris nec tincidunt urna. Praesent malesuada diam quis leo maximus consectetur.
+
+![](figma.png)
+
+### II. Writing Code
+Quisque porta ex quis sem aliquet convallis. Fusce dignissim eros vel massa varius, sed porta libero tempus. Donec id vehicula purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+By going the Django way we can use a classical MVT (Model View Template) approach to build our applications, and create robust and scalable applications that are easy to maintain and extend.
+
+<Warning severity="info"> 
+Note that the following code snippets are not real production-level code, 
+as showing proprietary intellectual property could get me into a mess 😅.
+</Warning>
+
+
+```python  showLineNumbers
+from django.db import models
+from datetime import datetime
+from realtors.models import Realtor
+
+class Listing(models.Model):
+  owner = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
+  price = models.IntegerField()
+  title = models.CharField(max_length=200)
+  address = models.CharField(max_length=200)
+  description = models.TextField(blank=True)
+
+
+  def __str__(self):
+    return self.title
+```
+
+<figcaption>1. Defining backend database models</figcaption>
+
+
+```python showLineNumbers
+from .models import Listing
+
+def index(request):
+  listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+  paginator = Paginator(listings, 6)
+  page = request.GET.get('page')
+  paged_listings = paginator.get_page(page)
+  context = {'listings': paged_listings }
+
+  return render(request, 'listings/listings.html', context)
+```
+
+<figcaption>2. Python views to query the DB</figcaption>
+
+```html showLineNumbers
+<section id="listings">
+  <div class="container">
+    <div class="row">
+      {% if listings %}
+        {% for listing in listings %}
+          <h2>${{ listing.price | intcomma }}</span>       
+          <h4>{{ listing.title }}</h4>
+          <p>Description: {{ listing.description }}</p>
+        {% endfor %}
+      {% else %}
+          <p>No Listings Available</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+```
+
+<figcaption>3. Finishing with front-end HMTL template</figcaption>
+
+
+### III. A perfect harmony
+In the end, we have a fully functional application that is responsive and works on all devices. Furthermore, Django allows for future proofing our applications and taking a RESTful approach and incorporating a JS framework. lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+![dashboard interface](dashboard.png)
+
+## Making a global impact
+
+One of my personal career goals as a software engineer has always been to <mark>make an impact at scale</mark>. And, a company like Hines which has a global presence allows for me and my team to do just that. 
+
+
+## Conclusion
+Exciting things are happening at Hines. And, it comes at a greate pleasure to have theopportunity to work with some of the most creative, forward-thinking people in the industry, and contribute to the progress and development of the company. Only time will tell what awaits us in the future, but the best way to predict it is by creating it in our present.
+

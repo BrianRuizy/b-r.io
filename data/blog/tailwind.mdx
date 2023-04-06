@@ -1,18 +1,19 @@
 ---
-title: 'Tailwind CSS over everything'
+title: 'Tailwind CSS over everything else'
 publishedAt: '2023-04-05'
 summary: 'This is why I will use Tailwind CSS for almost every project moving forward.'
 tags: ["Styling", "CSS"]
 ---
 
-In this blog, I'm going to show you why Tailwind should be your go-to CSS framework for your next project. 
+Tailwind CSS is a utility-first CSS framework that has taken the web development world by storm. It has quickly become a go-to choice for developers who want to streamline their CSS workflow and build websites faster. If you're not already familiar with Tailwind, you may be wondering what all the fuss is about.
+
+In this blog, we'll explore some of the key benefits of using [Tailwind CSS](tailwind.com) as well as some of the drawbacks of more traditional approaches to CSS development. By the end of this post, you'll have a better understanding of how Tailwind can make your development process more efficient and effective, and why it's quickly becoming a must-have tool for web developers of all levels.
 
 
 ## Developer Experience
 
-Working with CSS files that go unused can be a frustrating experience for developers. When a CSS file contains styles that are no longer used in the project, it can make it difficult to find and update the styles that are actually needed. This can lead to longer development times and can make maintaining the codebase more difficult in the long run. 
+Working with CSS files that go unused can be a frustrating experience for developers. When a CSS file contains styles that are no longer used in the project, it can make it difficult to find and update the styles that are needed. This can lead to longer development times and <mark>can make maintaining the codebase more difficult</mark> in the long run. Here are a couple key points to consider:
 
-Additionally, unused CSS can increase the size of the CSS file, which can negatively impact page load times and user experience. Therefore, it's important to regularly review and clean up CSS files to ensure that only necessary styles are present, making for a better developer experience overall.
 
 - **Don't spend time thinking of funky names** Tailwind helps you save time and effort by eliminating the need to create unique class names for every element in your UI. You no longer have to struggle to come up with abstract or irrelevant names such as "sidebar-inner-wrapper" or "content-container".
 
@@ -24,7 +25,51 @@ Additionally, unused CSS can increase the size of the CSS file, which can negati
 
 One of the key advantages of Tailwind CSS is its promotion of reusable components. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase. For example, a button component can be created using the bg-blue-500, text-white, and px-4 classes, which can be reused across the project to maintain consistency in design and functionality. 
 
-This not only makes development more efficient but also ensures that the UI is consistent across the project. Additionally, reusable components can be easily updated and maintained, reducing the amount of duplicate code and improving the overall quality of the codebase. Overall, Tailwind's focus on reusable components makes it a valuable tool for any developer looking to create scalable and maintainable user interfaces.
+Here's a quick example of how you can create a reusable card component using Tailwind CSS with some props
+
+
+### Card Component
+
+In this example, we've used Tailwind's utility classes to create a simple card component that accepts dynamic data through props.
+
+```jsx showLineNumbers {3}
+import React from 'react'
+
+const Card = ({ title, description, imageSrc }) => {
+  return (
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+        <div className="font-bold text-xl mb-2">{title}</div>
+        <p className="text-gray-700 text-base">{description}</p>
+    </div>
+  )
+}
+
+export default Card
+```
+
+### Product List Component
+
+We've added two props to our card component: title and description. These props can be passed in from the parent component and used to customize the content of each individual card.
+
+```jsx showLineNumbers {7-11}
+import Card from './Card';
+
+const ProductList = ({ products }) => {
+  return (
+    <template>
+      {products.map((product) => (
+        <Card 
+            key={product.id} 
+            title={product.name} 
+            description={product.description}
+        />
+      ))}
+    </template>
+  );
+};
+```
+
+So what? This approach not only makes development more efficient but also ensures that the UI is consistent across the project. Additionally, reusable components can be easily updated and maintained, reducing the amount of duplicate code and improving the overall quality of the codebase. Overall, Tailwind's focus on reusable components makes it a valuable tool for any developer looking to create scalable and maintainable user interfaces.
 
 ## What About Other UI Libraries?
 

@@ -5,6 +5,7 @@ import Copilot from "public/gear/copilot.jpeg";
 import Akiflow from "public/gear/akiflow.webp";
 import Dex from "public/gear/dex.webp";
 import Nikon from "public/gear/nikon.png";
+import DJI from "public/gear/dji.png";
 
 import { IconInfo } from "components/Icons";
 
@@ -229,7 +230,7 @@ const gear = [
     name: "Suptig Chest Mount for GoPro",
     category: "Camera Gear",
     image: "https://m.media-amazon.com/images/I/81y-UqVnYAL._AC_SL1500_.jpg",
-    description: "This is how I record my bike rides :)",
+    description: "This is how I record my POV bike rides! :)",
     link: "https://amzn.to/3DonSG9",
   },
   {
@@ -260,4 +261,18 @@ const gear = [
     description: "Compact Camera Backpack - A Minimalist & Travel-friendly",
     link: "https://amzn.to/3U5PTJo",
   },
+  {
+    name: "Mini 3 Pro Drone",
+    category: "Other",
+    image: DJI,
+    description: "A great DJI drone for beginners, and a great vlogging tool.",
+    link: "https://amzn.to/3mdZenf",
+  },
+  {
+    name: "RS 3 Mini Gimbal",
+    category: "Other",
+    image: DJI, 
+    description: "small footprint and portable.",
+    link: "https://amzn.to/40LPcJa",
+  }
 ];
