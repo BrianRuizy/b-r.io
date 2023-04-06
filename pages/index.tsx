@@ -47,6 +47,12 @@ export default function Home({ posts, featured }: HomeProps) {
             <ul className="space-y-2 animated-list">
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
+                  <FaGithub className="text-xl" />
+                  908 Repository Stars
+                </p>
+              </li>
+              <li className="transition-opacity">
+                <p className="flex gap-3 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -59,15 +65,10 @@ export default function Home({ posts, featured }: HomeProps) {
                       clipRule="evenodd"
                     />
                   </svg>
-                  2,908 Portfolio Visits
+                  2,908 Total Blog Views
                 </p>
               </li>
-              <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
-                  <FaGithub className="text-xl" />
-                  908 Repository Stars
-                </p>
-              </li>
+
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
                   <FaYoutube className="text-xl" />
@@ -183,7 +184,7 @@ export const getStaticProps: GetStaticProps = async () => {
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
     .filter((post) => !post.featured)
-    .filter((_, i) => i < 4)
+    .filter((_, i) => i < 3)
     .map((post) => pick(post, ["slug", "title", "publishedAt", "image"]));
 
   const featured = allPosts
