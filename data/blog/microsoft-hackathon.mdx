@@ -84,7 +84,7 @@ Unfortunately, we didn't have enough time to implement both the backend logic an
 
 <Image 
   src="/blog/microsoft-hackathon/mockup-clear.png" 
-  alt="Dashcam Footage" 
+  alt="UI mockup" 
   width={1080}
   height={799}
   className="bg-tertiary"
@@ -103,7 +103,7 @@ import folium
 import pandas as pd
 
 SF_COORDINATES = (37.76, -122.45)
-map = folium.Map(location=SF_COORDINATES, zoom_start=12)
+map = folium.Map(location=SF_COORDINATES)
 
 for each in df.iterrows():
   map.simple_marker(
@@ -123,8 +123,6 @@ display(map)
   caption="Map of San Francisco with potholes marked. Notice the clustering of entries, which is important for confirming a pothole."
   rounded
 />
-
----
 
 ## The Final Result
 

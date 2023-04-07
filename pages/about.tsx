@@ -5,54 +5,15 @@ import Link from "components/Link";
 import Section from "components/Section";
 import Workplaces from "components/Workplaces";
 import Gallery from "components/Gallery";
+import ConnectLinks from "components/ConnectLinks";
 
 import hinesLogo from "public/work/hines-logo.jpeg";
 import perishipLogo from "public/work/periship-logo.jpeg";
 import camsLogo from "public/work/cams-logo.png";
 import uhdLogo from "public/work/uhd.png";
 
-import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-
 import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
-
-export const connectLinks = [
-  {
-    label: "Email",
-    href: "mailto:contact@b-r.io",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="w-5 h-5"
-      >
-        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-      </svg>
-    ),
-  },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/@brianruizy",
-    icon: <FaYoutube />,
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/brianruizy",
-    icon: <FaGithub />,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/brianruizy/",
-    icon: <FaInstagram />,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/brianruizy/",
-    icon: <FaLinkedin />,
-  },
-];
 
 const workplaces = [
   {
@@ -87,7 +48,7 @@ const workplaces = [
 
 const seoTitle = "About | Brian Ruiz";
 const seoDesc =
-  "A designer/frontend developer hybrid that loves to build great products with delightful interfaces.";
+  "Brian Ruiz, a full-stack software engineer who loves building cool things with code.";
 
 export default function About({}: // lastActivity,
 {
@@ -188,13 +149,15 @@ export default function About({}: // lastActivity,
             </div>
           </Section>
 
-          <Section heading="Connect" headingAlignment="left">
-            <div className="flex flex-col w-full gap-8" >
-              <p>Have a question or just want to chat? Feel free to {" "}
+          <Section heading="Links" headingAlignment="left" >
+            <div className="flex flex-col w-full gap-8">
+              <p>
+                Have a question or just want to chat? Feel free to {" "}
                 <a href="mailto:contact@b-r.io" className="underline">email me</a>.
-                {' '}Try finding me anywhere else at @brianruizy</p>
+                {' '}Try finding me anywhere else at @brianruizy
+              </p>
               <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
-                {connectLinks.map((link) => (
+                {ConnectLinks.map((link) => (
                   <li
                     className="transition-opacity col-span-1"
                     key={link.label}

@@ -20,7 +20,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           width={48}
           height={48}
           className={
-            cn("rounded-full", 
+            cn("rounded-full",
             company === 'University of Houston' && "bg-white",
             
           )}
