@@ -59,7 +59,7 @@ export default function Post({ post, related }: PostProps) {
       <div className="flex flex-col gap-20">
         <article>
           <div className="flex flex-col gap-3 animate-in">
-            <p className="text-tertiary">
+            <p className="text-secondary">
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt)}
               </time>
