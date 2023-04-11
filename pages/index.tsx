@@ -148,7 +148,7 @@ export default function Home({ posts, featured }: HomeProps) {
                     <div className="flex flex-col gap-3">
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="font-medium leading-tight hover:underline line-clamp-2"
+                        className="font-medium leading-tight line-clamp-2"
                       >
                         {post.title}
                       </Link>

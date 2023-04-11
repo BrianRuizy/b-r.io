@@ -149,7 +149,7 @@ export default function About({}: // lastActivity,
             </div>
           </Section>
 
-          <Section heading="Links" headingAlignment="left" >
+          <Section heading="Connect" headingAlignment="left" >
             <div className="flex flex-col w-full gap-8">
               <p>
                 Have a question or just want to chat? Feel free to {" "}

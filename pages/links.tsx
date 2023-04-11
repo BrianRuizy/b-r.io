@@ -39,7 +39,7 @@ export default function Links() {
             <li className="transition-opacity col-span-1" key={link.label}>
               <Link
                 href={link.href}
-                className="transition-opacity no-underline w-full border border-primary rounded-lg p-4 bg-tertiary inline-grid"
+                className="transition-opacity no-underline w-full rounded-lg p-4 bg-tertiary inline-grid"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-xl">{link.icon}</span>

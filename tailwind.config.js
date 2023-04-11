@@ -22,7 +22,6 @@ module.exports = {
         secondaryA: "var(--grayA4)",
         tertiary: "var(--gray3)",
         blur: "var(--blurBackground)",
-        header: "var(--headerBackground)",
       },
       borderColor: {
         primary: "var(--gray6)",

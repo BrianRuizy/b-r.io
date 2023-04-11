@@ -17,7 +17,6 @@
 @layer base {
   :root {
     --blurBackground: rgb(255 255 255 / 95%);
-    --headerBackground: rgb(253 253 252 / 90%);
     --brand: #6166DC;
     --brandTinted: #6165dc1f;
 
@@ -37,7 +36,6 @@
 
   .dark-theme {
     --blurBackground: rgb(0 0 0 / 95%);
-    --headerBackground: hsl(0, 0%, 8.5%, 0.9);
   }
   
   .dark-theme .prose {
@@ -62,7 +60,6 @@
     --bg: var(--arc-palette-background);
     --boxBg: var(--arc-palette-focus);
     --blurBackground: var(--arc-palette-backgroundExtra);
-    --headerBackground: var(--arc-palette-background);
   }
 
   body {
@@ -176,11 +173,12 @@ input:-webkit-autofill:focus {
 .prose mark {
   background-color: var(--blueA4);
   color: inherit;
+  padding: 2px 0;
 }
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-lg border border-secondary bg-[rgb(32,32,32)];
+  @apply text-xs text-[13px] rounded-lg bg-[rgb(32,32,32)];
 }
 
 .code-highlight {

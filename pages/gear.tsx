@@ -59,6 +59,8 @@ export default function Gear() {
     return acc;
   }, [] as string[]);
 
+  categories.sort();
+
   return (
     <>
       <div className="flex flex-col gap-16 md:gap-24">
@@ -116,7 +118,67 @@ export default function Gear() {
 }
 
 const gear = [
-
+  {
+    name: "Logitech MX Master Mouse",
+    category: "Home Desk Setup",
+    image: Logi,
+    description:
+      "Ergonomic and comfortable to be used for all day use, love the scrolling!",
+    link: "https://amzn.to/3U5syHG",
+  },
+  {
+    name: "Orbitkey Desk Mat",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/61Du63bfnlL._AC_SL1500_.jpg",
+    description:
+      "Leather and Recycled PET Felt | Document Hideaway | Magnetic Cable Holder",
+    link: "https://amzn.to/3Dm37eu",
+    sponsored: false,
+  },
+  {
+    name: "Glorious GMMK Pro",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/71Nk1Qb3PhS._AC_SL1500_.jpg",
+    description: "A 75% mechanical keyboard",
+    link: "https://amzn.to/3U9tcE9",
+  },
+  {
+    name: "Glorious Coiled Cables",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/71lpNM41jVS._AC_SL1500_.jpg",
+    description: "USB-C Artisan Braided, Mechanical Keyboards",
+    link: "https://amzn.to/3NSznKR",
+  },
+ 
+  {
+    name: "BenQ ScreenBar Monitor Light",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/71FpP6myfPL._AC_SL1500_.jpg",
+    description:
+      "Enhances immersion and focus, creates a comfortable environment",
+    link: "https://amzn.to/3fUAfCi",
+  },
+  {
+    name: "Anker USB-C Hub",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/61thMtrP5rL._AC_SL1500_.jpg",
+    description: "The one cable solution for my MacBook Pro.",
+    link: "https://amzn.to/3Dk9vCV",
+  },
+  {
+    name: "LG 34WN780 Monitor",
+    category: "Home Desk Setup",
+    image: "https://m.media-amazon.com/images/I/81ewD+orLSL._AC_SL1500_.jpg",
+    description: "A 3440 x 1440 IPS Display, great for multitasking.",
+    link: "https://amzn.to/3DJd86G",
+  },
+  {
+    name: "Nikon Z6 Full Frame Mirrorless",
+    category: "Camera Gear",
+    image: Nikon,
+    description: "Love the Z6 because it's great for photos and videos.",
+    link: "https://amzn.to/3T1CvGa",
+  },
   {
     name: "Copilot Money",
     category: "Software",
@@ -140,67 +202,6 @@ const gear = [
     description: "Build stronger relationships",
     link: "https://copilot.money/",
     sponsored: true,
-  },
-  {
-    name: "Logitech MX Master Mouse",
-    category: "Desk Setup",
-    image: Logi,
-    description:
-      "Ergonomic and comfortable to be used for all day use, love the scrolling!",
-    link: "https://amzn.to/3U5syHG",
-  },
-  {
-    name: "Orbitkey Desk Mat",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/61Du63bfnlL._AC_SL1500_.jpg",
-    description:
-      "Leather and Recycled PET Felt | Document Hideaway | Magnetic Cable Holder",
-    link: "https://amzn.to/3Dm37eu",
-    sponsored: false,
-  },
-  {
-    name: "Glorious GMMK Pro",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/71Nk1Qb3PhS._AC_SL1500_.jpg",
-    description: "A 75% mechanical keyboard",
-    link: "https://amzn.to/3U9tcE9",
-  },
-  {
-    name: "Glorious Coiled Cables",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/71lpNM41jVS._AC_SL1500_.jpg",
-    description: "USB-C Artisan Braided, Mechanical Keyboards",
-    link: "https://amzn.to/3NSznKR",
-  },
- 
-  {
-    name: "BenQ ScreenBar Monitor Light",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/71FpP6myfPL._AC_SL1500_.jpg",
-    description:
-      "Enhances immersion and focus, creates a comfortable environment",
-    link: "https://amzn.to/3fUAfCi",
-  },
-  {
-    name: "Anker USB-C Hub",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/61thMtrP5rL._AC_SL1500_.jpg",
-    description: "The one cable solution for my MacBook Pro.",
-    link: "https://amzn.to/3Dk9vCV",
-  },
-  {
-    name: "LG 34WN780 Monitor",
-    category: "Desk Setup",
-    image: "https://m.media-amazon.com/images/I/81ewD+orLSL._AC_SL1500_.jpg",
-    description: "A 3440 x 1440 IPS Display, great for multitasking.",
-    link: "https://amzn.to/3DJd86G",
-  },
-  {
-    name: "Nikon Z6 Full Frame Mirrorless",
-    category: "Camera Gear",
-    image: Nikon,
-    description: "Love the Z6 because it's great for photos and videos.",
-    link: "https://amzn.to/3T1CvGa",
   },
   {
     name: "Nikon Z 28mm f/2.8",
@@ -274,5 +275,70 @@ const gear = [
     image: DJI, 
     description: "small footprint and portable.",
     link: "https://amzn.to/40LPcJa",
-  }
+  },
+  {
+    name: "HP DisplayLink Hub",
+    category: "Office",
+    image: "https://m.media-amazon.com/images/I/51Akvh02nDL._AC_SL1280_.jpg",
+    description: "A hub that enables dual monitors on M1 MBP.",
+    link: "https://amzn.to/3UnTbJo",
+  },
+  {
+    name: "Dell UltraSharp U2722D",
+    category: "Office",
+    link: "https://amzn.to/3KLucN1",
+    image: "https://m.media-amazon.com/images/I/81siJZnLDaL._AC_SL1500_.jpg",
+    description: "A 27 inch 4K monitor",
+  },
+  {
+    name: "VIVO Dual Monitor Stand",
+    category: "Office",
+    link: "https://amzn.to/40U0jzC",
+    image: "https://m.media-amazon.com/images/I/61JPGtCI0GL._AC_SL1500_.jpg",
+    description: "White articulating pneumatic monitor stand",
+  },
+  {
+    name: "MacBook Pro M1 Pro 16-inch",
+    category: "Apple",
+    image: "https://m.media-amazon.com/images/I/61bwiPRcv2L._AC_SL1500_.jpg",
+    description: "Daily driver. Sleek, great display, and performant.",
+    link: "https://amzn.to/41fkhEH",
+  },
+  {
+    name: "Apple AirPods Max", 
+    category: "Apple",
+    image: "https://m.media-amazon.com/images/I/81OdA-ITspL._AC_SL1500_.jpg",
+    description: "Active Noise Cancelling, Transparency Mode, Spatial Audio",
+    link: "https://amzn.to/3mie64b",
+  },
+  {
+    name: "Apple AirPods Pro",
+    category: "Apple",
+    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83_AV5?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1660803961739",
+    description: "Wireless Earbuds, Up to 2X More Active Noise Cancelling, Adaptive Transparency.",
+    link: "https://amzn.to/3UmMQhq",
+  },
+  {
+    name: "Apple AirTag",
+    category: "Apple",
+    image: "https://m.media-amazon.com/images/I/81Lq1AfCYpS._AC_SL1500_.jpg",
+    description: "Track your keys, wallet, backpack, and more.",
+    link: "https://amzn.to/41dXoSa",
+  },
+  {
+    name: "iPhone 14 Pro Max",
+    category: "Apple",
+    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-3-202209?wid=364&hei=333&fmt=png-alpha&.v=1663346233180",
+    description: "The latest and greatest from iPhone",
+    link: "https://amzn.to/3KnetlX",
+
+  },
+  {
+    name: "Apple MagSafe Charger",
+    category: "Apple",
+    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHXH3_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1666381499607",
+    description: "The MagSafe Charger delivers fast wireless charging.",
+    link: "https://amzn.to/3UouXP4",
+  },
+  
 ];
