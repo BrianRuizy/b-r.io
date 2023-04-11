@@ -151,30 +151,21 @@ input:-webkit-autofill:focus {
 }
 
 .prose hr {
-  border-width: 0;
-  text-align: center;
-  height: auto;
-  margin-top: 0;
-}
-
-.prose hr:before {
-  content: '...';
-  font-size: 2rem;
-  letter-spacing: 16px;
+  @apply border-primary;
 }
 
 .prose blockquote {
-  @apply text-tertiary border-primary font-normal;
+  @apply text-primary opacity-90 leading-tight font-semibold border-0 text-2xl not-italic mx-auto text-center px-6;
 }
 
 .prose figcaption {
-  @apply my-2 text-xs leading-tight text-tertiary font-medium max-w-md mx-auto text-center;
+  @apply mt-2 mb-8 text-xs leading-tight text-tertiary font-medium max-w-md mx-auto text-center;
 }
 
 .prose mark {
-  background-color: var(--blueA4);
+  background-color: var(--blueA5);
   color: inherit;
-  padding: 2px 0;
+  padding: 3px 0;
 }
 
 .prose h3 {
@@ -183,7 +174,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-lg bg-[#1E1E20];
+  @apply text-xs text-[13px] rounded-md bg-[#1E1E20];
 }
 
 .code-highlight {
@@ -220,7 +211,7 @@ pre[class*="language-"] {
   display: inline-block;
   width: 1rem;
   text-align: right;
-  margin-right: 20px;
+  margin-right: 24px;
   margin-left: -8px;
   color: rgb(220, 217, 230); /* Line number color */
   opacity: 0.25;

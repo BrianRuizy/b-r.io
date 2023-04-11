@@ -66,7 +66,7 @@ export default function Post({ post, related }: PostProps) {
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
               <HitCounter slug={post.slug} />
             </p>
-            <h1 className="text-3xl font-bold tracking-tight leading-tight">
+            <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
               {post.title}
             </h1>
             <p

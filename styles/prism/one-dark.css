@@ -11,7 +11,7 @@
  * --mono-3: hsl(220, 10%, 40%);
  * --hue-1: hsl(187, 47%, 55%);
  * --hue-2: hsl(207, 82%, 66%);
- * --hue-3: hsl(286, 60%, 67%);
+ * --hue-3: hsl(300deg 38.13% 72.75%);
  * --hue-4: hsl(95, 38%, 62%);
  * --hue-5: hsl(355, 65%, 65%);
  * --hue-5-2: hsl(5, 48%, 51%);
@@ -110,7 +110,7 @@
  }
  
  .token.keyword {
-     color: hsl(286, 60%, 67%);
+     color: hsl(300deg 38.13% 72.75%);
  }
  
  .token.property,
@@ -168,12 +168,12 @@
  
  .language-css .token.important,
  .language-css .token.atrule .token.rule {
-     color: hsl(286, 60%, 67%);
+     color: hsl(300deg 38.13% 72.75%);
  }
  
  /* JS overrides */
  .language-javascript .token.operator {
-     color: hsl(286, 60%, 67%);
+     color: hsl(300deg 38.13% 72.75%);
  }
  
  .language-javascript .token.template-string > .token.interpolation > .token.interpolation-punctuation.punctuation {
@@ -220,7 +220,7 @@
  }
  
  .language-markdown .token.italic .token.content {
-     color: hsl(286, 60%, 67%);
+     color: hsl(300deg 38.13% 72.75%);
  }
  
  .language-markdown .token.strike .token.content,
@@ -346,7 +346,7 @@
  .rainbow-braces .token.token.punctuation.brace-level-4,
  .rainbow-braces .token.token.punctuation.brace-level-8,
  .rainbow-braces .token.token.punctuation.brace-level-12 {
-     color: hsl(286, 60%, 67%);
+     color: hsl(300deg 38.13% 72.75%);
  }
  
  /* Diff Highlight plugin overrides */

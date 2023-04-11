@@ -15,7 +15,7 @@ const Weather = () => {
     <>
       <div
         onClick={changeTheme}
-        className={`mt-8 flex flex-col justify-between rounded-3xl p-4 lg:p-10 bg-gradient-to-b text-white cursor-pointer
+        className={`mt-8 flex flex-col justify-between rounded-3xl p-4 md:p-10 bg-gradient-to-b text-white cursor-pointer
 
       transform transition-transform duration-300 ease-in-out active:scale-105 focus:scale-105 hover:scale-105 select-none
     ${
