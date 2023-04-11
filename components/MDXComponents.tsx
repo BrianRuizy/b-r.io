@@ -8,6 +8,8 @@ import Warning from "components/warning";
 import { NowPlayingIcon } from "components/blog/nowplaying";
 import SegmentedControl from "components/blog/segmentedcontrol";
 import Parallax from "components/blog/parallax";
+import Weather from "components/blog/weather";
+import WeatherList from "components/blog/weatherList";
 
 interface CustomLinkProps
   extends React.DetailedHTMLProps<
@@ -43,6 +45,8 @@ const MDXComponents = {
   NowPlayingIcon: NowPlayingIcon,
   SegmentedControl: SegmentedControl,
   Parallax: Parallax,
+  Weather: Weather,
+  WeatherList: WeatherList,
 };
 
 export default MDXComponents;
