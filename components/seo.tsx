@@ -10,7 +10,7 @@ const config = {
     site_name: "Brian Ruiz",
     images: [
       {
-        url: "https://samuelkraft.com/og.jpg",
+        url: "https://samuelkraft.com/og.png",
         alt: "Brian Ruiz",
       },
     ],

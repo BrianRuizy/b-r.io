@@ -19,7 +19,7 @@ const postComputedFields: ComputedFields = {
   },
   og: {
     type: "string",
-    resolve: (doc) => `/blog/${getSlug(doc)}/og.jpg`,
+    resolve: (doc) => `/blog/${getSlug(doc)}/og.png`,
   },
 };
 

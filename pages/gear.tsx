@@ -331,7 +331,6 @@ const gear = [
     image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-3-202209?wid=364&hei=333&fmt=png-alpha&.v=1663346233180",
     description: "The latest and greatest from iPhone",
     link: "https://amzn.to/3KnetlX",
-
   },
   {
     name: "Apple MagSafe Charger",
