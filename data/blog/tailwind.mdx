@@ -13,7 +13,7 @@ In this blog, we'll explore some of the key benefits of using [Tailwind CSS](tai
 
 One of the biggest advantages of using Tailwind CSS is its ability to speed up the development process. By using utility classes, Tailwind allows developers to quickly create and style components without having to write any custom CSS. I know what you're thinking - aren't utility classes just a fancy way of saying "inline styles"? While that may be true, Tailwind's utility classes are much more powerful than inline styles.
  
-Check out this iOS weather widget. I was able to create this component in less than 7 minutes, which would have taken me much longer if I had to write the CSS from scratch.
+Check out this iOS weather widget. I was able to create this component in less than 11 minutes, which would have taken me much longer if I had to write the CSS from scratch.
 
 <Weather />
 
@@ -44,9 +44,7 @@ Working with CSS files that go unused can be a frustrating experience for develo
 
 ## Reusable Components 
 
-One of the key advantages of Tailwind CSS is its promotion of reusable components. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase. For example, a button component can be created using the bg-blue-500, text-white, and px-4 classes, which can be reused across the project to maintain consistency in design and functionality. 
-
-### City Weather Component
+One of the key advantages of Tailwind CSS is its promotion of reusable components. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase. 
 
 Continuing with the weather theme here, let's create a reusable card component that can be used to display the current weather for a list of cities. 
 
@@ -54,11 +52,12 @@ Continuing with the weather theme here, let's create a reusable card component t
 
 ---
 
+
 So what? This approach not only makes development more efficient but also ensures that the UI is consistent across the project. Additionally, reusable components can be easily updated and maintained, reducing the amount of duplicate code and improving the overall quality of the codebase. 
 
 Overall, Tailwind's focus on reusable components makes it a valuable tool for any developer looking to create scalable and maintainable user interfaces.
 
-```jsx
+```jsx showLineNumbers
 <div className="flex flex-col gap-2">
   {data.map((item) => (
     <div key={item.city} 

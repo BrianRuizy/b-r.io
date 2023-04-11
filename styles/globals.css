@@ -177,9 +177,13 @@ input:-webkit-autofill:focus {
   padding: 2px 0;
 }
 
+.prose h3 {
+  @apply mt-[2em];
+}
+
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-lg bg-[rgb(32,32,32)];
+  @apply text-xs text-[13px] rounded-lg bg-[#1E1E20];
 }
 
 .code-highlight {
@@ -208,7 +212,7 @@ pre[class*="language-"] {
   margin-left: -24px;
   margin-right: -24px;
   padding-left: 24px;
-  background-color: hsl(0, 0%, 15.8%, .75); /* Set highlight bg color */
+  background-color: #2E2E30; /* Set highlight bg color */
   border-left: 4px solid #e1bde2; /* Set highlight accent border color */
 }
 
@@ -219,6 +223,6 @@ pre[class*="language-"] {
   margin-right: 20px;
   margin-left: -8px;
   color: rgb(220, 217, 230); /* Line number color */
-  opacity: 0.3;
+  opacity: 0.25;
   content: attr(line);
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Weather = () => {
   // change theme if I tap on the weather card
-  const [weatherTheme, setTheme] = useState("light");
+  const [weatherTheme, setTheme] = useState("dark");
   const changeTheme = () => {
     if (weatherTheme === "dark") {
       setTheme("light");

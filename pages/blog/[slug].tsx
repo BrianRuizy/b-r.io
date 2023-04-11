@@ -111,7 +111,7 @@ export default function Post({ post, related }: PostProps) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 md:rounded-lg max-w-none animate-in"
+              className="w-[calc(100%+48px)] -ml-6 lg:w-[calc(100%+128px)] lg:-ml-16 md:rounded-lg max-w-none animate-in"
               style={{ "--index": 2 } as React.CSSProperties}
               priority
             />
