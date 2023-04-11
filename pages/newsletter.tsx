@@ -20,7 +20,7 @@ export default function NewsletterPage() {
         description={seoDesc}
         openGraph={{
           title: seoTitle,
-          url: `https://samuelkraft.com/newsletter/`,
+          url: `https://b-r.io/newsletter/`,
           description: seoDesc,
           site_name: "Brian Ruiz",
         }}

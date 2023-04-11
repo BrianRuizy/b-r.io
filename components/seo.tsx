@@ -10,14 +10,14 @@ const config = {
     site_name: "Brian Ruiz",
     images: [
       {
-        url: "https://samuelkraft.com/og.png",
+        url: "https://b-r.io/og.png",
         alt: "Brian Ruiz",
       },
     ],
   },
   twitter: {
-    handle: "@samuelkraft",
-    site: "@samuelkraft",
+    handle: "@brianruizy",
+    site: "@og.jpg",
     cardType: "summary_large_image",
   },
 };

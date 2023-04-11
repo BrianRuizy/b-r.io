@@ -23,7 +23,7 @@ type PostProps = {
 export default function Post({ post, related }: PostProps) {
   const seoTitle = `${post.title} | Brian Ruiz`;
   const seoDesc = `${post.summary}`;
-  const url = `https://samuelkraft.com/blog/${post.slug}`;
+  const url = `https://b-r.io/blog/${post.slug}`;
   const Component = useMDXComponent(post.body.code);
 
   return (
@@ -39,8 +39,8 @@ export default function Post({ post, related }: PostProps) {
           images: [
             {
               url: post.og
-                ? `https://samuelkraft.com${post.og}`
-                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
+                ? `https://b-r.io${post.og}`
+                : `https://og-image.b-r.vercel.app/${encodeURIComponent(
                     post.title
                   )}?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
               alt: post.title,
@@ -51,7 +51,7 @@ export default function Post({ post, related }: PostProps) {
           article: {
             publishedTime: post.publishedAt,
             modifiedTime: post.updatedAt,
-            authors: ["https://samuelkraft.com"],
+            authors: ["https://b-r.io"],
           },
         }}
       />

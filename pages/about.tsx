@@ -62,7 +62,7 @@ export default function About({}: // lastActivity,
         openGraph={{
           title: seoTitle,
           description: seoDesc,
-          url: `https://samuelkraft.com/about/`,
+          url: `https://b-r.io/about/`,
           site_name: "Brian Ruiz",
         }}
         twitter={{

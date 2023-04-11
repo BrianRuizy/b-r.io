@@ -28,11 +28,11 @@ export default class MyDocument extends Document {
           />
           <link
             rel="webmention"
-            href="https://webmention.io/samuelkraft.com/webmention"
+            href="https://webmention.io/b-r.io/webmention"
           />
           <link
             rel="pingback"
-            href="https://webmention.io/samuelkraft.com/xmlrpc"
+            href="https://webmention.io/b-r.io/xmlrpc"
           />
           <link href="https://github.com/brianruizy" rel="me" />
         </Head>

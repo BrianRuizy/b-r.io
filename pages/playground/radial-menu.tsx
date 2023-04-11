@@ -223,7 +223,7 @@ export default function Playground() {
   const title = "Radial Menu";
   const seoTitle = `${title} | Brian Ruiz`;
   const desc = `Fun interaction from Pinterest on iOS built with Framer Motion`;
-  const url = `https://samuelkraft.com/playground/radial-menu`;
+  const url = `https://b-r.io/playground/radial-menu`;
   return (
     <>
       <NextSeo
