@@ -36,7 +36,7 @@
 
   .dark-theme {
     --blurBackground: rgb(0 0 0 / 95%);
-    --gray1: #121212;
+    --gray1: #101010;
   }
   
   .dark-theme .prose {
