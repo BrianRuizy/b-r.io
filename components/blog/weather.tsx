@@ -72,10 +72,7 @@ const Weather = () => {
         </div>
       </div>
       <div className="mt-4 mb-8">
-        <figcaption>
-          Interactive Weather widget that&apos;s actually in the code, and not just an
-          image. Try tapping on me to switch theme.
-        </figcaption>
+        <figcaption>Try tapping on me to switch theme.</figcaption>
       </div>
     </>
   );

@@ -72,7 +72,7 @@ export default function Home({ posts, featured }: HomeProps) {
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
                   <FaYoutube className="text-xl" />
-                  24,908 YouTube Subscribers
+                  27,963 YouTube Subscribers
                 </p>
               </li>
             </ul>

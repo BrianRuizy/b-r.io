@@ -4,7 +4,7 @@ import cn from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 
-import { IconArc, IconCheck, IconMoon, IconSun } from "./Icons";
+import { IconCheck, IconMoon, IconSun } from "./Icons";
 
 const themes = [
   { id: "system", label: "Automatic" },
@@ -20,15 +20,6 @@ export default function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true);
-
-    const timer = setTimeout(() => {
-      const isArc =
-        document.documentElement.style.getPropertyValue(
-          "--arc-palette-foregroundPrimary"
-        ) !== "";
-      if (isArc) setIsArcBrowser(true);
-    }, 800);
-    return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) {
@@ -52,8 +43,6 @@ export default function ThemeSwitcher() {
               >
                 {resolvedTheme === "dark" ? (
                   <IconMoon className={iconClassName} />
-                ) : resolvedTheme === "arc" ? (
-                  <IconArc className={iconClassName} />
                 ) : (
                   <IconSun className={iconClassName} />
                 )}

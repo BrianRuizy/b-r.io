@@ -4,7 +4,7 @@ import { RatingPlayground } from "components/blog/rating";
 import CustomImage from "components/blog/image";
 import Video from "components/blog/video";
 import Link from "components/Link";
-import Warning from "components/warning";
+import Alert from "components/Alert";
 import { NowPlayingIcon } from "components/blog/nowplaying";
 import SegmentedControl from "components/blog/segmentedcontrol";
 import Parallax from "components/blog/parallax";
@@ -38,7 +38,7 @@ const MDXComponents = {
   a: CustomLink,
   Link: CustomLink,
   Rating: RatingPlayground,
-  Warning: Warning,
+  Alert: Alert,
   Messages: Messages,
   AnimatedMessages: AnimatedMessages,
   TailBreakdown: TailBreakdown,

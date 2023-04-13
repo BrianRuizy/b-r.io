@@ -36,7 +36,7 @@
 
   .dark-theme {
     --blurBackground: rgb(0 0 0 / 95%);
-    --gray1: #101010;
+    --gray1: #121212;
   }
   
   .dark-theme .prose {
@@ -50,17 +50,6 @@
 
   .main-header {
     -webkit-tap-highlight-color: transparent;
-  }
-
-  .arc-theme {
-    --gray1: var(--arc-palette-background);
-    --gray12: var(--arc-palette-foregroundPrimary);
-    --gray11: var(--arc-palette-foregroundSecondary);
-    --grayA4: var(--arc-palette-hover);
-    --gray4: var(--arc-palette-hover);
-    --bg: var(--arc-palette-background);
-    --boxBg: var(--arc-palette-focus);
-    --blurBackground: var(--arc-palette-backgroundExtra);
   }
 
   body {
@@ -155,7 +144,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose blockquote {
-  @apply text-primary opacity-90 leading-tight font-semibold border-0 text-2xl not-italic mx-auto text-center px-6;
+  @apply text-primary opacity-90 font-semibold border-0 text-xl not-italic mx-auto text-center px-6 md:px-20;
 }
 
 .prose figcaption {
@@ -166,6 +155,7 @@ input:-webkit-autofill:focus {
   background-color: var(--blueA5);
   color: inherit;
   padding: 3px 0;
+  font-weight: 500;
 }
 
 .prose h3 {
@@ -174,7 +164,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-md bg-[#1E1E20];
+  @apply text-xs text-[13px] rounded-md bg-[#1c1c1c];
 }
 
 .code-highlight {
@@ -213,7 +203,7 @@ pre[class*="language-"] {
   text-align: right;
   margin-right: 24px;
   margin-left: -8px;
-  color: rgb(220, 217, 230); /* Line number color */
+  color: #ededed; /* Line number color */
   opacity: 0.25;
   content: attr(line);
 }

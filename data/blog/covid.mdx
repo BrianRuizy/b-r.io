@@ -1,5 +1,5 @@
 ---
-title: 'How to Create a COVID dashboard web application with Python'
+title: 'How to Create a COVID-19 dashboard web application with Python'
 publishedAt: '2021-09-01'
 summary: 'A quick walkthrough overview of the project setup and the technology stack we used.'
 tags: ["Big Data", "Python"]
@@ -11,17 +11,53 @@ shortTitle: 'Covid Dashboard'
 
 When I started this side project there were not too many dashboards or sites to track data for the Coronavirus pandemic, other than the very popular web app created by John Hopkins University. My idea was to create an open-source version that encouraged collaboration to derive some creative design and functional ideas. And, that’s precisely what this project became.
 
-> COVID-19 is an infectious disease caused by a newly discovered coronavirus. The best way to prevent and slow down transmission is to be well informed. — who.int (2020)
+> The best way to prevent and slow down transmission is to be well-informed.
 
-We have [contributors from all over the world](github.com) —Spain, Poland, India, and various places in the USA— who came together to create something useful and meaningful. Furthermore, the site has accumulated over 10k visits as shown by web analytics. And, the project is still being maintained and improved upon, thanks to the help of developers.
+<figcaption>who.int 2020</figcaption>
 
-## Where the data comes from?
+We have [contributors from all over the world](https://github.com/BrianRuizy/covid19-dashboard/graphs/contributors) --Spain, Poland, India, and various places in the USA-- who came together to create something useful and meaningful. Furthermore, the site has accumulated over 10k visits as shown by web analytics. And, the project is still being maintained and improved upon, thanks to the help of developers.
 
-A large portion of the data comes from one of the original data repositories tracking COVID-19 cases, Johns Hopkins University CSSE2019-ncov data repository. Additional data was collected from Our World in Data GitHub data repository. Lastly, to fill in some requirements we retrieved data for daily cases from New York Times COVID GitHub data repository.
+---
 
-For this project, it was crucial to have accurate, and trustworthy datasets. Which explains why the multiple aforementioned sources were diligently picked. In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
+## Where does the data come from?
 
-```python showLineNumbers
+A large portion of the data comes from one of the original data repositories tracking COVID-19 cases, [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) CSSE2019-ncov data repository. Additional data was collected from [Our World in Data](https://ourworldindata.org/) GitHub data repository. Lastly, to fill in some requirements we retrieved data for daily cases from [New York Times](https://github.com/nytimes/covid-19-data) COVID GitHub data repository.
+
+For this project, it was crucial to have <mark>accurate, and trustworthy datasets</mark>.
+This explains why the multiple aforementioned sources were diligently picked.
+In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
+
+<Image rounded width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*4DeT3bxzq-akxL9q.jpg" caption="person reading the news very safely"/>
+
+## The tech we're using
+
+This project began with Python-based Jupyter Notebooks, and the use of Plotly, “the leading front-end for ML & data science models in Python, R, and Julia.” Django. But I needed a way for this to be accessible to the public therefore I started using the Django web framework, Django is a high-level Web framework that encourages rapid development and clean, pragmatic design. To bootstrap the initial dashboard grid we used Appseed and Bootstrap 4 to fill in where we needed custom UI elements.
+
+Several times I reconsidered the deployment of this project but ultimately decided to deploy it to Heroku. Heroku is a cloud-based platform that offers an easy way to deploy your Django-based web applications. Though other contenders included elastic beanstalk (AWS) and Google App Engine, Heroku included tools that seemed much more valuable at a free tier. Furthermore, Heroku provides seamless CI and made it super easy to test pull requests from other contributors.
+
+<Image width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*Za--6loAv75j4wRG.png" />
+
+## Front-end design
+
+Overall the general approach of the application is to display a grid of different cards. The cards represent different forms of data organized in their respective way, and the user can interact with the data in several ways. We have a map card that uses COVID case data stacked on top of GPS coordinates. In another card, we have a plot that shows the overall trajectory of confirmed cases using time-series data with dates.
+
+And, it was important to design the grid in such a way that the cards of data were responsive and friendly to different devices and viewports. Bootstrap 4 allowed us to easily create a device-responsive grid.
+
+<Image rounded width={600} height={400} caption="Visualizations responsive to different devices" src="/blog/covid/phones.png" />
+
+## How it works
+
+The following is a snippet of how we’re using <mark>Python to scrape the data from different sources and return that data to the front-end</mark> to create data visualizations with Plotly. Using AJAX requests allows us to load the data asynchronously, which is a great way to improve the user experience by significantly reducing the initial page load time.
+
+<Alert type="warning">
+  Note that the example code is incomplete for concision.
+</Alert>
+
+### 1. Web scraping with Pandas 🐼
+
+Here we defined a simple function that reads from a specific URL that contains a CSV of raw data, we convert it to a Pandas data frame and return it.
+
+```python showLineNumbers {5}
 import pandas as pd
 
 def confirmed_report():
@@ -30,27 +66,86 @@ def confirmed_report():
   return df
 ```
 
+### 2. Data cleaning & formatting 🧼
 
-```jsx {1,7-13} title="pages/index.tsx" showLineNumbers
-import Image from 'next/image';
+Now we define the function realtime_growth which cleans and manipulates the data frame returned from the above function. We need to do this because the data is not in the format we want, and we need to clean it up.
 
-function BlurImage() {
-  return (
-    <a href="#" className="group">
-      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-        <Image
-          alt=""
-          src="https://bit.ly/placeholder-img"
-          layout="fill"
-          objectFit="cover"
-          className="group-hover:opacity-75"
-        />
-      </div>
-      <h3 className="mt-4 text-sm text-gray-700">Lee Robinson</h3>
-      <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
-    </a>
-  );
+```py showLineNumbers {5-7}
+def realtime_growth():
+  df1 = confirmed_report()[confirmed_report().columns[4:]].sum()
+  df2 = deaths_report()[deaths_report().columns[4:]].sum()
+
+  growth_df = pd.DataFrame([])
+  growth_df['Confirmed'], growth_df['Deaths'] = df1, df2
+  growth_df.index = growth_df.index.rename('Date')
+
+  yesterday = pd.Timestamp('now').date() - pd.Timedelta(days=1)
+
+  return growth_df
+```
+
+### 3. Sending AJAX request 📨
+
+Using AJAX in javascript to send an asynchronous request to the Python backend. If successful then we create the data visualization — in this case, a scatter plot with visible line traces — using plotly.js.
+
+```js
+function load_realtime_growth_chart() {
+  var xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      /* plotly.js code here*/
+    }
+  }
+  xhttp.open("GET", "realtime_growth")
+  xhttp.send()
 }
 ```
 
-For this project, it was crucial to have accurate, and trustworthy datasets. Which explains why the multiple aforementioned sources were diligently picked. In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
+### 5. Plotly to visualize the data 📊
+
+We then create the D3.js-based line and scatter plots in JavaScript using Plotly. This creates an interactive, scientific data visualization easily on the Web browser. This one will probably be the most complex-looking part of the code because it takes a lot of tweaking to get the plot to your desired look and feel. But trust me it’s simpler than it looks.
+
+<Alert type="info">
+  Visit <a href="https://plotly.com/python/">plot.ly</a> for docs and examples.
+</Alert>
+
+```js showLineNumbers {1-2}
+var plot_data = [confirmed_trace, deaths_trace];
+var plot_layout = {
+    yaxis: {automargin: true, type: "log", gridcolor: "#32325d"},
+    xaxis: {automargin: true, showgrid: false},
+    showlegend: false,
+    hovermode: "closest",
+    updatemenus: [
+      {
+        visible: true,
+        type: "dropdown",
+        buttons: [
+          {
+            method: "relayout",
+            label: "Logarithmic",
+            args: [{"yaxis.type": "log"}]
+          },
+          {
+            method: "relayout",
+            label: "Linear",
+            args: [{"yaxis.type": "linear"}]
+          }
+        ],
+        x: 0.05,
+        xanchor: "auto",
+        bgcolor: "#6236FF",
+        bordercolor: "rgba(0,0,0,0)"
+      }
+    ]
+  };
+);
+```
+
+## Wrapping things up
+
+In the end, we have fully functional real-time data visualizations that are responsive to different devices and fully interactive to both mouse and touch controls. All in <mark>the most effective content delivery system that exists</mark>, the internet.
+
+So did I achieve my initial goal? Yes, exceedingly, I believe. There is a tremendous amount of appreciation for this project knowing that tens of thousands of users have even opened the website and interacted with it. And, the idea that some of those users learned a little more about the pandemic is rewarding.
+
+If you’re a developer and wish to contribute to the ongoing project you may check out the more in-depth documentation on the [getting started](https://github.com/BrianRuizy/covid19-dashboard/#getting-started) section from the Github repository.

@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header className="relative md:sticky top-0 z-20 main-header bg-primary">
       <nav className="px-4 md:px-6 py-3 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
-        <Link href="/" className="shrink-0 text-primary">
+        <Link href="/" className="shrink-0 text-primary" alt="home">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="36"

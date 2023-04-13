@@ -19,7 +19,7 @@ const workplaces = [
   {
     title: "Full Stack Engineer",
     company: "Hines",
-    time: "2022 - Present",
+    time: "2022 -",
     imageSrc: hinesLogo,
     link: "https://hines.com",
   },
@@ -40,7 +40,7 @@ const workplaces = [
   {
     title: "Coding Camp Instructor",
     company: "University of Houston",
-    time: "Summer 2019",
+    time: "2019",
     imageSrc: uhdLogo,
     link: "https://www.uhd.edu/",
   },
