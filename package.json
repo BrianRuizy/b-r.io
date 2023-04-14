@@ -18,7 +18,6 @@
     "@vercel/analytics": "^0.1.11",
     "clsx": "^1.2.1",
     "contentlayer": "^0.2.9",
-    "faunadb": "^4.7.1",
     "framer-motion": "^8.1.3",
     "globby": "^13.1.3",
     "next": "13.1.1",
@@ -47,6 +46,7 @@
     "eslint-config-next": "13.1.1",
     "gray-matter": "^4.0.3",
     "postcss": "^8.4.20",
+    "prisma": "^4.12.0",
     "rss": "^1.2.2",
     "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"

@@ -34,13 +34,13 @@ After juggling several ideas we settled on the issue of road potholes. We discov
 Looking at our challenge from a high level we need the following components or stages, to be able to solve the problem. Also, we need to design a 2-layer confirmation of a road pothole. The first is the active dashboard camera, and the second uses the user’s phone telemetry data, such as GPS and accelerometer modules.
 
 
-## Analyzing mobile telemetry data
+## 1. Analyzing mobile telemetry data
 
 Every modern smartphone is equipped with very accurate telemetry systems. For example, the GPS and accelerometer, which we leveraged for location and to track any abrupt movement indicating a pothole on the road.
 
 One of the difficulties with this approach was that logging every high acceleration movement may result in false positives of a road pothole. Below is also a time-series data visualization of the accelerometer data, generated with matplotlib.
 
-```python showLineNumbers
+```python showLineNumbers {8-11}
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -59,7 +59,7 @@ plt.show()
 ```
 
 
-## Live computer vision
+## 2. Live computer vision
 
 This part was more difficult to implement, but this was our second layer for the prediction of potholes, implementation is done with some guidance from the Azure cloud architects.
 
@@ -76,7 +76,7 @@ We used Azure Logic Apps to import our road image frames to the cloud, and with 
   rounded
 />
 
-## The Interface
+## 3. The Interface
 
 From the start, the idea was to keep the interface as intuitive as possible to minimize driving distractions. Therefore, we intended to create an interface that would show a dialog box only when our system predicted there to be a pothole, from there the user would confirm if so.
 
@@ -92,13 +92,13 @@ Unfortunately, we didn't have enough time to implement both the backend logic an
   rounded
 />
 
-## Geocoding / Mapping
+## 4.Geocoding / Mapping
 
 Finally, we needed to plot our GPS data so the city could take action. Our collected data including latitude, longitude, altitude, and location accuracy. `import folium`
 Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
 
 
-```python showLineNumbers
+```python showLineNumbers  {8-10}
 import folium
 import pandas as pd
 
@@ -113,7 +113,6 @@ for each in df.iterrows():
 
 display(map)
 ```
-
 
 <Image 
   src="https://miro.medium.com/max/1400/0*PYSGLUaVid-vzeHr.png" 

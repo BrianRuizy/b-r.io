@@ -5,7 +5,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 import { formatDate } from "lib/formatdate";
-import HitCounter from "components/hitcounter";
 import PostList from "components/postlist";
 import Link from "components/Link";
 import Image from "next/image";
@@ -64,7 +63,7 @@ export default function Post({ post, related }: PostProps) {
                 {formatDate(post.publishedAt)}
               </time>
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
-              <HitCounter slug={post.slug} />
+              &bull; 000 views
             </p>
             <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
               {post.title}
@@ -114,6 +113,7 @@ export default function Post({ post, related }: PostProps) {
               className="w-[calc(100%+48px)] -ml-6 lg:w-[calc(100%+128px)] lg:-ml-16 md:rounded-lg max-w-none animate-in"
               style={{ "--index": 2 } as React.CSSProperties}
               priority
+              quality={100}
             />
           )}
           <div className="h-16" />
