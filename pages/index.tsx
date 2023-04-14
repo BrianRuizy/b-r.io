@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import { allPosts, Post } from ".contentlayer/generated";
@@ -18,6 +19,37 @@ type HomeProps = {
 };
 
 export default function Home({ posts, featured }: HomeProps) {
+
+  const username = 'brianruizy'
+
+  const [stars, setStars] = useState<number>(0);
+
+  useEffect(() => {
+    async function fetchStars() {
+      const res = await fetch(`api/github-stars?username=${username}`);
+      const data = await res.json();
+      setStars(data.stars);
+    }
+    fetchStars();
+  }, []);
+
+  const [subscribers, setSubscribers] = useState(0);
+
+  useEffect(() => {
+    async function fetchSubscribers() {
+      try {
+        const response = await fetch(`api/youtube`);
+        const data = await response.json();
+        // add commas to subscribers count
+        const formattedSubscribers = data.subscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        setSubscribers(formattedSubscribers);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchSubscribers();
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-16 md:gap-24">
@@ -46,10 +78,12 @@ export default function Home({ posts, featured }: HomeProps) {
             />
             <ul className="space-y-2 animated-list">
               <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
+                <Link className="flex gap-3 items-center no-underline" 
+                  href={'https://github.com/' + username}
+                >
                   <FaGithub className="text-xl" />
-                  908 Repository Stars
-                </p>
+                  {stars} Repository Stars
+                </Link>
               </li>
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
@@ -65,15 +99,17 @@ export default function Home({ posts, featured }: HomeProps) {
                       clipRule="evenodd"
                     />
                   </svg>
-                  2,908 Total Blog Views
+                  0 Total Blog Views
                 </p>
               </li>
 
               <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
+                <Link className="flex gap-3 items-center no-underline" 
+                  href={'https://www.youtube.com/@' + username}
+                >
                   <FaYoutube className="text-xl" />
-                  27,963 YouTube Subscribers
-                </p>
+                  {subscribers} YouTube Subscribers
+                </Link>
               </li>
             </ul>
           </div>
@@ -111,7 +147,7 @@ export default function Home({ posts, featured }: HomeProps) {
             </li>
             <li className="transition-opacity">
               <Link
-                href="https://youtube.com/@brianruizy?sub_confirmation=1"
+                href="/links"
                 className="flex gap-2 items-center no-underline"
               >
                 <svg
@@ -126,7 +162,7 @@ export default function Home({ posts, featured }: HomeProps) {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Subscribe to channel</span>
+                <span>Connect with me</span>
               </Link>
             </li>
           </ul>
