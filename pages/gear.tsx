@@ -184,7 +184,7 @@ const gear = [
     category: "Software",
     image: Copilot,
     description: "Spending, investing, net worth. Elegant graphs and interface",
-    link: "https://copilot.money/",
+    link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
   },
   {
     name: "Akiflow",
