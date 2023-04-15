@@ -94,10 +94,10 @@ export default function Home({ posts }: HomeProps) {
                 </Link>
               </li>
               <li className="transition-opacity">
-                <p className="flex gap-3 items-center">
+                <Link className="flex gap-3 items-center" href="/blog">
                   <IconTrending />
                   {views} Total Blog Views
-                </p>
+                </Link>
               </li>
 
               <li className="transition-opacity">

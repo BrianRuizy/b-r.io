@@ -35,7 +35,7 @@ export default function Post({ post, related }: PostProps) {
       setViews(data.Views);
       }
     fetchViews();
-  }, []);
+  }, [post.slug]);
 
 
   return (
