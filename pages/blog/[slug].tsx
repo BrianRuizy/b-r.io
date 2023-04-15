@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { pick } from "@contentlayer/client";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
@@ -24,6 +25,18 @@ export default function Post({ post, related }: PostProps) {
   const seoDesc = `${post.summary}`;
   const url = `https://b-r.io/blog/${post.slug}`;
   const Component = useMDXComponent(post.body.code);
+
+  const [views, setViews] = useState<number>(0);
+
+  useEffect(() => {
+    async function fetchViews() {
+      const res = await fetch(`/api/hitsSlug?slug=${post.slug}`);
+      const data = await res.json();
+      setViews(data.Views);
+      }
+    fetchViews();
+  }, []);
+
 
   return (
     <>
@@ -63,7 +76,7 @@ export default function Post({ post, related }: PostProps) {
                 {formatDate(post.publishedAt)}
               </time>
               {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
-              &bull; 000 views
+              &bull; {views} views
             </p>
             <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
               {post.title}

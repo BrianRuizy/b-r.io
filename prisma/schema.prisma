@@ -11,4 +11,8 @@ datasource db {
   relationMode = "prisma"
 }
 
-// 
+model Post {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  views     Int      @default(0)
+}

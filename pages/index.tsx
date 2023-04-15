@@ -5,49 +5,57 @@ import { allPosts, Post } from ".contentlayer/generated";
 import { pick } from "@contentlayer/client";
 import { FaYoutube, FaGithub } from "react-icons/fa";
 
-import Link from "components/Link";
-import Section from "components/Section";
 import PostList from "components/postlist";
-import CovidGraphic from "components/featured/CovidGraphic";
-
 import avatar from "public/avatar.png";
-import { formatDate } from "lib/formatdate";
+import Link from "components/Link";
+import { IconArrowDiagonal, IconTrending } from "components/Icons";
 
 type HomeProps = {
   posts: Post[];
   featured: Post[];
 };
 
-export default function Home({ posts, featured }: HomeProps) {
+function addCommas(x: any) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-  const username = 'brianruizy'
+export default function Home({ posts }: HomeProps) {
+
+  const username = ''
 
   const [stars, setStars] = useState<number>(0);
+  const [subscribers, setSubscribers] = useState(0);
+  const [views, setViews] = useState<number>(0);
 
   useEffect(() => {
     async function fetchStars() {
-      const res = await fetch(`api/github-stars?username=${username}`);
+      const res = await fetch(`api/github`);
       const data = await res.json();
-      setStars(data.stars);
+      setStars(addCommas(data.stars));
     }
     fetchStars();
   }, []);
 
-  const [subscribers, setSubscribers] = useState(0);
-
   useEffect(() => {
     async function fetchSubscribers() {
       try {
-        const response = await fetch(`api/youtube`);
-        const data = await response.json();
-        // add commas to subscribers count
-        const formattedSubscribers = data.subscribers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        setSubscribers(formattedSubscribers);
+        const res = await fetch(`/api/youtube`);
+        const data = await res.json();
+        setSubscribers(addCommas(data.subscribers));
       } catch (error) {
         console.error(error);
       }
     }
     fetchSubscribers();
+  }, []);
+
+  useEffect(() => {
+    async function fetchViews() {
+      const res = await fetch(`/api/hitsTotal`);
+      const data = await res.json();
+      setViews(addCommas(data.total));
+    }
+    fetchViews();
   }, []);
 
   return (
@@ -87,19 +95,8 @@ export default function Home({ posts, featured }: HomeProps) {
               </li>
               <li className="transition-opacity">
                 <p className="flex gap-3 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.577 4.878a.75.75 0 01.919-.53l4.78 1.281a.75.75 0 01.531.919l-1.281 4.78a.75.75 0 01-1.449-.387l.81-3.022a19.407 19.407 0 00-5.594 5.203.75.75 0 01-1.139.093L7 10.06l-4.72 4.72a.75.75 0 01-1.06-1.061l5.25-5.25a.75.75 0 011.06 0l3.074 3.073a20.923 20.923 0 015.545-4.931l-3.042-.815a.75.75 0 01-.53-.919z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  0 Total Blog Views
+                  <IconTrending />
+                  {views} Total Blog Views
                 </p>
               </li>
 
@@ -130,18 +127,7 @@ export default function Home({ posts, featured }: HomeProps) {
                 href="mailto:contact@b-r.io"
                 className="flex gap-2 items-center no-underline"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <IconArrowDiagonal />
                 <span>Email me</span>
               </Link>
             </li>
@@ -150,63 +136,19 @@ export default function Home({ posts, featured }: HomeProps) {
                 href="/links"
                 className="flex gap-2 items-center no-underline"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <IconArrowDiagonal />
                 <span>Connect with me</span>
               </Link>
             </li>
           </ul>
         </div>
-        {/* <div
-          className="flex flex-col gap-8 animate-in"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <h2>Featured</h2>
-          <ul className="relative flex gap-8 md:gap-16 flex-nowrap overflow-x-scroll snap-x md:overflow-auto snap-mandatory md:flex-col -mx-6 px-6 scroll-pl-6 touch-auto">
-            {featured.map((post) => (
-              <li key={post.title} className="snap-start min-w-[85%]">
-                <Section heading={formatDate(post.publishedAt)}>
-                  <div className="flex flex-col gap-6">
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.slug === "covid" && <CovidGraphic />}
-                      {post.slug === "mapbox-static-image-api" && <TrailRoutesGraphic /> }
-                    </Link>
-                    <div className="flex flex-col gap-3">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="font-medium leading-tight line-clamp-2"
-                      >
-                        {post.title}
-                      </Link>
-                      <p className="text-secondary line-clamp-3">
-                        {post.summary}
-                      </p>
-                    </div>
-                  </div>
-                </Section>
-              </li>
-            ))}
-          </ul>
-        </div> */}
         <div
           className="flex flex-col gap-8 animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <h2>Latest Blogs</h2>
           <PostList posts={posts} />
-          <Link href="/blog" className="items-start underline">
-            See All
-          </Link>
+          <Link href="/blog" className="underline">See All</Link>
         </div>
       </div>
     </>
@@ -228,8 +170,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
     .map((post) =>
       pick(post, ["slug", "title", "publishedAt", "image", "summary"])
-    
-
     );
 
   return {
