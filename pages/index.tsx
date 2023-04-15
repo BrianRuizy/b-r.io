@@ -21,7 +21,7 @@ function addCommas(x: any) {
 
 export default function Home({ posts }: HomeProps) {
 
-  const username = ''
+  const username = 'brianruizy'
 
   const [stars, setStars] = useState<number>(0);
   const [subscribers, setSubscribers] = useState(0);
@@ -29,7 +29,7 @@ export default function Home({ posts }: HomeProps) {
 
   useEffect(() => {
     async function fetchStars() {
-      const res = await fetch(`api/github`);
+      const res = await fetch(`api/github?username=${username}`);
       const data = await res.json();
       setStars(addCommas(data.stars));
     }

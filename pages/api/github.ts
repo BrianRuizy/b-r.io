@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  
-  const username = 'brianruizy'
+  const { username } = req.query;
 
   try {
     const url = `https://api.github.com/users/${username}/repos?per_page=100`;
