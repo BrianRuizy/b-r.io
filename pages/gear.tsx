@@ -192,7 +192,7 @@ const gear = [
     image: Akiflow,
     description:
       "Ultimate time blocking platform. Personal task manager and calendar application",
-    link: "https://copilot.money/",
+    link: "http://bit.ly/3TRr6dq",
     sponsored: true,
   },
   {
@@ -200,7 +200,7 @@ const gear = [
     category: "Software",
     image: Dex,
     description: "Build stronger relationships",
-    link: "https://copilot.money/",
+    link: "https://getdex.com/s/brianruizy",
     sponsored: true,
   },
   {
