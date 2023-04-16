@@ -161,7 +161,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose h3 {
-  @apply mb-2 mt-[48px] font-bold text-base md:text-lg;
+  @apply mb-2 mt-[48px] text-lg;
 }
 
 /* syntax highlighting */
