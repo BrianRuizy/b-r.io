@@ -143,7 +143,7 @@ export default function Gallery() {
         <Photo
           src={meLily}
           meta="2021-07-12"
-          alt="Brian Ruiz in Gotland"
+          alt="Brian and Lily"
           width={324}
           height={239}
           rotate={-6}
@@ -153,7 +153,7 @@ export default function Gallery() {
         <Photo
           src={cowboy}
           meta="2017-07-04"
-          alt="Samuel skateboarding"
+          alt="my e-bike"
           width={230}
           height={250}
           rotate={6.3}
@@ -164,7 +164,7 @@ export default function Gallery() {
          <Photo
           src={texas}
           meta="2021-05-20"
-          alt="Samuel running in the sunset"
+          alt="Texas"
           width={280}
           height={235}
           rotate={-5.4}
@@ -174,7 +174,7 @@ export default function Gallery() {
         <Photo
           src={colorado}
           meta="2022-09-10"
-          alt={"Trail Run view"}
+          alt={"Snowboarding in Colorado"}
           width={220}
           height={260}
           rotate={7.6}

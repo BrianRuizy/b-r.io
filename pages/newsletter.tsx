@@ -48,7 +48,7 @@ export default function NewsletterPage() {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            Get an email when i write new posts. Learn animation techniques,
+            Get notified when I write new posts. Learn animation techniques,
             CSS, design systems and more
           </p>
           <div

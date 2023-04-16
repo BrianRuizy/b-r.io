@@ -34,7 +34,7 @@ After juggling several ideas we settled on the issue of road potholes. We discov
 Looking at our challenge from a high level we need the following components or stages, to be able to solve the problem. Also, we need to design a 2-layer confirmation of a road pothole. The first is the active dashboard camera, and the second uses the user’s phone telemetry data, such as GPS and accelerometer modules.
 
 
-## 1. Analyzing mobile telemetry data
+### 1. Analyzing mobile telemetry data
 
 Every modern smartphone is equipped with very accurate telemetry systems. For example, the GPS and accelerometer, which we leveraged for location and to track any abrupt movement indicating a pothole on the road.
 
@@ -59,7 +59,7 @@ plt.show()
 ```
 
 
-## 2. Live computer vision
+### 2. Live computer vision
 
 This part was more difficult to implement, but this was our second layer for the prediction of potholes, implementation is done with some guidance from the Azure cloud architects.
 
@@ -76,11 +76,11 @@ We used Azure Logic Apps to import our road image frames to the cloud, and with 
   rounded
 />
 
-## 3. The Interface
+### 3. The Interface
 
 From the start, the idea was to keep the interface as intuitive as possible to minimize driving distractions. Therefore, we intended to create an interface that would show a dialog box only when our system predicted there to be a pothole, from there the user would confirm if so.
 
-Unfortunately, we didn't have enough time to implement both the backend logic and the front-end interface. However, I created a mockup of the interface, which captures the essence of the idea, and it's a good example with emphasis on a minimal user experience.
+Unfortunately, we didn't have enough time to implement both the backend logic and the front-end interface. However, I created a mockup of the interface, which captures the essence of the idea, and it's a good example with an emphasis on a minimal user experience.
 
 <Image 
   src="/blog/microsoft-hackathon/mockup-clear.png" 
@@ -92,10 +92,10 @@ Unfortunately, we didn't have enough time to implement both the backend logic an
   rounded
 />
 
-## 4.Geocoding / Mapping
+### 4. Mapping pothole locations
 
-Finally, we needed to plot our GPS data so the city could take action. Our collected data including latitude, longitude, altitude, and location accuracy. `import folium`
-Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
+Finally, we needed to plot our GPS data so the city could take action. The data we leveraged for this use-case included latitude and longitude coordinates, and date-time stamps.
+For geocoding, we used Folium, which is a Python library that allows us to plot data on a map. Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
 
 
 ```python showLineNumbers  {8-10}

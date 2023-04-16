@@ -145,8 +145,7 @@ export default function Post({ post, related }: PostProps) {
         <div className="flex flex-col gap-6">
           <h2>Subscribe</h2>
           <p className="text-secondary">
-            Get an email when i write new posts. Learn animation techniques,
-            CSS, design systems and more
+            Get notified when I write new posts.
           </p>
           <NewsletterInput />
         </div>

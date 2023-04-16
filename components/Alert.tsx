@@ -8,7 +8,7 @@ const Alert = ({
   children: ReactNode;
   type: "warning" | "info";
 }): JSX.Element => (
-  <div className="flex items-center gap-2 p-4 rounded mt-7 bg-tertiary">
+  <div className="flex gap-2 p-4 rounded mt-7 bg-tertiary">
     <div className="w-5 h-5">
       {type === "warning" ? <IconWarning /> : <IconInfo />}
     </div>

@@ -7,7 +7,6 @@
 @import "@radix-ui/colors/grayA.css";
 @import "@radix-ui/colors/grayDark.css";
 @import "@radix-ui/colors/grayDarkA.css";
-
 @import "@radix-ui/colors/blue.css";
 @import "@radix-ui/colors/blueA.css";
 
@@ -148,18 +147,21 @@ input:-webkit-autofill:focus {
 }
 
 .prose figcaption {
-  @apply mt-2 mb-8 text-xs leading-tight text-tertiary font-medium max-w-md mx-auto text-center;
+  @apply mt-2 mb-8 text-sm font-normal leading-tight text-tertiary max-w-md mx-auto text-center;
 }
 
 .prose mark {
-  background-color: var(--blueA5);
+  background-color: var(--blueA4);
   color: inherit;
-  padding: 3px 0;
-  font-weight: 500;
+  padding: 2px 0;
+}
+
+.prose h2 {
+  @apply mb-4 text-xl md:text-2xl ;
 }
 
 .prose h3 {
-  @apply mt-[2em];
+  @apply mb-2 mt-[48px] font-bold text-base md:text-lg;
 }
 
 /* syntax highlighting */

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import { allPosts, Post } from ".contentlayer/generated";
@@ -10,53 +10,23 @@ import avatar from "public/avatar.png";
 import Link from "components/Link";
 import { IconArrowDiagonal, IconTrending } from "components/Icons";
 
+import useSWR from "swr";
+import fetcher from "lib/fetcher";
+import { addCommas } from "lib/utils";
+
 type HomeProps = {
   posts: Post[];
   featured: Post[];
 };
 
-function addCommas(x: any) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 export default function Home({ posts }: HomeProps) {
-
-  const username = 'brianruizy'
-
-  const [stars, setStars] = useState<number>(0);
-  const [subscribers, setSubscribers] = useState(0);
-  const [views, setViews] = useState<number>(0);
-
-  useEffect(() => {
-    async function fetchStars() {
-      const res = await fetch(`api/github?username=${username}`);
-      const data = await res.json();
-      setStars(addCommas(data.stars));
-    }
-    fetchStars();
-  }, []);
-
-  useEffect(() => {
-    async function fetchSubscribers() {
-      try {
-        const res = await fetch(`/api/youtube`);
-        const data = await res.json();
-        setSubscribers(addCommas(data.subscribers));
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchSubscribers();
-  }, []);
-
-  useEffect(() => {
-    async function fetchViews() {
-      const res = await fetch(`/api/hitsTotal`);
-      const data = await res.json();
-      setViews(addCommas(data.total));
-    }
-    fetchViews();
-  }, []);
+  const username = "brianruizy";
+  const { data: data1, error: error1 } = useSWR(
+    `/api/github?username=${username}`,
+    fetcher
+  );
+  const { data: data2, error: error2 } = useSWR(`/api/hitsTotal`, fetcher);
+  const { data: data3, error: error3 } = useSWR(`/api/youtube`, fetcher);
 
   return (
     <>
@@ -79,33 +49,35 @@ export default function Home({ posts }: HomeProps) {
           >
             <Image
               src={avatar}
-              width={80}
-              height={80}
+              width={85}
+              height={85}
               alt="avatar"
               className="rounded-full bg-secondary"
             />
             <ul className="space-y-2 animated-list">
               <li className="transition-opacity">
-                <Link className="flex gap-3 items-center no-underline" 
-                  href={'https://github.com/' + username}
+                <Link
+                  className="flex gap-3 items-center no-underline"
+                  href={"https://github.com/" + username}
                 >
                   <FaGithub className="text-xl" />
-                  {stars} Repository Stars
+                  {addCommas(data1?.stars)} Repository Stars
                 </Link>
               </li>
               <li className="transition-opacity">
                 <Link className="flex gap-3 items-center" href="/blog">
                   <IconTrending />
-                  {views} Total Blog Views
+                  {addCommas(data2?.total)} Total Blog Views
                 </Link>
               </li>
 
               <li className="transition-opacity">
-                <Link className="flex gap-3 items-center no-underline" 
-                  href={'https://www.youtube.com/@' + username}
+                <Link
+                  className="flex gap-3 items-center no-underline"
+                  href={"https://www.youtube.com/@" + username}
                 >
                   <FaYoutube className="text-xl" />
-                  {subscribers} YouTube Subscribers
+                  {addCommas(data3?.subscribers)} YouTube Subscribers
                 </Link>
               </li>
             </ul>
@@ -148,7 +120,9 @@ export default function Home({ posts }: HomeProps) {
         >
           <h2>Latest Blogs</h2>
           <PostList posts={posts} />
-          <Link href="/blog" className="underline">See All</Link>
+          <Link href="/blog" className="underline">
+            See All
+          </Link>
         </div>
       </div>
     </>

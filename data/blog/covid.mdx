@@ -1,5 +1,5 @@
 ---
-title: 'How to Create a COVID-19 dashboard web application with Python'
+title: 'How to Create a COVID-19 Dashboard web-app with Python'
 publishedAt: '2021-09-01'
 summary: 'A quick walkthrough overview of the project setup and the technology stack we used.'
 tags: ["Big Data", "Python"]
@@ -19,7 +19,7 @@ We have [contributors from all over the world](https://github.com/BrianRuizy/cov
 
 ---
 
-## Where does the data come from?
+## Data Sources 
 
 A large portion of the data comes from one of the original data repositories tracking COVID-19 cases, [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) CSSE2019-ncov data repository. Additional data was collected from [Our World in Data](https://ourworldindata.org/) GitHub data repository. Lastly, to fill in some requirements we retrieved data for daily cases from [New York Times](https://github.com/nytimes/covid-19-data) COVID GitHub data repository.
 
@@ -27,17 +27,17 @@ For this project, it was crucial to have <mark>accurate, and trustworthy dataset
 This explains why the multiple aforementioned sources were diligently picked.
 In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
 
-<Image rounded width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*4DeT3bxzq-akxL9q.jpg" caption="person reading the news very safely"/>
+<Image rounded width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*4DeT3bxzq-akxL9q.jpg" caption="person reading Covid news"/>
 
-## The tech we're using
+## Technology stack
 
 This project began with Python-based Jupyter Notebooks, and the use of Plotly, “the leading front-end for ML & data science models in Python, R, and Julia.” Django. But I needed a way for this to be accessible to the public therefore I started using the Django web framework, Django is a high-level Web framework that encourages rapid development and clean, pragmatic design. To bootstrap the initial dashboard grid we used Appseed and Bootstrap 4 to fill in where we needed custom UI elements.
 
-Several times I reconsidered the deployment of this project but ultimately decided to deploy it to Heroku. Heroku is a cloud-based platform that offers an easy way to deploy your Django-based web applications. Though other contenders included elastic beanstalk (AWS) and Google App Engine, Heroku included tools that seemed much more valuable at a free tier. Furthermore, Heroku provides seamless CI and made it super easy to test pull requests from other contributors.
-
 <Image width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*Za--6loAv75j4wRG.png" />
 
-## Front-end design
+## Front-end Design
+
+---
 
 Overall the general approach of the application is to display a grid of different cards. The cards represent different forms of data organized in their respective way, and the user can interact with the data in several ways. We have a map card that uses COVID case data stacked on top of GPS coordinates. In another card, we have a plot that shows the overall trajectory of confirmed cases using time-series data with dates.
 
@@ -45,7 +45,7 @@ And, it was important to design the grid in such a way that the cards of data we
 
 <Image rounded width={600} height={400} caption="Visualizations responsive to different devices" src="/blog/covid/phones.png" />
 
-## How it works
+## How It Works
 
 The following is a snippet of how we’re using <mark>Python to scrape the data from different sources and return that data to the front-end</mark> to create data visualizations with Plotly. Using AJAX requests allows us to load the data asynchronously, which is a great way to improve the user experience by significantly reducing the initial page load time.
 
