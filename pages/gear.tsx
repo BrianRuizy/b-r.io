@@ -326,13 +326,6 @@ const gear = [
     link: "https://amzn.to/41dXoSa",
   },
   {
-    name: "iPhone 14 Pro Max",
-    category: "Apple",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone14pro-digitalmat-gallery-3-202209?wid=364&hei=333&fmt=png-alpha&.v=1663346233180",
-    description: "The latest and greatest from iPhone",
-    link: "https://amzn.to/3KnetlX",
-  },
-  {
     name: "Apple MagSafe Charger",
     category: "Apple",
     image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHXH3_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1666381499607",
