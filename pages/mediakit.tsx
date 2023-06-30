@@ -88,7 +88,7 @@ export default function Mediakit() {
               <p className="text-primary font-bold">Top Geographies</p>
               <p className="text-secondary text-sm">Views contribution</p>
               <div className="flex-grow mt-6 relative">
-                <Image src={map} alt="map" className="saturate-0 opacity-50" />
+                <Image src={map} alt="map" className="saturate-0 opacity-75" />
                 <Chip label="🇺🇸 26%" position={[35, 10]} />
                 <Chip label="🇬🇧 9%" position={[16, 40]} />
                 <Chip label="🇩🇪 7.5%" position={[27, 47]} />
@@ -105,10 +105,10 @@ export default function Mediakit() {
               </div>
             </div>
           </div>
-          <p className="text-xs text-center text-tertiary">
+          <p className="text-xs text-center text-primary opacity-30">
             Analytics for the month of&nbsp;
-            {new Date().toLocaleString("default", { month: "long" })}.<br></br>
-            Additional data available upon request.
+            {new Date().toLocaleString("default", { month: "long", year: "numeric" })}.<br></br>
+            Additional data points available upon request.
           </p>
         </div>
       </div>
@@ -138,13 +138,15 @@ const ProgressBar = ({ percentage, label }: { percentage: number; label: string 
 
 const Chip = ({ label, position }: { label: string; position: Array<number> }) => {
   return (
-    <span className="absolute text-sm font-bold z-10 bg-tertiary px-1.5 py-1 rounded-full shadow drop-shadow-xl border border-primary"
+    <span className="absolute text-sm font-bold z-20 bg-tertiary px-1.5 py-1 rounded-full shadow drop-shadow-xl border border-primary contrast-125"
       style={{
         top: `${position[0]}%`,
         left: `${position[1]}%`,
       }}
     >
+      <span className="contrast-75">
       {label}
+      </span>
     </span>
   ) 
 }
