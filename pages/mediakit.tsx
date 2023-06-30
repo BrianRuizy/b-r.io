@@ -36,7 +36,7 @@ export default function Mediakit() {
               </span>
             </div>
             <p className="text-secondary text-sm">
-              Software Engineer based in Houston. Focuses on topics including consumer
+              Creator based in Houston. Focuses on topics including consumer
               technology, software engineering, design, and lifestyle. <Link href="https://www.youtube.com/@brianruizy">Visit channel.</Link> 
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function Mediakit() {
             </div>
             <div className="bg-tertiary rounded-xl border border-primary row-span-2 col-span-2 md:col-span-3 pt-6 text-center overflow-clip order-last md:order-none">
               <p className="text-primary font-bold">Top Geographies</p>
-              <p className="text-secondary text-sm">Views contribution</p>
+              <p className="text-secondary">Views contribution</p>
               <div className="flex-grow mt-6 relative">
                 <Image src={map} alt="map" className="saturate-0 opacity-75" />
                 <Chip label="🇺🇸 26%" position={[35, 10]} />
@@ -144,9 +144,7 @@ const Chip = ({ label, position }: { label: string; position: Array<number> }) =
         left: `${position[1]}%`,
       }}
     >
-      <span className="contrast-75">
-      {label}
-      </span>
+      <span className="contrast-75">{label}</span>
     </span>
   ) 
 }
