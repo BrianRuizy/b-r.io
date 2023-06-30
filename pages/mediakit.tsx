@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "components/Link";
 
 import avatar from "public/avatar.png";
 import map from "public/map.png";
@@ -20,23 +21,23 @@ export default function Mediakit() {
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <div className="flex flex-col gap-1">
-            <h3 className="text-lg font-semibold text-tertiary leading-none">
-              Media Kit
-            </h3>
-            <h2 className="text-4xl font-bold tracking-tight whitespace-nowrap ">
-              Brian Ruiz
-            </h2>
+            <h3 className="text-secondary leading-none">Media Kit</h3>
+            <h2 className="text-4xl font-bold tracking-tight whitespace-nowrap">Brian Ruiz</h2>
           </div>
           <div className="max-w-md md:max-w-sm w-fit flex flex-col gap-1">
             <div className="inline-flex items-center gap-2">
-              <FaYoutube className="text-2xl text-red-500" />
-              <span className="font-bold text-lg tracking-tighter">
+              <div className="relative">
+                {/* youtube play fill  */}
+                <span className="absolute top-2 left-2 w-1 z-10 bg-white p-1 rounded-full"></span> 
+                <FaYoutube className="relative text-2xl text-[#FF0000] z-20" />
+              </div>
+              <span className="font-semibold text-lg tracking-tighter">
                 YouTube
               </span>
             </div>
             <p className="text-secondary text-sm">
               Software Engineer based in Houston. Focuses on topics including consumer
-              technology, software engineering, design, and lifestyle.
+              technology, software engineering, design, and lifestyle. <Link href="https://www.youtube.com/@brianruizy">Visit channel.</Link> 
             </p>
           </div>
           <Image
@@ -52,7 +53,7 @@ export default function Mediakit() {
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
-            <h2 className="col-span-2 md:col-span-6 text-primary font-mediumd">Content</h2>
+            <h2 className="col-span-2 md:col-span-6 text-secondary">Content</h2>
             <div className="bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
               <p className="text-secondary">Subscribers</p>
               <h2 className="font-bold text-2xl text-primary">
@@ -75,7 +76,7 @@ export default function Mediakit() {
                 247K*
               </h2>
             </div>
-            <h2 className="col-span-2 md:col-span-6 text-primary font-medium mt-4">Audience</h2>
+            <h2 className="col-span-2 md:col-span-6 text-secondary mt-4">Audience</h2>
             <div className="bg-tertiary rounded-xl border border-primary row-span-1 col-span-2 md:col-span-3 p-6 space-y-2">
               <p className="text-secondary">Gender</p>
               <div>
@@ -116,7 +117,7 @@ export default function Mediakit() {
         aria-hidden="true"
       >
         <div
-          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 md:rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 md:opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem] "
+          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 md:rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 md:opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem]"
           style={{
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
@@ -128,7 +129,7 @@ export default function Mediakit() {
         aria-hidden="true"
       >
         <div
-          className="relative left-[calc(60%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[270deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 md:opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem] "
+          className="relative left-[calc(60%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[270deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%)] sm:w-[72.1875rem]"
           style={{
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",

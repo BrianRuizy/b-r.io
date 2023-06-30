@@ -10,10 +10,10 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from "clsx";
 
 const links = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Gear", href: "/gear" },
+  { label: "Mediakit", href: "/mediakit" },
 ];
 
 export default function Header() {
