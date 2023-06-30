@@ -89,7 +89,7 @@ export default function Mediakit() {
               <p className="text-secondary text-sm">Views contribution</p>
               <div className="flex-grow mt-6 relative">
                 <Image src={map} alt="map" className="saturate-0 opacity-50" />
-                <Chip label="🇺🇸 23%" position={[35, 10]} />
+                <Chip label="🇺🇸 26%" position={[35, 10]} />
                 <Chip label="🇬🇧 9%" position={[16, 40]} />
                 <Chip label="🇩🇪 7.5%" position={[27, 47]} />
                 <Chip label="🇧🇷 4.5%" position={[60, 25]} />
@@ -112,30 +112,7 @@ export default function Mediakit() {
           </p>
         </div>
       </div>
-      <div
-        className="absolute inset-x-0 top-[15%] z-0 transform-gpu overflow-hidden blur-3xl"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 md:rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-50 md:opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
-      <div
-        className="md:hidden absolute inset-x-0 top-[130%] z-0 transform-gpu overflow-hidden blur-3xl"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-[calc(60%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[270deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
+      <Gradients />
     </>
   );
 }
@@ -170,4 +147,35 @@ const Chip = ({ label, position }: { label: string; position: Array<number> }) =
       {label}
     </span>
   ) 
+}
+
+const Gradients = () => {
+  return(
+    <>
+      <div
+        className="absolute inset-x-0 top-[15%] z-0 transform-gpu overflow-hidden blur-3xl"
+        aria-hidden="true"
+      >
+        <div
+          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 md:rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-40 md:opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+        />
+      </div>
+      <div
+        className="md:hidden absolute inset-x-0 top-[130%] z-0 transform-gpu overflow-hidden blur-3xl"
+        aria-hidden="true"
+      >
+        <div
+          className="relative left-[calc(60%)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[270deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+        />
+      </div>
+    </>
+  )
 }
