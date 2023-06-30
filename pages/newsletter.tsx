@@ -1,11 +1,6 @@
 import NewsletterInput from "components/NewsletterInput";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { allPosts, Post } from ".contentlayer/generated";
-import { GetStaticProps } from "next";
-import { pick } from "contentlayer/client";
-import PostList from "components/postlist";
-import Link from "components/Link";
 
 export default function NewsletterPage() {
   const { query } = useRouter();

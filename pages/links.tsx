@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "components/Link";
 import ConnectLinks from "components/ConnectLinks";
-
 import avatar from "public/avatar.png";
 
 export default function Links() {

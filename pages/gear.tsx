@@ -7,8 +7,6 @@ import Dex from "public/gear/dex.webp";
 import Nikon from "public/gear/nikon.png";
 import DJI from "public/gear/dji.png";
 
-import { IconInfo } from "components/Icons";
-
 interface ItemProps {
   title: string;
   description: string;
