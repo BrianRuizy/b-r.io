@@ -13,7 +13,6 @@ const links = [
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Gear", href: "/gear" },
-  { label: "Mediakit", href: "/mediakit" },
 ];
 
 export default function Header() {

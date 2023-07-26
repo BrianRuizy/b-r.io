@@ -121,7 +121,7 @@ const ProgressBar = ({ percentage, label }: { percentage: number; label: string 
   return (
     <div>
       <div className="flex justify-between gap-4 items-center">
-        <div className="w-full bg-neutral-500/25 rounded h-2">
+        <div className="w-full bg-neutral-500/25 rounded h-2 border border-primary">
           <div 
             className="bg-blue-500 h-2 rounded" 
             style={{ width: `${percentage}%` }}
