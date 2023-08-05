@@ -122,17 +122,8 @@ export default function About({}: // lastActivity,
               <p>Hello world, I&apos;m Brian Ruiz!</p>
 
               <p>
-                I&apos;m a full stack engineer currently working at{" "}
-                <a
-                  className="underline"
-                  href="https://hines.com"
-                  target="__blank"
-                >
-                  Hines
-                </a>
-                , one of the largest private real estate investors in the world.
                 I have a passion for design and am always looking for ways to
-                incorporate it into my work.
+                incorporate it into my engineering work.
               </p>
               <p>
                 In addition to coding, I also make{" "}
@@ -146,6 +137,8 @@ export default function About({}: // lastActivity,
                 videos, where I focus on tech, creative vlogs, and personal
                 development.
               </p>
+              <p>When I&apos;m not at my desk I am probably lifting weights, playing soccer, or at a coffee shop :)</p>
+                
             </div>
           </Section>
 
@@ -198,7 +191,15 @@ export default function About({}: // lastActivity,
               <p>
                 I started my career teaching others how to code, which I will
                 always be appreciative of. Then I worked at a few small local
-                companies. Now I am working with systems at a bigger scale with Hines.
+                companies. Now I&apos;m a full stack engineer currently working at{" "}
+                <a
+                  className="underline"
+                  href="https://hines.com"
+                  target="__blank"
+                >
+                  Hines
+                </a>
+                , one of the largest private real estate investors in the world.
               </p>
               <Workplaces items={workplaces} />
             </div>
