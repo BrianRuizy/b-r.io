@@ -56,13 +56,13 @@ export default function Projects({ projects }: ProjectsProps) {
             <li
               key={project.slug}
               className={clsx(
-                "flex gap-6",
+                "flex flex-col md:flex-row gap-4 md:gap-6",
                 // i % 4 === 0 || i % 4 === 3 ? "md:col-span-3" : "md:col-span-2"
               )}
             >
               <Link
                 href={`/projects/${project.slug}`}
-                className="w-2/5 aspect-video bg-secondary rounded-lg border border-secondary overflow-clip"
+                className="w-full md:w-2/5 aspect-video bg-secondary rounded-lg border border-primary overflow-clip"
               >
                 <Halo strength={resolvedTheme === "light" ? 15 : 8}>
                   <Image
@@ -74,14 +74,14 @@ export default function Projects({ projects }: ProjectsProps) {
                   />
                 </Halo>
               </Link>
-              <div className="w-3/5 space-y-1">
+              <div className="w-full md:w-3/5 space-y-1">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="text-primary font-medium hover:underline"
                 >
                   {project.title}
                 </Link>
-                <p className="line-clamp-2 text-secondary">
+                <p className="line-clamp-3 text-secondary">
                   {project.description}
                 </p>
                 <p className="text-secondary">{project.time}</p>

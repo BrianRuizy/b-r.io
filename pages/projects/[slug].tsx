@@ -38,16 +38,18 @@ export default function Project({ project, rest }: ProjectProps) {
         }}
       />
 
-      <div className="flex flex-col gap-20 px-4 md:px-6 py-2 max-w-[700px] mx-auto ">
+      <div className="flex flex-col gap-20">
         <article>
           <div className="h-20" />
-          <div className="flex flex-col gap-3 animate-in">
+          <div className="flex flex-col gap-3 animate-in px-4 md:px-6 py-2 max-w-[700px] mx-auto">
             <div className="flex gap-3 text-secondary">
               <p>{project.time}</p>
               {project.url && (
                 <>
                   <span>&middot;</span>
-                  <Link href={project.url} className="hover:text-primary">Visit Live ↗</Link>
+                  <Link href={project.url} className="hover:text-primary">
+                    Visit Live ↗
+                  </Link>
                 </>
               )}
             </div>
@@ -63,19 +65,22 @@ export default function Project({ project, rest }: ProjectProps) {
           </div>
 
           <div className="h-12" />
-          <div className="prose ">
+          <div className="prose px-4 md:px-6 py-2 max-w-[1100px] mx-auto">
             <Component components={MDXComponents} />
           </div>
         </article>
-        <hr className="border-primary" />
-        <div className="flex flex-col gap-3.5">
-          {/* <h3 className="text-xl">Want a deeper dive?</h3>
-          <p className="text-secondary">
-            Get in touch to schedule a presentation
+        <div className="px-4 md:px-6 py-2 w-full max-w-[700px] mx-auto flex flex-col space-y-12">
+          <hr className="border-primary" />
+          <p className="text-primary max-w-lg">
+            Need more project details? Or are you interested in working
+            together? Reach out directly to me{" "}
+            <a href="mailto:contact@b-r.io" className="text-primary underline">
+              here
+            </a>
+            . I&apos;d be more than happy to connect!
           </p>
-        
-          <div className="h-12"></div> */}
-          <Link href="/" underline>
+
+          <Link href="/" className="hover:underline text-secondary">
             ← Back home
           </Link>
         </div>
