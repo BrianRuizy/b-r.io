@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import { allPosts, Post } from ".contentlayer/generated";
