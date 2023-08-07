@@ -8,9 +8,9 @@ import Link from "next/link";
 import clsx from "clsx";
 import Halo from "components/Halo";
 
-const seoTitle = "Blog | Brian Ruiz";
+const seoTitle = "Projects | Brian Ruiz";
 const seoDesc =
-  "I write about development, design, React, CSS, animation and more!";
+  "Some of the cool projects I've worked on.";
 
 type ProjectsProps = {
   projects: Project[];
@@ -95,7 +95,16 @@ export default function Projects({ projects }: ProjectsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = allProjects.map((project) =>
+  // const projects = allProjects.map((project) =>
+  //   pick(project, ["slug", "title", "time", "description", "image"])
+  // );
+
+  const projects = allProjects
+  .sort(
+    (a, b) =>
+      new Date(b.time).getTime() - new Date(a.time).getTime()
+  )
+  .map((project) =>
     pick(project, ["slug", "title", "time", "description", "image"])
   );
 
