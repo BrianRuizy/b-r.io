@@ -141,7 +141,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose.project img {
-  @apply border border-secondary rounded-xl bg-tertiary;
+  @apply border border-secondary rounded-[10px] bg-tertiary;
 }
 
 .prose blockquote {
