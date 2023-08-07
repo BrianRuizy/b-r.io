@@ -27,14 +27,12 @@ export default function Project({ project, rest }: ProjectProps) {
           title: seoTitle,
           url,
           description: seoDesc,
-        
         }}
       />
 
       <div className="flex flex-col gap-20">
         <article>
-          <div className="h-20" />
-          <div className="flex flex-col gap-3 animate-in px-4 md:px-6 py-2 max-w-[700px] mx-auto">
+          <div className="flex flex-col gap-3 animate-in px-4 md:px-6 py-2 max-w-[700px] mx-auto pt-16 md:pt-20">
             <div className="flex gap-3 text-secondary">
               <p>{project.time}</p>
               {project.url && (
@@ -50,7 +48,7 @@ export default function Project({ project, rest }: ProjectProps) {
               {project.title}
             </h1>
             <p
-              className="text-xl text-secondary animate-in"
+              className="text-lg text-secondary animate-in"
               style={{ "--index": 1 } as React.CSSProperties}
             >
               {project.description}
@@ -58,13 +56,16 @@ export default function Project({ project, rest }: ProjectProps) {
           </div>
 
           <div className="h-12" />
-          <div className="prose px-4 md:px-6 py-2 max-w-[1100px] mx-auto">
+          <div
+            className="prose project px-4 md:px-6 py-2 max-w-[950px] mx-auto animate-in"
+            style={{ "--index": 2 } as React.CSSProperties}
+          >
             <Component components={MDXComponents} />
           </div>
         </article>
         <div className="px-4 md:px-6 py-2 w-full max-w-[700px] mx-auto flex flex-col space-y-12">
-          <hr className="border-primary" />
-          <p className="text-primary max-w-lg">
+          <hr className="border-secondary" />
+          <p className="text-secondary max-w-lg">
             Need more project details? Or are you interested in working
             together? Reach out directly to me{" "}
             <a href="mailto:contact@b-r.io" className="text-primary underline">
@@ -73,7 +74,7 @@ export default function Project({ project, rest }: ProjectProps) {
             . I&apos;d be more than happy to connect!
           </p>
 
-          <Link href="/" className="hover:underline text-secondary">
+          <Link href="/" className="text-primary underline">
             ← Back home
           </Link>
         </div>

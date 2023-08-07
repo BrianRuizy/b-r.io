@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import "@radix-ui/colors/gray.css";
 @import "@radix-ui/colors/grayA.css";
 @import "@radix-ui/colors/grayDark.css";
@@ -12,11 +11,10 @@
 
 @import "prism/one-dark.css";
 
-
 @layer base {
   :root {
     --blurBackground: rgb(255 255 255 / 95%);
-    --brand: #6166DC;
+    --brand: #6166dc;
     --brandTinted: #6165dc1f;
 
     /* legacy vars from blogposts */
@@ -37,7 +35,7 @@
     --blurBackground: rgb(0 0 0 / 95%);
     --gray1: #101010;
   }
-  
+
   .dark-theme .prose {
     --tw-prose-headings: var(--gray12);
     --tw-prose-body: var(--gray11);
@@ -75,13 +73,13 @@ input:-webkit-autofill:focus {
 .brand-gradient {
   background: radial-gradient(
     100% 478.52% at 0% 15.62%,
-    #6166DC 0%,
-    #D2A8FF 100%
+    #6166dc 0%,
+    #d2a8ff 100%
   );
 }
 
 .text-gradient {
-  background: linear-gradient(140deg, #6166DC, #D2A8FF , #F778BA );
+  background: linear-gradient(140deg, #6166dc, #d2a8ff, #f778ba);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   width: fit-content;
@@ -90,8 +88,8 @@ input:-webkit-autofill:focus {
 .like-button {
   background: radial-gradient(
     100% 478.52% at 0% 15.62%,
-    #6166DC 0%,
-    #D2A8FF 100%
+    #6166dc 0%,
+    #d2a8ff 100%
   );
   animation: pulse 2.5s infinite ease-out;
 }
@@ -106,15 +104,15 @@ input:-webkit-autofill:focus {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0px 0px 52px #6166DC, 0px 0px 20px #D2A8FF,
+    box-shadow: 0px 0px 52px #6166dc, 0px 0px 20px #d2a8ff,
       inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
   70% {
-    box-shadow: 0px 0px 70px #6166DC, 0px 0px 40px #D2A8FF,
+    box-shadow: 0px 0px 70px #6166dc, 0px 0px 40px #d2a8ff,
       inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
   100% {
-    box-shadow: 0px 0px 52px #6166DC, 0px 0px 20px #D2A8FF,
+    box-shadow: 0px 0px 52px #6166dc, 0px 0px 20px #d2a8ff,
       inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
 }
@@ -126,7 +124,6 @@ input:-webkit-autofill:focus {
 
   .animated-list:hover li:hover {
     opacity: 1;
-
   }
 }
 
@@ -141,6 +138,10 @@ input:-webkit-autofill:focus {
 
 .prose hr {
   @apply border-primary;
+}
+
+.prose.project img {
+  @apply border border-secondary rounded-xl bg-tertiary;
 }
 
 .prose blockquote {
@@ -158,7 +159,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose h2 {
-  @apply mb-4 text-xl md:text-2xl ;
+  @apply mb-4 text-xl md:text-2xl;
 }
 
 .prose h3 {
@@ -196,7 +197,7 @@ pre[class*="language-"] {
   margin-left: -24px;
   margin-right: -24px;
   padding-left: 24px;
-  background-color: #2E2E30; /* Set highlight bg color */
+  background-color: #2e2e30; /* Set highlight bg color */
   border-left: 4px solid #e1bde2; /* Set highlight accent border color */
 }
 

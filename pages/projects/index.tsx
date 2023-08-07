@@ -9,8 +9,7 @@ import clsx from "clsx";
 import Halo from "components/Halo";
 
 const seoTitle = "Projects | Brian Ruiz";
-const seoDesc =
-  "Some of the cool projects I've worked on.";
+const seoDesc = "Some of the cool projects I've worked on.";
 
 type ProjectsProps = {
   projects: Project[];
@@ -49,16 +48,13 @@ export default function Projects({ projects }: ProjectsProps) {
           </div>
         </div>
         <ul
-          className="animate-in flex flex-col gap-8 animated-list"
+          className="animate-in flex flex-col gap-12 animated-list"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           {projects.map((project, i) => (
             <li
               key={project.slug}
-              className={clsx(
-                "flex flex-col md:flex-row gap-4 md:gap-6",
-                // i % 4 === 0 || i % 4 === 3 ? "md:col-span-3" : "md:col-span-2"
-              )}
+              className={clsx("flex flex-col md:flex-row gap-4 md:gap-6")}
             >
               <Link
                 href={`/projects/${project.slug}`}
@@ -75,16 +71,19 @@ export default function Projects({ projects }: ProjectsProps) {
                 </Halo>
               </Link>
               <div className="w-full md:w-3/5 space-y-1">
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="text-primary font-medium hover:underline"
-                >
-                  {project.title}
-                </Link>
+                <div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="text-primary font-medium hover:underline"
+                  >
+                    {project.title}
+                  </Link>
+                  <span className="text-secondary"> &bull; {project.time}</span>
+                </div>
+
                 <p className="line-clamp-3 text-secondary">
                   {project.description}
                 </p>
-                <p className="text-secondary">{project.time}</p>
               </div>
             </li>
           ))}
@@ -100,13 +99,10 @@ export const getStaticProps: GetStaticProps = async () => {
   // );
 
   const projects = allProjects
-  .sort(
-    (a, b) =>
-      new Date(b.time).getTime() - new Date(a.time).getTime()
-  )
-  .map((project) =>
-    pick(project, ["slug", "title", "time", "description", "image"])
-  );
+    .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+    .map((project) =>
+      pick(project, ["slug", "title", "time", "description", "image"])
+    );
 
   return {
     props: { projects },
