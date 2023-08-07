@@ -39,7 +39,7 @@ export default function Project({ project, rest }: ProjectProps) {
                 <>
                   <span>&middot;</span>
                   <Link href={project.url} className="hover:text-primary">
-                    Visit Live ↗
+                    Visit Project ↗
                   </Link>
                 </>
               )}
@@ -63,19 +63,35 @@ export default function Project({ project, rest }: ProjectProps) {
             <Component components={MDXComponents} />
           </div>
         </article>
-        <div className="px-4 md:px-6 py-2 w-full max-w-[700px] mx-auto flex flex-col space-y-12">
-          <hr className="border-secondary" />
-          <p className="text-secondary max-w-lg">
-            Need more project details? Or are you interested in working
-            together? Reach out directly to me{" "}
-            <a href="mailto:contact@b-r.io" className="text-primary underline">
-              here
-            </a>
-            . I&apos;d be more than happy to connect!
-          </p>
+        <div className="flex flex-col gap-20 px-4 md:px-6 py-2 w-full max-w-[700px] mx-auto">
+          <div className="flex flex-col gap-6">
+            <h2>Tags</h2>
+            <div className="flex flex-wrap gap-3 ">
+              {project.tags.map((tag: string) => (
+                <div key={tag} className="px-4 py-1.5 rounded-lg bg-secondary text-sm text-secondary whitespace-nowrap">
+                  {tag}
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <Link href="/" className="text-primary underline">
-            ← Back home
+          <div className="flex flex-col gap-6">
+            <h2>Contact</h2>
+            <p className="text-secondary max-w-lg">
+              Need more project details, or interested in working
+              together? Reach me directly at{" "}
+              <a
+                href="mailto:contact@b-r.io"
+                className="text-primary underline"
+              >
+                brian@b-r.io
+              </a>
+              . I&apos;d be happy to connect!{" "}
+            </p>
+          </div>
+
+          <Link href="/projects" className="text-primary underline">
+            ← All Projects
           </Link>
         </div>
 

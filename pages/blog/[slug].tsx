@@ -142,13 +142,13 @@ export default function Post({ post, related }: PostProps) {
 
         <Tags tags={post.tags} />
 
-        <div className="flex flex-col gap-6">
+        {/* <div className="flex flex-col gap-6">
           <h2>Subscribe</h2>
           <p className="text-secondary">
             Get notified when I write new posts.
           </p>
           <NewsletterInput />
-        </div>
+        </div> */}
 
         {related.length ? (
           <div className="flex flex-col items-start gap-6">

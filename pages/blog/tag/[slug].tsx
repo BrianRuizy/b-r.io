@@ -37,7 +37,7 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
       <div className="flex flex-col gap-12">
         <div className="flex flex-col gap-3.5">
           <div className="flex flex-col gap-2">
-            <h1 className="capitalize animate-in">{tag}</h1>
+            <h1 className="capitalize animate-in text-3xl font-bold tracking-tight">#{tag}</h1>
             <p
               className="text-secondary animate-in"
               style={{ "--index": 1 } as React.CSSProperties}

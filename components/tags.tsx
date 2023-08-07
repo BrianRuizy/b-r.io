@@ -10,20 +10,22 @@ const Tags = ({ tags }: TagsProps): JSX.Element | null => {
     return null;
   }
   return (
-    <div className="flex justify-center">
-      <ul className="flex gap-6 animated-list">
-        {tags.map((tag) => {
-          return (
-            <li key={tag} className="transition-opacity">
-              <Link
-                href={`/blog/tag/${slugify(tag, { lower: true })}`}
-                underline
-              >{`#${tag}`}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="flex flex-col gap-6 animated-list">
+      <h2>Tags</h2>
+      <div className="flex flex-wrap gap-3">
+        {tags.map((tag: string) => (
+          <li key={tag}>
+            <Link
+              href={`/blog/tag/${slugify(tag, { lower: true })}`}
+              className="px-4 py-2 rounded-lg bg-secondary text-sm text-secondary whitespace-nowrap"
+            >
+              #{tag}
+            </Link>
+          </li>
+        ))}
+      </div>
+    </ul>
+
   );
 };
 

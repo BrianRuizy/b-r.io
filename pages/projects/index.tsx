@@ -58,9 +58,9 @@ export default function Projects({ projects }: ProjectsProps) {
             >
               <Link
                 href={`/projects/${project.slug}`}
-                className="w-full md:w-2/5 aspect-video bg-secondary rounded-lg border border-primary overflow-clip"
+                className="w-full md:w-2/5 aspect-video bg-secondary rounded-lg border border-primary overflow-clip select-none"
               >
-                <Halo strength={resolvedTheme === "light" ? 15 : 8}>
+                <Halo strength={resolvedTheme === "light" ? 32 : 16}>
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -94,14 +94,10 @@ export default function Projects({ projects }: ProjectsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const projects = allProjects.map((project) =>
-  //   pick(project, ["slug", "title", "time", "description", "image"])
-  // );
-
   const projects = allProjects
     .sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
     .map((project) =>
-      pick(project, ["slug", "title", "time", "description", "image"])
+      pick(project, ["slug", "title", "time", "description", "image", "tags"])
     );
 
   return {
