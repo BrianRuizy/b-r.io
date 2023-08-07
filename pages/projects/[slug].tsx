@@ -12,9 +12,9 @@ type ProjectProps = {
 };
 
 export default function Project({ project, rest }: ProjectProps) {
-  const seoTitle = `${project.title} Case Study | Samuel Kraft`;
+  const seoTitle = `${project.title} Case Study | Brian Ruiz`;
   const seoDesc = `${project.description}`;
-  const url = `https://samuelkraft.com/project/${project.slug}`;
+  const url = `https://b-r.io/projects/${project.slug}`;
   const Component = useMDXComponent(project.body.code);
 
   return (
@@ -27,14 +27,7 @@ export default function Project({ project, rest }: ProjectProps) {
           title: seoTitle,
           url,
           description: seoDesc,
-          images: [
-            {
-              url: `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
-                project.title
-              )}?desc=${encodeURIComponent("Case study")}&theme=dark.png`,
-              alt: project.title,
-            },
-          ],
+        
         }}
       />
 
