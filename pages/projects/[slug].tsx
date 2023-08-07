@@ -57,7 +57,7 @@ export default function Project({ project, rest }: ProjectProps) {
 
           <div className="h-12" />
           <div
-            className="prose project px-4 md:px-6 py-2 max-w-[950px] mx-auto animate-in"
+            className="prose project px-4 md:px-6 py-2 max-w-[1024px] mx-auto animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             <Component components={MDXComponents} />
