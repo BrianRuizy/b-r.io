@@ -5,6 +5,7 @@ import Copilot from "public/gear/copilot.jpeg";
 import Akiflow from "public/gear/akiflow.webp";
 import Dex from "public/gear/dex.webp";
 import Nikon from "public/gear/nikon.png";
+import EpidemicSound from "public/gear/epidemic-sound.png";
 import DJI from "public/gear/dji.png";
 
 interface ItemProps {
@@ -16,28 +17,33 @@ interface ItemProps {
 }
 
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
-  <li className="flex gap-4 items-center">
-    <div className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow">
+  <li className="flex gap-4 items-center transition-opacity">
+    <a
+      className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow"
+      href={link}
+      target="_blank"
+    >
       <Image
         src={image}
         alt={title}
         className="object-center object-cover w-full h-full"
         fill
       />
-    </div>
+    </a>
     <div className="grow flex justify-between gap-2 items-center">
       <div className="space-y-1">
-        <h3 className="text-primary line-clamp-2 leading-tight font-medium">{title}</h3>
-        <p className="text-secondary line-clamp-2 leading-tight text-sm">
+        <h3 className="text-primary line-clamp-2 leading-tight font-medium">
+          {title}
+        </h3>
+        <p className="text-secondary line-clamp-3 leading-tight text-sm">
           {description}
         </p>
       </div>
       <div>
         <a
-          className="ml-auto text-sm rounded-full px-4 py-1 bg-secondary h-fit hover:bg-tertiary"
+          className="ml-auto text-sm rounded-full px-4 py-1 bg-secondary h-fit"
           href={link}
           target="_blank"
-          rel="noopener noreferrer"
         >
           Get
         </a>
@@ -74,11 +80,12 @@ export default function Gear() {
               My toolbox.
             </p>
           </div>
-          <p className="max-w-lg animate-in text-secondary"
+          <p
+            className="max-w-lg animate-in text-secondary"
             style={{ "--index": 2 } as React.CSSProperties}
           >
-            This is gear I actually own and recommend. The affiliate links
-            come at no extra cost, but it does however help support my content
+            This is gear I actually own and recommend. The affiliate links come
+            at no extra cost, but it does however help support my content
             creation.
           </p>
         </div>
@@ -89,7 +96,7 @@ export default function Gear() {
             key={index}
             style={{ "--index": 3 } as React.CSSProperties}
           >
-            <h2>{category}</h2>
+            <h2 className="text-secondary">{category}</h2>
             <ul className="grid md:grid-cols-2 gap-x-6 gap-y-8 animated-list">
               {gear.map((item, index) => {
                 if (item.category === category) {
@@ -147,7 +154,7 @@ const gear = [
     description: "USB-C Artisan Braided, Mechanical Keyboards",
     link: "https://amzn.to/3NSznKR",
   },
- 
+
   {
     name: "BenQ ScreenBar Monitor Light",
     category: "Home Desk Setup",
@@ -181,26 +188,36 @@ const gear = [
     name: "Copilot Money",
     category: "Software",
     image: Copilot,
-    description: "Spending, investing, net worth. Elegant graphs and interface",
+    description:
+      "For all things personal finance, Copilot app is a must. All my accounts in one place.",
     link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
   },
   {
-    name: "Akiflow",
+    name: "Epidemic Sound",
     category: "Software",
-    image: Akiflow,
+    image: EpidemicSound,
     description:
-      "Ultimate time blocking platform. Personal task manager and calendar application",
-    link: "http://bit.ly/3TRr6dq",
+      "Where I get all my music for my videos. Skip the hassle that is licensing.",
+    link: "https://share.epidemicsound.com/j2d0ao",
     sponsored: true,
   },
-  {
-    name: "Dex - Personal CRM",
-    category: "Software",
-    image: Dex,
-    description: "Build stronger relationships",
-    link: "https://getdex.com/s/brianruizy",
-    sponsored: true,
-  },
+  // {
+  //   name: "Akiflow",
+  //   category: "Software",
+  //   image: Akiflow,
+  //   description:
+  //     "Ultimate time blocking platform. Personal task manager and calendar application",
+  //   link: "http://bit.ly/3TRr6dq",
+  //   sponsored: true,
+  // },
+  // {
+  //   name: "Dex - Personal CRM",
+  //   category: "Software",
+  //   image: Dex,
+  //   description: "Build stronger relationships",
+  //   link: "https://getdex.com/s/brianruizy",
+  //   sponsored: true,
+  // },
   {
     name: "Nikon Z 28mm f/2.8",
     category: "Camera Gear",
@@ -270,27 +287,27 @@ const gear = [
   {
     name: "RS 3 Mini Gimbal",
     category: "Other",
-    image: DJI, 
+    image: DJI,
     description: "small footprint and portable.",
     link: "https://amzn.to/40LPcJa",
   },
   {
     name: "HP DisplayLink Hub",
-    category: "Office",
+    category: "Office Desk Setup",
     image: "https://m.media-amazon.com/images/I/51Akvh02nDL._AC_SL1280_.jpg",
     description: "A hub that enables dual monitors on M1 MBP.",
     link: "https://amzn.to/3UnTbJo",
   },
   {
     name: "Dell UltraSharp U2722D",
-    category: "Office",
+    category: "Office Desk Setup",
     link: "https://amzn.to/3KLucN1",
     image: "https://m.media-amazon.com/images/I/81siJZnLDaL._AC_SL1500_.jpg",
     description: "A 27 inch 4K monitor",
   },
   {
     name: "VIVO Dual Monitor Stand",
-    category: "Office",
+    category: "Office Desk Setup",
     link: "https://amzn.to/40U0jzC",
     image: "https://m.media-amazon.com/images/I/61JPGtCI0GL._AC_SL1500_.jpg",
     description: "White articulating pneumatic monitor stand",
@@ -303,7 +320,7 @@ const gear = [
     link: "https://amzn.to/41fkhEH",
   },
   {
-    name: "Apple AirPods Max", 
+    name: "Apple AirPods Max",
     category: "Apple",
     image: "https://m.media-amazon.com/images/I/81OdA-ITspL._AC_SL1500_.jpg",
     description: "Active Noise Cancelling, Transparency Mode, Spatial Audio",
@@ -312,8 +329,10 @@ const gear = [
   {
     name: "Apple AirPods Pro",
     category: "Apple",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83_AV5?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1660803961739",
-    description: "Wireless Earbuds, Up to 2X More Active Noise Cancelling, Adaptive Transparency.",
+    image:
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83_AV5?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1660803961739",
+    description:
+      "Wireless Earbuds, Up to 2X More Active Noise Cancelling, Adaptive Transparency.",
     link: "https://amzn.to/3UmMQhq",
   },
   {
@@ -326,9 +345,9 @@ const gear = [
   {
     name: "Apple MagSafe Charger",
     category: "Apple",
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHXH3_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1666381499607",
+    image:
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHXH3_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1666381499607",
     description: "The MagSafe Charger delivers fast wireless charging.",
     link: "https://amzn.to/3UouXP4",
   },
-  
 ];

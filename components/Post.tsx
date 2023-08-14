@@ -26,7 +26,7 @@ export default function Post({ post, mousePosition }: PostProps) {
   const imageOffset = 24;
 
   return (
-    <li className="py-3 group">
+    <li className="py-3 group transition-opacity">
       <div className="transition-opacity">
         {image && mousePosition && (
           <motion.div

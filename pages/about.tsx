@@ -134,7 +134,7 @@ export default function About({}: // lastActivity,
                 >
                   YouTube
                 </a>{" "}
-                videos, where I focus on tech, creative vlogs, and personal
+                videos, where I focus on tech gear, creative vlogs, and a bit of personal
                 development.
               </p>
               <p>When I&apos;m not at my desk I am probably lifting weights, playing soccer, or at a coffee shop :)</p>

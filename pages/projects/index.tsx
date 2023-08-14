@@ -48,13 +48,15 @@ export default function Projects({ projects }: ProjectsProps) {
           </div>
         </div>
         <ul
-          className="animate-in flex flex-col gap-12 animated-list"
+          className="animate-in flex flex-col animated-list"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           {projects.map((project, i) => (
             <li
               key={project.slug}
-              className={clsx("flex flex-col md:flex-row gap-4 md:gap-6")}
+              className={clsx(
+                "py-6 flex flex-col md:flex-row gap-4 md:gap-6 transition-opacity first:pt-0 last:pb-0",
+              )}
             >
               <Link
                 href={`/projects/${project.slug}`}

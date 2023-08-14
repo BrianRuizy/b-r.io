@@ -12,13 +12,6 @@ const nextConfig = {
       { protocol: "https", hostname: "image.mux.com" },
     ],
   },
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      require("./scripts/generate-rss");
-    }
-
-    return config;
-  },
 };
 
 module.exports = withContentlayer(nextConfig);
