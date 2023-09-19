@@ -32,7 +32,7 @@ export default function Home({ posts }: HomeProps) {
       <div className="flex flex-col gap-16 md:gap-24">
         <div className="flex flex-col gap-8 animate-in">
           <div>
-            <h1 className="animate-in text-3xl font-bold tracking-tight">
+            <h1 className="animate-in  font-bold tracking-tight text-4xl text-purple-500 ">
               Brian Ruiz
             </h1>
             <p
@@ -51,7 +51,7 @@ export default function Home({ posts }: HomeProps) {
               width={85}
               height={85}
               alt="avatar"
-              className="rounded-full bg-secondary"
+              className="rounded-full bg-purple-500"
             />
             <ul className="space-y-2 animated-list">
               <li className="transition-opacity">
@@ -90,27 +90,23 @@ export default function Home({ posts }: HomeProps) {
             where I focus on tech, creative vlogs, and personal development.
           </p>
           <ul
-            className="flex flex-col md:flex-row gap-2 md:gap-6 text-secondary animated-list animate-in"
+            className="flex flex-col md:flex-row gap-2 md:gap-6 text-secondary animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
           >
-            <li className="transition-opacity">
               <Link
                 href="mailto:contact@b-r.io"
-                className="flex gap-2 items-center no-underline"
+                className="flex gap-2 items-center no-underline group"
               >
                 <IconArrowDiagonal />
-                <span>Email me</span>
+                <span className="group-hover:underline">Email me</span>
               </Link>
-            </li>
-            <li className="transition-opacity">
               <Link
                 href="/links"
-                className="flex gap-2 items-center no-underline"
+                className="flex gap-2 items-center no-underline group"
               >
                 <IconArrowDiagonal />
-                <span>Connect with me</span>
+                <span className="group-hover:underline">Connect with me</span>
               </Link>
-            </li>
           </ul>
         </div>
         <div
