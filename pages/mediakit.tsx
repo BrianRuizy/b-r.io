@@ -61,9 +61,9 @@ export default function Mediakit() {
               </h2>
             </div>
             <div className="bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
-              <p className="text-secondary">Impressions</p>
+              <p className="text-secondary">Monthly Impressions</p>
               <h2 className="font-bold text-2xl text-primary">
-                4.3M
+                5.6M
               </h2>
             </div>
             <div className="bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
