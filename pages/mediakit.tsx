@@ -63,12 +63,12 @@ export default function Mediakit() {
             <div className="bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
               <p className="text-secondary">Monthly Impressions</p>
               <h2 className="font-bold text-2xl text-primary">
-                5.6M
+                6.1M+
               </h2>
             </div>
             <div className="bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
               <p className="text-secondary">Monthly Views</p>
-              <h2 className="font-bold text-2xl text-primary">284K</h2>
+              <h2 className="font-bold text-2xl text-primary">387K+</h2>
             </div>
             <div className="md:hidden bg-tertiary rounded-xl border border-primary col-span-1 md:col-span-2 p-6 flex flex-col justify-center md:items-center">
               <p className="text-secondary">Average Views</p>
