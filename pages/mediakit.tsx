@@ -89,7 +89,7 @@ export default function Mediakit() {
               <p className="text-secondary">Views contribution</p>
               <div className="flex-grow mt-6 relative">
                 <Image src={map} alt="map" className="saturate-0 opacity-75" />
-                <Chip label="🇺🇸 26%" position={[35, 10]} />
+                <Chip label="🇺🇸 31%" position={[35, 10]} />
                 <Chip label="🇬🇧 9%" position={[16, 40]} />
                 <Chip label="🇩🇪 7.5%" position={[27, 47]} />
                 <Chip label="🇧🇷 4.5%" position={[60, 25]} />
