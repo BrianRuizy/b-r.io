@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint", 
-    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
