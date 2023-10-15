@@ -15,7 +15,7 @@ type PostProps = {
   related: PostType[];
 };
 
-export default async function Post({ params }) {
+export default function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
   // const seoTitle = `${post.title} | Brian Ruiz`;
