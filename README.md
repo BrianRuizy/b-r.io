@@ -18,10 +18,12 @@ frontend:
 
 ## Getting Started
 
+Make sure you have Node.js v18.3.0+ installed on your machine.
+
 1. **Install Dependencies**: `npm install`
 2. **Environment variables**: Copy `.env.example` to a new `.env.local`
 3. **Database Setup**: See [Database Setup](#database-setup)
-4. **Prisma Setup**: `npm install @prisma/client` (if you haven't already), then run `prisma generate`.
+4. **Prisma Setup**: `npm install @prisma/client` (if you haven't already), then run `npx prisma generate`.
 5. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
 
 ## Database Setup
