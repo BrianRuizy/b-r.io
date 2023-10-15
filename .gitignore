@@ -14,8 +14,6 @@
 
 # production
 /build
-public/sitemap.xml
-public/feed.xml
 
 # misc
 .DS_Store
@@ -25,7 +23,6 @@ public/feed.xml
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
 # local env files
 .env*.local
@@ -37,9 +34,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Contentlayer
 .contentlayer
-
-.vscode/*
-!.vscode/launch.json
-.env
