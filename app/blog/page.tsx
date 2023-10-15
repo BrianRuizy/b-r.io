@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
 import PostList from "./components/PostList";
 
-import Input from "./components/input";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+// import Input from "./components/Input";
+// import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export const metadata: Metadata = {
   title: "Blog | Brian Ruiz",
