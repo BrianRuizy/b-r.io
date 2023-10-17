@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import cn from "clsx";
+import clsx from"clsx";
 import useIsMount from "hooks/useismount";
 
 type FlipNumberProps = {
@@ -25,7 +25,7 @@ function FlipNumber({ children }: FlipNumberProps) {
 
   return (
     <span
-      className={cn(
+      className={clsx(
         "inline-flex",
         keyframe === "out" &&
           "opacity-0 -translate-y-3 duration-75 ease-in-out",

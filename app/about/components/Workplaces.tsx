@@ -1,6 +1,6 @@
 import Link from "@/app/components/ui/Link";
 import Image, { StaticImageData } from "next/image";
-import cn from "clsx";
+import clsx from"clsx";
 
 type Workplace = {
   title: string;
@@ -20,7 +20,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           width={48}
           height={48}
           className={
-            cn("rounded-full",
+            clsx("rounded-full",
             company === 'University of Houston' && "bg-white",
             
           )}

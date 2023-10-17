@@ -92,7 +92,7 @@ export default function Post({ params }: { params: any }) {
         )}
         <div className="h-16" />
         <div
-          className="prose animate-in"
+          className="prose animate-in prose-neutral"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <Mdx code={post.body.code} />

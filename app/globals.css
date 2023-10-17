@@ -6,10 +6,11 @@
 @import "@radix-ui/colors/gray-alpha.css";
 @import "@radix-ui/colors/gray-dark.css";
 @import "@radix-ui/colors/gray-dark-alpha.css";
+
 @import "@radix-ui/colors/blue.css";
 @import "@radix-ui/colors/blue-alpha.css";
 
-/* @import "prism/one-dark.css"; */
+@import "@/public/prism/one-dark.css";
 
 @layer base {
   :root {
@@ -22,21 +23,12 @@
     --boxBg: var(--gray-4);
   }
 
-  .light-theme .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-12);
-    --tw-prose-bold: var(--gray-12);
-    --tw-prose-links: var(--gray-12);
-    --tw-prose-code: var(--gray-12);
-    --tw-prose-quotes: var(--gray-12);
-  }
-
   .dark-theme {
     --blurBackground: rgb(0 0 0 / 95%);
     /* --gray1: #101010; */
   }
 
-  .dark-theme .prose {
+  .prose {
     --tw-prose-headings: var(--gray-12);
     --tw-prose-body: var(--gray-11);
     --tw-prose-bold: var(--gray-11);

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import useMousePosition from "@/hooks/usemouseposition";
 import { motion } from "framer-motion";
-import cn from "clsx";
+import clsx from"clsx";
 
 type HaloProps = {
   children: ReactNode | ReactNode[];
@@ -25,7 +25,7 @@ export default function Halo({
   return (
     <motion.div
       ref={ref}
-      className={cn("relative w-full h-full overflow-hidden", className)}
+      className={clsx("relative w-full h-full overflow-hidden", className)}
       whileHover="hover"
     >
       <motion.div

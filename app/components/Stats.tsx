@@ -6,8 +6,28 @@ import { FaYoutube, FaGithub } from "react-icons/fa";
 import { ArrowTrendingUpIcon } from "@heroicons/react/20/solid";
 
 import FlipNumber from "@/app/components/FlipNumber";
-import fetcher from "@/utils/fetcher";
-import { addCommas } from "@/utils/utils";
+import fetcher from "@/lib/fetcher";
+import { addCommas } from "@/lib/utils";
+
+export function YouTube() {
+  const { data: youtubeData, error: youtubeDataError } = useSWR(
+    `/api/youtube`,
+    fetcher
+  );
+
+  if (youtubeDataError) return <div>failed to load</div>;
+  return addCommas(youtubeData?.subscribers);
+}
+
+export function GitHub() {
+  const { data: githubData, error: githubDataError } = useSWR(
+    `/api/github?username=brianruizy`,
+    fetcher
+  );
+
+  if (githubDataError) return <div>failed to load</div>;
+  return addCommas(githubData?.stars);
+}
 
 export default function Stats() {
   const username = "brianruizy";

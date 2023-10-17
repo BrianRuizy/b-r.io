@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/fetcher.js",
+    "lib/fetcher.js",
     ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]

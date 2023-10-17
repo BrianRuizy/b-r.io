@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
-import cn from "clsx";
+import clsx from"clsx";
 import localFont from 'next/font/local'
 
 import texas from "public/gallery/texas.jpg";
@@ -107,7 +107,7 @@ function Photo({
           {children}
         </div>
         <div
-          className={cn(
+          className={clsx(
             shared,
             "bg-[#FFFAF2] flex items-center rounded-2xl overflow-hidden"
           )}
@@ -120,7 +120,7 @@ function Photo({
             <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.png')]" />
             <div className="z-[1] px-6">
               <div
-                className={cn(
+                className={clsx(
                   ticketingFont.className,
                   "flex flex-col gap-1 uppercase"
                 )}

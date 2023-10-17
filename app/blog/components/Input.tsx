@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
-import cn from "clsx";
+import clsx from"clsx";
 
 type InputProps = {
   id: string;
@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function MyInput(
   return (
     <div className="flex flex-col gap-1">
       <div
-        className={cn(
+        className={clsx(
           error ? "border-red-600" : "",
           "flex items-center rounded-full bg-secondary w-fit focus-within:outline"
         )}
