@@ -1,6 +1,6 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import CustomImage from "@/components/ui/Image";
+import CustomImage from "@/app/blog/components/Image";
 import Link from "@/components/ui/Link";
 import Alert from "./Alert";
 import Parallax from "./parallax";
