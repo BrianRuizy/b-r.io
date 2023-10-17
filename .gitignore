@@ -42,3 +42,6 @@ next-env.d.ts
 generated/
 generated
 .cache/
+
+.vscode
+.vscode/
