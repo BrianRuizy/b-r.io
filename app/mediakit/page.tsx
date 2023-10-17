@@ -4,16 +4,9 @@ import Image from "next/image";
 import avatar from "public/avatar.png";
 import map from "public/map.png";
 import { FaYoutube } from "react-icons/fa";
-import { SparklesIcon } from "@heroicons/react/20/solid";
 
-import { YouTube } from "@/app//components/Stats";
-import Link from "@/app/components/ui/Link";
-
-import LG from "public/partners/lg.png";
-import Ergon from "public/partners/ergon.webp";
-import Brilliant from "public/partners/brilliant.png";
-
-import * as Tabs from "@radix-ui/react-tabs";
+import { YouTube } from "@/components/Stats";
+import Link from "@/components/ui/Link";
 
 export default function Mediakit() {
   return (
@@ -57,16 +50,6 @@ export default function Mediakit() {
           />
         </div>
 
-        <Tabs.Root defaultValue="tab1" >
-          <Tabs.List aria-label="tabs example">
-            <Tabs.Trigger value="tab1">One</Tabs.Trigger>
-            <Tabs.Trigger value="tab2">Two</Tabs.Trigger>
-            <Tabs.Trigger value="tab3">Three</Tabs.Trigger>
-          </Tabs.List>
-          <Tabs.Content value="tab1">Tab one content</Tabs.Content>
-          <Tabs.Content value="tab2">Tab two content</Tabs.Content>
-          <Tabs.Content value="tab3">Tab three content</Tabs.Content>
-        </Tabs.Root>
         <div
           className="space-y-8 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
@@ -214,62 +197,6 @@ export default function Mediakit() {
             </Link>
           </div>
         </div>
-
-        {/* <div
-          className="space-y-12 animate-in"
-          style={{ "--index": 3 } as React.CSSProperties}
-        >
-          <div className="flex justify-between items-center">
-            <h2 className="col-span-2 md:col-span-6 text-secondary">
-              Partners
-            </h2>
-            <div className="relative bg-tertiary backdrop-blur rounded-xl border border-primary px-4 py-1 text-sm leading-6 text-gray-600 flex items-center gap-2">
-              <SparklesIcon className="w-4 h-4 text-sky-500" />
-              <p className="text-secondary">
-                Trusted by 20+ awesome teams and brands!
-              </p>
-            </div>
-          </div>
-
-          <div className="-mx-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-            <Image src={LG} alt="LG" className="max-h-8 w-full object-contain" />
-            </div>
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-            <Image src={Ergon} alt="Ergonofis" className="invert max-h-8 w-full object-contain"/>
-            </div>
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-            <Image src={Brilliant} alt="Brilliant" className="max-h-8 w-full object-contain"/>
-            </div>
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-              <img
-                className="max-h-8 w-full object-contain"
-                src="https://tailwindui.com/img/logos/158x48/laravel-logo-gray-900.svg"
-                alt="Laravel"
-                width={158}
-                height={48}
-              />
-            </div>
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-              <img
-                className="max-h-8 w-full object-contain"
-                src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
-                alt="SavvyCal"
-                width={158}
-                height={48}
-              />
-            </div>
-            <div className="bg-gray-400/5 py-2 px-2 sm:p-10">
-              <img
-                className="max-h-8 w-full object-contain"
-                src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
-                alt="Statamic"
-                width={158}
-                height={48}
-              />
-            </div>
-          </div>
-        </div> */}
       </div>
       <Gradients />
     </>

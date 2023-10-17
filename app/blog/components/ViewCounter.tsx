@@ -1,7 +1,7 @@
 "use client"; 
 import { useState, useEffect } from "react";
 import { Post as PostType } from ".contentlayer/generated";
-import FlipNumber from "@/app/components/FlipNumber";
+import FlipNumber from "@/components/FlipNumber";
 
 export default function ViewCounter({ post }: { post: PostType }) {
   const [views, setViews] = useState<number>(0);

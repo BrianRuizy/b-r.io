@@ -14,7 +14,6 @@
 
 @layer base {
   :root {
-    --blurBackground: rgb(255 255 255 / 95%);
     --brand: #6166dc;
     --brandTinted: #6165dc1f;
 
@@ -23,12 +22,16 @@
     --boxBg: var(--gray-4);
   }
 
-  .dark-theme {
-    --blurBackground: rgb(0 0 0 / 95%);
-    /* --gray1: #101010; */
+  .light .prose {
+    --tw-prose-headings: var(--gray-12);
+    --tw-prose-body: var(--gray-12);
+    --tw-prose-bold: var(--gray-12);
+    --tw-prose-links: var(--gray-12);
+    --tw-prose-code: var(--gray-12);
+    --tw-prose-quotes: var(--gray-12);
   }
 
-  .prose {
+  .dark .prose {
     --tw-prose-headings: var(--gray-12);
     --tw-prose-body: var(--gray-11);
     --tw-prose-bold: var(--gray-11);

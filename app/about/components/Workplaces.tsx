@@ -1,4 +1,4 @@
-import Link from "@/app/components/ui/Link";
+import Link from "@/components/ui/Link";
 import Image, { StaticImageData } from "next/image";
 import clsx from"clsx";
 

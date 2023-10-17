@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import useMousePosition from "@/hooks/usemouseposition";
 import { motion } from "framer-motion";

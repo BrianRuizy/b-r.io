@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { FaYoutube, FaGithub } from "react-icons/fa";
 import { ArrowTrendingUpIcon } from "@heroicons/react/20/solid";
 
-import FlipNumber from "@/app/components/FlipNumber";
+import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/lib/fetcher";
 import { addCommas } from "@/lib/utils";
 

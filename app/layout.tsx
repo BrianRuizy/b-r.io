@@ -4,8 +4,8 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 
-import { ThemeProvider } from "@/app/components/ThemeProvider";
-import Header from "@/app/components/Header";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +31,6 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           <Header />
           <div

@@ -6,8 +6,8 @@ import Mdx from "@/app/blog/components/Mdx";
 import ViewCounter from "@/app/blog/components/ViewCounter";
 import PostList from "@/app/blog/components/PostList";
 import Parallax from "@/app/blog/components/parallax";
-import Tags from "@/app/components/Tags";
-import Link from "@/app/components/ui/Link";
+import Tags from "@/components/Tags";
+import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
 
 type PostProps = {
@@ -101,6 +101,7 @@ export default function Post({ params }: { params: any }) {
 
       <Tags tags={post.tags} />
 
+      <Link href="/blog">← All Blogs</Link>
       {/* {related.length ? (
         <div className="flex flex-col items-start gap-6">
           <h2>Related posts</h2>

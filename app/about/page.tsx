@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Metadata } from "next";
 
-import Link from "@/app/components/ui/Link";
-import Section from "@/app/components/Section";
-import ConnectLinks from "../components/ConnectLinks";
+import Link from "@/components/ui/Link";
+import Section from "@/components/Section";
+import ConnectLinks from "../../components/ConnectLinks";
 import Workplaces from "./components/Workplaces";
 import Gallery from "./components/Gallery";
 

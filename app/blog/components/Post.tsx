@@ -1,7 +1,7 @@
 import { formatDate } from "@/lib/formatdate";
 import type { Post } from ".contentlayer/generated";
-import Section from "@/app/components/Section";
-import Link from "@/app/components/ui/Link";
+import Section from "@/components/Section";
+import Link from "@/components/ui/Link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
