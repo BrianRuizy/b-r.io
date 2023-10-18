@@ -34,16 +34,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           <p className="text-secondary">{company}</p>
         </div>
       </div>
-      {time && (
-        <p
-          className={clsx(
-            "text-secondary",
-            theme === "terminal" ? "font-mono tracking-tight" : ""
-          )}
-        >
-          {time}
-        </p>
-      )}
+      {time && <time className="text-secondary">{time}</time>}
     </>
   );
   return (

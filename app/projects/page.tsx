@@ -5,17 +5,13 @@ import clsx from "clsx";
 import { allProjects, Project } from ".contentlayer/generated";
 import Halo from "@/components/ui/Halo";
 
-export const metadata: Metadata = {
-  title: "Projects | Brian Ruiz",
-  description:
-    "I write about programming, design, and occasionally life updates!",
-};
 
 export default function Blog() {
   const projects = allProjects;
 
   return (
-    <div className="flex flex-col gap-16 md:gap-24">
+    <div className="max-w-[700px] mx-auto">
+    <div className="flex flex-col gap-16 md:gap-24 ">
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
@@ -54,7 +50,7 @@ export default function Blog() {
                 />
               </Halo>
             </Link>
-            <div className="w-full md:w-3/5 space-y-1">
+            <div className="w-full md:w-3/5 space-y-2">
               <div>
                 <Link
                   href={`/projects/${project.slug}`}
@@ -62,16 +58,17 @@ export default function Blog() {
                 >
                   {project.title}
                 </Link>
-                <span className="text-secondary"> &bull; {project.time}</span>
+                <time className="text-secondary"> &bull; {project.time}</time>
               </div>
 
-              <p className="line-clamp-3 text-secondary">
+              <p className="line-clamp-3 text-tertiary">
                 {project.description}
               </p>
             </div>
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

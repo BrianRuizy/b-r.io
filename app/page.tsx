@@ -39,7 +39,7 @@ export default async function Home() {
             width={85}
             height={85}
             alt="avatar"
-            className="rounded-full bg-primary"
+            className="rounded-full bg-secondary"
           />
           <Stats />
         </div>

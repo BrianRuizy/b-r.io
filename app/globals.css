@@ -75,6 +75,10 @@
     --gray-a12: #b8ffe1ef;
   }
 
+  .terminal time {
+    @apply font-mono tracking-tight;
+  }
+
   .terminal .prose {
     --tw-prose-headings: var(--gray-12);
     --tw-prose-body: var(--gray-9);
