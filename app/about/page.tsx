@@ -112,7 +112,7 @@ export default function About() {
                 <li className="transition-opacity col-span-1" key={link.label}>
                   <Link
                     href={link.href}
-                    className="transition-opacity no-underline w-full border rounded-lg p-4 border-neutral-200 dark:border-neutral-700 inline-grid"
+                    className="transition-opacity no-underline w-full border rounded-lg p-4 border-primary inline-grid"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{link.icon}</span>

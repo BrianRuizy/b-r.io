@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
-import clsx from"clsx";
+import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
 type NavLinkProps = {

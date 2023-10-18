@@ -1,6 +1,9 @@
-import Link from "@/components/ui/Link";
+"use client";
 import Image, { StaticImageData } from "next/image";
-import clsx from"clsx";
+import { useTheme } from "next-themes";
+import clsx from "clsx";
+
+import Link from "@/components/ui/Link";
 
 type Workplace = {
   title: string;
@@ -11,6 +14,8 @@ type Workplace = {
 };
 
 function Workplace({ title, company, imageSrc, time, link }: Workplace) {
+  const { theme } = useTheme();
+
   const content = (
     <>
       <div className="flex items-center gap-4">
@@ -19,10 +24,9 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           alt={company}
           width={48}
           height={48}
-          className={
-            clsx("rounded-full",
-            company === 'University of Houston' && "bg-white",
-            
+          className={clsx(
+            "rounded-full",
+            company === "University of Houston" && "bg-neutral-50"
           )}
         />
         <div className="flex flex-col gap-px">
@@ -30,7 +34,16 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           <p className="text-secondary">{company}</p>
         </div>
       </div>
-      {time && <p className="text-secondary">{time}</p>}
+      {time && (
+        <p
+          className={clsx(
+            "text-secondary",
+            theme === "terminal" ? "font-mono tracking-tight" : ""
+          )}
+        >
+          {time}
+        </p>
+      )}
     </>
   );
   return (

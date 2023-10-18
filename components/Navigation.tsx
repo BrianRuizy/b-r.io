@@ -1,12 +1,12 @@
 "use client";
-
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 import NavLink from "./ui/NavLink";
 import ThemeSwitcher from "./ThemeSwitcher";
 
-import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 
@@ -17,11 +17,12 @@ const links = [
   { label: "Projects", href: "/projects" },
 ];
 
-export default function Header() {
+export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic subpages
+  const { theme } = useTheme();
 
   return (
-    <header className="relative md:sticky top-0 z-20 bg-primary">
+    <header className={clsx("relative md:sticky top-0 z-20 bg-primary")}>
       <nav className="px-4 md:px-6 py-3 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
         <Link href="/" className="shrink-0 text-primary">
           <svg
@@ -75,7 +76,10 @@ export default function Header() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-white dark:bg-black/95 backdrop-blur-lg focus:outline-none sm:text-sm">
+            <Popover.Panel
+              className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-white dark:bg-black/95 backdrop-blur-lg focus:outline-none sm:text-sm"
+              style={theme === "terminal" ? { background: "#040605" } : {}}
+            >
               <div className="grid">
                 {links.map((link) => (
                   <Link
@@ -84,7 +88,7 @@ export default function Header() {
                     className={clsx(
                       "px-4 py-2 rounded-md hover:text-primary transition-colors",
                       pathname === link.href
-                        ? "bg-secondaryA font-medium"
+                        ? "bg-tertiary font-medium"
                         : "font-normal"
                     )}
                   >

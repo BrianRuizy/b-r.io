@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import useSWR from "swr";
+import { useTheme } from "next-themes";
+import clsx from "clsx";
 
 import { FaYoutube, FaGithub } from "react-icons/fa";
 import { ArrowTrendingUpIcon } from "@heroicons/react/20/solid";
@@ -30,6 +32,7 @@ export function GitHub() {
 }
 
 export default function Stats() {
+  const { theme } = useTheme();
   const username = "brianruizy";
 
   const { data: githubData, error: githubDataError } = useSWR(
@@ -46,7 +49,12 @@ export default function Stats() {
   );
 
   return (
-    <ul className="space-y-2 animated-list">
+    <ul
+      className={clsx(
+        "space-y-2 animated-list",
+        theme === "terminal" ? "font-mono" : ""
+      )}
+    >
       <li className="transition-opacity">
         <Link
           className="flex gap-3 items-center no-underline"

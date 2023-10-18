@@ -3,7 +3,7 @@
 import React, { ReactNode } from "react";
 import useMousePosition from "@/hooks/usemouseposition";
 import { motion } from "framer-motion";
-import clsx from"clsx";
+import clsx from "clsx";
 
 type HaloProps = {
   children: ReactNode | ReactNode[];

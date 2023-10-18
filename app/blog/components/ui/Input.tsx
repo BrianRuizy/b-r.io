@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
-import clsx from"clsx";
+import clsx from "clsx";
 
 type InputProps = {
   id: string;

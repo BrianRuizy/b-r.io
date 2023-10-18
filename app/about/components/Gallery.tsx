@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
-import clsx from"clsx";
+import clsx from "clsx";
 import localFont from 'next/font/local'
 
 import texas from "public/gallery/texas.jpg";

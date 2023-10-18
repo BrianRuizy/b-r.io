@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +33,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
         >
-          <Header />
+          <Navigation />
           <div
             className={
               "px-6 md:px-6 pt-16 pb-24 md:pt-20 md:pb-44 max-w-[700px] mx-auto"

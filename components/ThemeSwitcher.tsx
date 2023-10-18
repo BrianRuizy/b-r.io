@@ -7,15 +7,9 @@ import { useTheme } from "next-themes";
 import { MoonIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { SunIcon } from "@heroicons/react/24/outline";
 
-const themes = [
-  { id: "system", label: "Automatic" },
-  { id: "light", label: "Light" },
-  { id: "dark", label: "Dark" },
-];
-
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme, themes } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -55,18 +49,21 @@ export default function ThemeSwitcher() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
-                    className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-white dark:bg-black backdrop-blur-lg focus:outline-none sm:text-sm"
+                    className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-white dark:bg-black backdrop-blur-lg focus:outline-none sm:text-sm capitalize"
+                    style={
+                      theme === "terminal" ? { background: "#040605" } : {}
+                    }
                   >
                     {themes.map((theme) => (
                       <Listbox.Option
-                        key={theme.id}
+                        key={theme}
                         className={({ active }) =>
                           clsx(
                             "relative cursor-default select-none py-2 pl-10 pr-4 rounded-md",
-                            active ? "bg-neutral-200/50 dark:bg-neutral-900" : ""
+                            active ? "bg-tertiary" : ""
                           )
                         }
-                        value={theme.id}
+                        value={theme}
                       >
                         {({ selected }) => (
                           <>
@@ -75,7 +72,7 @@ export default function ThemeSwitcher() {
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {theme.label}
+                              {theme}
                             </span>
                             {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">
