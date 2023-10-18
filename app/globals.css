@@ -21,8 +21,6 @@
   :root {
     --brand: #6166dc;
     --brandTinted: #6165dc1f;
-
-    /* legacy vars from blogposts */
     --bg: var(--gray-1);
     --boxBg: var(--gray-4);
   }
@@ -192,13 +190,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose figcaption {
-  @apply mt-2 mb-8 text-sm font-normal leading-tight text-tertiary max-w-md mx-auto text-center;
-}
-
-.prose mark {
-  background-color: var(--blue-a4);
-  color: inherit;
-  padding: 2px 0;
+  @apply mt-2 mb-8 text-sm leading-tight text-tertiary font-medium max-w-md mx-auto text-center;
 }
 
 .prose h2 {
@@ -209,9 +201,19 @@ input:-webkit-autofill:focus {
   @apply mb-2 mt-[48px] text-lg;
 }
 
+.prose p code {
+  @apply text-primary bg-tertiary dark:bg-secondaryA border border-primary rounded px-1  font-normal whitespace-pre-line;
+}
+
+.prose p :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before,
+.prose p :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after
+{
+  content: "";
+}
+
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-md bg-[#1c1c1c];
+  @apply text-xs text-[13px] rounded-md bg-primary border border-secondary text-primary;
 }
 
 .code-highlight {
@@ -239,9 +241,9 @@ pre[class*="language-"] {
 .highlight-line {
   margin-left: -24px;
   margin-right: -24px;
-  padding-left: 24px;
-  background-color: #2e2e30; /* Set highlight bg color */
-  border-left: 4px solid #e1bde2; /* Set highlight accent border color */
+  padding-left: 26px;
+  background-color: var(--blue-a3); /* Set highlight bg color */
+  border-left: 2px solid var(--blue-10); /* Set highlight accent border color */
 }
 
 .line-number::before {
@@ -250,7 +252,6 @@ pre[class*="language-"] {
   text-align: right;
   margin-right: 24px;
   margin-left: -8px;
-  color: #ededed; /* Line number color */
-  opacity: 0.25;
+  color: var(--gray-8); /* Line number color */
   content: attr(line);
 }

@@ -19,7 +19,7 @@ const Tags = ({ tags }: TagsProps): JSX.Element | null => {
               href={`/blog/tag/${slugify(tag, { lower: true })}`}
               className="px-4 py-2 rounded-lg bg-secondary text-sm text-primary whitespace-nowrap"
             >
-              #{tag}
+              {tag}
             </Link>
           </li>
         ))}

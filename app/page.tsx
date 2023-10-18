@@ -79,7 +79,7 @@ export default async function Home() {
         className="flex flex-col gap-8 animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <h2 className="dark:text-neutral-100">Latest Posts</h2>
+        <h2 className="text-secondary">Latest Posts</h2>
         <PostList posts={posts} />
         <Link href="/blog" className="underline dark:text-neutral-100">
           See All

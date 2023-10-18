@@ -20,12 +20,12 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
 
   if (isInternalLink) {
     return (
-      <Link {...props} href={href} legacyBehavior>
-        <a>{props.children}</a>
+      <Link {...props} href={href} underline>
+        {props.children}
       </Link>
     );
   }
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return <a target="_blank" rel="noopener noreferrer decoration-amber-400" {...props} />;
 };
 
 const components = {

@@ -30,7 +30,7 @@ export default function Post({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex flex-col gap-3 animate-in">
+        <div className="flex flex-col gap-3 animate-in max-w-xl">
           <p className="text-secondary">
             <time dateTime={post.publishedAt}>
               {formatDate(post.publishedAt)}
@@ -43,7 +43,7 @@ export default function Post({ params }: { params: any }) {
             {post.title}
           </h1>
           <p
-            className="text-lg md:text-xl text-tertiary animate-in leading-tight"
+            className="text-lg md:text-xl text-secondary animate-in leading-tight"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.summary}

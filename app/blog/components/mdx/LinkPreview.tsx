@@ -33,6 +33,9 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
       </div>
 
       <div className="w-full flex flex-col gap-1 leading-tight">
+        <p className="m-0 text-sm text-tertiary flex items-center gap-0.5">
+          {baseUrl}
+        </p>
         <p className="text-base line-clamp-3 text-primary font-medium m-0 ">
           {title}
         </p>
@@ -41,9 +44,6 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
             {description}
           </p>
         </div>
-        <p className="m-0 text-sm text-tertiary flex items-center gap-0.5">
-          {baseUrl}
-        </p>
       </div>
     </a>
   );

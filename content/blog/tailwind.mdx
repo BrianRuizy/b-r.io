@@ -1,7 +1,7 @@
 ---
-title: 'Tailwind over everything. Mocking the iOS Weather app UI'
-publishedAt: '2023-03-05'
-summary: 'This is why I will use Tailwind CSS for almost every project moving forward.'
+title: "Tailwind over everything. Mocking the iOS Weather app UI"
+publishedAt: "2023-03-05"
+summary: "This is why I will use Tailwind CSS for almost every project moving forward."
 tags: ["Styling", "CSS"]
 ---
 
@@ -18,7 +18,7 @@ Working with CSS files that go unused can be a frustrating experience for develo
 - Less time thinking of funky names <sup>1</sup>
 
 - Reduce the size of your CSS files <sup>2</sup>
-    
+
 - Editing already existing styles feels safer <sup>3</sup>
 
 <div className="text-tertiary text-sm mt-8">
@@ -27,6 +27,7 @@ Working with CSS files that go unused can be a frustrating experience for develo
 2 - making it easier to manage and maintain. Unlike traditional CSS, where you need to create new stylesheets for every new feature, Tailwind's utility classes can be easily reused throughout your project, significantly reducing the need to write new CSS code.
 
 3 - because classes are local to the HTML elements. With global CSS, any change you make can have unforeseen consequences elsewhere in your project, but with Tailwind, you can make changes with confidence, knowing that you won't accidentally break anything.
+
 </div>
 
 ## Looking forward
@@ -35,7 +36,7 @@ On the bright side, we're starting to see more and more tools prioritizing the d
 
 ## Speed and Efficiency
 
-Check out this iOS weather widget. I was able to create this component in less than 11 minutes, which would have taken me much longer if I had to write the CSS from scratch.
+Check out this iOS weather widget. I was able to create this component in less than 5 minutes, which would have taken me much longer if I had to write the CSS and having to switch between files.
 
 <Weather />
 
@@ -45,28 +46,28 @@ Additionally, Tailwind has built-in pseudo styles like `hover`, `focus`, and `ac
 
 ## The Power of Reusable Components
 
-One of the key advantages of Tailwind CSS is its promotion of reusable components. Which is now a standard in the front-end world. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase. 
+One of the key advantages of Tailwind CSS is its promotion of reusable components. Which is now a standard in the front-end world. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase.
 
 ```tsx showLineNumbers
 const WeatherList = () => {
   return (
-     <div className="my-8 flex flex-col gap-2">
+    <div className="my-8 flex flex-col gap-2">
       {data.map((item, index) => (
-        <CityCard key={index} data={item}/>
+        <CityCard key={index} data={item} />
       ))}
     </div>
   );
 };
 ```
+
 <figcaption>List component</figcaption>
 
-Continuing with the weather theme here, let's create a reusable card component that can be used to display the current weather for a list of cities.  With Tailwind, you can style your HTML elements without having to write any CSS rules. This can save you a lot of time, especially if you are working on a large project. Then when you need to reuse this, you don't have to go look for the `styles.css` file and copy it to a new location.
-
+Continuing with the weather theme here, let's create a reusable card component that can be used to display the current weather for a list of cities. With Tailwind, you can style your HTML elements without having to write any CSS rules. This can save you a lot of time, especially if you are working on a large project. Then when you need to reuse this, you don't have to go look for the `styles.css` file and copy it to a new location.
 
 ```tsx showLineNumbers
 export default const CityCard = ({item}) => {
   return (
-    <div 
+    <div
       className={`flex justify-between rounded-3xl bg-gradient-to-br text-white p-4 lg:px-8
       ${item.color}
     `}>
@@ -89,7 +90,7 @@ export default const CityCard = ({item}) => {
 
 <figcaption>Individual city component</figcaption>
 
-So what? This approach not only makes development more efficient but also ensures that the UI is consistent across the project. Additionally, reusable components can be easily updated and maintained, reducing the amount of duplicate code and improving the overall quality of the codebase. 
+So what? This approach not only makes development more efficient but also ensures that the UI is consistent across the project. Additionally, reusable components can be easily updated and maintained, reducing the amount of duplicate code and improving the overall quality of the codebase.
 
 <WeatherList />
 
@@ -97,8 +98,8 @@ Overall, Tailwind's focus on reusable components makes it a valuable tool for an
 
 ## What About Other UI Libraries?
 
-While there are many UI libraries available, from my experience, I always found myself overriding the default styles of the library to match my project's design language. UI libraries can be a great choice for small projects where you want to quickly create a functional and visually appealing user interface. 
+While there are many UI libraries available, from my experience, I always found myself overriding the default styles of the library to match my project's design language. UI libraries can be a great choice for small projects where you want to quickly create a functional and visually appealing user interface.
 
-However, at scale, you typically have branding and a company design language that you want to follow or set forth. In these cases, using a UI library may not be the best approach as it can be challenging to customize the styles to fit your branding and design requirements. 
+However, at scale, you typically have branding and a company design language that you want to follow or set forth. In these cases, using a UI library may not be the best approach as it can be challenging to customize the styles to fit your branding and design requirements.
 
 Instead, creating custom components using a utility-first CSS framework like Tailwind can be a better option, as it allows for more flexibility and control over the styling of the components. Overall, while UI libraries can be useful for smaller projects, it's important to consider the specific requirements and constraints of each project before making a decision on which approach to take.
