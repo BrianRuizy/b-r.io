@@ -2,10 +2,10 @@ import { allPosts, Post as PostType } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import Mdx from "@/app/blog/components/Mdx";
-import ViewCounter from "@/app/blog/components/ViewCounter";
-import PostList from "@/app/blog/components/PostList";
-import Parallax from "@/app/blog/components/parallax";
+import Mdx from "@/app/blog/components/ui/MdxWrapper";
+import ViewCounter from "@/app/blog/components/ui/ViewCounter";
+import PostList from "@/app/blog/components/ui/PostList";
+import Parallax from "@/app/blog/components/mdx/parallax";
 import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
@@ -49,47 +49,22 @@ export default function Post({ params }: { params: any }) {
             {post.summary}
           </p>
         </div>
-
-        <div className="h-8" />
-        {post.slug === "spring-parallax-framer-motion-guide" ? (
-          <div
-            className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-lg animate-in"
-            style={{ "--index": 2 } as React.CSSProperties}
-          >
-            <div className="absolute inset-0">
-              <Parallax offset={100}>
-                <Image
-                  src="/blog/spring-parallax-framer-motion-guide/bg.png"
-                  width="2024"
-                  height="1272"
-                  alt="Starry sky"
-                  sizes="(min-width: 480px) 780px, 100vw"
-                  className="w-full min-h-screen"
-                />
-              </Parallax>
-            </div>
-            <div className="absolute top-1/2 left-1/2 w-[50px] h-[50px] -translate-x-1/2 -translate-y-1/2 md:w-[120px] md:h-[120px]">
-              <Image
-                src="/blog/spring-parallax-framer-motion-guide/logo.png"
-                width="324"
-                height="324"
-                alt="Framer Motion stylized logo"
-                sizes="(min-width: 540px) 120px, 50px"
-              />
-            </div>
-          </div>
-        ) : (
-          <Image
-            src={post.image}
-            alt={`${post.title} post image`}
-            width={700}
-            height={350}
-            className="w-[calc(100%+48px)] -ml-6 lg:w-[calc(100%+128px)] lg:-ml-16 md:rounded-lg max-w-none animate-in"
-            style={{ "--index": 2 } as React.CSSProperties}
-            priority
-            quality={100}
-          />
+        {post.image && (
+          <>
+            <div className="h-8" />
+            <Image
+              src={post.image}
+              alt={`${post.title} post image`}
+              width={700}
+              height={350}
+              className="w-[calc(100%+48px)] -ml-6 lg:w-[calc(100%+128px)] lg:-ml-16 md:rounded-lg max-w-none animate-in"
+              style={{ "--index": 2 } as React.CSSProperties}
+              priority
+              quality={100}
+            />
+          </>
         )}
+
         <div className="h-16" />
         <div
           className="prose animate-in prose-neutral"

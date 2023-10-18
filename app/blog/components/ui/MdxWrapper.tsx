@@ -1,11 +1,11 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import CustomImage from "@/app/blog/components/Image";
+import CustomImage from "@/app/blog/components/ui/Image";
 import Link from "@/components/ui/Link";
-import Alert from "./Alert";
-import Parallax from "./parallax";
-import Weather from "./Weather";
-import WeatherList from "./WeatherList";
+import Alert from "../mdx/Alert";
+import Parallax from "../mdx/parallax";
+import Weather from "../mdx/Weather";
+import WeatherList from "../mdx/WeatherList";
 
 interface CustomLinkProps
   extends React.DetailedHTMLProps<
@@ -37,7 +37,7 @@ const components = {
   WeatherList: WeatherList,
 };
 
-export default function Mdx({ code }: { code: string }) {
+export default function MdxWrapper({ code }: { code: string }) {
   const Component = useMDXComponent(code, { components });
 
   return <Component components={components} />;

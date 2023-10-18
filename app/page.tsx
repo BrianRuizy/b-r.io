@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { allPosts } from ".contentlayer/generated";
 
-import PostList from "./blog/components/PostList";
+import PostList from "./blog/components/ui/PostList";
 import Stats from "@/components/Stats";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 import Avatar from "@/public/avatar.png";

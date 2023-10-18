@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
-import PostList from "./components/PostList";
+import PostList from "./components/ui/PostList";
 
 // import Input from "./components/Input";
 // import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";

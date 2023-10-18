@@ -1,5 +1,5 @@
 import Image from "next/image";
-import clsx from"clsx";
+import clsx from "clsx";
 
 type CustomImageProps = {
   src: string;
@@ -10,6 +10,7 @@ type CustomImageProps = {
   breakout?: boolean;
   rounded?: boolean;
   priority?: boolean;
+  reset?: boolean;
 };
 
 export default function CustomImage({
@@ -21,16 +22,17 @@ export default function CustomImage({
   breakout,
   rounded,
   priority,
+  reset,
 }: CustomImageProps) {
   return (
     <div
       className={clsx(
-        "not-prose w-full my-8",
+        reset ? "" : "not-prose w-full my-8",
         breakout ? "bg-tertiary" : "",
         (rounded || breakout) && "rounded-lg overflow-hidden"
       )}
     >
-      <figure className={clsx("flex flex-col", breakout ? "gap-4" : "gap-2")}>
+      <figure className={clsx("m-0 flex flex-col", breakout ? "gap-4" : "gap-2")}>
         <Image
           src={src}
           width={width}
