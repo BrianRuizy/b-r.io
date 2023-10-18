@@ -213,7 +213,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-md bg-primary border border-secondary text-primary;
+  @apply text-xs text-[13px] rounded-md bg-primary dark:bg-neutral-900/50 border border-secondary text-primary;
 }
 
 .code-highlight {
