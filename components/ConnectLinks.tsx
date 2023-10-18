@@ -23,7 +23,7 @@ const ConnectLinks: ConnectLink[] = [
     ),
   },
   {
-    label: "Email (Partnerships)",
+    label: "Partnerships",
     href: "mailto:partners@b-r.io",
     icon: (
       <svg

@@ -43,7 +43,7 @@ export default function Post({ params }: { params: any }) {
             {post.title}
           </h1>
           <p
-            className="text-xl text-secondary animate-in"
+            className="text-lg md:text-xl text-tertiary animate-in leading-tight"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.summary}

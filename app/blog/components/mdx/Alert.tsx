@@ -11,12 +11,12 @@ const Alert = ({
   children: ReactNode;
   type: "warning" | "info";
 }): JSX.Element => (
-  <div className="flex gap-2 p-4 rounded mt-7 bg-tertiary">
-    <div className="w-5 h-5">
+  <div className="flex gap-2 p-4 rounded-lg mt-7 bg-tertiary">
+    <div className="w-fit">
       {type === "warning" ? (
-        <ExclamationTriangleIcon />
+        <ExclamationTriangleIcon className="w-5 h-5" />
       ) : (
-        <InformationCircleIcon />
+        <InformationCircleIcon className="w-5 h-5" />
       )}
     </div>
     <div className="not-prose text-sm">{children}</div>

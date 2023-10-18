@@ -6,6 +6,7 @@ import Alert from "../mdx/Alert";
 import Parallax from "../mdx/parallax";
 import Weather from "../mdx/Weather";
 import WeatherList from "../mdx/WeatherList";
+import LinkPreview from "../mdx/LinkPreview";
 
 interface CustomLinkProps
   extends React.DetailedHTMLProps<
@@ -35,6 +36,7 @@ const components = {
   Parallax: Parallax,
   Weather: Weather,
   WeatherList: WeatherList,
+  LinkPreview: LinkPreview,
 };
 
 export default function MdxWrapper({ code }: { code: string }) {
