@@ -36,7 +36,7 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
         <p className="m-0 text-sm text-tertiary flex items-center gap-0.5">
           {baseUrl}
         </p>
-        <p className="text-base line-clamp-3 text-primary font-medium m-0 ">
+        <p className="text-base line-clamp-3 text-primary font-medium m-0 leading-tight">
           {title}
         </p>
         <div className="hidden md:block">
