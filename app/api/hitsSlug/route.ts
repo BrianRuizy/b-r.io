@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     let viewCount = 0;
 
     if (process.env.NODE_ENV !== "development") {
+      // Increment the view count in production
       const post = await prisma.post.findUnique({
         where: {
           slug: slug as string,
@@ -41,7 +42,7 @@ export async function GET(req: NextRequest) {
         viewCount = updatedPost.views;
       }
     } else {
-      // Retrieve the view count without incrementing in the local environment
+      // Get view count without incrementing in local environment
       const post = await prisma.post.findUnique({
         where: {
           slug: slug as string,

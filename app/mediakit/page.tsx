@@ -1,5 +1,5 @@
-"use client";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 import avatar from "public/avatar.png";
 import map from "public/map.png";
@@ -8,10 +8,16 @@ import { FaYoutube } from "react-icons/fa";
 import { YouTube } from "@/components/Stats";
 import Link from "@/components/ui/Link";
 
+export const metadata: Metadata = {
+  title: "Mediakit | Brian Ruiz",
+  description:
+    "Creator based in Houston. Focuses on topics including consumer technology, software engineering, design, and lifestyle.",
+};
+
 export default function Mediakit() {
   return (
-    <>
-      <div className="flex flex-col gap-16 md:gap-24">
+    <div className="relative">
+      <div className="flex flex-col gap-16 md:gap-24 z-20">
         <div
           className="flex flex-col md:flex-row md:justify-between md:items-end gap-8 animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
@@ -33,10 +39,10 @@ export default function Mediakit() {
                 YouTube
               </span>
             </div>
-            <p className="text-secondary text-sm">
+            <p className="text-secondary text-sm z-50">
               Creator based in Houston. Focuses on topics including consumer
               technology, software engineering, design, and lifestyle.{" "}
-              <Link href="https://www.youtube.com/@brianruizy">
+              <Link href="https://www.youtube.com/@brianruizy" underline>
                 Visit channel.
               </Link>
             </p>
@@ -105,7 +111,7 @@ export default function Mediakit() {
               </div>
             </div>
           </div>
-          <p className="text-xs text-center text-primary opacity-30">
+          <p className="text-xs text-center text-tertiary">
             Analytics for the month of&nbsp;
             {new Date().toLocaleString("default", {
               month: "long",
@@ -125,7 +131,7 @@ export default function Mediakit() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <Link
               className="col-span-1 flex flex-col no-underline group"
-              href="https://youtu.be/hBk8Y4NOa4I"
+              href="https://youtu.be/hBk8Y4NOa4I?si=arYBMFvtfAVoKH7M&t=205"
             >
               <Image
                 className="bg-tertiary border border-primary w-full aspect-video rounded-xl"
@@ -138,12 +144,12 @@ export default function Mediakit() {
                 Mid-roll Integration
               </p>
               <p className="text-secondary text-sm">
-                Akiflow App &bull; 400k Views
+                Akiflow App &bull; 450k Views
               </p>
             </Link>
             <Link
               className="col-span-1 flex flex-col no-underline group"
-              href="https://youtu.be/vrG7OGT4-q4"
+              href="https://youtu.be/vrG7OGT4-q4?si=TEKBtZIzbfeVBdT8&t=356"
             >
               <Image
                 className="bg-tertiary border border-primary w-full aspect-video rounded-xl"
@@ -161,7 +167,7 @@ export default function Mediakit() {
             </Link>
             <Link
               className="col-span-1 flex flex-col no-underline group"
-              href="https://youtu.be/Q9Qu-ddjDEE"
+              href="https://youtu.be/Q9Qu-ddjDEE?si=OWR3TSIBUmIVwI4i&t=52"
             >
               <Image
                 className="bg-tertiary border border-primary w-full aspect-video rounded-xl"
@@ -199,7 +205,7 @@ export default function Mediakit() {
         </div>
       </div>
       <Gradients />
-    </>
+    </div>
   );
 }
 
@@ -267,7 +273,7 @@ const Gradients = () => {
         />
       </div>
       <div
-        className="md:hidden absolute inset-x-0 top-[130%] z-0 transform-gpu overflow-hidden blur-3xl"
+        className="md:hidden absolute inset-x-0 top-[60%] z-0 transform-gpu overflow-hidden blur-3xl"
         aria-hidden="true"
       >
         <div

@@ -25,7 +25,14 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
       </Link>
     );
   }
-  return <a target="_blank" rel="noopener noreferrer decoration-amber-400" {...props} />;
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline underline-offset-4 text-blue-500 dark:text-blue-400 font-normal"
+      {...props}
+    />
+  );
 };
 
 const components = {

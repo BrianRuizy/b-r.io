@@ -186,7 +186,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose blockquote {
-  @apply text-primary opacity-90 font-semibold border-0 text-xl not-italic mx-auto text-center px-6 md:px-20;
+  @apply border-l-2 border-primary text-secondary text-lg font-serif;
 }
 
 .prose figcaption {
@@ -205,9 +205,16 @@ input:-webkit-autofill:focus {
   @apply text-primary bg-tertiary dark:bg-secondaryA border border-primary rounded px-1  font-normal whitespace-pre-line;
 }
 
-.prose p :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before,
-.prose p :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after
-{
+.prose
+  p
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::before,
+.prose
+  p
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::after {
   content: "";
 }
 
