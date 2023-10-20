@@ -58,7 +58,7 @@ export default function Blog() {
                 >
                   {project.title}
                 </Link>
-                <time className="text-secondary"> &bull; {project.time}</time>
+                <time className="text-secondary"> · {project.time}</time>
               </div>
 
               <p className="line-clamp-3 text-tertiary">

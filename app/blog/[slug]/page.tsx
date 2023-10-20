@@ -36,7 +36,7 @@ export default function Post({ params }: { params: any }) {
               {formatDate(post.publishedAt)}
             </time>
             {post.updatedAt ? `(Updated ${formatDate(post.updatedAt)})` : ""}
-            {" • "}
+            {" · "}
             <ViewCounter post={post} />
           </p>
           <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">

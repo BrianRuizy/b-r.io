@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 
 import PostList from "./blog/components/ui/PostList";
@@ -81,7 +81,7 @@ export default async function Home() {
       >
         <h2 className="text-secondary">Latest Posts</h2>
         <PostList posts={posts} />
-        <Link href="/blog" className="underline dark:text-neutral-100">
+        <Link href="/blog" className="text-secondary hover:text-primary underline underline-offset-4">
           See All
         </Link>
       </div>

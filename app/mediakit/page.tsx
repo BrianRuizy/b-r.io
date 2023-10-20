@@ -144,7 +144,7 @@ export default function Mediakit() {
                 Mid-roll Integration
               </p>
               <p className="text-secondary text-sm">
-                Akiflow App &bull; 450k Views
+                Akiflow App · 450k Views
               </p>
             </Link>
             <Link
@@ -162,7 +162,7 @@ export default function Mediakit() {
                 Mid-roll Integration
               </p>
               <p className="text-secondary text-sm">
-                Athletic Greens &bull; 150k Views
+                Athletic Greens · 150k Views
               </p>
             </Link>
             <Link
@@ -180,7 +180,7 @@ export default function Mediakit() {
                 Listicle Featured Product
               </p>
               <p className="text-secondary text-sm">
-                Ergonofis &bull; 120k Views
+                Ergonofis · 120k Views
               </p>
             </Link>
             <Link
@@ -198,7 +198,7 @@ export default function Mediakit() {
                 Dedicated Video
               </p>
               <p className="text-secondary text-sm">
-                XREAL AR &bull; 8 minute video
+                XREAL AR · 8 minute video
               </p>
             </Link>
           </div>

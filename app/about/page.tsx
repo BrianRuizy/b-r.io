@@ -81,13 +81,12 @@ export default function About() {
             </p>
             <p>
               In addition to coding, I also make{" "}
-              <a
+              <Link
                 className="underline"
                 href="https://www.youtube.com/channel/@brianruizy"
-                target="__blank"
               >
                 YouTube
-              </a>{" "}
+              </Link>{" "}
               videos, where I focus on tech gear, creative vlogs, and a bit of
               personal development.
             </p>
@@ -102,9 +101,9 @@ export default function About() {
           <div className="flex flex-col w-full gap-8">
             <p>
               Have a question or just want to chat? Feel free to{" "}
-              <a href="mailto:contact@b-r.io" className="underline">
+              <Link href="mailto:contact@b-r.io" >
                 email me
-              </a>
+              </Link>
               . Try finding me anywhere else at @brianruizy
             </p>
             <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
@@ -147,13 +146,13 @@ export default function About() {
               I started my career teaching others how to code, which I will
               always be appreciative of. Then I worked at a few small local
               companies. Now I&apos;m a full stack engineer currently working at{" "}
-              <a
+              <Link
                 className="underline"
                 href="https://hines.com"
-                target="__blank"
+
               >
                 Hines
-              </a>
+              </Link>
               , one of the largest private real estate investors in the world.
             </p>
             <Workplaces items={workplaces} />

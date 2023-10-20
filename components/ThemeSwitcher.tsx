@@ -72,7 +72,7 @@ export default function ThemeSwitcher() {
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {theme}
+                              {theme == "system" ? "Automatic" : theme}
                             </span>
                             {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">

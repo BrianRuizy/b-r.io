@@ -4,7 +4,6 @@ import {
   ComputedFields,
 } from "contentlayer/source-files"; // eslint-disable-line
 import rehypePrism from "rehype-prism-plus";
-// import codeTitle from "remark-code-titles";
 
 const getSlug = (doc: any) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
 
@@ -69,6 +68,5 @@ export default makeSource({
   documentTypes: [Post, Project],
   mdx: {
     rehypePlugins: [rehypePrism],
-    // remarkPlugins: [codeTitle],
   },
 });
