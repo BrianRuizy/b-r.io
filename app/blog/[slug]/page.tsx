@@ -30,7 +30,7 @@ export default function Post({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex flex-col gap-3 animate-in max-w-xl">
+        <div className="flex max-w-xl animate-in flex-col gap-3">
           <p className="text-secondary">
             <time dateTime={post.publishedAt}>
               {formatDate(post.publishedAt)}
@@ -39,11 +39,11 @@ export default function Post({ params }: { params: any }) {
             {" · "}
             <ViewCounter post={post} />
           </p>
-          <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
             {post.title}
           </h1>
           <p
-            className="text-lg md:text-xl text-secondary animate-in leading-tight"
+            className="animate-in text-lg leading-tight text-secondary md:text-xl"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.summary}
@@ -57,7 +57,7 @@ export default function Post({ params }: { params: any }) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="w-[calc(100%+48px)] -ml-6 lg:w-[calc(100%+128px)] lg:-ml-16 md:rounded-lg max-w-none animate-in"
+              className="-ml-6 w-[calc(100%+48px)] max-w-none animate-in md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
               style={{ "--index": 2 } as React.CSSProperties}
               priority
               quality={100}
@@ -67,7 +67,7 @@ export default function Post({ params }: { params: any }) {
 
         <div className="h-16" />
         <div
-          className="prose animate-in prose-neutral"
+          className="prose prose-neutral animate-in"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <Mdx code={post.body.code} />

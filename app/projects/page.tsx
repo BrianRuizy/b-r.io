@@ -38,7 +38,7 @@ export default function Blog() {
           >
             <Link
               href={`/projects/${project.slug}`}
-              className="w-full md:w-2/5 aspect-video bg-secondary rounded-lg border border-primary overflow-clip select-none"
+              className="w-full md:w-2/5 aspect-video bg-tertiary rounded-lg border border-secondary overflow-clip select-none"
             >
               <Halo strength={24}>
                 <Image

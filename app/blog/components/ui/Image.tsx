@@ -27,12 +27,14 @@ export default function CustomImage({
   return (
     <div
       className={clsx(
-        reset ? "" : "not-prose w-full my-8",
+        reset ? "" : "not-prose my-8 w-full",
         breakout ? "bg-tertiary" : "",
-        (rounded || breakout) && "rounded-lg overflow-hidden"
+        (rounded || breakout) && "overflow-hidden rounded-md md:rounded-lg",
       )}
     >
-      <figure className={clsx("m-0 flex flex-col", breakout ? "gap-4" : "gap-2")}>
+      <figure
+        className={clsx("m-0 flex flex-col", breakout ? "gap-4" : "gap-2")}
+      >
         <Image
           src={src}
           width={width}
@@ -40,16 +42,17 @@ export default function CustomImage({
           alt={alt}
           priority={priority}
           className={clsx(
-            "w-full h-auto",
+            "h-auto w-full",
             breakout ? "bg-tertiary" : "",
-            (rounded || breakout) && "rounded-lg overflow-hidden bg-tertiary"
+            (rounded || breakout) &&
+              "overflow-hidden rounded-md bg-tertiary md:rounded-lg",
           )}
         />
         {caption && (
           <figcaption
             className={clsx(
-              "my-2 text-xs leading-tight text-tertiary font-medium max-w-md mx-auto text-center",
-              breakout && "max-w-[700px] px-6 w-full mx-auto "
+              "mx-auto my-2 max-w-md text-center text-xs font-medium leading-tight text-tertiary",
+              breakout && "mx-auto w-full max-w-[700px] px-6 ",
             )}
           >
             {caption}
