@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import { Metadata } from "next";
 
 import Logi from "public/gear/logi.jpeg";
 import Copilot from "public/gear/copilot.jpeg";
@@ -9,6 +10,12 @@ import cables from "public/gear/cables.png";
 import Nikon from "public/gear/nikon.png";
 import EpidemicSound from "public/gear/epidemic-sound.png";
 import DJI from "public/gear/dji.png";
+
+export const metadata: Metadata = {
+  title: "Gear | Brian Ruiz",
+  description:
+    "My toolbox. This is gear I actually own and recommend.",
+};
 
 interface ItemProps {
   title: string;
@@ -83,7 +90,7 @@ export default function Gear() {
             </p>
           </div>
           <p
-            className="max-w-lg animate-in text-tertiary"
+            className="max-w-lg animate-in"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             This is gear I actually own and recommend. The affiliate links come
@@ -215,7 +222,7 @@ const gear = [
     category: "Apps",
     image: Copilot,
     description:
-      "Code BRIANRUIZ for 2 months FREE. For all things personal finance, this is a must.",
+      "'BRIANRUIZ', 2 months FREE. For all things personal finance, this is a must.",
     link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
     sponsored: true,
   },
@@ -224,7 +231,7 @@ const gear = [
     category: "Apps",
     image: EpidemicSound,
     description:
-      "Where I get all my music for my videos. Skip the hassle that is licensing.",
+      "1 Month Free. This is where I get 95% of the music for my videos. Skip the hassle that is licensing.",
     link: "https://share.epidemicsound.com/j2d0ao",
     sponsored: true,
   },

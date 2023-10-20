@@ -5,6 +5,12 @@ import clsx from "clsx";
 import { allProjects, Project } from ".contentlayer/generated";
 import Halo from "@/components/ui/Halo";
 
+export const metadata: Metadata = {
+  title: "Projects | Brian Ruiz",
+  description:
+    "Here are some of the projects I've worked on.",
+};
+
 
 export default function Blog() {
   const projects = allProjects;

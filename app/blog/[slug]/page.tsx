@@ -1,11 +1,11 @@
-import { allPosts, Post as PostType } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata, ResolvingMetadata } from "next";
+import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import PostList from "@/app/blog/components/ui/PostList";
-import Parallax from "@/app/blog/components/mdx/parallax";
 import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
@@ -15,7 +15,55 @@ type PostProps = {
   related: PostType[];
 };
 
-export default function Post({ params }: { params: any }) {
+type Props = {
+  params: {
+    slug: string;
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const post = allPosts.find((post) => post.slug === params.slug);
+
+  if (!post) {
+    throw new Error("Post not found");
+  }
+
+  const {
+    title,
+    publishedAt: publishedTime,
+    summary: description,
+    image,
+    slug,
+  } = post;
+
+  const ogImage = `https://b-r.io/${image}`;
+
+  const metadata: Metadata = {
+    title: `${title} | Brian Ruiz`,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `https://b-r.io/blog/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+  };
+
+  return metadata;
+}
+
+export default async function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
   // const seoTitle = `${post.title} | Brian Ruiz`;

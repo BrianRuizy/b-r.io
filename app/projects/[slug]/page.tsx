@@ -24,7 +24,7 @@ export default function Project({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex flex-col gap-3 animate-in pt-16 md:pt-20">
+        <div className="flex animate-in flex-col gap-3 pt-16 md:pt-20">
           <div className="flex gap-3 text-secondary">
             <p>{post.time}</p>
             {post.url && (
@@ -36,11 +36,11 @@ export default function Project({ params }: { params: any }) {
               </>
             )}
           </div>
-          <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
             {post.title}
           </h1>
           <p
-            className="text-lg text-secondary animate-in"
+            className="animate-in text-lg text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.description}
@@ -49,7 +49,7 @@ export default function Project({ params }: { params: any }) {
 
         <div className="h-12" />
         <div
-          className="prose project animate-in"
+          className="project prose animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Mdx code={post.body.code} />
@@ -62,7 +62,7 @@ export default function Project({ params }: { params: any }) {
             {post.tags.map((tag: string) => (
               <div
                 key={tag}
-                className="px-4 py-1.5 rounded-lg bg-secondary text-sm text-secondary whitespace-nowrap"
+                className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
               >
                 {tag}
               </div>
@@ -72,9 +72,9 @@ export default function Project({ params }: { params: any }) {
 
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
-          <p className="text-secondary max-w-lg">
+          <p className="max-w-lg text-secondary">
             Need more project details, or interested in working together? Reach
-            me directly at{" "}
+            out to me directly at{" "}
             <a href="mailto:contact@b-r.io" className="text-primary underline">
               brian@b-r.io
             </a>
