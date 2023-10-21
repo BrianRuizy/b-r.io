@@ -199,7 +199,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose blockquote {
-  @apply border-l-2 border-primary font-serif text-lg font-light text-secondary;
+  @apply border-l-2 border-primary font-serif text-lg font-light;
 }
 
 .prose figcaption {

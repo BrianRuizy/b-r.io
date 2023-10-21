@@ -24,7 +24,7 @@ export default function Project({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex animate-in flex-col gap-3 pt-16 md:pt-20">
+        <div className="flex animate-in flex-col gap-3">
           <div className="flex gap-3 text-secondary">
             <p>{post.time}</p>
             {post.url && (
@@ -40,7 +40,7 @@ export default function Project({ params }: { params: any }) {
             {post.title}
           </h1>
           <p
-            className="animate-in text-lg text-secondary"
+            className="animate-in text-lg leading-tight text-secondary md:text-xl"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.description}

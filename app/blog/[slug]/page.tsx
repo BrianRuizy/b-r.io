@@ -10,6 +10,8 @@ import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
 
+import Avatar from "@/public/avatar.png";
+
 type PostProps = {
   post: PostType;
   related: PostType[];
@@ -47,7 +49,7 @@ export async function generateMetadata(
     title: `${title} | Brian Ruiz`,
     description,
     openGraph: {
-      title,
+      title: `${title} | Brian Ruiz`,
       description,
       type: "article",
       publishedTime,
@@ -78,25 +80,43 @@ export default async function Post({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex max-w-xl animate-in flex-col gap-3">
-          <p className="text-secondary">
-            <time dateTime={post.publishedAt}>
-              {formatDate(post.publishedAt)}
-            </time>
-            {post.updatedAt ? `(Updated ${formatDate(post.updatedAt)})` : ""}
-            {" · "}
-            <ViewCounter post={post} />
-          </p>
-          <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
-            {post.title}
-          </h1>
-          <p
-            className="animate-in text-lg leading-tight text-secondary md:text-xl"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            {post.summary}
-          </p>
+        <div
+          className="flex animate-in flex-col gap-8"
+          style={{ "--index": 1 } as React.CSSProperties}
+        >
+          <div className="max-w-xl space-y-2">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
+              {post.title}
+            </h1>
+            <p className="text-lg leading-tight text-secondary md:text-xl">
+              {post.summary}
+            </p>
+          </div>
+
+          <div className="flex max-w-none items-center gap-4">
+            <Image
+              src={Avatar}
+              width={40}
+              height={40}
+              alt="avatar"
+              className="rounded-full bg-secondary"
+            />
+            <div className="leading-tight">
+              <p className="font-medium text-primary">Brian Ruiz</p>
+              <p className="text-secondary">
+                <time dateTime={post.publishedAt}>
+                  {formatDate(post.publishedAt)}
+                </time>
+                {post.updatedAt
+                  ? `(Updated ${formatDate(post.updatedAt)})`
+                  : ""}
+                {" · "}
+                <ViewCounter post={post} />
+              </p>
+            </div>
+          </div>
         </div>
+
         {post.image && (
           <>
             <div className="h-8" />
