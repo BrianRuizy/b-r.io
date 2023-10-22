@@ -137,7 +137,7 @@ const gear = [
     category: "Ergonofis",
     image: Sway,
     description: "The highest of quality and made to last. Solid wood.",
-    link: "https://amzn.to/3UouXP4",
+    link: "https://shrsl.com/49346",
     sponsored: true,
   },
   {
@@ -145,7 +145,7 @@ const gear = [
     category: "Ergonofis",
     image: shelf,
     description: "Elevates your screen(s) to help position your neck in a comfortable ergonomic posture.",
-    link: "https://amzn.to/3UouXP4",
+    link: "https://shrsl.com/49342",
     sponsored: true,
   },
   {
@@ -153,7 +153,7 @@ const gear = [
     category: "Ergonofis",
     image: cables,
     description: "An essential for a clean clutter free desk.",
-    link: "https://amzn.to/3UouXP4",
+    link: "https://shrsl.com/4933x",
     sponsored: true,
   },
   {
