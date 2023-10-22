@@ -24,10 +24,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           alt={company}
           width={48}
           height={48}
-          className={clsx(
-            "rounded-full",
-            company === "University of Houston" && "bg-neutral-50"
-          )}
+          className={clsx("rounded-full")}
         />
         <div className="flex flex-col gap-px">
           <p className={link ? "external-arrow" : ""}>{title}</p>

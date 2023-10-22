@@ -18,11 +18,6 @@ type PostProps = {
 export default function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
-  // const seoTitle = `${post.title} | Brian Ruiz`;
-  // const seoDesc = `${post.summary}`;
-  // const url = `https://b-r.io/blog/${post.slug}`;
-  // const MDXContent = useMDXComponent(post?.body.code);
-
   if (!post) {
     notFound();
   }
@@ -77,17 +72,6 @@ export default function Post({ params }: { params: any }) {
       <Tags tags={post.tags} />
 
       <Link href="/blog">← All Blogs</Link>
-      {/* {related.length ? (
-        <div className="flex flex-col items-start gap-6">
-          <h2>Related posts</h2>
-          <div className="will-change-transform">
-            <PostList posts={related} />
-          </div>
-          <Link href="/blog" underline>
-            ← See all
-          </Link>
-        </div>
-      ) : null} */}
     </div>
   );
 }

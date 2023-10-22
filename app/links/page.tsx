@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "@/components/ui/Link";
 import ConnectLinks from "@/components/ConnectLinks";
-import avatar from "public/avatar.png";
+import profilePicture from "public/profile_picture.png";
 
 export default function Links() {
   return (
@@ -9,10 +9,10 @@ export default function Links() {
       <div className="flex flex-col gap-16 md:gap-24">
         <div className="flex flex-col gap-8 animate-in">
           <Image
-            src={avatar}
+            src={profilePicture}
             width={100}
             height={100}
-            alt="avatar"
+            alt="profilePicture"
             className="rounded-full bg-secondary mx-auto animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           />
@@ -21,11 +21,10 @@ export default function Links() {
             style={{ "--index": 2 } as React.CSSProperties}
           >
             <h1 className="text-2xl font-bold tracking-tight text-center">
-              Brian Ruiz
+              Oscar Decloquement
             </h1>
             <p className="max-w-sm text-secondary mx-auto text-center">            
-            Software engineer who loves building cool
-            things with code. In addition to coding, I also make YouTube videos. Find me elsewhere @brianruizy
+            Dévelopeur qui adore créer des projets.
             </p>
           </div>
         </div>

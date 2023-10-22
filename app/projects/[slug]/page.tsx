@@ -14,7 +14,6 @@ type PostProps = {
 };
 
 export default function Project({ params }: { params: any }) {
-  // const post = allPosts.find((post) => post.slug === params.slug);
   const post = allProjects.find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -75,9 +74,9 @@ export default function Project({ params }: { params: any }) {
           <p className="text-secondary max-w-lg">
             Need more project details, or interested in working together? Reach
             me directly at{" "}
-            <a href="mailto:contact@b-r.io" className="text-primary underline">
+            <Link href="mailto:contact@b-r.io" className="text-primary underline">
               brian@b-r.io
-            </a>
+            </Link>
             . I&apos;d be happy to connect!{" "}
           </p>
         </div>
