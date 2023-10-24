@@ -20,7 +20,7 @@ export default async function Home() {
     <div className="flex flex-col gap-16 md:gap-24">
       <div className="flex flex-col gap-8 animate-in">
         <div>
-          <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
+          <h1 className="animate-in text-3xl font-bold tracking-tight text-primary bg-gradient-to-br from-blue-600 to-green-500 inline-block text-transparent bg-clip-text">
             Brian Ruiz
           </h1>
           <p
