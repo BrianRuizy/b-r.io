@@ -10,9 +10,9 @@ import Navigation from "@/components/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Home | Brian Ruiz",
+  title: "Oscar Decloquement",
   description:
-    "I am a full-stack software engineer who basically just enjoys creating things.",
+    "Je suis un développeur full-stack qui aime découvrir de nouvelles technologies",
 };
 
 export default function RootLayout({
