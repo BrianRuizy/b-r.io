@@ -6,11 +6,6 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import localFont from 'next/font/local'
 
-import texas from "public/gallery/texas.jpg";
-import meLily from "public/gallery/me-lily.jpg";
-import colorado from "public/gallery/colorado.jpg";
-import cowboy from "public/gallery/cowboy-bike.webp";
-
 import motorcycle from "public/gallery/moto.jpg";
 import fpv from "public/gallery/fpv.png";
 import isis from "public/gallery/isis.jpg";
