@@ -58,7 +58,7 @@ export default function Project({ params }: { params: any }) {
         <div className="flex flex-col gap-6">
           <h2>Tags</h2>
           <div className="flex flex-wrap gap-3 ">
-            {post.tags.map((tag: string) => (
+            {post.tags?.map((tag: string) => (
               <div
                 key={tag}
                 className="px-4 py-1.5 rounded-lg bg-secondary text-sm text-secondary whitespace-nowrap"
