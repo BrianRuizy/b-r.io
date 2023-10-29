@@ -58,8 +58,10 @@ export async function generateMetadata(
       images: [
         {
           url: `https://b-r.io/api/og?=${title}`,
+          alt: title,
         },
       ],
+      
     },
   };
 
