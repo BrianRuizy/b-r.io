@@ -18,7 +18,7 @@ frontend:
 
 ## Getting Started
 
-Make sure you have Node.js v18.3.0+ installed on your machine.
+Make sure you have Node.js v18.17.0+ installed on your machine.
 
 1. **Install Dependencies**: `npm install`
 2. **Environment variables**: Copy `.env.example` to a new `.env.local`
