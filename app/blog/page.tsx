@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
 import PostList from "./components/ui/PostList";
-
-// import Input from "./components/Input";
-// import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import Subscribe from "./components/ui/Subscribe";
 
 export const metadata: Metadata = {
   title: "Blog | Brian Ruiz",
@@ -14,7 +12,7 @@ export const metadata: Metadata = {
 export default function Blog() {
   const posts = allPosts.sort(
     (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
   return (
@@ -23,31 +21,24 @@ export default function Blog() {
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">Blog</h1>
           <p
-            className="text-secondary animate-in"
+            className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {posts.length} posts about code, design, more ...
           </p>
         </div>
-        {/* <div
-          className="animate-in"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <Input
-            id="search"
-            type="search"
-            placeholder="Search…"
-            value={""}
-            // onChange={(e) => setSearch(e.target.value)}
-            pfix={<MagnifyingGlassIcon className="w-5 h-5 text-secondary" />}
-          />
-        </div> */}
+      </div>
+      <div
+        className="animate-in"
+        style={{ "--index": 2 } as React.CSSProperties}
+      >
+        <PostList posts={posts} />
       </div>
       <div
         className="animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <PostList posts={posts} />
+        <Subscribe />
       </div>
     </div>
   );

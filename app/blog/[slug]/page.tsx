@@ -3,11 +3,12 @@ import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
+import Tags from "@/components/Tags";
+import Link from "@/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import PostList from "@/app/blog/components/ui/PostList";
-import Tags from "@/components/Tags";
-import Link from "@/components/ui/Link";
+import Subscribe from "@/app/blog/components/ui/Subscribe";
 import { formatDate } from "lib/formatdate";
 
 import Avatar from "@/public/avatar.png";
@@ -54,11 +55,11 @@ export async function generateMetadata(
       type: "article",
       publishedTime,
       url: `https://b-r.io/blog/${slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      // images: [
+      //   {
+      //     url: ogImage,
+      //   },
+      // ],
     },
   };
 
@@ -143,6 +144,8 @@ export default async function Post({ params }: { params: any }) {
       </article>
 
       <Tags tags={post.tags} />
+
+      <Subscribe />
 
       <Link href="/blog">← All Blogs</Link>
       {/* {related.length ? (
