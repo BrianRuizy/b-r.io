@@ -54,12 +54,12 @@ export async function generateMetadata(
       description,
       type: "article",
       publishedTime,
-      url: `https://b-r.io/blog/${slug}`,
-      // images: [
-      //   {
-      //     url: ogImage,
-      //   },
-      // ],
+      url: `https://b-r.io/blog/${title}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
     },
   };
 
