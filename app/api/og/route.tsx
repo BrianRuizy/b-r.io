@@ -23,14 +23,15 @@ export async function GET(req: NextRequest) {
       >
         <div
           style={{
-            marginLeft: 190,
-            marginRight: 190,
+            marginLeft: 205,
+            marginRight: 205,
+            marginBottom: 205,
             display: 'flex',
-            fontSize: 130,
-            letterSpacing: '-0.05em',
+            fontSize: 105,
+            letterSpacing: '-0.025em',
             fontStyle: 'normal',
             color: 'white',
-            lineHeight: '120px',
+            lineHeight: '110px',
             whiteSpace: 'pre-wrap',
           }}
         >
@@ -41,7 +42,6 @@ export async function GET(req: NextRequest) {
     {
       width: 1920,
       height: 1080,
-      
     }
   );
 }
