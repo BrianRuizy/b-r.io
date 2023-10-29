@@ -57,7 +57,7 @@ export async function generateMetadata(
       url: `https://b-r.io/blog/${title}`,
       images: [
         {
-          url: `https://b-r.io/api/og/${title}`,
+          url: `https://b-r.io/api/og?=${title}`,
         },
       ],
     },
