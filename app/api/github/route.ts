@@ -15,9 +15,11 @@ export async function GET(req: NextRequest) {
     const numberOfProject = data.length;
 
     const languagesLinks: Array<string> = [];
-    if(data.message && data.documentation_url) {
+
+    if (data.message && data.documentation_url) {
       throw new Error('API rate limit exceeded');
     }
+
     data.forEach((project : {languages_url: string}) => {
       languagesLinks.push(project.languages_url);
     });
@@ -43,7 +45,6 @@ export async function GET(req: NextRequest) {
 
     return Response.json({ "numberOfProject": numberOfProject, "languageTotals": languageTotals});
   } catch (err) {
-    console.error(err);
     return new Response(`Something went wrong: ${err}`, {status: 200})
   }
 }
