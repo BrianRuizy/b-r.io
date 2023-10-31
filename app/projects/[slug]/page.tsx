@@ -30,7 +30,7 @@ export default function Project({ params }: { params: any }) {
               <>
                 <span>&middot;</span>
                 <Link href={post.url} className="hover:text-primary">
-                  Visit Project ↗
+                  Voir les projets ↗
                 </Link>
               </>
             )}
@@ -72,17 +72,16 @@ export default function Project({ params }: { params: any }) {
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="text-secondary max-w-lg">
-            Need more project details, or interested in working together? Reach
-            me directly at{" "}
+            Besoin de plus de détails sur le projet ou intéressé à travailler ensemble ? Contactez
+            moi directement à{" "}
             <Link href="mailto:contact@b-r.io" className="text-primary underline">
-              brian@b-r.io
+              odecloquement@gmail.com
             </Link>
-            . I&apos;d be happy to connect!{" "}
           </p>
         </div>
 
         <Link href="/projects" className="text-primary underline">
-          ← All Projects
+          ← Tous les Projects
         </Link>
       </div>
 

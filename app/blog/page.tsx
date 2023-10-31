@@ -26,7 +26,7 @@ export default function Blog() {
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            {posts.length} posts about code, design, more ...
+            {posts.length} posts à propos de code, d&apos;outils, ...
           </p>
         </div>
         {/* <div
