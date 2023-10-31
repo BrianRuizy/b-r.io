@@ -2,7 +2,7 @@ import slugify from "slugify";
 import Link from "./ui/Link";
 
 type TagsProps = {
-  tags: string[];
+  tags: string[] | undefined;
 };
 
 const Tags = ({ tags }: TagsProps): JSX.Element | null => {
