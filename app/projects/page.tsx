@@ -46,7 +46,7 @@ export default function Blog() {
                   alt={project.title}
                   layout="fill"
                   objectFit="cover"
-                  className="w-full h-full "
+                  className="w-full h-full"
                 />
               </Halo>
             </Link>
