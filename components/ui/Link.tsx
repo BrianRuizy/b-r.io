@@ -15,8 +15,8 @@ export default function Link(props: LinkProps) {
     <NextLink
       {...rest}
       className={clsx(
-        "underline underline-offset-4",
-        (isExternal || underline) &&
+        "underline-offset-4",
+        (isExternal || underline) && "underline",
         props.className
       )}
       target={isExternal ? "_blank" : undefined}
