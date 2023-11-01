@@ -30,7 +30,7 @@ export default function Project({ params }: { params: any }) {
               <>
                 <span>&middot;</span>
                 <Link href={post.url} className="hover:text-primary">
-                  Voir les projets
+                  Voir le projet
                 </Link>
               </>
             )}
