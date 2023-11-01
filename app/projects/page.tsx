@@ -5,6 +5,11 @@ import clsx from "clsx";
 import { allProjects, Project } from ".contentlayer/generated";
 import Halo from "@/components/ui/Halo";
 
+export const metadata: Metadata = {
+  title: "Projects | Oscar Decloquement",
+  description:
+    "Here are some of the projects I've worked on.",
+};
 
 export default function Blog() {
   const projects = allProjects;
@@ -38,9 +43,9 @@ export default function Blog() {
           >
             <Link
               href={`/projects/${project.slug}`}
-              className="w-full md:w-2/5 aspect-video bg-secondary rounded-lg border border-primary overflow-clip select-none"
+              className="w-full md:w-2/5 aspect-video bg-tertiary rounded-lg border border-secondary overflow-clip select-none"
             >
-              <Halo strength={24}>
+              <Halo strength={10}>
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -58,7 +63,7 @@ export default function Blog() {
                 >
                   {project.title}
                 </Link>
-                <time className="text-secondary"> &bull; {project.time}</time>
+                <time className="text-secondary"> · {project.time}</time>
               </div>
 
               <p className="line-clamp-3 text-tertiary">

@@ -23,31 +23,23 @@ export default function Blog() {
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">Blog</h1>
           <p
-            className="text-secondary animate-in"
-            style={{ "--index": 1 } as React.CSSProperties}
+            className="animate-in text-secondary"
+            style={{ "--index": 2 } as React.CSSProperties}
           >
             {posts.length} posts à propos de code, d&apos;outils, ...
           </p>
         </div>
-        {/* <div
-          className="animate-in"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <Input
-            id="search"
-            type="search"
-            placeholder="Search…"
-            value={""}
-            // onChange={(e) => setSearch(e.target.value)}
-            pfix={<MagnifyingGlassIcon className="w-5 h-5 text-secondary" />}
-          />
-        </div> */}
+      </div>
+      <div
+        className="animate-in"
+        style={{ "--index": 2 } as React.CSSProperties}
+      >
+        <PostList posts={posts} />
       </div>
       <div
         className="animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <PostList posts={posts} />
       </div>
     </div>
   );
