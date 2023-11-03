@@ -24,8 +24,8 @@ export default function ThemeSwitcher() {
       <Listbox value={theme} onChange={(value) => setTheme(value)}>
         {({ open }) => {
           const iconClassName = clsx(
-            "w-5 h-5 dark:hover:text-neutral-50 transition-colors",
-            open ? "dark:text-neutral-50" : "text-secondary"
+            "w-5 h-5 text-secondary hover:text-primary cursor-pointer transition-colors",
+            open ? "text-primary" : "text-secondary"
           );
           return (
             <div className="relative">
@@ -49,7 +49,7 @@ export default function ThemeSwitcher() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
-                    className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-white dark:bg-black backdrop-blur-lg focus:outline-none sm:text-sm capitalize"
+                    className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-white dark:bg-black focus:outline-none sm:text-sm capitalize"
                     style={
                       theme === "terminal" ? { background: "#040605" } : {}
                     }
@@ -72,7 +72,7 @@ export default function ThemeSwitcher() {
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {theme}
+                              {theme == "system" ? "Automatic" : theme}
                             </span>
                             {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">

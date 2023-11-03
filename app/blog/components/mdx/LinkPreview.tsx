@@ -17,7 +17,7 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
 
   return (
     <a
-      className="flex bg-tertiary rounded-lg overflow-clip p-4 gap-4 md:gap-6 md:p-6 items-center my-8 no-underline"
+      className="flex bg-tertiary rounded-md overflow-clip p-4 gap-4 md:gap-6 md:p-6 items-center my-8 no-underline border border-secondary"
       href={link}
       target="_blank"
       rel="noopener noreferrer"

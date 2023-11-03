@@ -130,13 +130,12 @@ export default function About() {
               J&apos;ai commencé ma carrière chez Arcos en autonomie.
               Ensuite, j&apos;ai travaillé chez Sopra Steria.
               Je suis maintenant un développeur et je travaille toujours chez {" "}
-              <a
+              <Link
                 className="underline"
                 href="https://www.soprasteria.fr/"
-                target="__blank"
               >
                 Sopra Steria
-              </a>
+              </Link>
               , l&apos;une des plus grandes ESN Française..
             </p>
             <Workplaces items={workplaces} />

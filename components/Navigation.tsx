@@ -12,7 +12,7 @@ import clsx from "clsx";
 
 const links = [
   { label: "À propos", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  // { label: "Blog", href: "/blog" },
   { label: "Projets", href: "/projects" },
 ];
 
@@ -71,7 +71,7 @@ export default function Navigation() {
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel
-              className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-white dark:bg-black/95 backdrop-blur-lg focus:outline-none sm:text-sm"
+              className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-white dark:bg-black focus:outline-none sm:text-sm"
               style={theme === "terminal" ? { background: "#040605" } : {}}
             >
               <div className="grid">

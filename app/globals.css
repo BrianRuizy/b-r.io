@@ -41,6 +41,7 @@
     --tw-prose-links: var(--gray-11);
     --tw-prose-code: var(--gray-11);
     --tw-prose-quotes: var(--gray-11);
+    --blue-10: var(--blue-8);
   }
 
   .terminal {
@@ -71,9 +72,14 @@
     --gray-a10: #31fec7ab;
     --gray-a11: #21fec0d6;
     --gray-a12: #b8ffe1ef;
+    --blue-10: #21fec0d6;
   }
 
   .terminal time {
+    @apply font-mono tracking-tight;
+  }
+
+  .termianl .prose a {
     @apply font-mono tracking-tight;
   }
 
@@ -145,16 +151,22 @@ input:-webkit-autofill:focus {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0px 0px 52px #6166dc, 0px 0px 20px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+    box-shadow:
+    0px 0px 52px #6166dc,
+    0px 0px 20px #d2a8ff,
+    inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
   70% {
-    box-shadow: 0px 0px 70px #6166dc, 0px 0px 40px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+    box-shadow:
+    0px 0px 70px #6166dc,
+    0px 0px 40px #d2a8ff,
+    inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
   100% {
-    box-shadow: 0px 0px 52px #6166dc, 0px 0px 20px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+    box-shadow:
+    0px 0px 52px #6166dc,
+    0px 0px 20px #d2a8ff,
+    inset 0px 1px 3px rgba(255, 255, 255, 0.22);
   }
 }
 
@@ -182,15 +194,15 @@ input:-webkit-autofill:focus {
 }
 
 .prose.project img {
-  @apply border border-secondary rounded-[10px] bg-tertiary;
+  @apply max-w-none rounded-md border border-secondary bg-tertiary md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)];
 }
 
 .prose blockquote {
-  @apply border-l-2 border-primary text-secondary text-lg font-serif;
+  @apply border-l-2 border-primary font-serif text-lg font-light;
 }
 
 .prose figcaption {
-  @apply mt-2 mb-8 text-sm leading-tight text-tertiary font-medium max-w-md mx-auto text-center;
+  @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
 }
 
 .prose h2 {
@@ -202,7 +214,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose p code {
-  @apply text-primary bg-tertiary dark:bg-secondaryA border border-primary rounded px-1  font-normal whitespace-pre-line;
+  @apply whitespace-pre-line rounded border border-primary bg-tertiary px-1 font-normal text-primary dark:bg-secondaryA;
 }
 
 .prose
@@ -220,7 +232,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply text-xs text-[13px] rounded-md bg-primary dark:bg-neutral-900/50 border border-secondary text-primary;
+  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-neutral-900/50;
 }
 
 .code-highlight {
