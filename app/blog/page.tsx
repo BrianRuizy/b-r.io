@@ -6,9 +6,9 @@ import PostList from "./components/ui/PostList";
 // import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export const metadata: Metadata = {
-  title: "Blog | Brian Ruiz",
+  title: "Blog | Oscar Decloquement",
   description:
-    "I write about programming, design, and occasionally life updates!",
+    "Je suis un développeur full-stack qui aime découvrir de nouvelles technologies.",
 };
 
 export default function Blog() {
