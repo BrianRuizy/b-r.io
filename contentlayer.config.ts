@@ -4,7 +4,7 @@ import {
   ComputedFields,
 } from "contentlayer/source-files"; // eslint-disable-line
 import rehypePrism from "rehype-prism-plus";
-// import codeTitle from "remark-code-titles";
+import rehypeSlug from "rehype-slug";
 
 const getSlug = (doc: any) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
 
@@ -32,7 +32,7 @@ export const Post = defineDocumentType(() => ({
     summary: { type: "string", required: true },
     publishedAt: { type: "string", required: true },
     updatedAt: { type: "string", required: false },
-    tags: { type: "json", required: false },
+    tags: { type: "list", required: false, of: {type: "string"} },
     featured: { type: "boolean", required: false },
     shortTitle : { type: "string", required: false, default: ""},
   },
@@ -59,7 +59,7 @@ export const Project = defineDocumentType(() => ({
     description: { type: "string", required: true },
     time: { type: "string", required: true },
     url: { type: "string", required: false },
-    tags: { type: "json", required: false },
+    tags: { type: "list", required: false, of: { type: "string"}},
   },
   computedFields: projectComputedFields,
 }));
@@ -68,7 +68,6 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post, Project],
   mdx: {
-    rehypePlugins: [rehypePrism],
-    // remarkPlugins: [codeTitle],
+    rehypePlugins: [rehypePrism, rehypeSlug],
   },
 });

@@ -7,18 +7,15 @@ import ConnectLinks from "../../components/ConnectLinks";
 import Workplaces from "./components/Workplaces";
 import Gallery from "./components/Gallery";
 
-import hinesLogo from "public/work/hines-logo.jpeg";
-import perishipLogo from "public/work/periship-logo.jpeg";
-import camsLogo from "public/work/cams-logo.png";
-import uhdLogo from "public/work/uhd.png";
-
-import meLily from "public/gallery/me-lily.jpg";
-import colorado from "public/gallery/colorado.jpg";
+import soprasteriaLogo from "public/work/sopra-steria-logo.jpg";
+import arcosLogo from "public/work/arcos-logo.png";
+import motorcycle from "public/gallery/moto.jpg";
+import fpv from "public/gallery/fpv.png";
 
 export const metadata: Metadata = {
-  title: "About | Brian Ruiz",
+  title: "À propos | Oscar Decloquement",
   description:
-    "I am a full-stack software engineer who basically just enjoys creating things.",
+    "Je suis un développeur full-stack qui aime découvrir de nouvelles technologies.",
 };
 
 export default function About() {
@@ -26,13 +23,13 @@ export default function About() {
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight">
-          About Me
+          À propos de moi
         </h1>
         <p
           className="text-secondary animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          Just a quick glimpse.
+          Un petit aperçu.
         </p>
       </div>
       <div className="lg:hidden mb-8">
@@ -41,8 +38,8 @@ export default function About() {
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <Image
-            src={meLily}
-            alt={"me and lily"}
+            src={fpv}
+            alt={"fpv"}
             width={324}
             height={139}
             className="relative h-60 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl -rotate-6"
@@ -55,8 +52,8 @@ export default function About() {
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Image
-            src={colorado}
-            alt={"me and lily"}
+            src={motorcycle}
+            alt={"motorcycle"}
             width={220}
             height={260}
             className="absolute w-48 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl rotate-6 left-[45%] md:left-[60%] md:w-56 -top-48"
@@ -71,41 +68,28 @@ export default function About() {
         className="flex flex-col gap-16 animate-in md:gap-24"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <Section heading="About" headingAlignment="left">
+        <Section heading="À propos" headingAlignment="left">
           <div className="flex flex-col gap-6">
-            <p>Hello world, I&apos;m Brian Ruiz!</p>
+            <p>Bonjour, Je suis Decloquement Oscar !</p>
 
             <p>
-              I have a passion for design and am always looking for ways to
-              incorporate it into my engineering work.
+              J&apos;ai une passion pour les nouvelles technologies et
+              je suis toujours à la recherche de moyens de les intégrer dans mon travail.
             </p>
             <p>
-              In addition to coding, I also make{" "}
-              <a
-                className="underline"
-                href="https://www.youtube.com/channel/@brianruizy"
-                target="__blank"
-              >
-                YouTube
-              </a>{" "}
-              videos, where I focus on tech gear, creative vlogs, and a bit of
-              personal development.
-            </p>
-            <p>
-              When I&apos;m not at my desk I am probably lifting weights,
-              playing soccer, or at a coffee shop :)
+              Quand je ne travail pas, je suis probablement en train de soulever des poids au crossfit,
+              de courir avec mon chien ou en découverte d&apos;environement avec mon drone FPV et ma moto
             </p>
           </div>
         </Section>
 
-        <Section heading="Connect" headingAlignment="left">
+        <Section heading="Réseaux" headingAlignment="left">
           <div className="flex flex-col w-full gap-8">
             <p>
-              Have a question or just want to chat? Feel free to{" "}
-              <a href="mailto:contact@b-r.io" className="underline">
-                email me
+              Vous avez une question ou souhaitez simplement discuter ? N&apos;hésitez pas à {" "}
+              <a href="mailto:odecloquement@gmail.com" className="underline">
+                m&apos;envoyer un email
               </a>
-              . Try finding me anywhere else at @brianruizy
             </p>
             <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
               {ConnectLinks.map((link) => (
@@ -137,24 +121,22 @@ export default function About() {
           </div>
         </Section>
 
-        <Section heading="Work" headingAlignment="left">
+        <Section heading="Travail" headingAlignment="left">
           <div className="flex flex-col w-full gap-8">
             <p>
-              {new Date().getFullYear() - 2019}+ years of professional
-              development experience.
+              {new Date().getFullYear() - 2020}+ années d&apos;expérience en développement informatique (3 ans d&apos;alternance).
             </p>
             <p>
-              I started my career teaching others how to code, which I will
-              always be appreciative of. Then I worked at a few small local
-              companies. Now I&apos;m a full stack engineer currently working at{" "}
-              <a
+              J&apos;ai commencé ma carrière chez Arcos en autonomie.
+              Ensuite, j&apos;ai travaillé chez Sopra Steria.
+              Je suis maintenant un développeur et je travaille toujours chez {" "}
+              <Link
                 className="underline"
-                href="https://hines.com"
-                target="__blank"
+                href="https://www.soprasteria.fr/"
               >
-                Hines
-              </a>
-              , one of the largest private real estate investors in the world.
+                Sopra Steria
+              </Link>
+              , l&apos;une des plus grandes ESN Française..
             </p>
             <Workplaces items={workplaces} />
           </div>
@@ -166,31 +148,24 @@ export default function About() {
 
 const workplaces = [
   {
-    title: "Full Stack Engineer",
-    company: "Hines",
-    time: "2022 -",
-    imageSrc: hinesLogo,
-    link: "https://hines.com",
+    title: "Développeur Java",
+    company: "Sopra Steria",
+    time: "2023 -",
+    imageSrc: soprasteriaLogo,
+    link: "https://www.soprasteria.fr/",
   },
   {
-    title: "Software Engineer",
-    company: "PeriShip",
-    time: "2021 - 2022",
-    imageSrc: perishipLogo,
-    link: "https://peripharma.com/",
+    title: "Développeur Full Stack",
+    company: "Sopra Steria",
+    time: "2021 - 2023",
+    imageSrc: soprasteriaLogo,
+    link: "https://www.soprasteria.fr/",
   },
   {
-    title: "Python Developer",
-    company: "CAMS",
-    time: "2019 - 2020",
-    imageSrc: camsLogo,
-    link: "https://camstex.com",
-  },
-  {
-    title: "Coding Camp Instructor",
-    company: "University of Houston",
-    time: "2019",
-    imageSrc: uhdLogo,
-    link: "https://www.uhd.edu/",
+    title: "Développeur Full Stack",
+    company: "ARCOS",
+    time: "2020 - 2021",
+    imageSrc: arcosLogo,
+    link: "https://arcos-recouvrement.com/",
   },
 ];

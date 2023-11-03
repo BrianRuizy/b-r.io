@@ -4,36 +4,26 @@ import useSWR from "swr";
 import { useTheme } from "next-themes";
 import clsx from "clsx";
 
-import { FaYoutube, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { ArrowTrendingUpIcon } from "@heroicons/react/20/solid";
 
 import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/lib/fetcher";
 import { addCommas } from "@/lib/utils";
 
-export function YouTube() {
-  const { data: youtubeData, error: youtubeDataError } = useSWR(
-    `/api/youtube`,
-    fetcher
-  );
-
-  if (youtubeDataError) return <div>failed to load</div>;
-  return addCommas(youtubeData?.subscribers);
-}
-
 export function GitHub() {
   const { data: githubData, error: githubDataError } = useSWR(
-    `/api/github?username=brianruizy`,
+    `/api/github?username=fyleek`,
     fetcher
   );
 
   if (githubDataError) return <div>failed to load</div>;
-  return addCommas(githubData?.stars);
+  return addCommas(githubData?.numberOfProject);
 }
 
 export default function Stats() {
   const { theme } = useTheme();
-  const username = "brianruizy";
+  const username = "fyleek";
 
   const { data: githubData, error: githubDataError } = useSWR(
     `/api/github?username=${username}`,
@@ -41,10 +31,6 @@ export default function Stats() {
   );
   const { data: postsData, error: postsError } = useSWR(
     `/api/hitsTotal`,
-    fetcher
-  );
-  const { data: youtubeData, error: youtubeDataError } = useSWR(
-    `/api/youtube`,
     fetcher
   );
 
@@ -58,39 +44,26 @@ export default function Stats() {
       <li className="transition-opacity">
         <Link
           className="flex gap-3 items-center no-underline"
-          href={"https://github.com/brianruizy"}
+          href={"https://github.com/Fyleek"}
         >
           <FaGithub className="text-xl" />
           <div>
             <FlipNumber>
-              {githubData ? addCommas(githubData?.stars) : "000"}
+              {githubData ? addCommas(githubData?.numberOfProject) : "000"}
             </FlipNumber>
-            <span> Repository Stars</span>
+            <span> Projets Github</span>
           </div>
         </Link>
       </li>
-      <li className="transition-opacity">
+      <li className="transition-opacity bg-tertiary">
         <Link className="flex gap-3 items-center" href="/blog">
           <ArrowTrendingUpIcon className="w-5 h-5" />
           <div>
-            <FlipNumber>
+            En développement...
+            {/* <FlipNumber>
               {postsData ? addCommas(postsData?.total) : "0,000"}
-            </FlipNumber>
-            <span> Total Blog Views</span>
-          </div>
-        </Link>
-      </li>
-      <li className="transition-opacity">
-        <Link
-          className="flex gap-3 items-center no-underline"
-          href={"https://www.youtube.com/@" + username}
-        >
-          <FaYoutube className="text-xl" />
-          <div>
-            <FlipNumber>
-              {youtubeData ? addCommas(youtubeData?.subscribers) : "00,000"}
-            </FlipNumber>
-            <span> YouTube Subscribers</span>
+            </FlipNumber> */}
+            {/* <span> Total Blog Views</span> */}
           </div>
         </Link>
       </li>

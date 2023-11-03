@@ -14,7 +14,6 @@ type PostProps = {
 };
 
 export default function Project({ params }: { params: any }) {
-  // const post = allPosts.find((post) => post.slug === params.slug);
   const post = allProjects.find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -24,23 +23,23 @@ export default function Project({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex flex-col gap-3 animate-in px-4 md:px-6 py-2 max-w-[700px] mx-auto pt-16 md:pt-20">
+        <div className="flex animate-in flex-col gap-3">
           <div className="flex gap-3 text-secondary">
             <p>{post.time}</p>
             {post.url && (
               <>
                 <span>&middot;</span>
                 <Link href={post.url} className="hover:text-primary">
-                  Visit Project ↗
+                  Voir le projet
                 </Link>
               </>
             )}
           </div>
-          <h1 className="text-primary text-3xl font-bold tracking-tight leading-tight">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
             {post.title}
           </h1>
           <p
-            className="text-lg text-secondary animate-in"
+            className="animate-in text-lg leading-tight text-secondary md:text-xl"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.description}
@@ -49,20 +48,20 @@ export default function Project({ params }: { params: any }) {
 
         <div className="h-12" />
         <div
-          className="prose project px-4 md:px-6 py-2 max-w-[1024px] mx-auto animate-in"
+          className="prose prose animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Mdx code={post.body.code} />
         </div>
       </article>
-      <div className="flex flex-col gap-20 px-4 md:px-6 py-2 w-full max-w-[700px] mx-auto">
+      <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">
           <h2>Tags</h2>
           <div className="flex flex-wrap gap-3 ">
-            {post.tags.map((tag: string) => (
+            {post.tags?.map((tag: string) => (
               <div
                 key={tag}
-                className="px-4 py-1.5 rounded-lg bg-secondary text-sm text-secondary whitespace-nowrap"
+                className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
               >
                 {tag}
               </div>
@@ -72,18 +71,17 @@ export default function Project({ params }: { params: any }) {
 
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
-          <p className="text-secondary max-w-lg">
-            Need more project details, or interested in working together? Reach
-            me directly at{" "}
-            <a href="mailto:contact@b-r.io" className="text-primary underline">
-              brian@b-r.io
-            </a>
-            . I&apos;d be happy to connect!{" "}
+          <p className="max-w-lg text-secondary ">
+            Besoin de plus de détails sur le projet ou intéressé à travailler ensemble ? Contactez
+            moi directement à{" "}
+            <Link href="mailto:contact@b-r.io" className="text-primary underline">
+              odecloquement@gmail.com
+            </Link>
           </p>
         </div>
 
         <Link href="/projects" className="text-primary underline">
-          ← All Projects
+          ← Tous les Projects
         </Link>
       </div>
 

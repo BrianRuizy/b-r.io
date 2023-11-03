@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import localFont from 'next/font/local'
 
-import texas from "public/gallery/texas.jpg";
-import meLily from "public/gallery/me-lily.jpg";
-import colorado from "public/gallery/colorado.jpg";
-import cowboy from "public/gallery/cowboy-bike.webp";
+import motorcycle from "public/gallery/moto.jpg";
+import fpv from "public/gallery/fpv.png";
+import isis from "public/gallery/isis.jpg";
+import crossfit from "public/gallery/crossfit.jpg";
 
 import Halo from "@/components/ui/Halo";
 
@@ -141,9 +141,8 @@ export default function Gallery() {
     <>
       <section className="flex gap-4 h-[268px] relative">
         <Photo
-          src={meLily}
-          meta="2021-07-12"
-          alt="Brian and Lily"
+          src={crossfit}
+          alt="crossfit"
           width={324}
           height={239}
           rotate={-6}
@@ -151,9 +150,8 @@ export default function Gallery() {
           index={1}
         />
         <Photo
-          src={cowboy}
-          meta="2017-07-04"
-          alt="my e-bike"
+          src={isis}
+          alt="my dog"
           width={230}
           height={250}
           rotate={6.3}
@@ -162,9 +160,8 @@ export default function Gallery() {
           flipDirection="left"
         />
          <Photo
-          src={texas}
-          meta="2021-05-20"
-          alt="Texas"
+          src={motorcycle}
+          alt="motorcycle suit"
           width={280}
           height={235}
           rotate={-5.4}
@@ -172,9 +169,8 @@ export default function Gallery() {
           index={3}
         />
         <Photo
-          src={colorado}
-          meta="2022-09-10"
-          alt={"Snowboarding in Colorado"}
+          src={fpv}
+          alt={"fpv"}
           width={220}
           height={260}
           rotate={7.6}
