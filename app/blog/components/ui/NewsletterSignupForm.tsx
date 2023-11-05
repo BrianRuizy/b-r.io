@@ -78,7 +78,7 @@ export default function NewsletterSignupForm() {
           The Modern Blueprint —monthly readings on topics like
           technology, design, productivity, self-improvement, programming, and more!
         </p>
-        <form className="mt-2 flex items-center gap-2" onSubmit={onSubmit}>
+        <form className="mt-2 flex flex-col md:flex-row items-center gap-2" onSubmit={onSubmit}>
           <input
             type="email"
             placeholder="Your email"
@@ -87,7 +87,7 @@ export default function NewsletterSignupForm() {
             name={name}
             className="rounded-md bg-primary px-4 py-1 placeholder:text-secondary dark:bg-secondaryA"
           />
-          <button className="rounded-md bg-neutral-800 px-4 py-1 text-white hover:bg-neutral-900 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-200 dark:text-black hover:dark:bg-neutral-100">
+          <button className="w-full md:w-fit rounded-md bg-neutral-800 px-4 py-1 text-white hover:bg-neutral-900 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-200 dark:text-black hover:dark:bg-neutral-100">
             {"Sign up"}
           </button>
         </form>
