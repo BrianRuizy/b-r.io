@@ -8,6 +8,11 @@ export async function GET() {
   // Required parameters
   // api_secret - Your API secret key
 
+  if (!API_SECRET) {
+    console.error("API_SECRET is missing");
+    return new Response("API_SECRET is missing", { status: 500 });
+  }
+
   const url = `https://api.convertkit.com/v3/subscribers?api_secret=${API_SECRET}`;
 
   try {

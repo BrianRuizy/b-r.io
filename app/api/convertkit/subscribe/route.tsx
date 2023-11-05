@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
@@ -8,6 +8,13 @@ const FORM_ID = process.env.CONVERTKIT_FORM_ID;
 export async function POST(req: NextRequest) {
   // Endpoint
   // POST /v3/forms/#{form_id}/subscribe
+
+  if (!API_KEY || !FORM_ID) {
+    console.error("Error: API_KEY or FORM_ID is missing");
+    return new Response("Error: API_KEY or FORM_ID is missing", {
+      status: 500,
+    });
+  }
 
   const { email } = await req.json();
   const url = `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe`;

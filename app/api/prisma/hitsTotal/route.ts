@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-export const runtime = "edge";
-
 const prisma = new PrismaClient();
 
 export async function GET() {
