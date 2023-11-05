@@ -1,11 +1,14 @@
-import { type NextRequest } from "next/server";
+import { NextRequest } from 'next/server';
 
-// Endpoint
-// POST /v3/forms/#{form_id}/subscribe
+export const runtime = "edge";
+
 const API_KEY = process.env.CONVERTKIT_API_KEY;
 const FORM_ID = process.env.CONVERTKIT_FORM_ID;
 
 export async function POST(req: NextRequest) {
+  // Endpoint
+  // POST /v3/forms/#{form_id}/subscribe
+
   const { email } = await req.json();
   const url = `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe`;
 

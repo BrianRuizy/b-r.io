@@ -1,12 +1,13 @@
-// Endpoint
-// GET /v3/subscribers
-
-// Required parameters
-// api_secret - Your API secret key
-
+export const runtime = "edge";
 const API_SECRET = process.env.CONVERTKIT_API_SECRET;
 
 export async function GET() {
+  // Endpoint
+  // GET /v3/subscribers
+
+  // Required parameters
+  // api_secret - Your API secret key
+
   const url = `https://api.convertkit.com/v3/subscribers?api_secret=${API_SECRET}`;
 
   try {

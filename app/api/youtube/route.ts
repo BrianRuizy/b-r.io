@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 export async function GET() {
   if (!process.env.YOUTUBE_API_KEY) {
     return new Response("No Youtube API key found.", { status: 500 });
