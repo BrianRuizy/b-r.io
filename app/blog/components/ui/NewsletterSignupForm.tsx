@@ -2,6 +2,7 @@
 
 import { FormEventHandler, useCallback, useState } from "react";
 import useSWR from "swr";
+
 import Halo from "@/components/ui/Halo";
 import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/lib/fetcher";
@@ -72,22 +73,29 @@ export default function NewsletterSignupForm() {
 
   return (
     <Halo>
-      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-tertiary p-6 lg:p-8 text-center">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-tertiary p-6 text-center lg:p-8">
         <p className="font-medium text-primary">Subscribe to my newsletter</p>
-        <p className="max-w-lg text-secondary">
-          The Modern Blueprint —monthly readings on topics like
-          technology, design, productivity, self-improvement, programming, and more!
+        <p className="max-w-md text-secondary">
+          The Modern Blueprint —monthly readings on topics like tech,
+          design, productivity, programming, and more!
         </p>
-        <form className="w-full mt-2 flex flex-col md:flex-row items-center gap-2" onSubmit={onSubmit}>
-          <input
-            type="email"
-            placeholder="Your email"
-            aria-label="Your email address"
-            required
-            name={name}
-            className="w-full rounded-md bg-primary px-4 py-1 placeholder:text-secondary dark:bg-secondaryA"
-          />
-          <button className="w-full md:w-fit rounded-md bg-neutral-800 px-4 py-1 text-white hover:bg-neutral-900 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-200 dark:text-black hover:dark:bg-neutral-100">
+        <form
+          className="mt-2 flex  w-full max-w-md flex-col items-center gap-2 md:flex-row"
+          onSubmit={onSubmit}
+        >
+          <div className="w-full">
+            <label htmlFor="email" className="sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              name={name}
+              id="email"
+              className="block w-full rounded-md border-0 px-4 py-1.5 text-neutral-900 ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="you@example.com"
+            />
+          </div>
+          <button className="w-full whitespace-nowrap rounded-md bg-neutral-800 px-4 py-1.5 text-white hover:bg-neutral-900 focus:ring-inset focus:ring-indigo-600 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-200 dark:text-black hover:dark:bg-neutral-100 md:w-fit ">
             {"Sign up"}
           </button>
         </form>
