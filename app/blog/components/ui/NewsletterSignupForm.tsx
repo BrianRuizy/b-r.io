@@ -72,20 +72,20 @@ export default function NewsletterSignupForm() {
 
   return (
     <Halo>
-      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-tertiary p-8 text-center">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-tertiary p-6 lg:p-8 text-center">
         <p className="font-medium text-primary">Subscribe to my newsletter</p>
         <p className="max-w-lg text-secondary">
           The Modern Blueprint —monthly readings on topics like
           technology, design, productivity, self-improvement, programming, and more!
         </p>
-        <form className="mt-2 flex flex-col md:flex-row items-center gap-2" onSubmit={onSubmit}>
+        <form className="w-full mt-2 flex flex-col md:flex-row items-center gap-2" onSubmit={onSubmit}>
           <input
             type="email"
             placeholder="Your email"
             aria-label="Your email address"
             required
             name={name}
-            className="rounded-md bg-primary px-4 py-1 placeholder:text-secondary dark:bg-secondaryA"
+            className="w-full rounded-md bg-primary px-4 py-1 placeholder:text-secondary dark:bg-secondaryA"
           />
           <button className="w-full md:w-fit rounded-md bg-neutral-800 px-4 py-1 text-white hover:bg-neutral-900 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-200 dark:text-black hover:dark:bg-neutral-100">
             {"Sign up"}
