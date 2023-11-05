@@ -40,7 +40,7 @@ export default function Stats() {
     fetcher
   );
   const { data: postsData, error: postsError } = useSWR(
-    `/api/hitsTotal`,
+    `/api/prisma/hitsTotal`,
     fetcher
   );
   const { data: youtubeData, error: youtubeDataError } = useSWR(
