@@ -1,0 +1,21 @@
+// Endpoint
+// GET /v3/subscribers
+
+// Required parameters
+// api_secret - Your API secret key
+
+const API_SECRET = process.env.CONVERTKIT_API_SECRET;
+
+export async function GET() {
+  const url = `https://api.convertkit.com/v3/subscribers?api_secret=${API_SECRET}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const subscribers = data.total_subscribers;
+    return Response.json({ subscribers });
+  } catch (error) {
+    console.error(error);
+    return new Response(`Something went wrong: ${error}`, { status: 200 });
+  }
+}
