@@ -16,7 +16,7 @@ export async function GET() {
 
   try {
     const response = await fetch(url, {
-      cache: "no-cache",
+      cache: "no-store",
     });
     const data = await response.json();
     const subscribers = data.total_subscribers;
