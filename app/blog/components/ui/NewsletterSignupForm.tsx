@@ -100,7 +100,7 @@ export default function NewsletterSignupForm() {
           </button>
         </form>
         <p className="text-sm text-tertiary">
-          Join the <FlipNumber>{subscribersData.subscribers}</FlipNumber> other
+          Join the <FlipNumber>{subscribersData?.subscribers}</FlipNumber> other
           readers.
         </p>
       </div>
