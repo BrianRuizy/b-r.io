@@ -1,4 +1,3 @@
-export const runtime = "edge";
 const API_SECRET = process.env.CONVERTKIT_API_SECRET;
 
 export async function GET() {
@@ -16,7 +15,9 @@ export async function GET() {
   const url = `https://api.convertkit.com/v3/subscribers?api_secret=${API_SECRET}`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: "no-cache",
+    });
     const data = await response.json();
     const subscribers = data.total_subscribers;
     return Response.json({ subscribers });

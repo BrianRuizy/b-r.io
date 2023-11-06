@@ -91,7 +91,7 @@ export default function NewsletterSignupForm() {
               type="email"
               name={name}
               id="email"
-              className="block w-full rounded-md border-0 px-4 py-1.5 text-neutral-900 ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md  px-4 py-1.5 text-neutral-900 border border-primary placeholder:text-neutral-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="you@example.com"
             />
           </div>
@@ -100,7 +100,7 @@ export default function NewsletterSignupForm() {
           </button>
         </form>
         <p className="text-sm text-tertiary">
-          Join the <FlipNumber>{subscribersData?.subscribers}</FlipNumber> other
+          Join the <FlipNumber>{subscribersData.subscribers}</FlipNumber> other
           readers.
         </p>
       </div>
