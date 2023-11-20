@@ -15,7 +15,9 @@ export async function GET() {
   const url = `https://api.convertkit.com/v3/subscribers?api_secret=${API_SECRET}`;
 
   try {
-    const response = await fetch(url, { next: { revalidate: 43200 } }); // twelve hours
+    const response = await fetch(url, {
+      cache: "no-store",
+    });
     const data = await response.json();
     const subscribers = data.total_subscribers;
     return Response.json({ subscribers });
