@@ -131,6 +131,7 @@ export default function Gear() {
   );
 }
 
+
 const gear = [
   {
     name: "Sway Standing Desk",
