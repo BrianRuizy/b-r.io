@@ -140,7 +140,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline">
+              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
                 Mid-roll Integration
               </p>
               <p className="text-sm text-secondary">Akiflow App · 485k Views</p>
@@ -156,7 +156,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline">
+              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
                 Mid-roll Integration
               </p>
               <p className="text-sm text-secondary">
@@ -174,7 +174,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline">
+              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
                 Listicle Featured Product
               </p>
               <p className="text-sm text-secondary">Ergonofis · 156k Views</p>
@@ -190,7 +190,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline">
+              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
                 Dedicated Video
               </p>
               <p className="text-sm text-secondary">
