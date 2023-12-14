@@ -138,7 +138,7 @@ export default async function Post({ params }: { params: any }) {
 
       <Tags tags={post.tags} />
 
-      <Link href="/blog">← All Blogs</Link>
+      <Link href="/blog">← Tous les Blogs</Link>
     </div>
   );
 }

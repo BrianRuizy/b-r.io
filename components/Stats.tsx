@@ -55,15 +55,14 @@ export default function Stats() {
           </div>
         </Link>
       </li>
-      <li className="transition-opacity bg-tertiary">
+      <li className="transition-opacity">
         <Link className="flex gap-3 items-center" href="/blog">
           <ArrowTrendingUpIcon className="w-5 h-5" />
           <div>
-            En développement...
-            {/* <FlipNumber>
+            <FlipNumber>
               {postsData ? addCommas(postsData?.total) : "0,000"}
-            </FlipNumber> */}
-            {/* <span> Total Blog Views</span> */}
+            </FlipNumber>
+            <span> Vues du Blog</span>
           </div>
         </Link>
       </li>
