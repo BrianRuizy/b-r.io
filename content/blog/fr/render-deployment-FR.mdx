@@ -1,0 +1,159 @@
+---
+title: "Comment ajouter votre statut de déploiement de Render dans votre repo Github avec Python"
+publishedAt: "2023-11-20"
+summary: "Un aperçu rapide de la configuration du projet et de la stack technologique que j'ai utilisé."
+tags:
+  - Python
+  - CI/CD
+  - Linter
+  - Formater
+  - Sonar Cloud
+shortTitle: Render API
+---
+
+## Pourquoi ai-je démarré ce projet?
+
+En entamant le développement de mon application Render Deployment au cours du développement d'une autre application basée sur une API REST en Python, j'ai été motivé par la nécessité d'avoir un suivi transparent du statut de déploiement directement dans le référentiel GitHub.
+
+J'avais précédemment utilisé Vercel, qui offrait cette fonctionnalité automatiquement pour mon portfolio, et j'ai trouvé cela extrêmement utile. 
+
+Cependant, lorsque j'ai migré vers Render, j'ai rapidement réalisé qu'il n'existait pas d'application officielle GitHub pour gérer la CI/CD, ce qui m'a poussé à développer ma propre solution. Cette expérience m'a permis de mieux comprendre les besoins spécifiques de mon workflow de développement et de créer une application qui répondait parfaitement à ces exigences.
+
+> Innover, c'est dire non à mille choses. Steve Jobs (1955-2011)
+
+## Sources de données
+
+Les sources de données proviennent des commits émits sur la branche main de n'importe quel projet qui utilise une application Github qui renvoie un webhook à l'API qui elle-même est liée à un déploiement sur Render.
+
+<Image
+  width={600}
+  height={400}
+  src="/blog/render-deployment/github-actions.svg"
+/>
+
+## Stack technologique
+
+Ce projet utilise FastAPI en Python 3.0. Il fait le lien entre les webhooks de Render et les webhooks de l'application Github afin de récupérer et transmettre le statut de déploiement d'une application render dans la branch github.
+
+Le projet utilise Black et Flake8 pour le formatage du code. SonarCloud lui est utilisé pour éviter des vulnérabilités et scanner l'optimisation du code. 
+
+<Image
+  width={600}
+  height={400}
+  src="/blog/render-deployment/stack.svg"
+/>
+
+## Comment ça fonctionne
+
+Le code qui va suivre explique brièvement comment fonctionne le projet ainsi que les méthodes qui le compose.
+
+Si vous souhaitez plus d'informations concernant le projet je vous laisse aller sur la documentation du projet qui ce trouve sur mon Github.
+
+<Alert type="warning">
+  Le code est volontairement incomplet pour facilité l'explication.
+</Alert>
+
+### 1. Récupération de l'event de l'application Github 📲
+
+Comme expliqué dans la [documentation](https://github.com/Fyleek/render-api?tab=readme-ov-file#installation-and-creation-of-the-github-app), vous devez créer une application Github qui peut accéder à votre workflow, déploiement, metadata, ...
+
+Ensuite elle doit transmettre un [event](https://docs.github.com/en/webhooks/webhook-events-and-payloads#pull_request) à votre webhook
+
+```python showLineNumbers {1}
+def manage_deployment_status(data: Dict):
+    pr = data["pull_request"]
+    repo_data = data["repository"]
+    state, merged = pr["state"], pr["merged"]
+    user_repo, repo_url = repo_data["full_name"], repo_data["html_url"]
+    owner, repo = repo_data["owner"]["login"], repo_data["name"]
+
+    if not (merged and state == "closed"):
+        return
+
+    service_id = get_render_service_id(repo_url)
+    if not service_id:
+        logger.error("Render service ID is null")
+        return
+
+    deployment_status = get_render_deployment_status(service_id)
+    if not deployment_status:
+        return
+
+    process_deployment_status(user_repo, repo, owner, deployment_status, service_id)
+```
+
+### 2. Récupération des informations 🧮
+
+Si la `pull_request` est `merged`, nous allons maintenant aller récupérer le statut de déploiement sur l'API de Render afin de voir si elle est `success` ou `failure` 
+
+```py showLineNumbers {5}
+def update_github_deployment_status(owner, repo, status, deployment_id, user_repo, github_deployment_id, service_id):
+    create_github_deployment_status(owner, repo, status, deployment_id, user_repo, github_deployment_id)
+    new_status = ""
+    while new_status not in ["failure", "success"]:
+        new_render_deployment_status = get_render_deployment_status(service_id)
+        new_status = get_github_status(new_render_deployment_status["status"])
+        time.sleep(10)  # You can remove it (but it's better to not spam the render API [400 GET request/minutes])
+    create_github_deployment_status(owner, repo, new_status, deployment_id, user_repo, github_deployment_id)
+```
+
+### 3. Assignation des statuts 📨
+
+Je fais un mapping des statuts de Render vers les statuts de Github pour ensuite retourner à Github le statut final de déploiement
+
+```py
+def get_github_status(render_status: str) -> str:
+    #  Link between render and github status
+    state_mapping = {
+        "build_in_progress": "in_progress",
+        "created": "in_progress",
+        "update_in_progress": "in_progress",
+        "pre_deploy_in_progress": "in_progress",
+        "live": "success",
+        "build_failed": "failure",
+        "update_failed": "failure",
+        "pre_deploy_failed": "failure",
+        "canceled": "cancel",
+        "deactivated": "inactive",
+    }
+
+    return state_mapping.get(render_status, "error")
+```
+
+### 4. Retour du statut de déploiement à Github 📊
+
+Une fois que nous avons le statut final, nous pouvons renvoyer le statut à Github
+
+```python showLineNumbers {10-17}
+def create_github_deployment_status(
+    owner: str,
+    repo: str,
+    status: str,
+    render_deployment_id: str,
+    user_repo: str,
+    github_deployment_id: str,
+):
+    url = f"{GITHUB_ROOT}/repos/{user_repo}/deployments/{github_deployment_id}/statuses"
+    data = {
+        "owner": owner,
+        "repo": repo,
+        "state": status,
+        "deployment_id": render_deployment_id,
+        "environment": "Production",
+        "description": "Deployment status from Render",
+    }
+    response = session.post(url, headers=get_headers("github"), json=data)
+    logger.info(f"POST: {url} executed with status_code: {response.status_code}")
+```
+
+<Alert type="info">
+  Visiter la <a href="https://github.com/Fyleek/render-api" style={{"color": "blue"}}>documentation</a> pour une meilleur compréhension.
+</Alert>
+
+## Finalité
+
+Alors ai-je atteint mon objectif initial ? Oui, le manque d'une application CI/CD de Render pour les déploiements est résolu avec mon application.
+
+Ce projet répond à une toute petite partie des besoins et des possibilités entre Render et la CI/CD de Github, en revanche c'est un premier pas pour moi et pour d'autres utilisateurs qui souhaiterais ajouter leurs pierres à l'édifice.
+
+Si vous êtes un développeur et que vous souhaitez contribuer au projet et ajouter de nouvelles fonctionnalités à l'API, vous pouvez consulter la documentation sur le [repo](https://github.com/Fyleek/render-api)

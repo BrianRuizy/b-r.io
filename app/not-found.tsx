@@ -1,11 +1,4 @@
 import Link from "@/components/ui/Link";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "404 | Oscar Decloquement",
-  description:
-    "Uh oh! This page does not exist",
-};
 
 const Custom404 = (): JSX.Element => (
   <div className="flex flex-col gap-2">

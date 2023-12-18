@@ -6,19 +6,25 @@ import { useTheme } from "next-themes";
 
 import NavLink from "./ui/NavLink";
 import ThemeSwitcher from "./ThemeSwitcher";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 
-const links = [
-  { label: "À propos", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Projets", href: "/projects" },
-];
+import { useLang } from "./LanguageProvider";
+import { navigationTranslations } from "@/translations/navigationTranslations";
 
 export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic subpages
   const { theme } = useTheme();
+  const { lang } = useLang();
+  const text = navigationTranslations[lang];
+
+  const links = [
+    { label: text.about, href: "/about" },
+    { label: "Blog", href: "/blog" },
+    { label: text.project, href: "/projects" },
+  ];
 
   return (
     <header className={clsx("relative md:sticky top-0 z-20 bg-primary")}>
@@ -72,7 +78,6 @@ export default function Navigation() {
           >
             <Popover.Panel
               className="absolute z-10 right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg w-40 rounded-xl bg-white dark:bg-black focus:outline-none sm:text-sm"
-              style={theme === "terminal" ? { background: "#040605" } : {}}
             >
               <div className="grid">
                 {links.map((link) => (
@@ -96,6 +101,7 @@ export default function Navigation() {
 
         <div className="flex items-center justify-center w-8 h-8">
           <ThemeSwitcher />
+          < LanguageSwitcher />
         </div>
       </nav>
     </header>

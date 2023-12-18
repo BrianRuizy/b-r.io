@@ -1,3 +1,4 @@
+"use client";
 import { allProjects, Post as PostType } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -8,6 +9,9 @@ import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
 
+import { useLang } from "@/components/LanguageProvider";
+import { projectTranslations } from "@/translations/projectTranslations";
+
 type PostProps = {
   post: PostType;
   related: PostType[];
@@ -15,6 +19,9 @@ type PostProps = {
 
 export default function Project({ params }: { params: any }) {
   const post = allProjects.find((post) => post.slug === params.slug);
+
+  const { lang } = useLang();
+  const text = projectTranslations[lang];
 
   if (!post) {
     notFound();
@@ -30,7 +37,7 @@ export default function Project({ params }: { params: any }) {
               <>
                 <span>&middot;</span>
                 <Link href={post.url} className="hover:text-primary">
-                  Voir le projet
+                  {text.seeProject}
                 </Link>
               </>
             )}
@@ -42,7 +49,7 @@ export default function Project({ params }: { params: any }) {
             className="animate-in text-lg leading-tight text-secondary md:text-xl"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            {post.description}
+            {post.description[lang]}
           </p>
         </div>
 
@@ -58,30 +65,41 @@ export default function Project({ params }: { params: any }) {
         <div className="flex flex-col gap-6">
           <h2>Tags</h2>
           <div className="flex flex-wrap gap-3 ">
-            {post.tags?.map((tag: string) => (
-              <div
-                key={tag}
-                className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
-              >
-                {tag}
-              </div>
-            ))}
+            {typeof post.tags === "object" && post.tags[lang]
+              ? post.tags[lang].map((tag: string) => (
+                  <div
+                    key={tag}
+                    className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
+                  >
+                    {tag}
+                  </div>
+                ))
+              : post.tags.map((tag: string) => (
+                  <div
+                    key={tag}
+                    className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
+                  >
+                    {tag}
+                  </div>
+                ))}
           </div>
         </div>
 
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-lg text-secondary ">
-            Besoin de plus de détails sur le projet ou intéressé à travailler ensemble ? Contactez
-            moi directement à{" "}
-            <Link href="mailto:contact@b-r.io" className="text-primary underline">
+            {text.contact}{" "}
+            <Link
+              href="mailto:contact@b-r.io"
+              className="text-primary underline"
+            >
               odecloquement@gmail.com
             </Link>
           </p>
         </div>
 
         <Link href="/projects" className="text-primary underline">
-          ← Tous les Projects
+          ← {text.allProjects}
         </Link>
       </div>
 

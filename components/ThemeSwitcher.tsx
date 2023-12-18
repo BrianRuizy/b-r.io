@@ -3,11 +3,15 @@ import { Listbox } from "@headlessui/react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useLang } from "@/components/LanguageProvider";
+import { themeTranslations } from "@/translations/themeTranslations";
 
 import { MoonIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { SunIcon } from "@heroicons/react/24/outline";
 
 export default function ThemeSwitcher() {
+  const { lang } = useLang();
+  const text = themeTranslations[lang];
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme, themes } = useTheme();
 
@@ -50,9 +54,6 @@ export default function ThemeSwitcher() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
                     className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-white dark:bg-black focus:outline-none sm:text-sm capitalize"
-                    style={
-                      theme === "terminal" ? { background: "#040605" } : {}
-                    }
                   >
                     {themes.map((theme) => (
                       <Listbox.Option
@@ -72,7 +73,7 @@ export default function ThemeSwitcher() {
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {theme == "system" ? "Automatic" : theme}
+                              {theme === "system" ? text.automatic : theme === "light" ? text.light : theme === "dark" ? text.dark : theme}
                             </span>
                             {selected ? (
                               <span className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">

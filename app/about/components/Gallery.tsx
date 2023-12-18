@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import localFont from 'next/font/local'
 
-import motorcycle from "public/gallery/moto.jpg";
-import fpv from "public/gallery/fpv.png";
-import isis from "public/gallery/isis.jpg";
-import crossfit from "public/gallery/crossfit.jpg";
+import motorcycle from "public/gallery/moto.svg";
+import fpv from "public/gallery/fpv.svg";
+import isis from "public/gallery/isis.svg";
+import crossfit from "public/gallery/crossfit.svg";
 
 import Halo from "@/components/ui/Halo";
 
@@ -117,7 +117,7 @@ function Photo({
           }}
         >
           <Halo strength={50} className="flex items-center">
-            <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.png')]" />
+            <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.svg')]" />
             <div className="z-[1] px-6">
               <div
                 className={clsx(

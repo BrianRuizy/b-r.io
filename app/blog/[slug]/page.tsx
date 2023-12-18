@@ -1,7 +1,8 @@
+"use client";
+import { useEffect, useState } from "react";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import type { Metadata, ResolvingMetadata } from "next";
 
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
@@ -9,8 +10,10 @@ import PostList from "@/app/blog/components/ui/PostList";
 import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
+import { useLang } from "@/components/LanguageProvider";
+import { blogSlugTranslations } from "@/translations/blogSlugTranslations";
 
-import Avatar from "@/public/profile_picture.png";
+import Avatar from "@/public/profile_picture.svg";
 
 type PostProps = {
   post: PostType;
@@ -25,51 +28,24 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const post = allPosts.find((post) => post.slug === params.slug);
+export default function Post({ params }: { params: any }) {
+  const { lang, setLang } = useLang();
+  setLang(params.slug.slice(-2));
+  const text = blogSlugTranslations[lang];
+  console.log("params",params);
+  const [post, setPost] = useState<PostType | null>(null);
+
+  useEffect(() => {
+    const foundPost = allPosts.find((post) => post.slug === params.slug);
+    if (!foundPost) {
+      notFound();
+    } else {
+      setPost(foundPost ?? null);
+    }
+  }, [params]);
 
   if (!post) {
-    throw new Error("Post not found");
-  }
-
-  const {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-    slug,
-  } = post;
-
-  const metadata: Metadata = {
-    title: `${title} | Oscar Decloquement`,
-    description,
-    openGraph: {
-      title: `${title} | Oscar Decloquement`,
-      description,
-      type: "article",
-      publishedTime,
-      url: `https://o-d.me/blog/${title}`,
-      images: [
-        {
-          url: `https://o-d.me/api/og?title=${title}`,
-          alt: title,
-        },
-      ],
-
-    },
-  };
-
-  return metadata;
-}
-
-export default async function Post({ params }: { params: any }) {
-  const post = allPosts.find((post) => post.slug === params.slug);
-
-  if (!post) {
-    notFound();
+    return <div>{text.loading}</div>
   }
 
   return (
@@ -138,7 +114,7 @@ export default async function Post({ params }: { params: any }) {
 
       <Tags tags={post.tags} />
 
-      <Link href="/blog">← Tous les Blogs</Link>
+      <Link href="/blog">← {text.allBlog}</Link>
     </div>
   );
 }

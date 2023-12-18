@@ -1,5 +1,5 @@
+"use client";
 import Image from "next/image";
-import { Metadata } from "next";
 
 import Link from "@/components/ui/Link";
 import Section from "@/components/Section";
@@ -7,29 +7,28 @@ import ConnectLinks from "../../components/ConnectLinks";
 import Workplaces from "./components/Workplaces";
 import Gallery from "./components/Gallery";
 
-import soprasteriaLogo from "public/work/sopra-steria-logo.jpg";
-import arcosLogo from "public/work/arcos-logo.png";
-import motorcycle from "public/gallery/moto.jpg";
-import fpv from "public/gallery/fpv.png";
+import soprasteriaLogo from "public/work/sopra-steria-logo.svg";
+import arcosLogo from "public/work/arcos-logo.svg";
+import motorcycle from "public/gallery/moto.svg";
+import fpv from "public/gallery/fpv.svg";
 
-export const metadata: Metadata = {
-  title: "À propos | Oscar Decloquement",
-  description:
-    "Je suis un développeur full-stack qui aime découvrir de nouvelles technologies.",
-};
+import { useLang } from "@/components/LanguageProvider";
+import { aboutTranslations } from "@/translations/aboutTranslations";
 
 export default function About() {
+  const { lang } = useLang();
+  const text = aboutTranslations[lang];
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight">
-          À propos de moi
+          {text.title}
         </h1>
         <p
           className="text-secondary animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          Un petit aperçu.
+          {text.subTitle}
         </p>
       </div>
       <div className="lg:hidden mb-8">
@@ -68,27 +67,25 @@ export default function About() {
         className="flex flex-col gap-16 animate-in md:gap-24"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <Section heading="À propos" headingAlignment="left">
+        <Section heading={text.firstParagraphTitle} headingAlignment="left">
           <div className="flex flex-col gap-6">
-            <p>Bonjour, Je suis Decloquement Oscar !</p>
+            <p>{text.firstParagraphContentOne}</p>
 
             <p>
-              J&apos;ai une passion pour les nouvelles technologies et
-              je suis toujours à la recherche de moyens de les intégrer dans mon travail.
+            {text.firstParagraphContentTwo}
             </p>
             <p>
-              Quand je ne travail pas, je suis probablement en train de soulever des poids au crossfit,
-              de courir avec mon chien ou en découverte d&apos;environement avec mon drone FPV et ma moto
+            {text.firstParagraphContentThree}
             </p>
           </div>
         </Section>
 
-        <Section heading="Réseaux" headingAlignment="left">
+        <Section heading={text.secondParagraphTitle} headingAlignment="left">
           <div className="flex flex-col w-full gap-8">
             <p>
-              Vous avez une question ou souhaitez simplement discuter ? N&apos;hésitez pas à {" "}
+              {text.secondParagraphContent} {" "}
               <a href="mailto:odecloquement@gmail.com" className="underline">
-                m&apos;envoyer un email
+                {text.secondParagraphLinkMail}
               </a>
             </p>
             <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
@@ -121,24 +118,22 @@ export default function About() {
           </div>
         </Section>
 
-        <Section heading="Travail" headingAlignment="left">
+        <Section heading={text.thirdParagraphTitle} headingAlignment="left">
           <div className="flex flex-col w-full gap-8">
             <p>
-              {new Date().getFullYear() - 2020}+ années d&apos;expérience en développement informatique (3 ans d&apos;alternance).
+              {new Date().getFullYear() - 2020}+ {text.thirdParagraphContentOne}
             </p>
             <p>
-              J&apos;ai commencé ma carrière chez Arcos en autonomie.
-              Ensuite, j&apos;ai travaillé chez Sopra Steria.
-              Je suis maintenant un développeur et je travaille toujours chez {" "}
+              {text.thirdParagraphContentTwoDotOne} {" "}
               <Link
                 className="underline"
                 href="https://www.soprasteria.fr/"
               >
-                Sopra Steria
+                {text.thirdParagraphContentLink}
               </Link>
-              , l&apos;une des plus grandes ESN Française..
+              {text.thirdParagraphContentTwoDotTwo}
             </p>
-            <Workplaces items={workplaces} />
+            <Workplaces items={workplacesByLanguage} language={lang} />
           </div>
         </Section>
       </div>
@@ -146,26 +141,51 @@ export default function About() {
   );
 }
 
-const workplaces = [
-  {
-    title: "Développeur Java",
-    company: "Sopra Steria",
-    time: "2023 -",
-    imageSrc: soprasteriaLogo,
-    link: "https://www.soprasteria.fr/",
-  },
-  {
-    title: "Développeur Full Stack",
-    company: "Sopra Steria",
-    time: "2021 - 2023",
-    imageSrc: soprasteriaLogo,
-    link: "https://www.soprasteria.fr/",
-  },
-  {
-    title: "Développeur Full Stack",
-    company: "ARCOS",
-    time: "2020 - 2021",
-    imageSrc: arcosLogo,
-    link: "https://arcos-recouvrement.com/",
-  },
-];
+const workplacesByLanguage = {
+  "FR": [
+    {
+      title: "Développeur Java",
+      company: "Sopra Steria",
+      time: "2023 - Maintenant",
+      imageSrc: soprasteriaLogo,
+      link: "https://www.soprasteria.fr/",
+    },
+    {
+      title: "Développeur Full Stack",
+      company: "Sopra Steria",
+      time: "2021 - 2023",
+      imageSrc: soprasteriaLogo,
+      link: "https://www.soprasteria.fr/",
+    },
+    {
+      title: "Développeur Full Stack",
+      company: "ARCOS",
+      time: "2020 - 2021",
+      imageSrc: arcosLogo,
+      link: "https://arcos-recouvrement.com/",
+    },
+  ],
+  "EN": [
+    {
+      title: "Java Developer",
+      company: "Sopra Steria",
+      time: "2023 - Now",
+      imageSrc: soprasteriaLogo,
+      link: "https://www.soprasteria.fr/",
+    },
+    {
+      title: "Full Stack Developer",
+      company: "Sopra Steria",
+      time: "2021 - 2023",
+      imageSrc: soprasteriaLogo,
+      link: "https://www.soprasteria.fr/",
+    },
+    {
+      title: "Full Stack Developer",
+      company: "ARCOS",
+      time: "2020 - 2021",
+      imageSrc: arcosLogo,
+      link: "https://arcos-recouvrement.com/",
+    },
+  ]
+};

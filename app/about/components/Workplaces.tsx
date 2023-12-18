@@ -13,7 +13,11 @@ type Workplace = {
   link?: string;
 };
 
-function Workplace({ title, company, imageSrc, time, link }: Workplace) {
+type WorkplaceByLanguage = {
+  [key: string]: Workplace[];
+}
+
+function WorkplaceComponent({ title, company, imageSrc, time, link }: Workplace) {
   const { theme } = useTheme();
 
   const content = (
@@ -50,10 +54,13 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
   );
 }
 
-export default function Workplaces({ items }: { items: Workplace[] }) {
+export default function Workplaces({ items, language}: { items: WorkplaceByLanguage, language: string }) {
+  const workplaces = items[language] || [];
   return (
     <ul className="flex flex-col gap-8 animated-list">
-      {items.map(Workplace)}
+      {workplaces.map((workplace: Workplace) => (
+        <WorkplaceComponent key={workplace.company} {...workplace} />
+      ))}
     </ul>
   );
 }

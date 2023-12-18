@@ -1,9 +1,15 @@
+"use client";
 import Image from "next/image";
 import Link from "@/components/ui/Link";
 import ConnectLinks from "@/components/ConnectLinks";
-import profilePicture from "public/profile_picture.png";
+import profilePicture from "public/profile_picture.svg";
+
+import { useLang } from "@/components/LanguageProvider";
+import { linksTranslations } from "@/translations/linksTranslations";
 
 export default function Links() {
+  const { lang } = useLang();
+  const text = linksTranslations[lang];
   return (
     <>
       <div className="flex flex-col gap-16 md:gap-24">
@@ -24,7 +30,7 @@ export default function Links() {
               Oscar Decloquement
             </h1>
             <p className="max-w-sm text-secondary mx-auto text-center">            
-            Dévelopeur qui adore créer des projets.
+            {text.comment}
             </p>
           </div>
         </div>

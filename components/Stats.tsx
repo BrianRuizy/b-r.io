@@ -11,6 +11,9 @@ import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/lib/fetcher";
 import { addCommas } from "@/lib/utils";
 
+import { useLang } from "./LanguageProvider";
+import { statsTranslations } from "@/translations/statsTranslations";
+
 export function GitHub() {
   const { data: githubData, error: githubDataError } = useSWR(
     `/api/github?username=fyleek`,
@@ -24,6 +27,8 @@ export function GitHub() {
 export default function Stats() {
   const { theme } = useTheme();
   const username = "fyleek";
+  const { lang } = useLang();
+  const text = statsTranslations[lang];
 
   const { data: githubData, error: githubDataError } = useSWR(
     `/api/github?username=${username}`,
@@ -36,10 +41,7 @@ export default function Stats() {
 
   return (
     <ul
-      className={clsx(
-        "space-y-2 animated-list",
-        theme === "terminal" ? "font-mono tracking-tight" : ""
-      )}
+      className={clsx("space-y-2 animated-list")}
     >
       <li className="transition-opacity">
         <Link
@@ -51,7 +53,7 @@ export default function Stats() {
             <FlipNumber>
               {githubData ? addCommas(githubData?.numberOfProject) : "000"}
             </FlipNumber>
-            <span> Projets Github</span>
+            <span> {text.github}</span>
           </div>
         </Link>
       </li>
@@ -62,7 +64,7 @@ export default function Stats() {
             <FlipNumber>
               {postsData ? addCommas(postsData?.total) : "0,000"}
             </FlipNumber>
-            <span> Vues du Blog</span>
+            <span> {text.blogViews}</span>
           </div>
         </Link>
       </li>

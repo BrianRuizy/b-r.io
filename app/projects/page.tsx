@@ -1,18 +1,17 @@
-import { Metadata } from "next";
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { allProjects, Project } from ".contentlayer/generated";
 import Halo from "@/components/ui/Halo";
 
-export const metadata: Metadata = {
-  title: "Projects | Oscar Decloquement",
-  description:
-    "Here are some of the projects I've worked on.",
-};
+import { useLang } from "@/components/LanguageProvider";
+import { projectTranslations } from "@/translations/projectTranslations";
 
 export default function Blog() {
   const projects = allProjects;
+  const { lang } = useLang();
+  const text = projectTranslations[lang];
 
   return (
     <div className="max-w-[700px] mx-auto">
@@ -20,13 +19,13 @@ export default function Blog() {
       <div className="flex flex-col gap-8">
         <div>
           <h1 className="animate-in text-3xl font-bold tracking-tight">
-            Projets
+            {text.title}
           </h1>
           <p
             className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            Voici quelques projets sur lesquelles j&apos;ai travaillé.
+            {text.subTitle}
           </p>
         </div>
       </div>
@@ -67,7 +66,7 @@ export default function Blog() {
               </div>
 
               <p className="line-clamp-3 text-tertiary">
-                {project.description}
+                {project.description[`${lang}`]}
               </p>
             </div>
           </li>

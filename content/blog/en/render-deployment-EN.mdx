@@ -1,0 +1,159 @@
+---
+title: "How to Add Your Render Deployment Status to Your Github Repo with Python"
+publishedAt: "2023-11-20"
+summary: "A quick overview of the project setup and the technology stack I used."
+tags:
+  - Python
+  - CI/CD
+  - Linter
+  - Formatter
+  - Sonar Cloud
+shortTitle: Render API
+---
+
+## Why Did I Start This Project?
+
+As I began developing my Render Deployment application during the development of another application based on a Python REST API, I was motivated by the need to have transparent tracking of the deployment status directly in the GitHub repository.
+
+I had previously used Vercel, which automatically provided this feature for my portfolio, and I found it extremely useful. 
+
+However, when I switched to Render, I quickly realized that there was no official GitHub app for managing CI/CD, which led me to develop my own solution. This experience allowed me to better understand the specific needs of my development workflow and create an application that perfectly met these requirements.
+
+> Innovation is saying no to a thousand things. Steve Jobs (1955-2011)
+
+## Data Sources
+
+The data sources come from the commits made on the main branch of any project using a Github application that sends a webhook to the API, which is then linked to a deployment on Render.
+
+<Image
+  width={600}
+  height={400}
+  src="/blog/render-deployment/github-actions.svg"
+/>
+
+## Technology Stack
+
+This project uses FastAPI in Python 3.0. It connects Render's webhooks and the Github application's webhooks to retrieve and transmit the deployment status of a Render application in the Github branch.
+
+The project uses Black and Flake8 for code formatting. SonarCloud is used to prevent vulnerabilities and scan for code optimization.
+
+<Image
+  width={600}
+  height={400}
+  src="/blog/render-deployment/stack.svg"
+/>
+
+## How It Works
+
+The following code briefly explains how the project functions and the methods it comprises.
+
+If you would like more information about the project, please visit the project documentation on my Github.
+
+<Alert type="warning">
+  The code is intentionally incomplete to simplify the explanation.
+</Alert>
+
+### 1. Retrieving the Event from the Github Application 📲
+
+As explained in the [documentation](https://github.com/Fyleek/render-api?tab=readme-ov-file#installation-and-creation-of-the-github-app), you need to create a Github application that can access your workflow, deployment, metadata, ...
+
+Then it must send an [event](https://docs.github.com/en/webhooks/webhook-events-and-payloads#pull_request) to your webhook.
+
+```python showLineNumbers {1}
+def manage_deployment_status(data: Dict):
+    pr = data["pull_request"]
+    repo_data = data["repository"]
+    state, merged = pr["state"], pr["merged"]
+    user_repo, repo_url = repo_data["full_name"], repo_data["html_url"]
+    owner, repo = repo_data["owner"]["login"], repo_data["name"]
+
+    if not (merged and state == "closed"):
+        return
+
+    service_id = get_render_service_id(repo_url)
+    if not service_id:
+        logger.error("Render service ID is null")
+        return
+
+    deployment_status = get_render_deployment_status(service_id)
+    if not deployment_status:
+        return
+
+    process_deployment_status(user_repo, repo, owner, deployment_status, service_id)
+```
+
+### 2. Retrieving Information 🧮
+
+If the `pull_request` is `merged`, we will now retrieve the deployment status from the Render API to determine if it is `success` or `failure`
+
+```py showLineNumbers {5}
+def update_github_deployment_status(owner, repo, status, deployment_id, user_repo, github_deployment_id, service_id):
+    create_github_deployment_status(owner, repo, status, deployment_id, user_repo, github_deployment_id)
+    new_status = ""
+    while new_status not in ["failure", "success"]:
+        new_render_deployment_status = get_render_deployment_status(service_id)
+        new_status = get_github_status(new_render_deployment_status["status"])
+        time.sleep(10)  # You can remove it (but it's better to not spam the render API [400 GET request/minutes])
+    create_github_deployment_status(owner, repo, new_status, deployment_id, user_repo, github_deployment_id)
+```
+
+### 3. Assigning Statuses  📨
+
+I map the statuses of Render to those of Github and then return the final deployment status to Github.
+
+```py
+def get_github_status(render_status: str) -> str:
+    #  Link between render and github status
+    state_mapping = {
+        "build_in_progress": "in_progress",
+        "created": "in_progress",
+        "update_in_progress": "in_progress",
+        "pre_deploy_in_progress": "in_progress",
+        "live": "success",
+        "build_failed": "failure",
+        "update_failed": "failure",
+        "pre_deploy_failed": "failure",
+        "canceled": "cancel",
+        "deactivated": "inactive",
+    }
+
+    return state_mapping.get(render_status, "error")
+```
+
+### 4. Returning the Deployment Status to Github 📊
+
+Once we have the final status, we can send it back to Github.
+
+```python showLineNumbers {10-17}
+def create_github_deployment_status(
+    owner: str,
+    repo: str,
+    status: str,
+    render_deployment_id: str,
+    user_repo: str,
+    github_deployment_id: str,
+):
+    url = f"{GITHUB_ROOT}/repos/{user_repo}/deployments/{github_deployment_id}/statuses"
+    data = {
+        "owner": owner,
+        "repo": repo,
+        "state": status,
+        "deployment_id": render_deployment_id,
+        "environment": "Production",
+        "description": "Deployment status from Render",
+    }
+    response = session.post(url, headers=get_headers("github"), json=data)
+    logger.info(f"POST: {url} executed with status_code: {response.status_code}")
+```
+
+<Alert type="info">
+  Visit the <a href="https://github.com/Fyleek/render-api" style={{"color": "blue"}}>documentation</a> for a better understanding.
+</Alert>
+
+## Conclusion
+
+So, did I achieve my initial goal? Yes, the lack of a Render CI/CD application for deployments is resolved with my application.
+
+This project addresses a small part of the needs and possibilities between Render and Github's CI/CD, but it is a first step for me and for other users who might want to add their contributions.
+
+API, you can check out the documentation on the [repo](https://github.com/Fyleek/render-api)

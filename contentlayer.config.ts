@@ -7,6 +7,7 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 
 const getSlug = (doc: any) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
+const getSlugBlogImage = (doc: any) => doc._raw.sourceFileName.replace(/-(FR|EN)?\.mdx$/, "");
 
 const postComputedFields: ComputedFields = {
   slug: {
@@ -15,11 +16,11 @@ const postComputedFields: ComputedFields = {
   },
   image: {
     type: "string",
-    resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
+    resolve: (doc) => `/blog/${getSlugBlogImage(doc)}/image.svg`,
   },
   og: {
     type: "string",
-    resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
+    resolve: (doc) => `/blog/${getSlug(doc)}/image.svg`,
   },
 };
 
@@ -46,7 +47,7 @@ const projectComputedFields: ComputedFields = {
   },
   image: {
     type: "string",
-    resolve: (doc) => `/projects/${getSlug(doc)}/image.png`,
+    resolve: (doc) => `/projects/${getSlug(doc)}/image.svg`,
   },
 };
 
@@ -56,10 +57,10 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    description: { type: "string", required: true },
+    description: {type: "json", required: true},
     time: { type: "string", required: true },
     url: { type: "string", required: false },
-    tags: { type: "list", required: false, of: { type: "string"}},
+    tags: { type: "json", required: false},
   },
   computedFields: projectComputedFields,
 }));

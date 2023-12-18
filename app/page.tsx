@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "@/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
@@ -5,17 +6,19 @@ import { allPosts } from ".contentlayer/generated";
 import PostList from "./blog/components/ui/PostList";
 import Stats from "@/components/Stats";
 
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
-import profilePicture from "@/public/profile_picture.png";
+import { useLang } from "@/components/LanguageProvider";
+import { homeTranslations } from "@/translations/homeTranslations";
 
-export default async function Home() {
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import profilePicture from "@/public/profile_picture.svg";
+
+export default function Home() {
+  const { lang } = useLang();
+  const text = homeTranslations[lang];
   const posts = allPosts
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    )
-    // 3 most recent
-    .filter((_, i) => i < 3);
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .filter((post) => post._id.includes(`/${lang.toLowerCase()}/`)) // Posts for the concerning language
+    .filter((_, i) => i < 3); // 3 most recent
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">
@@ -28,7 +31,7 @@ export default async function Home() {
             className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            J&apos;écris du code et j&apos;apprends.
+            {text.subHome}
           </p>
         </div>
         <div
@@ -48,8 +51,7 @@ export default async function Home() {
           className="text-primary max-w-lg animate-in text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Bonjour, je suis Oscar Decloquement, un développeur qui adore créer des projets.
-          J&apos;essaie de me documenter au mieux sur les nouvelles technologies aussi bien professionellement que personnelement.
+          {text.description}
         </p>
         <ul
           className="animated-list flex animate-in flex-col gap-2 text-secondary md:flex-row md:gap-6"
@@ -61,7 +63,7 @@ export default async function Home() {
               className="flex items-center gap-2 no-underline"
             >
               <ArrowUpRightIcon className="h-5 w-5" />
-              <span>Envoyer un mail</span>
+              <span>{text.mail}</span>
             </Link>
           </li>
           <li className="transition-opacity">
@@ -70,7 +72,7 @@ export default async function Home() {
               className="flex items-center gap-2 no-underline"
             >
               <ArrowUpRightIcon className="h-5 w-5" />
-              <span>Plus de contact</span>
+              <span>{text.contact}</span>
             </Link>
           </li>
         </ul>
@@ -79,13 +81,13 @@ export default async function Home() {
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <h2 className="text-secondary">Dernières publications</h2>
+        <h2 className="text-secondary">{text.publication}</h2>
         <PostList posts={posts} />
         <Link 
           href="/blog" 
           className="underline dark:text-neutral-100"
         >
-          Tout voir
+          {text.seeAll}
         </Link>
       </div>
     </div>
