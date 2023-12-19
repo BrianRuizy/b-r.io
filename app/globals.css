@@ -226,3 +226,17 @@ pre[class*="language-"] {
   color: var(--gray-8); /* Line number color */
   content: attr(line);
 }
+
+.maintenance-background {
+  background-image: linear-gradient(
+    45deg, 
+    rgba(255, 255, 0, 0.25) 25%, /* Jaune avec 50% d'opacité */
+    rgba(0, 0, 0, 0.25) 25%, /* Noir avec 50% d'opacité */
+    rgba(0, 0, 0, 0.25) 50%, 
+    rgba(255, 255, 0, 0.25) 50%, 
+    rgba(255, 255, 0, 0.25) 75%, 
+    rgba(0, 0, 0, 0.25) 75%, 
+    rgba(0, 0, 0, 0.25)
+  );
+  background-size: 28px 28px;
+}

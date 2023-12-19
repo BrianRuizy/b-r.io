@@ -11,12 +11,14 @@ type NavLinkProps = {
 export default function NavLink({ href, children }: NavLinkProps) {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic subpages
   const active = pathname === href;
+  const isSpecialLink = ["/tools", "/deployments"].includes(href.toString().toLowerCase());
 
   return (
     <Link
       className={clsx(
         "px-4 py-2 rounded-lg text-sm hover:text-primary transition-colors",
-        active ? "bg-secondaryA text-primary" : "text-secondary"
+          active ? "bg-secondaryA text-primary" : "text-secondary",
+          isSpecialLink && "maintenance-background"
       )}
       href={href}
     >

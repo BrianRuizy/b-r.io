@@ -1,6 +1,6 @@
 import { Translations } from "./translations";
 
-export const navigationTranslations : Translations = {
+export const deploymentsTranslations : Translations = {
     EN: {
         about: "About",
         project: "Projects",

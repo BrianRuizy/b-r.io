@@ -8,7 +8,7 @@ import Halo from "@/components/ui/Halo";
 import { useLang } from "@/components/LanguageProvider";
 import { projectTranslations } from "@/translations/projectTranslations";
 
-export default function Blog() {
+export default function Project() {
   const projects = allProjects;
   const { lang } = useLang();
   const text = projectTranslations[lang];

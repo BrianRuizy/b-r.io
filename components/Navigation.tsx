@@ -24,6 +24,8 @@ export default function Navigation() {
     { label: text.about, href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: text.project, href: "/projects" },
+    { label: text.deploymentStatus, href: "/deployments"},
+    { label: text.tools, href: "/tools"},
   ];
 
   return (
