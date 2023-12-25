@@ -12,9 +12,10 @@ type PostProps = {
     x: number;
     y: number;
   };
+  lang: string;
 };
 
-export default function Post({ post, mousePosition }: PostProps) {
+export default function Post({ post, mousePosition, lang }: PostProps) {
   const { publishedAt, slug, title, image } = post;
   const publishDate = new Date(publishedAt);
   const showNewBadge =
@@ -48,7 +49,7 @@ export default function Post({ post, mousePosition }: PostProps) {
           </motion.div>
         )}
         <div className="flex justify-between gap-6 items-center">
-          <Section heading={formatDate(publishedAt)}>
+          <Section heading={formatDate(publishedAt, lang)}>
             <Link href={`/blog/${slug}`} className="font-medium leading-tight">{title}</Link>
           </Section>
           <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative drop-shadow-sm">

@@ -5,15 +5,18 @@ import Maintenance from "public/maintenance.svg";
 
 import { toolsTranslations, tools } from "@/translations/toolsTranslations";
 import { useLang } from "@/components/LanguageProvider";
+import { Translations } from "@/translations/translations";
 
 interface ItemProps {
   title: string;
-  description: string;
+  description: {[key: string]: string};
   image: string | StaticImageData;
   link: string;
+  lang: string;
+  toolsTranslations: Translations
 }
 
-const Item = ({ title, description, image, link }: ItemProps) => (
+const Item = ({ title, description, image, link, lang, toolsTranslations }: ItemProps) => (
   <li className="flex gap-4 items-center transition-opacity">
     <a
       className="relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow"
@@ -33,7 +36,7 @@ const Item = ({ title, description, image, link }: ItemProps) => (
           {title}
         </h3>
         <p className="text-secondary line-clamp-3 leading-tight text-sm">
-          {description}
+          {description[lang]}
         </p>
       </div>
       <div>
@@ -42,7 +45,7 @@ const Item = ({ title, description, image, link }: ItemProps) => (
           href={link}
           target="_blank"
         >
-          Get
+          {toolsTranslations[lang].button}
         </a>
       </div>
     </div>
@@ -52,20 +55,18 @@ const Item = ({ title, description, image, link }: ItemProps) => (
 export default function Tools() {
   const { lang } = useLang();
   const text = toolsTranslations[lang];
-  const categories = tools[lang].reduce((acc, item) => {
-    if (!acc.includes(item.category)) {
-      acc.push(item.category);
+  const categories = tools.reduce((acc, item) => {
+    if (!acc.includes(item.category[lang])) {
+      acc.push(item.category[lang]);
     }
     return acc;
   }, [] as string[]);
-
-  categories.sort();
 
   return (
     <>
       <div className="flex flex-col gap-16 md:gap-24">
         <div className="flex flex-col gap-8 animate-in">
-          {/* <div>
+          <div>
             <h1 className="animate-in text-3xl font-bold tracking-tight">
               {text.title}
             </h1>
@@ -81,16 +82,10 @@ export default function Tools() {
             style={{ "--index": 2 } as React.CSSProperties}
           >
             {text.description}
-          </p> */}
-          <Image 
-            src={Maintenance}
-            alt="maintenance"
-            width={1024}
-            height={1024}
-          />
+          </p>
         </div>
 
-        {/* {categories.map((category, index) => (
+        {categories.map((category, index) => (
           <section
             className="flex flex-col gap-8 animate-in"
             key={index}
@@ -99,7 +94,7 @@ export default function Tools() {
             <h2 className="text-secondary">{category}</h2>
             <ul className="grid md:grid-cols-2 gap-x-6 gap-y-8 animated-list">
               {tools.map((item, index) => {
-                if (item.category === category) {
+                if (item.category[lang] === category) {
                   return (
                     <Item
                       key={index}
@@ -107,6 +102,8 @@ export default function Tools() {
                       description={item.description}
                       image={item.image}
                       link={item.link}
+                      lang={lang}
+                      toolsTranslations={toolsTranslations}
                     />
                   );
                 } else {
@@ -115,7 +112,7 @@ export default function Tools() {
               })}
             </ul>
           </section>
-        ))} */}
+        ))}
       </div>
     </>
   );

@@ -1,0 +1,92 @@
+---
+title: "When I'm Tired of Reinstalling Everything on My New Machine..."
+publishedAt: "2023-12-21"
+summary: "Exploring how using Chocolatey can simplify software reinstallation and save precious time."
+tags:
+  - Batch
+  - Chocolatey
+  - Docker
+shortTitle: Chocolatey
+---
+
+## Why Did I Start This Project on Chocolatey?
+
+> Efficient and quick software installation on Windows for my new projects.
+
+I had already experimented with tools like Vercel for my portfolio, appreciating the automation and simplicity they brought.
+
+However, when setting up new Windows/MacOs machines, the tedious repetition of manual software installation became evident.
+
+This is where Chocolatey came into play, offering an elegant and automated solution for this process.
+
+## The Basics of Chocolatey
+Chocolatey is a package manager for Windows, inspired by package managers found in systems like Linux.
+
+It allows for the installation, updating, and management of software on a Windows machine using simple commands in the command prompt or PowerShell.
+
+```batch showLineNumbers {1-3}
+choco install <pkg|packages.config> [<pkg2> <pkgN>] [<options/switches>]
+choco upgrade <pkg|all> [<pkg2> <pkgN>] [<options/switches>]
+choco uninstall <pkg|all> [pkg2 pkgN] [options/switches]
+```
+*Find more in [chocolatey documentation](https://docs.chocolatey.org/en-us/)*
+
+## Configuration and Usage
+
+To fully leverage Chocolatey, I had to configure certain aspects of my Windows machine and understand how to use Chocolatey to effectively manage software installations.
+
+```batch showLineNumbers {3}
+:: Check if .NET Framework 4.8 or higher is installed
+echo Checking for .NET Framework 4.8 or higher...
+REG QUERY "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" /v Release > nul 2>&1
+IF %ERRORLEVEL% EQU 0 (
+    FOR /F "tokens=3" %%G IN ('REG QUERY "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" /v Release') DO SET "dotNetVersion=%%G"
+    IF !dotNetVersion! GEQ %minReleaseNumber% (
+        echo .NET Framework 4.8 or later is installed.
+    ) ELSE (
+        echo .NET Framework 4.8 or later is not installed.
+        goto InstallError
+    )
+) ELSE (
+    echo Unable to determine the .NET Framework version installed.
+    goto InstallError
+)
+```
+```batch showLineNumbers {3, 11}
+:: Install Chocolatey
+echo Installing Chocolatey...
+powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+if errorlevel 1 goto InstallError
+
+:: Define the chocolatey executable
+SET "choco=C:\ProgramData\chocolatey\bin\choco.exe"
+
+:: Check if Chocolatey is installed
+echo Checking for Chocolatey installation...
+%choco% --version > nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+    echo Chocolatey is not installed. Please install it first.
+    goto InstallError
+)
+```
+
+## Integration with My Workflows
+
+Integrating Chocolatey into my development workflows has been a game changer.
+
+Not only has it simplified the setup of new development environments, but it has also offered consistency and reproducibility in managing software across different machines.
+
+In one of my assignments, I had already faced internal custom installation tools to have a similar configuration for all developers.
+The problem was that the environment variables were not generated, software was not necessarily installed in the right place, etc.
+
+I am convinced that Chocolatey can solve many of the encountered problems as it is inspired by the official installer of each application.
+
+## Advantages and Limitations
+Using Chocolatey, I have noticed significant gains in terms of time and efficiency. However, it is important to note some limitations and considerations, especially regarding the availability of packages and security.
+
+IMAGE HERE (DOCKER-DESKTOP ISSUE / DISCORD ISSUE)
+
+## Conclusion
+With Chocolatey, I have been able to transform a repetitive and tedious aspect of development under Windows into a simple and automated process. This has not only sped up the setup of new projects but has also added a welcome level of standardization to my development environments.
+
+If you are a developer working on Windows and looking to streamline your software installation process, I encourage you to explore Chocolatey. You will find more details and script examples in the documentation on my [GitHub repo](https://github.com/Fyleek/chocolatey).

@@ -11,8 +11,7 @@ type NavLinkProps = {
 export default function NavLink({ href, children }: NavLinkProps) {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic subpages
   const active = pathname === href;
-  const isSpecialLink = ["/tools", "/deployments"].includes(href.toString().toLowerCase());
-
+  const isSpecialLink = [""].includes(href.toString().toLowerCase());
   return (
     <Link
       className={clsx(

@@ -11,7 +11,7 @@ export const homeTranslations : Translations = {
     },
     FR: {
         subHome: "J'écris du code et j'apprends",
-        description: "Bonjour, je suis Oscar Decloquement, un développeur qui adore créer des projets. J'essaie de me documenter au mieux sur les nouvelles technologies aussi bien professionellement que personnelement.",
+        description: "Bonjour, je suis Oscar Decloquement, un développeur qui adore créer des projets. J'essaie de me documenter au mieux sur les nouvelles technologies aussi bien professionnellement que personnellement.",
         mail: "Envoyer un mail",
         contact: "Plus de contact",
         publication: "Dernières publications",

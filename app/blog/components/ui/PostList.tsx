@@ -4,6 +4,8 @@ import type { Post as PostType } from ".contentlayer/generated";
 import Post from "./Post";
 import React, { useRef, useState } from "react";
 
+import { useLang } from "@/components/LanguageProvider";
+
 function getRelativeCoordinates(
   event: React.MouseEvent<HTMLUListElement>,
   referenceElement: any
@@ -39,6 +41,7 @@ type PostListProps = {
 };
 
 export default function PostList({ posts }: PostListProps) {
+  const { lang } = useLang();
   const [mousePosition, setMousePosition] = useState({
     x: 240,
     y: 0,
@@ -56,7 +59,7 @@ export default function PostList({ posts }: PostListProps) {
     >
       {posts.length === 0 && <p>Aucune publication trouvée</p>}
       {posts.map((post) => (
-        <Post key={post.slug} post={post} mousePosition={mousePosition} />
+        <Post key={post.slug} post={post} mousePosition={mousePosition} lang={lang} />
       ))}
     </ul>
   );

@@ -76,10 +76,10 @@ export default function Post({ params }: { params: any }) {
               <p className="font-medium text-primary">Oscar Decloquement</p>
               <p className="text-secondary">
                 <time dateTime={post.publishedAt}>
-                  {formatDate(post.publishedAt)}
+                  {formatDate(post.publishedAt, lang)}
                 </time>
                 {post.updatedAt
-                  ? `(Updated ${formatDate(post.updatedAt)})`
+                  ? `(Updated ${formatDate(post.updatedAt, lang)})`
                   : ""}
                 {" · "}
                 <ViewCounter post={post} />
