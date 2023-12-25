@@ -412,7 +412,7 @@ export const tools: Tool[] = [
             "FR": "Outil pour la planification agile et la gestion de livraison",
             "EN": "Tool for agile planning and delivery management"
         },
-        "image": "tools/versionOne.svg",
+        "image": "tools/versionone.svg",
         "link": "https://www.collab.net/products/versionone"
     },
     {
@@ -490,7 +490,7 @@ export const tools: Tool[] = [
             "FR": "Outil pour créer des visuels de marque",
             "EN": "Tool to create brand visuals"
         },
-        "image": "tools/brandBird.svg",
+        "image": "tools/brandbird.svg",
         "link": "https://www.brandbird.app/"
     },
     {
@@ -503,7 +503,7 @@ export const tools: Tool[] = [
             "FR": "Outil GUI pour MongoDB",
             "EN": "GUI tool for MongoDB"
         },
-        "image": "tools/mongoDB.svg",
+        "image": "tools/mongodb.svg",
         "link": "https://www.mongodb.com/products/compass"
     },
     {
@@ -542,7 +542,7 @@ export const tools: Tool[] = [
             "FR": "Plateforme de développement front-end",
             "EN": "Front-end development platform"
         },
-        "image": "tools/codePen.svg",
+        "image": "tools/codepen.svg",
         "link": "https://codepen.io/"
     },
     {
