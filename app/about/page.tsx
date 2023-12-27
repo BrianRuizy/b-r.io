@@ -84,7 +84,7 @@ export default function About() {
           <div className="flex flex-col w-full gap-8">
             <p>
               {text.secondParagraphContent} {" "}
-              <a href="mailto:odecloquement@gmail.com" className="underline">
+              <a href="mailto:contact@o-d.me" className="underline">
                 {text.secondParagraphLinkMail}
               </a>
             </p>

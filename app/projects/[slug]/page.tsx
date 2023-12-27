@@ -93,7 +93,7 @@ export default function Project({ params }: { params: any }) {
               href="mailto:contact@b-r.io"
               className="text-primary underline"
             >
-              odecloquement@gmail.com
+              contact@o-d.me
             </Link>
           </p>
         </div>
