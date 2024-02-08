@@ -22,7 +22,7 @@ export default function Navigation() {
   const { theme } = useTheme();
 
   return (
-    <header className={clsx("sticky top-0 z-20 bg:white/80 dark:bg-black/80 backdrop-blur-2xl lg:border-b border-secondary")}>
+    <header className={clsx("sticky top-0 z-20 bg-white/90 dark:bg-black/90 backdrop-blur-3xl lg:border-b border-secondary")}>
       <nav className="px-4 md:px-6 py-3 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
         <Link href="/" className="shrink-0 text-primary">
           <svg

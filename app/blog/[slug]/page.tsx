@@ -75,15 +75,19 @@ export default async function Post({ params }: { params: any }) {
     notFound();
   }
 
+  const publishedDate = new Date(post.publishedAt);
+
   return (
     <div className="flex flex-col gap-20">
       <article>
         <div className="flex flex-col gap-8">
+          
           <div className="max-w-xl space-y-3">
+
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
               {post.title}
             </h1>
-            <p className="text-tertiary text-lg tracking-tight ">
+            <p className="text-lg tracking-tight text-tertiary leading-tight">
               {post.summary}
             </p>
           </div>
