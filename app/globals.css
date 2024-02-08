@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@radix-ui/colors/slate.css";
-@import "@radix-ui/colors/slate-dark.css";
-@import "@radix-ui/colors/slate-alpha.css";
-@import "@radix-ui/colors/slate-dark-alpha.css";
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/gray-dark.css";
+@import "@radix-ui/colors/gray-alpha.css";
+@import "@radix-ui/colors/gray-dark-alpha.css";
 
-@import "@radix-ui/colors/iris.css";
-@import "@radix-ui/colors/iris-dark.css";
-@import "@radix-ui/colors/iris-alpha.css";
-@import "@radix-ui/colors/iris-dark-alpha.css";
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/blue-dark.css";
+@import "@radix-ui/colors/blue-alpha.css";
+@import "@radix-ui/colors/blue-dark-alpha.css";
 
 @import "@/public/prism/one-dark.css";
 
@@ -18,26 +18,26 @@
   :root {
     --brand: #6166dc;
     --brandTinted: #6165dc1f;
-    --bg: var(--slate-1);
-    --boxBg: var(--slate-4);
+    --bg: var(--gray-1);
+    --boxBg: var(--gray-4);
   }
 
   .light .prose {
-    --tw-prose-headings: var(--slate-12);
-    --tw-prose-body: var(--slate-12);
-    --tw-prose-bold: var(--slate-12);
-    --tw-prose-links: var(--iris-11);
-    --tw-prose-code: var(--slate-12);
-    --tw-prose-quotes: var(--slate-12);
+    --tw-prose-headings: var(--gray-12);
+    --tw-prose-body: var(--gray-12);
+    --tw-prose-bold: var(--gray-12);
+    --tw-prose-links: var(--blue-11);
+    --tw-prose-code: var(--gray-12);
+    --tw-prose-quotes: var(--gray-12);
   }
 
   .dark .prose {
-    --tw-prose-headings: var(--slate-12);
-    --tw-prose-body: var(--slate-11);
-    --tw-prose-bold: var(--slate-11);
-    --tw-prose-links: var(--iris-11);
-    --tw-prose-code: var(--slate-11);
-    --tw-prose-quotes: var(--slate-11);
+    --tw-prose-headings: var(--gray-12);
+    --tw-prose-body: var(--gray-11);
+    --tw-prose-bold: var(--gray-11);
+    --tw-prose-links: var(--blue-11);
+    --tw-prose-code: var(--gray-11);
+    --tw-prose-quotes: var(--gray-11);
   }
 
   .main-header {
@@ -152,10 +152,10 @@ input:-webkit-autofill:focus {
 .prose figcaption {
   @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
 }
-
+/* 
 .prose h2 {
   @apply mb-4 text-xl md:text-2xl;
-}
+} */
 
 .prose h3 {
   @apply mb-2 mt-[48px] text-lg;
@@ -180,7 +180,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#18191B]/75;
+  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#111111]/75;
 }
 
 .code-highlight {
@@ -209,8 +209,8 @@ pre[class*="language-"] {
   margin-left: -24px;
   margin-right: -24px;
   padding-left: 26px;
-  background-color: var(--iris-a2); /* Set highlight bg color */
-  border-left: 2px solid var(--iris-10); /* Set highlight accent border color */
+  background-color: var(--blue-a2); /* Set highlight bg color */
+  border-left: 2px solid var(--blue-10); /* Set highlight accent border color */
 }
 
 .line-number::before {
@@ -219,6 +219,6 @@ pre[class*="language-"] {
   text-align: right;
   margin-right: 24px;
   margin-left: -8px;
-  color: var(--slate-8); /* Line number color */
+  color: var(--gray-8); /* Line number color */
   content: attr(line);
 }

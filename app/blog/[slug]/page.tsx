@@ -79,11 +79,11 @@ export default async function Post({ params }: { params: any }) {
     <div className="flex flex-col gap-20">
       <article>
         <div className="flex flex-col gap-8">
-          <div className="max-w-xl space-y-2">
+          <div className="max-w-xl space-y-3">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
               {post.title}
             </h1>
-            <p className="text-lg leading-tight text-secondary md:text-xl">
+            <p className="text-tertiary text-lg tracking-tight ">
               {post.summary}
             </p>
           </div>

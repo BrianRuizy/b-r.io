@@ -17,23 +17,23 @@ module.exports = {
     },
     extend: {
       textColor: {
-        primary: "var(--slate-12)",
-        secondary: "var(--slate-11)",
-        tertiary: "var(--slate-9)",
+        primary: "var(--gray-12)",
+        secondary: "var(--gray-11)",
+        tertiary: "var(--gray-9)",
         brand: "var(--brand)",
       },
       backgroundColor: {
-        primary: "var(--slate-1)",
-        secondary: "var(--slate-4)",
-        secondaryA: "var(--slate-a4)",
-        tertiary: "var(--slate-3)",
+        primary: "var(--gray-1)",
+        secondary: "var(--gray-3)",
+        secondaryA: "var(--gray-a3)",
+        tertiary: "var(--gray-2)",
       },
       borderColor: {
-        primary: "var(--slate-6)",
-        secondary: "var(--slate-4)",
+        primary: "var(--gray-6)",
+        secondary: "var(--gray-4)",
       },
       ringOffsetColor: {
-        primary: "var(--slate-12)",
+        primary: "var(--gray-12)",
       },
       keyframes: {
         in: {
