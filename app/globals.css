@@ -2,18 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@radix-ui/colors/gray.css";
-@import "@radix-ui/colors/gray-alpha.css";
-@import "@radix-ui/colors/gray-dark.css";
-@import "@radix-ui/colors/gray-dark-alpha.css";
+@import "@radix-ui/colors/slate.css";
+@import "@radix-ui/colors/slate-dark.css";
+@import "@radix-ui/colors/slate-alpha.css";
+@import "@radix-ui/colors/slate-dark-alpha.css";
 
-@import "@radix-ui/colors/jade.css";
-@import "@radix-ui/colors/jade-alpha.css";
-@import "@radix-ui/colors/jade-dark.css";
-@import "@radix-ui/colors/jade-dark-alpha.css";
-
-@import "@radix-ui/colors/blue.css";
-@import "@radix-ui/colors/blue-alpha.css";
+@import "@radix-ui/colors/violet.css";
+@import "@radix-ui/colors/violet-dark.css";
+@import "@radix-ui/colors/violet-alpha.css";
+@import "@radix-ui/colors/violet-dark-alpha.css";
 
 @import "@/public/prism/one-dark.css";
 
@@ -21,76 +18,26 @@
   :root {
     --brand: #6166dc;
     --brandTinted: #6165dc1f;
-    --bg: var(--gray-1);
-    --boxBg: var(--gray-4);
+    --bg: var(--slate-1);
+    --boxBg: var(--slate-4);
   }
 
   .light .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-12);
-    --tw-prose-bold: var(--gray-12);
-    --tw-prose-links: var(--gray-12);
-    --tw-prose-code: var(--gray-12);
-    --tw-prose-quotes: var(--gray-12);
+    --tw-prose-headings: var(--slate-12);
+    --tw-prose-body: var(--slate-12);
+    --tw-prose-bold: var(--slate-12);
+    --tw-prose-links: var(--violet-11);
+    --tw-prose-code: var(--slate-12);
+    --tw-prose-quotes: var(--slate-12);
   }
 
   .dark .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-11);
-    --tw-prose-bold: var(--gray-11);
-    --tw-prose-links: var(--gray-11);
-    --tw-prose-code: var(--gray-11);
-    --tw-prose-quotes: var(--gray-11);
-    --blue-10: var(--blue-8);
-  }
-
-  .terminal {
-    /* using jade colors */
-    --gray-a4: #00ffaa2d;
-    --gray-1: #0d1512;
-    --gray-2: #121c18;
-    --gray-3: #0f2e22;
-    --gray-4: #0b3b2c;
-    --gray-5: #114837;
-    --gray-6: #1b5745;
-    --gray-7: #246854;
-    --gray-8: #2a7e68;
-    --gray-9: #29a383;
-    --gray-10: #27b08b;
-    --gray-11: #1fd8a4;
-    --gray-12: #adf0d4;
-
-    --gray-a1: #00de4505;
-    --gray-a2: #27fba60c;
-    --gray-a3: #02f99920;
-    --gray-a4: #00ffaa2d;
-    --gray-a5: #11ffb63b;
-    --gray-a6: #34ffc24b;
-    --gray-a7: #45fdc75e;
-    --gray-a8: #48ffcf75;
-    --gray-a9: #38feca9d;
-    --gray-a10: #31fec7ab;
-    --gray-a11: #21fec0d6;
-    --gray-a12: #b8ffe1ef;
-
-    --blue-10: #21fec0d6;
-  }
-
-  .terminal time {
-    @apply font-mono tracking-tight;
-  }
-
-  .terminal .prose a {
-    @apply font-mono tracking-tight;
-  }
-
-  .terminal .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-9);
-    --tw-prose-bold: var(--gray-9);
-    --tw-prose-links: var(--gray-9);
-    --tw-prose-code: var(--gray-11);
-    --tw-prose-quotes: var(--gray-11);
+    --tw-prose-headings: var(--slate-12);
+    --tw-prose-body: var(--slate-11);
+    --tw-prose-bold: var(--slate-11);
+    --tw-prose-links: var(--violet-11);
+    --tw-prose-code: var(--slate-11);
+    --tw-prose-quotes: var(--slate-11);
   }
 
   .main-header {
@@ -262,8 +209,8 @@ pre[class*="language-"] {
   margin-left: -24px;
   margin-right: -24px;
   padding-left: 26px;
-  background-color: var(--blue-a3); /* Set highlight bg color */
-  border-left: 2px solid var(--blue-10); /* Set highlight accent border color */
+  background-color: var(--violet-a3); /* Set highlight bg color */
+  border-left: 2px solid var(--violet-10); /* Set highlight accent border color */
 }
 
 .line-number::before {
@@ -272,6 +219,6 @@ pre[class*="language-"] {
   text-align: right;
   margin-right: 24px;
   margin-left: -8px;
-  color: var(--gray-8); /* Line number color */
+  color: var(--slate-8); /* Line number color */
   content: attr(line);
 }
