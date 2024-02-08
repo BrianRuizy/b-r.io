@@ -76,8 +76,8 @@ export default function NewsletterSignupForm() {
       <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-secondaryA p-6 text-center lg:p-8">
         <p className="font-medium text-primary">Subscribe to my newsletter</p>
         <p className="max-w-md text-secondary">
-          The Modern Blueprint —monthly readings on topics like tech,
-          design, productivity, programming, and more!
+          The Modern Blueprint —monthly readings on topics like tech, design,
+          productivity, programming, and more!
         </p>
         <form
           className="mt-2 flex  w-full max-w-md flex-col items-center gap-2 md:flex-row"
@@ -91,7 +91,7 @@ export default function NewsletterSignupForm() {
               type="email"
               name={name}
               id="email"
-              className="block w-full rounded-md  px-4 py-1.5 text-primary border border-primary placeholder:text-tertiary focus:ring-inset focus:ring-blue-600 bg-secondary"
+              className="block w-full rounded-md  border border-primary bg-primary px-4 py-1.5 text-primary placeholder:text-tertiary focus:ring-inset focus:ring-blue-600"
               placeholder="you@example.com"
             />
           </div>
