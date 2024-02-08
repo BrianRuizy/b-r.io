@@ -24,17 +24,17 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
-      <div>
-        <h1 className="animate-in text-3xl font-bold tracking-tight">
-          About Me
-        </h1>
-        <p
-          className="text-secondary animate-in"
-          style={{ "--index": 1 } as React.CSSProperties}
-        >
-          Just a quick glimpse.
-        </p>
-      </div>
+     <div>
+          <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
+            Brian Ruiz
+          </h1>
+          <p
+            className="animate-in text-secondary"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
+            Software Engineer & Creator
+          </p>
+        </div>
       <div className="lg:hidden mb-8">
         <div
           className="animate-in"
