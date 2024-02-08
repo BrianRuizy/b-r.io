@@ -180,7 +180,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#18191B];
+  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#18191B]/75;
 }
 
 .code-highlight {
