@@ -54,14 +54,14 @@ export async function generateMetadata(
       description,
       type: "article",
       publishedTime,
-      url: `https://b-r.io/blog/${title}`,
+      url: `https://b-r.io/blog/${slug}`,
       images: [
         {
           url: `https://b-r.io/api/og?title=${title}`,
           alt: title,
         },
+        { url: ogImage, alt: title },
       ],
-      
     },
   };
 
@@ -71,11 +71,6 @@ export async function generateMetadata(
 export default async function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
-  // const seoTitle = `${post.title} | Brian Ruiz`;
-  // const seoDesc = `${post.summary}`;
-  // const url = `https://b-r.io/blog/${post.slug}`;
-  // const MDXContent = useMDXComponent(post?.body.code);
-
   if (!post) {
     notFound();
   }
@@ -83,10 +78,7 @@ export default async function Post({ params }: { params: any }) {
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div
-          className="flex animate-in flex-col gap-8"
-          style={{ "--index": 1 } as React.CSSProperties}
-        >
+        <div className="flex flex-col gap-8">
           <div className="max-w-xl space-y-2">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
               {post.title}
@@ -95,7 +87,6 @@ export default async function Post({ params }: { params: any }) {
               {post.summary}
             </p>
           </div>
-
           <div className="flex max-w-none items-center gap-4">
             <Image
               src={Avatar}
@@ -105,7 +96,7 @@ export default async function Post({ params }: { params: any }) {
               className="rounded-full bg-secondary"
             />
             <div className="leading-tight">
-              <p className="font-medium text-primary">Brian Ruiz</p>
+              <p className="text-primary">Brian Ruiz</p>
               <p className="text-secondary">
                 <time dateTime={post.publishedAt}>
                   {formatDate(post.publishedAt)}
@@ -119,8 +110,7 @@ export default async function Post({ params }: { params: any }) {
             </div>
           </div>
         </div>
-
-        {post.image && (
+        {!post.imageless && (
           <>
             <div className="h-8" />
             <Image
@@ -128,39 +118,20 @@ export default async function Post({ params }: { params: any }) {
               alt={`${post.title} post image`}
               width={700}
               height={350}
-              className="-ml-6 w-[calc(100%+48px)] max-w-none animate-in md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
-              style={{ "--index": 2 } as React.CSSProperties}
+              className="-ml-6 w-[calc(100%+48px)] max-w-none  md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
               priority
               quality={100}
             />
           </>
         )}
-
         <div className="h-16" />
-        <div
-          className="prose prose-neutral animate-in"
-          style={{ "--index": 3 } as React.CSSProperties}
-        >
+        <div className="prose prose-neutral">
           <Mdx code={post.body.code} />
         </div>
       </article>
-
       <Tags tags={post.tags} />
-
       <Subscribe />
-
       <Link href="/blog">← All Blogs</Link>
-      {/* {related.length ? (
-        <div className="flex flex-col items-start gap-6">
-          <h2>Related posts</h2>
-          <div className="will-change-transform">
-            <PostList posts={related} />
-          </div>
-          <Link href="/blog" underline>
-            ← See all
-          </Link>
-        </div>
-      ) : null} */}
     </div>
   );
 }
