@@ -27,7 +27,7 @@ export default async function Home() {
             className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I write code and make videos.
+            Software Engineer & Creator
           </p>
         </div>
         <div
@@ -47,8 +47,8 @@ export default async function Home() {
           className="max-w-lg animate-in text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Hi, I&apos;m Brian Ruiz, a software engineer who loves building cool
-          things with code. In addition to coding, I also make YouTube videos,
+          Good evening, I&apos;m, a programmer who loves building new
+          things. In addition to coding, I also make YouTube videos,
           where I focus on tech, creative vlogs, and personal development.
         </p>
         <ul
@@ -57,20 +57,20 @@ export default async function Home() {
         >
           <li className="transition-opacity">
             <Link
-              href="mailto:contact@b-r.io"
-              className="flex items-center gap-2 no-underline"
-            >
-              <ArrowUpRightIcon className="h-5 w-5" />
-              <span>Email me</span>
-            </Link>
-          </li>
-          <li className="transition-opacity">
-            <Link
               href="/links"
               className="flex items-center gap-2 no-underline"
             >
               <ArrowUpRightIcon className="h-5 w-5" />
-              <span>More ways to connect</span>
+              <span>Contact</span>
+            </Link>
+          </li>
+          <li className="transition-opacity">
+            <Link
+              href="mailto:contact@b-r.io"
+              className="flex items-center gap-2 no-underline"
+            >
+              <ArrowUpRightIcon className="h-5 w-5" />
+              <span>Get Newsletter</span>
             </Link>
           </li>
         </ul>

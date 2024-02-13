@@ -29,7 +29,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className="underline underline-offset-4 text-link font-normal"
+      className="underline underline-offset-4 font-normal"
       {...props}
     />
   );

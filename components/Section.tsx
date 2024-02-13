@@ -25,7 +25,6 @@ export default function Section({
         className={clsx(
           "md:w-32 text-secondary shrink-0",
           headingAlignment === "right" && "md:text-right",
-          theme === "terminal" ? "font-mono tracking-tight" : ""
           )}
       >
         {heading}

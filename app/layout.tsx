@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={clsx(
           inter.className,
-          "antialiased bg-primary text-primary width-full"
+          "antialiased bg-white dark:bg-black text-primary width-full"
         )}
       >
         <ThemeProvider
