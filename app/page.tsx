@@ -47,9 +47,9 @@ export default async function Home() {
           className="max-w-lg animate-in text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Good evening, I&apos;m, a programmer who loves building new
+          Hi there, I&apos;m, a programmer who loves building new
           things. In addition to coding, I also make YouTube videos,
-          where I focus on tech, creative vlogs, and personal development.
+          where I focus on tech, creative vlogging, and personal development.
         </p>
         <ul
           className="animated-list flex animate-in flex-col gap-2 text-secondary md:flex-row md:gap-6"

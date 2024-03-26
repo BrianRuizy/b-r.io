@@ -45,7 +45,7 @@ export default function Navigation() {
     <header className={clsx("sticky top-0 z-20 bg-white dark:bg-black lg:border-b transition-all duration-300", 
     hasScrolled ? "border-secondary" : "border-transparent"
     )}>
-      <nav className="px-4 md:px-6 py-3 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
+      <nav className="px-4 md:px-6 py-2 lg max-w-[700px] mx-auto flex justify-between items-center gap-3">
         <Link href="/" className="shrink-0 text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
