@@ -18,7 +18,7 @@ import colorado from "public/gallery/colorado.jpg";
 export const metadata: Metadata = {
   title: "About | Brian Ruiz",
   description:
-    "I am a full-stack software engineer who basically just enjoys creating things.",
+    "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
 };
 
 export default function About() {
