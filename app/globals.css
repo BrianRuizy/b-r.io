@@ -16,8 +16,6 @@
 
 @layer base {
   :root {
-    --brand: #6166dc;
-    --brandTinted: #6165dc1f;
     --bg: var(--gray-1);
     --boxBg: var(--gray-4);
   }
@@ -65,59 +63,6 @@ input:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.brand-gradient {
-  background: radial-gradient(
-    100% 478.52% at 0% 15.62%,
-    #6166dc 0%,
-    #d2a8ff 100%
-  );
-}
-
-.text-gradient {
-  background: linear-gradient(140deg, #6166dc, #d2a8ff, #f778ba);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: fit-content;
-}
-
-.like-button {
-  background: radial-gradient(
-    100% 478.52% at 0% 15.62%,
-    #6166dc 0%,
-    #d2a8ff 100%
-  );
-  animation: pulse 2.5s infinite ease-out;
-}
-
-.radial-fade {
-  background: radial-gradient(
-    100% 100% at 100% 100%,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow:
-      0px 0px 52px #6166dc,
-      0px 0px 20px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
-  }
-  70% {
-    box-shadow:
-      0px 0px 70px #6166dc,
-      0px 0px 40px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
-  }
-  100% {
-    box-shadow:
-      0px 0px 52px #6166dc,
-      0px 0px 20px #d2a8ff,
-      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
-  }
-}
-
 @media (hover: hover) {
   .animated-list:hover li {
     opacity: 0.5;
@@ -137,6 +82,8 @@ input:-webkit-autofill:focus {
   display: none;
 }
 
+/* blog prose styles overrides */
+
 .prose hr {
   @apply border-primary;
 }
@@ -152,10 +99,6 @@ input:-webkit-autofill:focus {
 .prose figcaption {
   @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
 }
-/* 
-.prose h2 {
-  @apply mb-4 text-xl md:text-2xl;
-} */
 
 .prose h3 {
   @apply mb-2 mt-[48px] text-lg;
@@ -178,7 +121,9 @@ input:-webkit-autofill:focus {
   content: "";
 }
 
+
 /* syntax highlighting */
+
 pre[class*="language-"] {
   @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#111111]/75;
 }

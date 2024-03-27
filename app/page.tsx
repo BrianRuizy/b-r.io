@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 
 import PostList from "./blog/components/ui/PostList";
