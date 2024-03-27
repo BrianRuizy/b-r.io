@@ -3,9 +3,9 @@
 import { FormEventHandler, useCallback, useState } from "react";
 import useSWR from "swr";
 
-import Halo from "@/components/ui/Halo";
-import FlipNumber from "@/components/FlipNumber";
-import fetcher from "@/lib/fetcher";
+import Halo from "@/app/components/ui/Halo";
+import FlipNumber from "@/app/components/FlipNumber";
+import fetcher from "@/utils/fetcher";
 
 export default function NewsletterSignupForm() {
   const { data: subscribersData, error } = useSWR(

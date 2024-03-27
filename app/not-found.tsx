@@ -1,4 +1,4 @@
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

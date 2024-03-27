@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "@/components/ui/Link";
-import ConnectLinks from "@/components/ConnectLinks";
+import Link from "@/app/components/ui/Link";
+import ConnectLinks from "@/app/components/ConnectLinks";
 import avatar from "public/avatar.png";
 
 export default function Links() {

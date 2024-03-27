@@ -37,8 +37,6 @@ next-env.d.ts
 .contentlayer
 .contentlayer/
 
-.vscode/
-
 generated/
 generated
 .cache/

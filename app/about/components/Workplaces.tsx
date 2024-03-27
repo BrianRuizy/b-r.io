@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import { useTheme } from "next-themes";
 import clsx from "clsx";
 
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 
 type Workplace = {
   title: string;

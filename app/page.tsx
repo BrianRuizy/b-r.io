@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 
 import PostList from "./blog/components/ui/PostList";
-import Stats from "@/components/Stats";
+import Stats from "@/app/components/Stats";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 import Avatar from "@/public/avatar.png";
 

@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
-import Tags from "@/components/Tags";
-import Link from "@/components/ui/Link";
+import Tags from "@/app/components/Tags";
+import Link from "@/app/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import PostList from "@/app/blog/components/ui/PostList";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
-import { formatDate } from "lib/formatdate";
+import { formatDate } from "@/utils/formatDate";
 
 import Avatar from "@/public/avatar.png";
 
