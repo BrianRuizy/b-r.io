@@ -8,6 +8,7 @@ import shelf from "public/gear/shelf.png";
 import cables from "public/gear/cables.png";
 import EpidemicSound from "public/gear/epidemic-sound.png";
 import Keyboard from "public/gear/keeb.jpeg";
+import Macrofactor from "public/gear/macrofactor.webp";
 
 export const metadata: Metadata = {
   title: "Gear | Brian Ruiz",
@@ -216,6 +217,13 @@ const gear = [
     link: "https://amzn.to/3vrq148",
   },
   {
+    name: "MacroFactor",
+    category: "Apps",
+    description: "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
+    image: Macrofactor,
+    link: "https://macrofactorapp.com/",
+  },
+  {
     name: "Copilot Money",
     category: "Apps",
     image: Copilot,
@@ -237,7 +245,7 @@ const gear = [
     name: "Superhuman Mail",
     category: "Apps",
     image: Superhuman,
-    description: "1 Month FREE code. The fastest email experience.",
+    description: "1 Month FREE code. The fastest email experience with AI.",
     link: "https://superhuman.com/refer/bspuaqpo",
   },
 
