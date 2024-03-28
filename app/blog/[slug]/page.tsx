@@ -7,7 +7,6 @@ import Tags from "@/app/components/Tags";
 import Link from "@/app/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
-import PostList from "@/app/blog/components/ui/PostList";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
 import { formatDate } from "@/utils/formatDate";
 
@@ -44,7 +43,9 @@ export async function generateMetadata(
     slug,
   } = post;
 
-  const ogImage = `https://b-r.io/${image}`;
+  const ogImage = image
+    ? `https://b-r.io/${image}`
+    : `https://b-r.io/api/og?title=${title}`;
 
   const metadata: Metadata = {
     title: `${title} | Brian Ruiz`,
@@ -55,13 +56,7 @@ export async function generateMetadata(
       type: "article",
       publishedTime,
       url: `https://b-r.io/blog/${slug}`,
-      images: [
-        {
-          url: `https://b-r.io/api/og?title=${title}`,
-          alt: title,
-        },
-        { url: ogImage, alt: title },
-      ],
+      images: [{ url: ogImage, alt: title }],
     },
   };
 
@@ -74,8 +69,6 @@ export default async function Post({ params }: { params: any }) {
   if (!post) {
     notFound();
   }
-
-  const publishedDate = new Date(post.publishedAt);
 
   return (
     <div className="flex flex-col gap-20">
@@ -112,7 +105,7 @@ export default async function Post({ params }: { params: any }) {
             </div>
           </div>
         </div>
-        {!post.imageless && (
+        {post.image && (
           <>
             <div className="h-8" />
             <Image
