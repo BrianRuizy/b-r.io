@@ -83,7 +83,7 @@ export default function About() {
               In addition to coding, I also make{" "}
               <Link
                 className="underline"
-                href="https://www.youtube.com/channel/@brianruizy"
+                href="https://www.youtube.com/@brianruizy"
               >
                 YouTube
               </Link>{" "}
