@@ -1,10 +1,10 @@
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "@/app/components/ui/Link";
+import Section from "@/app/components/Section";
 import { formatDate } from "@/utils/formatDate";
 import type { Post } from ".contentlayer/generated";
-import Section from "@/app/components/Section";
-import Link from "@/app/components/ui/Link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import React from "react";
 
 type PostProps = {
   post: Post;
@@ -26,7 +26,7 @@ export default function Post({ post, mousePosition }: PostProps) {
   const imageOffset = 24;
 
   return (
-    <li className="py-3 group transition-opacity">
+    <li className="group py-3 transition-opacity">
       <div className="transition-opacity">
         {image && mousePosition && (
           <motion.div
@@ -37,7 +37,7 @@ export default function Post({ post, mousePosition }: PostProps) {
             initial={false}
             transition={{ ease: "easeOut" }}
             style={{ width: imageWidth, height: imageHeight }}
-            className="absolute z-10 hidden overflow-hidden rounded shadow-sm pointer-events-none sm:group-hover:block bg-primary"
+            className="pointer-events-none absolute z-10 hidden overflow-hidden rounded bg-primary shadow-sm sm:group-hover:block"
           >
             <Image
               src={image}
@@ -47,13 +47,22 @@ export default function Post({ post, mousePosition }: PostProps) {
             />
           </motion.div>
         )}
-        <div className="flex justify-between gap-6 items-center">
+        <div className="flex items-center justify-between gap-6">
           <Section heading={formatDate(publishedAt)}>
-            <Link href={`/blog/${slug}`} className="font-medium leading-tight">{title}</Link>
+            <Link href={`/blog/${slug}`} className="font-medium leading-tight">
+              {title}
+            </Link>
           </Section>
-          <div className="md:hidden aspect-square min-w-24 w-24 h-24 relative drop-shadow-sm">
-            <Image src={image} alt={title} fill className="object-cover rounded"/>
-          </div>
+          {image && (
+            <div className="min-w-24 relative aspect-square h-24 w-24 drop-shadow-sm md:hidden">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                className="rounded object-cover"
+              />
+            </div>
+          )}
         </div>
       </div>
     </li>

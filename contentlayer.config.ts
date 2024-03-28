@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import {
   defineDocumentType,
   makeSource,
@@ -15,8 +18,11 @@ const postComputedFields: ComputedFields = {
   },
   image: {
     type: "string",
-    resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
-  },
+    resolve: (doc) => {
+      const imagePath = path.join(process.cwd(), 'public', 'blog', `${getSlug(doc)}/image.png`);
+      return fs.existsSync(imagePath) ? `/blog/${getSlug(doc)}/image.png` : null;
+    },
+    },
   og: {
     type: "string",
     resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
@@ -33,7 +39,6 @@ export const Post = defineDocumentType(() => ({
     publishedAt: { type: "string", required: true },
     updatedAt: { type: "string", required: false },
     tags: { type: "json", required: false },
-    imageless: { type: "boolean", required: false },
   },
   computedFields: postComputedFields,
 }));
