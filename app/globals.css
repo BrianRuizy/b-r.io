@@ -176,8 +176,8 @@ pre[class*="language-"] {
 
 .map-marker {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: var(--blue-10);
   transform: translate(-50%, -50%);

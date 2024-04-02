@@ -4,10 +4,12 @@ import { allPosts } from ".contentlayer/generated";
 
 import PostList from "./blog/components/ui/PostList";
 import Avatar from "@/public/avatar.png";
-import { FaYoutube } from "react-icons/fa";
 
-import Card from "@/app/components/bento/card";
+import Card from "@/app/components/bento/CardTemplate";
 import Map from "@/app/components/bento/map";
+import Gumroad from "@/app/components/bento/Gumroad";
+import Instagram from "@/app/components/bento/Instagram";
+import YouTube from "@/app/components/bento/Youtube";
 
 export default async function Home() {
   const posts = allPosts
@@ -47,39 +49,16 @@ export default async function Home() {
         className="grid animate-in grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-8"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <div className="col-span-2 row-span-1 flex justify-between gap-6 rounded-2xl border border-secondary p-6 p-6 shadow-sm">
-          <div className="flex flex-col gap-1.5">
-            <div className="flex aspect-square h-10 w-fit items-center justify-center rounded-xl bg-red-500 dark:bg-red-600">
-              <FaYoutube className="text-2xl text-white" />
-            </div>
-            <p className="text-secondary">@brianruizy</p>
-            <Link
-              className="mt-auto flex gap-1.5 rounded-full bg-secondary px-4 py-1.5 text-sm text-primary no-underline"
-              href="https://youtube.com/@Brianruizy?sub_confirmation=1"
-            >
-              <span className="font-medium">Subscribe</span>
-              <span className="opacity-75">60k</span>
-            </Link>
+        <YouTube />
+        <Gumroad />
+        <Instagram />
+        <Card className="relative col-span-2 row-span-1">
+          <Map />
+          {/* chip showing city bottom left corner of card, above map */}
+          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-white/75 px-4 py-1.5 backdrop-blur dark:bg-black/75">
+            <span className="text-sm text-primary">Houston, TX</span>
           </div>
-          <div className="grid w-full grid-cols-2 grid-rows-2 gap-3">
-            <div className="col-span-1 row-span-1 rounded-lg border border-secondary bg-[url('https://i9.ytimg.com/vi_webp/j68U1wBplk8/mqdefault.webp?v=66026be1&sqp=CPyXmbAG&rs=AOn4CLCrhaW7FwazB4VH_vkj1Z-4ICq1XA')] bg-cover bg-center"></div>
-            <div className="col-span-1 row-span-1 rounded-lg border border-secondary bg-[url('https://i9.ytimg.com/vi_webp/53KFVt2GRkE/mqdefault.webp?v=65fcb383&sqp=CPyXmbAG&rs=AOn4CLCD92jM3CPVHosay49YOe5ji3jdHg')] bg-cover bg-center"></div>
-            <div className="col-span-1 row-span-1 rounded-lg border border-secondary bg-[url('https://i9.ytimg.com/vi/mH4Fs1Pxomo/mqdefault.jpg?v=65f1d403&sqp=CPyXmbAG&rs=AOn4CLCVEVTdWr2uIRhEYnqzLSm_9t5Y8g')] bg-cover bg-center"></div>
-            <div className="col-span-1 row-span-1 rounded-lg border border-secondary bg-[url('https://i9.ytimg.com/vi/BlB5wovFmjc/mqdefault.jpg?v=65f53eb0&sqp=CPyXmbAG&rs=AOn4CLCuHnlTYnHH9YuyylOJxjtEk-9onQ')] bg-cover bg-center"></div>
-          </div>
-        </div>
-
-        <Card className="grid-rows-7 grid aspect-square grid-cols-7 gap-1 p-6">
-          {/* 7x7 grid */}
-          {Array.from({ length: 49 }).map((_, i) => (
-            <div
-              key={i}
-              className="col-span-1 row-span-1 aspect-square rounded bg-primary"
-            ></div>
-          ))}
         </Card>
-        <div className="col-span-1 row-span-1 rounded-2xl border border-secondary p-6 shadow-sm"></div>
-        <Map />
       </div>
       <div
         className="flex animate-in flex-col gap-8"

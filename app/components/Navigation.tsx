@@ -21,7 +21,7 @@ export default function Navigation() {
 
   return (
     <header className="sticky top-0 z-20 bg-white dark:bg-black">
-      <nav className="lg mx-auto mt-8 flex max-w-[700px] items-center justify-between gap-3 px-4 py-2 md:px-6">
+      <nav className="lg mx-auto md:mt-8 flex max-w-[700px] items-center justify-between gap-3 px-4 py-2 md:px-6">
         <Link href="/" className="shrink-0 text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"

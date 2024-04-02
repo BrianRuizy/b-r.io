@@ -6,29 +6,26 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useRef, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-import Card from "./card";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYnJpYW5ydWl6IiwiYSI6ImNsdWVyMm1hMTBsMHEyeGs4bWxxYzlrdngifQ._03YK5j-iCRuLKFKg1Zkgw";
-
-
 
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-95.36327);
   const [lat, setLat] = useState(29.76328);
-  const [zoom, setZoom] = useState(4);
+  const [zoom, setZoom] = useState(2);
   const [pitch, setPitch] = useState(15);
 
-  const { theme, resolvedTheme } = useTheme();
+const { theme, resolvedTheme } = useTheme();
   let mapTheme;
-  if (theme === "dark") {
+  if (resolvedTheme === "dark") {
     mapTheme = "night";
-  } else if (theme === "light") {
+  } else if (resolvedTheme === "light") {
     mapTheme = "day";
   } else {
-    mapTheme = resolvedTheme === "dark" ? "night" : "day";
+    mapTheme = "night" ;
   }
 
   useEffect(() => {
@@ -38,6 +35,7 @@ export default function Map() {
       center: [lng, lat],
       zoom: zoom,
       pitch: pitch,
+      // interactive: false,
     });
 
     // set configproperties
@@ -45,11 +43,9 @@ export default function Map() {
       map.current.setConfigProperty("basemap", "lightPreset", mapTheme);
       map.current.setPadding({ left: 150 });
 
-   
-      // Then, in your useEffect hook:
-      const el = document.createElement('span');
-      el.className = "map-marker";      
-    
+      const el = document.createElement("span");
+      el.className = "map-marker";
+
       new mapboxgl.Marker({ element: el })
         .setLngLat([lng, lat])
         .addTo(map.current);
@@ -57,12 +53,10 @@ export default function Map() {
   });
 
   return (
-    <Card className="col-span-2 row-span-1">
-      <div
-        ref={mapContainer}
-        className="map-container h-full w-full rounded-2xl"
-      />
-    </Card>
+    <div
+      ref={mapContainer}
+      className="map-container h-full w-full rounded-2xl"
+    />
   );
 }
 
