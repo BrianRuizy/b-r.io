@@ -30,7 +30,7 @@ export default function Project({ params }: { params: any }) {
             {post.url && (
               <>
                 <span>&middot;</span>
-                <Link href={post.url} className="hover:text-primary">
+                <Link href={post.url} className="no-underline hover:underline">
                   Visit Project
                 </Link>
               </>
@@ -40,7 +40,7 @@ export default function Project({ params }: { params: any }) {
             {post.title}
           </h1>
           <p
-            className="animate-in text-lg leading-tight text-secondary md:text-xl"
+            className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             {post.description}

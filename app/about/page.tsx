@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
-     <div>
-          <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
+      <div>
+        <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
             About
           </h1>
           <p
@@ -35,7 +35,7 @@ export default function About() {
             Just a quick glimpse.
           </p>
         </div>
-      <div className="lg:hidden mb-8">
+      <div className="mb-8 lg:hidden">
         <div
           className="animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
@@ -45,7 +45,7 @@ export default function About() {
             alt={"me and lily"}
             width={324}
             height={139}
-            className="relative h-60 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl -rotate-6"
+            className="pointer-events-none relative inset-0 h-60 -rotate-6 rounded-2xl bg-gray-400 object-cover shadow-md"
             priority
           />
         </div>
@@ -59,7 +59,7 @@ export default function About() {
             alt={"me and lily"}
             width={220}
             height={260}
-            className="absolute w-48 inset-0 object-cover bg-gray-400 shadow-md pointer-events-none rounded-2xl rotate-6 left-[45%] md:left-[60%] md:w-56 -top-48"
+            className="pointer-events-none absolute inset-0 -top-48 left-[45%] w-48 rotate-6 rounded-2xl bg-gray-400 object-cover shadow-md md:left-[60%] md:w-56"
             priority
           />
         </div>
@@ -68,50 +68,43 @@ export default function About() {
         <Gallery />
       </div>
       <div
-        className="flex flex-col gap-16 animate-in md:gap-24"
+        className="flex animate-in flex-col gap-16 md:gap-24"
         style={{ "--index": 3 } as React.CSSProperties}
       >
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
-            <p>Hello world, I&apos;m Brian Ruiz!</p>
-
             <p>
-              I have a passion for design and am always looking for ways to
-              incorporate it into my engineering work.
+              Hi, I&apos;m Brian, originally from Honduras and currently living
+              in Houston. I have been coding for{" "}
+              {new Date().getFullYear() - 2019} years. As a software engineer, I
+              specialize in full-stack web development and product design.
             </p>
             <p>
-              In addition to coding, I also make{" "}
+              In addition to coding, I create content on my{" "}
               <Link
                 className="underline"
                 href="https://www.youtube.com/channel/@brianruizy"
               >
                 YouTube
               </Link>{" "}
-              videos, where I focus on tech gear, creative vlogs, and a bit of
-              personal development.
+              channel, covering all things technology, coding vlogs, and personal
+              development topics.
             </p>
             <p>
               When I&apos;m not at my desk I am probably lifting weights,
-              playing soccer, or at a coffee shop :)
+              playing soccer, or at a local coffee shop :]
             </p>
           </div>
         </Section>
 
         <Section heading="Connect" headingAlignment="left">
-          <div className="flex flex-col w-full gap-8">
-            <p>
-              Have a question or just want to chat? Feel free to{" "}
-              <Link href="mailto:contact@b-r.io" >
-                email me
-              </Link>
-              . Try finding me anywhere else at @brianruizy
-            </p>
-            <ul className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-2 animated-list">
+          <div className="flex w-full flex-col gap-8">
+            <ul className="animated-list grid flex-grow grid-cols-1 gap-2 md:grid-cols-2">
               {ConnectLinks.map((link) => (
-                <li className="transition-opacity col-span-1" key={link.label}>
+                <li className="col-span-1 transition-opacity" key={link.label}>
                   <Link
                     href={link.href}
-                    className="transition-opacity no-underline w-full border rounded-lg p-4 border-primary inline-grid"
+                    className="inline-grid w-full rounded-lg border border-primary p-4 no-underline transition-opacity"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{link.icon}</span>
@@ -120,7 +113,7 @@ export default function About() {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-5 h-5 ml-auto text-secondary"
+                        className="ml-auto h-5 w-5 text-secondary"
                       >
                         <path
                           fillRule="evenodd"
@@ -135,26 +128,9 @@ export default function About() {
             </ul>
           </div>
         </Section>
-
         <Section heading="Work" headingAlignment="left">
-          <div className="flex flex-col w-full gap-8">
-            <p>
-              {new Date().getFullYear() - 2019}+ years of professional
-              development experience.
-            </p>
-            <p>
-              I started my career teaching others how to code, which I will
-              always be appreciative of. Then I worked at a few small local
-              companies. Now I&apos;m a full stack engineer currently working at{" "}
-              <Link
-                className="underline"
-                href="https://hines.com"
-
-              >
-                Hines
-              </Link>
-              , one of the largest private real estate investors in the world.
-            </p>
+          <div className="flex w-full flex-col gap-8">
+           
             <Workplaces items={workplaces} />
           </div>
         </Section>

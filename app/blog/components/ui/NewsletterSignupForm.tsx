@@ -76,7 +76,7 @@ export default function NewsletterSignupForm() {
       <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-secondaryA p-6 text-center lg:p-8">
         <p className="font-medium text-primary">Subscribe to my newsletter</p>
         <p className="max-w-md text-secondary">
-          The Modern Blueprint —monthly readings on topics like tech, design,
+          Monthly personal reading and updates on topics like tech, design,
           productivity, programming, and more!
         </p>
         <form

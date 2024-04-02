@@ -85,9 +85,7 @@ export default async function Post({ params }: { params: any }) {
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
               {post.title}
             </h1>
-            <p className="text-lg tracking-tight text-tertiary ">
-              {post.summary}
-            </p>
+            <p className="text-secondary">{post.summary}</p>
           </div>
           <div className="flex max-w-none items-center gap-4">
             <Image
