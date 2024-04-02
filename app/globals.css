@@ -222,3 +222,19 @@ pre[class*="language-"] {
   color: var(--gray-8); /* Line number color */
   content: attr(line);
 }
+
+
+/* map styles */
+.mapboxgl-control-container {
+  display: none;
+}
+
+.map-marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--blue-10);
+  transform: translate(-50%, -50%);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+}
