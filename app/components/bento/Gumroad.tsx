@@ -1,21 +1,23 @@
 import Card from "@/app/components/bento/CardTemplate";
 import Link from "@/app/components/ui/Link";
-import { SiGumroad } from "react-icons/si";
+import Halo from "@/app/components/ui/Halo";
 
 export default function Gumroad() {
   return (
-    <Link
-      href="https://gumroad.com/brianr4"
-      className="col-span-1 no-underline"
-    >
-      <Card className="flex aspect-square flex-col gap-1.5 p-6">
-        <div className="flex aspect-square h-10 w-fit items-center justify-center rounded-xl bg-[#FF91E7]">
-          <Logo />
-        </div>
-        <p className="text-secondary">Gumroad</p>
-        <p>My new Notion Templates</p>
-      </Card>
-    </Link>
+    <Halo className="col-span-1 row-span-1">
+      <Link
+        href="https://gumroad.com/brianr4"
+        className="no-underline"
+      >
+        <Card className="flex aspect-square flex-col gap-1.5 p-6">
+          <div className="flex aspect-square h-10 w-fit items-center justify-center rounded-xl bg-[#FF91E7]">
+            <Logo />
+          </div>
+          <p className="text-secondary">Gumroad</p>
+          <p>My new Notion templates</p>
+        </Card>
+      </Link>
+    </Halo>
   );
 }
 

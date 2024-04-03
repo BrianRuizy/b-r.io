@@ -24,7 +24,7 @@ export default function Blog() {
             className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            {posts.length} posts about code, design, more ...
+            {posts.length} posts so far. Stay tuned for more!
           </p>
         </div>
       </div>

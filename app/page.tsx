@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "@/app/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
-import PostList from "./blog/components/ui/PostList";
 import Avatar from "@/public/avatar.png";
 
+import PostList from "@/app/blog/components/ui/PostList";
 import Card from "@/app/components/bento/CardTemplate";
 import Map from "@/app/components/bento/map";
 import Gumroad from "@/app/components/bento/Gumroad";
@@ -52,11 +53,13 @@ export default async function Home() {
         <YouTube />
         <Instagram />
         <Gumroad />
-        <Card className="relative col-span-2">
+        <Card className="relative order-2 col-span-2">
           <Map />
           {/* chip showing city bottom left corner of card, above map */}
-          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-white/25 px-4 py-1.5 backdrop-blur dark:bg-black/25">
-            <span className="text-sm font-medium text-primary">Houston, TX</span>
+          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75">
+            <span className="text-sm font-medium text-primary">
+              Houston, TX
+            </span>
           </div>
         </Card>
       </div>
@@ -64,14 +67,20 @@ export default async function Home() {
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 4 } as React.CSSProperties}
       >
-        <h2 className="text-secondary">Latest Posts</h2>
+        <div className="space-y-4">
+          <Link
+            className="group flex items-center gap-2 text-xl font-semibold tracking-tight text-primary"
+            href="/blog"
+          >
+            Latest Posts
+            <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
+          </Link>
+          <p className="max-w-md leading-relaxed text-secondary">
+            I occasionally write about programming, productivity, and more.
+            Check me out and subscribe to stay up to date.
+          </p>
+        </div>
         <PostList posts={posts} />
-        <Link
-          href="/blog"
-          className="text-secondary underline underline-offset-4 hover:text-primary"
-        >
-          See All
-        </Link>
       </div>
     </div>
   );
