@@ -25,12 +25,14 @@ export default function Halo({
   const offset = size / 2;
 
   // matching tailwind md breakpoint
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
+  let isMobile = false;
+  if (typeof window !== "undefined") {
+    isMobile = window.matchMedia("(max-width: 768px)").matches;
+  }
   return (
     <motion.div
       ref={ref}
-      className={clsx("relative w-full h-full overflow-hidden", className)}
+      className={clsx("relative h-full w-full overflow-hidden", className)}
       whileHover="hover"
     >
       <motion.div
@@ -44,7 +46,7 @@ export default function Halo({
               "radial-gradient(#FFFFFF 0%, rgba(188, 255, 219, 0) 60%)",
           } as React.CSSProperties
         }
-        className={`transition-opacity opacity-0 absolute inset-0 z-50 translate-x-[var(--x)] translate-y-[var(--y)] pointer-events-none`}
+        className={`pointer-events-none absolute inset-0 z-50 translate-x-[var(--x)] translate-y-[var(--y)] opacity-0 transition-opacity`}
         variants={{
           hover: {
             opacity: isMobile ? 0 : strength / 100,
