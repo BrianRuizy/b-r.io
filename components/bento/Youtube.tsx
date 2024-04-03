@@ -35,7 +35,7 @@ export default async function YouTube() {
         </Link>
       </div>
       <div className="grid w-full grid-cols-2 grid-rows-2 gap-3">
-        {data.videos?.map((video: any, index: number) => (
+        {/* {data.videos?.map((video: any, index: number) => (
           <Link
             key={index}
             className="relative col-span-1 row-span-1 overflow-clip rounded-lg border border-secondary hover:opacity-50 "
@@ -48,7 +48,51 @@ export default async function YouTube() {
               className="scale-[1.35] object-cover	md:scale-125 "
             />
           </Link>
-        ))}
+        ))} */}
+         <Link
+          className="relative col-span-1 row-span-1"
+          href={"https://youtu.be/j68U1wBplk8"}
+        >
+          <Image
+            src={"/thumbnails/my tech stack.png"}
+            fill={true}
+            alt="thumbnail"
+            className="rounded-lg border border-secondary object-cover hover:opacity-75"
+          />
+        </Link>
+        <Link
+          className="relative col-span-1 row-span-1"
+          href={"https://youtu.be/53KFVt2GRkE"}
+        >
+          <Image
+            src={"/thumbnails/notion setup.png"}
+            fill={true}
+            alt="thumbnail"
+            className="rounded-lg border border-secondary object-cover hover:opacity-75"
+          />
+        </Link>
+        <Link
+          className="relative col-span-1 row-span-1"
+          href={"https://youtu.be/mH4Fs1Pxomo"}
+        >
+          <Image
+            src={"/thumbnails/5 productivity tools.png"}
+            fill={true}
+            alt="thumbnail"
+            className="rounded-lg border border-secondary object-cover hover:opacity-75"
+          />
+        </Link>
+        <Link
+          className="relative col-span-1 row-span-1"
+          href={"https://youtu.be/BlB5wovFmjc"}
+        >
+          <Image
+            src={"/thumbnails/macbook.png"}
+            fill={true}
+            alt="thumbnail"
+            className="rounded-lg border border-secondary object-cover hover:opacity-75"
+          />
+        </Link>
       </div>
     </Card>
   );
