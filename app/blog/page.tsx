@@ -38,7 +38,7 @@ export default function Blog() {
         className="animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <NewsletterSignupForm/>
+        <NewsletterSignupForm />
       </div>
     </div>
   );

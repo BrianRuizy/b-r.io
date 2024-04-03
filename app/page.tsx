@@ -3,9 +3,13 @@ import Link from "@/app/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 
 import PostList from "./blog/components/ui/PostList";
-import Stats from "@/app/components/Stats";
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 import Avatar from "@/public/avatar.png";
+
+import Card from "@/app/components/bento/CardTemplate";
+import Map from "@/app/components/bento/map";
+import Gumroad from "@/app/components/bento/Gumroad";
+import Instagram from "@/app/components/bento/Instagram";
+import YouTube from "@/app/components/bento/Youtube";
 
 export default async function Home() {
   const posts = allPosts
@@ -19,65 +23,46 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div className="flex animate-in flex-col gap-8">
-        <div>
-          <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
+        <Image
+          src={Avatar}
+          width={100}
+          height={100}
+          alt="avatar"
+          className="rounded-full bg-secondaryA"
+          style={{ "--index": 1 } as React.CSSProperties}
+        />
+        <div
+          className="animate-in space-y-4"
+          style={{ "--index": 2 } as React.CSSProperties}
+        >
+          <h1 className="text-3xl font-bold tracking-tight text-primary">
             Brian Ruiz
           </h1>
-          <p
-            className="animate-in text-secondary"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            Software Engineer & Creator
+          <p className="max-w-md leading-relaxed text-secondary">
+            Hi there, I&apos;m, a programmer who loves building new things. In
+            addition to coding, I also make YouTube videos, where I focus on
+            tech, creative vlogging, and personal development.
           </p>
         </div>
-        <div
-          className="flex animate-in flex-col gap-6 text-secondary md:flex-row md:items-center"
-          style={{ "--index": 1 } as React.CSSProperties}
-        >
-          <Image
-            src={Avatar}
-            width={85}
-            height={85}
-            alt="avatar"
-            className="rounded-full bg-secondary"
-          />
-          <Stats />
-        </div>
-        <p
-          className="max-w-lg animate-in text-primary"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          Hi there, I&apos;m, a programmer who loves building new
-          things. In addition to coding, I also make YouTube videos,
-          where I focus on tech, creative vlogging, and personal development.
-        </p>
-        <ul
-          className="animated-list flex animate-in flex-col gap-2 text-secondary md:flex-row md:gap-6"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <li className="transition-opacity">
-            <Link
-              href="/links"
-              className="flex items-center gap-2 no-underline"
-            >
-              <ArrowUpRightIcon className="h-5 w-5" />
-              <span>Contact</span>
-            </Link>
-          </li>
-          <li className="transition-opacity">
-            <Link
-              href="mailto:contact@b-r.io"
-              className="flex items-center gap-2 no-underline"
-            >
-              <ArrowUpRightIcon className="h-5 w-5" />
-              <span>Get Newsletter</span>
-            </Link>
-          </li>
-        </ul>
+      </div>
+      <div
+        className="grid animate-in grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-8"
+        style={{ "--index": 3 } as React.CSSProperties}
+      >
+        <YouTube />
+        <Instagram />
+        <Gumroad />
+        <Card className="relative col-span-2">
+          <Map />
+          {/* chip showing city bottom left corner of card, above map */}
+          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-white/25 px-4 py-1.5 backdrop-blur dark:bg-black/25">
+            <span className="text-sm font-medium text-primary">Houston, TX</span>
+          </div>
+        </Card>
       </div>
       <div
         className="flex animate-in flex-col gap-8"
-        style={{ "--index": 3 } as React.CSSProperties}
+        style={{ "--index": 4 } as React.CSSProperties}
       >
         <h2 className="text-secondary">Latest Posts</h2>
         <PostList posts={posts} />

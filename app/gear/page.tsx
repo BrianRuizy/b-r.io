@@ -26,7 +26,7 @@ interface ItemProps {
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
   <li className="flex items-center gap-4 transition-opacity">
     <a
-      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl bg-tertiary shadow"
+      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl bg-tertiary shadow-sm border border-secondary"
       href={link}
       target="_blank"
     >

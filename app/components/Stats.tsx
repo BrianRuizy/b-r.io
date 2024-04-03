@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import useSWR from "swr";
-import { useTheme } from "next-themes";
 import clsx from "clsx";
 
 import { FaYoutube, FaGithub } from "react-icons/fa";
@@ -32,7 +31,6 @@ export function GitHub() {
 }
 
 export default function Stats() {
-  const { theme } = useTheme();
   const username = "brianruizy";
 
   const { data: githubData, error: githubDataError } = useSWR(
