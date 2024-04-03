@@ -3,7 +3,20 @@ import { FaYoutube } from "react-icons/fa";
 import Card from "@/app/components/bento/CardTemplate";
 import Image from "next/image";
 
-export default function YouTube() {
+// get youtube subs count from route handler api/youtube
+async function getData() {
+  const res = await fetch("https://b-r.io/api/youtube");
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+export default async function YouTube() {
+  const data = await getData();
+
   return (
     <Card className="col-span-2 flex justify-between gap-6 p-6">
       <div className="flex flex-col gap-1.5">
@@ -16,7 +29,9 @@ export default function YouTube() {
           href="https://youtube.com/@Brianruizy?sub_confirmation=1"
         >
           <span className="font-medium text-primary">Subscribe</span>
-          <span className="text-tertiary">67k</span>
+          <span className="text-tertiary">
+            {Math.floor(data.subscribers / 1000)}k
+          </span>
         </Link>
       </div>
       <div className="grid w-full grid-cols-2 grid-rows-2 gap-3">
