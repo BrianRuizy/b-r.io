@@ -38,14 +38,14 @@ export default async function YouTube() {
         {data.videos?.map((video: any, index: number) => (
           <Link
             key={index}
-            className="relative col-span-1 row-span-1"
+            className="relative col-span-1 row-span-1 overflow-clip rounded-lg border border-secondary hover:opacity-50 "
             href={video.url}
           >
             <Image
               src={video.thumbnail}
               fill={true}
               alt={video.title}
-              className="rounded-lg border border-secondary object-none	 hover:opacity-50"
+              className="scale-[1.35] object-cover	md:scale-125 "
             />
           </Link>
         ))}
