@@ -121,11 +121,10 @@ input:-webkit-autofill:focus {
   content: "";
 }
 
-
 /* syntax highlighting */
 
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-primary text-[13px] text-xs text-primary dark:bg-[#111111]/75;
+  @apply rounded-md border border-secondary bg-none text-[13px] text-xs text-primary dark:bg-[#0A0A0A];
 }
 
 .code-highlight {
@@ -159,7 +158,10 @@ pre[class*="language-"] {
 }
 
 .line-number::before {
-  display: inline-block;
+  @apply hidden md:inline-block;
+}
+
+.line-number::before {
   width: 1rem;
   text-align: right;
   margin-right: 24px;
@@ -167,7 +169,6 @@ pre[class*="language-"] {
   color: var(--gray-8); /* Line number color */
   content: attr(line);
 }
-
 
 /* map styles */
 .mapboxgl-control-container {
