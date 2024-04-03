@@ -21,9 +21,7 @@ export default function Map() {
   if (resolvedTheme === "dark") {
     mapTheme = "night";
   } else if (resolvedTheme === "light") {
-    mapTheme = "day";
-  } else {
-    mapTheme = "night";
+    mapTheme = "light";
   }
 
   useEffect(() => {
@@ -53,7 +51,7 @@ export default function Map() {
   return (
     <div
       ref={mapContainer}
-      className="map-container h-full w-full rounded-2xl select-none"
+      className="map-container h-full w-full select-none rounded-2xl"
     />
   );
 }

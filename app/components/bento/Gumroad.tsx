@@ -1,23 +1,20 @@
 import Card from "@/app/components/bento/CardTemplate";
 import Link from "@/app/components/ui/Link";
-import Halo from "@/app/components/ui/Halo";
 
 export default function Gumroad() {
   return (
-    <Halo className="col-span-1 row-span-1">
       <Link
         href="https://gumroad.com/brianr4"
-        className="no-underline"
+        className="no-underline col-span-1 row-span-1"
       >
         <Card className="flex aspect-square flex-col gap-1.5 p-4 md:p-6">
-          <div className="flex aspect-square h-10 w-10 items-center justify-center rounded-xl bg-[#FF91E7]">
+          <div className="flex aspect-square h-8 w-8 items-center justify-center rounded-lg bg-[#FF91E7]">
             <Logo />
           </div>
           <p className="text-secondary">Gumroad</p>
           <p className="line-clamp-2">My new Notion templates</p>
         </Card>
       </Link>
-    </Halo>
   );
 }
 

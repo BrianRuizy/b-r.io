@@ -24,6 +24,9 @@ export default function Halo({
   const { x, y } = useMousePosition(ref);
   const offset = size / 2;
 
+  // matching tailwind md breakpoint
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   return (
     <motion.div
       ref={ref}
@@ -44,7 +47,7 @@ export default function Halo({
         className={`transition-opacity opacity-0 absolute inset-0 z-50 translate-x-[var(--x)] translate-y-[var(--y)] pointer-events-none`}
         variants={{
           hover: {
-            opacity: strength / 100,
+            opacity: isMobile ? 0 : strength / 100,
           },
         }}
       />

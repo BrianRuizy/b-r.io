@@ -40,7 +40,7 @@ export default async function Home() {
             Brian Ruiz
           </h1>
           <p className="max-w-md leading-relaxed text-secondary">
-            Hi there, I&apos;m, a programmer who loves building new things. In
+            Hi there, I&apos;m, a software engineer who simply loves building things. In
             addition to coding, I also make YouTube videos, where I focus on
             tech, creative vlogging, and personal development.
           </p>
@@ -53,7 +53,7 @@ export default async function Home() {
         <YouTube />
         <Instagram />
         <Gumroad />
-        <Card className="relative order-2 col-span-2">
+        <Card className="relative col-span-2 row-span-1" disableHalo>
           <Map />
           {/* chip showing city bottom left corner of card, above map */}
           <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75">
