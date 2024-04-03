@@ -35,7 +35,7 @@ export default async function YouTube() {
         </Link>
       </div>
       <div className="grid w-full grid-cols-2 grid-rows-2 gap-3">
-        {data.videos.map((video: any, index: number) => (
+        {data.videos?.map((video: any, index: number) => (
           <Link
             key={index}
             className="relative col-span-1 row-span-1"
