@@ -9,12 +9,12 @@ export default function Gumroad() {
         href="https://gumroad.com/brianr4"
         className="no-underline"
       >
-        <Card className="flex aspect-square flex-col gap-1.5 p-6">
-          <div className="flex aspect-square h-10 w-fit items-center justify-center rounded-xl bg-[#FF91E7]">
+        <Card className="flex aspect-square flex-col gap-1.5 p-4 md:p-6">
+          <div className="flex aspect-square h-10 w-10 items-center justify-center rounded-xl bg-[#FF91E7]">
             <Logo />
           </div>
           <p className="text-secondary">Gumroad</p>
-          <p>My new Notion templates</p>
+          <p className="line-clamp-2">My new Notion templates</p>
         </Card>
       </Link>
     </Halo>

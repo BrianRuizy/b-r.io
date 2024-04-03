@@ -20,9 +20,9 @@ export default async function YouTube() {
 
   return (
     <Halo className="col-span-2 row-span-1">
-      <Card className="flex justify-between gap-6 p-6">
+      <Card className="flex justify-between gap-6 p-4 md:p-6">
         <div className="flex flex-col gap-1.5">
-          <div className="flex aspect-square h-10 w-fit items-center justify-center rounded-xl bg-[#FF0000]">
+          <div className="flex aspect-square h-10 w-10  items-center justify-center rounded-xl bg-[#FF0000]">
             <FaYoutube className="text-2xl text-white" />
           </div>
           <p className="text-secondary">@brianruizy</p>
