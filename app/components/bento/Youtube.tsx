@@ -21,7 +21,7 @@ export default async function YouTube() {
     <Card className="col-span-2 row-span-1 flex justify-between gap-6 p-4 md:p-6">
       <div className="flex flex-col gap-1.5">
         <div className="flex aspect-square h-8 w-8 items-center justify-center rounded-lg bg-[#FF0000]">
-          <FaYoutube className="text-2xl text-white" />
+          <FaYoutube className="text-xl text-white" />
         </div>
         <p className="text-secondary">@brianruizy</p>
         <Link
