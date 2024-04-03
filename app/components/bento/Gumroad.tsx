@@ -12,7 +12,7 @@ export default function Gumroad() {
             <Logo />
           </div>
           <p className="text-secondary">Gumroad</p>
-          <p className="line-clamp-2">My new Notion templates</p>
+          <p className="line-clamp-2">New Notion templates!</p>
         </Card>
       </Link>
   );
