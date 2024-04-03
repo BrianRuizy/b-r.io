@@ -30,7 +30,7 @@ export default async function YouTube() {
         >
           <span className="font-medium text-primary">Subscribe</span>
           <span className="text-tertiary">
-            {Math.floor(data.subscribers / 1000)}k
+            {Math.floor(data?.subscribers / 1000)}k
           </span>
         </Link>
       </div>
@@ -45,7 +45,7 @@ export default async function YouTube() {
               src={video.thumbnail}
               fill={true}
               alt={video.title}
-              className="rounded-lg border border-secondary object-cover hover:opacity-50"
+              className="rounded-lg border border-secondary object-none	 hover:opacity-50"
             />
           </Link>
         ))}

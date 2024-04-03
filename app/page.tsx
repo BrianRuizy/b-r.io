@@ -53,7 +53,7 @@ export default async function Home() {
         <YouTube />
         <Instagram />
         <Gumroad />
-        <Card className="relative col-span-2 row-span-1 p-0 md:p-0" disableHalo>
+        <Card className="relative col-span-2 row-span-1" disableHalo noPadding>
           <Map />
           {/* chip showing city bottom left corner of card, above map */}
           <div className="absolute bottom-4 left-4 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
