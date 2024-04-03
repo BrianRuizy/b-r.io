@@ -1,16 +1,16 @@
 import Image from "next/image";
-import Link from "@/app/components/ui/Link";
+import Link from "@/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 import Avatar from "@/public/avatar.png";
 
 import PostList from "@/app/blog/components/ui/PostList";
-import Card from "@/app/components/bento/CardTemplate";
-import Map from "@/app/components/bento/map";
-import Gumroad from "@/app/components/bento/Gumroad";
-import Instagram from "@/app/components/bento/Instagram";
-import YouTube from "@/app/components/bento/Youtube";
+import Card from "@/components/bento/CardTemplate";
+import Map from "@/components/bento/map";
+import Gumroad from "@/components/bento/Gumroad";
+import Instagram from "@/components/bento/Instagram";
+import YouTube from "@/components/bento/Youtube";
 
 export default async function Home() {
   const posts = allPosts
@@ -39,10 +39,10 @@ export default async function Home() {
           <h1 className="text-3xl font-bold tracking-tight text-primary">
             Brian Ruiz
           </h1>
-          <p className="max-w-md leading-relaxed text-secondary">
-            Hi there, I&apos;m, a software engineer who simply loves building things. In
-            addition to coding, I also make YouTube videos, where I focus on
-            tech, creative vlogging, and personal development.
+          <p className="max-w-lg leading-relaxed text-secondary">
+            Hi there, I&apos;m a software engineer who simply loves building
+            things. In addition to coding, I also make YouTube videos, where I
+            focus on tech, creative vlogging, and personal development.
           </p>
         </div>
       </div>
@@ -53,13 +53,11 @@ export default async function Home() {
         <YouTube />
         <Instagram />
         <Gumroad />
-        <Card className="relative col-span-2 row-span-1" disableHalo>
+        <Card className="relative col-span-2 row-span-1 p-0 md:p-0" disableHalo>
           <Map />
           {/* chip showing city bottom left corner of card, above map */}
-          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75">
-            <span className="text-sm font-medium text-primary">
-              Houston, TX
-            </span>
+          <div className="absolute bottom-4 left-4 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
+            <p className="text-sm font-medium text-primary">Houston, TX</p>
           </div>
         </Card>
       </div>
@@ -75,7 +73,7 @@ export default async function Home() {
             Latest Posts
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
-          <p className="max-w-md leading-relaxed text-secondary">
+          <p className="max-w-lg leading-relaxed text-secondary">
             I occasionally write about programming, productivity, and more.
             Check me out and subscribe to stay up to date.
           </p>

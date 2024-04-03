@@ -1,20 +1,20 @@
-import Card from "@/app/components/bento/CardTemplate";
-import Link from "@/app/components/ui/Link";
+import Card from "@/components/bento/CardTemplate";
+import Link from "@/components/ui/Link";
 
 export default function Gumroad() {
   return (
-      <Link
-        href="https://gumroad.com/brianr4"
-        className="no-underline col-span-1 row-span-1"
-      >
-        <Card className="flex aspect-square flex-col gap-1.5 p-4 md:p-6">
-          <div className="flex aspect-square h-8 w-8 items-center justify-center rounded-lg bg-[#FF91E7]">
-            <Logo />
-          </div>
-          <p className="text-secondary">Gumroad</p>
-          <p className="line-clamp-2">New Notion templates!</p>
-        </Card>
-      </Link>
+    <Link
+      href="https://gumroad.com/brianr4"
+      className="col-span-1 row-span-1 no-underline"
+    >
+      <Card className="flex aspect-square flex-col gap-1.5">
+        <div className="flex aspect-square h-8 w-8 items-center justify-center rounded-lg bg-[#FF91E7]">
+          <Logo />
+        </div>
+        <p className="text-secondary">Gumroad</p>
+        <p className="line-clamp-2">Just added new Notion templates!</p>
+      </Card>
+    </Link>
   );
 }
 
@@ -28,7 +28,7 @@ const Logo = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="40" height="40" rx="10" fill="#FF90E8"></rect>
-    <g clip-path="url(#clip0_920_2744)">
+    <g clipPath="url(#clip0_920_2744)">
       <path
         d="M22.0129 32C27.5285 32 31.9998 27.5542 31.9998 22.07C31.9998 16.5857 27.5285 12.1399 22.0129 12.1399C16.4972 12.1399 12.0259 16.5857 12.0259 22.07C12.0259 27.5542 16.4972 32 22.0129 32Z"
         fill="black"

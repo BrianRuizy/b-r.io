@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
-import Tags from "@/app/components/Tags";
-import Link from "@/app/components/ui/Link";
+import Tags from "@/components/Tags";
+import Link from "@/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
@@ -113,7 +113,6 @@ export default async function Post({ params }: { params: any }) {
               height={350}
               className="-ml-6 w-[calc(100%+48px)] max-w-none  md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
               priority
-              quality={100}
             />
           </>
         )}

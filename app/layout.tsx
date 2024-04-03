@@ -4,8 +4,8 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 
-import { ThemeProvider } from "@/app/components/ThemeProvider";
-import Navigation from "@/app/components/Navigation";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 

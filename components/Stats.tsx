@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { FaYoutube, FaGithub } from "react-icons/fa";
 import { ArrowTrendingUpIcon } from "@heroicons/react/20/solid";
 
-import FlipNumber from "@/app/components/FlipNumber";
+import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/utils/fetcher";
 import { addCommas } from "@/utils/addCommas";
 

@@ -1,7 +1,7 @@
 "use client";
 import { Post as PostType } from ".contentlayer/generated";
 
-import FlipNumber from "@/app/components/FlipNumber";
+import FlipNumber from "@/components/FlipNumber";
 
 import useSWR from "swr";
 import fetcher from "@/utils/fetcher";

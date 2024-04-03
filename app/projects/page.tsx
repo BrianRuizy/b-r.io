@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { allProjects, Project } from ".contentlayer/generated";
-import Halo from "@/app/components/ui/Halo";
+import Halo from "@/components/ui/Halo";
 
 export const metadata: Metadata = {
   title: "Projects | Brian Ruiz",

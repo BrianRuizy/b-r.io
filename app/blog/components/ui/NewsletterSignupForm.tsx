@@ -3,8 +3,8 @@
 import { FormEventHandler, useCallback, useState } from "react";
 import useSWR from "swr";
 
-import Halo from "@/app/components/ui/Halo";
-import FlipNumber from "@/app/components/FlipNumber";
+import Halo from "@/components/ui/Halo";
+import FlipNumber from "@/components/FlipNumber";
 import fetcher from "@/utils/fetcher";
 
 export default function NewsletterSignupForm() {
