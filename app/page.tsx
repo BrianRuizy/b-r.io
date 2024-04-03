@@ -50,13 +50,13 @@ export default async function Home() {
         style={{ "--index": 3 } as React.CSSProperties}
       >
         <YouTube />
-        <Gumroad />
         <Instagram />
-        <Card className="relative col-span-2 row-span-1">
+        <Gumroad />
+        <Card className="relative col-span-2">
           <Map />
           {/* chip showing city bottom left corner of card, above map */}
-          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-white/75 px-4 py-1.5 backdrop-blur dark:bg-black/75">
-            <span className="text-sm text-primary">Houston, TX</span>
+          <div className="absolute bottom-6 left-6 flex items-center rounded-lg bg-white/25 px-4 py-1.5 backdrop-blur dark:bg-black/25">
+            <span className="text-sm font-medium text-primary">Houston, TX</span>
           </div>
         </Card>
       </div>

@@ -10,7 +10,7 @@ export default function Card({
   return (
     <div
       className={clsx(
-        "rounded-2xl border border-secondary shadow-sm overflow-clip",
+        "rounded-2xl bg-primary border border-secondary shadow-sm overflow-clip leading-tight",
         className,
       )}
     >
