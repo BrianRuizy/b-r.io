@@ -26,15 +26,15 @@ export default function About() {
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
-            About
-          </h1>
-          <p
-            className="animate-in text-secondary"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            Just a quick glimpse.
-          </p>
-        </div>
+          About
+        </h1>
+        <p
+          className="animate-in text-secondary"
+          style={{ "--index": 1 } as React.CSSProperties}
+        >
+          Just a quick glimpse.
+        </p>
+      </div>
       <div className="mb-8 lg:hidden">
         <div
           className="animate-in"
@@ -87,8 +87,8 @@ export default function About() {
               >
                 YouTube
               </Link>{" "}
-              channel, covering all things technology, coding vlogs, and personal
-              development topics.
+              channel, covering all things technology, coding vlogs, and
+              personal development topics.
             </p>
             <p>
               When I&apos;m not at my desk I am probably lifting weights,
@@ -104,7 +104,7 @@ export default function About() {
                 <li className="col-span-1 transition-opacity" key={link.label}>
                   <Link
                     href={link.href}
-                    className="inline-grid w-full rounded-lg border border-primary p-4 no-underline transition-opacity"
+                    className="inline-grid w-full rounded-lg border border-primary bg-white p-4 no-underline transition-opacity dark:bg-black"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{link.icon}</span>
@@ -130,7 +130,11 @@ export default function About() {
         </Section>
         <Section heading="Work" headingAlignment="left">
           <div className="flex w-full flex-col gap-8">
-           
+            <p>
+              I specialize in Python, data analytics, React, web development,
+              UI/UX, and product design. But I am always learning new things.
+              Here are some of the places I have worked.
+            </p>
             <Workplaces items={workplaces} />
           </div>
         </Section>
