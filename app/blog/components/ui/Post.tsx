@@ -36,7 +36,7 @@ export default function Post({ post, mousePosition }: PostProps) {
             }}
             initial={false}
             transition={{ ease: "easeOut" }}
-          style={{ width: imageWidth, height: imageHeight }}
+            style={{ width: imageWidth, height: imageHeight }}
             className="pointer-events-none absolute z-10 hidden overflow-hidden rounded bg-primary shadow-sm sm:group-hover:block"
           >
             <Image
@@ -53,13 +53,13 @@ export default function Post({ post, mousePosition }: PostProps) {
               {title}
             </Link>
           </Section>
-          <div className="min-w-24 relative flex aspect-square h-24 w-24 items-center justify-center rounded-md bg-tertiary shadow-s border border-secondary md:hidden">
+          <div className="min-w-24 relative flex aspect-square h-24 w-24 items-center justify-center rounded-md border border-secondary bg-tertiary shadow-sm md:hidden">
             {image ? (
               <Image
                 src={image}
                 alt={title}
                 fill
-                className="rounded object-cover"
+                className="rounded-md object-cover"
               />
             ) : (
               <svg
