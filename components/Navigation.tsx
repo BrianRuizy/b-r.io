@@ -20,7 +20,7 @@ export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic sub-pages
 
   return (
-    <header className="relative z-10 bg-white dark:bg-black md:sticky top-0 pt-6">
+    <header className="relative z-10 bg-white dark:bg-black md:sticky top-0 md:mt-6">
       <nav className="mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-2 md:px-6">
         <Link href="/" className="shrink-0 text-primary">
           <svg
