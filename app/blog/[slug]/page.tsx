@@ -122,11 +122,10 @@ export default async function Post({ params }: { params: any }) {
         </div>
       </article>
       <div className="flex flex-col gap-6">
-        <h2>Tags</h2>
+        <h2 className="text-secondary">Tags</h2>
         <Tags tags={post.tags} />
       </div>
       <Subscribe />
-      <Link href="/blog">← All Blogs</Link>
     </div>
   );
 }

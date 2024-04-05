@@ -40,9 +40,9 @@ export default async function Home() {
             Brian Ruiz
           </h1>
           <p className="max-w-lg leading-relaxed text-secondary">
-            Hi there, I&apos;m a software engineer who simply loves building
-            things. In addition to coding, I also make YouTube videos, where I
-            focus on tech, creative vlogging, and personal development.
+            Hi there, I&apos;m a software engineer who builds for the web with a
+            design-oriented approach. In addition to coding, I also make YouTube
+            videos, where I focus on tech, and productivity.
           </p>
         </div>
       </div>

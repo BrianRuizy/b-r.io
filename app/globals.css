@@ -121,11 +121,10 @@ input:-webkit-autofill:focus {
   content: "";
 }
 
-
 /* syntax highlighting */
 
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-none text-[13px] text-xs text-primary dark:bg-[#0A0A0A];
+  @apply rounded-md border border-secondary bg-white dark:bg-[#0A0A0A] text-[13px] text-xs text-primary;
 }
 
 .code-highlight {

@@ -15,7 +15,7 @@ const Tags = ({ tags }: TagsProps): JSX.Element | null => {
         <li key={tag} className="transition-opacity">
           <Link
             href={`/blog/tag/${slugify(tag, { lower: true })}`}
-            className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
+            className="whitespace-nowrap rounded-lg bg-tertiary px-4 py-1.5 text-sm text-primary"
           >
             {tag}
           </Link>
