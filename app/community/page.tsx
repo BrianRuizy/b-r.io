@@ -18,7 +18,7 @@ export default function Community() {
   }
 
   return (
-    <div className="flex flex-col gap-16 md:gap-24 ">
+    <div className="flex flex-col gap-16 md:gap-24">
       <div
         className="flex animate-in items-center justify-between gap-8"
         style={{ "--index": 1 } as React.CSSProperties}
@@ -119,15 +119,15 @@ function Posts() {
                 </Avatar.Fallback>
               </Avatar.Root>
               <p className="font-medium">@brianruizy</p>
-              <div className="flex items-center gap-1.5">
-                <p className="text-secondary">6h</p>
-                <p className="flex items-center rounded bg-tertiary px-1 py-0.5 text-sm text-secondary">
+              <div className="flex items-center gap-1.5 text-secondary">
+                <p>6h</p>
+                <p className="flex items-center rounded bg-tertiary px-1 py-0.5 text-sm">
                   <span className="text-tertiary"># </span>general
                 </p>
               </div>
             </div>
 
-            <h2 className="line-clamp-4 leading-tight">
+            <h2 className="line-clamp-4">
               {index % 2 === 0
                 ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi."
                 : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
