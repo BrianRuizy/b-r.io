@@ -33,28 +33,27 @@ export default async function YouTube() {
           href="https://youtube.com/@Brianruizy?sub_confirmation=1"
         >
           <span className="font-medium text-primary">Subscribe</span>
-          <span className="text-tertiary">
-            {Math.floor(data?.subscribers / 1000)}k
-          </span>
+          <span className="text-tertiary">{data?.subscribers / 1000}k</span>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-2 grid-rows-2 gap-3">
+      <ul className="animated-list grid w-full grid-cols-2 grid-rows-2 gap-3">
         {data.videos?.map((video: any, index: number) => (
-          <Link
+          <li
             key={index}
-            className="relative col-span-1 row-span-1 overflow-hidden rounded-lg border border-secondary hover:opacity-50 "
-            href={video.url}
+            className="relative col-span-1 row-span-1 overflow-hidden rounded-lg border border-secondary transition-opacity"
           >
-            <Image
-              src={video.thumbnail}
-              alt={video.title}
-              objectFit="cover"
-              layout="fill"
-              quality={100}
-            />
-          </Link>
+            <Link href={video.url}>
+              <Image
+                src={video.thumbnail}
+                alt={video.title}
+                objectFit="cover"
+                layout="fill"
+                quality={100}
+              />
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </Card>
   );
 }

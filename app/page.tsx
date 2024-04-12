@@ -1,18 +1,17 @@
 import Image from "next/image";
-import Link from "@/components/ui/Link";
 import { allPosts } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
-import Avatar from "@/public/avatar.png";
-
+import Link from "@/components/ui/Link";
 import PostList from "@/app/blog/components/ui/PostList";
 import Card from "@/components/bento/CardTemplate";
 import Map from "@/components/bento/map";
 import Gumroad from "@/components/bento/Gumroad";
 import Instagram from "@/components/bento/Instagram";
 import YouTube from "@/components/bento/Youtube";
+import Avatar from "@/public/avatar.png";
 
-export default async function Home() {
+export default function Home() {
   const posts = allPosts
     .sort(
       (a, b) =>

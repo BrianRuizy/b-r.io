@@ -82,7 +82,7 @@ export default function Community() {
 function Posts() {
   return (
     <div className="divide-y divide-secondary ">
-      {Array.from({ length: 10 }).map((_, index) => (
+      {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
           className="flex gap-3 py-4 first:pt-0 md:flex-col md:py-6"
