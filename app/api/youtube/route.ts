@@ -22,7 +22,7 @@ export async function GET() {
     const videos = videosData.items.map((item: any) => ({
       title: item.snippet.title,
       url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
-      thumbnail: item.snippet.thumbnails.default.url,
+      thumbnail: item.snippet.thumbnails.medium.url,
     }));
 
     return Response.json({
