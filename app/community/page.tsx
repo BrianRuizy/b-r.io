@@ -194,7 +194,13 @@ function Info() {
           </div>
           <div className="col-span-1 flex flex-col items-center">
             <p className="text-secondary">Online</p>
-            <p className="text-base font-medium">32</p>
+            <p className="text-base font-medium flex items-center gap-1">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+              </span>
+              32
+            </p>
           </div>
         </div>
       </div>

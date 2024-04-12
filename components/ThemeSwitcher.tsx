@@ -124,22 +124,22 @@ export default function ThemeSwitcher() {
   );
 }
 
-const SelectItem = React.forwardRef(
-  ({ children, className, ...props }, forwardedRef) => {
-    return (
-      <Select.Item
-        className={clsx(
-          "relative cursor-default select-none rounded-md py-2 pl-10 pr-4 hover:bg-secondary focus:outline-none",
-          className,
-        )}
-        {...props}
-        ref={forwardedRef}
-      >
-        <Select.ItemText>{children}</Select.ItemText>
-        <Select.ItemIndicator className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">
-          <CheckIcon className="h-5 w-5" />
-        </Select.ItemIndicator>
-      </Select.Item>
-    );
-  },
-);
+// const SelectItem = React.forwardRef(
+//   ({ children, className, ...props }, forwardedRef) => {
+//     return (
+//       <Select.Item
+//         className={clsx(
+//           "relative cursor-default select-none rounded-md py-2 pl-10 pr-4 hover:bg-secondary focus:outline-none",
+//           className,
+//         )}
+//         {...props}
+//         ref={forwardedRef}
+//       >
+//         <Select.ItemText>{children}</Select.ItemText>
+//         <Select.ItemIndicator className="absolute inset-y-0 left-0 flex items-center pl-3 dark:text-neutral-50">
+//           <CheckIcon className="h-5 w-5" />
+//         </Select.ItemIndicator>
+//       </Select.Item>
+//     );
+//   },
+// );
