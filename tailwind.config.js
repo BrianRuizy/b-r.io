@@ -31,6 +31,10 @@ module.exports = {
         primary: "var(--gray-6)",
         secondary: "var(--gray-4)",
       },
+      divideColor: {
+        primary: "var(--gray-6)",
+        secondary: "var(--gray-4)",
+      },
       ringOffsetColor: {
         primary: "var(--gray-12)",
       },

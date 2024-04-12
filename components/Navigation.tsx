@@ -12,15 +12,16 @@ import clsx from "clsx";
 const links = [
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
+  { label: "Community", href: "/community" },
   { label: "Gear", href: "/gear" },
-  { label: "Projects", href: "/projects" },
+  // { label: "Projects", href: "/projects" },
 ];
 
 export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic sub-pages
 
   return (
-    <header className="relative z-10 bg-white dark:bg-black md:sticky top-0 md:mt-6">
+    <header className="relative z-10 bg-white dark:bg-black md:mt-6">
       <nav className="mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-2 md:px-6">
         <Link href="/" className="shrink-0 text-primary">
           <svg

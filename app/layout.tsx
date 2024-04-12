@@ -6,13 +6,14 @@ import clsx from "clsx";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navigation from "@/components/Navigation";
+import { Providers } from "@/app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Brian Ruiz",
   description:
-  "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
+    "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
 };
 
 export default function RootLayout({
@@ -25,21 +26,17 @@ export default function RootLayout({
       <body
         className={clsx(
           inter.className,
-          "antialiased bg-white dark:bg-black text-primary width-full"
+          "width-full bg-white text-primary antialiased dark:bg-black",
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navigation />
           <div
             className={
-              "px-6 md:px-6 pt-16 pb-24 md:pt-20 md:pb-44 max-w-[700px] mx-auto"
+              "mx-auto max-w-[700px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20"
             }
           >
-            {children}
+            <Providers>{children}</Providers>
           </div>
         </ThemeProvider>
         <Analytics />
