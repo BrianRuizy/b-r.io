@@ -28,13 +28,13 @@ export default function Community() {
         <Tabs.List className="mb-9 flex w-full rounded-lg bg-tertiary p-1">
           <Tabs.Trigger
             value="posts"
-            className="flex-1 rounded-md px-3 py-1 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
+            className="flex-1 rounded-md px-3 py-1.5 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Posts
           </Tabs.Trigger>
           <Tabs.Trigger
             value="info"
-            className="flex-1 rounded-md px-3 py-1 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
+            className="flex-1 rounded-md px-3 py-1.5 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Info
           </Tabs.Trigger>
