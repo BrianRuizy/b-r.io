@@ -28,13 +28,13 @@ export default function Community() {
         <Tabs.List className="mb-9 flex w-full rounded-lg bg-tertiary p-1">
           <Tabs.Trigger
             value="posts"
-            className="flex-1 rounded-md px-3 py-1.5 font-normal text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
+            className="flex-1 rounded-md px-3 py-1 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Posts
           </Tabs.Trigger>
           <Tabs.Trigger
             value="info"
-            className="flex-1 rounded-md px-3 py-1.5 font-normal text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
+            className="flex-1 rounded-md px-3 py-1 font-normal text-sm text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Info
           </Tabs.Trigger>
@@ -81,12 +81,12 @@ function Posts() {
           <div className="w-fit md:hidden">
             <Avatar.Root className="inline-flex h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle md:hidden">
               <Avatar.Image
-                className="h-full w-full rounded-[inherit] object-cover"
+                className="h-full w-full border border-secondary rounded-[inherit] object-cover"
                 src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
                 alt="Colm Tuite"
               />
               <Avatar.Fallback
-                className="flex h-full w-full items-center justify-center bg-secondary text-sm font-medium text-primary"
+                className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-sm font-medium text-primary"
                 delayMs={600}
               >
                 CT
@@ -98,12 +98,12 @@ function Posts() {
             <div className="flex items-center gap-3">
               <Avatar.Root className="hidden h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle md:inline-flex">
                 <Avatar.Image
-                  className="h-full w-full rounded-[inherit] object-cover"
+                  className="h-full w-full border border-secondary rounded-[inherit] object-cover"
                   src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
                   alt="Colm Tuite"
                 />
                 <Avatar.Fallback
-                  className="flex h-full w-full items-center justify-center bg-secondary text-sm font-medium text-primary"
+                  className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-sm font-medium text-primary"
                   delayMs={600}
                 >
                   CT
@@ -114,7 +114,7 @@ function Posts() {
                 <p className="text-tertiary">· 2h</p>
               </div>
             </div>
-            <h2 className="line-clamp-4 font-medium leading-tight">
+            <h2 className="line-clamp-4 leading-tight">
               {index % 2 === 0
                 ? "Lorem ipsum dolor sit amet, consectetur adipiscing. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi."
                 : "Ut enim ad minim veniam, quis nostrud exercitation ut aliquip ex ea commodo consequat."}
