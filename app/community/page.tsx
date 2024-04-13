@@ -1,22 +1,12 @@
 "use client";
-
 import Image from "next/image";
-import Link from "@/components/ui/Link";
-import ConnectLinks from "@/components/ConnectLinks";
-import avatar from "public/avatar.png";
 import * as Avatar from "@radix-ui/react-avatar";
-
 import * as Tabs from "@radix-ui/react-tabs";
 
-import { getServerSession } from "next-auth/next";
+import Link from "@/components/ui/Link";
 import Profile from "@/components/Profile";
 
 export default function Community() {
-  let isMobile = false;
-  if (typeof window !== "undefined") {
-    isMobile = window.matchMedia("(max-width: 768px)").matches;
-  }
-
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div
@@ -25,25 +15,26 @@ export default function Community() {
       >
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Community</h1>
+          <p className="text-secondary">Share your thoughts!</p>
         </div>
         <Profile />
       </div>
 
       <Tabs.Root
         defaultValue="posts"
-        className="-mt-3 block animate-in md:hidden"
+        className="block animate-in md:hidden"
         style={{ "--index": 2 } as React.CSSProperties}
       >
-        <Tabs.List className="mb-6 border-b border-secondary">
+        <Tabs.List className="mb-9 flex w-full rounded-lg bg-tertiary p-1">
           <Tabs.Trigger
             value="posts"
-            className="px-3 py-1.5 font-normal text-secondary data-[state=active]:font-medium  data-[state=active]:text-primary"
+            className="flex-1 rounded-md px-3 py-1.5 font-normal text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Posts
           </Tabs.Trigger>
           <Tabs.Trigger
             value="info"
-            className="px-3 py-1.5 font-normal text-secondary data-[state=active]:font-medium  data-[state=active]:text-primary"
+            className="flex-1 rounded-md px-3 py-1.5 font-normal text-secondary data-[state=active]:bg-white data-[state=active]:font-medium data-[state=active]:text-primary data-[state=active]:shadow data-[state=active]:dark:bg-secondaryA"
           >
             Info
           </Tabs.Trigger>
@@ -103,8 +94,8 @@ function Posts() {
             </Avatar.Root>
           </div>
 
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-3 leading-none">
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-3">
               <Avatar.Root className="hidden h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle md:inline-flex">
                 <Avatar.Image
                   className="h-full w-full rounded-[inherit] object-cover"
@@ -118,21 +109,17 @@ function Posts() {
                   CT
                 </Avatar.Fallback>
               </Avatar.Root>
-              <p className="font-medium">@brianruizy</p>
-              <div className="flex items-center gap-1.5 text-secondary">
-                <p>6h</p>
-                <p className="flex items-center rounded bg-tertiary px-1 py-0.5 text-sm">
-                  <span className="text-tertiary"># </span>general
-                </p>
+              <div className="flex items-center gap-1.5 leading-none">
+                <p className="text-secondary">brianruizy</p>
+                <p className="text-tertiary">· 2h</p>
               </div>
             </div>
-
-            <h2 className="line-clamp-4">
+            <h2 className="line-clamp-4 font-medium leading-tight">
               {index % 2 === 0
-                ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi."
-                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+                ? "Lorem ipsum dolor sit amet, consectetur adipiscing. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi."
+                : "Ut enim ad minim veniam, quis nostrud exercitation ut aliquip ex ea commodo consequat."}
             </h2>
-            <div className="flex items-center gap-6 text-sm text-tertiary">
+            <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary">
               <div className="flex items-center gap-1.5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +181,7 @@ function Info() {
           </div>
           <div className="col-span-1 flex flex-col items-center">
             <p className="text-secondary">Online</p>
-            <p className="text-base font-medium flex items-center gap-1">
+            <p className="flex items-center gap-1 text-base font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
@@ -232,7 +219,7 @@ function Info() {
             Top contributors of the month. Gain points with likes and comments.
           </p>
         </div>
-        <ul className="animated-list space-y-2 ">
+        <ul className="animated-list space-y-3 md:space-y-2 ">
           {Array.from({ length: 5 }).map((_, index) => (
             <li
               key={index}

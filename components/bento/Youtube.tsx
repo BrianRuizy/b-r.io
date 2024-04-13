@@ -5,9 +5,9 @@ import Card from "@/components/bento/CardTemplate";
 
 // get youtube subs count from route handler api/youtube
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/youtube`, {
+  const res = await fetch(`https://b-r.io/api/youtube`, {
     next: {
-      revalidate: 86400, // 24 hours
+      revalidate: 86400,
     },
   });
   if (!res.ok) {
@@ -33,7 +33,9 @@ export default async function YouTube() {
           href="https://youtube.com/@Brianruizy?sub_confirmation=1"
         >
           <span className="font-medium text-primary">Subscribe</span>
-          <span className="text-tertiary">{data?.subscribers / 1000}k</span>
+          <span className="text-tertiary">
+            {Math.floor(data?.subscribers / 1000)}k
+          </span>
         </Link>
       </div>
       <ul className="animated-list grid w-full grid-cols-2 grid-rows-2 gap-3">
@@ -42,13 +44,13 @@ export default async function YouTube() {
             key={index}
             className="relative col-span-1 row-span-1 overflow-hidden rounded-lg border border-secondary transition-opacity"
           >
-            <Link href={video.url}>
+            <Link href={video.url} className="relative block h-full w-full">
               <Image
                 src={video.thumbnail}
                 alt={video.title}
-                objectFit="cover"
-                layout="fill"
-                quality={100}
+                fill={true}
+                className="object-cover"
+                sizes="100vw"
               />
             </Link>
           </li>

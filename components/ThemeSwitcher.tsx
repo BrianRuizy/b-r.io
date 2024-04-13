@@ -35,7 +35,7 @@ export default function ThemeSwitcher() {
             <div className="relative">
               <Listbox.Button
                 className={clsx(
-                  "relative flex h-8 w-8 cursor-default items-center justify-center rounded-full focus:outline-none ",
+                  "relative flex h-8 w-8 cursor-default items-center justify-center rounded-lg",
                 )}
               >
                 {resolvedTheme === "dark" ? (

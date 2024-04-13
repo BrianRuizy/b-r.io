@@ -3,11 +3,12 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import NavLink from "./ui/NavLink";
-import ThemeSwitcher from "./ThemeSwitcher";
-
-import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
+import { Popover, Transition } from "@headlessui/react";
+import { Bars3Icon } from "@heroicons/react/20/solid";
+
+import NavLink from "@/components/ui/NavLink";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const links = [
   { label: "About", href: "/about" },
@@ -54,18 +55,9 @@ export default function Navigation() {
           ))}
         </ul>
         <Popover className="relative ml-auto md:hidden">
-          <Popover.Button className="flex items-center gap-1 rounded-lg p-1 text-secondary focus:ring-0 focus-visible:outline-none">
-            Menu
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="h-5 w-5"
-            >
-              <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-            </svg>
+          <Popover.Button className="flex h-8 w-8 items-center justify-center rounded-lg text-secondary">
+            <Bars3Icon className="h-5 w-5 text-secondary hover:text-primary cursor-pointer transition-colors" />
           </Popover.Button>
-
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"
