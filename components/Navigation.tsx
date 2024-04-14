@@ -15,15 +15,14 @@ const links = [
   { label: "Blog", href: "/blog" },
   { label: "Community", href: "/community" },
   { label: "Gear", href: "/gear" },
-  // { label: "Projects", href: "/projects" },
 ];
 
 export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic sub-pages
 
   return (
-    <header className="relative z-10 bg-white dark:bg-black md:mt-6">
-      <nav className="mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-2 md:px-6">
+    <header className="bg-white dark:bg-black md:mt-6">
+      <nav className="mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-3 md:px-6">
         <Link href="/" className="shrink-0 text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,9 +53,14 @@ export default function Navigation() {
             </li>
           ))}
         </ul>
-        <Popover className="relative ml-auto md:hidden">
+
+        <div className="ml-auto md:ml-0 flex h-8 w-8 items-center justify-center">
+          <ThemeSwitcher />
+        </div>
+
+        <Popover className="relative md:hidden">
           <Popover.Button className="flex h-8 w-8 items-center justify-center rounded-lg text-secondary">
-            <Bars3Icon className="h-5 w-5 text-secondary hover:text-primary cursor-pointer transition-colors" />
+            <Bars3Icon className="h-5 w-5 cursor-pointer text-secondary transition-colors hover:text-primary" />
           </Popover.Button>
           <Transition
             as={Fragment}
@@ -87,10 +91,6 @@ export default function Navigation() {
             </Popover.Panel>
           </Transition>
         </Popover>
-
-        <div className="flex h-8 w-8 items-center justify-center">
-          <ThemeSwitcher />
-        </div>
       </nav>
     </header>
   );

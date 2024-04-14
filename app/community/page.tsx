@@ -1,14 +1,28 @@
 "use client";
 import Image from "next/image";
+import React from "react";
+import { useSession } from "next-auth/react";
+
+import clsx from "clsx";
+import { Drawer } from "vaul";
 import * as Avatar from "@radix-ui/react-avatar";
 import * as Tabs from "@radix-ui/react-tabs";
+import * as Form from "@radix-ui/react-form";
 
 import Link from "@/components/ui/Link";
 import Profile from "@/components/Profile";
-
 import { PlusIcon } from "@heroicons/react/24/solid";
+import {
+  HeartIcon,
+  ChatBubbleOvalLeftIcon,
+  TagIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Community() {
+  const { data: session } = useSession();
+  // valid state for textarea input
+  const [isValid, setIsValid] = React.useState(false);
+
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div
@@ -28,16 +42,16 @@ export default function Community() {
         className="block animate-in md:hidden"
         style={{ "--index": 2 } as React.CSSProperties}
       >
-        <Tabs.List className="-mt-1.5 mb-6 flex w-full border-b border-secondary">
+        <Tabs.List className="-mt-1.5 mb-3 flex w-full border-b border-secondary">
           <Tabs.Trigger
             value="posts"
-            className="px-3 py-1.5 font-normal text-secondary data-[state=active]:font-medium data-[state=active]:text-primary"
+            className="border-b-2 border-transparent px-3 py-1.5 text-secondary data-[state=active]:border-black data-[state=active]:text-primary data-[state=active]:dark:border-white"
           >
             Posts
           </Tabs.Trigger>
           <Tabs.Trigger
             value="info"
-            className="px-3 py-1.5 font-normal text-secondary data-[state=active]:font-medium data-[state=active]:text-primary"
+            className="border-b-2 border-transparent px-3 py-1.5 text-secondary data-[state=active]:border-black data-[state=active]:text-primary data-[state=active]:dark:border-white"
           >
             Info
           </Tabs.Trigger>
@@ -49,11 +63,94 @@ export default function Community() {
           <Info />
         </Tabs.Content>
       </Tabs.Root>
-      <div className="fixed bottom-6 right-6">
-        <button className="rounded-xl bg-black p-3 text-white shadow-sm drop-shadow-xl dark:bg-neutral-100 dark:text-black md:hidden">
-          <PlusIcon className="h-6 w-6" />
-        </button>
-      </div>
+
+      {/* button for mobile */}
+
+      <Drawer.Root shouldScaleBackground>
+        <Drawer.Trigger asChild>
+          <div className="fixed bottom-6 right-6 transition-all md:hidden">
+          <button className="rounded-xl bg-primary p-3 text-primary invert drop-shadow-2xl">
+              <PlusIcon className="h-6 w-6" />
+            </button>
+          </div>
+        </Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+          <Form.Root>
+            <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 h-[96%] rounded-t-[10px] bg-primary outline-none">
+              <div className="h-full flex-1 space-y-6 rounded-t-[10px] bg-primary">
+                <div className="flex items-center justify-between border-b border-secondary px-6 py-3">
+                  <button className="w-16 text-left">
+                    Cancel
+                  </button>
+                  <Drawer.Title className="flex-1 text-center text-lg font-bold tracking-tight">
+                    New Post
+                  </Drawer.Title>
+                  <button
+                    className={clsx(
+                      "text-link w-16 text-right",
+                      isValid ? "text-link font-medium" : "text-tertiary",
+                    )}
+                  >
+                    Share
+                  </button>
+                </div>
+                <div className="mb-3 flex gap-3 p-6">
+                  <div>
+                    <Avatar.Root className="inline-flex h-[36px] w-[36px] select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
+                      <Avatar.Image
+                        className="h-full w-full rounded-[inherit] object-cover"
+                        src={session?.user?.image ?? ""}
+                        alt="Avatar image"
+                      />
+                      <Avatar.Fallback
+                        className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-sm font-medium text-primary"
+                        delayMs={600}
+                      >
+                        {session?.user?.name?.slice(0, 2) ?? ""}
+                      </Avatar.Fallback>
+                    </Avatar.Root>
+                  </div>
+
+                  <div className="mt-1.5 w-full space-y-1.5">
+                    <p className="font-medium leading-none">
+                      {session?.user?.name || "Anonymous User"}
+                    </p>
+                    <Form.Field name="post">
+                      <Form.Control asChild>
+                        <textarea
+                          className="w-full resize-none bg-primary leading-tight outline-none placeholder:text-tertiary focus:outline-none"
+                          placeholder="Share your thoughts..."
+                          minLength={1}
+                          rows={3}
+                          maxLength={280}
+                          required
+                          style={{ height: "auto" }}
+                          onInput={(event) => {
+                            event.currentTarget.style.height = "auto";
+                            event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
+                            setIsValid(event.currentTarget.value.length > 0);
+                          }}
+                        />
+                      </Form.Control>
+                    </Form.Field>
+                  </div>
+                </div>
+              </div>
+
+              <Form.Submit asChild className="ml-auto mt-auto">
+                <button
+                  className="w-fit rounded bg-black px-4 py-1 text-sm text-white transition-opacity disabled:opacity-20 dark:bg-neutral-100 dark:text-black"
+                  disabled={!isValid}
+                  type="submit"
+                >
+                  Post
+                </button>
+              </Form.Submit>
+            </Drawer.Content>
+          </Form.Root>
+        </Drawer.Portal>
+      </Drawer.Root>
 
       {/* grid layout for desktop */}
       <div
@@ -61,13 +158,33 @@ export default function Community() {
         style={{ "--index": 2 } as React.CSSProperties}
       >
         <div className="col-span-3 md:col-span-2 md:space-y-6">
-          <div className="hidden md:block">
-            <textarea
-              className="w-full rounded-lg border border-secondary  bg-transparent p-3 shadow-sm placeholder:text-tertiary"
-              rows={3}
-              placeholder="Share your thoughts..."
-            ></textarea>
-          </div>
+          <Form.Root className="flex flex-col gap-0.5 rounded-lg border border-secondary p-3 shadow-sm">
+            <Form.Field name="post">
+              <Form.Control asChild>
+                <textarea
+                  className="w-full resize-none bg-transparent leading-tight outline-none placeholder:text-tertiary"
+                  placeholder="Share your thoughts..."
+                  minLength={1}
+                  rows={3}
+                  maxLength={280}
+                  required
+                  onInput={(event) => {
+                    setIsValid(event.currentTarget.value.length > 0);
+                  }}
+                />
+              </Form.Control>
+            </Form.Field>
+
+            <Form.Submit asChild className="ml-auto">
+              <button
+                className="rounded bg-black px-4 py-1 text-sm text-white transition-opacity disabled:opacity-20 dark:bg-neutral-100 dark:text-black"
+                disabled={!isValid}
+                type="submit"
+              >
+                Post
+              </button>
+            </Form.Submit>
+          </Form.Root>
           <Posts />
         </div>
         <div className="col-span-3 md:col-span-1">
@@ -116,7 +233,7 @@ function Posts() {
               </Avatar.Root>
               <div className="flex items-center gap-1.5 leading-none">
                 <p className="font-medium">Alexandra Monroe</p>
-                <p className="text-tertiary">· 2h</p>
+                <p className="text-tertiary">2h</p>
               </div>
             </div>
             <h2 className="line-clamp-4 leading-tight">
@@ -126,37 +243,11 @@ function Posts() {
             </h2>
             <div className="mt-1.5 flex items-center gap-6 text-sm text-tertiary">
               <div className="flex items-center gap-1.5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-5 w-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                  />
-                </svg>
+                <HeartIcon className="h-5 w-5" />
                 <span>12 likes</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-5 w-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"
-                  />
-                </svg>
+                <ChatBubbleOvalLeftIcon className="h-5 w-5" />
                 <span>7 replies</span>
               </div>
             </div>
@@ -169,7 +260,7 @@ function Posts() {
 
 function Info() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 pt-3 md:pt-0">
       <div className="rounded-xl bg-tertiary dark:bg-secondaryA md:text-sm">
         <div className="space-y-3 p-4">
           <h2 className="font-medium">Community Info</h2>
