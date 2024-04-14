@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { sql } from "@vercel/postgres";
+
 
 import clsx from "clsx";
 import { Drawer } from "vaul";
@@ -43,7 +45,7 @@ export default function MobileForm() {
               </div>
               <div className="mb-3 flex gap-3 p-6">
                 <div>
-                  <Avatar.Root className="inline-flex h-[36px] w-[36px] select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
+                  <Avatar.Root className="inline-flex h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
                     <Avatar.Image
                       className="h-full w-full rounded-[inherit] object-cover"
                       src={session?.user?.image ?? ""}
@@ -58,17 +60,21 @@ export default function MobileForm() {
                   </Avatar.Root>
                 </div>
 
-                <div className="mt-1.5 w-full space-y-1.5">
-                  <p className="font-medium leading-none">
-                    {session?.user?.name || "Anonymous User"}
-                  </p>
+                <div className="mt-1.5 w-full space-y-3">
+                  <div className="flex items-center gap-1.5 leading-none">
+                    <p className="font-medium">
+                      {" "}
+                      {session?.user?.name || "Anonymous User"}
+                    </p>
+                    <p className="text-secondary">Today</p>
+                  </div>
                   <Form.Field name="post">
                     <Form.Control asChild>
                       <textarea
-                        className="w-full resize-none bg-primary leading-tight outline-none placeholder:text-tertiary focus:outline-none"
+                        className="w-full resize-none bg-primary text-lg leading-tight outline-none placeholder:text-tertiary focus:outline-none"
                         placeholder="Share your thoughts..."
                         minLength={1}
-                        rows={3}
+                        rows={6}
                         maxLength={280}
                         required
                         style={{ height: "auto" }}

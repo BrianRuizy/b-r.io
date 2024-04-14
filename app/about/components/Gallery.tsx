@@ -101,7 +101,7 @@ function Photo({
             alt={alt}
             width={width}
             height={height}
-            className="absolute inset-0 object-cover w-full h-full bg-gray-400 pointer-events-none rounded-2xl"
+            className="absolute inset-0 object-cover w-full h-full bg-neutral-400 pointer-events-none rounded-2xl"
             priority
           />
           {children}
@@ -125,7 +125,7 @@ function Photo({
                   "flex flex-col gap-1 uppercase"
                 )}
               >
-                <p className="text-sm text-secondary">{fileName}</p>
+                <p className="text-secondary">{fileName}</p>
                 {meta && <p className="text-sm text-secondary">{meta}</p>}
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function Gallery() {
           width={324}
           height={239}
           rotate={-6}
-          left={-86}
+          left={-76}
           index={1}
         />
         <Photo
@@ -157,7 +157,7 @@ export default function Gallery() {
           width={230}
           height={250}
           rotate={6.3}
-          left={188}
+          left={160}
           index={2}
           flipDirection="left"
         />
@@ -168,7 +168,7 @@ export default function Gallery() {
           width={280}
           height={235}
           rotate={-5.4}
-          left={343}
+          left={300}
           index={3}
         />
         <Photo
@@ -178,7 +178,7 @@ export default function Gallery() {
           width={220}
           height={260}
           rotate={7.6}
-          left={557}
+          left={530}
           index={4}
           flipDirection="left"
         />
