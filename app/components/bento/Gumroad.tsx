@@ -1,5 +1,5 @@
-import Card from "@/components/bento/CardTemplate";
-import Link from "@/components/ui/Link";
+import Card from "@/app/components/bento/CardTemplate";
+import Link from "@/app/components/ui/Link";
 
 export default function Gumroad() {
   return (

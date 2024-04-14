@@ -29,8 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/fetcher.js",
+    "app/_utils/fetcher.js",
     ".contentlayer/generated"
-, "components/bento/map.js"  ],
+, "app/components/bento/map.js"  ],
   "exclude": ["node_modules"]
 }

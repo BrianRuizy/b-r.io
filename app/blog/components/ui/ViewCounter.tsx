@@ -1,10 +1,10 @@
 "use client";
 import { Post as PostType } from ".contentlayer/generated";
 
-import FlipNumber from "@/components/FlipNumber";
+import FlipNumber from "@/app/components/FlipNumber";
 
 import useSWR from "swr";
-import fetcher from "@/utils/fetcher";
+import fetcher from "@/app/_utils/fetcher";
 
 export default function ViewCounter({ post }: { post: PostType }) {
   const { data } = useSWR(`/api/prisma/hitsSlug?slug=${post.slug}`, fetcher, {

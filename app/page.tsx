@@ -2,13 +2,13 @@ import Image from "next/image";
 import { allPosts } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 import PostList from "@/app/blog/components/ui/PostList";
-import Card from "@/components/bento/CardTemplate";
-import Map from "@/components/bento/map";
-import Gumroad from "@/components/bento/Gumroad";
-import Instagram from "@/components/bento/Instagram";
-import YouTube from "@/components/bento/Youtube";
+import Card from "@/app/components/bento/CardTemplate";
+import Map from "@/app/components/bento/map";
+import Gumroad from "@/app/components/bento/Gumroad";
+import Instagram from "@/app/components/bento/Instagram";
+import YouTube from "@/app/components/bento/Youtube";
 import Avatar from "@/public/avatar.png";
 
 export default function Home() {

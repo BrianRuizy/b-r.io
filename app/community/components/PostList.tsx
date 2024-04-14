@@ -1,15 +1,39 @@
 "use client";
+import { useState, useEffect } from "react";
 
+import Post from "@/app/community/components/Post";
 import * as Avatar from "@radix-ui/react-avatar";
-import {
-  HeartIcon,
-  ChatBubbleOvalLeftIcon,
-} from "@heroicons/react/24/outline";
+import { HeartIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 export default function PostList() {
+  const [data, setData] = useState<Post[] | null>(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/community/get-posts`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        setData(json.result);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  
   return (
+    <>
     <div className="flex flex-col divide-y divide-secondary">
-      {Array.from({ length: 6 }).map((_, index) => (
+      {data.map((post) => (
+        <Post key={post.id} post={post}/>
+      ))}
+            {Array.from({ length: 6 }).map((_, index) => (
         <div key={index} className="flex gap-3 py-4 md:flex-col md:py-6">
           <div className="w-fit md:hidden">
             <Avatar.Root className="inline-flex h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle md:hidden">
@@ -64,7 +88,9 @@ export default function PostList() {
             </div>
           </div>
         </div>
-      ))}
+
+    ))}
     </div>
+    </>
   );
 }

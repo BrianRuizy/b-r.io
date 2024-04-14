@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FaYoutube } from "react-icons/fa";
-import Link from "@/components/ui/Link";
-import Card from "@/components/bento/CardTemplate";
+import Link from "@/app/components/ui/Link";
+import Card from "@/app/components/bento/CardTemplate";
 
 // get youtube subs count from route handler api/youtube
 async function getData() {

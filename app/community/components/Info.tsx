@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/ui/Link";
+import Link from "@/app/components/ui/Link";
 import * as Avatar from "@radix-ui/react-avatar";
 
 export default function Info() {

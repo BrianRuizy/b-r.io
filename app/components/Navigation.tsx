@@ -7,8 +7,8 @@ import clsx from "clsx";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 
-import NavLink from "@/components/ui/NavLink";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import NavLink from "@/app/components/ui/NavLink";
+import ThemeSwitcher from "@/app/components/ThemeSwitcher";
 
 const links = [
   { label: "About", href: "/about" },

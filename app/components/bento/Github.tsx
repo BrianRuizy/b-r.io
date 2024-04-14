@@ -1,4 +1,4 @@
-import Card from "@/components/bento/CardTemplate";
+import Card from "@/app/components/bento/CardTemplate";
 
 export default function Github() {
   return (

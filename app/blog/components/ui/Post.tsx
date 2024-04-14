@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "@/components/ui/Link";
-import Section from "@/components/Section";
-import { formatDate } from "@/utils/formatDate";
+import Link from "@/app/components/ui/Link";
+import Section from "@/app/components/Section";
+import { formatDate } from "@/app/_utils/formatDate";
 import type { Post } from ".contentlayer/generated";
 
 type PostProps = {

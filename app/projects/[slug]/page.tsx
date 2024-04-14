@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import PostList from "@/app/blog/components/ui/PostList";
-import Tags from "@/components/Tags";
-import Link from "@/components/ui/Link";
-import { formatDate } from "@/utils/formatDate";
+import Tags from "@/app/components/Tags";
+import Link from "@/app/components/ui/Link";
+import { formatDate } from "@/app/_utils/formatDate";
 
 type PostProps = {
   post: PostType;
