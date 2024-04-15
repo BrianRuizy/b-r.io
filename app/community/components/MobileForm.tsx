@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { sql } from "@vercel/postgres";
-
 
 import clsx from "clsx";
 import { Drawer } from "vaul";
@@ -28,16 +26,17 @@ export default function MobileForm() {
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
         <Form.Root>
           <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 h-[96%] rounded-t-[10px] bg-primary outline-none">
-            <div className="h-full flex-1 space-y-6 rounded-t-[10px] bg-primary">
-              <div className="flex items-center justify-between border-b border-secondary px-6 py-3">
+            <div className="h-full flex-1 flex-col gap-6 rounded-t-[10px] bg-primary ">
+            <div className="fixed top-1.5 left-0 right-0 mx-auto flex items-center justify-center h-1.5 w-10 rounded-full bg-secondary" />
+              <div className="flex items-center justify-between border-b border-secondary px-6 pb-3 pt-6">
                 <button className="w-16 text-left">Cancel</button>
                 <Drawer.Title className="flex-1 text-center text-lg font-bold tracking-tight">
                   New Post
                 </Drawer.Title>
                 <button
                   className={clsx(
-                    "text-link w-16 text-right",
-                    isValid ? "text-link font-medium" : "text-tertiary",
+                    "w-16 text-right text-link",
+                    isValid ? "font-medium text-link" : "text-tertiary",
                   )}
                 >
                   Share
@@ -71,8 +70,8 @@ export default function MobileForm() {
                   <Form.Field name="post">
                     <Form.Control asChild>
                       <textarea
-                        className="w-full resize-none bg-primary text-lg leading-tight outline-none placeholder:text-tertiary focus:outline-none"
-                        placeholder="Share your thoughts..."
+                        className="w-full resize-none bg-primary leading-tight outline-none placeholder:text-tertiary focus:outline-none"
+                        placeholder="What's on your mind..."
                         minLength={1}
                         rows={6}
                         maxLength={280}

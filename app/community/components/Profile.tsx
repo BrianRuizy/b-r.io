@@ -5,7 +5,6 @@ import * as Avatar from "@radix-ui/react-avatar";
 export default function AuthButton() {
   const { data: session } = useSession();
 
-  console.log(session);
   if (session) {
     return (
       <Avatar.Root className="inline-flex h-[48px] w-[48px] select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">

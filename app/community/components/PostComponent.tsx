@@ -1,8 +1,9 @@
 import * as Avatar from "@radix-ui/react-avatar";
 import { HeartIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
-import { relativeDatetime } from "@/app/_utils/formatDate";
 
-interface Post {
+import { relativeDateTime } from "@/app/_utils/formatDate";
+
+export interface Post {
   id: number;
   content: string;
   author_id: number;
@@ -11,12 +12,12 @@ interface Post {
   email: string; // author's email
   image: string; // author's image
 }
+
 interface PostProps {
   post: Post;
 }
 
-export default function Post({ post }: PostProps) {
-  console.log(post);
+export default function PostComponent({ post }: PostProps) {
   return (
     <div className="flex gap-3 py-4 md:flex-col md:py-6">
       <div className="w-fit md:hidden">
@@ -52,9 +53,9 @@ export default function Post({ post }: PostProps) {
           </Avatar.Root>
           <div className="flex items-center gap-1.5 leading-none">
             <p className="font-medium">{post.name}</p>
-            <p className="text-tertiary">
-              {relativeDatetime(post.created_at)}
-            </p>
+              <p className="text-tertiary">
+                {relativeDateTime(post.created_at)}
+              </p>
           </div>
         </div>
         <h2 className="line-clamp-4 leading-tight">{post.content}</h2>

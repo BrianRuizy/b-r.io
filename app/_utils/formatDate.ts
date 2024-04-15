@@ -12,21 +12,21 @@ export const formatDate = (date: string) =>
     year: "numeric",
   });
 
-export const relativeDatetime = (dateString: string) => {
+export const relativeDateTime = (dateString: string) => {
   const date = new Date(dateString);
-  const now = new Date();
+  const now = new Date(Date.now());
 
-  const minutesAgo = differenceInMinutes(date, now);
+  const minutesAgo = differenceInMinutes(now, date);
   if (minutesAgo < 60) {
     return `${minutesAgo}m`;
   }
 
-  const hoursAgo = differenceInHours(date, now);
+  const hoursAgo = differenceInHours(now, date);
   if (hoursAgo < 24) {
     return `${hoursAgo}h`;
   }
 
-  const daysAgo = differenceInDays(date, now);
+  const daysAgo = differenceInDays(now, date);
   if (daysAgo < 7) {
     return `${daysAgo}d`;
   }
