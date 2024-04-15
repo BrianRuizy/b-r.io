@@ -1,12 +1,17 @@
 "use client";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import * as Form from "@radix-ui/react-form";
+import clsx from "clsx";
 
 export default function DesktopForm() {
   const [isValid, setIsValid] = useState(false);
+  const { data: session } = useSession();
 
   return (
-    <Form.Root className="flex flex-col gap-0.5 rounded-lg border border-secondary p-3 shadow-sm">
+    <Form.Root className={clsx("flex flex-col gap-0.5 rounded-lg border border-secondary p-3 shadow-sm",
+      !session ? "opacity-50" : ""
+    )}>
       <Form.Field name="post">
         <Form.Control asChild>
           <textarea
@@ -19,13 +24,16 @@ export default function DesktopForm() {
             onInput={(event) => {
               setIsValid(event.currentTarget.value.length > 0);
             }}
+            disabled={!session}
           />
         </Form.Control>
       </Form.Field>
 
       <Form.Submit asChild className="ml-auto">
         <button
-          className="rounded bg-black px-4 py-1 text-sm text-white transition-opacity disabled:opacity-20 dark:bg-neutral-100 dark:text-black"
+          className={clsx(
+            "rounded bg-black px-4 py-1 text-sm text-white transition-opacity disabled:opacity-25 dark:bg-neutral-100 dark:text-black",
+          )}
           disabled={!isValid}
           type="submit"
         >

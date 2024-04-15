@@ -14,9 +14,14 @@ export default function MobileForm() {
   const [isValid, setIsValid] = useState(false);
 
   return (
-    <Drawer.Root shouldScaleBackground>
+    <Drawer.Root shouldScaleBackground={false}>
       <Drawer.Trigger asChild>
-        <div className="fixed bottom-6 right-6 transition-all md:hidden">
+        <div
+          className={clsx(
+            "fixed bottom-6 right-6 transition-all md:hidden",
+            !session ? "hidden" : "visible",
+          )}
+        >
           <button className="rounded-xl bg-primary p-3 text-primary drop-shadow-2xl invert">
             <PlusIcon className="h-6 w-6" />
           </button>
@@ -27,7 +32,7 @@ export default function MobileForm() {
         <Form.Root>
           <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 h-[96%] rounded-t-[10px] bg-primary outline-none">
             <div className="h-full flex-1 flex-col gap-6 rounded-t-[10px] bg-primary ">
-            <div className="fixed top-1.5 left-0 right-0 mx-auto flex items-center justify-center h-1.5 w-10 rounded-full bg-secondary" />
+              <div className="fixed left-0 right-0 top-1.5 mx-auto flex h-1.5 w-10 items-center justify-center rounded-full bg-secondary" />
               <div className="flex items-center justify-between border-b border-secondary px-6 pb-3 pt-6">
                 <button className="w-16 text-left">Cancel</button>
                 <Drawer.Title className="flex-1 text-center text-lg font-bold tracking-tight">

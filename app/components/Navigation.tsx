@@ -54,7 +54,7 @@ export default function Navigation() {
           ))}
         </ul>
 
-        <div className="ml-auto md:ml-0 flex h-8 w-8 items-center justify-center">
+        <div className="ml-auto flex h-8 w-8 items-center justify-center md:ml-0">
           <ThemeSwitcher />
         </div>
 
@@ -71,7 +71,7 @@ export default function Navigation() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute right-0 z-10 mt-2 w-40 origin-top-right overflow-auto rounded-xl bg-primary p-2 text-base shadow-lg focus:outline-none sm:text-sm">
+            <Popover.Panel className="absolute right-0 z-10 mt-2 w-40 origin-top-right overflow-auto rounded-xl border border-secondary bg-primary p-2 text-base shadow-lg focus:outline-none sm:text-sm">
               <div className="grid">
                 {links.map((link) => (
                   <Link
