@@ -5,7 +5,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 
 import MobileForm from "@/app/community/components/MobileForm";
 import DesktopForm from "@/app/community/components/DesktopForm";
-import Profile from "@/app/community/components/Profile";
+import User from "@/app/community/components/User";
 import PostList from "@/app/community/components/PostList";
 import Info from "@/app/community/components/Info";
 
@@ -20,7 +20,7 @@ export default function Community() {
           <h1 className="text-3xl font-bold tracking-tight">Community</h1>
           <p className="text-secondary">Let&apos;s talk about it.</p>
         </div>
-        <Profile />
+        <User />
       </div>
 
       {/* tabbed layout for mobile */}

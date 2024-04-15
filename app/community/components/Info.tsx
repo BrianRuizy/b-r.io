@@ -6,7 +6,7 @@ import * as Avatar from "@radix-ui/react-avatar";
 export default function Info() {
   return (
     <div className="flex flex-col gap-6 pt-3 md:pt-0">
-      <div className="rounded-xl bg-tertiary dark:bg-secondaryA md:text-sm">
+      <div className="rounded-xl bg-tertiary dark:bg-secondaryA  md:text-sm">
         <div className="space-y-3 p-4">
           <h2 className="font-medium">Community Info</h2>
           <p className="text-secondary">
@@ -26,7 +26,7 @@ export default function Info() {
           </div>
         </div>
       </div>
-      <div className="hidden space-y-6 rounded-xl bg-tertiary p-4 dark:bg-secondaryA md:block md:text-sm">
+      <div className="hidden space-y-6 rounded-xl bg-tertiary dark:bg-secondaryA p-4  md:block md:text-sm">
         <div className="space-y-3">
           <h2 className="font-medium">Tags</h2>
           <p className="text-secondary">
@@ -46,7 +46,7 @@ export default function Info() {
           ))}
         </ul>
       </div>
-      <div className="space-y-6 rounded-xl bg-tertiary p-4 dark:bg-secondaryA md:text-sm">
+      <div className="space-y-6 rounded-xl bg-tertiary dark:bg-secondaryA p-4  md:text-sm">
         <div className="space-y-3">
           <h2 className="font-medium">Leaderboard</h2>
           <p className="text-secondary">

@@ -4,7 +4,6 @@ import * as Form from "@radix-ui/react-form";
 
 export default function DesktopForm() {
   const [isValid, setIsValid] = useState(false);
-  
 
   return (
     <Form.Root className="flex flex-col gap-0.5 rounded-lg border border-secondary p-3 shadow-sm">
