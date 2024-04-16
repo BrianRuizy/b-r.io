@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 import clsx from "clsx";
 import { Drawer } from "vaul";
@@ -11,11 +12,17 @@ import { Topic } from "@/app/community/components/TopicBadge";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function MobileForm({ topics }: { topics: Topic[] }) {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { data: session } = useSession();
   const [isValid, setIsValid] = useState(false);
+  const router = useRouter()
 
   return (
-    <Drawer.Root shouldScaleBackground>
+    <Drawer.Root
+      shouldScaleBackground
+      open={isDrawerOpen}
+      onOpenChange={setIsDrawerOpen}
+    >
       <Drawer.Trigger asChild>
         <div
           className={clsx(
@@ -30,7 +37,42 @@ export default function MobileForm({ topics }: { topics: Topic[] }) {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Form.Root>
+        <Form.Root
+          onSubmit={async (event) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const content = form.content.value;
+            const topic = form.topic.value;
+            const authorId = session?.user.id;
+
+            try {
+              const response = await fetch("/api/community/create-post", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  content,
+                  topic_id: topic,
+                  author_id: authorId,
+                }),
+              });
+
+              if (!response.ok) {
+                // Handle error response
+                const errorData = await response.json();
+                Error(errorData.message);
+              } else {
+                // Handle successful response
+                form.reset();
+                setIsDrawerOpen(false); // Close the drawer
+                router.refresh()
+              }
+            } catch (error) {
+              console.error("An unexpected error occurred:", error);
+            }
+          }}
+        >
           <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 h-[96%] rounded-t-[10px] bg-primary outline-none">
             <div className="h-full flex-1 flex-col gap-6 rounded-t-[10px] bg-primary ">
               <div className="fixed left-0 right-0 top-1.5 mx-auto flex h-1.5 w-10 items-center justify-center rounded-full bg-secondary" />
@@ -76,22 +118,21 @@ export default function MobileForm({ topics }: { topics: Topic[] }) {
                     <Form.Field name="topic">
                       <Form.Control asChild>
                         <select
-                          className="w-full bg-transparent leading-tight outline-none placeholder:text-tertiary"
+                          className="w-full bg-transparent leading-tight placeholder:text-tertiary"
                           placeholder="Select a topic"
                           required
                           disabled={!session}
                         >
                           {topics?.map((topic) => (
                             <option key={topic.id} value={topic.id}>
-                              <span className="text-tertiary">#</span>
-                              {topic.name}
+                              #{topic.name}
                             </option>
                           ))}
                         </select>
                       </Form.Control>
                     </Form.Field>
                   </div>
-                  <Form.Field name="post">
+                  <Form.Field name="content">
                     <Form.Control asChild>
                       <textarea
                         className="w-full resize-none bg-primary leading-tight outline-none placeholder:text-tertiary focus:outline-none"

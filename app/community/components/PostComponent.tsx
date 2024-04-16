@@ -1,6 +1,5 @@
 import * as Avatar from "@radix-ui/react-avatar";
 import { HeartIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
-
 import { relativeDateTime } from "@/app/_utils/formatDate";
 import TopicBadge from "./TopicBadge";
 
@@ -27,6 +26,7 @@ export default function PostComponent({ post }: PostProps) {
     .join("");
   const displayInitials =
     initials.length > 1 ? initials : post.author_name.slice(0, 2).toUpperCase();
+
   return (
     <div className="flex gap-3 py-4 md:flex-col md:py-6 md:first:pt-0">
       <div className="w-fit md:hidden">
