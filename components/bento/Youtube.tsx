@@ -48,9 +48,9 @@ export default async function YouTube() {
             <Image
               src={video.thumbnail}
               alt={video.title}
-              objectFit="cover"
-              layout="fill"
+              fill
               quality={100}
+              className="object-cover"
             />
           </Link>
         ))}
