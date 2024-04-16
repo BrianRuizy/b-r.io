@@ -37,10 +37,7 @@ export default function Stats() {
     `/api/github?username=${username}`,
     fetcher
   );
-  const { data: postsData, error: postsError } = useSWR(
-    `/api/prisma/hitsTotal`,
-    fetcher
-  );
+
   const { data: youtubeData, error: youtubeDataError } = useSWR(
     `/api/youtube`,
     fetcher

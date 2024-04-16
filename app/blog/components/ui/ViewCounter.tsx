@@ -7,7 +7,7 @@ import useSWR from "swr";
 import fetcher from "@/utils/fetcher";
 
 export default function ViewCounter({ post }: { post: PostType }) {
-  const { data } = useSWR(`/api/prisma/hitsSlug?slug=${post.slug}`, fetcher, {
+  const { data } = useSWR(``, fetcher, {
     revalidateOnFocus: false,
   });
   const views = data?.Views;

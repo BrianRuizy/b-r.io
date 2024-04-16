@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
-import useIsMount from "hooks/useismount";
+import useIsMount from "@/hooks/useismount";
 
 type FlipNumberProps = {
   children: number;

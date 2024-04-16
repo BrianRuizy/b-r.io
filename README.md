@@ -9,8 +9,7 @@ My personal portfolio website designed to be simplistic and clean while includin
 backend:
 - [Next.js](nextjs.org) / TypeScript
 - [MDX](https://mdxjs.com) / [Contentlayer](https://contentlayer.dev/) (Blog Posts)
-- [PlanetScale](http://planetscale.com) (Database)
-- [Prisma](https://www.prisma.io) (ORM)
+- [Vercel Postgres](https://vercel.com/storage/postgres) (Database)
 
 frontend:
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
@@ -25,14 +24,11 @@ Make sure you have Node.js v18.17.0+ installed on your machine.
 1. **Install Dependencies**: `npm install`
 2. **Environment variables**: Copy `.env.example` to a new `.env.local`
 3. **Database Setup**: See [Database Setup](#database-setup)
-4. **Prisma Setup**: `npm install @prisma/client` (if you haven't already), then run `npx prisma generate`.
-5. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
+4. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
 
 ## Database Setup
 
-- Sign up for a PlanetScale account
-- Create a new database in PlanetScale
-- Update the DATABASE_URL environment variable in your project's `.env.local` file with the connection string provided by PlanetScale
+- Vercel Postgres
 
 ## Deployment
 
