@@ -18,6 +18,7 @@
     "@types/mapbox-gl": "^3.1.0",
     "@vercel/analytics": "^1.1.1",
     "@vercel/og": "^0.5.20",
+    "@vercel/postgres": "^0.8.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
@@ -35,7 +36,6 @@
     "rehype-slug": "^6.0.0",
     "slugify": "^1.6.6",
     "swr": "^2.2.4",
-    "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
