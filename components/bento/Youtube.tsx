@@ -5,7 +5,7 @@ import Card from "@/components/bento/CardTemplate";
 
 // get youtube subs count from route handler api/youtube
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/youtube`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/youtube`, {
     next: {
       revalidate: 86400, // 24 hours
     },

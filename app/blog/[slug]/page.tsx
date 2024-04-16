@@ -65,7 +65,7 @@ export async function generateMetadata(
 
 async function getViewsData({ post }: { post: PostType }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/blog/update-views?slug=${post.slug}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog/update-views?slug=${post.slug}`,
   );
   if (!response.ok) {
     throw new Error("Failed to fetch views");
