@@ -4,7 +4,6 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Tags from "@/components/Tags";
-import Link from "@/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
 import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
@@ -48,6 +47,7 @@ export async function generateMetadata(
     : `https://b-r.io/api/og?title=${title}`;
 
   const metadata: Metadata = {
+    metadataBase: new URL('https://b-r.io'),
     title: `${title} | Brian Ruiz`,
     description,
     openGraph: {
@@ -63,12 +63,25 @@ export async function generateMetadata(
   return metadata;
 }
 
+async function getViewsData({ post }: { post: PostType }) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/blog/update-views?slug=${post.slug}`,
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch views");
+  }
+
+  return response.json();
+}
+
 export default async function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
   }
+
+  const viewsData = await getViewsData({ post });
 
   return (
     <div className="flex flex-col gap-20">
@@ -89,7 +102,7 @@ export default async function Post({ params }: { params: any }) {
               className="rounded-full bg-secondary"
             />
             <div className="leading-tight">
-              <p className="text-primary">Brian Ruiz</p>
+              <p>Brian Ruiz</p>
               <p className="text-secondary">
                 <time dateTime={post.publishedAt}>
                   {formatDate(post.publishedAt)}
@@ -98,7 +111,7 @@ export default async function Post({ params }: { params: any }) {
                   ? `(Updated ${formatDate(post.updatedAt)})`
                   : ""}
                 {" · "}
-                <ViewCounter post={post} />
+                <ViewCounter post={post} initialViews={viewsData.views} />
               </p>
             </div>
           </div>

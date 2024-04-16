@@ -1,16 +1,25 @@
 "use client";
-import { Post as PostType } from ".contentlayer/generated";
+import { useEffect, useState } from "react";
 
+import { Post as PostType } from ".contentlayer/generated";
 import FlipNumber from "@/components/FlipNumber";
 
-import useSWR from "swr";
-import fetcher from "@/utils/fetcher";
+export default function ViewCounter({
+  post,
+  initialViews,
+}: {
+  post: PostType;
+  initialViews: number;
+}) {
+  // use our route handler to increment the view count
+  // api/blog/read-views
+  const [views, setViews] = useState<number>(initialViews -1);
 
-export default function ViewCounter({ post }: { post: PostType }) {
-  const { data } = useSWR(``, fetcher, {
-    revalidateOnFocus: false,
-  });
-  const views = data?.Views;
+  useEffect(() => {
+    fetch(`/api/blog/read-views?slug=${post.slug}`)
+      .then((response) => response.json())
+      .then((data) => setViews(data.views));
+  }, [post.slug]);
 
   return (
     <span>

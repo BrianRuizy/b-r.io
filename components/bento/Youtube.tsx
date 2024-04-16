@@ -5,7 +5,7 @@ import Card from "@/components/bento/CardTemplate";
 
 // get youtube subs count from route handler api/youtube
 async function getData() {
-  const res = await fetch(`https://b-r.io/api/youtube`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/youtube`, {
     next: {
       revalidate: 86400, // 24 hours
     },
@@ -34,7 +34,7 @@ export default async function YouTube() {
         >
           <span className="font-medium text-primary">Subscribe</span>
           <span className="text-tertiary">
-            {Math.floor(data?.subscribers / 1000)}k
+            {(data?.subscribers / 1000).toFixed(1)}k
           </span>
         </Link>
       </div>
