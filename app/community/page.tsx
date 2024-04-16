@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 
 import MobileForm from "@/app/community/components/MobileForm";
@@ -8,8 +8,24 @@ import DesktopForm from "@/app/community/components/DesktopForm";
 import User from "@/app/community/components/User";
 import PostList from "@/app/community/components/PostList";
 import Info from "@/app/community/components/Info";
+import TopicBadge from "@/app/community/components/TopicBadge";
 
 export default function Community() {
+  const [topics, setTopics] = useState<{ id: number; name: string }[]>([]);
+
+  useEffect(() => {
+    fetch(`/api/community/get-topics`)
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch topics");
+        }
+
+        const json = await res.json();
+        setTopics(json.result);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div
@@ -44,14 +60,25 @@ export default function Community() {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="posts">
-          <PostList />
+          {/* topics list using topicBadge component */}
+          <div className="-mx-6 flex gap-2 overflow-x-scroll px-6 py-3">
+            <div className="text-sm1 flex cursor-pointer items-center whitespace-nowrap rounded bg-secondary invert px-2 py-0.5 lowercase no-underline">
+              <span className="text-tertiary">#</span>
+              <span>All</span>
+            </div>
+            {topics.map((topic) => (
+              <TopicBadge key={topic.id} topic={topic} />
+            ))}
+          </div>
+
+          <PostList topics={topics} />
         </Tabs.Content>
         <Tabs.Content value="info">
-          <Info />
+          <Info topics={topics} />
         </Tabs.Content>
       </Tabs.Root>
 
-      <MobileForm />
+      <MobileForm topics={topics} />
 
       {/* grid layout for desktop */}
       <div
@@ -59,11 +86,11 @@ export default function Community() {
         style={{ "--index": 2 } as React.CSSProperties}
       >
         <div className="col-span-3 md:col-span-2 md:space-y-6">
-          <DesktopForm />
-          <PostList />
+          <DesktopForm topics={topics} />
+          <PostList topics={topics} />
         </div>
         <div className="col-span-3 md:col-span-1">
-          <Info />
+          <Info topics={topics} />
         </div>
       </div>
     </div>

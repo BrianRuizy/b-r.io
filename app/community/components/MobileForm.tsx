@@ -6,10 +6,11 @@ import clsx from "clsx";
 import { Drawer } from "vaul";
 import * as Form from "@radix-ui/react-form";
 import * as Avatar from "@radix-ui/react-avatar";
+import { Topic } from "@/app/community/components/TopicBadge";
 
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-export default function MobileForm() {
+export default function MobileForm({ topics }: { topics: Topic[] }) {
   const { data: session } = useSession();
   const [isValid, setIsValid] = useState(false);
 
@@ -70,7 +71,25 @@ export default function MobileForm() {
                       {" "}
                       {session?.user?.name || "Anonymous User"}
                     </p>
+                    <span className="text-tertiary">·</span>
                     <p className="text-secondary">Today</p>
+                    <Form.Field name="topic">
+                      <Form.Control asChild>
+                        <select
+                          className="w-full bg-transparent leading-tight outline-none placeholder:text-tertiary"
+                          placeholder="Select a topic"
+                          required
+                          disabled={!session}
+                        >
+                          {topics?.map((topic) => (
+                            <option key={topic.id} value={topic.id}>
+                              <span className="text-tertiary">#</span>
+                              {topic.name}
+                            </option>
+                          ))}
+                        </select>
+                      </Form.Control>
+                    </Form.Field>
                   </div>
                   <Form.Field name="post">
                     <Form.Control asChild>

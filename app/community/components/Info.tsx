@@ -1,9 +1,13 @@
 "use client";
 
-import Link from "@/app/components/ui/Link";
 import * as Avatar from "@radix-ui/react-avatar";
+import TopicBadge from "@/app/community/components/TopicBadge";
 
-export default function Info() {
+export default function Info({
+  topics,
+}: {
+  topics: { id: number; name: string }[];
+}) {
   return (
     <div className="flex flex-col gap-6 pt-3 md:pt-0">
       <div className="rounded-xl bg-tertiary dark:bg-secondaryA  md:text-sm">
@@ -26,27 +30,22 @@ export default function Info() {
           </div>
         </div>
       </div>
-      <div className="hidden space-y-6 rounded-xl bg-tertiary dark:bg-secondaryA p-4  md:block md:text-sm">
+      <div className="space-y-6 rounded-xl bg-tertiary p-4 dark:bg-secondaryA md:text-sm">
         <div className="space-y-3">
-          <h2 className="font-medium">Tags</h2>
+          <h2 className="font-medium">Topics</h2>
           <p className="text-secondary">
             Explore the various conversation topics.
           </p>
         </div>
-        <ul className="animated-list gap-y-1.Z flex flex-wrap gap-3">
-          {Array.from({ length: 5 }).map((_, index) => (
+        <ul className="animated-list gap-y-1.Z flex flex-wrap gap-3 md:gap-1.5">
+          {topics?.map((topic, index) => (
             <li key={index} className="transition-opacity">
-              <Link
-                href=""
-                className="flex items-center whitespace-nowrap text-sm lowercase no-underline"
-              >
-                <span className="text-tertiary">#</span>general
-              </Link>
+              <TopicBadge topic={topic} />
             </li>
           ))}
         </ul>
       </div>
-      <div className="space-y-6 rounded-xl bg-tertiary dark:bg-secondaryA p-4  md:text-sm">
+      <div className="space-y-6 rounded-xl bg-tertiary p-4 dark:bg-secondaryA md:text-sm">
         <div className="space-y-3">
           <h2 className="font-medium">Leaderboard</h2>
           <p className="text-secondary">

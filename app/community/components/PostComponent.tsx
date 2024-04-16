@@ -2,6 +2,9 @@ import * as Avatar from "@radix-ui/react-avatar";
 import { HeartIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 import { relativeDateTime } from "@/app/_utils/formatDate";
+import TopicBadge from "./TopicBadge";
+import { Topic } from "./PostList";
+
 
 export interface Post {
   id: number;
@@ -11,6 +14,8 @@ export interface Post {
   name: string; // author's name
   email: string; // author's email
   image: string; // author's image
+  topic_id: number;
+  topic: Topic
 }
 
 interface PostProps {
@@ -19,7 +24,7 @@ interface PostProps {
 
 export default function PostComponent({ post }: PostProps) {
   return (
-    <div className="flex gap-3 py-4 md:flex-col md:py-6">
+    <div className="flex gap-3 py-4 md:flex-col md:py-6 md:first:pt-0">
       <div className="w-fit md:hidden">
         <Avatar.Root className="inline-flex h-[32px] w-[32px] select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle md:hidden">
           <Avatar.Image
@@ -43,7 +48,7 @@ export default function PostComponent({ post }: PostProps) {
               className="h-full w-full rounded-[inherit] border border-secondary object-cover"
               src={post.image}
               alt={post.name}
-              />
+            />
             <Avatar.Fallback
               className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-xs font-medium"
               delayMs={600}
@@ -52,21 +57,21 @@ export default function PostComponent({ post }: PostProps) {
             </Avatar.Fallback>
           </Avatar.Root>
           <div className="flex items-center gap-1.5 leading-none">
-            <p className="font-medium">{post.name}</p>
-              <p className="text-tertiary">
-                {relativeDateTime(post.created_at)}
-              </p>
+            <p className="font-semibold">{post.name}</p>
+            <span className="text-tertiary">·</span>
+            <p className="text-secondary">{relativeDateTime(post.created_at)}</p>
+            <TopicBadge topic={post.topic} textOnly />
           </div>
         </div>
         <h2 className="line-clamp-4 leading-tight">{post.content}</h2>
         <div className="mt-1.5 flex items-center gap-6 text-sm text-tertiary">
           <div className="flex items-center gap-1.5">
             <HeartIcon className="h-5 w-5" />
-            <span>12 likes</span>
+            <span>000 likes</span>
           </div>
           <div className="flex items-center gap-1.5">
             <ChatBubbleOvalLeftIcon className="h-5 w-5" />
-            <span>7 replies</span>
+            <span>000 replies</span>
           </div>
         </div>
       </div>
