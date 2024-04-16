@@ -3,7 +3,7 @@ import { HeartIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 import { relativeDateTime } from "@/app/_utils/formatDate";
 import TopicBadge from "./TopicBadge";
-import { Topic } from "./PostList";
+import { Topic } from "./TopicBadge";
 
 
 export interface Post {
