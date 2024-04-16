@@ -60,9 +60,8 @@ export default function Community() {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="posts">
-          {/* topics list using topicBadge component */}
           <div className="-mx-6 flex gap-2 overflow-x-scroll px-6 py-3">
-            <div className="text-sm1 flex cursor-pointer items-center whitespace-nowrap rounded bg-secondary invert px-2 py-0.5 lowercase no-underline">
+            <div className="text-sm1 flex cursor-pointer items-center whitespace-nowrap rounded bg-secondary px-2 py-0.5 lowercase no-underline invert">
               <span className="text-tertiary">#</span>
               <span>All</span>
             </div>
@@ -70,8 +69,7 @@ export default function Community() {
               <TopicBadge key={topic.id} topic={topic} />
             ))}
           </div>
-
-          <PostList topics={topics} />
+          <PostList />
         </Tabs.Content>
         <Tabs.Content value="info">
           <Info topics={topics} />
@@ -87,7 +85,7 @@ export default function Community() {
       >
         <div className="col-span-3 md:col-span-2 md:space-y-6">
           <DesktopForm topics={topics} />
-          <PostList topics={topics} />
+          <PostList />
         </div>
         <div className="col-span-3 md:col-span-1">
           <Info topics={topics} />

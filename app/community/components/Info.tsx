@@ -1,5 +1,4 @@
 "use client";
-
 import * as Avatar from "@radix-ui/react-avatar";
 import TopicBadge from "@/app/community/components/TopicBadge";
 

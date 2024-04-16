@@ -44,11 +44,11 @@ export default function DesktopForm({ topics }: { topics: Topic[] }) {
               placeholder="Select a topic"
               required
               disabled={!session}
-              
             >
               {topics?.map((topic) => (
                 <option key={topic.id} value={topic.id}>
-                   <span className="text-tertiary">#</span>{topic.name}
+                  <span className="text-tertiary">#</span>
+                  {topic.name}
                 </option>
               ))}
             </select>

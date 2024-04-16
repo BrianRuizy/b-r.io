@@ -15,7 +15,7 @@ export default function MobileForm({ topics }: { topics: Topic[] }) {
   const [isValid, setIsValid] = useState(false);
 
   return (
-    <Drawer.Root shouldScaleBackground={false}>
+    <Drawer.Root shouldScaleBackground>
       <Drawer.Trigger asChild>
         <div
           className={clsx(

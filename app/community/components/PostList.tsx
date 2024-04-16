@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 
 import PostComponent from "@/app/community/components/PostComponent";
 import { Post } from "@/app/community/components/PostComponent";
-import { Topic } from "@/app/community/components/TopicBadge";
 
-interface PostListProps {
-  topics: Topic[];
-}
-
-export default function PostList({ topics }: PostListProps) {
+export default function PostList() {
   const [postData, setData] = useState<Post[] | null>(null);
 
   useEffect(() => {
@@ -21,14 +16,10 @@ export default function PostList({ topics }: PostListProps) {
         return res.json();
       })
       .then((json) => {
-        const postsWithTopics = json.result.map((post: Post) => {
-          const topic = topics.find((topic) => topic.id === post.topic_id);
-          return { ...post, topic };
-        });
-        setData(postsWithTopics);
+        setData(json.result);
       })
       .catch((err) => console.error(err));
-  }, [topics]);
+  }, []);
 
   if (!postData) {
     return <div>Loading...</div>;
