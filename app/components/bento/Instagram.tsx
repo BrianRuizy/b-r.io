@@ -14,7 +14,7 @@ export default function Instagram() {
         href="https://instagram.com/brianruizy"
       >
         <span className="font-medium text-primary">Follow</span>
-        <span className="text-tertiary">3.9k</span>
+        <span className="text-tertiary">4k</span>
       </Link>
     </Card>
   );
