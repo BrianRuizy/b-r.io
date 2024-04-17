@@ -4,13 +4,15 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
-import Link from "@/app/components/ui/Link";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
 import { formatDate } from "@/app/_utils/formatDate";
 
 import Avatar from "@/public/avatar.png";
+import FlipNumber from "@/components/FlipNumber";
+
+import { getViewsCount } from "@/app/db/queries";
+import { incrementViews } from "@/app/db/actions";
 
 type PostProps = {
   post: PostType;
@@ -48,6 +50,7 @@ export async function generateMetadata(
     : `https://b-r.io/api/og?title=${title}`;
 
   const metadata: Metadata = {
+    metadataBase: new URL("https://b-r.io"),
     title: `${title} | Brian Ruiz`,
     description,
     openGraph: {
@@ -89,7 +92,7 @@ export default async function Post({ params }: { params: any }) {
               className="rounded-full bg-secondary"
             />
             <div className="leading-tight">
-              <p className="text-primary">Brian Ruiz</p>
+              <p>Brian Ruiz</p>
               <p className="text-secondary">
                 <time dateTime={post.publishedAt}>
                   {formatDate(post.publishedAt)}
@@ -98,7 +101,8 @@ export default async function Post({ params }: { params: any }) {
                   ? `(Updated ${formatDate(post.updatedAt)})`
                   : ""}
                 {" · "}
-                <ViewCounter post={post} />
+
+                <Views slug={post.slug} />
               </p>
             </div>
           </div>
@@ -127,5 +131,19 @@ export default async function Post({ params }: { params: any }) {
       </div>
       <Subscribe />
     </div>
+  );
+}
+
+async function Views({ slug }: { slug: string }) {
+  let blogViews = await getViewsCount();
+  const viewsForPost = blogViews.find((view) => view.slug === slug);
+
+  incrementViews(slug);
+
+  return (
+    <span>
+      <FlipNumber>{viewsForPost?.count || 0}</FlipNumber>
+      {viewsForPost?.count === 1 ? " view" : " views"}
+    </span>
   );
 }

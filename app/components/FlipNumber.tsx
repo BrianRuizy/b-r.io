@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import useIsMount from "@/app/_hooks/useismount";
@@ -9,7 +10,7 @@ type FlipNumberProps = {
 function FlipNumber({ children }: FlipNumberProps) {
   const isMount = useIsMount();
   const [keyframe, setKeyframe] = useState<"initial" | "moveDown" | "out">(
-    "initial"
+    "initial",
   );
   const [numberToShow, setNumberToShow] = useState(children);
   const duration = 75;
@@ -28,13 +29,13 @@ function FlipNumber({ children }: FlipNumberProps) {
       className={clsx(
         "inline-flex",
         keyframe === "out" &&
-          "opacity-0 -translate-y-3 duration-75 ease-in-out",
+          "-translate-y-3 opacity-0 duration-75 ease-in-out",
         keyframe === "initial" &&
-          "opacity-100 translate-y-0 duration-75 ease-in-out",
-        keyframe === "moveDown" && "opacity-0 translate-y-3"
+          "translate-y-0 opacity-100 duration-75 ease-in-out",
+        keyframe === "moveDown" && "translate-y-3 opacity-0",
       )}
     >
-      {numberToShow}
+      {numberToShow?.toLocaleString()}
     </span>
   );
 }

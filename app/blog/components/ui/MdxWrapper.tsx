@@ -3,7 +3,6 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import CustomImage from "@/app/blog/components/ui/Image";
 import Link from "@/app/components/ui/Link";
 import Alert from "../mdx/Alert";
-import Parallax from "../mdx/parallax";
 import Weather from "../mdx/Weather";
 import WeatherList from "../mdx/WeatherList";
 import LinkPreview from "../mdx/LinkPreview";
@@ -29,7 +28,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className="underline underline-offset-4 font-normal"
+      className="font-normal underline underline-offset-4"
       {...props}
     />
   );
@@ -40,7 +39,6 @@ const components = {
   a: CustomLink,
   Link: CustomLink,
   Alert: Alert,
-  Parallax: Parallax,
   Weather: Weather,
   WeatherList: WeatherList,
   LinkPreview: LinkPreview,

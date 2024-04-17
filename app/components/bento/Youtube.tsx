@@ -34,7 +34,7 @@ export default async function YouTube() {
         >
           <span className="font-medium text-primary">Subscribe</span>
           <span className="text-tertiary">
-            {Math.floor(data?.subscribers / 1000)}k
+            {(data?.subscribers / 1000).toFixed(1)}k
           </span>
         </Link>
       </div>
@@ -44,16 +44,14 @@ export default async function YouTube() {
             key={index}
             className="relative col-span-1 row-span-1 overflow-hidden rounded-lg border border-secondary transition-opacity"
           >
-            <Link href={video.url} className="relative block h-full w-full">
-              <Image
-                src={video.thumbnail}
-                alt={video.title}
-                fill={true}
-                className="object-cover"
-                sizes="100vw"
-              />
-            </Link>
-          </li>
+            <Image
+              src={video.thumbnail}
+              alt={video.title}
+              fill
+              quality={100}
+              className="object-cover"
+            />
+          </Link>
         ))}
       </ul>
     </Card>

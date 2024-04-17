@@ -5,7 +5,6 @@ import avatar from "public/avatar.png";
 import map from "public/map.png";
 import { FaYoutube } from "react-icons/fa";
 
-import { YouTube } from "@/app/components/Stats";
 import Link from "@/app/components/ui/Link";
 
 export const metadata: Metadata = {
@@ -14,7 +13,27 @@ export const metadata: Metadata = {
     "Creator based in Houston. Focuses on topics including consumer technology, software engineering, design, and lifestyle.",
 };
 
-export default function Mediakit() {
+// get youtube subs count from route handler api/youtube
+async function getData() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/youtube`,
+    {
+      next: {
+        revalidate: 86400, // 24 hours
+      },
+    },
+  );
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+export default async function Mediakit() {
+  const data = await getData();
+
   return (
     <div className="relative">
       <div className="z-20 flex flex-col gap-16 md:gap-24">
@@ -65,7 +84,7 @@ export default function Mediakit() {
             <div className="col-span-1 flex flex-col justify-center rounded-xl border border-primary bg-tertiary p-6 md:col-span-2 md:items-center">
               <p className="text-secondary">Subscribers</p>
               <h2 className="text-2xl font-bold text-primary">
-                <YouTube />
+                {(data?.subscribers / 1000).toFixed(1)}k
               </h2>
             </div>
             <div className="col-span-1 flex flex-col justify-center rounded-xl border border-primary bg-tertiary p-6 md:col-span-2 md:items-center">
@@ -95,7 +114,7 @@ export default function Mediakit() {
               <p className="text-secondary">Views contribution</p>
               <div className="relative mt-6 flex-grow">
                 <Image src={map} alt="map" className="opacity-75 saturate-0" />
-                <Chip label="🇺🇸 31%" position={[35, 10]} />
+                <Chip label="🇺🇸 29%" position={[35, 10]} />
                 <Chip label="🇬🇧 9%" position={[16, 40]} />
                 <Chip label="🇩🇪 7.5%" position={[27, 47]} />
                 <Chip label="🇧🇷 4.5%" position={[60, 25]} />
@@ -140,7 +159,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
+              <p className="mt-2 font-medium leading-tight text-primary group-hover:underline">
                 Mid-roll Integration
               </p>
               <p className="text-sm text-secondary">Akiflow App · 485k Views</p>
@@ -156,7 +175,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
+              <p className="mt-2 font-medium leading-tight text-primary group-hover:underline">
                 Mid-roll Integration
               </p>
               <p className="text-sm text-secondary">
@@ -174,7 +193,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
+              <p className="mt-2 font-medium leading-tight text-primary group-hover:underline">
                 Listicle Featured Product
               </p>
               <p className="text-sm text-secondary">Ergonofis · 156k Views</p>
@@ -190,7 +209,7 @@ export default function Mediakit() {
                 width="2024"
                 height="1272"
               />
-              <p className="mt-2 font-medium text-primary group-hover:underline leading-tight">
+              <p className="mt-2 font-medium leading-tight text-primary group-hover:underline">
                 Dedicated Video
               </p>
               <p className="text-sm text-secondary">
@@ -213,7 +232,7 @@ const ProgressBar = ({
   label: string;
 }) => {
   return (
-    <div>
+    <>
       <div className="flex items-center justify-between gap-4">
         <div className="h-2 w-full rounded border border-primary bg-neutral-500/25">
           <div
@@ -229,7 +248,7 @@ const ProgressBar = ({
           <span className="text-sm">%</span>
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

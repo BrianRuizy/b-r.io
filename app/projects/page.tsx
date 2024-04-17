@@ -7,74 +7,71 @@ import Halo from "@/app/components/ui/Halo";
 
 export const metadata: Metadata = {
   title: "Projects | Brian Ruiz",
-  description:
-    "Here are some of the projects I've worked on.",
+  description: "Here are some of the projects I've worked on.",
 };
-
 
 export default function Blog() {
   const projects = allProjects;
 
   return (
-    <div className="max-w-[700px] mx-auto">
-    <div className="flex flex-col gap-16 md:gap-24 ">
-      <div className="flex flex-col gap-8">
-        <div>
-          <h1 className="animate-in text-3xl font-bold tracking-tight">
-            Projects
-          </h1>
-          <p
-            className="text-secondary animate-in"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            Here are some of the projects I&apos;ve worked on.
-          </p>
-        </div>
-      </div>
-      <ul
-        className="animate-in flex flex-col animated-list"
-        style={{ "--index": 3 } as React.CSSProperties}
-      >
-        {projects.map((project, i) => (
-          <li
-            key={project.slug}
-            className={clsx(
-              "py-6 flex flex-col md:flex-row gap-4 md:gap-6 transition-opacity first:pt-0 last:pb-0"
-            )}
-          >
-            <Link
-              href={`/projects/${project.slug}`}
-              className="w-full md:w-2/5 aspect-video bg-tertiary rounded-lg border border-secondary overflow-clip select-none"
+    <div className="mx-auto max-w-[700px]">
+      <div className="flex flex-col gap-16 md:gap-24 ">
+        <div className="flex flex-col gap-8">
+          <div>
+            <h1 className="animate-in text-3xl font-bold tracking-tight">
+              Projects
+            </h1>
+            <p
+              className="animate-in text-secondary"
+              style={{ "--index": 1 } as React.CSSProperties}
             >
-              <Halo strength={10}>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="w-full h-full "
-                />
-              </Halo>
-            </Link>
-            <div className="w-full md:w-3/5 space-y-2">
-              <div>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="text-primary font-medium hover:underline"
-                >
-                  {project.title}
-                </Link>
-                <time className="text-secondary"> · {project.time}</time>
-              </div>
+              Here are some of the projects I&apos;ve worked on.
+            </p>
+          </div>
+        </div>
+        <ul
+          className="animated-list flex animate-in flex-col"
+          style={{ "--index": 3 } as React.CSSProperties}
+        >
+          {projects.map((project, i) => (
+            <li
+              key={project.slug}
+              className={clsx(
+                "flex flex-col gap-4 py-6 transition-opacity first:pt-0 last:pb-0 md:flex-row md:gap-6",
+              )}
+            >
+              <Link
+                href={`/projects/${project.slug}`}
+                className="aspect-video w-full select-none overflow-clip rounded-lg border border-secondary bg-tertiary md:w-2/5"
+              >
+                <Halo strength={10}>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="h-full w-full object-cover"
+                  />
+                </Halo>
+              </Link>
+              <div className="w-full space-y-2 md:w-3/5">
+                <div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {project.title}
+                  </Link>
+                  <time className="text-secondary"> · {project.time}</time>
+                </div>
 
-              <p className="line-clamp-3 text-tertiary">
-                {project.description}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+                <p className="line-clamp-3 text-tertiary">
+                  {project.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
