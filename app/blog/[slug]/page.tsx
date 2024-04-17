@@ -14,7 +14,6 @@ import FlipNumber from "@/components/FlipNumber";
 import { getViewsCount } from "@/app/db/queries";
 import { incrementViews } from "@/app/db/actions";
 
-
 type PostProps = {
   post: PostType;
   related: PostType[];
@@ -138,6 +137,7 @@ export default async function Post({ params }: { params: any }) {
 async function Views({ slug }: { slug: string }) {
   let blogViews = await getViewsCount();
   const viewsForPost = blogViews.find((view) => view.slug === slug);
+
   incrementViews(slug);
 
   return (
