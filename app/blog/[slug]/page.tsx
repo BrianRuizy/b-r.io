@@ -1,3 +1,4 @@
+"use server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
