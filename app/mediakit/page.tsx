@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 // get youtube subs count from route handler api/youtube
 async function getData() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/youtube`,
+    `https://b-r.io/api/youtube`,
     {
       next: {
         revalidate: 86400, // 24 hours

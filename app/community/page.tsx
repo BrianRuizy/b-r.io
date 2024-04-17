@@ -3,7 +3,6 @@ import * as Tabs from "@radix-ui/react-tabs";
 import MobileForm from "@/app/community/components/MobileForm";
 import DesktopForm from "@/app/community/components/DesktopForm";
 import User from "@/app/community/components/User";
-import PostList from "@/app/community/components/PostList";
 import PostComponent from "@/app/community/components/PostComponent";
 import Info from "@/app/community/components/Info";
 import TopicBadge from "@/app/community/components/TopicBadge";
