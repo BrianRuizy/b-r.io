@@ -15,9 +15,9 @@ export default function TopicBadge({
 }) {
   return (
     <Link
-      href={`/community/topic/${topic?.id}`}
+      href={`/community/topic/${topic.name}`}
       className={clsx(
-        "text-sm1 flex cursor-pointer items-center whitespace-nowrap lowercase no-underline",
+        "text-sm flex cursor-pointer items-center whitespace-nowrap lowercase no-underline",
         textOnly
           ? "bg-none p-0 text-secondary"
           : "rounded bg-secondary px-1 py-0.5",

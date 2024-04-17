@@ -9,7 +9,7 @@ import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
 import { formatDate } from "@/app/_utils/formatDate";
 
 import Avatar from "@/public/avatar.png";
-import FlipNumber from "@/components/FlipNumber";
+import FlipNumber from "@/app/components/FlipNumber";
 
 import { getViewsCount } from "@/app/db/queries";
 import { incrementViews } from "@/app/db/actions";

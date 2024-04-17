@@ -31,10 +31,52 @@ Make sure you have Node.js v18.17.0+ installed on your machine.
 - Vercel Postgres
 
 ```sql
+-- Create blog views table
 CREATE TABLE IF NOT EXISTS blog_views (
     slug VARCHAR(255) PRIMARY KEY,
     count INT DEFAULT 0
 )
+```
+
+```sql
+--  Create Authors table
+await sql`CREATE TABLE authors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    image VARCHAR(255)
+);`;
+
+-- Create CommunityPosts table
+await sql`CREATE TABLE community_posts (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);`;
+
+-- Create Likes table
+await sql`CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    post_id INTEGER REFERENCES CommunityPosts(id),
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);`;
+
+-- Create Comments table
+await sql`CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    post_id INTEGER REFERENCES CommunityPosts(id),
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);`;
+
+-- crete topics table
+await sql`CREATE TABLE topics (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);`;
 ```
 
 

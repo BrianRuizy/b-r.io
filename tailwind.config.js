@@ -49,10 +49,10 @@ module.exports = {
           "100%": { transform: "translateY(0px)", opacity: 1 },
         },
       },
-      animation: {
-        in: "in .6s both",
-        "in-reverse": "in-reverse .6s both",
-      },
+      // animation: {
+      //   in: "in .6s both",
+      //   "in-reverse": "in-reverse .6s both",
+      // },
     },
   },
   plugins: [
