@@ -5,11 +5,14 @@ import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Tags from "@/components/Tags";
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import ViewCounter from "@/app/blog/components/ui/ViewCounter";
 import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
 import { formatDate } from "@/utils/formatDate";
 
 import Avatar from "@/public/avatar.png";
+import FlipNumber from "@/components/FlipNumber";
+
+import { getViewsCount } from "@/app/db/queries";
+import { incrementViews } from "@/app/db/actions";
 
 type PostProps = {
   post: PostType;
@@ -47,7 +50,7 @@ export async function generateMetadata(
     : `https://b-r.io/api/og?title=${title}`;
 
   const metadata: Metadata = {
-    metadataBase: new URL('https://b-r.io'),
+    metadataBase: new URL("https://b-r.io"),
     title: `${title} | Brian Ruiz`,
     description,
     openGraph: {
@@ -63,25 +66,12 @@ export async function generateMetadata(
   return metadata;
 }
 
-async function getViewsData({ post }: { post: PostType }) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blog/update-views?slug=${post.slug}`,
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch views");
-  }
-
-  return response.json();
-}
-
 export default async function Post({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
   }
-
-  const viewsData = await getViewsData({ post });
 
   return (
     <div className="flex flex-col gap-20">
@@ -111,7 +101,8 @@ export default async function Post({ params }: { params: any }) {
                   ? `(Updated ${formatDate(post.updatedAt)})`
                   : ""}
                 {" · "}
-                <ViewCounter post={post} initialViews={viewsData.views} />
+
+                <Views slug={post.slug} />
               </p>
             </div>
           </div>
@@ -140,5 +131,19 @@ export default async function Post({ params }: { params: any }) {
       </div>
       <Subscribe />
     </div>
+  );
+}
+
+async function Views({ slug }: { slug: string }) {
+  let blogViews = await getViewsCount();
+  const viewsForPost = blogViews.find((view) => view.slug === slug);
+
+  incrementViews(slug);
+
+  return (
+    <span>
+      <FlipNumber>{viewsForPost?.count || 0}</FlipNumber>
+      {viewsForPost?.count === 1 ? " view" : " views"}
+    </span>
   );
 }
