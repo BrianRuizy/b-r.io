@@ -9,16 +9,16 @@ export default function Loading() {
         <span className="aspect-square h-14 w-14 animate-pulse rounded-full bg-secondary" />
       </div>
 
-      <div className="space-y-8">
-        <div className="flex gap-3 overflow-x-scroll ">
-          <span className="h-[34px] w-16 animate-pulse rounded-md bg-secondary" />
-          <span className="h-[34px] w-20 animate-pulse rounded-md bg-secondary" />
-          <span className="h-[34px] w-32 animate-pulse rounded-md bg-secondary" />
-          <span className="h-[34px] w-16 animate-pulse rounded-md bg-secondary" />
-          <span className="h-[34px] w-24 animate-pulse rounded-md bg-secondary" />
-        </div>
+      <div className="flex gap-3 overflow-x-scroll ">
+        <span className="h-[34px] w-14 animate-pulse rounded-md bg-secondary" />
+        <span className="h-[34px] w-20 animate-pulse rounded-md bg-secondary" />
+        <span className="h-[34px] w-32 animate-pulse rounded-md bg-secondary" />
+        <span className="h-[34px] w-16 animate-pulse rounded-md bg-secondary" />
+        <span className="h-[34px] w-28 animate-pulse rounded-md bg-secondary" />
+      </div>
 
-        <div className="h-14 w-full animate-pulse rounded-md bg-secondary" />
+      <div className="space-y-8">
+        <div className="-mx-3 h-24  animate-pulse rounded-md bg-secondary" />
 
         <div className="flex flex-col divide-y divide-secondary">
           {[1, 2, 3, 4, 5, 6].map((_, index) => (
