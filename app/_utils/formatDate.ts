@@ -1,9 +1,4 @@
-import {
-  format,
-  differenceInDays,
-  differenceInHours,
-  differenceInMinutes,
-} from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 
 export const formatDate = (date: string) =>
   new Date(date).toLocaleString("en-US", {
@@ -12,24 +7,15 @@ export const formatDate = (date: string) =>
     year: "numeric",
   });
 
-export const relativeDateTime = (dateString: string) => {
-  const date = new Date(dateString);
-  const now = new Date(Date.now());
+export function formatRelativeTime(date: Date) {
+  const now = new Date();
+  const diffInSeconds = (now.getTime() - date.getTime()) / 1000;
 
-  const minutesAgo = differenceInMinutes(now, date);
-  if (minutesAgo < 60) {
-    return `${minutesAgo}m`;
-  }
+  if (diffInSeconds < 60) return "Just now";
+  if (diffInSeconds < 3600)
+    return formatDistanceToNow(date, { addSuffix: true });
+  if (diffInSeconds < 86400) return `${Math.round(diffInSeconds / 3600)}h`;
+  if (diffInSeconds < 604800) return `${Math.round(diffInSeconds / 86400)}d`;
 
-  const hoursAgo = differenceInHours(now, date);
-  if (hoursAgo < 24) {
-    return `${hoursAgo}h`;
-  }
-
-  const daysAgo = differenceInDays(now, date);
-  if (daysAgo < 7) {
-    return `${daysAgo}d`;
-  }
-
-  return format(date, "yyyy-MM-dd");
-};
+  return format(date, "MMM d, yyyy");
+}

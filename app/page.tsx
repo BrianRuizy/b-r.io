@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="grid animate-in grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-8"
+        className="grid animate-in grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-6"
         style={{ "--index": 3 } as React.CSSProperties}
       >
         <YouTube />

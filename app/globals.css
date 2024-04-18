@@ -48,6 +48,18 @@
   }
 }
 
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 .breakout {
   width: calc(100vw - 48px);
   margin-left: calc(50% - 50vw + 36px);
@@ -73,9 +85,9 @@ input:-webkit-autofill:focus {
   }
 }
 
-.animate-in {
+/* .animate-in {
   animation-delay: calc(var(--index) * 130ms);
-}
+} */
 
 .overflow-x-scroll.snap-x::-webkit-scrollbar {
   /* hide scrollbars with webkit scrollbar */

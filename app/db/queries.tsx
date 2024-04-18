@@ -1,7 +1,7 @@
 "use server";
 import { sql } from "@vercel/postgres";
 
-interface CommunityPost {
+export interface CommunityPostProps {
   id: number;
   title: string;
   content: string;
@@ -14,7 +14,7 @@ interface CommunityPost {
   topic_name: string;
 }
 
-interface Topic {
+export interface TopicProps {
   id: number;
   name: string;
 }
@@ -34,7 +34,7 @@ export async function getViewsCount(): Promise<
   return result.rows as { slug: string; count: number }[];
 }
 
-export async function getCommunityPosts(): Promise<CommunityPost[]> {
+export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
   if (!process.env.POSTGRES_URL) {
     return [];
   }
@@ -47,10 +47,10 @@ export async function getCommunityPosts(): Promise<CommunityPost[]> {
     ORDER BY CommunityPosts.created_at DESC;
   `;
 
-  return result.rows as CommunityPost[];
+  return result.rows as CommunityPostProps[];
 }
 
-export async function getCommunityTopics(): Promise<Topic[]> {
+export async function getCommunityTopics(): Promise<TopicProps[]> {
   if (!process.env.POSTGRES_URL) {
     return [];
   }
@@ -59,5 +59,5 @@ export async function getCommunityTopics(): Promise<Topic[]> {
     FROM Topics
   `;
 
-  return result.rows as Topic[];
+  return result.rows as TopicProps[];
 }

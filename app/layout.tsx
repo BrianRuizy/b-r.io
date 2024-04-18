@@ -29,18 +29,13 @@ export default function RootLayout({
           "width-full bg-white text-primary antialiased dark:bg-black",
         )}
       >
-        <div
-          vaul-drawer-wrapper=""
-          className="min-h-[100vh] bg-white dark:bg-black"
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navigation />
-            <div className="mx-auto max-w-[700px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">
-              <Providers>{children}</Providers>
-            </div>
-          </ThemeProvider>
-          <Analytics />
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navigation />
+          <div className="mx-auto max-w-[700px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">
+            <Providers>{children}</Providers>
+          </div>
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
