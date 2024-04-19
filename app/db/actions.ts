@@ -14,7 +14,6 @@ export async function incrementViews(slug: string) {
 }
 
 export async function saveCommunityPost(formData: FormData) {
-
   let authorID = formData.get("author_id") as string;
   let topicId = formData.get("topic_id") as string;
   let content = formData.get("content") as string;
@@ -24,5 +23,5 @@ export async function saveCommunityPost(formData: FormData) {
     VALUES (${content}, ${topicId}, ${authorID})
   `;
 
-  revalidatePath("/community");
+  revalidatePath("/community/[topic]", "page");
 }

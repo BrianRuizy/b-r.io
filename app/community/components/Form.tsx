@@ -1,23 +1,46 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import clsx from "clsx";
+
 import * as Avatar from "@radix-ui/react-avatar";
-import { getCommunityTopics } from "@/app/db/queries";
+import { TopicProps } from "@/app/db/queries";
 import { saveCommunityPost } from "@/app/db/actions";
+import { getCommunityTopics } from "@/app/db/queries";
+import { useParams } from "next/navigation";
 
 export default function Form() {
   const { data: session } = useSession();
   const formRef = useRef<HTMLFormElement>(null);
   const [contentValid, setContentValid] = useState("");
 
+  let params = useParams<{ topic: string }>();
+
+  const [topics, setTopics] = useState<TopicProps[]>([]);
+  const [topicId, setTopicId] = useState<number | null>(null);
+
+  useEffect(() => {
+    getTopics();
+  }, []);
+
+  useEffect(() => {
+    let currentTopic = topics.find((topic) => topic.name === params.topic);
+
+    if (currentTopic) {
+      setTopicId(currentTopic.id);
+    } else {
+      setTopicId(1); // 1 being general
+    }
+  }, [topics, params.topic]);
+
+  async function getTopics() {
+    let topics = await getCommunityTopics();
+    setTopics(topics);
+  }
+
   return (
     <form
-      className={clsx(
-        "-mx-6 flex items-start justify-between gap-3 border border-secondary bg-primary px-6 py-1.5 md:rounded-md",
-        // !session && "hidden",
-      )}
+      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-primary px-6 py-1.5 sm:rounded-md sm:border-x"
       ref={formRef}
       action={async (formData) => {
         await saveCommunityPost(formData);
@@ -25,7 +48,8 @@ export default function Form() {
       }}
     >
       <input type="hidden" name="author_id" value={session?.user?.id || ""} />
-      <input type="hidden" name="topic_id" value={1} />
+      <input type="hidden" name="topic_id" value={topicId || ""} />
+
       <div className="mt-0.5 w-fit">
         <MyAvatar />
       </div>
@@ -34,7 +58,7 @@ export default function Form() {
         required
         name="content"
         placeholder={session ? "What's on your mind?" : "Sign in to chat."}
-        className="h-auto max-h-52 flex-1 resize-none bg-inherit py-3 leading-tight text-primary outline-none placeholder:text-tertiary"
+        className="my-3 h-auto max-h-52 flex-1 resize-none bg-inherit leading-tight text-primary outline-none placeholder:text-tertiary"
         rows={3}
         maxLength={280}
         onInput={(event) => {
@@ -74,10 +98,4 @@ function MyAvatar() {
       </Avatar.Fallback>
     </Avatar.Root>
   );
-}
-
-async function Topics({ params }: { params: { topic: string } }) {
-  let topics = await getCommunityTopics();
-
-  return topics;
 }

@@ -9,7 +9,6 @@ export default function Topics() {
   const [topics, setTopics] = useState<TopicProps[]>([]);
   let params = useParams<{ topic: string }>();
 
-  console.log(params.topic);
   if (!params.topic) {
     params.topic = "all";
   }
