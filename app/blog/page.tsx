@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { allPosts } from ".contentlayer/generated";
-import PostList from "./components/ui/PostList";
-import NewsletterSignupForm from "./components/ui/NewsletterSignupForm";
+import PostList from "./components/PostList";
+import NewsletterSignupForm from "./components/NewsletterSignupForm";
 
 export const metadata: Metadata = {
   title: "Blog | Brian Ruiz",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "I write about programming, design, and occasionally life updates!",
 };
 
-export default function Blog() {
+export default function BlogPage() {
   const posts = allPosts.sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),

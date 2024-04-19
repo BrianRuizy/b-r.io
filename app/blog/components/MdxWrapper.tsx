@@ -1,11 +1,11 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import CustomImage from "@/app/blog/components/ui/Image";
+import CustomImage from "@/app/blog/components/Image";
 import Link from "@/app/components/ui/Link";
-import Alert from "../mdx/Alert";
-import Weather from "../mdx/Weather";
-import WeatherList from "../mdx/WeatherList";
-import LinkPreview from "../mdx/LinkPreview";
+import Alert from "./mdx/Alert";
+import Weather from "./mdx/Weather";
+import WeatherList from "./mdx/WeatherList";
+import LinkPreview from "./mdx/LinkPreview";
 
 interface CustomLinkProps
   extends React.DetailedHTMLProps<

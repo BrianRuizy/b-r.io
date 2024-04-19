@@ -3,7 +3,7 @@ import { allPosts } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 import Link from "@/app/components/ui/Link";
-import PostList from "@/app/blog/components/ui/PostList";
+import PostList from "@/app/blog/components/PostList";
 import Card from "@/app/components/bento/CardTemplate";
 import Map from "@/app/components/bento/map";
 import Gumroad from "@/app/components/bento/Gumroad";

@@ -4,8 +4,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
-import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import Subscribe from "@/app/blog/components/ui/NewsletterSignupForm";
+import Mdx from "@/app/blog/components/MdxWrapper";
+import Subscribe from "@/app/blog/components/NewsletterSignupForm";
 import { formatDate } from "@/app/_utils/formatDate";
 
 import Avatar from "@/public/avatar.png";
@@ -66,7 +66,7 @@ export async function generateMetadata(
   return metadata;
 }
 
-export default async function Post({ params }: { params: any }) {
+export default async function Blog({ params }: { params: any }) {
   const post = allPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
