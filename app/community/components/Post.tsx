@@ -9,7 +9,7 @@ interface PostComponentProps {
   post: CommunityPostProps;
 }
 
-export default function PostComponent({ post }: PostComponentProps) {
+export default function Post({ post }: PostComponentProps) {
   let initials = post.author_name
     .split(" ")
     .map((name) => name[0].toUpperCase())
@@ -18,7 +18,7 @@ export default function PostComponent({ post }: PostComponentProps) {
     initials.length > 1 ? initials : post.author_name.slice(0, 2).toUpperCase();
 
   return (
-    <div className="flex gap-3 py-4 md:py-6">
+    <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
       <div className="w-fit">
         <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle">
           <Avatar.Image

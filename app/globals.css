@@ -85,9 +85,9 @@ input:-webkit-autofill:focus {
   }
 }
 
-/* .animate-in {
+.animate-in {
   animation-delay: calc(var(--index) * 130ms);
-} */
+}
 
 .overflow-x-scroll.snap-x::-webkit-scrollbar {
   /* hide scrollbars with webkit scrollbar */
@@ -136,7 +136,7 @@ input:-webkit-autofill:focus {
 /* syntax highlighting */
 
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-white dark:bg-[#0A0A0A] text-[13px] text-xs text-primary;
+  @apply rounded-md border border-secondary bg-white text-[13px] text-xs text-primary dark:bg-[#0A0A0A];
 }
 
 .code-highlight {

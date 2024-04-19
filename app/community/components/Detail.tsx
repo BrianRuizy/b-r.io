@@ -10,7 +10,7 @@ import { Topic } from "@/app/community/components/TopicBadge";
 
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-export default function Comments({ topics }: { topics: Topic[] }) {
+export default function Detail({ topics }: { topics: Topic[] }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { data: session } = useSession();
   const [isValid, setIsValid] = useState(false);
