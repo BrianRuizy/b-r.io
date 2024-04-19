@@ -10,23 +10,24 @@ export default function TopicBadge({
   topic,
   textOnly = false,
   active,
+  hashtag = true,
 }: {
   topic: { id: number; name: string };
   textOnly?: boolean;
   active?: boolean;
+  hashtag?: boolean;
 }) {
   return (
     <Link
-      href={topic.name === "all" ? "/community" : `/community/${topic.name}`}
+      scroll={false}
+      href={topic.name === "All Topics" ? "/community" : `/community/${topic.name}`}
       className={clsx(
-        "flex cursor-pointer items-center whitespace-nowrap text-sm lowercase no-underline ",
-        textOnly
-          ? "bg-none p-0 text-secondary"
-          : "rounded-lg bg-secondary px-4 py-1.5 ",
-        active && "bg-primary text-primary invert",
+        "flex cursor-pointer items-center whitespace-nowrap text-sm",
+        textOnly ? "bg-none p-0" : "rounded-lg bg-secondary px-4 py-1.5 ",
+        active ? "bg-primary text-primary invert" : "text-secondary",
       )}
     >
-      <span className="text-tertiary">#</span>
+      {hashtag && <span className="text-tertiary">#</span>}
       <span>{topic?.name}</span>
     </Link>
   );

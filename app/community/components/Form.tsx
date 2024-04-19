@@ -2,12 +2,13 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
-
+import { useParams } from "next/navigation";
+import clsx from "clsx";
 import * as Avatar from "@radix-ui/react-avatar";
+
 import { TopicProps } from "@/app/db/queries";
 import { saveCommunityPost } from "@/app/db/actions";
 import { getCommunityTopics } from "@/app/db/queries";
-import { useParams } from "next/navigation";
 
 export default function Form() {
   const { data: session } = useSession();
@@ -70,7 +71,10 @@ export default function Form() {
       />
 
       <button
-        className="mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-secondary px-3 py-1.5 text-sm font-medium text-primary disabled:font-normal disabled:text-tertiary"
+        className={clsx(
+          "mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-secondary px-3 py-1.5 text-sm font-medium text-primary disabled:font-normal disabled:text-tertiary",
+          !session && "hidden",
+        )}
         type="submit"
         disabled={contentValid === ""}
       >

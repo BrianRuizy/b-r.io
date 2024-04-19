@@ -4,11 +4,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 import Link from "@/app/components/ui/Link";
 import PostList from "@/app/blog/components/PostList";
-import Card from "@/app/components/bento/CardTemplate";
-import Map from "@/app/components/bento/map";
-import Gumroad from "@/app/components/bento/Gumroad";
-import Instagram from "@/app/components/bento/Instagram";
-import YouTube from "@/app/components/bento/Youtube";
+import BentoGrid from "@/app/components/bento/BentoGrid";
 import Avatar from "@/public/avatar.png";
 
 export default function Home() {
@@ -46,18 +42,10 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="grid animate-in grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-6"
+        className="animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <YouTube />
-        <Instagram />
-        <Gumroad />
-        <Card className="relative col-span-2 row-span-1" disableHalo noPadding>
-          <Map />
-          <div className="absolute bottom-4 left-4 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
-            <p className="text-sm font-medium text-primary">Houston, TX</p>
-          </div>
-        </Card>
+        <BentoGrid />
       </div>
       <div
         className="flex animate-in flex-col gap-8"

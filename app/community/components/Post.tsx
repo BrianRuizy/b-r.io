@@ -38,7 +38,7 @@ export default function Post({ post }: PostComponentProps) {
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 leading-none">
-            <p className="font-semibold">{post.author_name}</p>
+            <p className="font-medium">{post.author_name}</p>
             <span className="text-tertiary">·</span>
             <p className="text-secondary">
               {formatRelativeTime(post.created_at)}

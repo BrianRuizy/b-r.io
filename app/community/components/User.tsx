@@ -1,4 +1,5 @@
 "use client";
+
 import { signIn, signOut, useSession } from "next-auth/react";
 import * as Avatar from "@radix-ui/react-avatar";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -50,7 +51,7 @@ export default function User() {
               >
                 Sign out
               </DropdownMenu.Item>
-              <DropdownMenu.Item className="cursor-default select-none rounded-md px-4 py-2 outline-none hover:bg-secondary focus:outline-none">
+              <DropdownMenu.Item className="cursor-default select-none rounded-md px-4 py-2 text-red-500 outline-none hover:bg-red-100 focus:outline-none dark:hover:bg-red-950">
                 Delete Account
               </DropdownMenu.Item>
             </DropdownMenu.Group>
@@ -62,7 +63,7 @@ export default function User() {
   return (
     <div>
       <button
-        className="flex items-center rounded-md border border-secondary bg-primary px-4  py-1.5 text-base"
+        className="flex items-center rounded-md border border-secondary bg-transparent px-4 py-1.5 text-base"
         onClick={() => signIn()}
       >
         <FaGithub className="mr-2" />
