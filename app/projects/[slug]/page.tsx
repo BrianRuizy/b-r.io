@@ -2,8 +2,8 @@ import { allProjects, Post as PostType } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import PostList from "@/app/blog/components/ui/PostList";
+import Mdx from "@/app/blog/components/MdxWrapper";
+import PostList from "@/app/blog/components/PostList";
 import Tags from "@/app/components/Tags";
 import Link from "@/app/components/ui/Link";
 import { formatDate } from "@/app/_utils/formatDate";

@@ -17,12 +17,12 @@ export default function TopicBadge({
 }) {
   return (
     <Link
-      href={`/community/topic/${topic.name}`}
+      href={topic.name === "all" ? "/community" : `/community/${topic.name}`}
       className={clsx(
-        "flex cursor-pointer items-center whitespace-nowrap lowercase no-underline",
+        "flex cursor-pointer items-center whitespace-nowrap text-sm lowercase no-underline ",
         textOnly
           ? "bg-none p-0 text-secondary"
-          : "rounded-md border border-secondary px-3 py-1",
+          : "rounded-lg bg-secondary px-4 py-1.5 ",
         active && "bg-primary text-primary invert",
       )}
     >
