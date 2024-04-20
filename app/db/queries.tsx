@@ -1,5 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 
 export interface CommunityPostProps {
   id: number;
@@ -39,6 +40,8 @@ export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
     return [];
   }
 
+  revalidatePath("/community", "page");
+
   const result = await sql`
     SELECT CommunityPosts.*, Authors.id AS author_id, Authors.name AS author_name, Authors.email AS author_email, Authors.image AS author_image, Topics.id AS topic_id, Topics.name AS topic_name
     FROM CommunityPosts 
@@ -56,7 +59,8 @@ export async function getCommunityPostsForTopic(
   if (!process.env.POSTGRES_URL) {
     return [];
   }
-
+  
+  revalidatePath('/community', 'page')
   const result = await sql`
     SELECT CommunityPosts.*, Authors.id AS author_id, Authors.name AS author_name, Authors.email AS author_email, Authors.image AS author_image, Topics.id AS topic_id, Topics.name AS topic_name
     FROM CommunityPosts 

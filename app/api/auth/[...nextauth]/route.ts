@@ -17,28 +17,33 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_ID ?? "",
-      clientSecret: process.env.GITHUB_SECRET ?? "",
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
   callbacks: {
-    async session({ session, user }) {
-      const result =
-        await sql`SELECT id FROM authors WHERE email = ${session?.user?.email}`;
+    async session({ session }) {
+      if (session) {
+        // Check if user already exists in authors table
+        const existingAuthor =
+          await sql`SELECT * FROM authors WHERE email = ${session.user.email}`.then(
+            (res) => res.rows[0],
+          );
 
-      if (!result.rows.length) {
-        await sql`INSERT INTO authors (email, name) VALUES (${user.email}, ${user.name})`;
-        // After inserting, get the id of the newly inserted author
-        const newAuthor =
-          await sql`SELECT id FROM authors WHERE email = ${user.email}`;
-        if (session.user) {
-          session.user.id = newAuthor.rows[0].id;
+        let authorId;
+        if (existingAuthor) {
+          // If user already exists, use their id
+          authorId = existingAuthor.id;
+        } else {
+          // If user does not exist, add them to authors table and use the returned id
+          authorId =
+            await sql`INSERT INTO authors (name, email, image) VALUES (${session.user.name}, ${session.user.email}, ${session.user.image}) RETURNING id`.then(
+              (res) => res.rows[0].id,
+            );
         }
-      } else {
-        // If the author already exists, add the id to the user object in the session
-        if (session.user) {
-          session.user.id = result.rows[0].id;
-        }
+
+        // Add id to session.user
+        session.user.id = authorId;
       }
       return session;
     },

@@ -7,11 +7,13 @@ My personal portfolio website designed to be simplistic and clean while includin
 ## Tech Stack
 
 backend:
+
 - [Next.js](nextjs.org) / TypeScript
 - [MDX](https://mdxjs.com) / [Contentlayer](https://contentlayer.dev/) (Blog Posts)
 - [Vercel Postgres](https://vercel.com/storage/postgres) (Database)
 
 frontend:
+
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
 - [Radix Primitives](https://www.radix-ui.com/primitives) (Headless UI components)
 - [Radix UI Colors](https://www.radix-ui.com/colors) (Color system)
@@ -29,7 +31,7 @@ Make sure you have Node.js v18.17.0+ installed on your machine.
 ## Database Setup
 
 - Vercel Postgres
-https://vercel.com/docs/storage/vercel-postgres/quickstart
+  https://vercel.com/docs/storage/vercel-postgres/quickstart
 
 ```sql
 -- Create blog views table
@@ -41,45 +43,45 @@ CREATE TABLE IF NOT EXISTS blog_views (
 
 ```sql
 --  Create Authors table
-await sql`CREATE TABLE authors (
+CREATE TABLE authors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     image VARCHAR(255)
-);`;
-
--- Create CommunityPosts table
-await sql`CREATE TABLE community_posts (
-    id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-);`;
-
--- Create Likes table
-await sql`CREATE TABLE likes (
-    id SERIAL PRIMARY KEY,
-    post_id INTEGER REFERENCES CommunityPosts(id),
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-);`;
-
--- Create Comments table
-await sql`CREATE TABLE comments (
-    id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    post_id INTEGER REFERENCES CommunityPosts(id),
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-);`;
+)
 
 -- crete topics table
-await sql`CREATE TABLE topics (
+CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
-);`;
-```
+)
 
+-- Create CommunityPosts table
+CREATE TABLE community_posts (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+)
+
+-- Create Likes table
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    post_id INTEGER REFERENCES CommunityPosts(id),
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+)
+
+-- Create Comments table
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    post_id INTEGER REFERENCES CommunityPosts(id),
+    author_id INTEGER REFERENCES Authors(id),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+)
+
+```
 
 ## Deployment
 

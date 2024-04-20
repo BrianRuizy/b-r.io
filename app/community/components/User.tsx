@@ -64,10 +64,9 @@ export default function User() {
     <div>
       <button
         className="flex items-center rounded-md border border-secondary bg-transparent px-4 py-1.5 text-base"
-        onClick={() => signIn()}
+        onClick={() => signIn("github")}
       >
         <FaGithub className="mr-2" />
-
         <span>Sign in</span>
       </button>
     </div>
