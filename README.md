@@ -29,6 +29,7 @@ Make sure you have Node.js v18.17.0+ installed on your machine.
 ## Database Setup
 
 - Vercel Postgres
+https://vercel.com/docs/storage/vercel-postgres/quickstart
 
 ```sql
 -- Create blog views table
