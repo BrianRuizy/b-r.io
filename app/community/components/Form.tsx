@@ -41,7 +41,7 @@ export default function Form() {
 
   return (
     <form
-      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-primary px-6 py-1.5 sm:rounded-md sm:border-x"
+      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-white px-6 py-1.5 md:shadow-sm dark:bg-primary sm:rounded-md sm:border-x"
       ref={formRef}
       action={async (formData) => {
         await saveCommunityPost(formData);

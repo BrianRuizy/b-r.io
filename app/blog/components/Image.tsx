@@ -28,7 +28,7 @@ export default function CustomImage({
     <div
       className={clsx(
         reset ? "" : "not-prose my-8 w-full",
-        breakout ? "bg-tertiary" : "",
+        breakout ? "bg-secondary" : "",
         (rounded || breakout) && "overflow-hidden rounded-md md:rounded-lg",
       )}
     >
@@ -43,9 +43,9 @@ export default function CustomImage({
           priority={priority}
           className={clsx(
             "h-auto w-full",
-            breakout ? "bg-tertiary" : "",
+            breakout ? "bg-secondary" : "",
             (rounded || breakout) &&
-              "overflow-hidden rounded-md bg-tertiary md:rounded-lg",
+              "overflow-hidden rounded-md bg-secondary md:rounded-lg",
           )}
         />
         {caption && (
