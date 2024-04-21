@@ -34,7 +34,7 @@ export async function generateMetadata(
   const post = allPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
-    throw new Error("Post not found");
+    notFound();
   }
 
   const {

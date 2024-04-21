@@ -12,7 +12,7 @@ export default function User() {
     return (
       <>
         <DropdownMenu.Root>
-          <DropdownMenu.Trigger className="hidden cursor-pointer rounded-full md:block">
+          <DropdownMenu.Trigger className="cursor-pointer rounded-full">
             <Avatar.Root className="inline-flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
               <Avatar.Image
                 className="h-full w-full rounded-[inherit] object-cover"
