@@ -1,17 +1,11 @@
 import { Suspense } from "react";
 import { getCommunityPosts } from "@/app/db/queries";
 import Post from "@/app/community/components/Post";
-import { clerkClient } from "@clerk/clerk-sdk-node";
 
 export default async function CommunityPage() {
-  const userList = await clerkClient.users.getUserList();
-
   return (
     <Suspense>
       <Posts />
-      {userList.map((user) => (
-        <div key={user.id}>{user?.primaryEmailAddress?.emailAddress}</div>
-      ))}
     </Suspense>
   );
 }
