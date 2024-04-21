@@ -3,8 +3,6 @@ import { allPosts } from ".contentlayer/generated";
 import PostList from "./components/PostList";
 import NewsletterSignupForm from "./components/NewsletterSignupForm";
 
-import User from "app/community/components/User";
-
 export const metadata: Metadata = {
   title: "Blog | Brian Ruiz",
   description:
@@ -41,7 +39,6 @@ export default function BlogPage() {
         style={{ "--index": 3 } as React.CSSProperties}
       >
         <NewsletterSignupForm />
-        <User />
       </div>
     </div>
   );
