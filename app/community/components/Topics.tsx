@@ -24,7 +24,7 @@ export default function Topics() {
   }
 
   return (
-    <div className="no-scrollbar -mx-6 flex gap-3 overflow-x-scroll px-6">
+    <div className="no-scrollbar -mx-6 flex gap-3 overflow-x-auto py-0.5 -my-0.5 px-6">
       <TopicBadge
         topic={{ id: 0, name: "All Topics" }}
         active={params.topic === "All Topics"}

@@ -14,13 +14,13 @@ export async function incrementViews(slug: string) {
 }
 
 export async function saveCommunityPost(formData: FormData) {
-  let authorID = formData.get("author_id") as string;
+  let clerkUserId = formData.get("clerk_user_id") as string;
   let topicId = formData.get("topic_id") as string;
   let content = formData.get("content") as string;
 
   await sql`
-    INSERT INTO CommunityPosts (content, topic_id, author_id)
-    VALUES (${content}, ${topicId}, ${authorID})
+    INSERT INTO community_posts (content, topic_id, clerk_user_id)
+    VALUES (${content}, ${topicId}, ${clerkUserId})
   `;
 
   revalidatePath("/community/[topic]", "page");

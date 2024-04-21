@@ -42,14 +42,6 @@ CREATE TABLE IF NOT EXISTS blog_views (
 ```
 
 ```sql
---  Create Authors table
-CREATE TABLE authors (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    image VARCHAR(255)
-)
-
 -- crete topics table
 CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
@@ -60,26 +52,11 @@ CREATE TABLE topics (
 CREATE TABLE community_posts (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    clerk_user_id VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    topic_id INTEGER REFERENCES Topics(id)
 )
 
--- Create Likes table
-CREATE TABLE likes (
-    id SERIAL PRIMARY KEY,
-    post_id INTEGER REFERENCES CommunityPosts(id),
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-)
-
--- Create Comments table
-CREATE TABLE comments (
-    id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    post_id INTEGER REFERENCES CommunityPosts(id),
-    author_id INTEGER REFERENCES Authors(id),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-)
 
 ```
 

@@ -1,14 +1,17 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
 import * as Avatar from "@radix-ui/react-avatar";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { FaGithub } from "react-icons/fa";
+
+import { useUser } from "@clerk/nextjs";
+import { useClerk } from "@clerk/clerk-react";
+import { SignInButton } from "@clerk/nextjs";
 
 export default function User() {
-  const { data: session } = useSession();
+  const { isLoaded, isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
 
-  if (session) {
+  if (isSignedIn) {
     return (
       <>
         <DropdownMenu.Root>
@@ -16,14 +19,15 @@ export default function User() {
             <Avatar.Root className="inline-flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
               <Avatar.Image
                 className="h-full w-full rounded-[inherit] object-cover"
-                src={session?.user?.image ?? ""}
+                src={user?.imageUrl}
                 alt="Avatar image"
               />
               <Avatar.Fallback
-                className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-sm font-medium text-primary"
+                className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-lg font-medium text-primary"
                 delayMs={600}
               >
-                {session?.user?.name?.slice(0, 2) ?? ""}
+                {user?.firstName?.charAt(0)}
+                {user?.lastName?.charAt(0)}
               </Avatar.Fallback>
             </Avatar.Root>
           </DropdownMenu.Trigger>
@@ -36,9 +40,9 @@ export default function User() {
               <DropdownMenu.Group className="">
                 <DropdownMenu.Item className="px-4 py-2" disabled>
                   <div className="leading-tight">
-                    <p className="font-medium">{session?.user?.name}</p>
+                    <p className="font-medium">{user?.fullName}</p>
                     <p className="text-sm text-secondary">
-                      {session?.user?.email}
+                      {user?.primaryEmailAddress?.emailAddress}
                     </p>
                   </div>
                 </DropdownMenu.Item>
@@ -47,8 +51,8 @@ export default function User() {
                 </DropdownMenu.Separator>
 
                 <DropdownMenu.Item
-                  onSelect={() => signOut()}
                   className=" cursor-default select-none rounded-md px-4 py-2 outline-none hover:bg-secondary focus:outline-none"
+                  onClick={() => signOut()}
                 >
                   Sign out
                 </DropdownMenu.Item>
@@ -63,14 +67,10 @@ export default function User() {
     );
   }
   return (
-    <div>
-      <button
-        className="flex items-center rounded-md border border-secondary bg-transparent px-4 py-1.5 text-base"
-        onClick={() => signIn("github")}
-      >
-        <FaGithub className="mr-2" />
+    <SignInButton mode="modal" redirectUrl="/community">
+      <button className="rounded-md border border-secondary bg-transparent px-4 py-1.5 text-base">
         <span>Sign in</span>
       </button>
-    </div>
+    </SignInButton>
   );
 }

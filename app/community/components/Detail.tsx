@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import clsx from "clsx";
@@ -12,7 +11,7 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Detail({ topics }: { topics: Topic[] }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { data: session } = useSession();
+
   const [isValid, setIsValid] = useState(false);
 
   return (
@@ -25,7 +24,7 @@ export default function Detail({ topics }: { topics: Topic[] }) {
         <div
           className={clsx(
             "fixed bottom-6 right-6 transition-all md:hidden",
-            !session ? "hidden" : "visible",
+            // !session ? "hidden" : "visible",
           )}
         >
           <button className="rounded-xl bg-primary p-3 text-primary drop-shadow-2xl invert">

@@ -10,12 +10,6 @@ interface PostComponentProps {
 }
 
 export default function Post({ post }: PostComponentProps) {
-  let initials = post.author_name
-    .split(" ")
-    .map((name) => name[0].toUpperCase())
-    .join("");
-  const displayInitials =
-    initials.length > 1 ? initials : post.author_name.slice(0, 2).toUpperCase();
 
   return (
     <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
@@ -23,14 +17,14 @@ export default function Post({ post }: PostComponentProps) {
         <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle">
           <Avatar.Image
             className="h-full w-full rounded-[inherit] border border-secondary object-cover"
-            src={post.author_image}
-            alt={post.author_name}
+            // src={post.author_image}
+            // alt={post.author_name}
           />
           <Avatar.Fallback
             className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-xs font-medium"
             delayMs={600}
           >
-            {displayInitials}
+            {/* {displayInitials} */}
           </Avatar.Fallback>
         </Avatar.Root>
       </div>
@@ -38,7 +32,9 @@ export default function Post({ post }: PostComponentProps) {
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 leading-none">
-            <p className="font-medium">{post.author_name}</p>
+            <p className="font-medium">
+              {/* {post.author_name} */}
+              </p>
             <span className="text-tertiary">·</span>
             <p className="text-secondary">
               {formatRelativeTime(post.created_at)}

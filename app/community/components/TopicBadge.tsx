@@ -22,7 +22,7 @@ export default function TopicBadge({
       scroll={false}
       href={topic.name === "All Topics" ? "/community" : `/community/${topic.name}`}
       className={clsx(
-        "flex cursor-pointer items-center whitespace-nowrap text-sm",
+        "flex cursor-pointer items-center whitespace-nowrap text-sm focus:outline-1",
         textOnly ? "bg-none p-0" : "rounded-lg bg-secondary px-4 py-1.5 ",
         active ? "bg-primary text-primary invert" : "text-secondary",
       )}

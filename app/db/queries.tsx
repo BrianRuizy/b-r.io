@@ -4,13 +4,9 @@ import { revalidatePath } from "next/cache";
 
 export interface CommunityPostProps {
   id: number;
-  title: string;
   content: string;
+  clerk_user_id: number;
   created_at: Date;
-  author_id: number;
-  author_name: string;
-  author_email: string;
-  author_image: string;
   topic_id: number;
   topic_name: string;
 }
@@ -28,8 +24,7 @@ export async function getViewsCount(): Promise<
   }
 
   const result = await sql`
-    SELECT slug, count
-    FROM blog_views
+    SELECT slug, count FROM blog_views;
   `;
 
   return result.rows as { slug: string; count: number }[];
@@ -43,12 +38,13 @@ export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
   revalidatePath("/community", "page");
 
   const result = await sql`
-    SELECT CommunityPosts.*, Authors.id AS author_id, Authors.name AS author_name, Authors.email AS author_email, Authors.image AS author_image, Topics.id AS topic_id, Topics.name AS topic_name
-    FROM CommunityPosts 
-    INNER JOIN Authors ON CommunityPosts.author_id = Authors.id
-    INNER JOIN Topics ON CommunityPosts.topic_id = Topics.id
-    ORDER BY CommunityPosts.created_at DESC;
-  `;
+    SELECT community_posts.*, Topics.name AS topic_name
+    FROM community_posts
+    JOIN Topics ON community_posts.topic_id = Topics.id
+    ORDER BY community_posts.created_at DESC;
+`;
+
+  // for each post use clerk_user_id to get user info and add to post
 
   return result.rows as CommunityPostProps[];
 }
@@ -62,12 +58,11 @@ export async function getCommunityPostsForTopic(
 
   revalidatePath("/community/[topic]", "page");
   const result = await sql`
-    SELECT CommunityPosts.*, Authors.id AS author_id, Authors.name AS author_name, Authors.email AS author_email, Authors.image AS author_image, Topics.id AS topic_id, Topics.name AS topic_name
-    FROM CommunityPosts 
-    INNER JOIN Authors ON CommunityPosts.author_id = Authors.id
-    INNER JOIN Topics ON CommunityPosts.topic_id = Topics.id
+    SELECT community_posts.*, Topics.name AS topic_name
+    FROM community_posts
+    JOIN Topics ON community_posts.topic_id = Topics.id
     WHERE Topics.name = ${topic}
-    ORDER BY CommunityPosts.created_at DESC;
+    ORDER BY community_posts.created_at DESC;
   `;
 
   return result.rows as CommunityPostProps[];
@@ -78,8 +73,7 @@ export async function getCommunityTopics(): Promise<TopicProps[]> {
     return [];
   }
   const result = await sql`
-    SELECT *
-    FROM Topics
+    SELECT * FROM Topics;
   `;
 
   return result.rows as TopicProps[];
