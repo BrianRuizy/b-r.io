@@ -8,6 +8,7 @@ import YouTube from "@/app/components/bento/Youtube";
 export default function BentoGrid() {
   return (
     <>
+      <CommunityBanner />
       <div className="grid grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-6">
         <YouTube />
         <Instagram />

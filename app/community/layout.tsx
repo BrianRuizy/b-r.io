@@ -1,8 +1,8 @@
 import User from "@/app/community/components/User";
 import Form from "@/app/community/components/Form";
 import Topics from "@/app/community/components/Topics";
-export default function Layout({ children }: { children: React.ReactNode }) {
 
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div

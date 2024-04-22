@@ -52,11 +52,10 @@ CREATE TABLE topics (
 CREATE TABLE community_posts (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
-    clerk_user_id VARCHAR(255) NOT NULL UNIQUE,
+    clerk_user_id VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     topic_id INTEGER REFERENCES Topics(id)
 )
-
 
 ```
 

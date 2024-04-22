@@ -10,6 +10,16 @@ interface PostComponentProps {
 }
 
 export default function Post({ post }: PostComponentProps) {
+  let displayName =
+    post.user.firstName && post.user.lastName
+      ? `${post.user.firstName} ${post.user.lastName}`
+      : post.user.username || "Anonymous";
+
+  const words = displayName.split(" ");
+  const initials =
+    words.length > 1
+      ? words.map((word) => word[0]).join("")
+      : displayName.slice(0, 2);
 
   return (
     <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
@@ -17,14 +27,14 @@ export default function Post({ post }: PostComponentProps) {
         <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle">
           <Avatar.Image
             className="h-full w-full rounded-[inherit] border border-secondary object-cover"
-            // src={post.author_image}
-            // alt={post.author_name}
+            src={post.user.imageUrl}
+            alt={displayName}
           />
           <Avatar.Fallback
             className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-xs font-medium"
             delayMs={600}
           >
-            {/* {displayInitials} */}
+            {initials}
           </Avatar.Fallback>
         </Avatar.Root>
       </div>
@@ -32,9 +42,7 @@ export default function Post({ post }: PostComponentProps) {
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 leading-none">
-            <p className="font-medium">
-              {/* {post.author_name} */}
-              </p>
+            <p className="font-medium">{displayName}</p>
             <span className="text-tertiary">·</span>
             <p className="text-secondary">
               {formatRelativeTime(post.created_at)}

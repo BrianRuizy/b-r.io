@@ -1,6 +1,14 @@
 "use server";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
+import { clerkClient } from "@clerk/nextjs/server";
+
+interface UserData {
+  imageUrl: string;
+  firstName: string | null;
+  lastName: string | null;
+  username: string | null;
+}
 
 export interface CommunityPostProps {
   id: number;
@@ -9,6 +17,7 @@ export interface CommunityPostProps {
   created_at: Date;
   topic_id: number;
   topic_name: string;
+  user: UserData;
 }
 
 export interface TopicProps {
@@ -30,6 +39,17 @@ export async function getViewsCount(): Promise<
   return result.rows as { slug: string; count: number }[];
 }
 
+export async function getCommunityTopics(): Promise<TopicProps[]> {
+  if (!process.env.POSTGRES_URL) {
+    return [];
+  }
+  const result = await sql`
+    SELECT * FROM Topics;
+  `;
+
+  return result.rows as TopicProps[];
+}
+
 export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
   if (!process.env.POSTGRES_URL) {
     return [];
@@ -42,11 +62,10 @@ export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
     FROM community_posts
     JOIN Topics ON community_posts.topic_id = Topics.id
     ORDER BY community_posts.created_at DESC;
-`;
+  `;
 
-  // for each post use clerk_user_id to get user info and add to post
-
-  return result.rows as CommunityPostProps[];
+  const postsWithUserData = await mapUserDataToPosts(result.rows);
+  return postsWithUserData;
 }
 
 export async function getCommunityPostsForTopic(
@@ -65,16 +84,31 @@ export async function getCommunityPostsForTopic(
     ORDER BY community_posts.created_at DESC;
   `;
 
-  return result.rows as CommunityPostProps[];
+  const postsWithUserData = await mapUserDataToPosts(result.rows);
+  return postsWithUserData;
 }
 
-export async function getCommunityTopics(): Promise<TopicProps[]> {
-  if (!process.env.POSTGRES_URL) {
-    return [];
-  }
-  const result = await sql`
-    SELECT * FROM Topics;
-  `;
+async function mapUserDataToPosts(posts: any[]): Promise<CommunityPostProps[]> {
+  const response = await clerkClient.users.getUserList();
 
-  return result.rows as TopicProps[];
+  const userMap = response.reduce((acc: { [key: string]: UserData }, user) => {
+    acc[user.id] = {
+      imageUrl: user.imageUrl,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+    };
+    return acc;
+  }, {});
+
+  const postsWithUserData = posts.map((post) => {
+    const userData = userMap[post.clerk_user_id];
+    if (userData) {
+      return { ...post, user: userData };
+    } else {
+      return post;
+    }
+  });
+
+  return postsWithUserData as CommunityPostProps[];
 }

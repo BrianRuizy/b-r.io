@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
+import Link from "@/app/components/ui/Link";
 import { allPosts, Post as PostType } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
@@ -125,11 +126,27 @@ export default async function Blog({ params }: { params: any }) {
           <Mdx code={post.body.code} />
         </div>
       </article>
-      <div className="flex flex-col gap-6">
-        <h2 className="text-secondary">Tags</h2>
-        <Tags tags={post.tags} />
+
+      <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-6">
+          <h2>Tags</h2>
+          <Tags tags={post.tags} />
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <h2>Contact</h2>
+          <p className="max-w-lg text-secondary">
+            Need more details, or interested in working together? Reach out at
+            any of my{" "}
+            <Link href="/links" underline>
+              links
+            </Link>
+            . I&apos;d be happy to connect!{" "}
+          </p>
+        </div>
+
+        <Link href="/blog">← All Blogs</Link>
       </div>
-      <Subscribe />
     </div>
   );
 }

@@ -11,7 +11,7 @@ import { saveCommunityPost } from "@/app/db/actions";
 import { getCommunityTopics } from "@/app/db/queries";
 
 export default function Form() {
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isSignedIn, user } = useUser();
 
   const formRef = useRef<HTMLFormElement>(null);
   const [contentValid, setContentValid] = useState("");

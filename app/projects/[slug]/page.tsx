@@ -57,27 +57,13 @@ export default function Project({ params }: { params: any }) {
       </article>
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">
-          <h2>Tags</h2>
-          <div className="flex flex-wrap gap-3 ">
-            {post.tags.map((tag: string) => (
-              <div
-                key={tag}
-                className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
-              >
-                {tag}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-lg text-secondary">
-            Need more project details, or interested in working together? Reach
-            out to me directly at{" "}
-            <a href="mailto:contact@b-r.io" className="text-primary underline">
-              brian@b-r.io
-            </a>
+            Need more details, or interested in working together? Reach out at
+            any of my{" "}
+            <Link href="/links" underline>
+              links
+            </Link>
             . I&apos;d be happy to connect!{" "}
           </p>
         </div>
