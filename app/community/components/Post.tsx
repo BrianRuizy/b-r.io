@@ -10,10 +10,7 @@ interface PostComponentProps {
 }
 
 export default function Post({ post }: PostComponentProps) {
-  console.log(post.user);
-
   let displayName = "";
-
   try {
     displayName =
       post.user.firstName && post.user.lastName
@@ -48,20 +45,25 @@ export default function Post({ post }: PostComponentProps) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 leading-none">
-            <p className="font-medium">{displayName}</p>
-            <span className="text-tertiary">·</span>
-            <p className="text-secondary">
-              {formatRelativeTime(post.created_at)}
-            </p>
-            <TopicBadge
-              textOnly
-              topic={{ id: post.topic_id, name: post.topic_name }}
-            />
+        <div className="flex items-center gap-1.5">
+          <div className="inline-flex gap-0.5 items-center">
+            <p className="line-clamp-1 font-medium">{displayName}</p>
+            {post.user?.username === "brianruizy" && (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-primary">
+                <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd"/>
+              </svg>
+            )}
           </div>
+          <span className="text-tertiary">·</span>
+          <p className="text-secondary text-nowrap">
+            {formatRelativeTime(post.created_at)}
+          </p>
+          <TopicBadge
+            textOnly
+            topic={{ id: post.topic_id, name: post.topic_name }}
+          />
         </div>
-        <h2 className="leading-tight">{post.content}</h2>
+        <h2 className="leading-tight whitespace-pre-wrap">{post.content}</h2>
         <div className="mt-1.5 flex items-center gap-6 text-sm text-tertiary">
           <div className="flex items-center gap-1.5">
             <HeartIcon className="h-5 w-5" />

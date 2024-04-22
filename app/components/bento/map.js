@@ -14,7 +14,7 @@ export default function Map() {
   const [lng, setLng] = useState(-95.36327);
   const [lat, setLat] = useState(29.76328);
   const [zoom, setZoom] = useState(2.5);
-  const [pitch, setPitch] = useState(15);
+  const [pitch, setPitch] = useState(25);
 
   const { theme, resolvedTheme } = useTheme();
   let mapTheme;
