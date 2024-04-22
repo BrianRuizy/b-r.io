@@ -10,10 +10,18 @@ interface PostComponentProps {
 }
 
 export default function Post({ post }: PostComponentProps) {
-  let displayName =
-    post.user.firstName && post.user.lastName
-      ? `${post.user.firstName} ${post.user.lastName}`
-      : post.user.username || "Anonymous";
+  console.log(post.user);
+
+  let displayName = "";
+
+  try {
+    displayName =
+      post.user.firstName && post.user.lastName
+        ? `${post.user.firstName} ${post.user.lastName}`
+        : post.user.username || "Anonymous";
+  } catch (error) {
+    console.error(error);
+  }
 
   const words = displayName.split(" ");
   const initials =
@@ -27,7 +35,7 @@ export default function Post({ post }: PostComponentProps) {
         <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle">
           <Avatar.Image
             className="h-full w-full rounded-[inherit] border border-secondary object-cover"
-            src={post.user.imageUrl}
+            src={post?.user?.imageUrl}
             alt={displayName}
           />
           <Avatar.Fallback

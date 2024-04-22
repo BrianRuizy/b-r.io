@@ -16,11 +16,6 @@ type PostProps = {
 
 export default function Post({ post, mousePosition }: PostProps) {
   const { publishedAt, slug, title, image } = post;
-  const publishDate = new Date(publishedAt);
-  const showNewBadge =
-    Math.abs(new Date(publishDate).getTime() - new Date().getTime()) /
-      (24 * 60 * 60 * 1000) <
-    30;
   const imageHeight = 150;
   const imageWidth = 300;
   const imageOffset = 24;
