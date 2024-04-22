@@ -18,6 +18,7 @@ const nextConfig = {
       "miro.medium.com",
       "img.clerk.com",
       "i.ytimg.com",
+      "store.storeimages.cdn-apple.com",
     ],
   },
 };
