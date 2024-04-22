@@ -11,7 +11,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Community</h1>
-          <p className="text-secondary">Let&apos;s talk about it! (beta)</p>
+          <p className="text-secondary">
+            Let&apos;s talk about it!
+            <span className="font-semibold"> (beta)</span>
+          </p>
         </div>
         <User />
       </div>

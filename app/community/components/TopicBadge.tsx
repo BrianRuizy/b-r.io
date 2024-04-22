@@ -8,8 +8,8 @@ export interface Topic {
 
 export default function TopicBadge({
   topic,
-  textOnly = false,
   active,
+  textOnly = false,
   hashtag = true,
 }: {
   topic: { id: number; name: string };
