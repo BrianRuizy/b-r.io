@@ -144,7 +144,7 @@ function Post({ post }: PostComponentProps) {
         <div className="flex items-center gap-1.5">
           <div className="inline-flex items-center gap-0.5">
             <p className="line-clamp-1 font-medium">{displayName}</p>
-            {post.user?.username === "brianruizy" && (
+            {post?.user?.username === "brianruizy" && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

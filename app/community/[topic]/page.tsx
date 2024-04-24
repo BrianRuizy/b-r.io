@@ -14,7 +14,7 @@ async function Posts({ topic }: { topic: string }) {
   let posts = await getCommunityPostsForTopic(topic);
 
   if (posts.length === 0) {
-    return <div className="text-tertiary">Nothing to see here.</div>;
+    return <div className="text-tertiary">Lonely here. Be the first to post!</div>;
   }
 
   return (

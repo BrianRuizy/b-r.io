@@ -19,6 +19,7 @@ const nextConfig = {
       "img.clerk.com",
       "i.ytimg.com",
       "store.storeimages.cdn-apple.com",
+      "www.apple.com",
     ],
   },
 };
