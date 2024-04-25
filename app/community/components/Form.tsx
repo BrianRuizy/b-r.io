@@ -61,7 +61,7 @@ export default function Form() {
         name="content"
         placeholder={isSignedIn ? "What's on your mind?" : "Sign in to chat."}
         className="my-3 h-auto max-h-52 flex-1 resize-none bg-inherit leading-tight text-primary outline-none placeholder:text-tertiary"
-        rows={3}
+        rows={4}
         maxLength={280}
         onInput={(event) => {
           event.currentTarget.style.height = "auto";
