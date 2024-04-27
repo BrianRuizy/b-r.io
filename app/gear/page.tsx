@@ -13,6 +13,13 @@ import Macrofactor from "public/gear/macrofactor.webp";
 export const metadata: Metadata = {
   title: "Gear | Brian Ruiz",
   description: "My toolbox. This is gear I actually own and recommend.",
+  openGraph: {
+    title: "Gear | Brian Ruiz",
+    description: "My toolbox. This is gear I actually own and recommend.",
+    type: "website",
+    url: "https://b-r.io/blog/gear",
+    images: [{ url: "https://b-r.io/api/og?title=Gear", alt: "gear" }],
+  },
 };
 
 interface ItemProps {

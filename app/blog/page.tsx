@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Blog | Brian Ruiz",
   description:
     "I write about programming, design, and occasionally life updates!",
+  openGraph: {
+    title: "Blog | Brian Ruiz",
+    description:
+      "I write about programming, design, and occasionally life updates!",
+    type: "website",
+    url: "https://b-r.io/blog/Blog",
+    images: [{ url: "https://b-r.io/api/og?title=Blog", alt: "Blog" }],
+  },
 };
 
 export default function BlogPage() {
