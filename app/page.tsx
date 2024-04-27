@@ -24,7 +24,7 @@ export default function Home() {
           className="animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          <Avatar src={""} alt="Brian Ruiz" initials="br" size="lg" />
+          <Avatar src={Me} alt="Brian Ruiz" initials="br" size="lg" />
         </div>
         <div
           className="animate-in space-y-4"
