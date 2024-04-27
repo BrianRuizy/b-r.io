@@ -1,24 +1,21 @@
 "use client";
-import { useState } from "react";
-
-import Avatar from "@/app/components/ui/Avatar";
-import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
-import TopicBadge from "./TopicBadge";
-import { CommunityPostProps } from "@/app/db/queries";
-import { formatRelativeTime } from "@/app/_utils/formatDate";
-import Link from "@/app/components/ui/Link";
+import React, { useState } from "react";
+import ReactDOMServer from "react-dom/server";
+import { usePathname } from "next/navigation";
 
 import LinkifyIt from "linkify-it";
 import tlds from "tlds";
-
 import * as Popover from "@radix-ui/react-popover";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-
 import { Drawer } from "vaul";
-import React from "react";
-import ReactDOMServer from "react-dom/server";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
+
+import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+import TopicBadge from "./TopicBadge";
+import Avatar from "@/app/components/ui/Avatar";
+import Link from "@/app/components/ui/Link";
+import { CommunityPostProps } from "@/app/db/queries";
+import { formatRelativeTime } from "@/app/_utils/formatDate";
 
 interface PostComponentProps {
   post: CommunityPostProps;
@@ -83,7 +80,15 @@ export default function Post({ post }: PostComponentProps) {
 
       <div className="flex w-full flex-col flex-wrap gap-1.5">
         <div className="flex items-center gap-1.5">
-          <p className="line-clamp-1 break-all font-medium">{displayName}</p>
+          <p className="line-clamp-1 inline-flex items-center gap-0.5 break-all font-medium">
+            {displayName}
+            {post?.user?.username === "brianruizy" ? (
+              /* prettier-ignore */
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd"/>
+              </svg>
+            ) : null}
+          </p>
           <p className="whitespace-nowrap text-tertiary">
             {formatRelativeTime(post.created_at)}
           </p>
