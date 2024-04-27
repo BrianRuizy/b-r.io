@@ -73,7 +73,7 @@ export default function NewsletterSignupForm() {
 
   return (
     <Halo strength={5}>
-      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-secondary p-6 text-center lg:p-8">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-tertiary p-6 text-center lg:p-8">
         <p className="font-medium text-primary">Subscribe to my newsletter</p>
         <p className="max-w-md text-secondary">
           Monthly personal reading and updates on topics like tech, design,

@@ -3,13 +3,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import clsx from "clsx";
-
 import { useUser } from "@clerk/nextjs";
 
 import { TopicProps } from "@/app/db/queries";
 import { saveCommunityPost } from "@/app/db/actions";
 import { getCommunityTopics } from "@/app/db/queries";
-
 import Avatar from "@/app/components/ui/Avatar";
 
 export default function Form() {

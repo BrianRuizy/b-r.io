@@ -109,7 +109,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose figcaption {
-  @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
+  @apply mx-auto mb-8 mt-2 text-balance px-8 text-center text-sm font-medium leading-tight text-tertiary;
 }
 
 .prose h3 {
@@ -117,7 +117,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose p code {
-  @apply whitespace-pre-line rounded border border-primary bg-tertiary px-1 font-normal  text-primary dark:bg-secondaryA;
+  @apply whitespace-pre-line rounded border border-primary bg-tertiary px-1 font-normal text-primary dark:bg-secondaryA;
 }
 
 .prose
@@ -134,7 +134,6 @@ input:-webkit-autofill:focus {
 }
 
 /* syntax highlighting */
-
 pre[class*="language-"] {
   @apply rounded-md border border-secondary bg-white text-[13px] text-xs text-primary dark:bg-[#0A0A0A];
 }

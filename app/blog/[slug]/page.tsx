@@ -115,7 +115,7 @@ export default async function Blog({ params }: { params: any }) {
           </>
         )}
         <div className="h-16" />
-        <div className="prose prose-neutral">
+        <div className="prose prose-neutral text-pretty">
           <Mdx code={post.body.code} />
         </div>
       </article>

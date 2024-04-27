@@ -7,6 +7,8 @@ import Weather from "./mdx/Weather";
 import WeatherList from "./mdx/WeatherList";
 import LinkPreview from "./mdx/LinkPreview";
 
+import Map from "@/app/components/bento/Map";
+
 interface CustomLinkProps
   extends React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -42,6 +44,7 @@ const components = {
   Weather: Weather,
   WeatherList: WeatherList,
   LinkPreview: LinkPreview,
+  Map: Map,
 };
 
 export default function MdxWrapper({ code }: { code: string }) {

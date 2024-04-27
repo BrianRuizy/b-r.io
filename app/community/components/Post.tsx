@@ -1,20 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import ReactDOMServer from "react-dom/server";
 import { usePathname } from "next/navigation";
 
-import LinkifyIt from "linkify-it";
-import tlds from "tlds";
 import * as Popover from "@radix-ui/react-popover";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Drawer } from "vaul";
 import clsx from "clsx";
 
-import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 import TopicBadge from "./TopicBadge";
 import Avatar from "@/app/components/ui/Avatar";
-import Link from "@/app/components/ui/Link";
 import { CommunityPostProps } from "@/app/db/queries";
+import { getContentWithLinks } from "@/app/_utils/postFormatting";
 import { formatRelativeTime } from "@/app/_utils/formatDate";
 
 interface PostComponentProps {
@@ -41,36 +37,9 @@ function getDisplayName(post: CommunityPostProps) {
   return { displayName, initials };
 }
 
-function getContentWithLinks(post: CommunityPostProps) {
-  const linkify = LinkifyIt();
-  linkify.tlds(tlds);
-
-  const contentWithLinks = post.content
-    .split(" ")
-    .map((word, index) => {
-      const match = linkify.match(word);
-
-      if (match) {
-        const url = match[0].url;
-        const displayUrl = url.replace(/(^\w+:|^)\/\//, ""); // remove http:// or https:// from the url
-        const link = ReactDOMServer.renderToStaticMarkup(
-          <Link key={index} href={url} className="break-words text-link">
-            {displayUrl}
-          </Link>,
-        );
-        return link + " ";
-      }
-
-      return word + " ";
-    })
-    .join("");
-
-  return contentWithLinks;
-}
-
 export default function Post({ post }: PostComponentProps) {
   const { displayName, initials } = getDisplayName(post);
-  const contentWithLinks = getContentWithLinks(post);
+  const contentWithLinks = getContentWithLinks(post.content);
 
   return (
     <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
@@ -116,7 +85,10 @@ export default function Post({ post }: PostComponentProps) {
         />
         <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary md:text-base">
           <div className="flex items-center gap-1.5 hover:text-primary">
-            <ChatBubbleOvalLeftIcon className="h-5 w-5" />
+            {/* prettier-ignore */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
+            </svg>
             <span>000</span>
           </div>
           <Reaction />
