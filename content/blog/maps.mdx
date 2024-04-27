@@ -5,41 +5,7 @@ summary: My experience with adding maps to a React app using MapBox GL JS
 tags: ["React", "MapBox", "UI"]
 ---
 
-<Alert>
- <span className="text-primary">Building an awesome developer blog with Next.js</span>
-  <span className="text-secondary pl-2">4 of 7</span>
-
-    This is a multi-part series on building a blog with the latest of
-    Next.js and Tailwind CSS. You can find the full series here.
-
-  <ul className="list-disc space-y-2 py-4" style={{ listStyle: "initial" }}>
-    <li>
-      <Link href="/blog/building-a-blog-with-nextjs-and-tailwind-css">
-        Building a Blog with Next.js and Tailwind CSS
-      </Link>
-    </li>
-    <li>
-      <Link href="/blog/adding-beautiful-interactive-maps-in-react-made-easy">
-        Adding Beautiful Interactive Maps in React Made Easy
-      </Link>
-    </li>
-    <li>
-      <Link href="/blog/adding-a-dark-mode-toggle-to-your-react-app">
-        Adding a Dark Mode Toggle to Your React App
-      </Link>
-    </li>
-    <li>
-      <Link href="/blog/adding-a-search-bar-to-your-react-app">
-        Adding a Search Bar to Your React App
-      </Link>
-    </li>
-    <li>
-      <Link href="/blog/adding-a-comments-section-to-your-react-app">
-        Adding a Comments Section to Your React App
-      </Link>
-    </li>
-  </ul>
-</Alert>
+<SeriesCollapsible />
 
 I recently had to add a map to a React app I was working on. I had't worked with maps in a while, so I was a bit nervous about what to choose. After some research, I decided to use [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) to add the map to my app. I was pleasantly surprised by how easy it was to get started and how powerful the library is.
 
@@ -62,15 +28,6 @@ This is what we will have at the end of this article. An awesome map that's full
   nice and rich in detail. Later we'll see how to control the lighting and make
   the map dynamic.
 </figcaption>
-
-Use this table of contents to jump to a specific section.
-
-1. Getting Started
-2. Creating the Map Component
-3. Applying Themes
-4. Initializing the Map
-5. Configuring the Map
-6. Adding a Marker
 
 ## Getting Started
 
@@ -199,13 +156,9 @@ new mapboxgl.Marker({ element: el }).setLngLat([lng, lat]).addTo(map.current);
 
 <div className="flex h-32 items-center justify-center rounded bg-secondary p-4">
   <span
-    className="z-10 aspect-square h-8 w-8 rounded-full border border-white bg-blue-500"
+    className="z-10 aspect-square h-8 w-8 animate-ping rounded-full border border-white bg-blue-500"
     style={{ borderWidth: "3px" }}
   ></span>
-  <span class="relative flex h-3 w-3">
-    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-    <span class="relative inline-flex h-3 w-3 rounded-full bg-sky-500"></span>
-  </span>
 </div>
 
 ## Conclusion

@@ -1,6 +1,6 @@
 import Link from "@/app/components/ui/Link";
 import Card from "@/app/components/bento/CardTemplate";
-import Map from "@/app/components/bento/map";
+import Map from "@/app/components/bento/Map";
 import Gumroad from "@/app/components/bento/Gumroad";
 import Instagram from "@/app/components/bento/Instagram";
 import YouTube from "@/app/components/bento/Youtube";
