@@ -5,7 +5,8 @@ import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 import Link from "@/app/components/ui/Link";
 import PostList from "@/app/blog/components/PostList";
 import BentoGrid from "@/app/components/bento/BentoGrid";
-import Avatar from "@/public/avatar.png";
+import Me from "@/public/avatar.png";
+import Avatar from "@/app/components/ui/Avatar";
 
 export default function Home() {
   const posts = allPosts
@@ -19,14 +20,12 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div className="flex animate-in flex-col gap-8">
-        <Image
-          src={Avatar}
-          width={100}
-          height={100}
-          alt="avatar"
-          className="rounded-full bg-secondaryA"
+        <div
+          className="animate-in"
           style={{ "--index": 1 } as React.CSSProperties}
-        />
+        >
+          <Avatar src={""} alt="Brian Ruiz" initials="br" size="lg" />
+        </div>
         <div
           className="animate-in space-y-4"
           style={{ "--index": 2 } as React.CSSProperties}

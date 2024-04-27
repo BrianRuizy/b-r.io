@@ -3,12 +3,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import clsx from "clsx";
-import * as Avatar from "@radix-ui/react-avatar";
+
 import { useUser } from "@clerk/nextjs";
 
 import { TopicProps } from "@/app/db/queries";
 import { saveCommunityPost } from "@/app/db/actions";
 import { getCommunityTopics } from "@/app/db/queries";
+
+import Avatar from "@/app/components/ui/Avatar";
 
 export default function Form() {
   const { isSignedIn, user } = useUser();
@@ -53,7 +55,7 @@ export default function Form() {
       <input type="hidden" name="topic_id" value={topicId || ""} />
 
       <div className="mt-0.5 w-fit">
-        <MyAvatar user={user} />
+        <Avatar src={user?.imageUrl} initials={user?.fullName} size="sm" />
       </div>
 
       <textarea
@@ -82,24 +84,5 @@ export default function Form() {
         Share
       </button>
     </form>
-  );
-}
-
-function MyAvatar({ user }: { user?: any }) {
-  return (
-    <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
-      <Avatar.Image
-        className="h-full w-full rounded-[inherit] object-cover"
-        src={user?.imageUrl}
-        alt="Avatar image"
-      />
-      <Avatar.Fallback
-        className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-sm font-medium text-primary"
-        delayMs={600}
-      >
-        {user?.firstName?.charAt(0)}
-        {user?.lastName?.charAt(0)}
-      </Avatar.Fallback>
-    </Avatar.Root>
   );
 }

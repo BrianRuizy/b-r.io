@@ -165,7 +165,7 @@ pre[class*="language-"] {
   margin-left: -24px;
   margin-right: -24px;
   padding-left: 26px;
-  background-color: var(--blue-a2); /* Set highlight bg color */
+  background-color: var(--blue-a3); /* Set highlight bg color */
   border-left: 2px solid var(--blue-10); /* Set highlight accent border color */
 }
 

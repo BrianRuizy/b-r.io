@@ -1,14 +1,14 @@
 "use client";
 
-import * as Avatar from "@radix-ui/react-avatar";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 import { useUser } from "@clerk/nextjs";
 import { useClerk } from "@clerk/clerk-react";
 import { SignInButton } from "@clerk/nextjs";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
+import Avatar from "@/app/components/ui/Avatar";
 
 export default function User() {
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
 
   if (isSignedIn) {
@@ -16,20 +16,7 @@ export default function User() {
       <>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger className="cursor-pointer rounded-full">
-            <Avatar.Root className="inline-flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle">
-              <Avatar.Image
-                className="h-full w-full rounded-[inherit] object-cover"
-                src={user?.imageUrl}
-                alt="Avatar image"
-              />
-              <Avatar.Fallback
-                className="flex h-full w-full items-center justify-center border border-secondary bg-secondary text-lg font-medium text-primary"
-                delayMs={600}
-              >
-                {user?.firstName?.charAt(0)}
-                {user?.lastName?.charAt(0)}
-              </Avatar.Fallback>
-            </Avatar.Root>
+            <Avatar src={user?.imageUrl} initials={user?.fullName} size="md" />
           </DropdownMenu.Trigger>
           <DropdownMenu.Portal>
             <DropdownMenu.Content
