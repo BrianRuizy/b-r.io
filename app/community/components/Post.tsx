@@ -97,7 +97,7 @@ export default function Post({ post }: PostComponentProps) {
               topic={{ id: post.topic_id, name: post.topic_name }}
             />
           </span>
-          <span className="ml-auto md:ml-0 text-secondary">
+          <span className="ml-auto text-secondary md:ml-0">
             {/* prettier-ignore */}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
@@ -105,11 +105,11 @@ export default function Post({ post }: PostComponentProps) {
           </span>
         </div>
         <div
-          className="whitespace-pre-wrap break-words leading-tight text-pretty md:text-balance"
+          className="whitespace-pre-wrap text-pretty break-words leading-tight md:text-balance"
           style={{ wordBreak: "break-word" }}
           dangerouslySetInnerHTML={{ __html: contentWithLinks }}
         />
-        <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary">
+        <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary md:text-base">
           <div className="flex items-center gap-1.5 hover:text-primary">
             <ChatBubbleOvalLeftIcon className="h-5 w-5" />
             <span>000</span>
@@ -121,69 +121,108 @@ export default function Post({ post }: PostComponentProps) {
   );
 }
 
+interface Reaction {
+  id: string;
+  emoji: string;
+  count: number;
+}
+
+const reactionsData: Reaction[] = [
+  { id: "love", emoji: "❤️", count: 0 },
+  { id: "clap", emoji: "👏", count: 0 },
+  { id: "laugh", emoji: "😂", count: 0 },
+  { id: "surprise", emoji: "😮", count: 0 },
+  { id: "sad", emoji: "😢", count: 0 },
+  { id: "angry", emoji: "😡", count: 0 },
+];
+
 function Reaction() {
+  const [selectedReactions, setSelectedReactions] = useState<string[]>([]);
+  const [reactions, setReactions] = useState(reactionsData);
+
+  const handleReactionChange = (reactionId: string) => {
+    // Update the selected reactions state
+    setSelectedReactions((prevReactions) => {
+      if (prevReactions.includes(reactionId)) {
+        return prevReactions.filter((r) => r !== reactionId);
+      } else {
+        return [...prevReactions, reactionId];
+      }
+    });
+
+    // Update the reaction counts
+    setReactions((prevReactions) =>
+      prevReactions.map((reaction) =>
+        reaction.id === reactionId
+          ? { ...reaction, count: reaction.count + 1 } // Increment count by 1 for the selected reaction
+          : reaction,
+      ),
+    );
+  };
+
   return (
-    <Popover.Root>
-      <Popover.Trigger>
-        <div className="group relative flex items-center gap-3 outline-none">
-          {/* prettier-ignore */}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 group-hover:text-primary">
+    <>
+      <Popover.Root>
+        <Popover.Trigger>
+          <div className="group relative flex items-center gap-3 outline-none">
+            {/* prettier-ignore */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 group-hover:text-primary">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
           </svg>
-          {/* prettier-ignore */}
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3 absolute bottom-0 -right-1.5 text-tertiary" >
+            {/* prettier-ignore */}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3 absolute bottom-0 -right-1.5 text-tertiary" >
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.75-10.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z" clip-rule="evenodd"/>
           </svg>
-        </div>
-      </Popover.Trigger>
-      <Popover.Anchor />
-      <Popover.Portal>
-        <Popover.Content
-          className="rounded-full bg-white p-1 shadow-lg dark:bg-tertiary"
-          side="top"
-          sideOffset={16}
-          align="center"
-        >
-          <ToggleGroup.Root
-            type="single"
-            className="flex items-center gap-0.5 text-lg"
+          </div>
+        </Popover.Trigger>
+        <Popover.Anchor />
+        <Popover.Portal>
+          <Popover.Content
+            className="rounded-lg border border-secondary bg-white p-1 shadow-lg dark:bg-primary"
+            side="top"
+            sideOffset={16}
+            align="center"
           >
-            <ToggleGroup.Item
-              className="aspect-square w-10 rounded-full outline-none hover:bg-secondary data-[state=on]:bg-[var(--gray-4)]"
-              value="❤️"
+            <ToggleGroup.Root
+              className="flex items-center gap-0.5 text-lg"
+              type="multiple"
+              value={selectedReactions}
             >
-              ❤️
-            </ToggleGroup.Item>
+              {reactions.map((reaction) => (
+                <ToggleGroup.Item
+                  key={reaction.id}
+                  value={reaction.id}
+                  onClick={() => handleReactionChange(reaction.id)}
+                  className="aspect-square w-8 rounded-md outline-none hover:bg-secondary"
+                >
+                  {reaction.emoji}
+                </ToggleGroup.Item>
+              ))}
+            </ToggleGroup.Root>
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+      <ActiveReactions reactions={reactions} />
+    </>
+  );
+}
 
-            <ToggleGroup.Item
-              className="aspect-square w-10 rounded-full outline-none hover:bg-secondary data-[state=on]:bg-[var(--gray-4)]"
-              value="👍"
+function ActiveReactions({ reactions }: { reactions: Reaction[] }) {
+  return (
+    <div className="flex flex-wrap items-center gap-1.5">
+      {reactions.map(
+        (reaction) =>
+          reaction.count > 0 && (
+            <div
+              key={reaction.id}
+              className="space-x-1 rounded-md bg-secondary px-1.5 py-0.5 ring-1 ring-inset ring-transparent hover:ring-[var(--gray-8)]"
             >
-              👍
-            </ToggleGroup.Item>
-            <ToggleGroup.Item
-              className="aspect-square w-10 rounded-full outline-none hover:bg-secondary data-[state=on]:bg-[var(--gray-4)]"
-              value="😅"
-            >
-              😅
-            </ToggleGroup.Item>
-
-            <ToggleGroup.Item
-              className="aspect-square w-10 rounded-full outline-none hover:bg-secondary data-[state=on]:bg-[var(--gray-4)]"
-              value="🤯"
-            >
-              🤯
-            </ToggleGroup.Item>
-            <ToggleGroup.Item
-              className="aspect-square w-10 rounded-full outline-none hover:bg-secondary data-[state=on]:bg-[var(--gray-4)]"
-              value="🎉"
-            >
-              🎉
-            </ToggleGroup.Item>
-          </ToggleGroup.Root>
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
+              <span>{reaction.emoji}</span>
+              <span className="font-medium text-primary">{reaction.count}</span>
+            </div>
+          ),
+      )}
+    </div>
   );
 }
 
