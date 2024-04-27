@@ -109,7 +109,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose figcaption {
-  @apply mx-auto mb-8 mt-2 text-balance px-8 text-center text-sm font-medium leading-tight text-tertiary;
+  @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
 }
 
 .prose h3 {
