@@ -15,6 +15,7 @@ import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 import { Drawer } from "vaul";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 
 interface PostComponentProps {
   post: CommunityPostProps;
@@ -23,7 +24,7 @@ interface PostComponentProps {
 const linkify = LinkifyIt();
 linkify.tlds(tlds);
 
-export default function PostComponent({ post }: PostComponentProps) {
+function PostDrawer({ post }: PostComponentProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -32,11 +33,7 @@ export default function PostComponent({ post }: PostComponentProps) {
       open={isDrawerOpen}
       onOpenChange={setIsDrawerOpen}
     >
-      <Drawer.Trigger
-        disabled
-        asChild
-        className="cursor-pointer py-4 first:pt-0 last:pb-0 md:py-6"
-      >
+      <Drawer.Trigger disabled asChild className="cursor-pointer ">
         <div>
           <Post post={post} />
         </div>
@@ -81,7 +78,7 @@ export default function PostComponent({ post }: PostComponentProps) {
   );
 }
 
-function Post({ post }: PostComponentProps) {
+export default function Post({ post }: PostComponentProps) {
   let displayName = "";
   try {
     displayName =
@@ -98,23 +95,28 @@ function Post({ post }: PostComponentProps) {
       ? words.map((word) => word[0]).join("")
       : displayName.slice(0, 2);
 
-  const contentWithLinks = post.content.split(" ").map((word, index) => {
-    const match = linkify.match(word);
+  const contentWithLinks = post.content
+    .split(" ")
+    .map((word, index) => {
+      const match = linkify.match(word);
 
-    if (match) {
-      const url = match[0].url;
-      return (
-        <React.Fragment key={index}>
-          <Link href={url} className="text-link">{url}</Link>{" "}
-        </React.Fragment>
-      );
-    }
+      if (match) {
+        const url = match[0].url;
+        const displayUrl = url.replace(/(^\w+:|^)\/\//, ""); // remove http:// or https:// from the url
+        const link = ReactDOMServer.renderToStaticMarkup(
+          <Link key={index} href={url} className="break-words text-link">
+            {displayUrl}
+          </Link>,
+        );
+        return link + " ";
+      }
 
-    return word + " ";
-  });
+      return word + " ";
+    })
+    .join("");
 
   return (
-    <div className="flex gap-3 ">
+    <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
       <div className="w-fit">
         <Avatar.Root className="inline-flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full bg-secondary align-middle">
           <Avatar.Image
@@ -131,43 +133,35 @@ function Post({ post }: PostComponentProps) {
         </Avatar.Root>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-1.5">
-          <div className="inline-flex items-center gap-0.5">
-            <p className="line-clamp-1 font-medium">{displayName}</p>
-            {post?.user?.username === "brianruizy" /* prettier-ignore */ && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5 text-primary"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            )}
-          </div>
-          <span className="text-tertiary">·</span>
-          <p className="text-nowrap text-tertiary">
+      <div className="flex flex-col flex-wrap gap-1.5">
+        <div className="flex items-center gap-1.5 ">
+          {/* <p className="font-medium ">{displayName}</p> */}
+
+          <p className="whitespace-nowrap text-tertiary">
             {formatRelativeTime(post.created_at)}
           </p>
           <TopicBadge
             textOnly
             topic={{ id: post.topic_id, name: post.topic_name }}
           />
+          <span className="ml-auto text-secondary">
+            {/* prettier-ignore */}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
+            </svg>
+          </span>
         </div>
-        <div className="whitespace-pre-wrap leading-tight">
-          {contentWithLinks}
-        </div>
-        <div className="flex items-center gap-6 text-sm text-secondary ">
-          <Reaction />
+        <div
+          className="whitespace-pre-wrap break-words leading-tight"
+          style={{ wordBreak: "break-word" }}
+          dangerouslySetInnerHTML={{ __html: contentWithLinks }}
+        />
+        <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary">
           <div className="flex items-center gap-1.5 hover:text-primary">
             <ChatBubbleOvalLeftIcon className="h-5 w-5" />
-            <span>00 Replies</span>
+            <span>000</span>
           </div>
+          <Reaction />
         </div>
       </div>
     </div>
@@ -193,13 +187,12 @@ function Reaction() {
               <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.75-10.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z" clip-rule="evenodd"/>
             </svg>
           </div>
-          <p className="group-hover:text-primary">React</p>
         </Popover.Trigger>
         <Popover.Anchor />
         <Popover.Portal>
           <Popover.Content
             asChild
-            className="mr-16 rounded-full bg-white p-1 shadow-lg dark:bg-tertiary"
+            className="rounded-full bg-white p-1 shadow-lg dark:bg-tertiary"
             side="top"
             sideOffset={16}
           >
