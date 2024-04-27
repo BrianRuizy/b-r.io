@@ -7,7 +7,7 @@ import Weather from "./mdx/Weather";
 import WeatherList from "./mdx/WeatherList";
 import LinkPreview from "./mdx/LinkPreview";
 
-import Map from "@/app/components/bento/Map";
+import Map from "@/app/components/bento/map";
 
 interface CustomLinkProps
   extends React.DetailedHTMLProps<
