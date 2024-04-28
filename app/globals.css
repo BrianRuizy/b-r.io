@@ -95,7 +95,6 @@ input:-webkit-autofill:focus {
 }
 
 /* blog prose styles overrides */
-
 .prose hr {
   @apply border-primary;
 }

@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
+
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
