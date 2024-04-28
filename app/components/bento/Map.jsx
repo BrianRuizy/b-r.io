@@ -12,7 +12,7 @@ export default function Map({ lng, lat, zoom = 2.5, pitch = 25, time=null }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   let mapTheme;
   if (resolvedTheme === "dark") {
     mapTheme = "night";

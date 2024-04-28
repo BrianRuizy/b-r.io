@@ -13,6 +13,7 @@ import Me from "@/public/avatar.png";
 import { formatDate } from "@/app/_utils/formatDate";
 import { getViewsCount } from "@/app/db/queries";
 import { incrementViews } from "@/app/db/actions";
+import NewsletterSignupForm from "@/app/blog/components/NewsletterSignupForm";
 
 type PostProps = {
   post: PostType;
@@ -77,7 +78,7 @@ export default async function Blog({ params }: { params: any }) {
     <div className="flex flex-col gap-20">
       <article>
         <div className="flex flex-col gap-8">
-          <div className="flex max-w-xl flex-col gap-4">
+          <div className="flex max-w-xl flex-col gap-4 text-pretty">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
               {post.title}
             </h1>
@@ -128,15 +129,20 @@ export default async function Blog({ params }: { params: any }) {
 
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
-          <p className="max-w-lg text-secondary">
-            Need more details, or interested in working together? Reach out at
-            any of my{" "}
+          <p className="max-w-lg text-pretty text-secondary">
+            Questions or need more details? Feel free to ping me on the{" "}
+            <Link href="/community" underline>
+              community
+            </Link>{" "}
+            chat or reach out at any of my{" "}
             <Link href="/links" underline>
               links
             </Link>
-            . I&apos;d be happy to connect!{" "}
+            . I&apos;d be happy to connect!
           </p>
         </div>
+
+        <NewsletterSignupForm noCard />
 
         <Link href="/blog">← All Blogs</Link>
       </div>

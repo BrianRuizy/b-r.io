@@ -18,7 +18,7 @@ const SeriesCollapsible = () => {
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content className="bg-pr bg-primary px-4">
-        <p className="text-balance text-sm leading-normal text-secondary">
+        <p className="text-balance text-sm leading-normal text-tertiary">
           This is a multi-part series on building a blog with the latest
           features of Next.js. The focus is on creating a sleek, intuitive, and
           elegant user interface.
