@@ -1,5 +1,5 @@
 ---
-title: Adding Beautiful Interactive Maps in React Made Easy
+title: How to add beautiful maps to a React app using Mapbox GL
 publishedAt: 2024-04-27
 summary: My experience with adding maps to a React app using MapBox GL JS
 tags: ["React", "MapBox", "UI"]
@@ -7,7 +7,9 @@ tags: ["React", "MapBox", "UI"]
 
 <SeriesCollapsible />
 
-<blockquote className="text-secondary font-sans">This is a draft post, but sharing in case it's helpful or interesting already.</blockquote>
+<blockquote className="font-sans text-secondary">
+  This is a draft post, but sharing in case it's helpful or interesting already.
+</blockquote>
 
 I recently had to add a map to a React app I was working on. I had't worked with maps in a while, so I was a bit nervous about what to choose. After some research, I decided to use [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) to add the map to my app. I was pleasantly surprised by how easy it was to get started and how powerful the library is.
 
@@ -81,16 +83,16 @@ if (resolvedTheme === "dark") {
 ```
 
 <div className="h-6" />
-<div className="grid grid-cols-2 gap-4">
+<div className="grid gap-4 grid-cols-2">
   <div
     className="relative w-full overflow-clip rounded-2xl border border-secondary bg-secondary p-12"
-    style={{ height: "400px" }}
+    style={{ height: "320px" }}
   >
     <Map lng={-74.0134} lat={40.7137} zoom={15.2} pitch={30} time={"light"} />
   </div>
   <div
     className="relative w-full overflow-clip rounded-2xl border border-secondary bg-secondary p-12"
-    style={{ height: "400px" }}
+    style={{ height: "320px" }}
   >
     <Map lng={-74.0134} lat={40.7137} zoom={15.2} pitch={30} time={"night"} />
   </div>
