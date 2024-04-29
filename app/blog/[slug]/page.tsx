@@ -130,7 +130,7 @@ export default async function Blog({ params }: { params: any }) {
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-lg text-pretty text-secondary">
-            Questions or need more details? Feel free to ping me on the{" "}
+            Questions or need more details? Ping me on the{" "}
             <Link href="/community" underline>
               community
             </Link>{" "}
@@ -143,8 +143,6 @@ export default async function Blog({ params }: { params: any }) {
         </div>
 
         <NewsletterSignupForm noCard />
-
-        <Link href="/blog">← All Blogs</Link>
       </div>
     </div>
   );

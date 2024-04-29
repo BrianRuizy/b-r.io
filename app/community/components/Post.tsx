@@ -12,6 +12,7 @@ import Avatar from "@/app/components/ui/Avatar";
 import { CommunityPostProps } from "@/app/db/queries";
 import { getContentWithLinks } from "@/app/_utils/postFormatting";
 import { formatRelativeTime } from "@/app/_utils/formatDate";
+import FlipNumber from "@/app/components/FlipNumber";
 
 interface PostComponentProps {
   post: CommunityPostProps;
@@ -195,7 +196,9 @@ function ActiveReactions({ reactions }: { reactions: Reaction[] }) {
               className="space-x-1 rounded-md bg-secondary px-1.5 py-0.5 ring-1 ring-inset ring-transparent hover:ring-[var(--gray-8)]"
             >
               <span>{reaction.emoji}</span>
-              <span className="font-medium text-primary">{reaction.count}</span>
+              <span className="font-medium text-primary">
+                <FlipNumber>{reaction.count}</FlipNumber>
+              </span>
             </div>
           ),
       )}
