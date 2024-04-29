@@ -44,7 +44,8 @@ export async function getCommunityTopics(): Promise<TopicProps[]> {
     return [];
   }
   const result = await sql`
-    SELECT * FROM Topics;
+    SELECT * FROM Topics
+    ORDER BY Topics.name ASC;
   `;
 
   return result.rows as TopicProps[];
