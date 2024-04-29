@@ -48,7 +48,7 @@ export default function Post({ post, mousePosition }: PostProps) {
               {title}
             </Link>
           </Section>
-          <div className="min-w-24 relative flex aspect-square h-24 w-24 items-center justify-center rounded-md border border-secondary bg-tertiary shadow-sm md:hidden">
+          <div className="min-w-24 relative flex aspect-square h-24 w-24 items-center justify-center rounded-md border border-secondary bg-primary shadow-sm md:hidden">
             {image ? (
               <Image
                 src={image}
@@ -63,7 +63,7 @@ export default function Post({ post, mousePosition }: PostProps) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="h-6 w-6 text-primary"
+                className="h-6 w-6 text-secondary"
               >
                 <path
                   stroke-linecap="round"

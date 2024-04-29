@@ -9,6 +9,8 @@ export default function Instagram() {
         <FaInstagram className="text-2xl text-white" />
       </div>
       <p className="text-secondary">@brianruizy</p>
+      <p className="line-clamp-2">Photos and all</p>
+
       <Link
         className="mt-auto flex w-fit items-center gap-1.5 rounded-full bg-secondary px-4 py-1.5 text-sm no-underline hover:bg-tertiary"
         href="https://instagram.com/brianruizy"

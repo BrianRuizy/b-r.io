@@ -39,6 +39,9 @@ module.exports = {
       ringOffsetColor: {
         primary: "var(--gray-12)",
       },
+      boxShadow: {
+        soft: "0 15px 30px 0 rgba(0, 0, 0, 0.04)",
+      },
       keyframes: {
         in: {
           "0%": { transform: "translateY(18px)", opacity: 0 },

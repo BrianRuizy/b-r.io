@@ -17,7 +17,7 @@ This is what we will have at the end of this article. An awesome map that's full
 
 <div className="h-6" />
 <div
-  className="relative overflow-clip rounded-2xl border border-secondary bg-secondary"
+  className="relative overflow-clip rounded-xl border border-secondary bg-secondary"
   style={{ height: "400px" }}
 >
   <Map lng={2.2945} lat={48.8584} zoom={15.25} pitch={30} time={"dusk"} />
@@ -164,7 +164,7 @@ useEffect(() => {
 Also I'm adding some padding, in order to make space for the location badge that is to push the long and lat slightly to the right, this is for when the map is a rectangle aspect ratio. Otherwise I would remove the padding and center the position of the badge.
 
 <div
-  className="relative overflow-clip rounded-2xl bg-secondary"
+  className="relative overflow-clip rounded-xl bg-secondary"
   style={{ height: "300px" }}
 >
   <div className="absolute bottom-4 left-4 flex flex flex-col rounded-lg border border-primary bg-neutral-100/75 px-4 py-2 leading-none backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
@@ -201,7 +201,7 @@ map.current.on("style.load", () => {
 ```
 
 <div
-  className="relative overflow-clip rounded-2xl bg-secondary"
+  className="relative overflow-clip rounded-xl bg-secondary"
   style={{ height: "300px" }}
 >
   <div className="absolute bottom-4 left-4 flex flex-col rounded-lg bg-neutral-100/75 px-4 py-2 leading-none backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
@@ -265,7 +265,7 @@ export default function Map({ lng, lat, zoom = 2.5, pitch = 25 }) {
 
   return (
     <div
-      className="overflow-clip rounded-2xl border border-secondary"
+      className="overflow-clip rounded-xl border border-secondary"
       style={{ height: "400px" }}
     >
       <div ref={mapContainer} className="map-container h-full w-full" />

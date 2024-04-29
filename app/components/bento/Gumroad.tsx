@@ -5,7 +5,7 @@ export default function Gumroad() {
   return (
     <Link
       href="https://gumroad.com/brianr4"
-      className="col-span-1 row-span-1 no-underline"
+      className="col-span-1 row-span-1 no-underline hidden md:block"
     >
       <Card className="flex aspect-square flex-col gap-1.5">
         <div className="flex aspect-square h-8 w-8 items-center justify-center rounded-lg bg-[#FF91E7]">

@@ -16,7 +16,7 @@ export default function Card({
     <Halo
       strength={disableHalo ? 0 : 10}
       className={clsx(
-        "h-full w-full overflow-clip rounded-2xl border border-secondary bg-white dark:bg-primary text-sm shadow-sm",
+        "shadow-soft h-full w-full overflow-clip rounded-xl bg-white text-sm dark:bg-primary",
         noPadding ? "p-0" : "p-4 md:p-6",
         className,
       )}
