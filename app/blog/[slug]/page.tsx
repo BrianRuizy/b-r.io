@@ -142,7 +142,7 @@ export default async function Blog({ params }: { params: any }) {
           </p>
         </div>
 
-        <NewsletterSignupForm noCard />
+        <NewsletterSignupForm contained={false} />
       </div>
     </div>
   );

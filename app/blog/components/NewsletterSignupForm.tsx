@@ -8,7 +8,11 @@ import Halo from "@/app/components/ui/Halo";
 import FlipNumber from "@/app/components/FlipNumber";
 import fetcher from "@/app/_utils/fetcher";
 
-export default function NewsletterSignupForm({ noCard }: { noCard?: boolean }) {
+export default function NewsletterSignupForm({
+  contained = true,
+}: {
+  contained?: boolean;
+}) {
   const { data: subscribersData, error } = useSWR(
     `/api/convertkit/subscribers`,
     fetcher,
@@ -54,7 +58,7 @@ export default function NewsletterSignupForm({ noCard }: { noCard?: boolean }) {
 
   if (success === false) {
     return (
-      <Card noCard={noCard}>
+      <Card contained={contained}>
         <p>mhh, something went wrong... Try again later.</p>
       </Card>
     );
@@ -62,18 +66,17 @@ export default function NewsletterSignupForm({ noCard }: { noCard?: boolean }) {
 
   if (success) {
     return (
-      <Card noCard={noCard}>
+      <Card contained={contained}>
         <p className="text-primary">You&apos;re in!</p>
         <p className="max-w-md text-secondary">
-          Thanks for subscribing! Be on the lookout for the confirmation
-          email.
+          Thanks for subscribing! Be on the lookout for the confirmation email.
         </p>
       </Card>
     );
   }
 
   return (
-    <Card noCard={noCard}>
+    <Card contained={contained}>
       <p className="text-primary">Newsletter</p>
       <p className="max-w-md text-secondary">
         Get personal updates and readings on topics like tech, design,
@@ -110,19 +113,19 @@ export default function NewsletterSignupForm({ noCard }: { noCard?: boolean }) {
 
 function Card({
   children,
-  noCard,
+  contained,
 }: {
   children: React.ReactNode;
-  noCard?: boolean;
+  contained?: boolean;
 }) {
   return (
-    <Halo strength={noCard ? 0 : 5}>
+    <Halo strength={contained ? 5 : 0}>
       <div
         className={clsx(
           "flex flex-col gap-6",
-          noCard
-            ? ""
-            : "items-center justify-center rounded-lg bg-secondaryA p-6 text-center md:p-8",
+          contained
+            ? "items-center justify-center rounded-lg bg-tertiary p-6 text-center md:p-8"
+            : "",
         )}
       >
         {children}
