@@ -42,7 +42,7 @@ export default function Form() {
 
   return (
     <form
-      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-white px-6 py-1.5 dark:bg-primary sm:rounded-md sm:border-x md:shadow-sm"
+      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-contrast px-6 py-1.5 sm:rounded-md sm:border-x md:shadow-sm"
       ref={formRef}
       action={async (formData) => {
         await saveCommunityPost(formData);
@@ -61,7 +61,7 @@ export default function Form() {
         name="content"
         placeholder={isSignedIn ? "What's on your mind?" : "Sign in to chat."}
         className="my-3 h-auto max-h-52 flex-1 resize-none bg-inherit leading-tight text-primary outline-none placeholder:text-tertiary"
-        rows={4}
+        rows={3}
         maxLength={300}
         onInput={(event) => {
           event.currentTarget.style.height = "auto";
@@ -73,7 +73,7 @@ export default function Form() {
 
       <button
         className={clsx(
-          "mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-secondary px-3 py-1.5 text-sm font-medium text-primary disabled:font-normal disabled:text-tertiary",
+          "mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-secondary px-3 py-1.5 text-sm text-primary disabled:font-normal disabled:text-tertiary disabled:bg-tertiary transition-all",
           !isSignedIn && "hidden",
         )}
         type="submit"

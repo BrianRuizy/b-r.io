@@ -94,7 +94,7 @@ export default function NewsletterSignupForm({
             type="email"
             name={name}
             id="email"
-            className="block w-full rounded-md border border-primary bg-primary px-4 py-1.5 text-primary placeholder:text-tertiary focus:ring-inset focus:ring-blue-600"
+            className="block w-full rounded-md border border-primary bg-contrast px-4 py-1.5 text-primary placeholder:text-tertiary focus:ring-inset focus:ring-blue-600"
             placeholder="you@example.com"
             required
           />
@@ -124,7 +124,7 @@ function Card({
         className={clsx(
           "flex flex-col gap-6",
           contained
-            ? "items-center justify-center rounded-lg bg-tertiary p-6 text-center md:p-8"
+            ? "items-center justify-center rounded-lg bg-secondary p-6 text-center md:p-8"
             : "",
         )}
       >

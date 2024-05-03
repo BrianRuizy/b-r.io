@@ -17,10 +17,10 @@ export default function Avatar({
   return (
     <div
       className={clsx(
-        "relative inline-flex select-none items-center justify-center overflow-hidden rounded-full border border-secondary bg-secondary align-middle font-medium uppercase text-primary",
-        size === "sm" && "h-10 w-10 text-sm",
-        size === "md" && "h-14 w-14 text-base",
-        size === "lg" && "h-24 w-24 text-2xl",
+        "relative inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle font-medium uppercase text-primary",
+        size === "sm" && "h-10 w-10 text-sm bg-tertiary",
+        size === "md" && "h-14 w-14 text-base bg-tertiary",
+        size === "lg" && "h-24 w-24 text-2xl bg-secondary",
       )}
     >
       {!src || src === "" ? (

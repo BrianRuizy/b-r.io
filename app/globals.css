@@ -20,22 +20,28 @@
     --boxBg: var(--gray-4);
   }
 
-  .light .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-12);
-    --tw-prose-bold: var(--gray-12);
-    --tw-prose-links: var(--blue-11);
-    --tw-prose-code: var(--gray-12);
-    --tw-prose-quotes: var(--gray-12);
+  .light {
+    --contrast-color: #fff;
+    .prose {
+      --tw-prose-headings: var(--gray-12);
+      --tw-prose-body: var(--gray-12);
+      --tw-prose-bold: var(--gray-12);
+      --tw-prose-links: var(--blue-11);
+      --tw-prose-code: var(--gray-12);
+      --tw-prose-quotes: var(--gray-12);
+    }
   }
 
-  .dark .prose {
-    --tw-prose-headings: var(--gray-12);
-    --tw-prose-body: var(--gray-11);
-    --tw-prose-bold: var(--gray-11);
-    --tw-prose-links: var(--blue-11);
-    --tw-prose-code: var(--gray-11);
-    --tw-prose-quotes: var(--gray-11);
+  .dark {
+    --contrast-color: #0a0a0a;
+    .prose {
+      --tw-prose-headings: var(--gray-12);
+      --tw-prose-body: var(--gray-11);
+      --tw-prose-bold: var(--gray-11);
+      --tw-prose-links: var(--blue-11);
+      --tw-prose-code: var(--gray-11);
+      --tw-prose-quotes: var(--gray-11);
+    }
   }
 
   .main-header {
@@ -108,15 +114,15 @@ input:-webkit-autofill:focus {
 }
 
 .prose figcaption {
-  @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm font-medium leading-tight text-tertiary;
+  @apply mx-auto mb-8 mt-2 max-w-md text-center text-sm text-tertiary;
 }
 
 .prose h3 {
-  @apply mb-2 mt-[48px] text-lg;
+  @apply mb-2 mt-[48px] text-base;
 }
 
 .prose p code {
-  @apply whitespace-pre-line rounded border border-primary bg-tertiary px-1 font-normal text-primary dark:bg-secondaryA;
+  @apply whitespace-pre-line rounded border border-primary bg-tertiary px-1 font-normal text-primary;
 }
 
 .prose
@@ -134,7 +140,7 @@ input:-webkit-autofill:focus {
 
 /* syntax highlighting */
 pre[class*="language-"] {
-  @apply rounded-md border border-secondary bg-white text-[13px] text-xs text-primary dark:bg-[#0A0A0A];
+  @apply rounded-md border border-secondary bg-contrast text-[13px] text-xs text-primary ;
 }
 
 .code-highlight {

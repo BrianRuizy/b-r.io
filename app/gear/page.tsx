@@ -55,7 +55,7 @@ const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
       </div>
       <div>
         <a
-          className="ml-auto h-fit rounded-full bg-secondary px-4 py-1 text-sm"
+          className="ml-auto h-fit rounded-full bg-tertiary px-4 py-1 text-sm"
           href={link}
           target="_blank"
         >

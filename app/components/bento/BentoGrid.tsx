@@ -39,7 +39,7 @@ const CommunityBanner = () => (
         <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
       </span>
       <p>New Community Page!</p>
-      <button className="ml-auto flex items-center rounded-full bg-secondary px-4 py-1.5 text-sm font-medium no-underline hover:bg-tertiary">
+      <button className="ml-auto flex items-center rounded-full bg-tertiary px-4 py-1.5 text-sm font-medium no-underline">
         Check it out
       </button>
     </Card>

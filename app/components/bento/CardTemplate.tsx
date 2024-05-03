@@ -14,9 +14,9 @@ export default function Card({
 }) {
   return (
     <Halo
-      strength={disableHalo ? 0 : 10}
+      strength={disableHalo ? 0 : 5}
       className={clsx(
-        "shadow-soft h-full w-full overflow-clip rounded-xl bg-white text-sm dark:bg-primary",
+        "h-full w-full overflow-clip rounded-xl bg-contrast text-sm shadow-soft dark:bg-secondary",
         noPadding ? "p-0" : "p-4 md:p-6",
         className,
       )}
