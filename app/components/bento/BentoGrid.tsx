@@ -8,7 +8,6 @@ import YouTube from "@/app/components/bento/Youtube";
 export default function BentoGrid() {
   return (
     <>
-      <CommunityBanner />
       <div className="grid grid-cols-2 grid-rows-2 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-6">
         <YouTube />
         <Instagram />
@@ -27,21 +26,3 @@ export default function BentoGrid() {
     </>
   );
 }
-
-const CommunityBanner = () => (
-  <Link href="/community">
-    <Card
-      className="mb-4 flex items-center gap-4 p-4 md:mb-6 md:gap-6 md:px-6"
-      noPadding
-    >
-      <span className="relative flex h-3 w-3">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-        <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
-      </span>
-      <p>New Community Page!</p>
-      <button className="ml-auto flex items-center rounded-full bg-tertiary px-4 py-1.5 text-sm font-medium no-underline">
-        Check it out
-      </button>
-    </Card>
-  </Link>
-);

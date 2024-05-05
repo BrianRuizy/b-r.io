@@ -8,7 +8,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-export default function Map({ lng, lat, zoom = 2, pitch = 25, time = null }) {
+export default function Map({ lng, lat, zoom = 2.5, pitch = 25, time = null }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
