@@ -56,13 +56,12 @@ export async function getCommunityPosts(): Promise<CommunityPostProps[]> {
     return [];
   }
 
-  revalidatePath("/community", "page");
-
   const result = await sql`
     SELECT community_posts.*, Topics.name AS topic_name
     FROM community_posts
     JOIN Topics ON community_posts.topic_id = Topics.id
-    ORDER BY community_posts.created_at DESC;
+    ORDER BY community_posts.created_at DESC
+    LIMIT 100;
   `;
 
   const postsWithUserData = await mapUserDataToPosts(result.rows);
@@ -76,13 +75,13 @@ export async function getCommunityPostsForTopic(
     return [];
   }
 
-  revalidatePath("/community/[topic]", "page");
   const result = await sql`
     SELECT community_posts.*, Topics.name AS topic_name
     FROM community_posts
     JOIN Topics ON community_posts.topic_id = Topics.id
     WHERE Topics.name = ${topic}
-    ORDER BY community_posts.created_at DESC;
+    ORDER BY community_posts.created_at DESC
+    LIMIT 100;
   `;
 
   const postsWithUserData = await mapUserDataToPosts(result.rows);

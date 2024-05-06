@@ -42,7 +42,7 @@ export default function Form() {
 
   return (
     <form
-      className="-mx-6 flex items-start justify-between gap-3 border-y border-secondary bg-contrast px-6 py-1.5 sm:rounded-md sm:border-x md:shadow-sm"
+      className="flex items-start justify-between gap-3 border-b border-secondary py-1.5"
       ref={formRef}
       action={async (formData) => {
         await saveCommunityPost(formData);
@@ -73,7 +73,7 @@ export default function Form() {
 
       <button
         className={clsx(
-          "mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-secondary px-3 py-1.5 text-sm text-primary disabled:font-normal disabled:text-tertiary disabled:bg-tertiary transition-all",
+          "mt-1.5 flex h-fit w-fit items-center justify-center rounded-full bg-[var(--blue-10)] px-3 py-1.5 text-sm text-white transition-all disabled:bg-secondary disabled:font-normal disabled:text-tertiary",
           !isSignedIn && "hidden",
         )}
         type="submit"

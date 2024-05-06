@@ -33,7 +33,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold tracking-tight text-primary">
             Brian Ruiz
           </h1>
-          <p className="max-w-lg leading-relaxed text-secondary">
+          <p className="max-w-lg text-secondary">
             Hi there, I&apos;m a software engineer who builds for the web with a
             design-oriented approach. In addition to coding, I also make YouTube
             videos, where I focus on tech, and productivity.
@@ -58,7 +58,7 @@ export default function Home() {
             Latest Posts
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
-          <p className="max-w-lg leading-relaxed text-secondary">
+          <p className="max-w-lg text-secondary">
             I occasionally write about programming, productivity, and more.
             Check me out and subscribe to stay up to date.
           </p>

@@ -82,11 +82,8 @@ export default function NewsletterSignupForm({
         Get personal updates and readings on topics like tech, design,
         productivity, programming, and more!
       </p>
-      <form
-        className="mt-2 flex  w-full max-w-md flex-col items-center gap-2 md:flex-row"
-        onSubmit={onSubmit}
-      >
-        <div className="w-full">
+      <form className="mt-2 w-full max-w-md " onSubmit={onSubmit}>
+        <div className="flex w-full rounded-md border border-primary bg-contrast py-1.5 pl-4 pr-1.5">
           <label htmlFor="email" className="sr-only">
             Email
           </label>
@@ -94,14 +91,14 @@ export default function NewsletterSignupForm({
             type="email"
             name={name}
             id="email"
-            className="block w-full rounded-md border border-primary bg-contrast px-4 py-1.5 text-primary placeholder:text-tertiary focus:ring-inset focus:ring-blue-600"
+            className="flex-1 bg-transparent first-line:text-primary placeholder:text-tertiary outline-none"
             placeholder="you@example.com"
             required
           />
+          <button className="hover:dark:bg-neutral-100 h-full w-fit whitespace-nowrap rounded bg-neutral-800 px-4 py-1 text-sm text-white hover:bg-neutral-900 focus:ring-inset focus:ring-blue-600 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-300 dark:text-black">
+            {"Sign up"}
+          </button>
         </div>
-        <button className="w-full whitespace-nowrap rounded-md bg-neutral-800 px-4 py-1.5 text-white hover:bg-neutral-900 focus:ring-inset focus:ring-blue-600 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-300 dark:text-black hover:dark:bg-neutral-100 md:w-fit ">
-          {"Sign up"}
-        </button>
       </form>
       <p className="text-sm text-tertiary">
         Join the <FlipNumber>{subscribersData?.subscribers}</FlipNumber> other
@@ -124,7 +121,7 @@ function Card({
         className={clsx(
           "flex flex-col gap-6",
           contained
-            ? "items-center justify-center rounded-lg bg-secondary p-6 text-center md:p-8"
+            ? "items-center justify-center rounded-lg bg-primary p-6 text-center md:p-8"
             : "",
         )}
       >

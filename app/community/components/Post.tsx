@@ -40,7 +40,7 @@ function getDisplayName(post: CommunityPostProps) {
 
 export default function Post({ post }: PostComponentProps) {
   const { displayName, initials } = getDisplayName(post);
-  const contentWithLinks = getContentWithLinks(post.content);
+  let formattedContent = getContentWithLinks(post.content);
 
   return (
     <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
@@ -82,7 +82,7 @@ export default function Post({ post }: PostComponentProps) {
         <div
           className="whitespace-pre-wrap text-pretty break-words leading-tight md:text-balance"
           style={{ wordBreak: "break-word" }}
-          dangerouslySetInnerHTML={{ __html: contentWithLinks }}
+          dangerouslySetInnerHTML={{ __html: formattedContent }}
         />
         <div className="mt-1.5 flex items-center gap-6 text-sm text-secondary md:text-base">
           <div className="flex items-center gap-1.5 hover:text-primary">

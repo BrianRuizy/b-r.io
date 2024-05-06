@@ -10,7 +10,7 @@ linkify.tlds(tlds);
 
 export function getContentWithLinks(content: string) {
   return content
-    .split(/\s+/) // split by one or more spaces
+    .split(' ') // split by spaces only
     .map((word, index) => {
       const match = linkify.match(word);
 

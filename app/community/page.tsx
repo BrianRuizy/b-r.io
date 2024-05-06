@@ -11,7 +11,9 @@ export const metadata: Metadata = {
     description: "Join the community and share your thoughts.",
     type: "website",
     url: "https://b-r.io/blog/community",
-    images: [{ url: "https://b-r.io/api/og?title=Community", alt: "community" }],
+    images: [
+      { url: "https://b-r.io/api/og?title=Community", alt: "community" },
+    ],
   },
 };
 
