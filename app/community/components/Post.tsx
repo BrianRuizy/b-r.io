@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 import * as Popover from "@radix-ui/react-popover";
@@ -16,6 +16,7 @@ import { formatRelativeTime } from "@/app/_utils/formatDate";
 import FlipNumber from "@/app/components/FlipNumber";
 
 import createDOMPurify from "dompurify";
+import { get } from "http";
 
 let DOMPurify: createDOMPurify.DOMPurifyI;
 if (typeof window !== "undefined") {
@@ -281,7 +282,7 @@ function RepliesDrawer({
 
           <div className="no-scrollbar flex flex-col gap-6 overflow-auto rounded-t-[10px] pb-12">
             <div className="flex flex-col py-6">
-              <Op post={op} />
+              <OriginalPost post={op} />
               <hr className="my-4 border-primary" />
               <div>
                 {replies &&
@@ -339,7 +340,7 @@ function RepliesDrawer({
   );
 }
 
-function Op({ post }: { post: CommunityPostProps }) {
+function OriginalPost({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
 
   let sanitizedContent = DOMPurify.sanitize(post.content, config);
@@ -429,9 +430,10 @@ function ReplyPost({ post }: { post: CommunityPostProps }) {
         <div
           className="whitespace-pre-wrap text-pretty break-words leading-tight md:text-balance"
           style={{ wordBreak: "break-word" }}
-        >
-          {post.content}
-        </div>
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(getContentWithLinks(post.content)),
+          }}
+        />
         <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
           <Reaction />
         </div>
