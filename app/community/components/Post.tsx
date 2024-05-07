@@ -15,6 +15,14 @@ import { getContentWithLinks } from "@/app/_utils/postFormatting";
 import { formatRelativeTime } from "@/app/_utils/formatDate";
 import FlipNumber from "@/app/components/FlipNumber";
 
+import createDOMPurify from "dompurify";
+const DOMPurify = createDOMPurify(window);
+
+const config = {
+  ALLOWED_TAGS: [], // Add any other tags you want to allow
+  ALLOWED_ATTR: ["href"], // Add any other attributes you want to allow
+};
+
 interface Reaction {
   id: string;
   emoji: string;
@@ -52,7 +60,9 @@ function getDisplayName(post: CommunityPostProps) {
 
 export default function Post({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
-  let formattedContent = getContentWithLinks(post.content);
+
+  let sanitizedContent = DOMPurify.sanitize(post.content, config);
+  let formattedContent = getContentWithLinks(sanitizedContent);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -359,7 +369,9 @@ function ReplyPost({ post }: { post: CommunityPostProps }) {
 
 function Op({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
-  let formattedContent = getContentWithLinks(post.content);
+
+  let sanitizedContent = DOMPurify.sanitize(post.content);
+  let formattedContent = getContentWithLinks(sanitizedContent);
 
   return (
     <div className="flex gap-3 py-2">

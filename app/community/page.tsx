@@ -2,11 +2,6 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { getCommunityPosts } from "@/app/db/queries";
 import Post from "@/app/community/components/Post";
-import createDOMPurify from "dompurify";
-import { JSDOM } from "jsdom";
-
-const window = new JSDOM("").window;
-const DOMPurify = createDOMPurify(window);
 
 export const metadata: Metadata = {
   title: "Community | Brian Ruiz",
@@ -44,10 +39,7 @@ async function Posts() {
   return (
     <div className="flex flex-col divide-y divide-secondary">
       {posts.map((post) => (
-        <Post
-          key={post.id}
-          post={{ ...post, content: DOMPurify.sanitize(post.content) }}
-        />
+        <Post key={post.id} post={post} />
       ))}
     </div>
   );
