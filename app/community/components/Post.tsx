@@ -370,7 +370,7 @@ function ReplyPost({ post }: { post: CommunityPostProps }) {
 function Op({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
 
-  let sanitizedContent = DOMPurify.sanitize(post.content);
+  let sanitizedContent = DOMPurify.sanitize(post.content, config);
   let formattedContent = getContentWithLinks(sanitizedContent);
 
   return (
