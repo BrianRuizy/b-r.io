@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getCommunityPostsForTopic } from "@/app/db/queries";
+import { getCommunityPosts } from "@/app/db/queries";
 import Post from "@/app/community/components/Post";
 
 export default function TopicPage({ params }: { params: { topic: string } }) {
@@ -11,10 +11,12 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
 }
 
 async function Posts({ topic }: { topic: string }) {
-  let posts = await getCommunityPostsForTopic(topic);
+  let posts = await getCommunityPosts(topic);
 
   if (posts.length === 0) {
-    return <div className="text-tertiary">Lonely here. Be the first to post!</div>;
+    return (
+      <div className="text-tertiary">Lonely here. Be the first to post!</div>
+    );
   }
 
   return (

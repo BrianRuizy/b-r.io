@@ -25,3 +25,16 @@ export async function saveCommunityPost(formData: FormData) {
 
   revalidatePath("/community/[topic]", "page");
 }
+
+export async function saveReply(formData: FormData) {
+  let clerkUserId = formData.get("clerk_user_id") as string;
+  let postId = formData.get("post_id") as string;
+  let content = formData.get("content") as string;
+
+  await sql`
+    INSERT INTO replies (content, post_id, clerk_user_id)
+    VALUES (${content}, ${postId}, ${clerkUserId})
+  `;
+
+  revalidatePath("/community/[topic]", "page");
+}

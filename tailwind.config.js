@@ -30,11 +30,11 @@ module.exports = {
       },
       borderColor: {
         primary: "var(--gray-6)",
-        secondary: "var(--gray-4)",
+        secondary: "var(--gray-3)",
       },
       divideColor: {
         primary: "var(--gray-6)",
-        secondary: "var(--gray-4)",
+        secondary: "var(--gray-3)",
       },
       ringOffsetColor: {
         primary: "var(--gray-12)",
