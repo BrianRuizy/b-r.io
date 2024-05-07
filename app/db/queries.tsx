@@ -1,7 +1,7 @@
 "use server";
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
 import { clerkClient } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 interface UserData {
   imageUrl: string;
@@ -59,6 +59,7 @@ export async function getCommunityPosts(
     return [];
   }
 
+  revalidatePath("/community/[topic]", "page");
   let result;
 
   if (topic) {
@@ -124,8 +125,6 @@ export async function getReplies(
   if (!process.env.POSTGRES_URL) {
     return [];
   }
-
-  revalidatePath("/community/[topic]", "page");
 
   const result = await sql`
     SELECT * FROM replies WHERE post_id = ${postId} 
