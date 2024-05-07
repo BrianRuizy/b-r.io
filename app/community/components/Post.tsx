@@ -109,7 +109,7 @@ export default function Post({ post }: { post: CommunityPostProps }) {
           dangerouslySetInnerHTML={{ __html: formattedContent }}
         />
         <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
-          <div
+          <button
             className="flex items-center gap-1.5 hover:text-primary"
             onClick={() => setIsDrawerOpen(true)}
           >
@@ -118,13 +118,13 @@ export default function Post({ post }: { post: CommunityPostProps }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
               </svg>
             <span>{post.reply_count || 0}</span>
-          </div>
-
+          </button>
           <PostDrawer
             op={post}
             isDrawerOpen={isDrawerOpen}
             setIsDrawerOpen={setIsDrawerOpen}
           />
+
           <Reaction />
         </div>
       </div>
@@ -244,6 +244,7 @@ function PostDrawer({
     setReplies(replies);
   }
   const formRef = useRef<HTMLFormElement>(null);
+  const [contentValid, setContentValid] = useState("");
   const { isSignedIn, user } = useUser();
 
   return (
@@ -275,7 +276,7 @@ function PostDrawer({
           <div className="no-scrollbar flex flex-col gap-6 overflow-auto rounded-t-[10px] pb-12">
             <div className="flex flex-col py-6">
               <Op post={op} />
-              <hr className="my-4 border-secondary" />
+              <hr className="my-4 border-primary" />
               <div>
                 {replies.map((reply) => (
                   <ReplyPost key={reply.id} post={reply} />
@@ -304,17 +305,18 @@ function PostDrawer({
               <input type="hidden" name="post_id" value={op.id} />
               <input
                 type="text"
+                name="content"
                 autoComplete="off"
                 minLength={1}
                 placeholder="Add a reply"
                 className="w-full flex-1 overflow-clip bg-transparent  px-3 text-primary outline-none placeholder:text-tertiary"
                 disabled={!isSignedIn}
-                name="content"
+                onChange={(e) => setContentValid(e.target.value)}
               />
               <button
-                className="flex aspect-square h-full items-center justify-center rounded-full bg-[var(--blue-10)] text-white disabled:bg-tertiary disabled:text-tertiary"
+                className="flex aspect-square h-full items-center justify-center rounded-full bg-[var(--blue-10)] text-white disabled:bg-tertiary disabled:text-tertiary transition-all"
                 type="submit"
-                disabled={!isSignedIn}
+                disabled={!isSignedIn || !contentValid}
               >
                 {/* prettier-ignore */}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
@@ -416,7 +418,7 @@ function Op({ post }: { post: CommunityPostProps }) {
           dangerouslySetInnerHTML={{ __html: formattedContent }}
         />
         <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
-          <div className="flex items-center gap-1.5 hover:text-primary">
+          <div className="flex items-center gap-1.5">
             {/* prettier-ignore */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />

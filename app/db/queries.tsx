@@ -126,6 +126,8 @@ export async function getReplies(
     return [];
   }
 
+  revalidatePath("/community");
+
   const result = await sql`
     SELECT * FROM replies WHERE post_id = ${postId} 
     ORDER BY created_at ASC;
