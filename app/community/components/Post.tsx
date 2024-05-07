@@ -16,7 +16,11 @@ import { formatRelativeTime } from "@/app/_utils/formatDate";
 import FlipNumber from "@/app/components/FlipNumber";
 
 import createDOMPurify from "dompurify";
-const DOMPurify = createDOMPurify(window);
+
+let DOMPurify: createDOMPurify.DOMPurifyI;
+if (typeof window !== "undefined") {
+  DOMPurify = createDOMPurify(window);
+}
 
 const config = {
   ALLOWED_TAGS: [], // Add any other tags you want to allow
@@ -65,6 +69,13 @@ export default function Post({ post }: { post: CommunityPostProps }) {
   let formattedContent = getContentWithLinks(sanitizedContent);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [replies, setReplies] = useState<CommunityPostProps[]>([]);
+
+  async function handleOpenDrawer() {
+    const fetchedReplies = await getReplies(post.id);
+    setReplies(fetchedReplies);
+    setIsDrawerOpen(true);
+  }
 
   return (
     <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
@@ -111,7 +122,7 @@ export default function Post({ post }: { post: CommunityPostProps }) {
         <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
           <button
             className="flex items-center gap-1.5 hover:text-primary"
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={handleOpenDrawer}
           >
             {/* prettier-ignore */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -119,12 +130,13 @@ export default function Post({ post }: { post: CommunityPostProps }) {
               </svg>
             <span>{post.reply_count || 0}</span>
           </button>
-          <PostDrawer
+          <RepliesDrawer
             op={post}
+            replies={replies}
+            setReplies={setReplies}
             isDrawerOpen={isDrawerOpen}
             setIsDrawerOpen={setIsDrawerOpen}
           />
-
           <Reaction />
         </div>
       </div>
@@ -224,25 +236,19 @@ function ActiveReactions({ reactions }: { reactions: Reaction[] }) {
   );
 }
 
-function PostDrawer({
+function RepliesDrawer({
   op,
+  replies,
+  setReplies,
   isDrawerOpen,
   setIsDrawerOpen,
 }: {
   op: CommunityPostProps;
+  replies: CommunityPostProps[];
+  setReplies: (state: CommunityPostProps[]) => void;
   isDrawerOpen: boolean;
   setIsDrawerOpen: (state: boolean) => void;
 }) {
-  const [replies, setReplies] = useState<CommunityPostProps[]>([]);
-
-  useEffect(() => {
-    fetchReplies();
-  }, []);
-
-  async function fetchReplies() {
-    let replies = await getReplies(op.id);
-    setReplies(replies);
-  }
   const formRef = useRef<HTMLFormElement>(null);
   const [contentValid, setContentValid] = useState("");
   const { isSignedIn, user } = useUser();
@@ -278,11 +284,12 @@ function PostDrawer({
               <Op post={op} />
               <hr className="my-4 border-primary" />
               <div>
-                {replies.map((reply) => (
-                  <ReplyPost key={reply.id} post={reply} />
-                ))}
+                {replies &&
+                  replies.map((reply) => (
+                    <ReplyPost key={reply.id} post={reply} />
+                  ))}
               </div>
-              {!replies.length && (
+              {replies && !replies.length && (
                 <div className="flex flex-col items-center justify-center py-6">
                   <h2 className="">It&apos;s quiet here</h2>
                   <p className="text-tertiary">Be the first to reply!</p>
@@ -298,7 +305,8 @@ function PostDrawer({
               action={async (formData) => {
                 await saveReply(formData);
                 formRef.current?.reset();
-                fetchReplies();
+                setContentValid("");
+                setReplies(await getReplies(op.id));
               }}
             >
               <input type="hidden" name="clerk_user_id" value={user?.id} />
@@ -314,7 +322,7 @@ function PostDrawer({
                 onChange={(e) => setContentValid(e.target.value)}
               />
               <button
-                className="flex aspect-square h-full items-center justify-center rounded-full bg-[var(--blue-10)] text-white disabled:bg-tertiary disabled:text-tertiary transition-all"
+                className="flex aspect-square h-full items-center justify-center rounded-full bg-[var(--blue-10)] text-white transition-all disabled:bg-tertiary disabled:text-tertiary"
                 type="submit"
                 disabled={!isSignedIn || !contentValid}
               >
@@ -328,44 +336,6 @@ function PostDrawer({
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
-  );
-}
-
-function ReplyPost({ post }: { post: CommunityPostProps }) {
-  const { displayName, initials } = getDisplayName(post);
-
-  return (
-    <div className="flex gap-3 py-2">
-      <div className="w-fit">
-        <Avatar initials={initials} size="sm" src={post?.user?.imageUrl} />
-      </div>
-
-      <div className="flex w-full flex-col flex-wrap gap-1.5">
-        <div className="flex items-center gap-1.5">
-          <p className="line-clamp-1 inline-flex items-center gap-0.5 break-all font-medium">
-            {displayName}
-            {post?.user?.username === "brianruizy" ? (
-              /* prettier-ignore */
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-              <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd"/>
-            </svg>
-            ) : null}
-          </p>
-          <p className="whitespace-nowrap text-tertiary">
-            {formatRelativeTime(post.created_at)}
-          </p>
-        </div>
-        <div
-          className="whitespace-pre-wrap text-pretty break-words leading-tight md:text-balance"
-          style={{ wordBreak: "break-word" }}
-        >
-          {post.content}
-        </div>
-        <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
-          <Reaction />
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -425,6 +395,44 @@ function Op({ post }: { post: CommunityPostProps }) {
             </svg>
             <span>{post.reply_count || 0}</span>
           </div>
+          <Reaction />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReplyPost({ post }: { post: CommunityPostProps }) {
+  const { displayName, initials } = getDisplayName(post);
+
+  return (
+    <div className="flex gap-3 py-2">
+      <div className="w-fit">
+        <Avatar initials={initials} size="sm" src={post?.user?.imageUrl} />
+      </div>
+
+      <div className="flex w-full flex-col flex-wrap gap-1.5">
+        <div className="flex items-center gap-1.5">
+          <p className="line-clamp-1 inline-flex items-center gap-0.5 break-all font-medium">
+            {displayName}
+            {post?.user?.username === "brianruizy" ? (
+              /* prettier-ignore */
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+              <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd"/>
+            </svg>
+            ) : null}
+          </p>
+          <p className="whitespace-nowrap text-tertiary">
+            {formatRelativeTime(post.created_at)}
+          </p>
+        </div>
+        <div
+          className="whitespace-pre-wrap text-pretty break-words leading-tight md:text-balance"
+          style={{ wordBreak: "break-word" }}
+        >
+          {post.content}
+        </div>
+        <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
           <Reaction />
         </div>
       </div>

@@ -47,6 +47,7 @@ export default function Form() {
       action={async (formData) => {
         await saveCommunityPost(formData);
         formRef.current?.reset();
+        setContentValid("");
       }}
     >
       <input type="hidden" name="clerk_user_id" value={user?.id} />

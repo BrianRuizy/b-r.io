@@ -36,5 +36,5 @@ export async function saveReply(formData: FormData) {
     VALUES (${content}, ${postId}, ${clerkUserId})
   `;
 
-  revalidatePath("/community/[topic]", "page");
+  revalidatePath("/community");
 }

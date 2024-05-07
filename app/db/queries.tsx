@@ -71,7 +71,7 @@ export async function getCommunityPosts(
       WHERE Topics.name = ${topic}
       GROUP BY community_posts.id, Topics.name
       ORDER BY community_posts.created_at DESC
-      LIMIT 100;
+      LIMIT 75;
     `;
   } else {
     result = await sql`
@@ -81,7 +81,7 @@ export async function getCommunityPosts(
       LEFT JOIN replies ON community_posts.id = replies.post_id
       GROUP BY community_posts.id, Topics.name
       ORDER BY community_posts.created_at DESC
-      LIMIT 50;
+      LIMIT 75;
     `;
   }
 
