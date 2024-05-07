@@ -297,6 +297,7 @@ function PostDrawer({
               <input
                 type="text"
                 autoComplete="off"
+                minLength="2"
                 placeholder="Add a reply"
                 className="w-full flex-1 overflow-clip bg-transparent  px-3 text-primary outline-none placeholder:text-tertiary"
                 disabled={!isSignedIn}
