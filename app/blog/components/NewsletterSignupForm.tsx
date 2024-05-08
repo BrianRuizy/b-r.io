@@ -91,11 +91,11 @@ export default function NewsletterSignupForm({
             type="email"
             name={name}
             id="email"
-            className="flex-1 bg-transparent first-line:text-primary placeholder:text-tertiary outline-none"
+            className="flex-1 bg-transparent outline-none first-line:text-primary placeholder:text-tertiary"
             placeholder="you@example.com"
             required
           />
-          <button className="hover:dark:bg-neutral-100 h-full w-fit whitespace-nowrap rounded bg-neutral-800 px-4 py-1 text-sm text-white hover:bg-neutral-900 focus:ring-inset focus:ring-blue-600 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-300 dark:text-black">
+          <button className="h-full w-fit whitespace-nowrap rounded bg-neutral-800 px-4 py-1 text-sm text-white hover:bg-neutral-900 focus:ring-inset focus:ring-blue-600 focus-visible:outline focus-visible:outline-2 dark:bg-neutral-300 dark:text-black hover:dark:bg-neutral-100">
             {"Sign up"}
           </button>
         </div>
@@ -121,7 +121,7 @@ function Card({
         className={clsx(
           "flex flex-col gap-6",
           contained
-            ? "items-center justify-center rounded-lg bg-primary p-6 text-center md:p-8"
+            ? "items-center justify-center rounded-lg bg-secondary p-6 text-center md:p-8"
             : "",
         )}
       >

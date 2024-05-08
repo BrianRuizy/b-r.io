@@ -16,7 +16,6 @@ import { formatRelativeTime } from "@/app/_utils/formatDate";
 import FlipNumber from "@/app/components/FlipNumber";
 
 import createDOMPurify from "dompurify";
-import { get } from "http";
 
 let DOMPurify: createDOMPurify.DOMPurifyI;
 if (typeof window !== "undefined") {
@@ -255,24 +254,17 @@ function RepliesDrawer({
   const { isSignedIn, user } = useUser();
 
   return (
-    <Drawer.Root
-      shouldScaleBackground={false}
-      open={isDrawerOpen}
-      onOpenChange={setIsDrawerOpen}
-    >
+    <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="fixed bottom-0 left-0 right-0 mx-auto flex max-h-[96%]  max-w-[700px] flex-col rounded-t-2xl bg-primary p-6 outline-none md:p-8">
+        <Drawer.Content className="fixed bottom-0 left-0 right-0 mx-auto flex max-h-[96%] max-w-[700px] flex-col rounded-t-2xl bg-primary p-6 outline-none md:p-8">
           <div className="fixed left-0 right-0 top-1.5 mx-auto flex h-1.5 w-10 items-center justify-center rounded-full bg-secondary" />
 
           <div className="flex select-none items-center  justify-between ">
             <Drawer.Title className="text-center text-lg font-semibold tracking-tight">
               Replies
             </Drawer.Title>
-            <Drawer.Close
-              className="flex aspect-square h-8 w-8 items-center justify-center rounded-full bg-secondary text-secondary hover:bg-tertiary hover:text-primary"
-              onClick={() => setIsDrawerOpen(false)}
-            >
+            <Drawer.Close className="flex aspect-square h-8 w-8 items-center justify-center rounded-full bg-secondary text-secondary hover:bg-tertiary hover:text-primary">
               {/* prettier-ignore */}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                 <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
