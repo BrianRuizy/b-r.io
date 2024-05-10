@@ -43,7 +43,7 @@ export default function CraftPage() {
             className="max-w-lg animate-in text-tertiary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            This is a collection of UI components and designs I've created. And really my breakable toy where I can experiment with new things.
+            This is a collection of UI components and designs I&apos;ve created. And really my breakable toy where I can experiment with new things.
           </p>
       </div>
       <ul

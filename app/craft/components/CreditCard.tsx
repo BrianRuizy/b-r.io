@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 export default function CreditCard() {
   return (
     <div
-      className="not-prose -ml-6 flex w-[calc(100%+48px)] overflow-clip max-w-none select-none items-center justify-center bg-secondary md:border border-secondary p-6 md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
+      className="not-prose flex select-none items-center justify-center overflow-clip bg-secondary p-6 -ml-6 w-[calc(100%+48px)] max-w-none md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
       style={{ height: 400 }}
     >
       <motion.div
         whileTap="flipped"
-        whileHover={{ scale: .99 }}
+        whileHover={{ scale: 0.99 }}
         style={{ transformStyle: "preserve-3d" }}
         transition={{ type: "spring", duration: 1 }}
         variants={{
@@ -18,7 +18,7 @@ export default function CreditCard() {
             rotateX: 5,
           },
         }}
-        className="mx-auto h-56 w-96 rounded-xl border border-secondary bg-white dark:bg-[#f1f1f1] shadow-soft"
+        className="mx-auto h-56 w-96 rounded-xl border border-secondary bg-white shadow-soft dark:bg-[#f1f1f1]"
       >
         {/* front side */}
         <div
