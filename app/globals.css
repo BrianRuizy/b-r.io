@@ -106,7 +106,7 @@ input:-webkit-autofill:focus {
 }
 
 .prose.project img {
-  @apply max-w-none rounded-md border border-secondary bg-tertiary md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)];
+  @apply max-w-none rounded-md border border-secondary bg-secondary md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)];
 }
 
 .prose blockquote {
