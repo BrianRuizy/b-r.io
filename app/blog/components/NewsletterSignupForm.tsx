@@ -91,7 +91,7 @@ export default function NewsletterSignupForm({
             type="email"
             name={name}
             id="email"
-            className="flex-1 bg-transparent outline-none first-line:text-primary placeholder:text-tertiary"
+            className="flex-1 bg-transparent outline-none placeholder:text-tertiary"
             placeholder="you@example.com"
             required
           />
