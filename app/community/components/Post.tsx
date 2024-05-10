@@ -89,7 +89,7 @@ export default function Post({ post }: { post: CommunityPostProps }) {
   }
 
   return (
-    <div className="flex gap-3 py-4 first:pt-0 last:pb-0 md:py-6">
+    <div className="flex gap-3 py-4 first:pt-0 last:pb-0">
       <div className="w-fit">
         <Avatar initials={initials} size="sm" src={post?.user?.imageUrl} />
       </div>
