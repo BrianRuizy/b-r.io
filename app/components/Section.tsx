@@ -3,26 +3,27 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-
 type SectionProps = {
   heading: string;
   headingAlignment?: "right" | "left";
   children: ReactNode;
+  invert?: boolean;
 };
 
 export default function Section({
   heading,
   headingAlignment,
   children,
+  invert = false,
 }: SectionProps) {
-
   return (
-    <section className="flex flex-col md:flex-row gap-2 md:gap-9 col-reverse">
+    <section className="col-reverse flex flex-col gap-2 md:flex-row md:gap-9">
       <h2
         className={clsx(
-          "md:w-32 text-secondary shrink-0",
+          "shrink-0 md:w-32",
           headingAlignment === "right" && "md:text-right",
-          )}
+          invert ? "text-primary font-medium" : "text-secondary",
+        )}
       >
         {heading}
       </h2>

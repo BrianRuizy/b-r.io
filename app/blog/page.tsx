@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { allPosts } from ".contentlayer/generated";
+import { allBlogs } from ".contentlayer/generated";
 import PostList from "./components/PostList";
 import NewsletterSignupForm from "./components/NewsletterSignupForm";
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  const posts = allPosts.sort(
+  const blogs = allBlogs.sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
@@ -32,7 +32,7 @@ export default function BlogPage() {
             className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            {posts.length} posts so far. Stay tuned for more!
+            {blogs.length} posts so far. Stay tuned for more!
           </p>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function BlogPage() {
         className="animate-in"
         style={{ "--index": 2 } as React.CSSProperties}
       >
-        <PostList posts={posts} />
+        <PostList posts={blogs} />
       </div>
       <div
         className="animate-in"

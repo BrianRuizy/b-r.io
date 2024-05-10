@@ -95,7 +95,7 @@ export default function Gear() {
             </p>
           </div>
           <p
-            className="max-w-lg animate-in"
+            className="max-w-lg animate-in text-tertiary"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             This is all gear I actually own and like. Using the affiliate links

@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 import {
   defineDocumentType,
@@ -11,7 +11,7 @@ import rehypeSlug from "rehype-slug";
 
 const getSlug = (doc: any) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
 
-const postComputedFields: ComputedFields = {
+const blogComputedFields: ComputedFields = {
   slug: {
     type: "string",
     resolve: (doc) => getSlug(doc),
@@ -19,18 +19,25 @@ const postComputedFields: ComputedFields = {
   image: {
     type: "string",
     resolve: (doc) => {
-      const imagePath = path.join(process.cwd(), 'public', 'blog', `${getSlug(doc)}/image.png`);
-      return fs.existsSync(imagePath) ? `/blog/${getSlug(doc)}/image.png` : null;
+      const imagePath = path.join(
+        process.cwd(),
+        "public",
+        "blog",
+        `${getSlug(doc)}/image.png`,
+      );
+      return fs.existsSync(imagePath)
+        ? `/blog/${getSlug(doc)}/image.png`
+        : null;
     },
-    },
+  },
   og: {
     type: "string",
     resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
   },
 };
 
-export const Post = defineDocumentType(() => ({
-  name: "Post",
+export const Blog = defineDocumentType(() => ({
+  name: "Blog",
   filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields: {
@@ -40,7 +47,7 @@ export const Post = defineDocumentType(() => ({
     updatedAt: { type: "string", required: false },
     tags: { type: "json", required: false },
   },
-  computedFields: postComputedFields,
+  computedFields: blogComputedFields,
 }));
 
 const projectComputedFields: ComputedFields = {
@@ -60,7 +67,7 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    description: { type: "string", required: true },
+    summary: { type: "string", required: true },
     time: { type: "string", required: true },
     url: { type: "string", required: false },
     tags: { type: "json", required: false },
@@ -68,9 +75,33 @@ export const Project = defineDocumentType(() => ({
   computedFields: projectComputedFields,
 }));
 
+const craftComputedFields: ComputedFields = {
+  slug: {
+    type: "string",
+    resolve: (doc) => getSlug(doc),
+  },
+  // image: {
+  //   type: "string",
+  //   resolve: (doc) => `/craft/${getSlug(doc)}/image.png`,
+  // },
+};
+
+export const Craft = defineDocumentType(() => ({
+  name: "Craft",
+  filePathPattern: `craft/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    summary: { type: "string", required: true },
+    publishedAt: { type: "string", required: true },
+  },
+  computedFields: craftComputedFields,
+}));
+
+
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post, Project],
+  documentTypes: [Blog, Project, Craft],
   mdx: {
     rehypePlugins: [rehypePrism, rehypeSlug],
   },

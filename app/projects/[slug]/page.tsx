@@ -1,58 +1,42 @@
-import { allProjects, Post as PostType } from ".contentlayer/generated";
-import Image from "next/image";
+import { allProjects } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
 
 import Mdx from "@/app/blog/components/MdxWrapper";
-import PostList from "@/app/blog/components/PostList";
-import Tags from "@/app/components/Tags";
 import Link from "@/app/components/ui/Link";
-import { formatDate } from "@/app/_utils/formatDate";
-
-type PostProps = {
-  post: PostType;
-  related: PostType[];
-};
 
 export default function Project({ params }: { params: any }) {
-  // const post = allPosts.find((post) => post.slug === params.slug);
-  const post = allProjects.find((post) => post.slug === params.slug);
+  const project = allProjects.find((project) => project.slug === params.slug);
 
-  if (!post) {
+  if (!project) {
     notFound();
   }
 
   return (
     <div className="flex flex-col gap-20">
       <article>
-        <div className="flex animate-in flex-col gap-3">
+        <div className="flex flex-col gap-3">
           <div className="flex gap-3 text-secondary">
-            <p>{post.time}</p>
-            {post.url && (
+            <p>{project.time}</p>
+            {project.url && (
               <>
                 <span>&middot;</span>
-                <Link href={post.url} className="no-underline hover:underline">
+                <Link
+                  href={project.url}
+                  className="no-underline hover:underline"
+                >
                   Visit Project
                 </Link>
               </>
             )}
           </div>
           <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
-            {post.title}
+            {project.title}
           </h1>
-          <p
-            className="animate-in text-secondary"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
-            {post.description}
-          </p>
+          <p className="text-secondary">{project.summary}</p>
         </div>
-
         <div className="h-12" />
-        <div
-          className="project prose animate-in"
-          style={{ "--index": 2 } as React.CSSProperties}
-        >
-          <Mdx code={post.body.code} />
+        <div className="project prose">
+          <Mdx code={project.body.code} />
         </div>
       </article>
       <div className="flex flex-col gap-20">
@@ -72,8 +56,6 @@ export default function Project({ params }: { params: any }) {
           ← All Projects
         </Link>
       </div>
-
-      <div />
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function Topics() {
       >
         <span>All Topics</span>
       </Link>
-      {topics.map((topic) => (
+      {topics?.map((topic) => (
         <Link
           key={topic.id}
           scroll={false}

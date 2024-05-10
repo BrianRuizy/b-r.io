@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { allPosts } from ".contentlayer/generated";
+import { allBlogs } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 import Link from "@/app/components/ui/Link";
@@ -9,7 +9,7 @@ import Me from "@/public/avatar.png";
 import Avatar from "@/app/components/ui/Avatar";
 
 export default function Home() {
-  const posts = allPosts
+  const blogs = allBlogs
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
@@ -55,7 +55,7 @@ export default function Home() {
             className="group flex items-center gap-2 text-xl font-semibold tracking-tight text-primary"
             href="/blog"
           >
-            Latest Posts
+            Latest blogs
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
           <p className="max-w-lg text-secondary">
@@ -63,7 +63,7 @@ export default function Home() {
             Check me out and subscribe to stay up to date.
           </p>
         </div>
-        <PostList posts={posts} />
+        <PostList posts={blogs} />
       </div>
     </div>
   );

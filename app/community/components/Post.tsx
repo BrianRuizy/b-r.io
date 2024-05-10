@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useRef } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 import * as Popover from "@radix-ui/react-popover";
@@ -44,6 +45,8 @@ const reactionsData: Reaction[] = [
 
 function getDisplayName(post: CommunityPostProps) {
   let displayName = "";
+  if (!post.user) return { displayName: "No Name", initials: "NA" };
+
   try {
     displayName =
       post.user.firstName && post.user.lastName
@@ -65,7 +68,15 @@ function getDisplayName(post: CommunityPostProps) {
 export default function Post({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
 
-  let sanitizedContent = DOMPurify.sanitize(post.content, config);
+  const [sanitizedContent, setSanitizedContent] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const DOMPurify = require("dompurify")(window);
+      setSanitizedContent(DOMPurify.sanitize(post.content, config));
+    }
+  }, [post.content]);
+
   let formattedContent = getContentWithLinks(sanitizedContent);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -120,7 +131,7 @@ export default function Post({ post }: { post: CommunityPostProps }) {
           dangerouslySetInnerHTML={{ __html: formattedContent }}
         />
         <div className="flex min-h-8 items-center gap-6 text-sm text-secondary md:text-base">
-          <button
+          <div
             className="flex items-center gap-1.5 hover:text-primary"
             onClick={handleOpenDrawer}
           >
@@ -129,7 +140,7 @@ export default function Post({ post }: { post: CommunityPostProps }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
               </svg>
             <span>{post.reply_count || 0}</span>
-          </button>
+          </div>
           <RepliesDrawer
             op={post}
             replies={replies}
@@ -179,7 +190,7 @@ function Reaction() {
           </svg>
             {/* prettier-ignore */}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3 absolute bottom-0 -right-1.5 text-tertiary" >
-            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.75-10.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z" clip-rule="evenodd"/>
+            <path fillRule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.75-10.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z" clipRule="evenodd"/>
           </svg>
           </div>
         </Popover.Trigger>
@@ -335,7 +346,15 @@ function RepliesDrawer({
 function OriginalPost({ post }: { post: CommunityPostProps }) {
   const { displayName, initials } = getDisplayName(post);
 
-  let sanitizedContent = DOMPurify.sanitize(post.content, config);
+  const [sanitizedContent, setSanitizedContent] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const DOMPurify = require("dompurify")(window);
+      setSanitizedContent(DOMPurify.sanitize(post.content, config));
+    }
+  }, [post.content]);
+
   let formattedContent = getContentWithLinks(sanitizedContent);
 
   return (

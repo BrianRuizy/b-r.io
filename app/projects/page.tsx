@@ -65,7 +65,7 @@ export default function Blog() {
                 </div>
 
                 <p className="line-clamp-3 text-tertiary">
-                  {project.description}
+                  {project.summary}
                 </p>
               </div>
             </li>

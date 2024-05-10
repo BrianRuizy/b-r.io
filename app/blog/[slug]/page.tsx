@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "@/app/components/ui/Link";
-import { allPosts, Post as PostType } from ".contentlayer/generated";
+import { allBlogs } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
 import Mdx from "@/app/blog/components/MdxWrapper";
@@ -14,11 +14,6 @@ import { formatDate } from "@/app/_utils/formatDate";
 import { getViewsCount } from "@/app/db/queries";
 import { incrementViews } from "@/app/db/actions";
 import NewsletterSignupForm from "@/app/blog/components/NewsletterSignupForm";
-
-type PostProps = {
-  post: PostType;
-  related: PostType[];
-};
 
 type Props = {
   params: {
@@ -32,9 +27,9 @@ export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const blog = allBlogs.find((blog) => blog.slug === params.slug);
 
-  if (!post) {
+  if (!blog) {
     notFound();
   }
 
@@ -44,7 +39,7 @@ export async function generateMetadata(
     summary: description,
     image,
     slug,
-  } = post;
+  } = blog;
 
   const ogImage = image
     ? `https://b-r.io/${image}`
@@ -68,9 +63,9 @@ export async function generateMetadata(
 }
 
 export default async function Blog({ params }: { params: any }) {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const blog = allBlogs.find((blog) => blog.slug === params.slug);
 
-  if (!post) {
+  if (!blog) {
     notFound();
   }
 
@@ -80,51 +75,51 @@ export default async function Blog({ params }: { params: any }) {
         <div className="flex flex-col gap-8">
           <div className="flex max-w-xl flex-col gap-4 text-pretty">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary">
-              {post.title}
+              {blog.title}
             </h1>
-            <p className="text-secondary">{post.summary}</p>
+            <p className="text-secondary">{blog.summary}</p>
           </div>
           <div className="flex max-w-none items-center gap-4">
             <Avatar src={Me} initials="br" size="sm" />
             <div className="leading-tight">
               <p>Brian Ruiz</p>
               <p className="text-secondary">
-                <time dateTime={post.publishedAt}>
-                  {formatDate(post.publishedAt)}
+                <time dateTime={blog.publishedAt}>
+                  {formatDate(blog.publishedAt)}
                 </time>
-                {post.updatedAt
-                  ? `(Updated ${formatDate(post.updatedAt)})`
+                {blog.updatedAt
+                  ? `(Updated ${formatDate(blog.updatedAt)})`
                   : ""}
                 {" · "}
 
-                <Views slug={post.slug} />
+                <Views slug={blog.slug} />
               </p>
             </div>
           </div>
         </div>
-        {post.image && (
+        {blog.image && (
           <>
             <div className="h-8" />
             <Image
-              src={post.image}
-              alt={`${post.title} post image`}
+              src={blog.image}
+              alt={`${blog.title} blog image`}
               width={700}
               height={350}
-              className="-ml-6 w-[calc(100%+48px)] max-w-none  md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
+              className="-ml-6 w-[calc(100%+48px)] max-w-none md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
               priority
             />
           </>
         )}
         <div className="h-16" />
         <div className="prose prose-neutral text-pretty">
-          <Mdx code={post.body.code} />
+          <Mdx code={blog.body.code} />
         </div>
       </article>
 
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">
           <h2>Tags</h2>
-          <Tags tags={post.tags} />
+          <Tags tags={blog.tags} />
         </div>
 
         <div className="flex flex-col gap-6">
@@ -150,14 +145,14 @@ export default async function Blog({ params }: { params: any }) {
 
 async function Views({ slug }: { slug: string }) {
   let blogViews = await getViewsCount();
-  const viewsForPost = blogViews.find((view) => view.slug === slug);
+  const viewsForBlog = blogViews.find((view) => view.slug === slug);
 
   incrementViews(slug);
 
   return (
     <span>
-      <FlipNumber>{viewsForPost?.count || 0}</FlipNumber>
-      {viewsForPost?.count === 1 ? " view" : " views"}
+      <FlipNumber>{viewsForBlog?.count || 0}</FlipNumber>
+      {viewsForBlog?.count === 1 ? " view" : " views"}
     </span>
   );
 }
