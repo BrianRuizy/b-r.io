@@ -1,24 +1,36 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { set } from "date-fns";
 
 export default function CreditCard() {
+  const [flipped, setFlipped] = useState(false);
+
+  const handleFlip = () => {
+    setFlipped(!flipped);
+  };
+
+  const [copied, setCopied] = useState(false);
+
   return (
     <div
-      className="not-prose flex select-none items-center justify-center overflow-clip bg-secondary p-6 -ml-6 w-[calc(100%+48px)] max-w-none md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
+      className="not-prose relative -ml-6 flex w-[calc(100%+48px)] max-w-none select-none items-center justify-center overflow-clip bg-secondary p-6 md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
       style={{ height: 400 }}
     >
       <motion.div
-        whileTap="flipped"
-        whileHover={{ scale: 0.99 }}
+        onClick={handleFlip}
+        animate={flipped ? "flipped" : "notFlipped"}
+        whileHover={{ scale: 0.95 }}
         style={{ transformStyle: "preserve-3d" }}
         transition={{ type: "spring", duration: 1 }}
         variants={{
           flipped: {
             rotateY: 180,
             rotateX: 5,
+            translateY: -50,
           },
         }}
-        className="mx-auto h-56 w-96 rounded-xl border border-secondary bg-white shadow-soft dark:bg-[#f1f1f1]"
+        className="z-10 mx-auto h-56 w-96 rounded-xl border border-secondary bg-white shadow-soft hover:cursor-pointer dark:bg-[#f1f1f1]"
       >
         {/* front side */}
         <div
@@ -34,7 +46,7 @@ export default function CreditCard() {
           </div>
           <div>
             <p className="text-xs">Expires 12-2030</p>
-            <p className="text-xl text-black">Brian Ruiz</p>
+            <p className="</svg>text-xl text-black">Brian Ruiz</p>
           </div>
         </div>
 
@@ -50,11 +62,24 @@ export default function CreditCard() {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-tertiary">
             <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
           </svg>
-          <p className="bg-gradient-to-r from-neutral-900 to-neutral-500 bg-clip-text font-mono text-xl text-transparent">
+          <p className="bg-gradient-to-r from-neutral-900 to-neutral-400 bg-clip-text font-mono text-xl text-transparent">
             1234-5678-9101-1213
           </p>
         </div>
       </motion.div>
+
+      {/* button to copy card number to clipboard */}
+
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText("1234-5678-9101-1213");
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }}
+        className="absolute bottom-24 z-0 mx-auto rounded-full border border-secondary bg-secondary px-3 py-1 text-center text-sm text-secondary transition-colors hover:bg-tertiary"
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
     </div>
   );
 }
