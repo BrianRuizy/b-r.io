@@ -37,16 +37,23 @@ export default function CraftPage() {
             My UI sandbox.
           </p>
         </div>
+        <p
+          className="max-w-md animate-in text-tertiary"
+          style={{ "--index": 2 } as React.CSSProperties}
+        >
+          This is where I experiment with UI and interaction design. I use this
+          space to explore new ideas or recreate cool things.
+        </p>
       </div>
       <ul
         className="animated-list flex animate-in flex-col"
-        style={{ "--index": 2 } as React.CSSProperties}
+        style={{ "--index": 3 } as React.CSSProperties}
       >
         {crafts.map((craft, index) => (
-          <li key={index} className="group py-3 first:pt-0 transition-opacity">
+          <li key={index} className="group py-3 transition-opacity first:pt-0">
             <Link href={`/craft/${craft.slug}`}>
               <Section heading={craft.title} invert>
-                <p className="text-secondary">{craft.summary}</p>
+                <p className="text-pretty text-secondary">{craft.summary}</p>
               </Section>
             </Link>
           </li>

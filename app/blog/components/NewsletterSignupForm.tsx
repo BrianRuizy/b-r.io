@@ -83,7 +83,7 @@ export default function NewsletterSignupForm({
         productivity, programming, and more!
       </p>
       <form className="mt-2 w-full max-w-md " onSubmit={onSubmit}>
-        <div className="flex w-full rounded-md border border-primary bg-contrast py-1.5 pl-4 pr-1.5">
+        <div className="flex w-full rounded-md border border-primary bg-contrast py-1 pl-3 pr-1">
           <label htmlFor="email" className="sr-only">
             Email
           </label>

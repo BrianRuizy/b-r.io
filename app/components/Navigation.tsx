@@ -15,6 +15,7 @@ const links = [
   { label: "Blog", href: "/blog" },
   { label: "Craft", href: "/craft"},
   { label: "Community", href: "/community" },
+  { label: "Gear", href: "/gear" },
 ];
 
 export default function Navigation() {

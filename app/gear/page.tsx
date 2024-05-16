@@ -95,7 +95,7 @@ export default function Gear() {
             </p>
           </div>
           <p
-            className="max-w-lg animate-in text-tertiary"
+            className="max-w-md animate-in text-tertiary"
             style={{ "--index": 2 } as React.CSSProperties}
           >
             This is all gear I actually own and like. Using the affiliate links
@@ -219,7 +219,7 @@ const gear = [
   {
     name: "Apple Magic Trackpad",
     category: "Home Desk Setup",
-    description: "A 3440 x 1440 IPS Display, great for multitasking.",
+    description: "The go-to trackpad for my MacBook Pro. Great for gestures.",
     image: "https://m.media-amazon.com/images/I/41KZtzhlK+L._AC_SL1500_.jpg",
     link: "https://amzn.to/3vrq148",
   },
@@ -266,7 +266,7 @@ const gear = [
     link: "https://amzn.to/3TR2lzz",
   },
   {
-    name: "Sony 16-35mm f/2.8 GM II",
+    name: "Sony 24-70mm f/2.8 GM II",
     category: "Camera Setup (Video)",
     description: "Super versatile and high quality lens.",
     image: "https://m.media-amazon.com/images/I/71i0q2J-iEL._AC_SL1500_.jpg",
