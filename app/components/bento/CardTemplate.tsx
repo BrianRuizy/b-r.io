@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Halo from "@/app/components/ui/Halo";
+import Halo from "@/app/components/Halo";
 
 export default function Card({
   children,

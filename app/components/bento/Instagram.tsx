@@ -1,5 +1,5 @@
 import Card from "@/app/components/bento/CardTemplate";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import { FaInstagram } from "react-icons/fa";
 
 export default function Instagram() {

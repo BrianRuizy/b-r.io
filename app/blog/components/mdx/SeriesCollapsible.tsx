@@ -1,5 +1,5 @@
 "use client";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import * as Collapsible from "@radix-ui/react-collapsible";
 
 const SeriesCollapsible = () => {

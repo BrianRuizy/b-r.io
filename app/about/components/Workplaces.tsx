@@ -2,17 +2,17 @@
 import Image, { StaticImageData } from "next/image";
 import clsx from "clsx";
 
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 
 type Workplace = {
   title: string;
   company: string;
   imageSrc: string | StaticImageData;
-  time?: string;
+  date?: string;
   link?: string;
 };
 
-function Workplace({ title, company, imageSrc, time, link }: Workplace) {
+function Workplace({ title, company, imageSrc, date, link }: Workplace) {
 
   const content = (
     <>
@@ -32,7 +32,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           <p className="text-secondary">{company}</p>
         </div>
       </div>
-      {time && <time className="text-secondary">{time}</time>}
+      {date && <time className="text-secondary">{date}</time>}
     </>
   );
   return (

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Newsletter } from "next/font/google"
 
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import Navigation from "@/app/components/Navigation";
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        <body className="width-full bg-white text-primary antialiased dark:bg-black">
+        <body className="width-full bg-primary text-primary antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navigation />
             <div className="mx-auto max-w-[700px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">

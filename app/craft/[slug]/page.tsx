@@ -20,7 +20,7 @@ export default async function Blog({ params }: { params: any }) {
             </h1>
             
             <p className="text-secondary">
-              <time dateTime={craft.publishedAt}>{craft.publishedAt}</time>
+              <time dateTime={craft.date}>{craft.date}</time>
             </p>
           </div>
         </div>

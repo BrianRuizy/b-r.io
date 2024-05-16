@@ -2,7 +2,7 @@ import { allProjects } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
 
 import Mdx from "@/app/blog/components/MdxWrapper";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 
 export default function Project({ params }: { params: any }) {
   const project = allProjects.find((project) => project.slug === params.slug);
@@ -16,7 +16,7 @@ export default function Project({ params }: { params: any }) {
       <article>
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 text-secondary">
-            <p>{project.time}</p>
+            <p>{project.date}</p>
             {project.url && (
               <>
                 <span>&middot;</span>

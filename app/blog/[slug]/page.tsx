@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import { allBlogs } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
 import Mdx from "@/app/blog/components/MdxWrapper";
-import Avatar from "@/app/components/ui/Avatar";
+import Avatar from "@/app/components/Avatar";
 import FlipNumber from "@/app/components/FlipNumber";
 import Me from "@/public/avatar.png";
 
@@ -35,7 +35,7 @@ export async function generateMetadata(
 
   const {
     title,
-    publishedAt: publishedTime,
+    date: publishedTime,
     summary: description,
     image,
     slug,
@@ -84,8 +84,8 @@ export default async function Blog({ params }: { params: any }) {
             <div className="leading-tight">
               <p>Brian Ruiz</p>
               <p className="text-secondary">
-                <time dateTime={blog.publishedAt}>
-                  {formatDate(blog.publishedAt)}
+                <time dateTime={blog.date}>
+                  {formatDate(blog.date)}
                 </time>
                 {blog.updatedAt
                   ? `(Updated ${formatDate(blog.updatedAt)})`

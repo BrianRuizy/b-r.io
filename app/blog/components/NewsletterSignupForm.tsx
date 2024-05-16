@@ -4,7 +4,7 @@ import { FormEventHandler, useCallback, useState } from "react";
 import useSWR from "swr";
 import clsx from "clsx";
 
-import Halo from "@/app/components/ui/Halo";
+import Halo from "@/app/components/Halo";
 import FlipNumber from "@/app/components/FlipNumber";
 import fetcher from "@/app/_utils/fetcher";
 

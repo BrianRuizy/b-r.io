@@ -1,4 +1,4 @@
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import Card from "@/app/components/bento/CardTemplate";
 import Map from "@/app/components/bento/Map";
 import Gumroad from "@/app/components/bento/Gumroad";

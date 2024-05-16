@@ -5,7 +5,7 @@ import avatar from "public/avatar.png";
 import map from "public/map.png";
 import { FaYoutube } from "react-icons/fa";
 
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 
 export const metadata: Metadata = {
   title: "Mediakit | Brian Ruiz",

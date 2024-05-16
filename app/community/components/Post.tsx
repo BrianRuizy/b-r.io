@@ -9,7 +9,7 @@ import { Drawer } from "vaul";
 import clsx from "clsx";
 import { useUser } from "@clerk/nextjs";
 
-import Avatar from "@/app/components/ui/Avatar";
+import Avatar from "@/app/components/Avatar";
 import { CommunityPostProps, getReplies } from "@/app/db/queries";
 import { saveReply } from "@/app/db/actions";
 import { getContentWithLinks } from "@/app/_utils/postFormatting";

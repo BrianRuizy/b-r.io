@@ -1,31 +1,29 @@
-import Image from "next/image";
 import { allBlogs } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
+import { allProjects, Project } from ".contentlayer/generated";
 import PostList from "@/app/blog/components/PostList";
+import Section from "@/app/components/Section";
 import BentoGrid from "@/app/components/bento/BentoGrid";
+import Avatar from "@/app/components/Avatar";
+import Image from "next/image";
 import Me from "@/public/avatar.png";
-import Avatar from "@/app/components/ui/Avatar";
+
+import ProjectList from "@/app/projects/components/ProjectList";
 
 export default function Home() {
   const blogs = allBlogs
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     // 3 most recent
     .filter((_, i) => i < 3);
+
+  const projects = allProjects;
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div className="flex animate-in flex-col gap-8">
-        <div
-          className="animate-in"
-          style={{ "--index": 1 } as React.CSSProperties}
-        >
-          <Avatar src={Me} alt="Brian Ruiz" initials="br" size="lg" />
-        </div>
+
         <div
           className="animate-in space-y-4"
           style={{ "--index": 2 } as React.CSSProperties}
@@ -40,25 +38,28 @@ export default function Home() {
           </p>
         </div>
       </div>
+
       <div
-        className="animate-in"
-        style={{ "--index": 3 } as React.CSSProperties}
+        className="flex animate-in flex-col gap-8"
+        style={{ "--index": 4 } as React.CSSProperties}
       >
-        <BentoGrid />
+        <p className="tracking-tight text-primary">Projects</p>
+        <ProjectList projects={projects} />
       </div>
+
       <div
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 4 } as React.CSSProperties}
       >
         <div className="space-y-4">
           <Link
-            className="group flex items-center gap-2 text-xl font-semibold tracking-tight text-primary"
+            className="group flex items-center gap-2 tracking-tight text-primary"
             href="/blog"
           >
             Latest blogs
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
-          <p className="max-w-lg text-secondary">
+          <p className="max-w-lg text-tertiary">
             I occasionally write about programming, productivity, and more.
             Check me out and subscribe to stay up to date.
           </p>

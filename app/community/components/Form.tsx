@@ -8,7 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { TopicProps } from "@/app/db/queries";
 import { saveCommunityPost } from "@/app/db/actions";
 import { getCommunityTopics } from "@/app/db/queries";
-import Avatar from "@/app/components/ui/Avatar";
+import Avatar from "@/app/components/Avatar";
 
 export default function Form() {
   const { isSignedIn, user } = useUser();

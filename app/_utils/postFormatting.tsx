@@ -1,6 +1,6 @@
 
 import ReactDOMServer from "react-dom/server";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 
 import LinkifyIt from "linkify-it";
 import tlds from "tlds";

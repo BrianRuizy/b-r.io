@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Metadata } from "next";
 
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import Section from "@/app/components/Section";
-import ConnectLinks from "../components/ConnectLinks";
-import Workplaces from "./components/Workplaces";
-import Gallery from "./components/Gallery";
+import ConnectLinks from "@/app/components/ConnectLinks";
+import Workplaces from "@/app/about/components/Workplaces";
+import Gallery from "@/app/about/components/Gallery";
 
 import hinesLogo from "public/work/hines-logo.jpeg";
 import perishipLogo from "public/work/periship-logo.jpeg";
@@ -47,6 +47,8 @@ export default function About() {
             height={139}
             className="pointer-events-none relative inset-0 h-60 -rotate-6 rounded-xl bg-gray-400 object-cover shadow-md"
             priority
+            quality={100}
+
           />
         </div>
 
@@ -61,6 +63,8 @@ export default function About() {
             height={260}
             className="pointer-events-none absolute inset-0 -top-48 left-[45%] w-48 rotate-6 rounded-xl bg-gray-400 object-cover shadow-md md:left-[60%] md:w-56"
             priority
+            quality={100}
+
           />
         </div>
       </div>
@@ -74,10 +78,10 @@ export default function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Hi, I&apos;m Brian, born in Honduras and raised in
-              Houston, Texas. I have been coding for{" "}
-              {new Date().getFullYear() - 2019} years. As a software engineer, I
-              specialize in full-stack web development and product design.
+              Hi, I&apos;m Brian, born in Honduras and raised in Houston, Texas.
+              I have been coding for {new Date().getFullYear() - 2019} years. As
+              a software engineer, I specialize in full-stack web development
+              and product design.
             </p>
             <p>
               In addition to coding, I create content on my{" "}
@@ -144,28 +148,28 @@ const workplaces = [
   {
     title: "Full Stack Engineer",
     company: "Hines",
-    time: "2022 -",
+    date: "2022 -",
     imageSrc: hinesLogo,
     link: "https://hines.com",
   },
   {
     title: "Software Engineer",
     company: "PeriShip",
-    time: "2021 - 2022",
+    date: "2021 - 2022",
     imageSrc: perishipLogo,
     link: "https://peripharma.com/",
   },
   {
     title: "Python Developer",
     company: "CAMS",
-    time: "2019 - 2020",
+    date: "2019 - 2020",
     imageSrc: camsLogo,
     link: "https://camstex.com",
   },
   {
     title: "Coding Camp Instructor",
     company: "University of Houston",
-    time: "2019",
+    date: "2019",
     imageSrc: uhdLogo,
     link: "https://www.uhd.edu/",
   },

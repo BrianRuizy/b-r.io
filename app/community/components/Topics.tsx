@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import clsx from "clsx";
 
 import { getCommunityTopics, TopicProps } from "@/app/db/queries";

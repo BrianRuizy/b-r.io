@@ -1,7 +1,7 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 import CustomImage from "@/app/blog/components/Image";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import Alert from "@/app/blog/components/mdx/Alert";
 import LinkPreview from "@/app/blog/components/mdx/LinkPreview";
 import CardReveal from "@/app/craft/components/CreditCard";

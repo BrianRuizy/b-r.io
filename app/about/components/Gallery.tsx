@@ -11,7 +11,7 @@ import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
 import cowboy from "public/gallery/cowboy-bike.webp";
 
-import Halo from "@/app/components/ui/Halo";
+import Halo from "@/app/components/Halo";
 
 const ticketingFont = localFont({
   src: "../../../public/ticketing.woff2",

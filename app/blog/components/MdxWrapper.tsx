@@ -1,7 +1,7 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 import CustomImage from "@/app/blog/components/Image";
-import Link from "@/app/components/ui/Link";
+import Link from "@/app/components/Link";
 import Map from "@/app/components/bento/Map";
 import Alert from "./mdx/Alert";
 import Weather from "./mdx/Weather";
