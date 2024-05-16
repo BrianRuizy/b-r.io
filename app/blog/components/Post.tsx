@@ -45,7 +45,7 @@ export default function Post({ post, mousePosition }: PostProps) {
           )}
           <div className="flex items-center justify-between gap-6">
             <Section heading={formatDate(date)}>
-              <span className="font-medium leading-tight">{title}</span>
+              <span className="font-medium leading-tight text-pretty">{title}</span>
             </Section>
             <div className="relative flex aspect-square h-24 w-24 min-w-24 items-center justify-center rounded-md bg-secondary shadow-sm md:hidden">
               {image ? (

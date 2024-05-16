@@ -2,13 +2,8 @@ import { allBlogs } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 import Link from "@/app/components/Link";
-import { allProjects, Project } from ".contentlayer/generated";
+import { allProjects } from ".contentlayer/generated";
 import PostList from "@/app/blog/components/PostList";
-import Section from "@/app/components/Section";
-import BentoGrid from "@/app/components/bento/BentoGrid";
-import Avatar from "@/app/components/Avatar";
-import Image from "next/image";
-import Me from "@/public/avatar.png";
 
 import ProjectList from "@/app/projects/components/ProjectList";
 
@@ -37,15 +32,15 @@ export default function Home() {
             where I focus on tech, and productivity.
           </p>
           <ul className="flex gap-3 text-sm">
-            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
               partners@b-r.io
               <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
             </li>
-            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
               Photos
               <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
             </li>
-            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
               Tweets
               <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
             </li>
@@ -57,7 +52,7 @@ export default function Home() {
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 4 } as React.CSSProperties}
       >
-        <p className="tracking-tight text-primary">Pinned Projects</p>
+        <p className="tracking-tight text-secondary">Pinned Projects</p>
         <ProjectList projects={projects} />
       </div>
 
@@ -67,13 +62,13 @@ export default function Home() {
       >
         <div className="space-y-4">
           <Link
-            className="group flex items-center gap-2 tracking-tight text-primary"
+            className="group flex items-center gap-2 tracking-tight text-secondary"
             href="/blog"
           >
             Latest blogs
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
-          <p className="max-w-lg text-tertiary">
+          <p className="max-w-lg">
             I occasionally write about programming, productivity, and more.
             Check me out and subscribe to stay up to date.
           </p>
