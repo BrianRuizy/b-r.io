@@ -17,12 +17,15 @@ export default function Section({
   invert = false,
 }: SectionProps) {
   return (
-    <section className="col-reverse flex flex-col gap-2 md:flex-row md:gap-9">
+    <section
+      className="col-reverse flex flex-col gap-2 md:flex-row md:gap-9"
+      id={heading.toLowerCase().replace(/\s/g, "-")}
+    >
       <h2
         className={clsx(
           "shrink-0 md:w-32",
           headingAlignment === "right" && "md:text-right",
-          invert ? "text-primary font-medium" : "text-secondary",
+          invert ? "font-medium text-primary" : "text-secondary",
         )}
       >
         {heading}

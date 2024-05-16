@@ -23,19 +23,33 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div className="flex animate-in flex-col gap-8">
-
         <div
           className="animate-in space-y-4"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <h1 className="text-3xl font-bold tracking-tight text-primary">
-            Brian Ruiz
+            hey, Brian here!
           </h1>
           <p className="max-w-lg text-secondary">
-            Hi there, I&apos;m a software engineer who builds for the web with a
-            design-oriented approach. In addition to coding, I also make YouTube
-            videos, where I focus on tech, and productivity.
+            I am a software engineer who builds for the web with a
+            design-oriented approach. In addition to coding, I make{" "}
+            <Link href="https://youtube.com/@brianruizy">YouTube</Link> videos,
+            where I focus on tech, and productivity.
           </p>
+          <ul className="flex gap-3 text-sm">
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+              partners@b-r.io
+              <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            </li>
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+              Photos
+              <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            </li>
+            <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+              Tweets
+              <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -43,7 +57,7 @@ export default function Home() {
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 4 } as React.CSSProperties}
       >
-        <p className="tracking-tight text-primary">Projects</p>
+        <p className="tracking-tight text-primary">Pinned Projects</p>
         <ProjectList projects={projects} />
       </div>
 
