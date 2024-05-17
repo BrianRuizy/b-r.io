@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        <body className="width-full bg-white dark:bg-primary text-primary antialiased">
+        <body className="width-full bg-contrasr text-primary antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navigation />
             <div className="mx-auto max-w-[700px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">
