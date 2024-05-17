@@ -48,16 +48,7 @@ export default function CustomImage({
               "overflow-hidden rounded-md bg-secondary md:rounded-lg",
           )}
         />
-        {caption && (
-          <figcaption
-            className={clsx(
-              "mx-auto my-2 max-w-md text-center text-xs font-medium leading-tight text-tertiary",
-              breakout && "mx-auto w-full max-w-[700px] px-6 ",
-            )}
-          >
-            {caption}
-          </figcaption>
-        )}
+        {caption && <figcaption>{caption}</figcaption>}
       </figure>
     </div>
   );

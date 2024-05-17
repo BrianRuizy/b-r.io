@@ -36,15 +36,15 @@ export default function Home() {
           className="flex animate-in gap-3 text-sm"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
+          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
             partners@b-r.io
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </li>
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
+          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
             Photos
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </li>
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 transition-colors hover:bg-tertiary">
+          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
             Tweets
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </li>

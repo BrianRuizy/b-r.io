@@ -24,7 +24,7 @@ module.exports = {
         primary: "var(--gray-12)",
         secondary: "var(--gray-11)",
         tertiary: "var(--gray-9)",
-        link: "var(--blue-10)",
+        link: "var(--blue-11)",
       },
       backgroundColor: {
         contrast: "var(--contrast-color)",

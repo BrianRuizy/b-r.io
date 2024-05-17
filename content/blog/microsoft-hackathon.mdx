@@ -1,8 +1,8 @@
 ---
-title: 'This App got us 1st Place at a Microsoft Hackathon'
-date: '2019-12-15'
-summary: 'Leveraging the latest of Microsoft Azure Machine Learning to help solve a $6.4 billion infrastructure issue.'
-tags: ["CSS", "SVG"]
+title: "This App got us 1st Place at a Microsoft Hackathon"
+date: "2019-12-15"
+summary: "Leveraging the latest of Microsoft Azure Machine Learning to help solve a $6.4 billion infrastructure issue."
+tags: ["Internet of Things", "Machine Learning", "Hackathon"]
 ---
 
 ## The Challenge
@@ -15,7 +15,7 @@ The technology we opted for the project revolved heavily around Python. For the 
 
 Python also allowed us to create data visualizations —matplotlib— of our data which we used to tweak the algorithm. All of this was tied together with the Microsoft Azure platform. From storing the data (CSV’s and images) in Azure, to using the Azure Machine Learning platform to train the model.
 
-<Image 
+<Image
   src="/blog/microsoft-hackathon/tech.webp"
   alt="Tech Stack"
   width={1000}
@@ -33,7 +33,6 @@ After juggling several ideas we settled on the issue of road potholes. We discov
 
 Looking at our challenge from a high level we need the following components or stages, to be able to solve the problem. Also, we need to design a 2-layer confirmation of a road pothole. The first is the active dashboard camera, and the second uses the user’s phone telemetry data, such as GPS and accelerometer modules.
 
-
 ### 1. Analyzing mobile telemetry data
 
 Every modern smartphone is equipped with very accurate telemetry systems. For example, the GPS and accelerometer, which we leveraged for location and to track any abrupt movement indicating a pothole on the road.
@@ -48,9 +47,9 @@ df = pd.read_csv('/home/br/Downloads/testdata.csv')
 df['Time'] = pd.to_datetime(df.Time, format='%Y-%m-%d %H:%M:%S:%f')
 
 columns = [
-  'ACCELEROMETER X (m/s²)', 
+  'ACCELEROMETER X (m/s²)',
   'ACCELEROMETER Y (m/s²)',
-  'ACCELEROMETER Z (m/s²)', 
+  'ACCELEROMETER Z (m/s²)',
   'Time'
 ]
 
@@ -64,9 +63,8 @@ This part was more difficult to implement, but this was our second layer for the
 
 We used Azure Logic Apps to import our road image frames to the cloud, and with OpenCV were able to register a model to start analyzing our content with the conveniently named Azure microservice Computer Vision.
 
-
-<Image 
-  src="https://miro.medium.com/max/1200/0*KS2_n2hz7Lrqyn_L.gif" 
+<Image
+  src="https://miro.medium.com/max/1200/0*KS2_n2hz7Lrqyn_L.gif"
   alt="Dashcam Footage"
   width={1000}
   height={600}
@@ -80,7 +78,7 @@ From the start, the idea was to keep the interface as intuitive as possible to m
 
 Unfortunately, we didn't have enough time to implement both the backend logic and the front-end interface. However, I created a mockup of the interface, which captures the essence of the idea, and it's a good example with an emphasis on a minimal user experience.
 
-<Image 
+<Image
   src="/blog/microsoft-hackathon/mockup-clear.png"
   alt="UI mockup"
   width={1080}
@@ -95,7 +93,6 @@ Unfortunately, we didn't have enough time to implement both the backend logic an
 Finally, we needed to plot our GPS data so the city could take action. The data we leveraged for this use-case included latitude and longitude coordinates, and date-time stamps.
 For geocoding, we used Folium, which is a Python library that allows us to plot data on a map. Location accuracy is important to pinpoint multiple occurrences of the same pothole from different users for clustering the locations.
 
-
 ```python showLineNumbers  {8-10}
 import folium
 import pandas as pd
@@ -105,14 +102,14 @@ map = folium.Map(location=SF_COORDINATES)
 
 for each in df.iterrows():
   map.simple_marker(
-    location = [each[1]['Y'],each[1]['X']], 
+    location = [each[1]['Y'],each[1]['X']],
     clustered_marker = True
   )
 
 display(map)
 ```
 
-<Image 
+<Image
   src="https://miro.medium.com/max/1400/0*PYSGLUaVid-vzeHr.png"
   alt="San Francisco"
   width={1000}
@@ -127,8 +124,8 @@ By the time the hackathon countdown ended, we were able to design and implement 
 
 After presenting our MVP (minimum viable product), the judges called a draw for first place. Having won the competition granted us credits to some of Microsoft Azure cloud services like storage and processing. And, the company which hosted the competition granted us seats at their co-working space, which we could use to continue the development of our application and idea.
 
-<Image 
-  src="https://miro.medium.com/max/1400/0*v0plg9CmtcGd_IyZ.jpg" 
+<Image
+  src="https://miro.medium.com/max/1400/0*v0plg9CmtcGd_IyZ.jpg"
   alt="The Bump.it team from UHD"
   width={1000}
   height={600}

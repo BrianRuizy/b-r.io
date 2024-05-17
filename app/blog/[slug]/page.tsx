@@ -6,8 +6,8 @@ import { allBlogs } from ".contentlayer/generated";
 
 import Tags from "@/app/components/Tags";
 import Mdx from "@/app/blog/components/MdxWrapper";
-import Avatar from "@/app/components/Avatar";
 import FlipNumber from "@/app/components/FlipNumber";
+import Avatar from "@/app/components/Avatar";
 import Me from "@/public/avatar.png";
 
 import { formatDate } from "@/app/_utils/formatDate";
@@ -84,9 +84,7 @@ export default async function Blog({ params }: { params: any }) {
             <div className="leading-tight">
               <p>Brian Ruiz</p>
               <p className="text-secondary">
-                <time dateTime={blog.date}>
-                  {formatDate(blog.date)}
-                </time>
+                <time dateTime={blog.date}>{formatDate(blog.date)}</time>
                 {blog.updatedAt
                   ? `(Updated ${formatDate(blog.updatedAt)})`
                   : ""}
@@ -129,11 +127,11 @@ export default async function Blog({ params }: { params: any }) {
             <Link href="/community" underline>
               community
             </Link>{" "}
-            chat or reach out at any of my{" "}
-            <Link href="/links" underline>
-              links
-            </Link>
-            . I&apos;d be happy to connect!
+            chat or reach me at{" "}
+            <Link href="mailto:brian@b-r.io" underline>
+              brian@b-r.io
+            </Link>{" "}
+            I&apos;d be happy to connect!
           </p>
         </div>
 
