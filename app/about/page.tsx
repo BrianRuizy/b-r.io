@@ -47,7 +47,6 @@ export default function About() {
             height={139}
             className="pointer-events-none relative inset-0 h-60 -rotate-6 rounded-xl bg-gray-400 object-cover shadow-md"
             priority
-            quality={100}
 
           />
         </div>
@@ -63,7 +62,6 @@ export default function About() {
             height={260}
             className="pointer-events-none absolute inset-0 -top-48 left-[45%] w-48 rotate-6 rounded-xl bg-gray-400 object-cover shadow-md md:left-[60%] md:w-56"
             priority
-            quality={100}
 
           />
         </div>

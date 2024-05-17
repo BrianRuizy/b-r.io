@@ -13,7 +13,7 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
   imageUrl,
   link,
 }) => {
-  const baseUrl = new URL(link).hostname.replace(/^www\./i, "");
+  const baseUrl = new URL(link).hostname + '/' + new URL(link).pathname.split('/')[1];
 
   return (
     <a
@@ -22,15 +22,17 @@ const LinkPreview: React.FC<LinkPreviewProps> = ({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="prose w-full max-w-[12rem]">
-        <Image
-          width={600}
-          height={400}
-          src={imageUrl}
-          alt="OG Image"
-          className="aspect-video w-full rounded object-cover"
-        />
-      </div>
+      {imageUrl && (
+        <div className="prose w-full max-w-[12rem]">
+          <Image
+            width={600}
+            height={400}
+            src={imageUrl}
+            alt="OG Image"
+            className="aspect-video w-full rounded object-cover"
+          />
+        </div>
+      )}
 
       <div className="flex w-full flex-col gap-1 leading-tight">
         <p className="m-0 flex items-center gap-0.5 text-sm text-tertiary">

@@ -1,7 +1,7 @@
 ---
-title: 'How to create a COVID-19 dashboard with Python'
-date: '2021-09-01'
-summary: 'A quick walkthrough overview of the project setup and the technology stack we used.'
+title: "How to create a COVID-19 dashboard with Python"
+date: "2021-09-01"
+summary: "A quick walkthrough overview of the project setup and the technology stack we used."
 tags: ["App Development"]
 ---
 
@@ -21,13 +21,23 @@ For this project, it was crucial to have accurate, and trustworthy datasets.
 This explains why the multiple aforementioned sources were diligently picked.
 In doing so the goal is to provide the most accurate representations of the pandemic, the opposite could have its own repercussions at scale.
 
-<Image rounded width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*4DeT3bxzq-akxL9q.jpg" caption="person reading Covid news"/>
+<Image
+  width={600}
+  height={400}
+  src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*4DeT3bxzq-akxL9q.jpg"
+  caption="person reading Covid news"
+  contained
+/>
 
 ## Technology stack
 
 This project began with Python-based Jupyter Notebooks, and the use of Plotly, “the leading front-end for ML & data science models in Python, R, and Julia.” Django. But I needed a way for this to be accessible to the public therefore I started using the Django web framework, Django is a high-level Web framework that encourages rapid development and clean, pragmatic design. To bootstrap the initial dashboard grid we used Appseed and Bootstrap 4 to fill in where we needed custom UI elements.
 
-<Image width={600} height={400} src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*Za--6loAv75j4wRG.png" />
+<Image
+  width={600}
+  height={400}
+  src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*Za--6loAv75j4wRG.png"
+/>
 
 ## Front-end Design
 
@@ -35,7 +45,13 @@ Overall the general approach of the application is to display a grid of differen
 
 And, it was important to design the grid in such a way that the cards of data were responsive and friendly to different devices and viewports. Bootstrap 4 allowed us to easily create a device-responsive grid.
 
-<Image rounded width={600} height={400} caption="Visualizations responsive to different devices" src="/blog/covid/phones.png" />
+<Image
+  contained
+  width={600}
+  height={400}
+  caption="Visualizations responsive to different devices"
+  src="/blog/covid/phones.png"
+/>
 
 ## How It Works
 
@@ -82,14 +98,14 @@ Using AJAX in javascript to send an asynchronous request to the Python backend. 
 
 ```js
 function load_realtime_growth_chart() {
-  var xhttp = new XMLHttpRequest()
+  var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       /* plotly.js code here*/
     }
-  }
-  xhttp.open("GET", "realtime_growth")
-  xhttp.send()
+  };
+  xhttp.open("GET", "realtime_growth");
+  xhttp.send();
 }
 ```
 

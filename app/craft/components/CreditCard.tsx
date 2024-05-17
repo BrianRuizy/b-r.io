@@ -14,7 +14,7 @@ export default function CreditCard() {
 
   return (
     <div
-      className="not-prose relative -ml-6 flex w-[calc(100%+48px)] max-w-none select-none items-center justify-center overflow-clip bg-secondary p-6 md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
+      className="not-prose relative -ml-6 flex w-[calc(100%+48px)] max-w-none select-none items-center justify-center overflow-clip bg-secondary p-6 md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)] md:border border-secondary"
       style={{ height: 400 }}
     >
       <motion.div

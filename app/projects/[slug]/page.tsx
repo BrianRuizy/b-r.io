@@ -1,9 +1,10 @@
 import { allProjects } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
 
-import Mdx from "@/app/blog/components/MdxWrapper";
-import Link from "@/app/components/Link";
 import Avatar from "@/app/components/Avatar";
+import Link from "@/app/components/Link";
+import Mdx from "@/app/blog/components/MdxWrapper";
+import NewsletterSignupForm from "@/app/blog/components/NewsletterSignupForm";
 import Me from "@/public/avatar.png";
 
 export default function Project({ params }: { params: any }) {
@@ -45,6 +46,7 @@ export default function Project({ params }: { params: any }) {
           <Mdx code={project.body.code} />
         </div>
       </article>
+
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
@@ -60,6 +62,7 @@ export default function Project({ params }: { params: any }) {
             I&apos;d be happy to connect!
           </p>
         </div>
+        <NewsletterSignupForm contained={false} />
       </div>
     </div>
   );

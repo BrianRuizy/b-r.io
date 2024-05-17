@@ -25,7 +25,7 @@ export default async function Blog({ params }: { params: any }) {
           </div>
         </div>
 
-        <div className="h-16" />
+        <div className="h-12" />
         <div className="prose prose-neutral text-pretty prose-headings:text-base">
           <Mdx code={craft.body.code} />
         </div>

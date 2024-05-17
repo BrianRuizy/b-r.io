@@ -7,10 +7,10 @@ type CustomImageProps = {
   height: number;
   alt: string;
   caption?: string;
-  breakout?: boolean;
-  rounded?: boolean;
   priority?: boolean;
   reset?: boolean;
+  contained?: boolean;
+  size?: "base" | "lg";
 };
 
 export default function CustomImage({
@@ -19,22 +19,14 @@ export default function CustomImage({
   height,
   alt,
   caption,
-  breakout,
-  rounded,
   priority,
   reset,
+  contained,
+  size = "base",
 }: CustomImageProps) {
   return (
-    <div
-      className={clsx(
-        reset ? "" : "not-prose my-8 w-full",
-        breakout ? "bg-secondary" : "",
-        (rounded || breakout) && "overflow-hidden rounded-md md:rounded-lg",
-      )}
-    >
-      <figure
-        className={clsx("m-0 flex flex-col", breakout ? "gap-4" : "gap-2")}
-      >
+    <div className={clsx(reset ? "" : "not-prose my-8 w-full")}>
+      <figure className={clsx("m-0 flex flex-col gap-2")}>
         <Image
           src={src}
           width={width}
@@ -43,9 +35,9 @@ export default function CustomImage({
           priority={priority}
           className={clsx(
             "h-auto w-full",
-            breakout ? "bg-secondary" : "",
-            (rounded || breakout) &&
-              "overflow-hidden rounded-md bg-secondary md:rounded-lg",
+            contained &&
+              "overflow-hidden rounded-md border border-secondary bg-secondary md:rounded-lg",
+            size === "lg" && "max-w-none md:-ml-20 md:w-[calc(100%+160px)]",
           )}
         />
         {caption && <figcaption>{caption}</figcaption>}

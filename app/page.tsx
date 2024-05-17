@@ -1,10 +1,9 @@
 import { allBlogs } from ".contentlayer/generated";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import { allProjects } from ".contentlayer/generated";
 
 import Link from "@/app/components/Link";
-import { allProjects } from ".contentlayer/generated";
 import PostList from "@/app/blog/components/PostList";
-
 import ProjectList from "@/app/projects/components/ProjectList";
 
 export default function Home() {
@@ -13,7 +12,9 @@ export default function Home() {
     // 3 most recent
     .filter((_, i) => i < 3);
 
-  const projects = allProjects;
+  const projects = allProjects.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">

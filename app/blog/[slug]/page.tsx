@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import Link from "@/app/components/Link";
 import { allBlogs } from ".contentlayer/generated";
 
+import Avatar from "@/app/components/Avatar";
 import Tags from "@/app/components/Tags";
 import Mdx from "@/app/blog/components/MdxWrapper";
 import FlipNumber from "@/app/components/FlipNumber";
-import Avatar from "@/app/components/Avatar";
 import Me from "@/public/avatar.png";
 
 import { formatDate } from "@/app/_utils/formatDate";
@@ -23,10 +23,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const blog = allBlogs.find((blog) => blog.slug === params.slug);
 
   if (!blog) {
@@ -103,7 +100,7 @@ export default async function Blog({ params }: { params: any }) {
               alt={`${blog.title} blog image`}
               width={700}
               height={350}
-              className="-ml-6 w-[calc(100%+48px)] max-w-none md:rounded-lg lg:-ml-16 lg:w-[calc(100%+128px)]"
+              className="-ml-6 w-[calc(100%+48px)] max-w-none md:rounded-lg lg:-ml-20 lg:w-[calc(100%+160px)]"
               priority
             />
           </>
@@ -119,7 +116,6 @@ export default async function Blog({ params }: { params: any }) {
           <h2>Tags</h2>
           <Tags tags={blog.tags} />
         </div>
-
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-lg text-pretty text-secondary">
@@ -134,7 +130,6 @@ export default async function Blog({ params }: { params: any }) {
             I&apos;d be happy to connect!
           </p>
         </div>
-
         <NewsletterSignupForm contained={false} />
       </div>
     </div>
