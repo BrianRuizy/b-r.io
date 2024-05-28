@@ -45,7 +45,6 @@
     "rehype-prism-plus": "^1.6.3",
     "rehype-slug": "^6.0.0",
     "slugify": "^1.6.6",
-    "swr": "^2.2.4",
     "tlds": "^1.252.0",
     "vaul": "^0.9.0"
   },
