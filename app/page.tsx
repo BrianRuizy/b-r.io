@@ -33,23 +33,32 @@ export default function Home() {
             where I focus on tech, and productivity.
           </p>
         </div>
-        <ul
+        <div
           className="flex animate-in gap-3 text-sm"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+          <Link
+            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+            href="mailto:partner@b-r.io"
+          >
             partners@b-r.io
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
-          </li>
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
-            Photos
+          </Link>
+          <Link
+            href="https://instagram.com/brianruizy"
+            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+          >
+            IG
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
-          </li>
-          <li className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 hover:bg-tertiary">
+          </Link>
+          <Link
+            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+            href="https://twitter.com/brianruizy"
+          >
             Tweets
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
-          </li>
-        </ul>
+          </Link>
+        </div>
       </div>
 
       <div

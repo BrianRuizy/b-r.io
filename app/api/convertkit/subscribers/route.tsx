@@ -1,12 +1,6 @@
 const API_SECRET = process.env.CONVERTKIT_API_SECRET;
 
 export async function GET() {
-  // Endpoint
-  // GET /v3/subscribers
-
-  // Required parameters
-  // api_secret - Your API secret key
-
   if (!API_SECRET) {
     console.error("API_SECRET is missing");
     return new Response("API_SECRET is missing", { status: 500 });
