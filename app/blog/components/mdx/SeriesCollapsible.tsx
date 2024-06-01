@@ -5,7 +5,7 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 const SeriesCollapsible = () => {
   return (
     <Collapsible.Root className="my-4 flex flex-col divide-y divide-secondary overflow-clip rounded-md border border-secondary">
-      <Collapsible.Trigger className="group flex items-center justify-between gap-3 p-4 bg-primary">
+      <Collapsible.Trigger className="group flex items-center justify-between gap-3 bg-primary p-4">
         <p className="m-0 text-left font-medium leading-tight text-primary">
           Building an Awesome Developer Blog with Next.js
           <span className="pl-2 font-normal text-tertiary">∙ 3 of 5</span>
@@ -30,8 +30,11 @@ const SeriesCollapsible = () => {
             </Link>
           </li>
           <li className="transition-opacity">
-            <Link href="/blog" className="font-normal">
-              Bento Grids: Everyone Loves Them
+            <Link
+              href="/blog"
+              className="font-normal text-secondary no-underline"
+            >
+              ISR + MDX Blog Posts with Next.js
             </Link>
           </li>
           <li className="transition-opacity">
