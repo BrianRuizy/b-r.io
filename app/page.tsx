@@ -48,6 +48,13 @@ export default function Home() {
             href="https://instagram.com/brianruizy"
             className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
           >
+            Discord
+            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+          </Link>
+          <Link
+            href="https://instagram.com/brianruizy"
+            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+          >
             IG
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </Link>
