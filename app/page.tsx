@@ -45,7 +45,7 @@ export default function Home() {
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </Link>
           <Link
-            href="https://instagram.com/brianruizy"
+            href="https://discord.gg/KhNh8nbw3U"
             className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
           >
             Discord
