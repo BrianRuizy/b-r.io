@@ -1,4 +1,10 @@
-import { FaYoutube, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  FaYoutube,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaDiscord,
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 interface ConnectLink {
@@ -54,14 +60,19 @@ const ConnectLinks: ConnectLink[] = [
     icon: <FaXTwitter />,
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/brianruizy/",
-    icon: <FaLinkedin />,
+    label: "Discord",
+    href: "https://discord.gg/KhNh8nbw3U",
+    icon: <FaDiscord />,
   },
   {
     label: "GitHub",
     href: "https://github.com/brianruizy",
     icon: <FaGithub />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/brianruizy/",
+    icon: <FaLinkedin />,
   },
 ];
 
