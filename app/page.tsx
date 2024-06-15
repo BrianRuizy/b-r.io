@@ -38,13 +38,6 @@ export default function Home() {
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Link
-            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
-            href="mailto:partner@b-r.io"
-          >
-            partners@b-r.io
-            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
-          </Link>
-          <Link
             href="https://discord.gg/KhNh8nbw3U"
             className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
           >
