@@ -40,40 +40,6 @@ CREATE TABLE IF NOT EXISTS blog_views (
     count INT DEFAULT 0
 )
 ```
-
-```sql
--- crete topics table
-CREATE TABLE topics (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-)
-
--- Create CommunityPosts table
-CREATE TABLE community_posts (
-    id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    clerk_user_id VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    topic_id INTEGER REFERENCES Topics(id)
-)
-
--- Create reactions table
-CREATE TABLE reactions (
-    id SERIAL PRIMARY KEY,
-    post_id INTEGER REFERENCES community_posts(id),
-    clerk_user_id VARCHAR(255) NOT NULL,
-    emoji VARCHAR(255) NOT NULL
-)
-
--- Create replies table, for community_posts
-CREATE TABLE replies (
-    id SERIAL PRIMARY KEY,
-    content TEXT NOT NULL,
-    clerk_user_id VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    post_id INTEGER REFERENCES CommunityPosts(id)
-)
-
 ```
 
 ## Deployment

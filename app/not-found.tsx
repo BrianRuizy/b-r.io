@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Custom404 = (): JSX.Element => (
   <div className="flex flex-col gap-2">
     <h1 className="text-3xl font-bold tracking-tight text-primary">404</h1>
-    <p className="text-secondary">
+    <p className="text-secondary max-w-sm">
       Uh oh! This page does not exists, maybe you clicked an old link or
       misspelled. Please try again…
     </p>

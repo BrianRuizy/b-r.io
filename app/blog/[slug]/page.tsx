@@ -118,16 +118,12 @@ export default async function Blog({ params }: { params: any }) {
         </div>
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
-          <p className="max-w-lg text-pretty text-secondary">
-            Questions or need more details? Ping me on the{" "}
-            <Link href="/community" underline>
-              community
+          <p className="max-w-md text-pretty text-secondary">
+            Questions or need more details? Ping me on {" "}
+            <Link href="/discord" underline>
+              Discord,
             </Link>{" "}
-            chat or reach me at{" "}
-            <Link href="mailto:brian@b-r.io" underline>
-              brian@b-r.io
-            </Link>{" "}
-            I&apos;d be happy to connect!
+            or any of my other social media <Link href="/links" underline>links</Link>.
           </p>
         </div>
         <NewsletterSignupForm contained={false} />
