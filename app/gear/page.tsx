@@ -9,6 +9,7 @@ import cables from "public/gear/cables.png";
 import EpidemicSound from "public/gear/epidemic-sound.png";
 import Keyboard from "public/gear/keeb.jpeg";
 import Macrofactor from "public/gear/macrofactor.webp";
+import Raycast from "public/gear/raycast.png";
 
 export const metadata: Metadata = {
   title: "Gear | Brian Ruiz",
@@ -33,7 +34,7 @@ interface ItemProps {
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
   <li className="flex items-center gap-4 transition-opacity">
     <a
-      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl bg-tertiary shadow-sm border border-secondary"
+      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl border border-secondary bg-tertiary shadow-sm"
       href={link}
       target="_blank"
     >
@@ -226,18 +227,19 @@ const gear = [
   {
     name: "MacroFactor",
     category: "Apps",
-    description: "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
+    description:
+      "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
     image: Macrofactor,
     link: "https://macrofactorapp.com/",
+    sponsored: true,
   },
   {
-    name: "Copilot Money",
+    name: "Raycast",
     category: "Apps",
-    image: Copilot,
     description:
-      "'BRIANRUIZ', 2 months FREE. For all things personal finance, this is a must.",
-    link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
-    sponsored: true,
+      "The quickest way to get things done on your Mac. Using Raycast daily.",
+    image: Raycast,
+    link: "https://raycast.com/?via=brianruiz",
   },
   {
     name: "Epidemic Sound",
@@ -255,7 +257,15 @@ const gear = [
     description: "1 Month FREE code. The fastest email experience with AI.",
     link: "https://superhuman.com/refer/bspuaqpo",
   },
-
+  {
+    name: "Copilot Money",
+    category: "Apps",
+    image: Copilot,
+    description:
+      "'BRIANRUIZ', 2 months FREE. For all things personal finance, this is a must.",
+    link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
+    sponsored: true,
+  },
   {
     name: "Sony FX3",
     category: "Camera Setup (Video)",
