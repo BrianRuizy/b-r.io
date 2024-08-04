@@ -168,7 +168,7 @@ const gear = [
     description:
       "Superb quality, favorite keeb so far. Build code Y0E1F2E3C4A5A",
     image: Keyboard,
-    link: "https://amzn.to/3U9tcE9",
+    link: "https://modedesigns.com/pages/envoy",
   },
   {
     name: "Logitech MX Master Mouse 3S",
