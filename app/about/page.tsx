@@ -143,7 +143,7 @@ const workplacesByLanguage = {
     {
       title: "Développeur Full Stack",
       company: "Hacksis",
-      time: "Janv. 2023 - Maintenant",
+      time: "Janv. 2024 - Maintenant",
       imageSrc: hacksisLogo,
       link: "https://hacksis.dev/",
     },
@@ -173,7 +173,7 @@ const workplacesByLanguage = {
     {
       title: "Full Stack Developer",
       company: "Hacksis",
-      time: "Jan. 2023 - Now",
+      time: "Jan. 2024 - Now",
       imageSrc: hacksisLogo,
       link: "https://hacksis.dev/",
     },
