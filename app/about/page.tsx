@@ -7,6 +7,7 @@ import ConnectLinks from "../../components/ConnectLinks";
 import Workplaces from "./components/Workplaces";
 import Gallery from "./components/Gallery";
 
+import hacksisLogo from "public/work/hacksis-logo.svg";
 import soprasteriaLogo from "public/work/sopra-steria-logo.svg";
 import arcosLogo from "public/work/arcos-logo.svg";
 import motorcycle from "public/gallery/moto.svg";
@@ -124,16 +125,12 @@ export default function About() {
               {new Date().getFullYear() - 2020}+ {text.thirdParagraphContentOne}
             </p>
             <p>
-              {text.thirdParagraphContentTwoDotOne} {" "}
-              <Link
-                className="underline"
-                href="https://www.soprasteria.fr/"
-              >
-                {text.thirdParagraphContentLink}
-              </Link>
-              {text.thirdParagraphContentTwoDotTwo}
+              {text.thirdParagraphContentTwoDotOne} {" "} {text.thirdParagraphContentTwoDotTwo}
             </p>
             <Workplaces items={workplacesByLanguage} language={lang} />
+            <p>
+              * {text.asterix}
+            </p>
           </div>
         </Section>
       </div>
@@ -144,46 +141,60 @@ export default function About() {
 const workplacesByLanguage = {
   "FR": [
     {
+      title: "Développeur Full Stack",
+      company: "Hacksis",
+      time: "Janv. 2023 - Maintenant",
+      imageSrc: hacksisLogo,
+      link: "https://hacksis.dev/",
+    },
+    {
       title: "Développeur Java",
       company: "Sopra Steria",
-      time: "2023 - Maintenant",
+      time: "Sept. 2023 - Janv.2024",
       imageSrc: soprasteriaLogo,
       link: "https://www.soprasteria.fr/",
     },
     {
-      title: "Développeur Full Stack",
+      title: "Développeur Full Stack *",
       company: "Sopra Steria",
-      time: "2021 - 2023",
+      time: "Sept. 2021 - Sept. 2023",
       imageSrc: soprasteriaLogo,
       link: "https://www.soprasteria.fr/",
     },
     {
-      title: "Développeur Full Stack",
+      title: "Développeur Full Stack *",
       company: "ARCOS",
-      time: "2020 - 2021",
+      time: "Juin 2020 - Sept. 2021",
       imageSrc: arcosLogo,
       link: "https://arcos-recouvrement.com/",
     },
   ],
   "EN": [
     {
+      title: "Full Stack Developer",
+      company: "Hacksis",
+      time: "Jan. 2023 - Now",
+      imageSrc: hacksisLogo,
+      link: "https://hacksis.dev/",
+    },
+    {
       title: "Java Developer",
       company: "Sopra Steria",
-      time: "2023 - Now",
+      time: "Sept. 2023 - Jan. 2024",
       imageSrc: soprasteriaLogo,
       link: "https://www.soprasteria.fr/",
     },
     {
-      title: "Full Stack Developer",
+      title: "Full Stack Developer *",
       company: "Sopra Steria",
-      time: "2021 - 2023",
+      time: "Sept. 2021 - Sept. 2023",
       imageSrc: soprasteriaLogo,
       link: "https://www.soprasteria.fr/",
     },
     {
-      title: "Full Stack Developer",
+      title: "Full Stack Developer *",
       company: "ARCOS",
-      time: "2020 - 2021",
+      time: "June 2020 - Sept. 2021",
       imageSrc: arcosLogo,
       link: "https://arcos-recouvrement.com/",
     },

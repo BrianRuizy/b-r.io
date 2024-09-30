@@ -12,10 +12,10 @@ export const aboutTranslations: Translations = {
         secondParagraphContent: "Do you have a question or just want to chat? Feel free to",
         secondParagraphLinkMail: "email me.",
         thirdParagraphTitle: "Work",
-        thirdParagraphContentOne: "years of experience in computer development (3 years of internships).",
-        thirdParagraphContentTwoDotOne: "I started my career at Arcos independently. Then, I worked at",
-        thirdParagraphContentLink: "Sopra Steria",
-        thirdParagraphContentTwoDotTwo: ". I am now a developer and still work at Sopra Steria, one of the largest French IT service companies."
+        thirdParagraphContentOne: "years of experience in computer development (3 years of work-study).",
+        thirdParagraphContentTwoDotOne: "I started my career at Arcos independently. Then, I worked at Sopra Steria",
+        thirdParagraphContentTwoDotTwo: ". I am now a Full Stack Developer and work for Hacksis, a startup whose aim is the modernization of transport tools.",
+        asterix: "in Work-Study"
     },
     FR: {
         title: "À propos de moi",
@@ -23,14 +23,14 @@ export const aboutTranslations: Translations = {
         firstParagraphTitle: "À propos",
         firstParagraphContentOne: "Bonjour, Je suis Decloquement Oscar !",
         firstParagraphContentTwo: "J'ai une passion pour les nouvelles technologies et je suis toujours à la recherche de moyens de les intégrer dans mon travail.",
-        firstParagraphContentThree: "Quand je ne travail pas, je suis probablement en train de soulever des poids au crossfit, de courir avec mon chien ou en découverte d'environement avec mon drone FPV et ma moto",
+        firstParagraphContentThree: "Quand je ne travaille pas, je suis probablement en train de soulever des poids au crossfit, de courir avec mon chien ou en découverte d'environnement avec mon drone FPV et ma moto",
         secondParagraphTitle: "Réseaux",
         secondParagraphContent: "Vous avez une question ou souhaitez simplement discuter ? N'hésitez pas à",
         secondParagraphLinkMail: "m'envoyer un email",
         thirdParagraphTitle: "Travail",
         thirdParagraphContentOne: "années d'expérience en développement informatique (3 ans d'alternance).",
-        thirdParagraphContentTwoDotOne: "J'ai commencé ma carrière chez Arcos en autonomie. Ensuite, j'ai travaillé chez",
-        thirdParagraphContentLink: "Sopra Steria",
-        thirdParagraphContentTwoDotTwo: ". Je suis maintenant un développeur et je travaille toujours chez Sopra Steria, l'une des plus grandes ESN Française.."
+        thirdParagraphContentTwoDotOne: "J'ai commencé ma carrière chez Arcos en autonomie. Ensuite, j'ai travaillé chez Sopra Steria",
+        thirdParagraphContentTwoDotTwo: ". Je suis maintenant un Développeur Full Stack chez Hacksis, une startup qui a pour vocation la modernisation d'outils pour le transport",
+        asterix: "en Alternance"
     }
 };

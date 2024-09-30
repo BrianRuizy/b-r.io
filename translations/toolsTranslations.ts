@@ -39,6 +39,19 @@ export const tools: Tool[] = [
         "link": "https://code.visualstudio.com/"
     },
     {
+        "name": "Visual Studio",
+        "category": {
+            "FR": "Environnements de Développement Intégré (IDE)",
+            "EN": "Integrated Development Environments (IDE)"
+        },
+        "description": {
+            "FR": "Éditeur de code officiel pour le .NET, C#, Visual Basic",
+            "EN": "Official code editor for .NET, C#, Visual Basic"
+        },
+        "image": "tools/visualstudio.svg",
+        "link": "https://visualstudio.microsoft.com/"
+    },
+    {
         "name": "PyCharm",
         "category": {
             "FR": "Environnements de Développement Intégré (IDE)",
@@ -50,19 +63,6 @@ export const tools: Tool[] = [
         },
         "image": "tools/pycharm.svg",
         "link": "https://www.jetbrains.com/pycharm/"
-    },
-    {
-        "name": "Sublime Text",
-        "category": {
-            "FR": "Environnements de Développement Intégré (IDE)",
-            "EN": "Integrated Development Environments (IDE)"
-        },
-        "description": {
-            "FR": "Éditeur de texte élégant pour code et prose",
-            "EN": "Elegant text editor for code and prose"
-        },
-        "image": "tools/sublimtxt.svg",
-        "link": "https://www.sublimetext.com/"
     },
     {
         "name": "Xcode",
@@ -115,19 +115,6 @@ export const tools: Tool[] = [
         },
         "image": "tools/webstorm.svg",
         "link": "https://www.jetbrains.com/webstorm/"
-    },
-    {
-        "name": "Vim",
-        "category": {
-            "FR": "Environnements de Développement Intégré (IDE)",
-            "EN": "Integrated Development Environments (IDE)"
-        },
-        "description": {
-            "FR": "Éditeur de texte modulable pour programmation efficace",
-            "EN": "Flexible text editor for efficient programming"
-        },
-        "image": "tools/vim.svg",
-        "link": "https://www.vim.org/"
     },
     {
         "name": "Git",
@@ -284,19 +271,6 @@ export const tools: Tool[] = [
         },
         "image": "tools/selenium.svg",
         "link": "https://www.selenium.dev/"
-    },
-    {
-        "name": "SoapUI",
-        "category": {
-            "FR": "Outils de Test, Assurance Qualité, Sécurité",
-            "EN": "Testing, Quality Assurance, Security Tools"
-        },
-        "description": {
-            "FR": "Outil de test pour services web SOAP et REST",
-            "EN": "Testing tool for SOAP and REST web services"
-        },
-        "image": "tools/soapui.svg",
-        "link": "https://www.soapui.org/"
     },
     {
         "name": "Postman",
