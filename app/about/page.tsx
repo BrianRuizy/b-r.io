@@ -14,6 +14,26 @@ import uhdLogo from "public/work/uhd.png";
 
 import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
+import Greeting from "./components/Greeting";
+
+async function getYoutubeStats() {
+  try {
+    const response = await fetch(
+      `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/api/youtube`,
+      {
+        next: { revalidate: 86400 },
+      },
+    );
+    const data = await response.json();
+    console.log("YouTube API Response:", data);
+
+    const subscribers = data?.subscribers ? parseInt(data.subscribers) : 0;
+    return subscribers;
+  } catch (error) {
+    console.error("Error fetching YouTube stats:", error);
+    return 100000;
+  }
+}
 
 export const metadata: Metadata = {
   title: "About | Brian Ruiz",
@@ -21,7 +41,9 @@ export const metadata: Metadata = {
     "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
 };
 
-export default function About() {
+export default async function About() {
+  const youtubeSubscribers = await getYoutubeStats();
+
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
@@ -47,7 +69,6 @@ export default function About() {
             height={139}
             className="pointer-events-none relative inset-0 h-60 -rotate-6 rounded-xl bg-gray-400 object-cover shadow-md"
             priority
-
           />
         </div>
 
@@ -62,7 +83,6 @@ export default function About() {
             height={260}
             className="pointer-events-none absolute inset-0 -top-48 left-[45%] w-48 rotate-6 rounded-xl bg-gray-400 object-cover shadow-md md:left-[60%] md:w-56"
             priority
-
           />
         </div>
       </div>
@@ -76,25 +96,40 @@ export default function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Hi, I&apos;m Brian, born in Honduras and raised in Houston, Texas.
-              I have been coding for {new Date().getFullYear() - 2019} years. As
-              a software engineer, I specialize in full-stack web development
-              and product design.
+              <Greeting /> I&apos;m Brian Ruiz. Originally from Honduras and now
+              based in the vibrant city of New York.
             </p>
             <p>
-              In addition to coding, I create content on my{" "}
+              My passion for computers began at age 10, which naturally led me
+              to coding. I&apos;ve been working as a software engineer
+              specializing in full-stack web development and design for{" "}
+              {new Date().getFullYear() - 2019} years now!
+            </p>
+            <p>
+              Alongside my coding journey, I run a{" "}
               <Link
                 className="underline"
                 href="https://www.youtube.com/@brianruizy"
               >
                 YouTube
               </Link>{" "}
-              channel, covering all things technology, coding vlogs, and
-              personal development.
+              channel where I share insights on technology and productive coding
+              vlogs, or just practice my film skills.{" "}
+              <span className="text-secondary">
+                (
+                {youtubeSubscribers > 0
+                  ? new Intl.NumberFormat("en-US", {
+                      notation: "compact",
+                      maximumSignificantDigits: 3,
+                    }).format(youtubeSubscribers)
+                  : "100K+"}{" "}
+                subscribers strong)
+              </span>
             </p>
             <p>
-              When I&apos;m not at my desk, I am probably lifting weights,
-              playing soccer, riding my e-bike, or at a local coffee shop :]
+              When I&apos;m not at my desk, you can find me lifting weights,
+              biking around the city in my e-bike, or enjoying some coffee at a
+              local shop!
             </p>
           </div>
         </Section>

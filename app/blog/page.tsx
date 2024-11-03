@@ -45,7 +45,7 @@ export default function BlogPage() {
         className="animate-in"
         style={{ "--index": 3 } as React.CSSProperties}
       >
-        <NewsletterSignupForm />
+        <NewsletterSignupForm contained={false} />
       </div>
     </div>
   );

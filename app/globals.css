@@ -33,7 +33,7 @@
   }
 
   .dark {
-    --contrast-color: #0a0a0a;
+    --contrast-color: #09090B;
     .prose {
       --tw-prose-headings: var(--gray-12);
       --tw-prose-body: var(--gray-11);

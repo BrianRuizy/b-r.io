@@ -76,29 +76,9 @@ export const Project = defineDocumentType(() => ({
   computedFields: projectComputedFields,
 }));
 
-const craftComputedFields: ComputedFields = {
-  slug: {
-    type: "string",
-    resolve: (doc) => getSlug(doc),
-  },
-};
-
-export const Craft = defineDocumentType(() => ({
-  name: "Craft",
-  filePathPattern: `craft/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: { type: "string", required: true },
-    summary: { type: "string", required: true },
-    date: { type: "string", required: true },
-  },
-  computedFields: craftComputedFields,
-}));
-
-
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Blog, Project, Craft],
+  documentTypes: [Blog, Project],
   mdx: {
     rehypePlugins: [rehypePrism, rehypeSlug],
   },

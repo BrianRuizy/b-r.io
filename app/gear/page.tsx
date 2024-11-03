@@ -152,7 +152,6 @@ const gear = [
     description:
       "Elevates your screen(s) to help position your neck in a comfortable ergonomic posture.",
     link: "https://shrsl.com/49342",
-    sponsored: true,
   },
   {
     name: "Cable Management Solution",
@@ -160,7 +159,6 @@ const gear = [
     image: cables,
     description: "An essential for a clean clutter free desk.",
     link: "https://shrsl.com/4933x",
-    sponsored: true,
   },
   {
     name: "Mode Designs Envoy Mechanical Keyboard",
@@ -231,7 +229,6 @@ const gear = [
       "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
     image: Macrofactor,
     link: "https://macrofactorapp.com/",
-    sponsored: true,
   },
   {
     name: "Raycast",
@@ -248,7 +245,6 @@ const gear = [
     description:
       "1 Month Free. This is where I get 95% of the music for my videos. Skip the hassle that is licensing.",
     link: "https://share.epidemicsound.com/j2d0ao",
-    sponsored: true,
   },
   {
     name: "Superhuman Mail",
@@ -264,7 +260,6 @@ const gear = [
     description:
       "'BRIANRUIZ', 2 months FREE. For all things personal finance, this is a must.",
     link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
-    sponsored: true,
   },
   {
     name: "Sony FX3",
