@@ -21,17 +21,22 @@ async function getYoutubeStats() {
     const response = await fetch(
       `${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"}/api/youtube`,
       {
-        next: { revalidate: 86400 },
+        next: { revalidate: 86400 }, // 24 hours
+        headers: {
+          Accept: "application/json",
+        },
       },
     );
-    const data = await response.json();
-    console.log("YouTube API Response:", data);
 
-    const subscribers = data?.subscribers ? parseInt(data.subscribers) : 0;
-    return subscribers;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return parseInt(data.subscribers) || 0;
   } catch (error) {
     console.error("Error fetching YouTube stats:", error);
-    return 100000;
+    return 81600; // Use your current subscriber count as fallback
   }
 }
 
@@ -42,7 +47,13 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const youtubeSubscribers = await getYoutubeStats();
+  const subscribers = await getYoutubeStats();
+
+  // Format the number only once
+  const formattedSubscribers = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumSignificantDigits: 3,
+  }).format(subscribers);
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">
@@ -116,14 +127,7 @@ export default async function About() {
               channel where I share insights on technology and productive coding
               vlogs, or just practice my film skills.{" "}
               <span className="text-secondary">
-                (
-                {youtubeSubscribers > 0
-                  ? new Intl.NumberFormat("en-US", {
-                      notation: "compact",
-                      maximumSignificantDigits: 3,
-                    }).format(youtubeSubscribers)
-                  : "100K+"}{" "}
-                subscribers strong)
+                ({formattedSubscribers} subscribers strong)
               </span>
             </p>
             <p>
