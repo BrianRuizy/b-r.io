@@ -12,9 +12,8 @@ import perishipLogo from "public/work/periship-logo.jpeg";
 import camsLogo from "public/work/cams-logo.png";
 import uhdLogo from "public/work/uhd.png";
 
-import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
-import NYC from "public/gallery/NYC.jpg";
+import NYC from "public/gallery/nyc.jpg";
 import Greeting from "./components/Greeting";
 
 async function getYoutubeStats() {

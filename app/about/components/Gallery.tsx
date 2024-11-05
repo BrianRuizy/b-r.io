@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import localFont from 'next/font/local'
 
-import NYC from "public/gallery/NYC.jpg";
+import NYC from "public/gallery/nyc.jpg";
 import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
 import cowboy from "public/gallery/cowboy-bike.webp";
