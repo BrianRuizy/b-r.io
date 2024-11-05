@@ -69,11 +69,11 @@ const ConnectLinks: ConnectLink[] = [
     href: "https://github.com/brianruizy",
     icon: <FaGithub />,
   },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/brianruizy/",
-    icon: <FaLinkedin />,
-  },
+  // {
+  //   label: "LinkedIn",
+  //   href: "https://www.linkedin.com/in/brianruizy/",
+  //   icon: <FaLinkedin />,
+  // },
 ];
 
 export default ConnectLinks;

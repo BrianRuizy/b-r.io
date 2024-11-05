@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import localFont from 'next/font/local'
 
-import owtc from "public/gallery/owtc.jpg";
+import NYC from "public/gallery/NYC.jpg";
 import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
 import cowboy from "public/gallery/cowboy-bike.webp";
@@ -162,7 +162,7 @@ export default function Gallery() {
           flipDirection="left"
         />
         <Photo
-          src={owtc}
+          src={NYC}
           meta="2021-05-20"
           alt="World Trade Center"
           width={280}

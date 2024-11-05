@@ -14,6 +14,7 @@ import uhdLogo from "public/work/uhd.png";
 
 import meLily from "public/gallery/me-lily.jpg";
 import colorado from "public/gallery/colorado.jpg";
+import NYC from "public/gallery/NYC.jpg";
 import Greeting from "./components/Greeting";
 
 async function getYoutubeStats() {
@@ -74,11 +75,11 @@ export default async function About() {
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <Image
-            src={meLily}
+            src={NYC}
             alt={"me and lily"}
             width={324}
             height={139}
-            className="pointer-events-none relative inset-0 h-60 -rotate-6 rounded-xl bg-gray-400 object-cover shadow-md"
+            className="pointer-events-none relative inset-0 h-52 w-60 -rotate-6 rounded-xl bg-neutral-400 object-cover object-right shadow-md"
             priority
           />
         </div>
@@ -89,10 +90,10 @@ export default async function About() {
         >
           <Image
             src={colorado}
-            alt={"me and lily"}
+            alt={"Downtown New York"}
             width={220}
             height={260}
-            className="pointer-events-none absolute inset-0 -top-48 left-[45%] w-48 rotate-6 rounded-xl bg-gray-400 object-cover shadow-md md:left-[60%] md:w-56"
+            className="pointer-events-none absolute inset-0 -top-44 left-[40%] w-48 rotate-6 rounded-xl bg-neutral-400 object-cover shadow-md md:left-[60%] md:w-56"
             priority
           />
         </div>
@@ -107,13 +108,13 @@ export default async function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              <Greeting /> I&apos;m Brian Ruiz. Originally from Honduras and now
-              based in the vibrant city of New York.
+              <Greeting /> I&apos;m Brian Ruiz! Originally from Honduras,
+              I&apos;m now based in the vibrant place that is New York City.
             </p>
             <p>
-              My passion for computers began at age 10, which naturally led me
-              to coding. I&apos;ve been working as a software engineer
-              specializing in full-stack web development and design for{" "}
+              My curiosity for computers began at age 10, which naturally led me
+              to pursue a career in tech. I&apos;ve been working as a software
+              engineer, specializing in full-stack development and design, for{" "}
               {new Date().getFullYear() - 2019} years now!
             </p>
             <p>
@@ -124,16 +125,16 @@ export default async function About() {
               >
                 YouTube
               </Link>{" "}
-              channel where I share insights on technology and productive coding
-              vlogs, or just practice my film skills.{" "}
-              <span className="text-secondary">
+              channel where I share insights on technology, productive coding
+              vlogs, and occasionally practice my filmmaking skills.{" "}
+              <span className="text-tertiary">
                 ({formattedSubscribers} subscribers strong)
               </span>
             </p>
             <p>
-              When I&apos;m not at my desk, you can find me lifting weights,
-              biking around the city in my e-bike, or enjoying some coffee at a
-              local shop!
+              When I&apos;m not at my desk, you can find me at the gym, biking
+              around the city on my e-bike, or enjoying some coffee at a local
+              shop!
             </p>
           </div>
         </Section>
