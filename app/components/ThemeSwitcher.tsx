@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useEffect, useState } from "react";
-import { Listbox } from "@headlessui/react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -24,72 +23,67 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <Listbox value={theme} onChange={(value) => setTheme(value)}>
-      {({ open }) => {
-        const iconClassName = clsx(
-          "w-5 h-5 text-secondary hover:text-primary cursor-pointer transition-colors",
-          open ? "text-primary" : "text-secondary",
-        );
-        return (
-          <div className="relative">
-            <Listbox.Button
+    <Select.Root value={theme} onValueChange={setTheme}>
+      <Select.Trigger
+        className="relative flex h-8 w-8 cursor-default items-center justify-center rounded-lg"
+        aria-label="Theme"
+      >
+        <Select.Value>
+          {resolvedTheme === "dark" ? (
+            <MoonIcon
               className={clsx(
-                "relative flex h-8 w-8 cursor-default items-center justify-center rounded-lg",
+                "h-5 w-5 cursor-pointer text-secondary transition-colors hover:text-primary",
+                "data-[state=open]:text-primary",
               )}
+            />
+          ) : (
+            <SunIcon
+              className={clsx(
+                "h-5 w-5 cursor-pointer text-secondary transition-colors hover:text-primary",
+                "data-[state=open]:text-primary",
+              )}
+            />
+          )}
+        </Select.Value>
+      </Select.Trigger>
+
+      <AnimatePresence>
+        <Select.Portal>
+          <Select.Content asChild position="popper" side="bottom" align="end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
+              className="absolute right-0 z-10 mt-2 max-h-60 w-36 origin-top-right overflow-auto rounded-xl bg-contrast p-2 text-base capitalize shadow-md focus:outline-none dark:bg-black sm:text-sm"
             >
-              {resolvedTheme === "dark" ? (
-                <MoonIcon className={iconClassName} />
-              ) : (
-                <SunIcon className={iconClassName} />
-              )}
-            </Listbox.Button>
-            <AnimatePresence>
-              {open && (
-                <Listbox.Options
-                  as={motion.ul}
-                  static
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
-                  className="absolute right-0 z-10 mt-2 max-h-60 w-36 origin-top-right overflow-auto rounded-xl border border-secondary bg-contrast p-2 text-base capitalize shadow-md focus:outline-none dark:bg-black sm:text-sm"
-                >
-                  {themes.map((theme) => (
-                    <Listbox.Option
-                      key={theme}
-                      className={({ active }) =>
-                        clsx(
-                          "relative flex cursor-default select-none items-center justify-between gap-2 rounded-md px-4 py-2",
-                          active ? "bg-secondary" : "",
-                        )
-                      }
-                      value={theme}
-                    >
-                      {({ selected }) => (
-                        <>
-                          <span
-                            className={`truncate ${
-                              selected ? "font-medium" : "font-normal"
-                            }`}
-                          >
-                            {theme == "system" ? "System" : theme}
-                          </span>
-                          {selected ? (
-                            <CheckIcon
-                              className="h-5 w-5 dark:text-neutral-50"
-                              aria-hidden="true"
-                            />
-                          ) : null}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      }}
-    </Listbox>
+              <Select.Viewport>
+                {themes.map((themeOption) => (
+                  <Select.Item
+                    key={themeOption}
+                    value={themeOption}
+                    className={clsx(
+                      "relative flex cursor-default select-none items-center justify-between gap-2 rounded-md px-4 py-2",
+                      "focus:outline-none",
+                      "data-[highlighted]:bg-secondary",
+                    )}
+                  >
+                    <Select.ItemText className="truncate">
+                      {themeOption === "system" ? "System" : themeOption}
+                    </Select.ItemText>
+                    <Select.ItemIndicator>
+                      <CheckIcon
+                        className="h-5 w-5 dark:text-neutral-50"
+                        aria-hidden="true"
+                      />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.Viewport>
+            </motion.div>
+          </Select.Content>
+        </Select.Portal>
+      </AnimatePresence>
+    </Select.Root>
   );
 }

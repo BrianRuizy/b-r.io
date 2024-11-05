@@ -183,14 +183,14 @@ export default async function About() {
 
 const workplaces = [
   {
-    title: "Full Stack Engineer",
+    title: "Senior Software Engineer",
     company: "Hines",
     date: "2022 -",
     imageSrc: hinesLogo,
     link: "https://hines.com",
   },
   {
-    title: "Software Engineer",
+    title: "Jr. Software Engineer",
     company: "PeriShip",
     date: "2021 - 2022",
     imageSrc: perishipLogo,
@@ -204,7 +204,7 @@ const workplaces = [
     link: "https://camstex.com",
   },
   {
-    title: "Coding Camp Instructor",
+    title: "Coding Camp Teacher",
     company: "University of Houston",
     date: "2019",
     imageSrc: uhdLogo,

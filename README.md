@@ -15,7 +15,7 @@ backend:
 frontend:
 
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
-- [Radix Primitives](https://www.radix-ui.com/primitives) (Headless UI components)
+- [Radix Primitives](https://www.radix-ui.com/primitives)
 - [Radix UI Colors](https://www.radix-ui.com/colors) (Color system)
 - [Framer Motion](https://www.framer.com/motion/) (Animations)
 
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS blog_views (
     count INT DEFAULT 0
 )
 ```
+
 ```
 
 ## Deployment
@@ -47,3 +48,4 @@ CREATE TABLE IF NOT EXISTS blog_views (
 This project can be [quickly deployed to Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBrianRuizy%2Fb-r.io). Simply connect your Vercel account to your GitHub repository, and Vercel will automatically build and deploy your application with each new push to the main branch.
 
 Add the project .env variables to your Vercel project settings.
+```
