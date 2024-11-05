@@ -27,10 +27,10 @@ export default function Home() {
             className="max-w-lg animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I am a software engineer who builds for the web with a
-            design-oriented approach. In addition to coding, I make{" "}
-            <Link href="https://youtube.com/@brianruizy">YouTube</Link> videos,
-            where I focus on tech, and productivity.
+            I&apos;m a software engineer in NYC building for the web with a
+            design-first mindset. On the side, I create{" "}
+            <Link href="https://youtube.com/@brianruizy">YouTube</Link> videos
+            about tech and productivity.
           </p>
         </div>
         <div

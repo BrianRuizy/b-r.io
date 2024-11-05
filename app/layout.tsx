@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://b-r.io"),
   title: "Brian Ruiz",
   description:
-    "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
+    "New York City based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
   openGraph: {
     title: "Brian Ruiz",
     url: "https://b-r.io/",

@@ -17,9 +17,9 @@ export default function BentoGrid() {
           disableHalo
           noPadding
         >
-          <Map lng={-95.36327} lat={29.76328} />
+          <Map lng={-73.9665} lat={40.7829} />
           <div className="absolute bottom-4 left-4 flex items-center rounded-lg bg-neutral-100/75 px-4 py-1.5 backdrop-blur dark:bg-neutral-900/75 md:bottom-6 md:left-6">
-            <p className="text-sm font-medium text-primary">Houston, TX</p>
+            <p className="text-sm font-medium text-primary">New York, NY</p>
           </div>
         </Card>
       </div>

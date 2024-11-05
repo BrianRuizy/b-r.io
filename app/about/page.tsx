@@ -43,7 +43,7 @@ async function getYoutubeStats() {
 export const metadata: Metadata = {
   title: "About | Brian Ruiz",
   description:
-    "Houston-based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
+    "New York City based Software Engineer and a Content Creator, sharing insights on well-designed products and technology advancements.",
 };
 
 export default async function About() {

@@ -10,19 +10,16 @@ import Link from "@/app/components/Link";
 export const metadata: Metadata = {
   title: "Mediakit | Brian Ruiz",
   description:
-    "Creator based in Houston. Focuses on topics including consumer technology, software engineering, design, and lifestyle.",
+    "Creator based in New York City. Focuses on topics including consumer technology, software engineering, design, and lifestyle.",
 };
 
 // get youtube subs count from route handler api/youtube
 async function getData() {
-  const res = await fetch(
-    `https://b-r.io/api/youtube`,
-    {
-      next: {
-        revalidate: 86400, // 24 hours
-      },
+  const res = await fetch(`https://b-r.io/api/youtube`, {
+    next: {
+      revalidate: 86400, // 24 hours
     },
-  );
+  });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
@@ -59,8 +56,8 @@ export default async function Mediakit() {
               </span>
             </div>
             <p className="z-50 text-sm text-secondary">
-              Creator based in Houston. Focuses on topics including consumer
-              technology, software engineering, design, and lifestyle.{" "}
+              Creator based in New York City. Focuses on topics including
+              consumer technology, software engineering, design, and lifestyle.{" "}
               <Link href="https://www.youtube.com/@brianruizy" underline>
                 Visit channel.
               </Link>
