@@ -142,7 +142,7 @@ const gear = [
     name: "Sway Standing Desk",
     category: "Ergonofis",
     image: Sway,
-    description: "The highest of quality and made to last. Solid wood.",
+    description: "The highest of quality and made to last. Solid wood and a unique touch control panel.",
     link: "https://shrsl.com/49346",
     sponsored: true,
   },
@@ -158,7 +158,7 @@ const gear = [
     name: "Cable Management Solution",
     category: "Ergonofis",
     image: cables,
-    description: "An essential for a clean clutter free desk.",
+    description: "An essential for a clean and clutter free workspace.",
     link: "https://shrsl.com/4933x",
   },
   {

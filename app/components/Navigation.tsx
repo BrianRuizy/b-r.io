@@ -1,29 +1,37 @@
 "use client";
-import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import clsx from "clsx";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { AnimatePresence, motion } from "framer-motion";
-import { Bars3Icon } from "@heroicons/react/20/solid";
+import { motion } from "framer-motion";
 
-import NavLink from "@/app/components/NavLink";
 import ThemeSwitcher from "@/app/components/ThemeSwitcher";
 
 const links = [
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Gear", href: "/gear" },
-];
+  {
+    path: "/",
+    title: "Home",
+  },
+  {
+    path: "/about",
+    title: "About",
+  },
+  {
+    path: "/blog",
+    title: "Blog",
+  },
+  {
+    path: "/gear",
+    title: "Gear",
+  },
+] as const;
 
 export default function Navigation() {
-  const pathname = `/${usePathname().split("/")[1]}`; // active paths on dynamic sub-pages
+  const pathname = `/${usePathname().split("/")[1]}`;
 
   return (
     <header className="md:mt-6">
       <nav className="mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-3 md:px-6">
-        <Link href="/" className="shrink-0 text-primary">
+        <Link href="/" className="hidden shrink-0 text-primary md:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="36"
@@ -46,61 +54,35 @@ export default function Navigation() {
             </g>
           </svg>
         </Link>
-        <ul className="hidden items-center gap-1 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <NavLink href={link.href}>{link.label}</NavLink>
-            </li>
-          ))}
-        </ul>
 
-        <div className="ml-auto flex h-8 w-8 items-center justify-center md:ml-0">
-          <ThemeSwitcher />
+        <div className="flex gap-1">
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`${
+                pathname === link.path ? "text-primary" : "text-secondary"
+              } relative rounded-lg px-3 py-1.5 text-sm transition-colors`}
+              style={{
+                WebkitTapHighlightColor: "transparent",
+              }}
+            >
+              {pathname === link.path && (
+                <motion.span
+                  layoutId="bubble"
+                  className="absolute inset-0 -z-10 rounded-lg bg-tertiary"
+                  // style={{ borderRadius: 9999 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {link.title}
+            </Link>
+          ))}
         </div>
 
-        <DropdownMenu.Root modal={false}>
-          <DropdownMenu.Trigger className="flex h-8 w-8 items-center justify-center rounded-lg text-secondary md:hidden">
-            <Bars3Icon className="h-5 w-5 cursor-pointer text-secondary transition-colors hover:text-primary data-[state=open]:text-primary" />
-          </DropdownMenu.Trigger>
-
-          <AnimatePresence>
-            <DropdownMenu.Portal>
-              <DropdownMenu.Content
-                asChild
-                side="bottom"
-                align="end"
-                sideOffset={5}
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
-                  className="z-10 w-40 overflow-hidden rounded-xl bg-contrast p-2 text-base shadow-md focus:outline-none dark:bg-black sm:text-sm"
-                >
-                  {links.map((link) => (
-                    <DropdownMenu.Item
-                      key={link.href}
-                      asChild
-                      className="outline-none"
-                    >
-                      <Link
-                        href={link.href}
-                        className={clsx(
-                          "block rounded-md px-4 py-2 transition-colors hover:text-primary",
-                          "focus:outline-none data-[highlighted]:bg-secondary",
-                          pathname === link.href ? "bg-secondary" : "",
-                        )}
-                      >
-                        {link.label}
-                      </Link>
-                    </DropdownMenu.Item>
-                  ))}
-                </motion.div>
-              </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-          </AnimatePresence>
-        </DropdownMenu.Root>
+        <div className="flex h-8 w-8 items-center justify-center">
+          <ThemeSwitcher />
+        </div>
       </nav>
     </header>
   );

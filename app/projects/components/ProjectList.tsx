@@ -10,11 +10,11 @@ type ProjectListProps = {
 
 export default function ProjectList({ projects }: ProjectListProps) {
   return (
-    <ul className="animated-list flex snap-x snap-mandatory grid-cols-2 flex-nowrap gap-9 overflow-x-scroll md:grid md:overflow-auto">
+    <ul className="animated-list -mx-6 flex snap-x snap-mandatory scroll-pl-6 grid-cols-2 flex-nowrap gap-9 overflow-x-scroll px-6 md:grid md:overflow-auto">
       {projects.map((project) => (
         <li
           key={project.slug}
-          className="col-span-1 min-w-72 snap-start transition-opacity"
+          className="col-span-1 min-w-80 snap-start transition-opacity"
         >
           <Link href={`/projects/${project.slug}`} className="space-y-4">
             <div className="aspect-video overflow-hidden rounded-md bg-secondary">
