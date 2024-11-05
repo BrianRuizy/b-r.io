@@ -30,7 +30,7 @@ const ConnectLinks: ConnectLink[] = [
   //   ),
   // },
   {
-    label: "Partnerships",
+    label: "Collaborations",
     href: "mailto:partners@b-r.io",
     icon: (
       <svg
@@ -55,12 +55,7 @@ const ConnectLinks: ConnectLink[] = [
     icon: <FaInstagram />,
   },
   {
-    label: "Twitter",
-    href: "https://twitter.com/brianruizy",
-    icon: <FaXTwitter />,
-  },
-  {
-    label: "Discord",
+    label: "Join the Discord",
     href: "https://discord.gg/KhNh8nbw3U",
     icon: <FaDiscord />,
   },
@@ -68,6 +63,11 @@ const ConnectLinks: ConnectLink[] = [
     label: "GitHub",
     href: "https://github.com/brianruizy",
     icon: <FaGithub />,
+  },
+  {
+    label: "Twitter",
+    href: "https://twitter.com/brianruizy",
+    icon: <FaXTwitter />,
   },
   // {
   //   label: "LinkedIn",

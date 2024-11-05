@@ -65,7 +65,7 @@ export default function Home() {
         className="flex animate-in flex-col gap-8"
         style={{ "--index": 4 } as React.CSSProperties}
       >
-        <p className="tracking-tight text-secondary">Pinned Projects</p>
+        <p className="tracking-tight text-secondary">Pinned</p>
         <ProjectList projects={projects} />
       </div>
 

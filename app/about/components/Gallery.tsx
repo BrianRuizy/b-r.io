@@ -147,7 +147,7 @@ export default function Gallery() {
           width={324}
           height={239}
           rotate={-6}
-          left={-76}
+          left={-56}
           index={1}
         />
         <Photo
@@ -168,7 +168,7 @@ export default function Gallery() {
           width={280}
           height={235}
           rotate={-5.4}
-          left={300}
+          left={280}
           index={3}
         />
         <Photo
@@ -178,7 +178,7 @@ export default function Gallery() {
           width={220}
           height={260}
           rotate={7.6}
-          left={530}
+          left={500}
           index={4}
           flipDirection="left"
         />

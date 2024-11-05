@@ -25,14 +25,17 @@ const SeriesCollapsible = () => {
         </p>
         <ul className="animated-list -ml-2 list-outside list-disc space-y-2">
           <li className="transition-opacity">
-            <Link href="/blog" className="font-normal">
-              My Blog Stack, and Why I Chose It.
+            <Link
+              href="/blog"
+              className="font-normal text-tertiary line-through"
+            >
+              My Blog Tech Stack.
             </Link>
           </li>
           <li className="transition-opacity">
             <Link
               href="/blog"
-              className="font-normal text-secondary no-underline"
+              className="font-normal text-tertiary line-through"
             >
               ISR + MDX Blog Posts with Next.js
             </Link>
@@ -40,19 +43,25 @@ const SeriesCollapsible = () => {
           <li className="transition-opacity">
             <Link
               href="/blog"
-              className="font-normal text-secondary no-underline"
+              className="font-normal text-primary no-underline"
             >
               Beautiful Interactive Maps with MapBox GL
             </Link>
           </li>
           <li className="transition-opacity">
-            <Link href="/blog" className="font-normal">
+            <Link
+              href="/blog"
+              className="font-normal text-tertiary line-through"
+            >
               Adding a Dark Mode Toggle to Your React App
             </Link>
           </li>
           <li className="transition-opacity">
-            <Link href="/blog" className="font-normal">
-              Blog Views with Server Actions
+            <Link
+              href="/blog"
+              className="font-normal text-tertiary line-through"
+            >
+              Blog Post Views with Server Actions
             </Link>
           </li>
         </ul>

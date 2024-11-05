@@ -96,11 +96,12 @@ export default function Gear() {
             </p>
           </div>
           <p
-            className="max-w-md animate-in text-tertiary"
+            className="max-w-lg animate-in text-pretty text-secondary"
             style={{ "--index": 2 } as React.CSSProperties}
           >
-            This is all gear I actually own and like. Using the affiliate links
-            help support my content creation. Updated on March 2024.
+            List of tools I actually own and enjoy using. Using the affiliate
+            links help support my content creation. Last updated on October
+            2024.
           </p>
         </div>
 
@@ -210,7 +211,8 @@ const gear = [
   {
     name: "Apple Studio Display",
     category: "Home Desk Setup",
-    description: "A 3440 x 1440 IPS Display, great for multitasking.",
+    description:
+      "Super crisp resolution, bright, and awesome build -but at a pretty penny!",
     image:
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/studio-display-gallery-1-202203?wid=640&hei=528&fmt=p-jpg&qlt=95&.v=1675709041796",
     link: "https://amzn.to/3TTDg7d",
@@ -223,12 +225,11 @@ const gear = [
     link: "https://amzn.to/3vrq148",
   },
   {
-    name: "MacroFactor",
+    name: "Superhuman Mail",
     category: "Apps",
-    description:
-      "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
-    image: Macrofactor,
-    link: "https://macrofactorapp.com/",
+    image: Superhuman,
+    description: "1 Month FREE code. The fastest email experience with AI.",
+    link: "https://superhuman.com/refer/bspuaqpo",
   },
   {
     name: "Raycast",
@@ -247,19 +248,20 @@ const gear = [
     link: "https://share.epidemicsound.com/j2d0ao",
   },
   {
-    name: "Superhuman Mail",
-    category: "Apps",
-    image: Superhuman,
-    description: "1 Month FREE code. The fastest email experience with AI.",
-    link: "https://superhuman.com/refer/bspuaqpo",
-  },
-  {
     name: "Copilot Money",
     category: "Apps",
     image: Copilot,
     description:
       "'BRIANRUIZ', 2 months FREE. For all things personal finance, this is a must.",
     link: "https://copilot.money/link/cxkfRAoUGeybxipT7",
+  },
+  {
+    name: "MacroFactor",
+    category: "Apps",
+    description:
+      "code 'brianruiz' for extended trial. I use this to stay on top of my diet.",
+    image: Macrofactor,
+    link: "https://macrofactorapp.com/",
   },
   {
     name: "Sony FX3",
@@ -332,12 +334,12 @@ const gear = [
     link: "https://amzn.to/3TQbJmO",
   },
   {
-    name: "Sony 35mm f/1.8",
+    name: "Sony 40mm f/2.5",
     category: "Camera Setup (Photo)",
     description:
-      "Fast aperture, and lightweight. Great for portraits, street photography, and low light.",
-    image: "https://m.media-amazon.com/images/I/71umwsH8NJL._AC_SL1500_.jpg",
-    link: "https://amzn.to/43wiXj6",
+      "Ultra-compact fast prime w/ G series lens quality and performance.",
+    image: "https://m.media-amazon.com/images/I/81Yq6eLrf2L._AC_SL1500_.jpg",
+    link: "https://amzn.to/3YTBdCz",
   },
   {
     name: "Peak Design Leash Camera Strap",
@@ -347,11 +349,11 @@ const gear = [
     link: "https://amzn.to/3VFfptf",
   },
   {
-    name: "Brevite Backpack",
+    name: "Urth Arkose Modular Camera Backpack",
     category: "Everyday Carry",
-    image: "https://m.media-amazon.com/images/I/61kuICMElAL._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/81AY7f9OwnL._AC_SL1500_.jpg",
     description: "Compact Camera Backpack - A Minimalist & Travel-friendly",
-    link: "https://amzn.to/3U5PTJo",
+    link: "https://m.media-amazon.com/images/I/71Qpc9j5JiL._AC_SL1500_.jpg",
   },
   {
     name: "Suptig Chest Mount for GoPro",
@@ -375,27 +377,27 @@ const gear = [
     image: "https://m.media-amazon.com/images/I/51owwMmtiBL._AC_SL1500_.jpg",
     link: "https://amzn.to/40LPcJa",
   },
-  {
-    name: "HP DisplayLink Hub",
-    category: "Office Desk Setup",
-    image: "https://m.media-amazon.com/images/I/51Akvh02nDL._AC_SL1280_.jpg",
-    description: "A hub that enables dual monitors on M1 MBP.",
-    link: "https://amzn.to/3UnTbJo",
-  },
-  {
-    name: "Dell UltraSharp U2722D",
-    category: "Office Desk Setup",
-    link: "https://amzn.to/3KLucN1",
-    image: "https://m.media-amazon.com/images/I/81siJZnLDaL._AC_SL1500_.jpg",
-    description: "A 27 inch 4K monitor",
-  },
-  {
-    name: "VIVO Dual Monitor Stand",
-    category: "Office Desk Setup",
-    link: "https://amzn.to/40U0jzC",
-    image: "https://m.media-amazon.com/images/I/61JPGtCI0GL._AC_SL1500_.jpg",
-    description: "White articulating pneumatic monitor stand",
-  },
+  // {
+  //   name: "HP DisplayLink Hub",
+  //   category: "Office Desk Setup",
+  //   image: "https://m.media-amazon.com/images/I/51Akvh02nDL._AC_SL1280_.jpg",
+  //   description: "A hub that enables dual monitors on M1 MBP.",
+  //   link: "https://amzn.to/3UnTbJo",
+  // },
+  // {
+  //   name: "Dell UltraSharp U2722D",
+  //   category: "Office Desk Setup",
+  //   link: "https://amzn.to/3KLucN1",
+  //   image: "https://m.media-amazon.com/images/I/81siJZnLDaL._AC_SL1500_.jpg",
+  //   description: "A 27 inch 4K monitor",
+  // },
+  // {
+  //   name: "VIVO Dual Monitor Stand",
+  //   category: "Office Desk Setup",
+  //   link: "https://amzn.to/40U0jzC",
+  //   image: "https://m.media-amazon.com/images/I/61JPGtCI0GL._AC_SL1500_.jpg",
+  //   description: "White articulating pneumatic monitor stand",
+  // },
   {
     name: "MacBook Pro M1 Pro 16-inch",
     category: "Everyday Carry",
