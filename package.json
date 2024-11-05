@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.30.0",
     "@clerk/types": "^4.0.0",
+    "@effect-ts/core": "^0.60.5",
     "@heroicons/react": "^2.0.18",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-collapsible": "^1.0.3",
