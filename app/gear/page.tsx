@@ -32,16 +32,16 @@ interface ItemProps {
 }
 
 const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
-  <li className="flex items-center gap-4 transition-opacity">
+  <li className="col-span-1 row-span-1 flex snap-start items-center gap-4 transition-opacity">
     <a
-      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl border border-secondary bg-tertiary shadow-sm"
+      className="relative aspect-square h-[4rem] w-[4rem] min-w-[4rem] overflow-hidden rounded-xl border border-primary bg-tertiary"
       href={link}
       target="_blank"
     >
       <Image
         src={image}
         alt={title}
-        className="h-full w-full object-cover object-center"
+        className="h-full w-full overflow-hidden rounded-xl object-cover object-center"
         fill
       />
     </a>
@@ -56,7 +56,7 @@ const Item = ({ title, description, image, link, sponsored }: ItemProps) => (
       </div>
       <div>
         <a
-          className="ml-auto h-fit rounded-full bg-tertiary px-4 py-1 text-sm"
+          className="ml-auto h-fit rounded-full bg-tertiary px-4 py-2 text-sm"
           href={link}
           target="_blank"
         >
@@ -112,7 +112,7 @@ export default function Gear() {
             style={{ "--index": 3 } as React.CSSProperties}
           >
             <h2 className="text-secondary">{category}</h2>
-            <ul className="animated-list grid gap-x-6 gap-y-8 md:grid-cols-2">
+            <ul className="animated-list -mx-6 grid snap-x snap-mandatory scroll-pl-6 auto-cols-[100%] grid-flow-col grid-rows-3 flex-nowrap gap-x-3 gap-y-8 overflow-x-scroll px-6 md:grid md:grid-flow-row md:grid-cols-2 md:grid-rows-none md:gap-x-6 md:overflow-auto">
               {gear.map((item, index) => {
                 if (item.category === category) {
                   return (
@@ -228,7 +228,7 @@ const gear = [
     name: "Superhuman Mail",
     category: "Apps",
     image: Superhuman,
-    description: "1 Month FREE code. The fastest email experience with AI.",
+    description: "Use link for 1 Month FREE code. The fastest email experience with cool AI features.",
     link: "https://superhuman.com/refer/bspuaqpo",
   },
   {
@@ -264,7 +264,7 @@ const gear = [
     link: "https://macrofactorapp.com/",
   },
   {
-    name: "Sony FX3",
+    name: "Sony Cinema Line FX3",
     category: "Camera Setup (Video)",
     image:
       "https://m.media-amazon.com/images/I/81lVg8e3bHL.__AC_SY300_SX300_QL70_FMwebp_.jpg",
@@ -275,7 +275,8 @@ const gear = [
   {
     name: "Sony 24-70mm f/2.8 GM II",
     category: "Camera Setup (Video)",
-    description: "Super versatile and high quality lens.",
+    description:
+      "Super versatile and high quality glass. Great investment for a cinematic lens.",
     image: "https://m.media-amazon.com/images/I/71i0q2J-iEL._AC_SL1500_.jpg",
     link: "https://amzn.to/3TABciO",
   },
@@ -334,7 +335,7 @@ const gear = [
     link: "https://amzn.to/3TQbJmO",
   },
   {
-    name: "Sony 40mm f/2.5",
+    name: "Sony 40mm f/2.5 G Lens",
     category: "Camera Setup (Photo)",
     description:
       "Ultra-compact fast prime w/ G series lens quality and performance.",

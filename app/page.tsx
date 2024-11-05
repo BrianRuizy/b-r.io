@@ -38,24 +38,25 @@ export default function Home() {
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Link
+            href="https://instagram.com/brianruizy"
+            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+          >
+            Instagram
+            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+          </Link>
+          <Link
             href="https://discord.gg/KhNh8nbw3U"
             className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
           >
             Discord
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </Link>
-          <Link
-            href="https://instagram.com/brianruizy"
-            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
-          >
-            IG
-            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
-          </Link>
+
           <Link
             className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
-            href="https://twitter.com/brianruizy"
+            href="mailto:partners@b-r.io"
           >
-            Tweets
+            Collab
             <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
           </Link>
         </div>
@@ -81,7 +82,7 @@ export default function Home() {
             Latest blogs
             <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
           </Link>
-          <p className="max-w-lg text-tertiary">
+          <p className="max-w-lg text-tertiary text-pretty">
             I occasionally write about programming, productivity, and more.
             Check me out and subscribe to stay up to date.
           </p>
