@@ -1,13 +1,10 @@
 "use client";
 import { allProjects, Post as PostType } from ".contentlayer/generated";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import PostList from "@/app/blog/components/ui/PostList";
 import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
-import { formatDate } from "lib/formatdate";
 
 import { useLang } from "@/components/LanguageProvider";
 import { projectTranslations } from "@/translations/projectTranslations";
@@ -52,7 +49,6 @@ export default function Project({ params }: { params: any }) {
             {post.description[lang]}
           </p>
         </div>
-
         <div className="h-12" />
         <div
           className="prose prose animate-in"
@@ -63,46 +59,24 @@ export default function Project({ params }: { params: any }) {
       </article>
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">
-          <h2>Tags</h2>
-          <div className="flex flex-wrap gap-3 ">
-            {typeof post.tags === "object" && post.tags[lang]
-              ? post.tags[lang].map((tag: string) => (
-                  <div
-                    key={tag}
-                    className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
-                  >
-                    {tag}
-                  </div>
-                ))
-              : post.tags.map((tag: string) => (
-                  <div
-                    key={tag}
-                    className="whitespace-nowrap rounded-lg bg-secondary px-4 py-1.5 text-sm text-secondary"
-                  >
-                    {tag}
-                  </div>
-                ))}
-          </div>
+          <Tags tags={post.tags} />
         </div>
-
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-lg text-secondary ">
             {text.contact}{" "}
             <Link
-              href="mailto:contact@b-r.io"
+              href="mailto:contact@o-d.me"
               className="text-primary underline"
             >
               contact@o-d.me
             </Link>
           </p>
         </div>
-
         <Link href="/projects" className="text-primary underline">
           ← {text.allProjects}
         </Link>
       </div>
-
       <div />
     </div>
   );

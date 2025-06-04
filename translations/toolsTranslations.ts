@@ -4,13 +4,13 @@ export const toolsTranslations: Translations = {
     EN: {
         title: "Tools",
         subTitle: "My toolbox",
-        description: "These are the tools that I recommend, I don't necessarily use some of them yet, but if they are in this list, it might not be long 😉",
+        description: "These are the tools that I recommend",
         button: "Go",
     },
     FR: {
         title: "Outils",
         subTitle: "Ma boîte à outil",
-        description: "Se sont les outils que je recommande,je n utilise pas forcément encore certain d entre eux, mais si ils se trouvent dans cette liste, ça risque de ne pas tarder 😉",
+        description: "Se sont les outils que je recommande",
         button: "Visiter",
     }
 };
@@ -65,32 +65,6 @@ export const tools: Tool[] = [
         "link": "https://www.jetbrains.com/pycharm/"
     },
     {
-        "name": "Xcode",
-        "category": {
-            "FR": "Environnements de Développement Intégré (IDE)",
-            "EN": "Integrated Development Environments (IDE)"
-        },
-        "description": {
-            "FR": "IDE Apple pour développement macOS et iOS",
-            "EN": "Apple IDE for macOS and iOS development"
-        },
-        "image": "tools/xcode.svg",
-        "link": "https://developer.apple.com/xcode/"
-    },
-    {
-        "name": "Android Studio",
-        "category": {
-            "FR": "Environnements de Développement Intégré (IDE)",
-            "EN": "Integrated Development Environments (IDE)"
-        },
-        "description": {
-            "FR": "IDE officiel pour développement d'applications Android",
-            "EN": "Official IDE for Android app development"
-        },
-        "image": "tools/androidstudio.svg",
-        "link": "https://developer.android.com/studio"
-    },
-    {
         "name": "PHPStorm",
         "category": {
             "FR": "Environnements de Développement Intégré (IDE)",
@@ -115,6 +89,19 @@ export const tools: Tool[] = [
         },
         "image": "tools/webstorm.svg",
         "link": "https://www.jetbrains.com/webstorm/"
+    },
+    {
+        "name": "LinqPad",
+        "category": {
+            "FR": "Environnements de Développement Intégré (IDE)",
+            "EN": "Integrated Development Environments (IDE)"
+        },
+        "description": {
+            "FR": "Terrain de test pour .NET et outil d'extraits de code",
+            "EN": ".NET Playground and code snippets tool"
+        },
+        "image": "tools/linqpad.svg",
+        "link": "https://www.linqpad.net/"
     },
     {
         "name": "Git",
@@ -169,30 +156,17 @@ export const tools: Tool[] = [
         "link": "https://www.docker.com/"
     },
     {
-        "name": "OpenShift",
+        "name": "AutoHotKey Dash",
         "category": {
-            "FR": "Outils DevOps et Infrastructure",
-            "EN": "DevOps and Infrastructure Tools"
+            "FR": "Outils de Productivité / Automatisation",
+            "EN": "Productivity / Automation Tools"
         },
         "description": {
-            "FR": "Plateforme d'application containerisée basée sur Kubernetes",
-            "EN": "Containerized application platform based on Kubernetes"
+            "FR": "Outil de script pour automatiser des tâches sur Windows",
+            "EN": "Scripting tool to automate tasks on Windows"
         },
-        "image": "tools/openshift.svg",
-        "link": "https://www.openshift.com/"
-    },
-    {
-        "name": "Jenkins",
-        "category": {
-            "FR": "Outils de Déploiement et Intégration Continue (CI/CD)",
-            "EN": "Deployment and Continuous Integration (CI/CD) Tools"
-        },
-        "description": {
-            "FR": "Outil d'automatisation pour l'intégration et la livraison continues",
-            "EN": "Automation tool for continuous integration and delivery"
-        },
-        "image": "tools/jenkins.svg",
-        "link": "https://www.jenkins.io/"
+        "image": "tools/autohotkey.svg",
+        "link": "https://www.autohotkey.com/"
     },
     {
         "name": "GitLab CI",
@@ -273,7 +247,7 @@ export const tools: Tool[] = [
         "link": "https://www.selenium.dev/"
     },
     {
-        "name": "Postman",
+        "name": "Insomnia",
         "category": {
             "FR": "Outils de Test, Assurance Qualité, Sécurité",
             "EN": "Testing, Quality Assurance, Security Tools"
@@ -282,8 +256,8 @@ export const tools: Tool[] = [
             "FR": "Plateforme pour le développement d'API",
             "EN": "Platform for API development"
         },
-        "image": "tools/postman.svg",
-        "link": "https://www.postman.com/"
+        "image": "tools/insomnia.svg",
+        "link": "https://insomnia.rest/"
     },
     {
         "name": "Cypress",
@@ -390,19 +364,6 @@ export const tools: Tool[] = [
         "link": "https://www.collab.net/products/versionone"
     },
     {
-        "name": "Slack",
-        "category": {
-            "FR": "Outils de Gestion de Projet et de Suivi des Tâches",
-            "EN": "Project Management and Task Tracking Tools"
-        },
-        "description": {
-            "FR": "Plateforme de communication d'équipe et de collaboration",
-            "EN": "Team communication and collaboration platform"
-        },
-        "image": "tools/slack.svg",
-        "link": "https://slack.com/"
-    },
-    {
         "name": "Vercel",
         "category": {
             "FR": "Déploiement et Hébergement Web",
@@ -429,19 +390,6 @@ export const tools: Tool[] = [
         "link": "https://render.com/"
     },
     {
-        "name": "PlanetScale",
-        "category": {
-            "FR": "Déploiement et Hébergement Web",
-            "EN": "Web Deployment and Hosting"
-        },
-        "description": {
-            "FR": "Plateforme de base de données comme service",
-            "EN": "Database as a service platform"
-        },
-        "image": "tools/planetscale.svg",
-        "link": "https://planetscale.com/"
-    },
-    {
         "name": "Figma",
         "category": {
             "FR": "Outils de Conception UX/UI et Graphiques",
@@ -466,6 +414,45 @@ export const tools: Tool[] = [
         },
         "image": "tools/brandbird.svg",
         "link": "https://www.brandbird.app/"
+    },
+    {
+        "name": "DataGrip",
+        "category": {
+            "FR": "Gestion et Exploration de Bases de Données",
+            "EN": "Database Management and Exploration Tools"
+        },
+        "description": {
+            "FR": "Outil multiplateforme pour les bases de données",
+            "EN": "Cross-platform database tool"
+        },
+        "image": "tools/datagrip.svg",
+        "link": "https://www.jetbrains.com/fr-fr/datagrip/"
+    },
+    {
+        "name": "Azure Data Studio",
+        "category": {
+            "FR": "Gestion et Exploration de Bases de Données",
+            "EN": "Database Management and Exploration Tools"
+        },
+        "description": {
+            "FR": "Outil multiplateforme pour les bases de données",
+            "EN": "Cross-platform database tool"
+        },
+        "image": "tools/azure-data-studio.svg",
+        "link": "https://azure.microsoft.com/fr-fr/products/data-studio"
+    },
+    {
+        "name": "Microsoft Azure Storage Explorer",
+        "category": {
+            "FR": "Gestion et Exploration de Bases de Données",
+            "EN": "Database Management and Exploration Tools"
+        },
+        "description": {
+            "FR": "Ressources de stockage Azure Cloud",
+            "EN": "Azure Cloud storage resources from desktop"
+        },
+        "image": "tools/azure-storage-explorer.svg",
+        "link": "https://azure.microsoft.com/en-us/products/storage/storage-explorer"
     },
     {
         "name": "MongoDB Compass",
@@ -542,7 +529,7 @@ export const tools: Tool[] = [
             "FR": "Site web d'éducation et de formation en ligne",
             "EN": "Online education and training website"
         },
-            "image": "tools/openclassroom.svg",
+        "image": "tools/openclassroom.svg",
         "link": "https://openclassrooms.com/"
     },
     {
@@ -583,6 +570,19 @@ export const tools: Tool[] = [
         },
         "image": "tools/wired.svg",
         "link": "https://www.wired.com/"
+    },
+    {
+        "name": "Blind",
+        "category": {
+            "FR": "Culture Tech",
+            "EN": "Tech Culture"
+        },
+        "description": {
+            "FR": "Plateforme anonyme pour les professionnels de la tech",
+            "EN": "Anonymous platform for tech professionals"
+        },
+        "image": "tools/blind.svg",
+        "link": "https://www.teamblind.com/"
     },
     {
         "name": "TED Talks",

@@ -1,0 +1,172 @@
+---
+title: "EslintSortObjectKeys: An ESLint Extension to Enforce Custom Object Key Order"
+publishedAt: "2025-02-19"
+summary: "Discovering a custom ESLint extension that ensures consistent and customizable object key ordering in TypeScript code."
+tags:
+- ESLint
+- TypeScript
+- Linter
+- Quality
+- Open Source
+shortTitle: EslintSortObjectKeys
+---
+
+## Why did I start this project?
+
+In my company, we often had disagreements regarding the order of object properties in our TypeScript code.
+
+This made reading the code, reviewing PRs, and understanding diffs unnecessarily noisy. No existing ESLint plugin fully met our needs:
+
+* Have a customizable order defined by the object type,
+* Support nested structures,
+* Allow configuring sub-orders for child objects.
+
+That’s how **`@hacksis/eslint-plugin-sort-object-keys`** was born — a custom ESLint rule I developed and that we now use in production.
+
+## General Functionality
+
+The extension adds a custom ESLint rule `sort-object-keys` that checks the order of object keys against a predefined schema.
+
+It relies on two key concepts:
+
+1. **Expected order comparison**: compares actual property order to the expected one.
+2. **Support for nested structures**: recursively validates nested object properties.
+
+## API and Key Interfaces
+
+### 1. Configuration Interfaces
+
+```typescript
+export interface RuleOptions {
+    typeName: string;
+    order: (string | RuleSubOptions)[];
+    children?: string;
+}
+
+export interface RuleSubOptions {
+    typeName: string;
+    order: (string | RuleSubOptions)[];
+}
+
+export type MessageIds = 'incorrectOrder';
+```
+
+### 2. Array Comparison: `areArraysEqual`
+
+Used to compare two key arrays:
+
+```typescript
+export function areArraysEqual(array1: string[], array2: string[]): boolean {
+    if (array1.length !== array2.length) return false;
+    for (let i = 0; i < array1.length; i++) {
+        if (array1[i] !== array2[i]) return false;
+    }
+    return true;
+}
+```
+
+### 3. Resolving the Expected Order: `resolveExpectedOrder`
+
+Dynamically generates the expected property order, handling nested sub-orders:
+
+```typescript
+export function resolveExpectedOrder(order: (string | RuleSubOptions)[]): string[] {
+    const resolvedEntries = new Set<string>();
+    order.forEach(entry => {
+        if (typeof entry === 'string') {
+            resolvedEntries.add(entry);
+        } else {
+            resolvedEntries.add(entry.typeName);
+            resolveExpectedOrder(entry.order).forEach(subEntry => resolvedEntries.add(subEntry));
+        }
+    });
+    return Array.from(resolvedEntries);
+}
+```
+
+## Integration into the ESLint Rule
+
+The core method is `checkObjectOrder`, which:
+
+* Retrieves the properties present in the object,
+* Compares them to the expected order,
+* Reports an issue if the order is incorrect,
+* Handles nested structures and child arrays.
+
+Simplified example:
+
+```typescript
+function checkObjectOrder(node, parentTypeName, typeName, expectedOrder, childrenKey) {
+    const resolvedOrder = resolveExpectedOrder(expectedOrder);
+    const actualKeys = node.properties
+        .filter(prop => prop.type === 'Property' && prop.key.type === 'Identifier')
+        .map(prop => prop.key.name)
+        .filter(key => resolvedOrder.includes(key));
+
+    const filteredExpectedOrder = resolvedOrder.filter(key => actualKeys.includes(key));
+
+    if (actualKeys.length > 1 && !areArraysEqual(filteredExpectedOrder, actualKeys)) {
+        context.report({
+            node,
+            messageId: 'incorrectOrder',
+            data: { typeName, parentTypeName, expectedOrder: filteredExpectedOrder.join(', ') }
+        });
+    }
+
+    // Recursive handling of nested objects...
+}
+```
+
+## Typical Use Case
+
+Example ESLint configuration:
+
+```json
+"rules": {
+    "@hacksis/sort-object-keys": ["error", [
+        {
+            "typeName": "User",
+            "order": ["id", "name", "email", {
+                "typeName": "address",
+                "order": ["street", "city", "zip"]
+            }]
+        }
+    ]]
+}
+```
+
+Which guarantees that:
+
+```typescript
+const user: User = {
+    id: 1,
+    name: 'John',
+    email: 'john@example.com',
+    address: {
+        street: '123 Main St',
+        city: 'Paris',
+        zip: '75001'
+    }
+};
+```
+
+will always follow the expected order.
+
+Development stack:
+
+* TypeScript 5.7+
+* ESLint 9.20+
+* Vitest for testing
+
+## Final Thoughts
+
+This project perfectly meets our internal needs:
+
+* Consistent conventions across projects,
+* Improved readability,
+* Reduced merge conflicts,
+* Advanced control of nested structures.
+
+We are currently testing the plugin internally to validate its stability. Once this phase is complete, I will move it to my personal repository and publish it officially to package registries (npm, yarn) so it can be accessible to everyone.
+
+Happy code automation 🚀!

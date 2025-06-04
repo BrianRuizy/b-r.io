@@ -3,11 +3,11 @@ title: "Comment ajouter votre statut de déploiement de Render dans votre repo G
 publishedAt: "2023-11-20"
 summary: "Un aperçu rapide de la configuration du projet et de la stack technologique que j'ai utilisé."
 tags:
-  - Python
-  - CI/CD
-  - Linter
-  - Formater
-  - Sonar Cloud
+- Python
+- CI/CD
+- Linter
+- Formater
+- Sonar Cloud
 shortTitle: Render API
 ---
 
@@ -26,9 +26,9 @@ Cependant, lorsque j'ai migré vers Render, j'ai rapidement réalisé qu'il n'ex
 Les sources de données proviennent des commits émits sur la branche main de n'importe quel projet qui utilise une application Github qui renvoie un webhook à l'API qui elle-même est liée à un déploiement sur Render.
 
 <Image
-  width={600}
-  height={400}
-  src="/blog/render-deployment/github-actions.svg"
+width={600}
+height={400}
+src="/blog/render-deployment/github-actions.svg"
 />
 
 ## Stack technologique
@@ -38,9 +38,9 @@ Ce projet utilise FastAPI en Python 3.0. Il fait le lien entre les webhooks de R
 Le projet utilise Black et Flake8 pour le formatage du code. SonarCloud lui est utilisé pour éviter des vulnérabilités et scanner l'optimisation du code. 
 
 <Image
-  width={600}
-  height={400}
-  src="/blog/render-deployment/stack.svg"
+width={600}
+height={400}
+src="/blog/render-deployment/stack.svg"
 />
 
 ## Comment ça fonctionne

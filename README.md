@@ -8,8 +8,6 @@ Thanks to @brianruizy and @samuelkraft for their work on this project !
 backend:
 - [Next.js](nextjs.org) / TypeScript
 - [MDX](https://mdxjs.com) / [Contentlayer](https://contentlayer.dev/) (Blog Posts)
-- [PlanetScale](http://planetscale.com) (Database)
-- [Prisma](https://www.prisma.io) (ORM)
 
 frontend:
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
@@ -17,24 +15,14 @@ frontend:
 - [Radix UI Colors](https://www.radix-ui.com/colors) (Color system)
 - [Framer Motion](https://www.framer.com/motion/) (Animations)
 
-feaas (frontend-as-a-service):
-- [Vercel](https://vercel.com) (Deployment)
-
 ## Getting Started
 
-Make sure you have Node.js v18.3.0+ installed on your machine.
+Make sure you have Node.js v18.17.0+ installed on your machine.
 
 1. **Install Dependencies**: `npm install`
-2. **Environment variables**: Copy `.env.example` to a new `.env`
+2. **Environment variables**: Copy `.env.example` to a new `.env.local`
 3. **Database Setup**: See [Database Setup](#database-setup)
-4. **Prisma Setup**: `npm install @prisma/client` (if you haven't already), then run `npx prisma generate`.
-5. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
-
-## Database Setup
-
-- Sign up for a PlanetScale account
-- Create a new database in PlanetScale
-- Update the DATABASE_URL environment variable in your project's `.env` file with the connection string provided by PlanetScale then run `npx prisma db push`.
+4. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
 
 ## Deployment
 

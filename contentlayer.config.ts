@@ -33,9 +33,9 @@ export const Post = defineDocumentType(() => ({
     summary: { type: "string", required: true },
     publishedAt: { type: "string", required: true },
     updatedAt: { type: "string", required: false },
-    tags: { type: "list", required: false, of: {type: "string"} },
+    tags: { type: "list", required: false, of: { type: "string" } },
     featured: { type: "boolean", required: false },
-    shortTitle : { type: "string", required: false, default: ""},
+    shortTitle: { type: "string", required: false, default: "" },
   },
   computedFields: postComputedFields,
 }));
@@ -57,10 +57,11 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    description: {type: "json", required: true},
+    description: { type: "json", required: true },
     time: { type: "string", required: true },
     url: { type: "string", required: false },
-    tags: { type: "json", required: false},
+    tags: { type: "json", required: false },
+    order: { type: "number", required: false, default: 1 },
   },
   computedFields: projectComputedFields,
 }));
@@ -69,6 +70,6 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post, Project],
   mdx: {
-    rehypePlugins: [rehypePrism, rehypeSlug],
+    rehypePlugins: [rehypePrism, rehypeSlug]
   },
 });

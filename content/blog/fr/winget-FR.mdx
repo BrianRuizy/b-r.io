@@ -1,0 +1,98 @@
+---
+title: "Quand j'en ai marre de tout réinstaller sur ma nouvelle machine... (avec WinGet cette fois !)"
+publishedAt: "2024-03-20"
+summary: "Explorer comment l'utilisation de winget peut simplifier la réinstallation de logiciels et économiser un temps précieux."
+tags:
+- PowerShell
+- winget
+- Windows
+shortTitle: winget
+---
+
+## Pourquoi ai-je démarré ce projet avec winget ?
+
+> L'installation efficace et rapide de logiciels sur Windows pour mes nouveaux projets.
+
+J'avais déjà expérimenté avec des outils comme Vercel pour mon portfolio, appréciant l'automatisation et la simplicité qu'ils apportaient.
+
+Auparavant, j'utilisais **Chocolatey** pour automatiser l'installation de mes logiciels sous Windows. Mais avec l'arrivée de **winget** (que je ne connaissais pas), le gestionnaire de paquets officiel de Microsoft, la donne a changé.
+
+Ne nécessitant plus d'installation tierce, étant natif et mieux intégré au système, **winget** m'est rapidement apparu comme une solution évidente pour simplifier mes installations logicielles.
+
+## Les bases de winget
+
+**winget** est un gestionnaire de paquets en ligne de commande pour Windows, directement inspiré des gestionnaires de paquets Linux.
+
+Il permet d'installer, mettre à jour et désinstaller des applications de manière simple et automatisée via PowerShell ou l'invite de commande.
+
+```powershell showLineNumbers {1-4}
+# Installer un package
+winget install <identifiant_du_package>
+
+# Mettre à jour un package
+winget upgrade <identifiant_du_package>
+
+# Désinstaller un package
+winget uninstall <identifiant_du_package>
+```
+
+*Find more in [winget documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/)*
+
+## Configuration et Utilisation
+
+Pour tirer pleinement parti de **winget**, j'ai mis à jour mes scripts pour qu'ils utilisent ce nouvel outil.
+
+Le seul prérequis est de disposer de **Windows 10 (1809+)** ou **Windows 11**, avec l'application "App Installer" (souvent déjà préinstallée).
+
+Voici un exemple de vérification et d'installation automatisée de logiciels :
+
+```powershell showLineNumbers {3}
+# Vérifier que winget est installé
+winget --version
+
+# Exemple d'installation de plusieurs logiciels
+winget install --id=Google.Chrome --accept-source-agreements --accept-package-agreements
+winget install --id=Microsoft.VisualStudioCode --accept-source-agreements --accept-package-agreements
+winget install --id=Docker.DockerDesktop --accept-source-agreements --accept-package-agreements
+```
+
+Et pour maintenir mes logiciels à jour :
+
+```powershell showLineNumbers {1}
+# Mise à jour de tous les logiciels
+winget upgrade --all --accept-source-agreements --accept-package-agreements
+```
+
+## Intégration avec mes workflows
+
+L'intégration de **winget** dans mes workflows de développement a été naturelle.
+
+Cela a simplifié la configuration de nouveaux environnements, tout en apportant de la cohérence et de la reproductibilité.
+
+Lors d’une mission passée, j'avais vu des scripts d'installation interne où les variables d'environnement n'étaient pas générées correctement, les logiciels installés à des endroits différents selon les machines...
+
+Avec **winget**, ces problèmes sont beaucoup plus rares puisque l'outil s'appuie sur les installeurs officiels et respecte les bonnes pratiques d'installation.
+
+## Avantages et Limitations
+
+En utilisant **winget**, j'ai constaté des gains significatifs en matière de productivité et de simplicité.
+
+Avantages :
+
+* Gestionnaire natif de Windows (aucune installation tierce),
+* Sécurité accrue (source officielle Microsoft Community Package Manifest Repository),
+* Simplicité d'usage,
+* Automatisation facile.
+
+Limitations :
+
+* Certains logiciels spécifiques ne sont pas encore présents dans le catalogue,
+* Certains installeurs nécessitent encore une interaction manuelle.
+
+## Conclusion
+
+Avec **winget**, j'ai pu moderniser mes processus d'installation et de maintenance de logiciels sous Windows.
+
+Fini les scripts lourds ou les installations manuelles fastidieuses : quelques commandes suffisent désormais pour configurer un nouvel environnement de travail.
+
+Si vous êtes un développeur sous Windows et que vous souhaitez rationaliser votre gestion de logiciels, je vous encourage à explorer **winget**.

@@ -1,0 +1,161 @@
+---
+title: "Exposing my Docker Services with Traefik on my NAS: Ubiquiti, DNS and Tailscale fallback"
+publishedAt: "2025-05-12"
+summary: "How I configured Traefik on my NAS to expose Docker services, with Tailscale fallback and external DNS management."
+tags:
+- Traefik
+- Docker
+- NAS
+- Ubiquiti
+- Tailscale
+- DNS
+shortTitle: Traefik NAS
+---
+
+## Why did I start this project?
+
+While self-hosting multiple Docker services on my NAS, I wanted to make them accessible externally in a way that is:
+
+* Secure (HTTPS),
+* Flexible (custom domain name),
+* Hassle-free for my users (mainly my family).
+
+I also needed a solution **complementary to Tailscale**:
+
+* Some of my family members can't or don't want to install Tailscale on their devices.
+* Some devices (Smart TVs, IoT devices, etc.) are not compatible with Tailscale.
+* As fallback, I still use Tailscale for my own admin access and for non-exposed services.
+
+That’s why I decided to implement a **public reverse proxy (Traefik)** in addition to my private Tailscale network.
+
+## Network stack
+
+Here is the architecture:
+
+* **NAS**: hosts my Docker containers,
+* **Docker Compose**: used to orchestrate the stacks,
+* **Traefik v2.11**: dynamic reverse proxy + automatic SSL,
+* **Ubiquiti Gateway**: handles routing, firewall, and NAT,
+* **Vercel DNS**: manages DNS records,
+* **Tailscale**: encrypted private network access (fallback / admin).
+
+<Image
+width={600}
+height={400}
+src="/blog/reverse-proxy/network.svg"
+/>
+
+### Role of the DMZ
+
+* My Internet box is configured in **DMZ** towards the **Ubiquiti Gateway**.
+* This means the box no longer performs NAT or filtering → Ubiquiti takes full control over the firewall, NAT, and port forwarding.
+* Benefit: avoids double NAT issues, improves security, centralizes the network configuration.
+
+## Traefik configuration
+
+Here is my base `docker-compose.yml`:
+
+```yaml
+services:
+  traefik:
+    image: traefik:v2.11
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:8081"
+      - "--entrypoints.websecure.address=:8443"
+      - "--certificatesresolvers.le.acme.email=${EMAIL}"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.le.acme.tlschallenge=true"
+      - "--entrypoints.websecure.http.tls.certresolver=le"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+    ports:
+      - "8880:8080"   # Traefik dashboard
+      - "8081:8081"   # Traefik internal HTTP
+      - "8443:8443"   # Traefik internal HTTPS
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /volume2/docker/traefik/letsencrypt:/letsencrypt
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`traefik.${DOMAIN}`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=auth-traefik"
+      - "traefik.http.middlewares.auth-traefik.basicauth.users=${USER_TRAEFIK}:${HASHED_PASSWORD}"
+      - "traefik.docker.network=proxy"
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+      - net.ipv6.conf.default.disable_ipv6=1
+networks:
+  proxy:
+    external: true
+```
+
+## Service exposure
+
+For each Docker service, I add Traefik labels:
+
+```yaml
+labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.monservice.rule=Host(`monservice.${DOMAIN}`)"
+  - "traefik.http.routers.monservice.entrypoints=websecure"
+```
+
+Which allows me to access the service at:
+
+```text
+https://monservice.mydomain.com
+```
+
+## DNS configuration
+
+At **Vercel**, I configured the corresponding DNS records:
+
+```text
+A  monservice.mydomain.com   <IP_PUBLIC>
+```
+
+Thus, the network flow is:
+
+```text
+Client ➞ DNS Vercel ➞ Public IP ➞ Ubiquiti Gateway ➞ NAS ➞ Traefik ➞ Docker service
+```
+
+## Why Traefik + Tailscale?
+
+### User case
+
+**Without Traefik**: I had to ask my family members to install Tailscale, which:
+
+* Was not suitable on some devices (Smartphones, TVs...),
+* Was a barrier for less tech-savvy users.
+
+**With Traefik**:
+
+* I can expose **some services** (e.g. photo dashboard, media server) publicly via HTTPS, accessible by simple URL.
+* I reduce risks using **Basic Auth** on public services.
+* For my admin use (monitoring, sensitive services), I still access them **only via Tailscale**.
+
+### In summary:
+
+```text
+Public services (HTTPS) ➞ Traefik ➞ DNS Vercel ➞ family / guests
+Private services (LAN / admin) ➞ Tailscale ➞ fully secure access
+```
+
+## Conclusion
+
+With this hybrid architecture:
+
+* I secure and expose public services,
+* I maintain private and encrypted access for my admin needs via Tailscale,
+* I have centralized network management with Ubiquiti,
+* I fully control routing and certificates with Traefik.

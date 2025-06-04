@@ -22,11 +22,17 @@ interface ItemProps {
 }
 
 function GetStatus(url: string) {
+  const shouldFetch = url !== "" && url !== "online";
+
   const { data: statusData, error: statusDataError } = useSWR(
-    `/api/getStatus?url=${url}`,
+    shouldFetch ? `/api/getStatus?url=${encodeURIComponent(url)}` : null,
     fetcher
   );
+
+  if (url === "online") return "online";
+  if (url === "") return undefined;
   if (statusDataError) return "offline";
+
   return "online";
 }
 
@@ -52,9 +58,10 @@ const Item = ({
   return (
     <li className="flex gap-3 items-center transition-opacity">
       <a
-        className="flex-none relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow"
-        href={githubLink}
+        className={`flex-none relative rounded-xl overflow-hidden bg-tertiary aspect-square w-[4rem] min-w-[4rem] h-[4rem] shadow ${!githubLink ? 'pointer-events-none opacity-50' : ''}`}
+        href={githubLink && githubLink.trim() !== "" ? githubLink : undefined}
         target="_blank"
+        rel="noopener noreferrer"
       >
         <Image
           src={image ? image : "/deployments/basicPicture.svg"}

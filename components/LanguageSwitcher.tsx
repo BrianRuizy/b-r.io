@@ -29,7 +29,6 @@ export default function LanguageSwitcher() {
       const path = window.location.pathname;
       if (path.startsWith('/blog/')) {
         const newPath = path.replace(/(EN|FR)$/, newLang);
-        console.log(newPath);
         window.location.href = newPath;
       }
     }
@@ -84,9 +83,8 @@ export default function LanguageSwitcher() {
                       {({ selected }) => (
                         <>
                           <span
-                            className={`block truncate ${
-                              selected ? "font-medium" : "font-normal"
-                            }`}
+                            className={`block truncate ${selected ? "font-medium" : "font-normal"
+                              }`}
                           >
                             {langItem.name}
                           </span>

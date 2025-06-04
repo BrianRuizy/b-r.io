@@ -34,10 +34,6 @@ export default function Stats() {
     `/api/github?username=${username}`,
     fetcher
   );
-  const { data: postsData, error: postsError } = useSWR(
-    `/api/hitsTotal`,
-    fetcher
-  );
 
   return (
     <ul
@@ -54,17 +50,6 @@ export default function Stats() {
               {githubData ? addCommas(githubData?.numberOfProject) : "000"}
             </FlipNumber>
             <span> {text.github}</span>
-          </div>
-        </Link>
-      </li>
-      <li className="transition-opacity">
-        <Link className="flex gap-3 items-center" href="/blog">
-          <ArrowTrendingUpIcon className="w-5 h-5" />
-          <div>
-            <FlipNumber>
-              {postsData ? addCommas(postsData?.total) : "0,000"}
-            </FlipNumber>
-            <span> {text.blogViews}</span>
           </div>
         </Link>
       </li>

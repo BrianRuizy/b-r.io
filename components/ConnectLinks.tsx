@@ -1,4 +1,4 @@
-import {FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 interface ConnectLink {
   label: string;
@@ -26,11 +26,6 @@ const ConnectLinks: ConnectLink[] = [
     label: "GitHub",
     href: "https://github.com/Fyleek",
     icon: <FaGithub />,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/oscar.dqt/",
-    icon: <FaInstagram />,
   },
   {
     label: "LinkedIn",

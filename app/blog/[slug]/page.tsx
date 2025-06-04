@@ -5,8 +5,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import Mdx from "@/app/blog/components/ui/MdxWrapper";
-import ViewCounter from "@/app/blog/components/ui/ViewCounter";
-import PostList from "@/app/blog/components/ui/PostList";
 import Tags from "@/components/Tags";
 import Link from "@/components/ui/Link";
 import { formatDate } from "lib/formatdate";
@@ -32,7 +30,6 @@ export default function Post({ params }: { params: any }) {
   const { lang, setLang } = useLang();
   setLang(params.slug.slice(-2));
   const text = blogSlugTranslations[lang];
-  console.log("params",params);
   const [post, setPost] = useState<PostType | null>(null);
 
   useEffect(() => {
@@ -81,8 +78,6 @@ export default function Post({ params }: { params: any }) {
                 {post.updatedAt
                   ? `(Updated ${formatDate(post.updatedAt, lang)})`
                   : ""}
-                {" · "}
-                <ViewCounter post={post} />
               </p>
             </div>
           </div>

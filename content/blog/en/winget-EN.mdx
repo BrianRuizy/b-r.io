@@ -1,0 +1,98 @@
+---
+title: "When I Get Tired of Reinstalling Everything on My New Machine... (with WinGet this time!)"
+publishedAt: "2024-03-20"
+summary: "Exploring how using winget can simplify software reinstallation and save valuable time."
+tags:
+- PowerShell
+- WinGet
+- Windows
+shortTitle: winget
+---
+
+## Why did I start this project with WinGet?
+
+> Efficient and fast software installation on Windows for my new projects.
+
+I had already experimented with tools like Vercel for my portfolio, enjoying the automation and simplicity they offered.
+
+Previously, I used **Chocolatey** to automate software installation on Windows. But with the arrival of **WinGet** (which I didn't know about at the time), the official package manager from Microsoft, everything changed.
+
+Since it no longer requires third-party installation, is native, and better integrated into the system, **WinGet** quickly became the obvious solution to simplify my software installation process.
+
+## The basics of WinGet
+
+**WinGet** is a command-line package manager for Windows, directly inspired by Linux package managers.
+
+It allows you to install, update, and uninstall applications in a simple and automated way via PowerShell or Command Prompt.
+
+```powershell showLineNumbers {1-4}
+# Install a package
+winget install <package_identifier>
+
+# Update a package
+winget upgrade <package_identifier>
+
+# Uninstall a package
+winget uninstall <package_identifier>
+```
+
+*Find more in the [winget documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/)*
+
+## Configuration and Usage
+
+To fully leverage **WinGet**, I updated my scripts to use this new tool.
+
+The only prerequisite is to have **Windows 10 (1809+)** or **Windows 11**, with the "App Installer" application (usually pre-installed).
+
+Here’s an example of checking and automating software installation:
+
+```powershell showLineNumbers {3}
+# Check that winget is installed
+winget --version
+
+# Example of installing multiple applications
+winget install --id=Google.Chrome --accept-source-agreements --accept-package-agreements
+winget install --id=Microsoft.VisualStudioCode --accept-source-agreements --accept-package-agreements
+winget install --id=Docker.DockerDesktop --accept-source-agreements --accept-package-agreements
+```
+
+And to keep my software up to date:
+
+```powershell showLineNumbers {1}
+# Update all installed applications
+winget upgrade --all --accept-source-agreements --accept-package-agreements
+```
+
+## Integration with my workflows
+
+Integrating **WinGet** into my development workflows was seamless.
+
+It simplified the setup of new environments while providing consistency and reproducibility.
+
+In a past project, I encountered internal installation scripts where environment variables were not generated correctly, and software was installed in different locations depending on the machine...
+
+With **WinGet**, these issues are much less frequent since the tool relies on official installers and follows best installation practices.
+
+## Advantages and Limitations
+
+By using **WinGet**, I’ve seen significant improvements in productivity and simplicity.
+
+Advantages:
+
+* Native Windows package manager (no third-party installation),
+* Enhanced security (official Microsoft Community Package Manifest Repository source),
+* Ease of use,
+* Easy automation.
+
+Limitations:
+
+* Some specific software is still not available in the catalog,
+* Some installers still require manual interaction.
+
+## Conclusion
+
+With **WinGet**, I’ve modernized my software installation and maintenance processes on Windows.
+
+No more heavy scripts or tedious manual installations: a few commands are now enough to set up a new working environment.
+
+If you are a Windows developer looking to streamline your software management, I encourage you to explore **WinGet**.

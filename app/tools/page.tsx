@@ -1,15 +1,13 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
 
-import Maintenance from "public/maintenance.svg";
-
 import { toolsTranslations, tools } from "@/translations/toolsTranslations";
 import { useLang } from "@/components/LanguageProvider";
 import { Translations } from "@/translations/translations";
 
 interface ItemProps {
   title: string;
-  description: {[key: string]: string};
+  description: { [key: string]: string };
   image: string | StaticImageData;
   link: string;
   lang: string;

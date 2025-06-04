@@ -3,11 +3,11 @@ title: "How to Add Your Render Deployment Status to Your Github Repo with Python
 publishedAt: "2023-11-20"
 summary: "A quick overview of the project setup and the technology stack I used."
 tags:
-  - Python
-  - CI/CD
-  - Linter
-  - Formatter
-  - Sonar Cloud
+- Python
+- CI/CD
+- Linter
+- Formatter
+- Sonar Cloud
 shortTitle: Render API
 ---
 
@@ -26,9 +26,9 @@ However, when I switched to Render, I quickly realized that there was no officia
 The data sources come from the commits made on the main branch of any project using a Github application that sends a webhook to the API, which is then linked to a deployment on Render.
 
 <Image
-  width={600}
-  height={400}
-  src="/blog/render-deployment/github-actions.svg"
+width={600}
+height={400}
+src="/blog/render-deployment/github-actions.svg"
 />
 
 ## Technology Stack
@@ -38,9 +38,9 @@ This project uses FastAPI in Python 3.0. It connects Render's webhooks and the G
 The project uses Black and Flake8 for code formatting. SonarCloud is used to prevent vulnerabilities and scan for code optimization.
 
 <Image
-  width={600}
-  height={400}
-  src="/blog/render-deployment/stack.svg"
+width={600}
+height={400}
+src="/blog/render-deployment/stack.svg"
 />
 
 ## How It Works

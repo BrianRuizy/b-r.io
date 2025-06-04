@@ -59,7 +59,7 @@ export default function Home() {
         >
           <li className="transition-opacity">
             <Link
-              href="mailto:contact@b-r.io"
+              href="mailto:contact@o-d.me"
               className="flex items-center gap-2 no-underline"
             >
               <ArrowUpRightIcon className="h-5 w-5" />
@@ -83,8 +83,8 @@ export default function Home() {
       >
         <h2 className="text-secondary">{text.publication}</h2>
         <PostList posts={posts} />
-        <Link 
-          href="/blog" 
+        <Link
+          href="/blog"
           className="underline dark:text-neutral-100"
         >
           {text.seeAll}
