@@ -7,12 +7,9 @@ import { allBlogs } from ".contentlayer/generated";
 import Avatar from "@/app/components/Avatar";
 import Tags from "@/app/components/Tags";
 import Mdx from "@/app/blog/components/MdxWrapper";
-import FlipNumber from "@/app/components/FlipNumber";
 import Me from "@/public/avatar.png";
 
 import { formatDate } from "@/app/_utils/formatDate";
-import { getViewsCount } from "@/app/db/queries";
-import { incrementViews } from "@/app/db/actions";
 import NewsletterSignupForm from "@/app/blog/components/NewsletterSignupForm";
 
 type Props = {
@@ -85,9 +82,6 @@ export default async function Blog({ params }: { params: any }) {
                 {blog.updatedAt
                   ? `(Updated ${formatDate(blog.updatedAt)})`
                   : ""}
-                {" · "}
-
-                <Views slug={blog.slug} />
               </p>
             </div>
           </div>
@@ -119,29 +113,19 @@ export default async function Blog({ params }: { params: any }) {
         <div className="flex flex-col gap-6">
           <h2>Contact</h2>
           <p className="max-w-md text-pretty text-secondary">
-            Questions or need more details? Ping me on {" "}
+            Questions or need more details? Ping me on{" "}
             <Link href="/discord" underline>
               Discord,
             </Link>{" "}
-            or any of my other social media <Link href="/links" underline>links</Link>.
+            or any of my other social media{" "}
+            <Link href="/links" underline>
+              links
+            </Link>
+            .
           </p>
         </div>
         <NewsletterSignupForm contained={false} />
       </div>
     </div>
-  );
-}
-
-async function Views({ slug }: { slug: string }) {
-  let blogViews = await getViewsCount();
-  const viewsForBlog = blogViews.find((view) => view.slug === slug);
-
-  incrementViews(slug);
-
-  return (
-    <span>
-      <FlipNumber>{viewsForBlog?.count || 0}</FlipNumber>
-      {viewsForBlog?.count === 1 ? " view" : " views"}
-    </span>
   );
 }

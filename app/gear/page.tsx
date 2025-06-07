@@ -378,27 +378,7 @@ const gear = [
     image: "https://m.media-amazon.com/images/I/51owwMmtiBL._AC_SL1500_.jpg",
     link: "https://amzn.to/40LPcJa",
   },
-  // {
-  //   name: "HP DisplayLink Hub",
-  //   category: "Office Desk Setup",
-  //   image: "https://m.media-amazon.com/images/I/51Akvh02nDL._AC_SL1280_.jpg",
-  //   description: "A hub that enables dual monitors on M1 MBP.",
-  //   link: "https://amzn.to/3UnTbJo",
-  // },
-  // {
-  //   name: "Dell UltraSharp U2722D",
-  //   category: "Office Desk Setup",
-  //   link: "https://amzn.to/3KLucN1",
-  //   image: "https://m.media-amazon.com/images/I/81siJZnLDaL._AC_SL1500_.jpg",
-  //   description: "A 27 inch 4K monitor",
-  // },
-  // {
-  //   name: "VIVO Dual Monitor Stand",
-  //   category: "Office Desk Setup",
-  //   link: "https://amzn.to/40U0jzC",
-  //   image: "https://m.media-amazon.com/images/I/61JPGtCI0GL._AC_SL1500_.jpg",
-  //   description: "White articulating pneumatic monitor stand",
-  // },
+
   {
     name: "MacBook Pro M1 Pro 16-inch",
     category: "Everyday Carry",
