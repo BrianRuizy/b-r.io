@@ -11,6 +11,7 @@
   "type": "module",
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@base-ui/react": "^1.6.0",
     "@headlessui/react": "^2.2.10",
     "@mapbox/rehype-prism": "^0.9.0",
     "@mdx-js/loader": "^3.1.0",
@@ -20,6 +21,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/webpack-env": "^1.18.8",
     "cheerio": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fast-glob": "^3.3.3",
     "feed": "^5.1.0",
@@ -29,6 +31,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.1",
     "typescript": "^5.8.3"
   },

@@ -1,49 +1,66 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
 
-import { Card } from '@/components/Card'
+import {
+  ContentCard,
+  ContentCardDescription,
+  ContentCardTitle,
+} from '@/components/ContentCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'b-r.io',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
+      'My personal website and home for writing about software, design, productivity, and life.',
+    link: {
+      href: 'https://github.com/brianruizy/b-r.io',
+      label: 'github.com/brianruizy/b-r.io',
+    },
   },
   {
-    name: 'Animaginary',
+    name: 'COVID-19 Dashboard',
     description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
+      'A Django and Plotly dashboard for exploring pandemic data through an interactive, data-driven interface.',
+    link: {
+      href: 'https://github.com/brianruizy/covid19-dashboard',
+      label: 'github.com/brianruizy/covid19-dashboard',
+    },
   },
   {
-    name: 'HelioStream',
+    name: 'Gatsby Medium Blog',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
+      'A feature-rich Gatsby starter with search, reactions, dark mode, code highlighting, and an installable PWA.',
+    link: {
+      href: 'https://github.com/brianruizy/gatsby-medium-blog',
+      label: 'github.com/brianruizy/gatsby-medium-blog',
+    },
   },
   {
-    name: 'cosmOS',
+    name: 'LeetCode Notion',
     description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoCosmos,
+      'A simple Notion workflow for tracking coding problems, solutions, thought processes, and complexity.',
+    link: {
+      href: 'https://github.com/brianruizy/leetcode-notion',
+      label: 'github.com/brianruizy/leetcode-notion',
+    },
   },
   {
-    name: 'OpenShuttle',
+    name: 'Next Notion Portfolio',
     description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoOpenShuttle,
+      'A Next.js portfolio template that uses Notion as a flexible content management system.',
+    link: {
+      href: 'https://github.com/brianruizy/next-notion-portfolio',
+      label: 'github.com/brianruizy/next-notion-portfolio',
+    },
+  },
+  {
+    name: 'Gatsby Minimal Portfolio',
+    description:
+      'A content-focused JAMstack portfolio starter with dark mode, SEO, code highlighting, forms, and CI/CD.',
+    link: {
+      href: 'https://github.com/brianruizy/gatsby-minimal-portfolio',
+      label: 'github.com/brianruizy/gatsby-minimal-portfolio',
+    },
   },
 ]
 
@@ -60,38 +77,41 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Things I’ve made trying to put my dent in the universe.',
+  description: 'Open-source projects, experiments, and tools I’ve built.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I’ve made trying to put my dent in the universe."
-      intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+      title="Things I’ve built while learning and experimenting."
+      intro="I learn by making things. These are a few of the open-source projects, templates, and experiments I’ve published over the years."
     >
       <ul
         role="list"
         className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
       >
         {projects.map((project) => (
-          <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={project.logo}
-                alt=""
-                className="h-8 w-8"
-                unoptimized
-              />
-            </div>
-            <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
-            </h2>
-            <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
-          </Card>
+          <li key={project.name}>
+            <ContentCard className="h-full">
+              <div className="relative z-20 flex h-12 w-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 ring-border group">
+                {project.name.slice(0, 2).toUpperCase()}
+              </div>
+              <ContentCardTitle
+                href={project.link.href}
+                external
+                className="mt-6"
+              >
+                {project.name}
+              </ContentCardTitle>
+              <ContentCardDescription>
+                {project.description}
+              </ContentCardDescription>
+              <p className="relative z-20 mt-6 flex items-center text-sm font-medium text-muted-foreground transition group-hover:text-accent">
+                <LinkIcon className="h-6 w-6 flex-none" />
+                <span className="ml-2 line-clamp-1">{project.link.label}</span>
+              </p>
+            </ContentCard>
+          </li>
         ))}
       </ul>
     </SimpleLayout>
