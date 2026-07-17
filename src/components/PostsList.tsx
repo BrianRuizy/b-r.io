@@ -67,7 +67,6 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
           <Button
             key={item.value}
             type="button"
-            size="sm"
             variant={filter === item.value ? 'secondary' : 'ghost'}
             aria-pressed={filter === item.value}
             onClick={() => setFilter(item.value)}

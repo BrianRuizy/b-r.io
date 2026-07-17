@@ -93,7 +93,7 @@ export default function Projects() {
         {projects.map((project) => (
           <li key={project.name}>
             <ContentCard className="h-full">
-              <div className="relative z-20 flex h-12 w-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 ring-border group">
+              <div className="group relative z-20 flex h-12 w-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow ring-1 ring-border dark:bg-muted/90">
                 {project.name.slice(0, 2).toUpperCase()}
               </div>
               <ContentCardTitle
