@@ -74,10 +74,10 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I’m Brian — a software engineer from Honduras living in New York
-              City. I’ve been drawn to computers since I was a kid, and that
-              curiosity turned into a career building products across the stack,
-              with a soft spot for design and how things feel to use.
+              I’ve been drawn to computers for as long as I can remember. I grew
+              up in Honduras, now live in New York City, and that early curiosity
+              turned into a career building products across the stack, with a
+              soft spot for design and how things feel to use.
             </p>
             <p>
               By day I work at Hines as a senior software engineer, focused on
@@ -89,8 +89,7 @@ export default function About() {
               the day-to-day of building — sometimes with a little filmmaking
               mixed in. The channel started from a passion for photography and
               working with cameras and tech, and here we are: a community of
-              more than 100,000 people. I also publish Notion systems and
-              templates for the workflows I actually use.
+              more than 100,000 people.
             </p>
             <p>
               Away from the screen you’ll usually catch me at the gym, riding my

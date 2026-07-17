@@ -98,13 +98,13 @@ function MobileNavigation(
 ) {
   return (
     <Popover {...props}>
-      <PopoverButton className="group flex items-center rounded-full bg-card/90 px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-popover/90 dark:hover:ring-foreground/20">
+      <PopoverButton className="group flex items-center rounded-full bg-card/90 px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20">
         Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted-foreground group-hover:stroke-foreground" />
       </PopoverButton>
       <PopoverBackdrop
         transition
-        className="fixed inset-0 z-50 bg-foreground/40 backdrop-blur-xs duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-background/80"
+        className="fixed inset-0 z-50 backdrop-blur-sm duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
       />
       <PopoverPanel
         focus
