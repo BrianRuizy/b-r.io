@@ -119,9 +119,9 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto"
+          className="min-w-0 flex-auto h-9"
         />
-        <Button type="submit" className="flex-none">
+        <Button type="submit" className="flex-none" size="lg">
           Join
         </Button>
       </div>
@@ -220,6 +220,7 @@ function Resume() {
       </ol>
       <Button
         variant="secondary"
+        size="lg"
         className="mt-6 w-full"
         nativeButton={false}
         render={

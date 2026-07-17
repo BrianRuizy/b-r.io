@@ -141,7 +141,8 @@ function NavItem({
 }) {
   let pathname = usePathname()
   let isActive =
-    pathname === href || (href === '/posts' && pathname.startsWith('/articles/'))
+    pathname === href ||
+    (href === '/posts' && pathname.startsWith('/articles/'))
 
   return (
     <li>
@@ -164,7 +165,7 @@ function NavItem({
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props}>
-      <ul className="flex rounded-full bg-card/90 px-3 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-popover/90">
+      <ul className="flex rounded-full bg-card/90 px-3 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
         <NavItem href="/about">About</NavItem>
         <NavItem href="/posts">Posts</NavItem>
         <NavItem href="/projects">Projects</NavItem>
@@ -188,7 +189,7 @@ function ThemeToggle() {
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-popover/90 dark:hover:ring-foreground/20"
+      className="group rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
       onClick={() => setTheme(otherTheme)}
     >
       <SunIcon className="h-6 w-6 fill-muted stroke-muted-foreground transition group-hover:fill-accent group-hover:stroke-foreground dark:hidden [@media(prefers-color-scheme:dark)]:fill-accent/10 [@media(prefers-color-scheme:dark)]:stroke-accent [@media(prefers-color-scheme:dark)]:group-hover:fill-accent/10 [@media(prefers-color-scheme:dark)]:group-hover:stroke-accent" />
@@ -211,7 +212,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-popover/90',
+        'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90',
       )}
       {...props}
     />
