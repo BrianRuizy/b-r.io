@@ -50,7 +50,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Brian Ruiz is a software engineer and creator in New York City, originally from Honduras.',
+    'Brian Ruiz is a software engineer and creator based in New York City.',
 }
 
 export default function About() {
@@ -74,28 +74,29 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I’ve been drawn to computers for as long as I can remember. I grew
-              up in Honduras, now live in New York City, and that early curiosity
-              turned into a career building products across the stack, with a
-              soft spot for design and how things feel to use.
+              I'm from Honduras, grew up in Texas, and now live in New York
+              City. I got into software because I liked making things people
+              could actually use — and that's still what keeps me interested,
+              whether it's code, a video, or something in between.
             </p>
             <p>
-              By day I work at Hines as a senior software engineer, focused on
-              building web applications at the enterprise level. I studied
-              computer science for a bit at the University of Houston–Downtown.
+              I work at Hines as a senior software engineer, building web
+              applications at the enterprise level. Most of my time goes into
+              making complex systems feel straightforward for the people using
+              them.
             </p>
             <p>
-              On the side I make YouTube videos about tech, productivity, and
-              the day-to-day of building — sometimes with a little filmmaking
-              mixed in. The channel started from a passion for photography and
-              working with cameras and tech, and here we are: a community of
-              more than 100,000 people.
+              On the side I run a YouTube channel with more than 100,000
+              subscribers. It started with photography and cameras, then grew
+              into videos about tech, productivity, and what building things
+              day to day actually looks like — sometimes with a little
+              filmmaking mixed in.
             </p>
             <p>
-              Away from the screen you’ll usually catch me at the gym, riding my
-              e-bike around the city, or camping out at a coffee shop with a
-              laptop nearby. This site is a quieter home for the work, writing,
-              and tools behind all of that.
+              When I'm not working, you'll usually find me at the gym, riding
+              my e-bike around the city, or at a coffee shop with a laptop
+              nearby. This site is a quieter place for the writing, projects,
+              and work that doesn't fit on a timeline.
             </p>
           </div>
         </div>
