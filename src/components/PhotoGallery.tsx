@@ -59,6 +59,13 @@ export function PhotoGallery() {
   // Max drag = scroll until last card's right edge hits viewport's right edge
   const maxDrag = isMobile && viewportWidth > 0 ? -(totalWidth - viewportWidth) : -totalWidth
 
+  // Initialize gallery position so last card is at right edge
+  useEffect(() => {
+    if (isMobile && maxDrag < 0) {
+      x.set(maxDrag) // Start at the end!
+    }
+  }, [isMobile, maxDrag, x])
+
   // Clamp x value to prevent going out of bounds
   useEffect(() => {
     if (!isMobile) return
