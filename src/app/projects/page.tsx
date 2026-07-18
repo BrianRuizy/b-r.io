@@ -12,7 +12,6 @@ import logoBeam from '@/images/logos/beam.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
 
 interface Project {
   name: string
@@ -87,13 +86,13 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Open-source projects, tools, and experiments I’ve built.',
+  description: 'Open-source projects, tools, and experiments I&apos;ve built.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I’ve built along the way."
+      title="Things I've built along the way."
       intro="Open-source templates, dashboards, and apps. Some to learn, some to scratch my own itch."
     >
       <ul
@@ -103,12 +102,12 @@ export default function Projects() {
         {projects.map((project) => (
           <li key={project.name}>
             <ContentCard className="h-full">
-              <div className="relative z-20 flex h-12 w-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0">
+              <div className="relative z-20 flex size-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0">
                 {project.logo ? (
                   <Image
                     src={project.logo}
                     alt=""
-                    className="h-8 w-8 rounded-full"
+                    className="size-8! rounded-full"
                     unoptimized
                   />
                 ) : (

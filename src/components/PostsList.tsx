@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 import {
   ContentCard,
@@ -21,14 +21,20 @@ const filters: Array<{ label: string; value: Filter }> = [
   { label: 'Videos', value: 'video' },
 ]
 
+function parseFilter(value: string | null): Filter {
+  if (value === 'article' || value === 'video') return value
+  return 'all'
+}
+
+function hrefFor(filter: Filter) {
+  return filter === 'all' ? '/posts' : `/posts?type=${filter}`
+}
+
 function PostItem({ post }: { post: Post }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <ContentCard className="md:col-span-3">
-        <ContentCardTitle
-          href={post.href}
-          external={post.type === 'video'}
-        >
+        <ContentCardTitle href={post.href} external={post.type === 'video'}>
           {post.title}
         </ContentCardTitle>
         <ContentCardEyebrow
@@ -56,7 +62,8 @@ function PostItem({ post }: { post: Post }) {
 }
 
 export function PostsList({ posts }: { posts: Array<Post> }) {
-  let [filter, setFilter] = useState<Filter>('all')
+  let searchParams = useSearchParams()
+  let filter = parseFilter(searchParams.get('type'))
   let filteredPosts =
     filter === 'all' ? posts : posts.filter((post) => post.type === filter)
 
@@ -66,10 +73,10 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
         {filters.map((item) => (
           <Button
             key={item.value}
-            type="button"
+            href={hrefFor(item.value)}
+            scroll={false}
             variant={filter === item.value ? 'secondary' : 'ghost'}
-            aria-pressed={filter === item.value}
-            onClick={() => setFilter(item.value)}
+            aria-current={filter === item.value ? 'page' : undefined}
           >
             {item.label}
           </Button>

@@ -1,11 +1,15 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { Button } from '@/components/Button'
+import imageRoadmap from '@/images/articles/notion-setup/roadmap.png'
+import imageContentManager from '@/images/articles/notion-setup/content-manager.png'
+import imageThumb from '@/images/articles/notion-setup/notion-setup-thumbnail.png'
 
 export const article = {
   author: 'Brian Ruiz',
   date: '2024-03-19',
   title: 'My Notion Productivity Setup',
   description:
-    'The systems I use to manage software projects, content creation, learning, and everyday life.',
+    'Workflow templates I use as a developer and creator — roadmap, content OS, notes, and more.',
 }
 
 export const metadata = {
@@ -15,42 +19,120 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-I’ve used Notion for years, and it has grown from a simple note-taking app into
-the system I use to manage content creation, development work, learning, and
-personal projects.
+I’ve been using Notion for years. What started as a simple note-taking app became the system I use for content creation, development work, learning, and personal projects.
 
-The goal is not to build a perfect dashboard. It is to reduce the effort it
-takes to capture an idea, understand what needs attention, and keep moving.
+I get a lot of questions about the templates, so this post breaks down the ones that actually matter day to day. There’s also a [video walkthrough](https://www.youtube.com/watch?v=53KFVt2GRkE) if you’d rather see the workspace in motion.
+
+<div className="not-prose my-8 overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
+  <a
+    href="https://www.youtube.com/watch?v=53KFVt2GRkE"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block"
+  >
+    <Image src={imageThumb} alt="Notion setup video thumbnail" className="w-full" />
+  </a>
+  <div className="space-y-2 p-4">
+    <div className="text-sm font-semibold text-foreground">
+      My Complete Notion Setup (2024) — Templates & Systems
+    </div>
+    <Button
+      href="https://www.youtube.com/watch?v=53KFVt2GRkE"
+      variant="secondary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Watch on YouTube
+    </Button>
+  </div>
+</div>
 
 ## Full-stack developer roadmap
 
-My developer roadmap provides an overview of the subjects involved in becoming
-a full-stack engineer. It is organized into fundamentals, frontend, backend,
-and databases, with curated resources that make it possible to learn at your
-own pace.
+<figure>
+  <Image src={imageRoadmap} alt="Full stack developer roadmap in Notion" />
+  <figcaption>
+    A self-paced overview of what to learn as a full-stack web developer.
+  </figcaption>
+</figure>
+
+This roadmap gives a general overview of full-stack development without pretending to be a complete tutorial. It’s organized into chapters and modules — Fundamentals, Frontend, Backend, Databases — with curated resources so you can move at your own pace.
+
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brianroadmap" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Start learning
+  </Button>
+</div>
 
 ## Content Manager OS
 
-This is the operating system behind my creative workflow. It connects projects,
-tasks, partners, and earnings, and it has been part of my process since the
-first video on my channel.
+<figure>
+  <Image src={imageContentManager} alt="Content Manager OS Notion template" />
+  <figcaption>
+    The operating system behind my content workflow. This is the only paid template in the list — the rest are free.
+  </figcaption>
+</figure>
 
-Good content starts with clear thinking and planning. Keeping research,
-writing, production, and partnerships together saves time and makes it easier
-to focus on the story instead of maintaining the system.
+This is home base for content creation: projects, tasks, partners, and earnings. I’ve used it since the first video on the channel. Good content starts with clear writing and planning, and this template keeps research, production, and partnerships in one place.
 
-## Development notes
+It’s flexible enough for YouTube, writing, or other formats. Building the system once saved me from reinventing it every time a new project started.
 
-I keep a personal worklog for standups, sprint planning, postmortems, and weekly
-notes. It is separate from the team’s project management tools: this space is
-for preserving context and making past decisions easier to find.
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brcontentmanager" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Start creating
+  </Button>
+</div>
 
-## Smaller systems
+## App development notes
 
-The rest of the workspace includes a reading list, reusable snippets, a simple
-personal finance tracker, and a LeetCode template for documenting solutions,
-thought processes, and complexity instead of memorizing answers.
+This is my personal worklog for standups, sprint planning, postmortems, and weekly notes. Team task tracking lives elsewhere — this space is for preserving context and making past decisions easier to find. Notion’s AI summary and Q&A features are especially useful here.
 
-These systems are always changing, but they continue to help me stay organized
-and focused on the work that matters. The complete walkthrough and templates
-are available on [b-r.io](https://www.b-r.io/blog/notion-setup).
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brappnotes" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Get the template
+  </Button>
+</div>
+
+## Personal finance
+
+A simple budget and recurring-expense tracker with table calculations, categories, and tags. I don’t use it as heavily anymore — Notion isn’t ideal for granular money tracking when income and spend aren’t perfectly consistent — but it’s still a solid lightweight option.
+
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brpersonalfinance" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Get the template
+  </Button>
+</div>
+
+## Reading list
+
+Built around the Notion Web Clipper. It’s not perfect, but it’s fast: turn any page into something readable and open it on any device later.
+
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brreadinglist" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Get the template
+  </Button>
+</div>
+
+## Snippets
+
+A home for email templates and other text I reuse often. I’d like to add a quick fill-in-variables → copy-to-clipboard flow eventually.
+
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brsnippets" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Get the template
+  </Button>
+</div>
+
+## LeetCode template
+
+Interview practice without pure memorization: define the problem, capture the thought process, sketch on a whiteboard block, add code, and note complexity. It keeps practice problems organized in one place.
+
+<div className="not-prose my-6">
+  <Button href="https://ntn.so/brleetcode" variant="secondary" target="_blank" rel="noopener noreferrer">
+    Get the template
+  </Button>
+</div>
+
+---
+
+These templates have been the backbone of how I stay organized. They’re not perfect, and they keep changing — grab what helps and make it yours.

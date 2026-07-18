@@ -1,5 +1,5 @@
 import { permanentRedirect } from 'next/navigation'
 
 export default function ArticlesIndex() {
-  permanentRedirect('/posts')
+  permanentRedirect('/posts?type=article')
 }
