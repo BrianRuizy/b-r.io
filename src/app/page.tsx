@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Input } from '@headlessui/react'
 
 import { Container } from '@/components/Container'
 import {
@@ -108,12 +109,13 @@ function Newsletter() {
       </p>
       <div className="mt-6 flex items-center">
         <span className="flex min-w-0 flex-auto p-px">
-          <input
+          <Input
             type="email"
+            name="email"
             placeholder="Email address"
             aria-label="Email address"
             required
-            className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-card px-3 py-[calc(--spacing(2)-1px)] text-foreground shadow-md shadow-foreground/5 outline outline-border placeholder:text-muted-foreground focus:ring-4 focus:ring-ring/20 focus:outline-ring sm:text-sm dark:bg-muted/30"
+            className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-card px-3 py-[calc(--spacing(2)-1px)] text-foreground shadow-md shadow-foreground/5 outline outline-border placeholder:text-muted-foreground data-focus:ring-4 data-focus:ring-ring/20 data-focus:outline-ring sm:text-sm dark:bg-muted/30"
           />
         </span>
         <Button type="submit" className="ml-4 flex-none">
@@ -234,7 +236,7 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Software engineer, designer, and creator.
+            Software engineer, designer, and part-time YouTuber.
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
             Based in New York City, I care about the details that make software
@@ -268,11 +270,17 @@ export default async function Home() {
       <PhotoGallery />
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {posts.map((post) => (
-              <LatestPost key={post.href} post={post} />
-            ))}
+          <div className="space-y-10">
+            <h2 className="text-sm font-semibold tracking-tight">
+              Recent Posts
+            </h2>
+            <div className="flex flex-col gap-16">
+              {posts.map((post) => (
+                <LatestPost key={post.href} post={post} />
+              ))}
+            </div>
           </div>
+
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
             <Resume />

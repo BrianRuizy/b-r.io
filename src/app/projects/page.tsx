@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Image, { type ImageProps } from 'next/image'
 
 import {
   ContentCard,
@@ -6,16 +7,30 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import logoAnimaginary from '@/images/logos/animaginary.svg'
+import logoBeam from '@/images/logos/beam.png'
+import logoCosmos from '@/images/logos/cosmos.svg'
+import logoHelioStream from '@/images/logos/helio-stream.svg'
+import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
+import logoPlanetaria from '@/images/logos/planetaria.svg'
 
-const projects = [
+interface Project {
+  name: string
+  description: string
+  link: { href: string; label: string }
+  logo?: ImageProps['src']
+}
+
+const projects: Array<Project> = [
   {
-    name: 'b-r.io',
+    name: 'Beam',
     description:
-      'My personal website and home for writing about software, design, productivity, and life.',
+      'A mobile-first project and task manager with widgets, insights, calendar views, and Siri integration.',
     link: {
-      href: 'https://github.com/brianruizy/b-r.io',
-      label: 'github.com/brianruizy/b-r.io',
+      href: 'https://github.com/brianruizy/taskss',
+      label: 'github.com/brianruizy/taskss',
     },
+    logo: logoBeam,
   },
   {
     name: 'COVID-19 Dashboard',
@@ -25,6 +40,7 @@ const projects = [
       href: 'https://github.com/brianruizy/covid19-dashboard',
       label: 'github.com/brianruizy/covid19-dashboard',
     },
+    logo: logoHelioStream,
   },
   {
     name: 'Gatsby Medium Blog',
@@ -34,15 +50,7 @@ const projects = [
       href: 'https://github.com/brianruizy/gatsby-medium-blog',
       label: 'github.com/brianruizy/gatsby-medium-blog',
     },
-  },
-  {
-    name: 'LeetCode Notion',
-    description:
-      'A simple Notion workflow for tracking coding problems, solutions, thought processes, and complexity.',
-    link: {
-      href: 'https://github.com/brianruizy/leetcode-notion',
-      label: 'github.com/brianruizy/leetcode-notion',
-    },
+    logo: logoAnimaginary,
   },
   {
     name: 'Next Notion Portfolio',
@@ -52,6 +60,7 @@ const projects = [
       href: 'https://github.com/brianruizy/next-notion-portfolio',
       label: 'github.com/brianruizy/next-notion-portfolio',
     },
+    logo: logoCosmos,
   },
   {
     name: 'Gatsby Minimal Portfolio',
@@ -61,6 +70,7 @@ const projects = [
       href: 'https://github.com/brianruizy/gatsby-minimal-portfolio',
       label: 'github.com/brianruizy/gatsby-minimal-portfolio',
     },
+    logo: logoOpenShuttle,
   },
 ]
 
@@ -77,14 +87,14 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Open-source projects, experiments, and tools I’ve built.',
+  description: 'Open-source projects, tools, and experiments I’ve built.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I’ve built while learning and experimenting."
-      intro="I learn by making things. These are a few of the open-source projects, templates, and experiments I’ve published over the years."
+      title="Things I’ve built along the way."
+      intro="Open-source templates, dashboards, and apps. Some to learn, some to scratch my own itch."
     >
       <ul
         role="list"
@@ -93,8 +103,17 @@ export default function Projects() {
         {projects.map((project) => (
           <li key={project.name}>
             <ContentCard className="h-full">
-              <div className="group relative z-20 flex h-12 w-12 items-center justify-center rounded-xl bg-card text-sm font-semibold text-foreground shadow ring-1 ring-border dark:bg-muted/90">
-                {project.name.slice(0, 2).toUpperCase()}
+              <div className="relative z-20 flex h-12 w-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0">
+                {project.logo ? (
+                  <Image
+                    src={project.logo}
+                    alt=""
+                    className="h-8 w-8 rounded-full"
+                    unoptimized
+                  />
+                ) : (
+                  project.name.slice(0, 2).toUpperCase()
+                )}
               </div>
               <ContentCardTitle
                 href={project.link.href}

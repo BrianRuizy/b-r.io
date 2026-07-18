@@ -15,7 +15,7 @@ export default async function Posts() {
 
   return (
     <SimpleLayout
-      title="Here are my posts — from tech and productivity to whatever’s on my mind."
+      title="Here are my posts, from tech and productivity, to life updates."
       intro="Articles and videos about engineering, design, productivity, and the tools I use along the way. Plus the occasional note on creative work, systems, and life in the city."
     >
       <PostsList posts={posts} />

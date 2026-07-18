@@ -75,9 +75,9 @@ export default function About() {
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
               I&apos;m from Honduras, grew up in Texas, and now live in New York
-              City. I got into software because I liked making things people
-              could actually use — and that&apos;s still what keeps me interested,
-              whether it&apos;s code, a video, or something in between.
+              City. I got into coding because I enjoyed the process of creating
+              things from scratch. That same instinct still drives the work I
+              do, both in software and on camera.
             </p>
             <p>
               I work at Hines as a senior software engineer, building web
@@ -88,15 +88,15 @@ export default function About() {
             <p>
               On the side I run a YouTube channel with more than 100,000
               subscribers. It started with photography and cameras, then grew
-              into videos about tech, productivity, and what building things
-              day to day actually looks like — sometimes with a little
-              filmmaking mixed in.
+              into videos about tech, productivity, and what building things day
+              to day actually looks like — sometimes with a little filmmaking
+              mixed in.
             </p>
             <p>
-              When I&apos;m not working, you&apos;ll usually find me at the gym, riding
-              my e-bike around the city, or at a coffee shop with a laptop
-              nearby. This site is a quieter place for the writing, projects,
-              and work that doesn&apos;t fit on a timeline.
+              When I&apos;m not working, you&apos;ll usually find me at the gym,
+              riding my e-bike around the city, or at a coffee shop with a
+              laptop nearby. This site is a quieter place for the writing,
+              projects, and work that doesn&apos;t fit on a timeline.
             </p>
           </div>
         </div>
