@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Image, { StaticImageData } from 'next/image'
-import { motion, useMotionValue, useSpring, MotionValue } from 'motion/react'
+import Image from 'next/image'
+import { motion } from 'motion/react'
 import clsx from 'clsx'
 
 import bikingImage from '@/images/photos/biking.jpeg'
@@ -36,10 +36,9 @@ const photos = [
 
 export function PhotoGallery() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-  
   const [isMobile, setIsMobile] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
+  const [width, setWidth] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -51,38 +50,22 @@ export function PhotoGallery() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const cardWidth = isMobile ? 176 : 288
-  const gap = isMobile ? 20 : 32
-  
-  // Calculate constraint based on actual container width
-  const [maxDrag, setMaxDrag] = useState(0)
-  
   useEffect(() => {
-    if (!isMobile || !containerRef.current) return
+    if (!isMobile || !carouselRef.current) return
     
-    const updateConstraints = () => {
-      if (!containerRef.current) return
-      
-      const containerWidth = containerRef.current.offsetWidth
-      const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
-      
-      // maxDrag = scroll amount needed so last card's right edge touches container right edge
-      const calculatedMaxDrag = -(totalContentWidth - containerWidth)
-      setMaxDrag(Math.min(0, calculatedMaxDrag))
-      
-      console.log('Gallery constraints:', {
-        containerWidth,
-        cardWidth,
-        gap,
-        totalContentWidth,
-        calculatedMaxDrag,
-      })
+    // This is the key: scrollWidth (total content) - offsetWidth (visible area)
+    const calculatedWidth = carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
+    setWidth(calculatedWidth)
+    
+    const handleResize = () => {
+      if (carouselRef.current) {
+        setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
+      }
     }
     
-    updateConstraints()
-    window.addEventListener('resize', updateConstraints)
-    return () => window.removeEventListener('resize', updateConstraints)
-  }, [isMobile, cardWidth, gap])
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isMobile])
 
   // Desktop: static layout
   if (!isMobile) {
@@ -122,87 +105,40 @@ export function PhotoGallery() {
     )
   }
 
-  // Mobile: draggable carousel with staggered edge bounce
+  // Mobile: draggable carousel with spring physics
   return (
     <div className="mt-16 sm:mt-20">
-      <div 
-        ref={containerRef}
-        className="relative -my-4 py-4 overflow-hidden"
-      >
+      <div className="relative -my-4 py-4 overflow-hidden">
         <motion.div
+          ref={carouselRef}
           drag="x"
           dragElastic={0.2}
-          dragConstraints={{
-            left: maxDrag,
-            right: 0,
-          }}
-          style={{ x }}
-          className="flex gap-5 cursor-grab active:cursor-grabbing"
+          dragConstraints={{ right: 0, left: -width }}
+          dragTransition={{ bounceDamping: 30 }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          className="flex gap-5 cursor-grab active:cursor-grabbing will-change-transform"
         >
           {photos.map(({ image, alt }, imageIndex) => (
-            <PhotoCard
+            <motion.div
               key={image.src}
-              image={image}
-              alt={alt}
-              imageIndex={imageIndex}
-              rotation={rotations[imageIndex % rotations.length]}
-              scrollX={x}
-              cardWidth={cardWidth}
-              gap={gap}
-            />
+              className={clsx(
+                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
+                rotations[imageIndex % rotations.length],
+              )}
+            >
+              <div className="aspect-9/10">
+                <Image
+                  src={image}
+                  alt={alt}
+                  sizes="11rem"
+                  className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+                  draggable={false}
+                />
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
     </div>
-  )
-}
-
-// Individual photo card with staggered bounce physics
-function PhotoCard({
-  image,
-  alt,
-  imageIndex,
-  rotation,
-  scrollX,
-  cardWidth,
-  gap,
-}: {
-  image: StaticImageData
-  alt: string
-  imageIndex: number
-  rotation: string
-  scrollX: MotionValue<number>
-  cardWidth: number
-  gap: number
-}) {
-  // Each card has its own spring following the scroll position
-  // Progressive mass creates natural stagger when bouncing at edges
-  const cardSpring = useSpring(scrollX, {
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8 + imageIndex * 0.15,
-    restSpeed: 0.01,
-  })
-
-  return (
-    <motion.div
-      style={{
-        x: cardSpring,
-      }}
-      className={clsx(
-        'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
-        rotation,
-      )}
-    >
-      <div className="aspect-9/10">
-        <Image
-          src={image}
-          alt={alt}
-          sizes="11rem"
-          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
-          draggable={false}
-        />
-      </div>
-    </motion.div>
   )
 }
