@@ -38,16 +38,11 @@ export function PhotoGallery() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
   
   const [isMobile, setIsMobile] = useState(false)
-  const [containerWidth, setContainerWidth] = useState(0)
   const x = useMotionValue(0)
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 640
-      setIsMobile(mobile)
-      if (mobile) {
-        setContainerWidth(window.innerWidth)
-      }
+      setIsMobile(window.innerWidth < 640)
     }
     
     checkMobile()
@@ -58,7 +53,26 @@ export function PhotoGallery() {
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
   const totalWidth = photos.length * (cardWidth + gap)
-  const maxDrag = containerWidth > 0 ? -(totalWidth - containerWidth + gap * 2) : -totalWidth
+  
+  // Calculate max drag based on viewport width
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
+  const maxDrag = isMobile ? Math.min(0, -(totalWidth - viewportWidth + gap * 2)) : -totalWidth
+
+  // Clamp x value to prevent going out of bounds
+  useEffect(() => {
+    if (!isMobile) return
+    
+    const unsubscribe = x.on('change', (latest) => {
+      // Clamp to valid range
+      if (latest > 0) {
+        x.set(0)
+      } else if (latest < maxDrag) {
+        x.set(maxDrag)
+      }
+    })
+    
+    return unsubscribe
+  }, [isMobile, x, maxDrag])
 
   // Desktop: static layout
   if (!isMobile) {
@@ -154,8 +168,10 @@ function PhotoCard({
   const cardSpring = useSpring(scrollX, {
     stiffness: 300,
     damping: 30,
-    mass: 0.8 + imageIndex * 0.15, // Each card is progressively "heavier"
+    mass: 0.8 + imageIndex * 0.15,
     restSpeed: 0.01,
+    // Bounce: false prevents overshooting past the source value
+    bounce: 0,
   })
 
   return (
