@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, useMotionValue, useSpring, PanInfo } from 'motion/react'
+import { motion, useMotionValue, useAnimation, PanInfo, animate } from 'motion/react'
 import clsx from 'clsx'
 
 import bikingImage from '@/images/photos/biking.jpeg'
@@ -41,16 +41,6 @@ export function PhotoGallery() {
   const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
-  
-  // Spring config inspired by iOS 27 - bouncy and fluid
-  const springConfig = {
-    type: 'spring' as const,
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8,
-  }
-  
-  const springX = useSpring(x, springConfig)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -73,39 +63,42 @@ export function PhotoGallery() {
     const currentX = x.get()
     const velocity = info.velocity.x
     
-    // Calculate natural end position with velocity
-    let targetX = currentX + velocity * 0.1
+    // Calculate where momentum would take us
+    const projection = currentX + velocity * 0.5
     
-    // Wrap around logic for infinite scroll
-    if (targetX > 0) {
-      targetX = targetX - totalWidth
-    } else if (targetX < -totalWidth * 2) {
-      targetX = targetX + totalWidth
+    // Determine which set we'll end up in and wrap if needed
+    let finalPosition = projection
+    
+    // If we've scrolled past boundaries, wrap to equivalent position
+    if (finalPosition > -totalWidth * 0.5) {
+      finalPosition = finalPosition - totalWidth
+    } else if (finalPosition < -totalWidth * 2.5) {
+      finalPosition = finalPosition + totalWidth
     }
     
-    // Ensure we're always in the middle set for seamless looping
-    while (targetX > -totalWidth) {
-      targetX -= totalWidth
-    }
-    while (targetX < -totalWidth * 2) {
-      targetX += totalWidth
-    }
-    
-    x.set(targetX)
+    // Animate to final position with spring physics
+    animate(x, finalPosition, {
+      type: 'spring',
+      stiffness: 300,
+      damping: 30,
+      mass: 0.8,
+      velocity: velocity,
+    })
   }
 
   // Auto-reset position when approaching boundaries for seamless infinite scroll
   useEffect(() => {
     const unsubscribe = x.on('change', (latest) => {
-      if (latest > -gap) {
+      // Seamlessly jump when we get too far in either direction
+      if (latest > -totalWidth * 0.5) {
         x.jump(latest - totalWidth)
-      } else if (latest < -totalWidth * 2 + gap) {
+      } else if (latest < -totalWidth * 2.5) {
         x.jump(latest + totalWidth)
       }
     })
     
     return unsubscribe
-  }, [x, totalWidth, gap])
+  }, [x, totalWidth])
 
   // Initialize position to middle set
   useEffect(() => {
@@ -126,7 +119,10 @@ export function PhotoGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                ...springConfig,
+                type: 'spring',
+                stiffness: 300,
+                damping: 30,
+                mass: 0.8,
                 delay: imageIndex * 0.1,
               }}
               className={clsx(
@@ -154,28 +150,22 @@ export function PhotoGallery() {
     <div className="mt-16 sm:mt-20">
       <div 
         ref={containerRef}
-        className="relative -my-4 py-4 overflow-hidden"
+        className="relative -my-4 py-4 overflow-hidden cursor-grab active:cursor-grabbing"
       >
         <motion.div
           drag="x"
           dragConstraints={{ left: -totalWidth * 2.5, right: -totalWidth * 0.5 }}
-          dragElastic={0.1}
-          dragTransition={{ 
-            bounceStiffness: 300,
-            bounceDamping: 30,
-            power: 0.2,
-          }}
+          dragElastic={0.05}
+          dragMomentum={true}
           onDragEnd={handleDragEnd}
-          style={{ x: springX }}
-          className="flex gap-5 cursor-grab active:cursor-grabbing"
+          style={{ x }}
+          className="flex gap-5"
         >
           {infinitePhotos.map(({ image, alt }, imageIndex) => (
-            <motion.div
+            <div
               key={`${image.src}-${imageIndex}`}
-              whileTap={{ scale: 0.95 }}
-              transition={springConfig}
               className={clsx(
-                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted select-none',
+                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted select-none pointer-events-none',
                 rotations[imageIndex % rotations.length],
               )}
             >
@@ -184,11 +174,11 @@ export function PhotoGallery() {
                   src={image}
                   alt={alt}
                   sizes="11rem"
-                  className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+                  className="absolute inset-0 h-full w-full object-cover"
                   draggable={false}
                 />
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
