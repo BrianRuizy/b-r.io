@@ -11,6 +11,7 @@ import {
   PopoverBackdrop,
   PopoverPanel,
 } from '@headlessui/react'
+import { motion, useSpring, useTransform } from 'motion/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
@@ -206,14 +207,26 @@ function clamp(number: number, a: number, b: number) {
 
 function AvatarContainer({
   className,
+  style,
   ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
+}: {
+  className?: string
+  style?: React.CSSProperties
+  children?: React.ReactNode
+}) {
   return (
-    <div
+    <motion.div
       className={clsx(
         className,
         'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90',
       )}
+      style={style}
+      transition={{
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        mass: 0.8,
+      }}
       {...props}
     />
   )
@@ -222,9 +235,11 @@ function AvatarContainer({
 function Avatar({
   large = false,
   className,
+  style,
   ...props
 }: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> & {
   large?: boolean
+  style?: React.CSSProperties
 }) {
   return (
     <Link
@@ -233,16 +248,26 @@ function Avatar({
       className={clsx(className, 'pointer-events-auto')}
       {...props}
     >
-      <Image
-        src={avatarImage}
-        alt="Brian Ruiz"
-        sizes={large ? '4rem' : '2.25rem'}
-        className={clsx(
-          'rounded-full bg-muted object-cover',
-          large ? 'h-16 w-16' : 'h-9 w-9',
-        )}
-        priority
-      />
+      <motion.div
+        style={style}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 30,
+          mass: 0.8,
+        }}
+      >
+        <Image
+          src={avatarImage}
+          alt="Brian Ruiz"
+          sizes={large ? '4rem' : '2.25rem'}
+          className={clsx(
+            'rounded-full bg-muted object-cover',
+            large ? 'h-16 w-16' : 'h-9 w-9',
+          )}
+          priority
+        />
+      </motion.div>
     </Link>
   )
 }

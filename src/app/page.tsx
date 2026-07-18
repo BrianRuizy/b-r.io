@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import {
@@ -18,11 +16,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import bikingImage from '@/images/photos/biking.jpeg'
-import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
-import juneImage from '@/images/photos/june.jpeg'
-import selfieImage from '@/images/photos/selfie.jpeg'
-import empireImage from '@/images/photos/empire.jpeg'
+import { PhotoGallery } from '@/components/PhotoGallery'
 import { formatDate } from '@/lib/formatDate'
 import { getAllPosts, type Post } from '@/lib/posts'
 
@@ -237,57 +231,6 @@ function Resume() {
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-  let photos = [
-    {
-      image: empireImage,
-      alt: 'Empire State Building',
-    },
-    {
-      image: selfieImage,
-      alt: 'Brian Ruiz selfie',
-    },
-    {
-      image: deskSunsetImage,
-      alt: 'Desk setup at sunset',
-    },
-    {
-      image: bikingImage,
-      alt: 'Brian Ruiz on an e-bike',
-    },
-    {
-      image: juneImage,
-      alt: 'Brian Ruiz in June',
-    },
-  ]
-
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {photos.map(({ image, alt }, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative w-44 flex-none overflow-hidden rounded-xl bg-muted sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <div className="aspect-9/10">
-              <Image
-                src={image}
-                alt={alt}
-                sizes="(min-width: 640px) 18rem, 11rem"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export default async function Home() {
   let posts = (await getAllPosts()).slice(0, 4)
 
@@ -327,7 +270,7 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Photos />
+      <PhotoGallery />
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
