@@ -61,9 +61,11 @@ export function PhotoGallery() {
   // Calculate total width of all cards plus gaps between them
   const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
   
-  // maxDrag = how far left we can scroll so last card's right edge aligns with viewport right edge
+  // maxDrag = scroll until last card's right edge touches viewport right edge
+  // Add small safety margin to ensure last card stays visible
+  const safetyMargin = 10
   const maxDrag = isMobile && viewportWidth > 0 
-    ? Math.min(0, -(totalContentWidth - viewportWidth)) 
+    ? Math.min(0, -(totalContentWidth - viewportWidth + safetyMargin)) 
     : 0
 
   // Desktop: static layout
