@@ -52,35 +52,10 @@ export function PhotoGallery() {
 
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
-  const totalWidth = photos.length * (cardWidth + gap) - gap // Remove last gap
+  const totalWidth = photos.length * (cardWidth + gap) - gap
   
-  // Calculate max drag so last card stops at right edge of viewport
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
-  // Max drag = scroll until last card's right edge hits viewport's right edge
   const maxDrag = isMobile && viewportWidth > 0 ? -(totalWidth - viewportWidth) : -totalWidth
-
-  // Initialize gallery position so last card is at right edge
-  useEffect(() => {
-    if (isMobile && maxDrag < 0) {
-      x.set(maxDrag) // Start at the end!
-    }
-  }, [isMobile, maxDrag, x])
-
-  // Clamp x value to prevent going out of bounds
-  useEffect(() => {
-    if (!isMobile) return
-    
-    const unsubscribe = x.on('change', (latest) => {
-      // Clamp to valid range
-      if (latest > 0) {
-        x.set(0)
-      } else if (latest < maxDrag) {
-        x.set(maxDrag)
-      }
-    })
-    
-    return unsubscribe
-  }, [isMobile, x, maxDrag])
 
   // Desktop: static layout
   if (!isMobile) {
@@ -131,7 +106,6 @@ export function PhotoGallery() {
             left: maxDrag,
             right: 0,
           }}
-          dragMomentum={false}
           style={{ x }}
           className="flex gap-5 cursor-grab active:cursor-grabbing"
         >
@@ -178,8 +152,6 @@ function PhotoCard({
     damping: 30,
     mass: 0.8 + imageIndex * 0.15,
     restSpeed: 0.01,
-    // Bounce: false prevents overshooting past the source value
-    bounce: 0,
   })
 
   return (
