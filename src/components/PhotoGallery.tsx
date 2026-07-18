@@ -38,24 +38,33 @@ export function PhotoGallery() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
   
   const [isMobile, setIsMobile] = useState(false)
+  const [viewportWidth, setViewportWidth] = useState(0)
   const x = useMotionValue(0)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640)
+    const updateSize = () => {
+      const mobile = window.innerWidth < 640
+      setIsMobile(mobile)
+      if (mobile) {
+        setViewportWidth(window.innerWidth)
+      }
     }
     
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    updateSize()
+    window.addEventListener('resize', updateSize)
+    return () => window.removeEventListener('resize', updateSize)
   }, [])
 
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
-  const totalWidth = photos.length * (cardWidth + gap) - gap
   
-  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
-  const maxDrag = isMobile && viewportWidth > 0 ? -(totalWidth - viewportWidth) : -totalWidth
+  // Calculate total width of all cards plus gaps between them
+  const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
+  
+  // maxDrag = how far left we can scroll so last card's right edge aligns with viewport right edge
+  const maxDrag = isMobile && viewportWidth > 0 
+    ? Math.min(0, -(totalContentWidth - viewportWidth)) 
+    : 0
 
   // Desktop: static layout
   if (!isMobile) {
