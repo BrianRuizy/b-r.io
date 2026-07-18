@@ -69,15 +69,15 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            I'm Brian. I live in NYC, building, creating, and sharing the
-            process.
+            I&apos;m Brian. I live in New York, building, and sharing the
+            journey.
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I'm from Honduras, grew up in Texas, and now live in New York
+              I&apos;m from Honduras, grew up in Texas, and now live in New York
               City. I got into software because I liked making things people
-              could actually use — and that's still what keeps me interested,
-              whether it's code, a video, or something in between.
+              could actually use — and that&apos;s still what keeps me interested,
+              whether it&apos;s code, a video, or something in between.
             </p>
             <p>
               I work at Hines as a senior software engineer, building web
@@ -93,10 +93,10 @@ export default function About() {
               filmmaking mixed in.
             </p>
             <p>
-              When I'm not working, you'll usually find me at the gym, riding
+              When I&apos;m not working, you&apos;ll usually find me at the gym, riding
               my e-bike around the city, or at a coffee shop with a laptop
               nearby. This site is a quieter place for the writing, projects,
-              and work that doesn't fit on a timeline.
+              and work that doesn&apos;t fit on a timeline.
             </p>
           </div>
         </div>

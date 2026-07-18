@@ -8,8 +8,7 @@ import {
   ContentCardEyebrow,
   ContentCardTitle,
 } from '@/components/ContentCard'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { Button } from '@/components/Button'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -107,15 +106,17 @@ function Newsletter() {
         Join 1,400+ other readers. Get notified when I publish something new,
         and unsubscribe at any time.
       </p>
-      <div className="mt-6 flex items-center gap-4">
-        <Input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto h-9"
-        />
-        <Button type="submit" className="flex-none" size="lg">
+      <div className="mt-6 flex items-center">
+        <span className="flex min-w-0 flex-auto p-px">
+          <input
+            type="email"
+            placeholder="Email address"
+            aria-label="Email address"
+            required
+            className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-card px-3 py-[calc(--spacing(2)-1px)] text-foreground shadow-md shadow-foreground/5 outline outline-border placeholder:text-muted-foreground focus:ring-4 focus:ring-ring/20 focus:outline-ring sm:text-sm dark:bg-muted/30"
+          />
+        </span>
+        <Button type="submit" className="ml-4 flex-none">
           Join
         </Button>
       </div>
@@ -213,17 +214,11 @@ function Resume() {
         ))}
       </ol>
       <Button
+        href="https://www.linkedin.com/in/brianruizy/"
+        target="_blank"
+        rel="noopener noreferrer"
         variant="secondary"
-        size="lg"
         className="mt-6 w-full"
-        nativeButton={false}
-        render={
-          <a
-            href="https://www.linkedin.com/in/brianruizy/"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
-        }
       >
         View LinkedIn
       </Button>

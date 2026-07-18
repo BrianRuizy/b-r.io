@@ -1,7 +1,5 @@
-import Link from 'next/link'
-
+import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { Button } from '@/components/ui/button'
 
 export default function NotFound() {
   return (
@@ -14,12 +12,7 @@ export default function NotFound() {
         <p className="mt-4 text-base text-muted-foreground">
           Sorry, we couldn’t find the page you’re looking for.
         </p>
-        <Button
-          variant="secondary"
-          className="mt-4"
-          nativeButton={false}
-          render={<Link href="/" />}
-        >
+        <Button href="/" variant="secondary" className="mt-4">
           Go back home
         </Button>
       </div>

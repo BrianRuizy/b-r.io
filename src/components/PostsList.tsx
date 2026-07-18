@@ -9,7 +9,7 @@ import {
   ContentCardEyebrow,
   ContentCardTitle,
 } from '@/components/ContentCard'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/Button'
 import { formatDate } from '@/lib/formatDate'
 import { type Post } from '@/lib/posts'
 
