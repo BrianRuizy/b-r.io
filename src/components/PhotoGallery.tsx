@@ -58,15 +58,28 @@ export function PhotoGallery() {
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
   
-  // Calculate total width of all cards plus gaps between them
+  // Calculate positions more precisely
+  // Total content = all cards + all gaps between them (not after last card)
   const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
   
-  // maxDrag = scroll until last card's right edge touches viewport right edge
-  // Add small safety margin to ensure last card stays visible
-  const safetyMargin = 10
+  // For last card's RIGHT EDGE to touch viewport RIGHT EDGE:
+  // Last card's left edge should be at: (viewportWidth - cardWidth)
+  // Last card's actual left position in content: (totalContentWidth - cardWidth)
+  // Amount to scroll: lastCardPosition - desiredPosition
+  // Which equals: (totalContentWidth - cardWidth) - (viewportWidth - cardWidth)
+  // Simplifies to: totalContentWidth - viewportWidth
   const maxDrag = isMobile && viewportWidth > 0 
-    ? Math.min(0, -(totalContentWidth - viewportWidth + safetyMargin)) 
+    ? -(totalContentWidth - viewportWidth)
     : 0
+  
+  console.log('Gallery Debug:', {
+    cardWidth,
+    gap,
+    photoCount: photos.length,
+    totalContentWidth,
+    viewportWidth,
+    maxDrag,
+  })
 
   // Desktop: static layout
   if (!isMobile) {
