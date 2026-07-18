@@ -190,7 +190,12 @@ export function PhotoGallery() {
     <div className="mt-16 sm:mt-20">
       <div 
         ref={containerRef}
-        className="relative -my-4 py-4 overflow-hidden touch-none"
+        className="relative -my-4 py-4 overflow-hidden"
+        style={{
+          touchAction: 'pan-y',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
+        }}
       >
         <motion.div
           drag="x"
@@ -209,13 +214,14 @@ export function PhotoGallery() {
                 'relative w-44 flex-none overflow-hidden rounded-xl bg-muted select-none',
                 rotations[imageIndex % rotations.length],
               )}
+              style={{ pointerEvents: 'none' }}
             >
               <div className="aspect-9/10">
                 <Image
                   src={image}
                   alt={alt}
                   sizes="11rem"
-                  className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+                  className="absolute inset-0 h-full w-full object-cover"
                   draggable={false}
                 />
               </div>
