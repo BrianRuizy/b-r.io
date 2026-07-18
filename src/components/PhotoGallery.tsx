@@ -52,11 +52,12 @@ export function PhotoGallery() {
 
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
-  const totalWidth = photos.length * (cardWidth + gap)
+  const totalWidth = photos.length * (cardWidth + gap) - gap // Remove last gap
   
-  // Calculate max drag based on viewport width
+  // Calculate max drag so last card stops at right edge of viewport
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
-  const maxDrag = isMobile ? Math.min(0, -(totalWidth - viewportWidth + gap * 2)) : -totalWidth
+  // Max drag = scroll until last card's right edge hits viewport's right edge
+  const maxDrag = isMobile && viewportWidth > 0 ? -(totalWidth - viewportWidth) : -totalWidth
 
   // Clamp x value to prevent going out of bounds
   useEffect(() => {
