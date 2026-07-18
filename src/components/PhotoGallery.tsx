@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import { motion, useMotionValue, useSpring, MotionValue } from 'motion/react'
 import clsx from 'clsx'
@@ -38,48 +38,51 @@ export function PhotoGallery() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
   
   const [isMobile, setIsMobile] = useState(false)
-  const [viewportWidth, setViewportWidth] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
 
   useEffect(() => {
-    const updateSize = () => {
-      const mobile = window.innerWidth < 640
-      setIsMobile(mobile)
-      if (mobile) {
-        setViewportWidth(window.innerWidth)
-      }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640)
     }
     
-    updateSize()
-    window.addEventListener('resize', updateSize)
-    return () => window.removeEventListener('resize', updateSize)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
   
-  // Calculate positions more precisely
-  // Total content = all cards + all gaps between them (not after last card)
-  const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
+  // Calculate constraint based on actual container width
+  const [maxDrag, setMaxDrag] = useState(0)
   
-  // For last card's RIGHT EDGE to touch viewport RIGHT EDGE:
-  // Last card's left edge should be at: (viewportWidth - cardWidth)
-  // Last card's actual left position in content: (totalContentWidth - cardWidth)
-  // Amount to scroll: lastCardPosition - desiredPosition
-  // Which equals: (totalContentWidth - cardWidth) - (viewportWidth - cardWidth)
-  // Simplifies to: totalContentWidth - viewportWidth
-  const maxDrag = isMobile && viewportWidth > 0 
-    ? -(totalContentWidth - viewportWidth)
-    : 0
-  
-  console.log('Gallery Debug:', {
-    cardWidth,
-    gap,
-    photoCount: photos.length,
-    totalContentWidth,
-    viewportWidth,
-    maxDrag,
-  })
+  useEffect(() => {
+    if (!isMobile || !containerRef.current) return
+    
+    const updateConstraints = () => {
+      if (!containerRef.current) return
+      
+      const containerWidth = containerRef.current.offsetWidth
+      const totalContentWidth = photos.length * cardWidth + (photos.length - 1) * gap
+      
+      // maxDrag = scroll amount needed so last card's right edge touches container right edge
+      const calculatedMaxDrag = -(totalContentWidth - containerWidth)
+      setMaxDrag(Math.min(0, calculatedMaxDrag))
+      
+      console.log('Gallery constraints:', {
+        containerWidth,
+        cardWidth,
+        gap,
+        totalContentWidth,
+        calculatedMaxDrag,
+      })
+    }
+    
+    updateConstraints()
+    window.addEventListener('resize', updateConstraints)
+    return () => window.removeEventListener('resize', updateConstraints)
+  }, [isMobile, cardWidth, gap])
 
   // Desktop: static layout
   if (!isMobile) {
@@ -122,7 +125,10 @@ export function PhotoGallery() {
   // Mobile: draggable carousel with staggered edge bounce
   return (
     <div className="mt-16 sm:mt-20">
-      <div className="relative -my-4 py-4 overflow-hidden">
+      <div 
+        ref={containerRef}
+        className="relative -my-4 py-4 overflow-hidden"
+      >
         <motion.div
           drag="x"
           dragElastic={0.2}
