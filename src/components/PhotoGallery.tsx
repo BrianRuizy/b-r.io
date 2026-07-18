@@ -58,7 +58,7 @@ export function PhotoGallery() {
   const cardWidth = isMobile ? 176 : 288
   const gap = isMobile ? 20 : 32
   const totalWidth = photos.length * (cardWidth + gap)
-  const maxDrag = containerWidth > 0 ? -(totalWidth - containerWidth + gap) : -totalWidth
+  const maxDrag = containerWidth > 0 ? -(totalWidth - containerWidth + gap * 2) : -totalWidth
 
   // Desktop: static layout
   if (!isMobile) {
@@ -109,6 +109,7 @@ export function PhotoGallery() {
             left: maxDrag,
             right: 0,
           }}
+          dragMomentum={false}
           style={{ x }}
           className="flex gap-5 cursor-grab active:cursor-grabbing"
         >
