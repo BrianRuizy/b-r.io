@@ -9,6 +9,7 @@ import {
   InstagramIcon,
   LinkedInIcon,
   XIcon,
+  YouTubeIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/photos/me.jpeg'
 
@@ -102,13 +103,9 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="https://x.com/brianruizy" icon={XIcon}>
-              Follow on X
-            </SocialLink>
             <SocialLink
               href="https://www.instagram.com/brianruizy"
               icon={InstagramIcon}
-              className="mt-4"
             >
               Follow on Instagram
             </SocialLink>
@@ -125,6 +122,20 @@ export default function About() {
               className="mt-4"
             >
               Follow on LinkedIn
+            </SocialLink>
+            <SocialLink
+              href="https://www.youtube.com/@brianruizy"
+              icon={YouTubeIcon}
+              className="mt-4"
+            >
+              Follow on YouTube
+            </SocialLink>
+            <SocialLink
+              href="https://x.com/brianruizy"
+              icon={XIcon}
+              className="mt-4"
+            >
+              Follow on X
             </SocialLink>
             <SocialLink
               href="mailto:brian@b-r.io"

@@ -9,6 +9,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { Halo } from '@/components/Halo'
 import avatarImage from '@/images/brian-avatar.webp'
 
 const mobileNavSpring = {
@@ -399,15 +400,23 @@ function NavItem({
   )
 }
 
-function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
+function DesktopNavigation({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<'nav'>) {
   return (
-    <nav {...props}>
-      <ul className="flex rounded-full bg-card/90 px-3 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/posts">Posts</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
-      </ul>
+    <nav {...props} className={clsx('group', className)}>
+      <div className="relative overflow-hidden rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
+        <div className="absolute inset-0">
+          <Halo strength={18} size={280} />
+        </div>
+        <ul className="relative z-10 flex px-3 text-sm font-medium text-foreground">
+          <NavItem href="/about">About</NavItem>
+          <NavItem href="/posts">Posts</NavItem>
+          <NavItem href="/projects">Projects</NavItem>
+          <NavItem href="/uses">Uses</NavItem>
+        </ul>
+      </div>
     </nav>
   )
 }
@@ -426,11 +435,14 @@ function ThemeToggle() {
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
+      className="group relative overflow-hidden rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
       onClick={() => setTheme(otherTheme)}
     >
-      <SunIcon className="h-6 w-6 fill-muted stroke-muted-foreground transition group-hover:fill-accent group-hover:stroke-foreground dark:hidden [@media(prefers-color-scheme:dark)]:fill-accent/10 [@media(prefers-color-scheme:dark)]:stroke-accent [@media(prefers-color-scheme:dark)]:group-hover:fill-accent/10 [@media(prefers-color-scheme:dark)]:group-hover:stroke-accent" />
-      <MoonIcon className="hidden h-6 w-6 fill-foreground stroke-muted-foreground transition not-[@media_(prefers-color-scheme:dark)]:fill-accent/10 not-[@media_(prefers-color-scheme:dark)]:stroke-accent dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-muted-foreground" />
+      <div className="absolute inset-0 max-md:hidden">
+        <Halo strength={18} size={120} />
+      </div>
+      <SunIcon className="relative z-10 h-6 w-6 fill-muted stroke-muted-foreground transition group-hover:stroke-foreground dark:hidden" />
+      <MoonIcon className="relative z-10 hidden h-6 w-6 fill-accent/10 stroke-accent transition group-hover:fill-accent/15 group-hover:stroke-accent dark:block" />
     </button>
   )
 }

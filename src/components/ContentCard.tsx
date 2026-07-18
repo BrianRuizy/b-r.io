@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 
+import { Halo } from '@/components/Halo'
+
 function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
@@ -57,7 +59,12 @@ export function ContentCardTitle({
     >
       {href ? (
         <>
-          <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 rounded-2xl bg-muted opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6" />
+          <div className="pointer-events-none absolute -inset-x-4 -inset-y-6 z-0 sm:-inset-x-6">
+            <Halo
+              strength={16}
+              className="h-full w-full scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100"
+            />
+          </div>
           <Link
             href={href}
             target={external ? '_blank' : undefined}
