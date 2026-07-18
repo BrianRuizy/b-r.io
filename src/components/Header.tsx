@@ -1,20 +1,29 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import {
-  Popover,
-  PopoverButton,
-  PopoverBackdrop,
-  PopoverPanel,
-} from '@headlessui/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/brian-avatar.webp'
+
+const mobileNavSpring = {
+  type: 'spring' as const,
+  stiffness: 380,
+  damping: 34,
+  mass: 0.85,
+}
+
+type TrayBounds = {
+  top: number
+  left: number
+  width: number
+  height: number
+}
 
 function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -80,55 +89,283 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function MobileNavItem({
   href,
   children,
+  onNavigate,
 }: {
   href: string
   children: React.ReactNode
+  onNavigate: () => void
 }) {
   return (
     <li>
-      <PopoverButton as={Link} href={href} className="block py-2">
+      <Link href={href} className="block py-2" onClick={onNavigate}>
         {children}
-      </PopoverButton>
+      </Link>
     </li>
   )
 }
 
-function MobileNavigation(
-  props: React.ComponentPropsWithoutRef<typeof Popover>,
-) {
+function MobileNavigation({ className }: { className?: string }) {
+  let [open, setOpen] = useState(false)
+  // Stays true through the exit morph so the real button doesn’t flash early.
+  let [trayMounted, setTrayMounted] = useState(false)
+  // Avoid a stuck :hover/focus ring when the trigger remounts under the cursor.
+  let [suppressTriggerChrome, setSuppressTriggerChrome] = useState(false)
+  let pathname = usePathname()
+  let [pathnameWhenOpen, setPathnameWhenOpen] = useState(pathname)
+  let reduceMotion = useReducedMotion()
+  let titleId = useId()
+  let triggerRef = useRef<HTMLButtonElement>(null)
+  let contentRef = useRef<HTMLDivElement>(null)
+  let [origin, setOrigin] = useState<TrayBounds | null>(null)
+  let [target, setTarget] = useState<TrayBounds | null>(null)
+
+  if (pathnameWhenOpen !== pathname) {
+    setPathnameWhenOpen(pathname)
+    setOpen(false)
+  }
+
+  function openMenu() {
+    let rect = triggerRef.current?.getBoundingClientRect()
+    if (!rect) {
+      return
+    }
+
+    let margin = 16
+    setOrigin({
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+    })
+    setTarget({
+      top: 32,
+      left: margin,
+      width: window.innerWidth - margin * 2,
+      height: rect.height,
+    })
+    setTrayMounted(true)
+    setOpen(true)
+    // Drop click focus so it doesn’t resurface as a ring after close.
+    triggerRef.current?.blur()
+  }
+
+  function closeMenu() {
+    setOpen(false)
+  }
+
+  function measureTargetHeight() {
+    if (!contentRef.current) {
+      return
+    }
+
+    let height = contentRef.current.scrollHeight
+    setTarget((current) =>
+      current && current.height !== height
+        ? { ...current, height }
+        : current,
+    )
+  }
+
+  useLayoutEffect(() => {
+    if (!open) {
+      return
+    }
+
+    measureTargetHeight()
+  }, [open])
+
+  useEffect(() => {
+    if (!open) {
+      return
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        closeMenu()
+      }
+    }
+
+    function onResize() {
+      let margin = 16
+      setTarget((current) =>
+        current
+          ? {
+              ...current,
+              left: margin,
+              width: window.innerWidth - margin * 2,
+            }
+          : current,
+      )
+      requestAnimationFrame(measureTargetHeight)
+    }
+
+    let previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [open])
+
+  let transition = reduceMotion ? { duration: 0 } : mobileNavSpring
+  // Half the pill height (= true capsule). Avoid 9999 → 24, which stays
+  // fully round for most of the spring and only "settles" at the end.
+  let pillRadius = origin ? origin.height / 2 : 20
+  let cardRadius = 24
+  let labelFade = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.14, ease: 'easeInOut' as const }
+
   return (
-    <Popover {...props}>
-      <PopoverButton className="group flex items-center rounded-full bg-card/90 px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted-foreground group-hover:stroke-foreground" />
-      </PopoverButton>
-      <PopoverBackdrop
-        transition
-        className="fixed inset-0 z-50 backdrop-blur-sm duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
-      />
-      <PopoverPanel
-        focus
-        transition
-        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-card p-8 ring-1 ring-border duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
+    <div className={clsx('relative', className)}>
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        className={clsx(
+          'pointer-events-auto flex items-center rounded-full bg-card px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border transition dark:bg-muted',
+          !suppressTriggerChrome && 'dark:hover:ring-foreground/20',
+          trayMounted && 'invisible',
+        )}
+        onClick={openMenu}
+        onPointerMove={() => {
+          if (suppressTriggerChrome) {
+            setSuppressTriggerChrome(false)
+          }
+        }}
+        onBlur={() => {
+          if (suppressTriggerChrome) {
+            setSuppressTriggerChrome(false)
+          }
+        }}
       >
-        <div className="flex flex-row-reverse items-center justify-between">
-          <PopoverButton aria-label="Close menu" className="-m-1 p-1">
-            <CloseIcon className="h-6 w-6 text-muted-foreground" />
-          </PopoverButton>
-          <h2 className="text-sm font-medium text-muted-foreground">
-            Navigation
-          </h2>
-        </div>
-        <nav className="mt-6">
-          <ul className="-my-2 divide-y divide-border text-base text-foreground">
-            <MobileNavItem href="/about">About</MobileNavItem>
-            <MobileNavItem href="/posts">Posts</MobileNavItem>
-            <MobileNavItem href="/projects">Projects</MobileNavItem>
-            <MobileNavItem href="/uses">Uses</MobileNavItem>
-          </ul>
-        </nav>
-      </PopoverPanel>
-    </Popover>
+        Menu
+        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted-foreground" />
+      </button>
+
+      <AnimatePresence
+        onExitComplete={() => {
+          setTrayMounted(false)
+          setSuppressTriggerChrome(true)
+          triggerRef.current?.blur()
+        }}
+      >
+        {open && origin && target && (
+          <>
+            <motion.button
+              key="backdrop"
+              type="button"
+              aria-label="Close menu"
+              className="fixed inset-0 z-40 bg-zinc-800/40 backdrop-blur-sm dark:bg-black/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.2 }}
+              onClick={closeMenu}
+            />
+
+            <motion.div
+              key="tray"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={titleId}
+              className="pointer-events-auto fixed z-50 overflow-hidden bg-card shadow-lg ring-1 shadow-foreground/5 ring-border dark:bg-muted"
+              initial={{
+                top: origin.top,
+                left: origin.left,
+                width: origin.width,
+                height: origin.height,
+                borderRadius: pillRadius,
+              }}
+              animate={{
+                top: target.top,
+                left: target.left,
+                width: target.width,
+                height: target.height,
+                borderRadius: cardRadius,
+              }}
+              exit={{
+                top: origin.top,
+                left: origin.left,
+                width: origin.width,
+                height: origin.height,
+                borderRadius: pillRadius,
+              }}
+              transition={transition}
+            >
+              {/* Same surface carries the Menu label so it never pops off */}
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm font-medium text-foreground"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                exit={{ opacity: 1 }}
+                transition={labelFade}
+              >
+                <span className="flex items-center">
+                  Menu
+                  <ChevronDownIcon className="ml-3 h-auto w-2 stroke-muted-foreground" />
+                </span>
+              </motion.div>
+
+              <div
+                ref={contentRef}
+                className="p-8"
+                style={{ width: target.width }}
+              >
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={reduceMotion ? undefined : { opacity: 0 }}
+                  transition={{
+                    ...labelFade,
+                    delay: reduceMotion ? 0 : 0.06,
+                  }}
+                >
+                  <div className="flex flex-row-reverse items-center justify-between">
+                    <button
+                      type="button"
+                      aria-label="Close menu"
+                      className="-m-1 p-1"
+                      onClick={closeMenu}
+                    >
+                      <CloseIcon className="h-6 w-6 text-muted-foreground" />
+                    </button>
+                    <h2
+                      id={titleId}
+                      className="text-sm font-medium text-muted-foreground"
+                    >
+                      Navigation
+                    </h2>
+                  </div>
+                  <nav className="mt-6">
+                    <ul className="-my-2 divide-y divide-border text-base text-foreground">
+                      <MobileNavItem href="/about" onNavigate={closeMenu}>
+                        About
+                      </MobileNavItem>
+                      <MobileNavItem href="/posts" onNavigate={closeMenu}>
+                        Posts
+                      </MobileNavItem>
+                      <MobileNavItem href="/projects" onNavigate={closeMenu}>
+                        Projects
+                      </MobileNavItem>
+                      <MobileNavItem href="/uses" onNavigate={closeMenu}>
+                        Uses
+                      </MobileNavItem>
+                    </ul>
+                  </nav>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
