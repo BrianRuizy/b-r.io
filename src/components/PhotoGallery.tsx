@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image, { StaticImageData } from 'next/image'
-import { motion, useMotionValue, useSpring, useTransform, MotionValue } from 'motion/react'
+import { motion, useMotionValue, useSpring, MotionValue } from 'motion/react'
 import clsx from 'clsx'
 
 import bikingImage from '@/images/photos/biking.jpeg'
@@ -40,15 +40,6 @@ export function PhotoGallery() {
   const [isMobile, setIsMobile] = useState(false)
   const [containerWidth, setContainerWidth] = useState(0)
   const x = useMotionValue(0)
-  
-  // Bouncy spring physics - iOS style
-  const springConfig = {
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8,
-  }
-  
-  const springX = useSpring(x, springConfig)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -107,7 +98,7 @@ export function PhotoGallery() {
     )
   }
 
-  // Mobile: draggable carousel with edge bounce and individual card motion
+  // Mobile: draggable carousel with staggered edge bounce
   return (
     <div className="mt-16 sm:mt-20">
       <div className="relative -my-4 py-4 overflow-hidden">
@@ -118,7 +109,7 @@ export function PhotoGallery() {
             left: maxDrag,
             right: 0,
           }}
-          style={{ x: springX }}
+          style={{ x }}
           className="flex gap-5 cursor-grab active:cursor-grabbing"
         >
           {photos.map(({ image, alt }, imageIndex) => (
@@ -128,7 +119,7 @@ export function PhotoGallery() {
               alt={alt}
               imageIndex={imageIndex}
               rotation={rotations[imageIndex % rotations.length]}
-              springX={springX}
+              scrollX={x}
               cardWidth={cardWidth}
               gap={gap}
             />
@@ -139,13 +130,13 @@ export function PhotoGallery() {
   )
 }
 
-// Individual photo card with parallax motion
+// Individual photo card with staggered bounce physics
 function PhotoCard({
   image,
   alt,
   imageIndex,
   rotation,
-  springX,
+  scrollX,
   cardWidth,
   gap,
 }: {
@@ -153,31 +144,23 @@ function PhotoCard({
   alt: string
   imageIndex: number
   rotation: string
-  springX: MotionValue<number>
+  scrollX: MotionValue<number>
   cardWidth: number
   gap: number
 }) {
-  const cardPosition = imageIndex * -(cardWidth + gap)
-  
-  // Each card has individual parallax motion
-  const cardX = useTransform(
-    springX,
-    [cardPosition - 200, cardPosition, cardPosition + 200],
-    [-20, 0, -20]
-  )
-  
-  // Individual card scale for depth effect
-  const cardScale = useTransform(
-    springX,
-    [cardPosition - 400, cardPosition, cardPosition + 400],
-    [0.96, 1, 0.96]
-  )
+  // Each card has its own spring following the scroll position
+  // Progressive mass creates natural stagger when bouncing at edges
+  const cardSpring = useSpring(scrollX, {
+    stiffness: 300,
+    damping: 30,
+    mass: 0.8 + imageIndex * 0.15, // Each card is progressively "heavier"
+    restSpeed: 0.01,
+  })
 
   return (
     <motion.div
       style={{
-        x: cardX,
-        scale: cardScale,
+        x: cardSpring,
       }}
       className={clsx(
         'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
