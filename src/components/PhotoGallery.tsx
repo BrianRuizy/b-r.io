@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, useMotionValue, PanInfo, animate } from 'motion/react'
+import { motion, useMotionValue, useSpring } from 'motion/react'
 import clsx from 'clsx'
 
 import bikingImage from '@/images/photos/biking.jpeg'
@@ -34,120 +34,58 @@ const photos = [
   },
 ]
 
-// Clamp value between min and max
-const clamp = (value: number, min: number, max: number) => {
-  return Math.min(Math.max(value, min), max)
-}
-
 export function PhotoGallery() {
   const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
   
   const [isMobile, setIsMobile] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
-  const isDraggingRef = useRef(false)
-  const animationRef = useRef<ReturnType<typeof animate> | null>(null)
+  
+  // Spring physics for smooth, natural motion - iOS style
+  const springConfig = {
+    stiffness: 300,
+    damping: 30,
+    mass: 0.8,
+  }
+  
+  const springX = useSpring(x, springConfig)
 
-  // Check for mobile and reduced motion on mount
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640)
     }
     
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleMotionChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
-    
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    mediaQuery.addEventListener('change', handleMotionChange)
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile)
-      mediaQuery.removeEventListener('change', handleMotionChange)
-    }
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Initialize position to middle set for mobile
-  useEffect(() => {
-    if (isMobile) {
-      const cardWidth = 176
-      const gap = 20
-      const totalWidth = photos.length * (cardWidth + gap)
-      x.set(-totalWidth)
-    }
-  }, [isMobile, x])
+  // Duplicate photos for smooth infinite scroll
+  const duplicatedPhotos = [...photos, ...photos]
+  
+  const cardWidth = isMobile ? 176 : 288
+  const gap = isMobile ? 20 : 32
+  const singleSetWidth = photos.length * (cardWidth + gap)
 
-  // Auto-reset position when approaching boundaries
+  // Handle infinite loop - when we reach the end, jump back seamlessly
   useEffect(() => {
-    const cardWidth = isMobile ? 176 : 288
-    const gap = isMobile ? 20 : 32
-    const totalWidth = photos.length * (cardWidth + gap)
+    if (!isMobile) return
     
-    const unsubscribe = x.on('change', (latest) => {
-      if (isDraggingRef.current || !isMobile) return
-      
-      if (latest > -totalWidth * 0.5) {
-        x.jump(latest - totalWidth)
-      } else if (latest < -totalWidth * 2.5) {
-        x.jump(latest + totalWidth)
+    const unsubscribe = springX.on('change', (latest) => {
+      // When we've scrolled through one full set, reset to beginning
+      if (latest <= -singleSetWidth) {
+        x.jump(latest + singleSetWidth)
+      }
+      // When we scroll backwards past the start, jump to end
+      else if (latest > 0) {
+        x.jump(latest - singleSetWidth)
       }
     })
     
     return unsubscribe
-  }, [isMobile, x])
+  }, [isMobile, springX, x, singleSetWidth])
 
-  const infinitePhotos = [...photos, ...photos, ...photos]
-  const cardWidth = isMobile ? 176 : 288
-  const gap = isMobile ? 20 : 32
-  const totalWidth = photos.length * (cardWidth + gap)
-
-  const handleDragStart = () => {
-    isDraggingRef.current = true
-    if (animationRef.current) {
-      animationRef.current.stop()
-      animationRef.current = null
-    }
-  }
-
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    isDraggingRef.current = false
-    const currentX = x.get()
-    let velocity = info.velocity.x
-    
-    const maxVelocity = 2000
-    velocity = clamp(velocity, -maxVelocity, maxVelocity)
-    
-    const projection = currentX + velocity * 0.5
-    let finalPosition = projection
-    
-    if (finalPosition > -totalWidth * 0.5) {
-      finalPosition = finalPosition - totalWidth
-    } else if (finalPosition < -totalWidth * 2.5) {
-      finalPosition = finalPosition + totalWidth
-    }
-    
-    if (prefersReducedMotion) {
-      x.set(finalPosition)
-      return
-    }
-    
-    animationRef.current = animate(x, finalPosition, {
-      type: 'spring',
-      stiffness: 300,
-      damping: 30,
-      mass: 0.8,
-      velocity: velocity,
-      restDelta: 0.01,
-      restSpeed: 0.01,
-    })
-  }
-
-  // Desktop: static layout with animations
+  // Desktop: static layout
   if (!isMobile) {
     return (
       <div className="mt-16 sm:mt-20">
@@ -155,8 +93,8 @@ export function PhotoGallery() {
           {photos.map(({ image, alt }, imageIndex) => (
             <motion.div
               key={image.src}
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
                 type: 'spring',
@@ -185,43 +123,37 @@ export function PhotoGallery() {
     )
   }
 
-  // Mobile: draggable carousel
+  // Mobile: smooth draggable carousel with natural physics
   return (
     <div className="mt-16 sm:mt-20">
       <div 
         ref={containerRef}
         className="relative -my-4 py-4 overflow-hidden"
-        style={{
-          touchAction: 'pan-y',
-          WebkitUserSelect: 'none',
-          userSelect: 'none',
-        }}
       >
         <motion.div
           drag="x"
-          dragConstraints={{ left: -totalWidth * 2.5, right: -totalWidth * 0.5 }}
-          dragElastic={0.05}
-          dragMomentum={false}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-          style={{ x }}
+          dragElastic={0.2}
+          dragConstraints={{
+            left: -singleSetWidth + cardWidth,
+            right: 0,
+          }}
+          style={{ x: springX }}
           className="flex gap-5 cursor-grab active:cursor-grabbing"
         >
-          {infinitePhotos.map(({ image, alt }, imageIndex) => (
+          {duplicatedPhotos.map(({ image, alt }, imageIndex) => (
             <div
               key={`${image.src}-${imageIndex}`}
               className={clsx(
-                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted select-none',
+                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
                 rotations[imageIndex % rotations.length],
               )}
-              style={{ pointerEvents: 'none' }}
             >
               <div className="aspect-9/10">
                 <Image
                   src={image}
                   alt={alt}
                   sizes="11rem"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover pointer-events-none"
                   draggable={false}
                 />
               </div>
