@@ -1,5 +1,6 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 import { Button } from '@/components/Button'
+import { LinkPreview } from '@/components/LinkPreview'
 import imageRoadmap from '@/images/articles/notion-setup/roadmap.png'
 import imageContentManager from '@/images/articles/notion-setup/content-manager.png'
 import imageThumb from '@/images/articles/notion-setup/notion-setup-thumbnail.png'
@@ -23,29 +24,12 @@ I’ve been using Notion for years. What started as a simple note-taking app bec
 
 I get a lot of questions about the templates, so this post breaks down the ones that actually matter day to day. There’s also a [video walkthrough](https://www.youtube.com/watch?v=53KFVt2GRkE) if you’d rather see the workspace in motion.
 
-<div className="not-prose my-8 overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
-  <a
-    href="https://www.youtube.com/watch?v=53KFVt2GRkE"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block"
-  >
-    <Image src={imageThumb} alt="Notion setup video thumbnail" className="w-full" />
-  </a>
-  <div className="space-y-2 p-4">
-    <div className="text-sm font-semibold text-foreground">
-      My Complete Notion Setup (2024) — Templates & Systems
-    </div>
-    <Button
-      href="https://www.youtube.com/watch?v=53KFVt2GRkE"
-      variant="secondary"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Watch on YouTube
-    </Button>
-  </div>
-</div>
+<LinkPreview
+  title="My Complete Notion Setup (2024) — Templates & Systems"
+  subtitle="A tour of my Notion workspace, including templates for content creation, development work, and personal productivity systems."
+  image={imageThumb}
+  url="https://www.youtube.com/watch?v=53KFVt2GRkE"
+/>
 
 ## Full-stack developer roadmap
 

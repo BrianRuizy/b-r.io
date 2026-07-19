@@ -1,5 +1,6 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
-import { Button } from '@/components/Button'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import { LinkPreview } from '@/components/LinkPreview'
 import imageDesk1 from '@/images/articles/desk-setup/desk-setup.png'
 import imageDesk2 from '@/images/articles/desk-setup/desk-setup5.png'
 import imageDesk3 from '@/images/articles/desk-setup/desk-setup4.png'
@@ -23,24 +24,12 @@ export default (props) => <ArticleLayout article={article} {...props} />
 
 I also made a video covering this setup if you’d rather watch than read. This post is the companion version with links and resources in one place.
 
-<div className="not-prose my-8 overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
-  <a
-    href="https://youtu.be/Q9Qu-ddjDEE"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block"
-  >
-    <Image src={imageThumb} alt="Desk setup video thumbnail" className="w-full" />
-  </a>
-  <div className="space-y-2 p-4">
-    <div className="text-sm font-semibold text-foreground">
-      Software Engineer’s Productive and Minimal Desk Setup (2023)
-    </div>
-    <Button href="https://youtu.be/Q9Qu-ddjDEE" variant="secondary" target="_blank" rel="noopener noreferrer">
-      Watch on YouTube
-    </Button>
-  </div>
-</div>
+<LinkPreview
+  title="Software Engineer's Productive and Minimal Desk Setup (2023)"
+  subtitle="A tour of the minimalist workspace I put together as a software engineer — gadgets, ergonomics, and the pieces that make long coding sessions feel better."
+  image={imageThumb}
+  url="https://youtu.be/Q9Qu-ddjDEE"
+/>
 
 I’m a software engineer by day and a part-time creator in the evenings. I spend a lot of hours at this desk coding, editing, and learning, so I put together a setup that stays productive for both.
 
@@ -52,33 +41,34 @@ The centerpiece is the [Ergonofis Sway Desk](https://shrsl.com/49346). It has a 
 - [Ergonofis Desk Shelf](https://shrsl.com/49342): solid wood shelf for posture and organization
 - [Ergonofis Cable Management](https://shrsl.com/4933x): keeps the underside tidy
 
-<figure>
-  <Image src={imageDesk1} alt="Desk setup with white oak shelf and cable management" />
-  <figcaption>
-    White oak and white color combo, including the cable management rack and desk shelf.
-  </figcaption>
-</figure>
-
-<figure>
-  <Image src={imageDesk2} alt="Laptop docked under the desk shelf" />
-  <figcaption>
-    The shelf doubles as an organizer — laptop docks underneath, accessories stay out of the way.
-  </figcaption>
-</figure>
-
-<figure>
-  <Image src={imageDesk3} alt="Cable management rack under the desk" />
-  <figcaption>
-    Cable management rack sized to the desk width, with a large power strip and cable net.
-  </figcaption>
-</figure>
-
-<figure>
-  <Image src={imageDesk4} alt="Ergonofis desk remote control" />
-  <figcaption>
-    The remote sits flush on the desktop and supports swipe gestures.
-  </figcaption>
-</figure>
+<ImageCarousel
+  images={[
+    {
+      src: imageDesk1,
+      alt: 'Desk setup with white oak shelf and cable management',
+      caption:
+        'White oak and white color combo, including the cable management rack and desk shelf.',
+    },
+    {
+      src: imageDesk2,
+      alt: 'Laptop docked under the desk shelf',
+      caption:
+        'The shelf doubles as an organizer — laptop docks underneath, accessories stay out of the way.',
+    },
+    {
+      src: imageDesk3,
+      alt: 'Cable management rack under the desk',
+      caption:
+        'Cable management rack sized to the desk width, with a large power strip and cable net.',
+    },
+    {
+      src: imageDesk4,
+      alt: 'Ergonofis desk remote control',
+      caption:
+        'The remote sits flush on the desktop and supports swipe gestures.',
+    },
+  ]}
+/>
 
 ## Monitors and lighting
 

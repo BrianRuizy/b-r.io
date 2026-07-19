@@ -8,3 +8,4 @@ export function Prose({
     <div className={clsx(className, 'prose dark:prose-invert')} {...props} />
   )
 }
+ 
