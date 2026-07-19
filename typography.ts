@@ -45,7 +45,7 @@ export default {
           '--tw-prose-code': 'var(--foreground)',
           '--tw-prose-code-bg':
             'color-mix(in oklab, var(--muted-foreground) 15%, transparent)',
-          '--tw-prose-pre-code': 'var(--color-zinc-100)',
+          '--tw-prose-pre-code': 'var(--color-neutral-100)',
           '--tw-prose-pre-bg': 'var(--foreground)',
           '--tw-prose-pre-border': 'transparent',
           '--tw-prose-th-borders': 'var(--border)',
@@ -67,7 +67,7 @@ export default {
           '--tw-prose-invert-code': 'var(--foreground)',
           '--tw-prose-invert-code-bg':
             'color-mix(in oklab, var(--foreground) 5%, transparent)',
-          '--tw-prose-invert-pre-code': 'var(--color-zinc-100)',
+          '--tw-prose-invert-pre-code': 'var(--color-neutral-100)',
           '--tw-prose-invert-pre-bg':
             'color-mix(in oklab, black 40%, transparent)',
           '--tw-prose-invert-pre-border':

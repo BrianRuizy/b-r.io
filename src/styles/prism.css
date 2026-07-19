@@ -1,47 +1,106 @@
 pre[class*='language-'] {
-  color: var(--color-zinc-100);
+  color: var(--tw-prose-pre-code);
 }
 
-.token.tag,
-.token.class-name,
-.token.selector,
-.token.selector .class,
-.token.selector.class,
-.token.function {
-  color: var(--color-pink-400);
+.code-line {
+  display: block;
+  min-width: 100%;
 }
 
-.token.attr-name,
-.token.keyword,
-.token.rule,
-.token.pseudo-class,
-.token.important {
-  color: var(--color-zinc-300);
+.line-number::before {
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1.5rem;
+  color: var(--muted-foreground);
+  text-align: right;
+  user-select: none;
+  content: attr(line);
+  opacity: 0.5;
 }
 
-.token.module {
-  color: var(--color-pink-400);
+/* Comments */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #7f8c98;
 }
 
-.token.attr-value,
-.token.class,
-.token.string,
-.token.property {
-  color: var(--color-teal-300);
-}
-
+/* Punctuation */
 .token.punctuation,
 .token.attr-equals {
-  color: var(--color-zinc-500);
+  color: var(--color-neutral-400);
 }
 
-.token.unit,
-.language-css .token.function {
-  color: var(--color-sky-200);
+/* Keywords and storage */
+.token.keyword,
+.token.rule,
+.token.important {
+  color: #ff7ab2;
 }
 
-.token.comment,
+/* Macros, attributes, at-rules (Xcode lavender) */
+.token.atrule,
+.token.decorator,
+.token.annotation,
+.token.directive {
+  color: #d0a8ff;
+}
+
+/* Operators */
 .token.operator,
-.token.combinator {
-  color: var(--color-zinc-400);
+.token.combinator,
+.token.entity,
+.token.url {
+  color: var(--color-neutral-400);
+}
+
+/* Functions and methods */
+.token.function,
+.token.selector .class {
+  color: #67b7a4;
+}
+
+/* Types, classes, tags */
+.token.class-name,
+.token.tag,
+.token.builtin,
+.token.namespace {
+  color: #5dd8ff;
+}
+
+/* Strings and attribute values */
+.token.string,
+.token.attr-value,
+.token.char {
+  color: #ff9086;
+}
+
+/* Regex (Xcode lavender) */
+.token.regex {
+  color: #d0a8ff;
+}
+
+/* Numbers, constants, booleans */
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol,
+.token.unit {
+  color: #d9c97c;
+}
+
+/* Variables, properties, attribute names */
+.token.property,
+.token.attr-name,
+.token.variable,
+.token.parameter {
+  color: #67b7a4;
+}
+
+/* Module / import paths */
+.token.module,
+.token.pseudo-class,
+.language-css .token.function {
+  color: #ff9086;
 }
