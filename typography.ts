@@ -140,6 +140,7 @@ export default {
             borderRadius: theme('borderRadius.lg'),
             paddingLeft: theme('spacing.1'),
             paddingRight: theme('spacing.1'),
+            lineHeight: theme('lineHeight.5'),
           },
           'a code': {
             color: 'inherit',
@@ -236,6 +237,7 @@ export default {
             color: 'inherit',
             fontSize: 'inherit',
             fontWeight: 'inherit',
+            lineHeight: 'inherit',
             backgroundColor: 'transparent',
             borderRadius: 0,
             padding: 0,

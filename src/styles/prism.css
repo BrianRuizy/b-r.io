@@ -1,5 +1,46 @@
+/* Dark code blocks are the default in both site themes. */
+:root {
+  --prism-plain: var(--tw-prose-invert-pre-code);
+  --prism-comment: #7f8c98;
+  --prism-punctuation: var(--color-neutral-400);
+  --prism-keyword: #ff7ab2;
+  --prism-macro: #d0a8ff;
+  --prism-function: #67b7a4;
+  --prism-type: #5dd8ff;
+  --prism-string: #ff9086;
+  --prism-number: #d9c97c;
+  --prism-variable: #67b7a4;
+  --prism-highlight-bg: color-mix(in oklab, white 5%, transparent);
+  --prism-highlight-border: color-mix(in oklab, white 35%, transparent);
+}
+
+/* Add this class to a post or container to opt into light code blocks later. */
+.code-theme-light {
+  --prism-plain: var(--foreground);
+  --prism-comment: #707f8c;
+  --prism-punctuation: var(--color-neutral-500);
+  --prism-keyword: #ad3da4;
+  --prism-macro: #703daa;
+  --prism-function: #326d74;
+  --prism-type: #0b4f79;
+  --prism-string: #d12f1b;
+  --prism-number: #272ad8;
+  --prism-variable: #326d74;
+  --prism-highlight-bg: color-mix(in oklab, var(--foreground) 7%, transparent);
+  --prism-highlight-border: color-mix(
+    in oklab,
+    var(--foreground) 25%,
+    transparent
+  );
+}
+
 pre[class*='language-'] {
-  color: var(--tw-prose-pre-code);
+  color: var(--prism-plain);
+}
+
+.code-theme-light pre[class*='language-'] {
+  background-color: var(--muted);
+  border-color: var(--border);
 }
 
 .code-line {
@@ -13,16 +54,15 @@ pre[class*='language-'] {
   margin-left: -2rem;
   padding-right: 2rem;
   padding-left: 2rem;
-  /* dark-theme muted/border equivalents; the code block is dark in both themes */
-  background-color: var(--color-neutral-900);
-  box-shadow: inset 3px 0 0 0 var(--color-neutral-500);
+  background-color: var(--prism-highlight-bg);
+  box-shadow: inset 3px 0 0 0 var(--prism-highlight-border);
 }
 
 .line-number::before {
   display: inline-block;
   width: 1.5rem;
   margin-right: 1.5rem;
-  color: var(--muted-foreground);
+  color: var(--prism-comment);
   text-align: right;
   user-select: none;
   content: attr(line);
@@ -34,28 +74,29 @@ pre[class*='language-'] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #7f8c98;
+  color: var(--prism-comment);
 }
 
 /* Punctuation */
 .token.punctuation,
 .token.attr-equals {
-  color: var(--color-neutral-400);
+  color: var(--prism-punctuation);
 }
 
 /* Keywords and storage */
 .token.keyword,
 .token.rule,
 .token.important {
-  color: #ff7ab2;
+  color: var(--prism-keyword);
 }
 
-/* Macros, attributes, at-rules (Xcode lavender) */
+/* Macros, attributes, at-rules */
 .token.atrule,
 .token.decorator,
 .token.annotation,
-.token.directive {
-  color: #d0a8ff;
+.token.directive,
+.token.regex {
+  color: var(--prism-macro);
 }
 
 /* Operators */
@@ -63,13 +104,13 @@ pre[class*='language-'] {
 .token.combinator,
 .token.entity,
 .token.url {
-  color: var(--color-neutral-400);
+  color: var(--prism-punctuation);
 }
 
 /* Functions and methods */
 .token.function,
 .token.selector .class {
-  color: #67b7a4;
+  color: var(--prism-function);
 }
 
 /* Types, classes, tags */
@@ -77,19 +118,14 @@ pre[class*='language-'] {
 .token.tag,
 .token.builtin,
 .token.namespace {
-  color: #5dd8ff;
+  color: var(--prism-type);
 }
 
 /* Strings and attribute values */
 .token.string,
 .token.attr-value,
 .token.char {
-  color: #ff9086;
-}
-
-/* Regex (Xcode lavender) */
-.token.regex {
-  color: #d0a8ff;
+  color: var(--prism-string);
 }
 
 /* Numbers, constants, booleans */
@@ -98,7 +134,7 @@ pre[class*='language-'] {
 .token.constant,
 .token.symbol,
 .token.unit {
-  color: #d9c97c;
+  color: var(--prism-number);
 }
 
 /* Variables, properties, attribute names */
@@ -106,12 +142,12 @@ pre[class*='language-'] {
 .token.attr-name,
 .token.variable,
 .token.parameter {
-  color: #67b7a4;
+  color: var(--prism-variable);
 }
 
 /* Module / import paths */
 .token.module,
 .token.pseudo-class,
 .language-css .token.function {
-  color: #ff9086;
+  color: var(--prism-string);
 }
