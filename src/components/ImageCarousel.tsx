@@ -1,13 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image, { type StaticImageData } from 'next/image'
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type PanInfo,
-} from 'motion/react'
+import { motion, useReducedMotion, type PanInfo } from 'motion/react'
 import clsx from 'clsx'
 
 export type CarouselImage = {
@@ -59,63 +54,85 @@ export function ImageCarousel({
   className?: string
 }) {
   let [index, setIndex] = useState(0)
+  let [width, setWidth] = useState(0)
+  let containerRef = useRef<HTMLDivElement>(null)
   let reduceMotion = useReducedMotion()
   let current = images[index]
-  let first = images[0]
+
+  useEffect(() => {
+    let node = containerRef.current
+    if (!node) return
+
+    let update = () => setWidth(node.offsetWidth)
+    update()
+
+    let observer = new ResizeObserver(update)
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
 
   function goTo(next: number) {
-    setIndex(((next % images.length) + images.length) % images.length)
+    setIndex(Math.max(0, Math.min(images.length - 1, next)))
   }
 
   function onDragEnd(_: unknown, info: PanInfo) {
-    if (Math.abs(info.offset.x) < 50) return
-    goTo(info.offset.x < 0 ? index + 1 : index - 1)
+    let swipePower = Math.abs(info.offset.x) * Math.abs(info.velocity.x)
+    if (info.offset.x < -40 || (info.velocity.x < -300 && swipePower > 8000)) {
+      goTo(index + 1)
+      return
+    }
+    if (info.offset.x > 40 || (info.velocity.x > 300 && swipePower > 8000)) {
+      goTo(index - 1)
+    }
   }
 
-  if (!current || !first) return null
+  if (!current) return null
 
-  let spacer = imageSize(first.src)
-  let active = imageSize(current.src)
+  let maxDrag = Math.max(0, (images.length - 1) * width)
 
   return (
     <div className={clsx('not-prose my-8', className)}>
-      <div className="relative overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
-        {/* Invisible spacer keeps a stable height while slides fade */}
-        <Image
-          src={first.src}
-          alt=""
-          width={spacer.width}
-          height={spacer.height}
-          sizes="(min-width: 768px) 672px, 100vw"
-          className="pointer-events-none aspect-3/2 h-auto w-full opacity-0"
-          aria-hidden
-          priority
-        />
-
-        <AnimatePresence mode="sync" initial={false}>
+      <div className="relative">
+        <div
+          ref={containerRef}
+          className="overflow-hidden rounded-2xl bg-muted ring-1 ring-border"
+        >
           <motion.div
-            key={index}
-            className="absolute inset-0 cursor-grab active:cursor-grabbing"
-            initial={reduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.35, ease: 'easeInOut' }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.12}
+            className="flex cursor-grab active:cursor-grabbing"
+            animate={{ x: width ? -index * width : 0 }}
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : { type: 'spring', stiffness: 280, damping: 32, mass: 0.8 }
+            }
+            drag={width > 0 ? 'x' : false}
+            dragConstraints={{ left: -maxDrag, right: 0 }}
+            dragElastic={0.14}
             onDragEnd={onDragEnd}
           >
-            <Image
-              src={current.src}
-              alt={current.alt ?? ''}
-              width={active.width}
-              height={active.height}
-              sizes="(min-width: 768px) 672px, 100vw"
-              className="pointer-events-none h-full w-full object-cover"
-              priority={index === 0}
-            />
+            {images.map((image, i) => {
+              let size = imageSize(image.src)
+              return (
+                <div
+                  key={i}
+                  className="shrink-0 grow-0"
+                  style={{ width: width || '100%' }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt ?? ''}
+                    width={size.width}
+                    height={size.height}
+                    sizes="(min-width: 768px) 672px, 100vw"
+                    className="pointer-events-none aspect-3/2 h-auto w-full object-cover"
+                    priority={i === 0}
+                    draggable={false}
+                  />
+                </div>
+              )
+            })}
           </motion.div>
-        </AnimatePresence>
+        </div>
 
         {images.length > 1 && (
           <>
@@ -123,7 +140,8 @@ export function ImageCarousel({
               type="button"
               onClick={() => goTo(index - 1)}
               aria-label="Previous image"
-              className="absolute top-1/2 left-3 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-card/90 text-foreground shadow-md ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition hover:bg-card dark:bg-muted/90"
+              disabled={index === 0}
+              className="absolute top-1/2 left-3 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-card/90 text-foreground shadow-md ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition hover:bg-card disabled:pointer-events-none disabled:opacity-30 dark:bg-muted/90"
             >
               <ChevronLeftIcon className="size-4" />
             </button>
@@ -131,7 +149,8 @@ export function ImageCarousel({
               type="button"
               onClick={() => goTo(index + 1)}
               aria-label="Next image"
-              className="absolute top-1/2 right-3 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-card/90 text-foreground shadow-md ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition hover:bg-card dark:bg-muted/90"
+              disabled={index === images.length - 1}
+              className="absolute top-1/2 right-3 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-card/90 text-foreground shadow-md ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition hover:bg-card disabled:pointer-events-none disabled:opacity-30 dark:bg-muted/90"
             >
               <ChevronRightIcon className="size-4" />
             </button>

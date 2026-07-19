@@ -26,7 +26,6 @@ function ArrowUpRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
         d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
       />
     </svg>
-    
   )
 }
 
@@ -60,21 +59,23 @@ export function LinkPreview({
       target="_blank"
       rel="noopener noreferrer"
       className={clsx(
-        'not-prose my-8 flex flex-row items-center gap-4 rounded-2xl bg-background p-4 ring-1 ring-border sm:gap-6 sm:p-6',
+        'not-prose my-10 flex flex-row items-center gap-4 rounded-2xl bg-background p-4 ring-1 ring-border sm:gap-6 sm:p-6',
         className,
       )}
     >
       <div className="min-w-0 flex-1 space-y-1.5">
-        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+        <div className="flex items-center gap-1 text-sm leading-6 text-muted-foreground">
           <ArrowUpRightIcon className="size-4 shrink-0" />
           <span className="line-clamp-1">{getDomain(url)}</span>
         </div>
-        <div className="line-clamp-2 text-sm font-medium leading-snug text-foreground">
+        <div className="line-clamp-2 text-base font-semibold leading-7 text-foreground">
           {title}
         </div>
-        <p className="line-clamp-2 text-sm text-muted-foreground">{subtitle}</p>
+        <p className="line-clamp-2 text-base leading-7 text-muted-foreground">
+          {subtitle}
+        </p>
       </div>
-      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl md:w-48">
+      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-3xl md:w-48">
         <Image
           src={image}
           alt=""

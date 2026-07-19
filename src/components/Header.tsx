@@ -262,7 +262,7 @@ function MobileNavigation({ className }: { className?: string }) {
               key="backdrop"
               type="button"
               aria-label="Close menu"
-              className="fixed inset-0 z-40 bg-zinc-800/40 backdrop-blur-sm dark:bg-black/50"
+              className="fixed inset-0 z-40 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
