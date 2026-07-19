@@ -75,7 +75,7 @@ export function LinkPreview({
           {subtitle}
         </p>
       </div>
-      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-3xl md:w-48">
+      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl md:w-48">
         <Image
           src={image}
           alt=""
