@@ -33,7 +33,8 @@ export default {
           '--tw-prose-headings': 'var(--foreground)',
           '--tw-prose-links': 'var(--accent)',
           '--tw-prose-links-hover': 'var(--accent)',
-          '--tw-prose-underline': 'color-mix(in oklab, var(--accent) 20%, transparent)',
+          '--tw-prose-underline':
+            'color-mix(in oklab, var(--accent) 20%, transparent)',
           '--tw-prose-underline-hover': 'var(--accent)',
           '--tw-prose-bold': 'var(--foreground)',
           '--tw-prose-counters': 'var(--foreground)',
@@ -42,7 +43,8 @@ export default {
           '--tw-prose-quote-borders': 'var(--border)',
           '--tw-prose-captions': 'var(--muted-foreground)',
           '--tw-prose-code': 'var(--foreground)',
-          '--tw-prose-code-bg': 'color-mix(in oklab, var(--muted-foreground) 15%, transparent)',
+          '--tw-prose-code-bg':
+            'color-mix(in oklab, var(--muted-foreground) 15%, transparent)',
           '--tw-prose-pre-code': 'var(--primary-foreground)',
           '--tw-prose-pre-bg': 'var(--foreground)',
           '--tw-prose-pre-border': 'transparent',
@@ -66,7 +68,8 @@ export default {
           '--tw-prose-invert-code-bg':
             'color-mix(in oklab, var(--foreground) 5%, transparent)',
           '--tw-prose-invert-pre-code': 'var(--primary-foreground)',
-          '--tw-prose-invert-pre-bg': 'color-mix(in oklab, black 40%, transparent)',
+          '--tw-prose-invert-pre-bg':
+            'color-mix(in oklab, black 40%, transparent)',
           '--tw-prose-invert-pre-border':
             'color-mix(in oklab, var(--foreground) 10%, transparent)',
           '--tw-prose-invert-th-borders': 'var(--border)',
@@ -113,7 +116,7 @@ export default {
           // Inline elements
           a: {
             color: 'var(--tw-prose-links)',
-            fontWeight: theme('fontWeight.semibold'),
+            fontWeight: theme('fontWeight.medium'),
             textDecoration: 'underline',
             textDecorationColor: 'var(--tw-prose-underline)',
             transitionProperty: 'color, text-decoration-color',
@@ -175,8 +178,8 @@ export default {
             paddingLeft: theme('spacing.6'),
           },
           li: {
-            marginTop: theme('spacing.6'),
-            marginBottom: theme('spacing.6'),
+            marginTop: theme('spacing.4'),
+            marginBottom: theme('spacing.4'),
             paddingLeft: theme('spacing[3.5]'),
           },
           'li::marker': {

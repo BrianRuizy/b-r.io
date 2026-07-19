@@ -18,6 +18,7 @@ import {
   YouTubeIcon,
 } from '@/components/SocialIcons'
 import { PhotoGallery } from '@/components/PhotoGallery'
+import logoBeamIcon from '@/images/logos/beam-icon-borderless.png'
 import { formatDate } from '@/lib/formatDate'
 import { getAllPosts, type Post } from '@/lib/posts'
 
@@ -241,8 +242,26 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
             Based in New York City, I care about the details that make software
-            useful and enjoyable. I also share videos about technology,
-            productivity, and the work behind digital products.
+            useful and enjoyable. Currently building{' '}
+            <span className="inline-flex items-center gap-1">
+              <span
+                aria-hidden
+                className="inline-block size-3 shrink-0 bg-current"
+                style={{
+                  maskImage: `url(${logoBeamIcon.src})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${logoBeamIcon.src})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+              Beam App
+            </span>
+            . I also share videos about technology, productivity, and the work
+            behind digital products.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

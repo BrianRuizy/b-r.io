@@ -45,10 +45,10 @@ export function Halo({
             height: size,
             // Foreground-tinted wash: dark on light cards, light on dark cards
             background:
-              'radial-gradient(circle, color-mix(in oklab, var(--foreground) 28%, transparent) 0%, transparent 60%)',
+              'radial-gradient(circle, color-mix(in oklab, var(--foreground) var(--halo-tint), transparent) 0%, transparent 60%)',
           } as React.CSSProperties
         }
-        className="pointer-events-none absolute inset-0 z-50 translate-x-(--x) translate-y-(--y) opacity-0 transition-opacity duration-300 group-hover:opacity-(--halo-strength) max-md:group-hover:opacity-0"
+        className="pointer-events-none absolute inset-0 z-50 translate-x-(--x) translate-y-(--y) opacity-0 transition-opacity duration-300 group-hover:opacity-(--halo-strength) max-md:group-hover:opacity-0 [--halo-tint:28%] dark:[--halo-tint:28%]"
       />
       {children}
     </div>

@@ -107,7 +107,9 @@ export default function Projects() {
                   <Image
                     src={project.logo}
                     alt=""
-                    className="size-8! rounded-full"
+                    width={32}
+                    height={32}
+                    className="size-8 rounded-full"
                     unoptimized
                   />
                 ) : (

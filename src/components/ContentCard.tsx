@@ -119,7 +119,7 @@ export function ContentCardEyebrow<T extends React.ElementType = 'p'>({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className="h-4 w-0.5 rounded-full bg-primary/10" />
+          <span className="h-4 w-0.5 rounded-full bg-border" />
         </span>
       )}
       {children}
