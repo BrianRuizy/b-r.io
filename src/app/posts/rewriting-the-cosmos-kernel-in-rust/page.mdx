@@ -22,7 +22,7 @@ The first experiment was a tiny binary created with `cargo new cosmos-kernel`.
 It imports `ferris_says::say`, locks `stdout`, and wraps the stream in a
 `BufWriter` before printing a message.
 
-```rust showLineNumbers
+```rust showLineNumbers {9-10}
 use ferris_says::say;
 use std::io::{stdout, BufWriter};
 

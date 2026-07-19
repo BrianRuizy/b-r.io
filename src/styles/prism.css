@@ -7,6 +7,17 @@ pre[class*='language-'] {
   min-width: 100%;
 }
 
+/* Highlighted lines (```lang {1,3-5}```) */
+.code-line.highlight-line {
+  margin-right: -2rem;
+  margin-left: -2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  /* dark-theme muted/border equivalents; the code block is dark in both themes */
+  background-color: var(--color-neutral-900);
+  box-shadow: inset 3px 0 0 0 var(--color-neutral-500);
+}
+
 .line-number::before {
   display: inline-block;
   width: 1.5rem;
