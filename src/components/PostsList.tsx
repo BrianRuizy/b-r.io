@@ -34,9 +34,7 @@ function PostItem({ post }: { post: Post }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <ContentCard className="md:col-span-3">
-        <ContentCardTitle href={post.href} external={post.type === 'video'}>
-          {post.title}
-        </ContentCardTitle>
+        <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
         <ContentCardEyebrow
           as="time"
           dateTime={post.date}

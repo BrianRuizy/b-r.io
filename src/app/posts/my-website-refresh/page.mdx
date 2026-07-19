@@ -1,19 +1,20 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { PostLayout } from '@/components/PostLayout'
 
-export const article = {
+export const post = {
+  type: 'article',
   author: 'Brian Ruiz',
   date: '2025-05-03',
-  title: 'My Website Refresh',
+  title: 'Why I Stripped My Personal Website Down',
   description:
-    'A new perspective on personal websites, creative focus, and using less to communicate more.',
+    'A quieter take on personal sites: less experimentation for its own sake, more focus on the work, writing, and updates worth sharing.',
 }
 
 export const metadata = {
-  title: article.title,
-  description: article.description,
+  title: post.title,
+  description: post.description,
 }
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default (props) => <PostLayout post={post} {...props} />
 
 I used to wonder why my professors kept such simple websites—just lists of
 publications and projects. Now I understand: they focused on their work and let
@@ -24,14 +25,14 @@ half-finished posts, scattered components, and experiments without a clear
 purpose. Instead of helping me share my work, it started to feel distracting
 and directionless.
 
-> There’s a tremendous power in using the least amount of information to get a
-> point across. — Rick Rubin
+> There's a tremendous power in using the least amount of information to get a
+> point across.
 
 That idea shaped this version of my personal website. Rather than implementing
-every new interface trend that catches my attention, I’m focusing on what
+every new interface trend that catches my attention, I'm focusing on what
 matters most: curating my work, keeping useful references, and making it easy to
 find the things I want to share.
 
 I still enjoy experimenting with new web technologies, but those experiments
-don’t all need to live in the same place. This site can be quieter—a focused
+don't all need to live in the same place. This site can be quieter—a focused
 home for my work, writing, and the occasional life update.

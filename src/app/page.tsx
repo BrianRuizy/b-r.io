@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Input } from '@headlessui/react'
+import { BriefcaseIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
 import { Container } from '@/components/Container'
 import {
@@ -22,56 +23,10 @@ import logoBeamIcon from '@/images/logos/beam-icon-borderless.png'
 import { formatDate } from '@/lib/formatDate'
 import { getAllPosts, type Post } from '@/lib/posts'
 
-function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-muted stroke-muted-foreground dark:fill-foreground/10"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-muted-foreground"
-      />
-    </svg>
-  )
-}
-
-function BriefcaseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-muted stroke-muted-foreground dark:fill-foreground/10"
-      />
-      <path
-        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-muted-foreground"
-      />
-    </svg>
-  )
-}
-
 function LatestPost({ post }: { post: Post }) {
   return (
     <ContentCard as="article">
-      <ContentCardTitle href={post.href} external={post.type === 'video'}>
+      <ContentCardTitle href={post.href}>
         {post.title}
       </ContentCardTitle>
       <ContentCardEyebrow as="time" dateTime={post.date} decorate>
@@ -102,7 +57,7 @@ function Newsletter() {
   return (
     <form action="/thank-you" className="rounded-2xl border border-border p-6">
       <h2 className="flex text-sm font-semibold text-foreground">
-        <MailIcon className="h-6 w-6 flex-none" />
+        <EnvelopeIcon className="size-6 flex-none text-muted-foreground" />
         <span className="ml-3">Stay up to date</span>
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
@@ -209,7 +164,7 @@ function Resume() {
   return (
     <div className="rounded-2xl border border-border p-6">
       <h2 className="flex text-sm font-semibold text-foreground">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
+        <BriefcaseIcon className="size-6 flex-none text-muted-foreground" />
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">

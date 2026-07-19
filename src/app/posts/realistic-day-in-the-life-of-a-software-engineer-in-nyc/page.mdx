@@ -1,0 +1,20 @@
+import { PostLayout } from '@/components/PostLayout'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2025-05-21',
+  title: 'Realistic Day in the Life of a Software Engineer in NYC',
+  description:
+    'Not a highlight reel. A more honest day in the life of working as a software engineer in New York, from the commute through the quieter parts of the evening.',
+  youtubeId: '5a4y3fSbXrE',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+Not a highlight reel — a more honest day-in-the-life of working as a software engineer in New York, from the commute through the quieter parts of the evening.

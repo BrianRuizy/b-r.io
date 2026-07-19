@@ -41,6 +41,10 @@
 }
 
 @theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria,
+    'Times New Roman', Times, serif;
+
   --text-xs: 0.8125rem;
   --text-xs--line-height: 1.5rem;
   --text-sm: 0.875rem;
@@ -97,7 +101,7 @@
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
---sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);

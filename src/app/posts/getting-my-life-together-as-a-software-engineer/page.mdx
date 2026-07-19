@@ -1,0 +1,20 @@
+import { PostLayout } from '@/components/PostLayout'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2025-10-01',
+  title: 'Getting My Life Together as a Software Engineer',
+  description:
+    'A reset on routines and priorities. Cleaning up my systems so engineering work and creative projects stop colliding, and there is room for both.',
+  youtubeId: '6nvnKjzwjaI',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+A reset video: cleaning up routines, tightening priorities, and rebuilding the systems that keep engineering work and creative projects from colliding.

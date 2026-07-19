@@ -1,0 +1,22 @@
+import { PostLayout } from '@/components/PostLayout'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2025-04-07',
+  title: 'My Desk Setup Tour in NYC',
+  description:
+    'A tour of the desk I use in New York for coding, editing, and long creative sessions, focused on comfort, cable management, and keeping the setup simple.',
+  youtubeId: 'OXA3tmmQJkc',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+A walkthrough of the desk I use in New York for coding, editing, and long creative sessions — focused on comfort, cable management, and keeping the setup simple.
+
+If you want the written gear list, it’s on my [uses](/uses) page.

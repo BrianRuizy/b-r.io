@@ -1,20 +1,8 @@
 import Link from 'next/link'
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 
 import { Halo } from '@/components/Halo'
-
-function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M6.75 5.75 9.25 8l-2.5 2.25"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
 
 export function ContentCard({
   as: Component = 'div',
@@ -134,7 +122,7 @@ export function ContentCardCta({ children }: { children: React.ReactNode }) {
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-accent"
     >
       {children}
-      <ArrowIcon className="ml-1 h-4 w-4 stroke-current" />
+      <ChevronRightIcon className="ml-1 size-4" />
     </div>
   )
 }

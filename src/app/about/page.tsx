@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
@@ -34,17 +35,6 @@ function SocialLink({
         <span className="ml-4">{children}</span>
       </Link>
     </li>
-  )
-}
-
-function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
   )
 }
 
@@ -110,6 +100,13 @@ export default function About() {
               Follow on Instagram
             </SocialLink>
             <SocialLink
+              href="https://www.youtube.com/@brianruizy"
+              icon={YouTubeIcon}
+              className="mt-4"
+            >
+              Subscribe on YouTube
+            </SocialLink>
+            <SocialLink
               href="https://www.github.com/brianruizy"
               icon={GitHubIcon}
               className="mt-4"
@@ -121,14 +118,7 @@ export default function About() {
               icon={LinkedInIcon}
               className="mt-4"
             >
-              Follow on LinkedIn
-            </SocialLink>
-            <SocialLink
-              href="https://www.youtube.com/@brianruizy"
-              icon={YouTubeIcon}
-              className="mt-4"
-            >
-              Follow on YouTube
+              Connect on LinkedIn
             </SocialLink>
             <SocialLink
               href="https://x.com/brianruizy"
@@ -138,11 +128,11 @@ export default function About() {
               Follow on X
             </SocialLink>
             <SocialLink
-              href="mailto:brian@b-r.io"
-              icon={MailIcon}
+              href="mailto:partners@b-r.io"
+              icon={EnvelopeIcon}
               className="mt-8 border-t border-border pt-8"
             >
-              brian@b-r.io
+              partners@b-r.io
             </SocialLink>
           </ul>
         </div>

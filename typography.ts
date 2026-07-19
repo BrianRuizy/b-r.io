@@ -45,7 +45,7 @@ export default {
           '--tw-prose-code': 'var(--foreground)',
           '--tw-prose-code-bg':
             'color-mix(in oklab, var(--muted-foreground) 15%, transparent)',
-          '--tw-prose-pre-code': 'var(--primary-foreground)',
+          '--tw-prose-pre-code': 'var(--color-zinc-100)',
           '--tw-prose-pre-bg': 'var(--foreground)',
           '--tw-prose-pre-border': 'transparent',
           '--tw-prose-th-borders': 'var(--border)',
@@ -67,7 +67,7 @@ export default {
           '--tw-prose-invert-code': 'var(--foreground)',
           '--tw-prose-invert-code-bg':
             'color-mix(in oklab, var(--foreground) 5%, transparent)',
-          '--tw-prose-invert-pre-code': 'var(--primary-foreground)',
+          '--tw-prose-invert-pre-code': 'var(--color-zinc-100)',
           '--tw-prose-invert-pre-bg':
             'color-mix(in oklab, black 40%, transparent)',
           '--tw-prose-invert-pre-border':
@@ -150,10 +150,28 @@ export default {
 
           // Quotes
           blockquote: {
+            color: 'var(--tw-prose-headings)',
+            fontFamily: theme('fontFamily.serif'),
+            fontSize: theme('fontSize.xl')[0],
+            lineHeight: theme('lineHeight.8'),
+          },
+          'blockquote > p:not(:has(cite))': {
             paddingLeft: theme('spacing.6'),
             borderLeftWidth: theme('borderWidth.2'),
             borderLeftColor: 'var(--tw-prose-quote-borders)',
-            fontStyle: 'italic',
+          },
+          'blockquote > p:has(cite)': {
+            paddingLeft: theme('spacing.6'),
+          },
+          'blockquote > cite, blockquote cite': {
+            display: 'block',
+            paddingLeft: theme('spacing.6'),
+            color: 'var(--tw-prose-captions)',
+            fontSize: theme('fontSize.base')[0],
+            lineHeight: theme('lineHeight.7'),
+          },
+          'blockquote > p:has(cite) cite': {
+            paddingLeft: 0,
           },
 
           // Figures

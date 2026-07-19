@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image, { type StaticImageData } from 'next/image'
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/24/outline'
 import { motion, useReducedMotion, type PanInfo } from 'motion/react'
 import clsx from 'clsx'
 
@@ -9,34 +13,6 @@ export type CarouselImage = {
   src: StaticImageData | string
   alt?: string
   caption?: string
-}
-
-function ChevronLeftIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M10 3.5 5.5 8 10 12.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M6 3.5 10.5 8 6 12.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
 }
 
 function imageSize(src: StaticImageData | string) {

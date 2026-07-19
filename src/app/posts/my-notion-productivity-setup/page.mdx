@@ -1,24 +1,25 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { PostLayout } from '@/components/PostLayout'
 import { Button } from '@/components/Button'
 import { LinkPreview } from '@/components/LinkPreview'
 import imageRoadmap from '@/images/articles/notion-setup/roadmap.png'
 import imageContentManager from '@/images/articles/notion-setup/content-manager.png'
 import imageThumb from '@/images/articles/notion-setup/notion-setup-thumbnail.png'
 
-export const article = {
+export const post = {
+  type: 'article',
   author: 'Brian Ruiz',
   date: '2024-03-19',
-  title: 'My Notion Productivity Setup',
+  title: 'The Notion System I Actually Use as a Developer and Creator',
   description:
-    'Workflow templates I use as a developer and creator — roadmap, content OS, notes, and more.',
+    'A walkthrough of the Notion templates that stuck: a full-stack roadmap, content OS, notes, and the workflows I rely on day to day.',
 }
 
 export const metadata = {
-  title: article.title,
-  description: article.description,
+  title: post.title,
+  description: post.description,
 }
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default (props) => <PostLayout post={post} {...props} />
 
 I’ve been using Notion for years. What started as a simple note-taking app became the system I use for content creation, development work, learning, and personal projects.
 
