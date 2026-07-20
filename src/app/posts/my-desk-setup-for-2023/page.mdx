@@ -1,4 +1,5 @@
 import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
 import { LinkPreview } from '@/components/LinkPreview'
 
@@ -12,10 +13,7 @@ export const post = {
   coverImage: '/blog/desk/image.png',
 }
 
-export const metadata = {
-  title: post.title,
-  description: post.description,
-}
+export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 

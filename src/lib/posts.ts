@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import glob from 'fast-glob'
 
 export type PostType = 'article' | 'video'
@@ -26,6 +27,20 @@ export type PostMeta = ArticleMeta | VideoMeta
 export type Post = PostMeta & {
   slug: string
   href: string
+}
+
+export function createPostMetadata(post: PostMeta): Metadata {
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: post.date,
+      ...(post.coverImage ? { images: [post.coverImage] } : {}),
+    },
+  }
 }
 
 async function importPost(postFilename: string): Promise<Post> {

@@ -76,7 +76,7 @@ const projects: Array<Project> = [
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Apps, tools, and experiments I&apos;ve built.',
+  description: "Apps, tools, and experiments I've built.",
 }
 
 export default function Projects() {

@@ -1,4 +1,5 @@
 import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
 import { Button } from '@/components/Button'
 import { LinkPreview } from '@/components/LinkPreview'
 import imageRoadmap from '@/images/articles/notion-setup/roadmap.png'
@@ -14,10 +15,7 @@ export const post = {
     'A walkthrough of the Notion templates that actually stuck for me: a full-stack roadmap, content OS, notes, and the day-to-day workflows I use as a developer and creator.',
 }
 
-export const metadata = {
-  title: post.title,
-  description: post.description,
-}
+export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 

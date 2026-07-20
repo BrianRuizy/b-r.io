@@ -1,4 +1,5 @@
 import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
 
 export const post = {
@@ -11,10 +12,7 @@ export const post = {
   coverImage: '/blog/gatsby-medium/og.png',
 }
 
-export const metadata = {
-  title: post.title,
-  description: post.description,
-}
+export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 

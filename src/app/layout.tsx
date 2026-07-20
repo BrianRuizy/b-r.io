@@ -17,17 +17,36 @@ const sourceSerif = Source_Serif_4({
   variable: '--font-source-serif',
 })
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+
+const title = 'Brian Ruiz - Software engineer and creator in NYC'
+const description =
+  'Software engineer in New York City crafting delightful user experiences and sharing videos about technology, productivity, design, and life.'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     template: '%s - Brian Ruiz',
-    default: 'Brian Ruiz - Software engineer and creator in NYC',
+    default: title,
   },
-  description:
-    'Software engineer in New York City crafting delightful user experiences and sharing videos about technology, productivity, design, and life.',
+  description,
   alternates: {
+    canonical: '/',
     types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+      'application/rss+xml': '/feed.xml',
     },
+  },
+  openGraph: {
+    title,
+    description,
+    url: '/',
+    siteName: 'Brian Ruiz',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 

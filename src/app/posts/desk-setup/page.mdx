@@ -1,4 +1,5 @@
 import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
 
 export const post = {
   type: 'video',
@@ -10,10 +11,7 @@ export const post = {
   youtubeId: 'Q9Qu-ddjDEE',
 }
 
-export const metadata = {
-  title: post.title,
-  description: post.description,
-}
+export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 

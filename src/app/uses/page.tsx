@@ -51,7 +51,8 @@ function Tool({
 
 export const metadata: Metadata = {
   title: 'Uses',
-  description: 'Some of my favorite tools and gear',
+  description:
+    'Gear and apps I use every day to build, create, and stay productive.',
 }
 
 export default function Uses() {
