@@ -135,7 +135,6 @@ export default {
             display: 'inline-block',
             color: 'var(--tw-prose-code)',
             fontSize: theme('fontSize.sm')[0],
-            fontWeight: theme('fontWeight.semibold'),
             backgroundColor: 'var(--tw-prose-code-bg)',
             borderRadius: theme('borderRadius.lg'),
             paddingLeft: theme('spacing.1'),
@@ -153,8 +152,7 @@ export default {
           blockquote: {
             color: 'var(--tw-prose-headings)',
             fontFamily: theme('fontFamily.serif'),
-            fontSize: theme('fontSize.xl')[0],
-            lineHeight: theme('lineHeight.8'),
+            fontSize: theme('fontSize.lg')[0],
           },
           'blockquote > p:not(:has(cite))': {
             paddingLeft: theme('spacing.6'),

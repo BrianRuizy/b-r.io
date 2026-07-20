@@ -5,7 +5,7 @@ const variantStyles = {
   primary:
     'bg-primary font-semibold text-primary-foreground hover:bg-primary/80 active:bg-primary active:text-primary-foreground/70',
   secondary:
-    'bg-secondary font-medium text-secondary-foreground hover:bg-muted active:bg-muted active:text-secondary-foreground/60 dark:bg-muted/50 dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-foreground dark:active:bg-muted/50 dark:active:text-foreground/70',
+    'bg-secondary font-medium text-secondary-foreground! hover:bg-muted active:bg-muted active:text-secondary-foreground/60 dark:bg-muted/50 dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-foreground dark:active:bg-muted/50 dark:active:text-foreground/70',
   ghost:
     'font-medium text-muted-foreground hover:bg-muted hover:text-foreground active:bg-muted',
 }

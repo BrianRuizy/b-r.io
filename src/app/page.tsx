@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Input } from '@headlessui/react'
+import { Description, Field, Fieldset, Label, Legend } from '@headlessui/react'
 import { BriefcaseIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 
 import { Container } from '@/components/Container'
@@ -11,10 +11,10 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { Button } from '@/components/Button'
+import { Input } from '@/components/Input'
 import {
   GitHubIcon,
   InstagramIcon,
-  LinkedInIcon,
   XIcon,
   YouTubeIcon,
 } from '@/components/SocialIcons'
@@ -26,9 +26,7 @@ import { getAllPosts, type Post } from '@/lib/posts'
 function LatestPost({ post }: { post: Post }) {
   return (
     <ContentCard as="article">
-      <ContentCardTitle href={post.href}>
-        {post.title}
-      </ContentCardTitle>
+      <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
       <ContentCardEyebrow as="time" dateTime={post.date} decorate>
         {formatDate(post.date)}
       </ContentCardEyebrow>
@@ -48,7 +46,7 @@ function SocialLink({
 }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-muted-foreground transition group-hover:fill-foreground" />
+      <Icon className="size-6 fill-muted-foreground transition group-hover:fill-foreground" />
     </Link>
   )
 }
@@ -56,29 +54,31 @@ function SocialLink({
 function Newsletter() {
   return (
     <form action="/thank-you" className="rounded-2xl border border-border p-6">
-      <h2 className="flex text-sm font-semibold text-foreground">
-        <EnvelopeIcon className="size-6 flex-none text-muted-foreground" />
-        <span className="ml-3">Stay up to date</span>
-      </h2>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Join 1,400+ other readers. Get notified when I publish something new,
-        and unsubscribe at any time.
-      </p>
-      <div className="mt-6 flex items-center">
-        <span className="flex min-w-0 flex-auto p-px">
-          <Input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            aria-label="Email address"
-            required
-            className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-card px-3 py-[calc(--spacing(2)-1px)] text-foreground shadow-md shadow-foreground/5 outline outline-border placeholder:text-muted-foreground data-focus:ring-4 data-focus:ring-ring/20 data-focus:outline-ring sm:text-sm dark:bg-muted/30"
-          />
-        </span>
-        <Button type="submit" className="ml-4 flex-none">
-          Join
-        </Button>
-      </div>
+      <Fieldset>
+        <Legend className="flex text-sm/6 font-semibold text-foreground">
+          <EnvelopeIcon className="size-6 flex-none text-muted-foreground" />
+          <span className="ml-3">Stay up to date</span>
+        </Legend>
+        <Field className="mt-2">
+          <Label className="sr-only">Email address</Label>
+          <Description className="text-sm/6 text-muted-foreground">
+            Join 1,400+ other readers. Get notified when I publish something
+            new, and unsubscribe at any time.
+          </Description>
+          <div className="mt-6 flex items-center gap-4">
+            <Input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              required
+              className="min-w-0 flex-auto"
+            />
+            <Button type="submit" className="flex-none">
+              Join
+            </Button>
+          </div>
+        </Field>
+      </Fieldset>
     </form>
   )
 }
@@ -196,9 +196,11 @@ export default async function Home() {
             Software engineer, designer, and part-time YouTuber.
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
-            Based in New York City, I care about the details that make software
-            useful and enjoyable. Currently building{' '}
-            <span className="inline-flex items-center gap-1">
+            Senior Software Engineer at Hines currently building{' '}
+            <Link
+              href="https://github.com/brianruizy/taskss"
+              className="inline-flex items-center gap-1 underline underline-offset-4"
+            >
               <span
                 aria-hidden
                 className="inline-block size-3 shrink-0 bg-current"
@@ -213,12 +215,25 @@ export default async function Home() {
                   WebkitMaskPosition: 'center',
                 }}
               />
-              Beam App
-            </span>
-            . I also share videos about technology, productivity, and the work
-            behind digital products.
+              Beam
+            </Link>
+            , an iPhone-first project manager. I care about polished interfaces
+            and products that feel fast and human. Based in New York City. I
+            also make{' '}
+            <Link
+              href="https://www.youtube.com/@brianruizy"
+              className="underline underline-offset-4"
+            >
+              videos
+            </Link>{' '}
+            about tech, productivity, and just daily life.
           </p>
           <div className="mt-6 flex gap-6">
+            <SocialLink
+              href="https://x.com/brianruizy"
+              aria-label="Follow on X"
+              icon={XIcon}
+            />
             <SocialLink
               href="https://www.instagram.com/brianruizy"
               aria-label="Follow on Instagram"
@@ -233,16 +248,6 @@ export default async function Home() {
               href="https://www.github.com/brianruizy"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/brianruizy/"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
-            <SocialLink
-              href="https://x.com/brianruizy"
-              aria-label="Follow on X"
-              icon={XIcon}
             />
           </div>
         </div>

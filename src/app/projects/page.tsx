@@ -25,7 +25,7 @@ const projects: Array<Project> = [
   {
     name: 'Beam',
     description:
-      'A mobile-first project and task manager with widgets, insights, calendar views, and Siri integration.',
+      'A project and task manager built for iPhone first, with widgets, calendar views, Siri, and a companion Mac app.',
     link: {
       href: 'https://github.com/brianruizy/taskss',
       label: 'github.com/brianruizy/taskss',
@@ -83,7 +83,7 @@ export default function Projects() {
   return (
     <SimpleLayout
       title="Things I've built along the way."
-      intro="Open-source templates, dashboards, and apps. Some to learn, some to scratch my own itch."
+      intro="Apps, templates, and tools I've built and open-sourced along the way."
     >
       <ul
         role="list"
@@ -116,9 +116,9 @@ export default function Projects() {
               <ContentCardDescription>
                 {project.description}
               </ContentCardDescription>
-              <p className="relative z-20 mt-6 flex items-center text-sm font-medium text-muted-foreground transition group-hover:text-accent">
-                <LinkIcon className="size-6 flex-none" />
-                <span className="ml-2 line-clamp-1">{project.link.label}</span>
+              <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">
+                <LinkIcon className="size-4 flex-none" />
+                <span className="line-clamp-1">{project.link.label}</span>
               </p>
             </ContentCard>
           </li>

@@ -60,34 +60,36 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            I&apos;m Brian. I live in New York, building, and sharing the
-            journey.
+            I&apos;m Brian. I live in New York City, building software and
+            sharing the journey.
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I&apos;m from Honduras, grew up in Texas, and now live in New York
-              City. I got into coding because I enjoyed the process of creating
-              things from scratch. That same instinct still drives the work I
-              do, both in software and on camera.
+              I was born in Honduras, grew up in Texas, and now live in New York
+              City. I got into coding because I liked making things from
+              scratch. That same instinct still drives the work I do, both in
+              software and on camera.
             </p>
             <p>
-              I work at Hines as a senior software engineer, building web
-              applications at the enterprise level. Most of my time goes into
-              making complex systems feel straightforward for the people using
-              them.
+              I currently work at Hines as a Senior Software Engineer, building
+              web applications at the enterprise level. Most of my time goes
+              into making complex systems feel straightforward for the people
+              using them. On the side I&apos;m building Beam, a project and
+              task manager built for iPhone first, with a companion Mac app.
             </p>
             <p>
-              On the side I run a YouTube channel with more than 100,000
-              subscribers. It started with photography and cameras, then grew
-              into videos about tech, productivity, and what building things day
-              to day actually looks like — sometimes with a little filmmaking
-              mixed in.
+              I also run a YouTube channel with more than 100,000 subscribers.
+              It started with photography and cameras, then grew into videos
+              about tech, productivity, and what building things day to day
+              actually looks like, sometimes with a little filmmaking mixed
+              in.
             </p>
             <p>
-              When I&apos;m not working, you&apos;ll usually find me at the gym,
-              riding my e-bike around the city, or at a coffee shop with a
-              laptop nearby. This site is a quieter place for the writing,
-              projects, and work that doesn&apos;t fit on a timeline.
+              I consider myself an engineer with a designer&apos;s eye, and I
+              care about the details that make products feel polished, fast, and
+              human. When I&apos;m not working, you&apos;ll usually find me at
+              the gym, riding my e-bike around the city, or at a coffee shop
+              with a laptop nearby.
             </p>
           </div>
         </div>

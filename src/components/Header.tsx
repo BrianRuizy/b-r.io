@@ -106,9 +106,7 @@ function MobileNavigation({ className }: { className?: string }) {
 
     let height = contentRef.current.scrollHeight
     setTarget((current) =>
-      current && current.height !== height
-        ? { ...current, height }
-        : current,
+      current && current.height !== height ? { ...current, height } : current,
     )
   }
 
@@ -324,8 +322,7 @@ function NavItem({
 }) {
   let pathname = usePathname()
   let isActive =
-    pathname === href ||
-    (href === '/posts' && pathname.startsWith('/posts/'))
+    pathname === href || (href === '/posts' && pathname.startsWith('/posts/'))
 
   return (
     <li>
@@ -338,7 +335,7 @@ function NavItem({
       >
         {children}
         {isActive && (
-          <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-accent/0 via-accent/40 to-accent/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-accent/0 via-accent/50 to-accent/0" />
         )}
       </Link>
     </li>
@@ -351,8 +348,8 @@ function DesktopNavigation({
 }: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props} className={clsx('group', className)}>
-      <div className="relative overflow-hidden rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
-        <div className="absolute inset-0">
+      <div className="relative rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
           <Halo strength={18} size={280} />
         </div>
         <ul className="relative z-10 flex px-3 text-sm font-medium text-foreground">

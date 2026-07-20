@@ -17,16 +17,16 @@ const photos = [
     alt: 'Empire State Building',
   },
   {
-    image: selfieImage,
-    alt: 'Brian Ruiz selfie',
+    image: bikingImage,
+    alt: 'Brian Ruiz on an e-bike',
   },
   {
     image: deskSunsetImage,
     alt: 'Desk setup at sunset',
   },
   {
-    image: bikingImage,
-    alt: 'Brian Ruiz on an e-bike',
+    image: selfieImage,
+    alt: 'Brian Ruiz selfie',
   },
   {
     image: juneImage,
@@ -35,7 +35,13 @@ const photos = [
 ]
 
 export function PhotoGallery() {
-  const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
+  const rotations = [
+    'rotate-2',
+    '-rotate-2',
+    'rotate-2',
+    'rotate-2',
+    '-rotate-2',
+  ]
   const [isMobile, setIsMobile] = useState(false)
   const [width, setWidth] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -44,7 +50,7 @@ export function PhotoGallery() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
@@ -52,17 +58,20 @@ export function PhotoGallery() {
 
   useEffect(() => {
     if (!isMobile || !carouselRef.current) return
-    
+
     // This is the key: scrollWidth (total content) - offsetWidth (visible area)
-    const calculatedWidth = carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
+    const calculatedWidth =
+      carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
     setWidth(calculatedWidth)
-    
+
     const handleResize = () => {
       if (carouselRef.current) {
-        setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
+        setWidth(
+          carouselRef.current.scrollWidth - carouselRef.current.offsetWidth,
+        )
       }
     }
-    
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [isMobile])
@@ -108,7 +117,7 @@ export function PhotoGallery() {
   // Mobile: draggable carousel with spring physics
   return (
     <div className="mt-16 sm:mt-20">
-      <div className="relative -my-4 py-4 overflow-hidden">
+      <div className="relative -my-4 overflow-hidden py-4">
         <motion.div
           ref={carouselRef}
           drag="x"
@@ -116,7 +125,7 @@ export function PhotoGallery() {
           dragConstraints={{ right: 0, left: -width }}
           dragTransition={{ bounceDamping: 30 }}
           transition={{ duration: 0.2, ease: 'easeInOut' }}
-          className="flex gap-5 cursor-grab active:cursor-grabbing will-change-transform"
+          className="flex cursor-grab gap-5 will-change-transform active:cursor-grabbing"
         >
           {photos.map(({ image, alt }, imageIndex) => (
             <motion.div
@@ -131,7 +140,7 @@ export function PhotoGallery() {
                   src={image}
                   alt={alt}
                   sizes="11rem"
-                  className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                   draggable={false}
                 />
               </div>
