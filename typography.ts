@@ -119,6 +119,7 @@ export default {
             color: 'var(--tw-prose-links)',
             fontWeight: theme('fontWeight.medium'),
             textDecoration: 'underline',
+            textUnderlineOffset: '4px',
             textDecorationColor: 'var(--tw-prose-underline)',
             transitionProperty: 'color, text-decoration-color',
             transitionDuration: theme('transitionDuration.150'),

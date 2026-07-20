@@ -12,7 +12,7 @@ import type { Transition } from 'motion/react'
  * - snappy → 0.15
  * - bouncy → 0.3
  *
- * Default perceptual duration for all three: 0.5s
+ * Default perceptual duration: 0.5s (snappy defaults to 0.3s)
  */
 
 type SpringOptions = {
@@ -38,7 +38,7 @@ export function smooth(options?: SpringOptions): Transition {
 
 /** Slightly underdamped — small overshoot, responsive. SwiftUI `.snappy()` */
 export function snappy(options?: SpringOptions): Transition {
-  return spring(0.15, options)
+  return spring(0.15, { duration: 0.3, ...options })
 }
 
 /** More underdamped — visible bounce. SwiftUI `.bouncy()` */
@@ -46,7 +46,7 @@ export function bouncy(options?: SpringOptions): Transition {
   return spring(0.3, options)
 }
 
-/** Default presets (duration 0.5, extraBounce 0) */
+/** Default presets */
 export const smoothSpring = smooth()
 export const snappySpring = snappy()
 export const bouncySpring = bouncy()

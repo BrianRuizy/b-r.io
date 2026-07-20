@@ -19,10 +19,10 @@ import { Halo } from '@/components/Halo'
 import { DialogOverlay } from '@/components/Dialog'
 import avatarImage from '@/images/brian-avatar.webp'
 import {
+  bouncy,
   bouncySpring,
   contentFade,
   motionTransition,
-  snappySpring,
 } from '@/lib/transitions'
 
 type TrayBounds = {
@@ -367,7 +367,7 @@ function ThemeToggle() {
   }, [])
 
   let isDark = mounted && resolvedTheme === 'dark'
-  let transition = motionTransition(snappySpring, reduceMotion)
+  let transition = motionTransition(bouncy({ duration: 0.3 }), reduceMotion)
 
   return (
     <button
@@ -385,9 +385,7 @@ function ThemeToggle() {
             key={isDark ? 'dark' : 'light'}
             initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={
-              reduceMotion ? undefined : { opacity: 0, scale: 0.4 }
-            }
+            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.4 }}
             transition={transition}
             className="absolute inset-0 flex items-center justify-center"
           >

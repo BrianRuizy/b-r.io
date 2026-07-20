@@ -30,6 +30,26 @@ function hrefFor(filter: Filter) {
   return filter === 'all' ? '/posts' : `/posts?type=${filter}`
 }
 
+function yearOf(date: string) {
+  return new Date(date).getFullYear()
+}
+
+function groupPostsByYear(posts: Array<Post>) {
+  let groups = new Map<number, Array<Post>>()
+
+  for (let post of posts) {
+    let year = yearOf(post.date)
+    let list = groups.get(year)
+    if (list) {
+      list.push(post)
+    } else {
+      groups.set(year, [post])
+    }
+  }
+
+  return Array.from(groups.entries()).sort(([a], [b]) => b - a)
+}
+
 function PostItem({ post }: { post: Post }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
@@ -64,9 +84,10 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
   let filter = parseFilter(searchParams.get('type'))
   let filteredPosts =
     filter === 'all' ? posts : posts.filter((post) => post.type === filter)
+  let postsByYear = groupPostsByYear(filteredPosts)
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-20">
       <div className="flex gap-1" aria-label="Filter posts">
         {filters.map((item) => (
           <Button
@@ -81,12 +102,19 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
         ))}
       </div>
 
-      <div className="md:border-l md:border-border md:pl-6">
-        <div className="flex max-w-3xl flex-col space-y-16">
-          {filteredPosts.map((post) => (
-            <PostItem key={post.href} post={post} />
-          ))}
-        </div>
+      <div className="space-y-20">
+        {postsByYear.map(([year, yearPosts]) => (
+          <section
+            key={year}
+            className="md:border-l md:border-border md:pl-6"
+          >
+            <div className="flex max-w-3xl flex-col space-y-16">
+              {yearPosts.map((post) => (
+                <PostItem key={post.href} post={post} />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     </div>
   )

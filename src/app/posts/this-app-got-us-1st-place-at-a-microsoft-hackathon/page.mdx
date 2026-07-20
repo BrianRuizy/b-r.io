@@ -4,7 +4,7 @@ export const post = {
   type: 'article',
   author: 'Brian Ruiz',
   date: '2019-12-15',
-  title: 'This App got us 1st Place at a Microsoft Hackathon',
+  title: 'This App Got Us 1st Place at a Microsoft Hackathon',
   description:
     'A 24-hour Microsoft Azure hackathon where we tackled road potholes, a $6.4 billion infrastructure problem. Phone telemetry, computer vision, and a minimal interface that helped us take first place.',
   coverImage: '/blog/microsoft-hackathon/image.webp',
@@ -21,9 +21,9 @@ export default (props) => <PostLayout post={post} {...props} />
 
 The main objective of the competition revolved around developing innovative solutions for improving the infrastructure of cities in the US. The 2019 Smart Infrastructure Hackathon was hosted at The Cannon (Houston), in partnership with Microsoft Azure. Thankfully, we had a team of really bright cloud solution architects for guidance.
 
-## Technology We're Using
+## Technology We Used
 
-The technology we opted for the project revolved heavily around Python. For the phone data, we used a publicly available mobile app that allowed exporting the data to CSV files. We then leverage Python's scripting ability to analyze the data from the phone, to use for the road pothole detection algorithm.
+The technology we opted for the project revolved heavily around Python. For the phone data, we used a publicly available mobile app that allowed exporting the data to CSV files. We then leveraged Python to analyze that phone data for the road pothole detection algorithm.
 
 Python also allowed us to create data visualizations (matplotlib) of our data which we used to tweak the algorithm. All of this was tied together with the Microsoft Azure platform. From storing the data (CSVs and images) in Azure, to using the Azure Machine Learning platform to train the model.
 
@@ -39,7 +39,7 @@ Python also allowed us to create data visualizations (matplotlib) of our data wh
 
 ## Our Idea and Proposal
 
-After juggling several ideas we settled on the issue of road potholes. We discovered that potholes cost American drivers $6.4 billion per year, which is in repair and insurance costs. A single pothole may cause up to $300 per year per vehicle (2016), while the average price to repair a pothole is on average $30–$50 per pothole. Thus the effort to aid this issue can be cost-effective.
+After juggling several ideas we settled on the issue of road potholes. We discovered that potholes cost American drivers $6.4 billion per year in repair and insurance costs. A single pothole can cost a driver up to about $300 a year (2016), while repairing one typically costs $30–$50. Working on this problem felt cost-effective.
 
 - Data collection and analysis
 - Pothole probability algorithm
@@ -149,7 +149,7 @@ display(map)
 
 By the time the hackathon countdown ended, we were able to design and implement a viable solution that would best present our initial idea (keep in mind this was a 24-hour challenge). Nevertheless, this was achieved thanks to our strong team collaboration and efforts, and some sprinkled guidance from the MS architecture team.
 
-After presenting our MVP (minimum viable product), the judges called a draw for first place. Having won the competition granted us credits to some of Microsoft Azure cloud services like storage and processing. And, the company which hosted the competition granted us seats at their co-working space, which we could use to continue the development of our application and idea.
+After presenting our MVP (minimum viable product), the judges called a draw for first place. Winning granted us credits for Microsoft Azure services like storage and processing. The company hosting the competition also gave us seats at their co-working space so we could keep building.
 
 <figure>
   <Image
