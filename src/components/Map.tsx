@@ -20,7 +20,6 @@ type MapProps = {
   showMarker?: boolean
   /** Animate camera in after the style loads (flyover zoom + rotate) */
   animateIn?: boolean
-  onReady?: () => void
   className?: string
 }
 
@@ -33,30 +32,20 @@ export function Map({
   time = null,
   showMarker = true,
   animateIn = false,
-  onReady,
   className = 'h-full w-full',
 }: MapProps) {
   let mapContainer = useRef<HTMLDivElement>(null)
   let map = useRef<mapboxgl.Map | null>(null)
   let marker = useRef<mapboxgl.Marker | null>(null)
-  let onReadyRef = useRef(onReady)
   let showMarkerRef = useRef(showMarker)
   let { resolvedTheme } = useTheme()
-
-  onReadyRef.current = onReady
-  showMarkerRef.current = showMarker
 
   let mapTheme: LightPreset =
     time ?? (resolvedTheme === 'dark' ? 'night' : 'day')
 
-  function addMarker(instance: mapboxgl.Map) {
-    if (marker.current) return
-    let el = document.createElement('span')
-    el.className = 'map-marker'
-    marker.current = new mapboxgl.Marker({ element: el, anchor: 'center' })
-      .setLngLat([lng, lat])
-      .addTo(instance)
-  }
+  useEffect(() => {
+    showMarkerRef.current = showMarker
+  }, [showMarker])
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return
@@ -85,8 +74,12 @@ export function Map({
       map.current.setConfigProperty('basemap', 'lightPreset', mapTheme)
       map.current.setPadding({ left: 100 })
 
-      if (showMarkerRef.current) {
-        addMarker(map.current)
+      if (showMarkerRef.current && !marker.current) {
+        let el = document.createElement('span')
+        el.className = 'map-marker'
+        marker.current = new mapboxgl.Marker({ element: el, anchor: 'center' })
+          .setLngLat([lng, lat])
+          .addTo(map.current)
       }
 
       if (animateIn) {
@@ -99,8 +92,6 @@ export function Map({
           easing: (t) => 1 - Math.pow(1 - t, 3),
         })
       }
-
-      onReadyRef.current?.()
     })
 
     return () => {
@@ -127,7 +118,13 @@ export function Map({
       return
     }
 
-    addMarker(map.current)
+    if (marker.current) return
+
+    let el = document.createElement('span')
+    el.className = 'map-marker'
+    marker.current = new mapboxgl.Marker({ element: el, anchor: 'center' })
+      .setLngLat([lng, lat])
+      .addTo(map.current)
   }, [showMarker, lng, lat])
 
   if (!mapboxgl.accessToken) {
