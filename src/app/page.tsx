@@ -199,7 +199,7 @@ export default async function Home() {
             Software Engineer at Hines, and building{' '}
             <Link
               href="https://github.com/brianruizy/taskss"
-              className="inline-flex items-center gap-1 underline underline-offset-4"
+              className="link-underline inline-flex items-center gap-1"
             >
               <span
                 aria-hidden
@@ -217,11 +217,11 @@ export default async function Home() {
               />
               Beam
             </Link>
-            , an iPhone-first project manager. I obsess over craft, design, and
-            products that feel fast and human. Based in NYC. I also make{' '}
+            , an iPhone-first project manager. I obsess over craft, speed, and
+            software that still feels human. Based in NYC. I also make{' '}
             <Link
               href="https://www.youtube.com/@brianruizy"
-              className="underline underline-offset-4"
+              className="link-underline"
             >
               videos
             </Link>{' '}

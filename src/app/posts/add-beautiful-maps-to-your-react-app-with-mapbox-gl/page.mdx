@@ -18,7 +18,14 @@ export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 
-<MapDemo />
+<figure>
+  <MapDemo />
+  <figcaption>
+    The Met on the edge of Central Park at dusk. Mapbox Standard&apos;s dusk
+    preset is rich in detail. This is what we will build: camera, lighting, badge,
+    then marker.
+  </figcaption>
+</figure>
 
 I recently had to add a map to a React app and was not sure what to reach for. After some research I landed on [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/), and it turned out to be both easier and more capable than I expected.
 
@@ -120,7 +127,7 @@ const { resolvedTheme } = useTheme()
 const mapTheme = resolvedTheme === 'dark' ? 'night' : 'day'
 ```
 
-<div className="not-prose my-8 grid grid-cols-2 gap-3">
+<div className="not-prose grid grid-cols-2 gap-3">
   <div className="overflow-hidden rounded-3xl bg-muted">
     <Image
       src={nycLightImage}

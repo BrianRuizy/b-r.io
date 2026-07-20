@@ -153,6 +153,34 @@
   }
 }
 
+@layer components {
+  .link-underline {
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: color-mix(
+      in oklab,
+      var(--muted-foreground) 40%,
+      transparent
+    );
+    transition-property: text-decoration-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .link-underline {
+    text-decoration-color: color-mix(
+      in oklab,
+      var(--muted-foreground) 50%,
+      transparent
+    );
+  }
+
+  .link-underline:hover {
+    text-decoration-color: var(--muted-foreground);
+  }
+}
+
 /* Mapbox Standard map used in blog posts */
 .mapboxgl-control-container {
   display: none;
