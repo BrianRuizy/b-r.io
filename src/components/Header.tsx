@@ -18,11 +18,11 @@ import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
 import avatarImage from '@/images/brian-avatar.webp'
 
+// Closer to SwiftUI `.bouncy()` — moderate overshoot, not critically damped.
 const mobileNavSpring = {
   type: 'spring' as const,
-  stiffness: 380,
-  damping: 34,
-  mass: 0.85,
+  bounce: 0.28,
+  duration: 0.55,
 }
 
 type TrayBounds = {

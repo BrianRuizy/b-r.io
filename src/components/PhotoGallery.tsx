@@ -89,9 +89,8 @@ export function PhotoGallery() {
               viewport={{ once: true }}
               transition={{
                 type: 'spring',
-                stiffness: 300,
-                damping: 30,
-                mass: 0.8,
+                bounce: 0.28,
+                duration: 0.55,
                 delay: imageIndex * 0.1,
               }}
               className={clsx(
@@ -121,10 +120,10 @@ export function PhotoGallery() {
         <motion.div
           ref={carouselRef}
           drag="x"
-          dragElastic={0.2}
+          dragElastic={0.15}
           dragConstraints={{ right: 0, left: -width }}
-          dragTransition={{ bounceDamping: 30 }}
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          dragTransition={{ bounceStiffness: 400, bounceDamping: 40 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 40, mass: 0.8 }}
           className="flex cursor-grab gap-5 will-change-transform active:cursor-grabbing"
         >
           {photos.map(({ image, alt }, imageIndex) => (

@@ -33,6 +33,26 @@ const projects: Array<Project> = [
     logo: logoBeam,
   },
   {
+    name: 'GDH App',
+    description:
+      'A React Router 7 investment management and reporting app for Hines private commercial real estate.',
+    link: {
+      href: 'https://www.hines.com',
+      label: 'hines.com',
+    },
+    logo: logoAnimaginary,
+  },
+  {
+    name: '@hines/ui',
+    description:
+      'The internal design system for Hines — 40+ accessible components powering our web apps.',
+    link: {
+      href: 'https://www.hines.com',
+      label: '@hines/ui',
+    },
+    logo: logoOpenShuttle,
+  },
+  {
     name: 'COVID-19 Dashboard',
     description:
       'A Django and Plotly dashboard for exploring pandemic data through an interactive, data-driven interface.',
@@ -41,16 +61,6 @@ const projects: Array<Project> = [
       label: 'github.com/brianruizy/covid19-dashboard',
     },
     logo: logoHelioStream,
-  },
-  {
-    name: 'Gatsby Medium Blog',
-    description:
-      'A feature-rich Gatsby starter with search, reactions, dark mode, code highlighting, and an installable PWA.',
-    link: {
-      href: 'https://github.com/brianruizy/gatsby-medium-blog',
-      label: 'github.com/brianruizy/gatsby-medium-blog',
-    },
-    logo: logoAnimaginary,
   },
   {
     name: 'Next Notion Portfolio',
@@ -62,28 +72,30 @@ const projects: Array<Project> = [
     },
     logo: logoCosmos,
   },
-  {
-    name: 'Gatsby Minimal Portfolio',
-    description:
-      'A content-focused JAMstack portfolio starter with dark mode, SEO, code highlighting, forms, and CI/CD.',
-    link: {
-      href: 'https://github.com/brianruizy/gatsby-minimal-portfolio',
-      label: 'github.com/brianruizy/gatsby-minimal-portfolio',
-    },
-    logo: logoOpenShuttle,
-  },
 ]
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Open-source projects, tools, and experiments I&apos;ve built.',
+  description: 'Apps, tools, and experiments I&apos;ve built.',
 }
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Things I've built along the way."
-      intro="Apps, templates, and tools I've built and open-sourced along the way."
+      title="Side projects, work apps, and things I've shipped along the way."
+      intro={
+        <>
+          A mix of open-source experiments and products I&apos;ve built at work,
+          across a range of frameworks and languages. You can find even more on my{' '}
+          <a
+            href="https://www.github.com/brianruizy"
+            className="underline underline-offset-4"
+          >
+            GitHub
+          </a>
+          .
+        </>
+      }
     >
       <ul
         role="list"
