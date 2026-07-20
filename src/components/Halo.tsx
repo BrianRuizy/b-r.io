@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, type ReactNode } from 'react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 import { useMousePosition } from '@/hooks/useMousePosition'
 
@@ -32,7 +32,7 @@ export function Halo({
   return (
     <div
       ref={ref}
-      className={clsx('relative h-full w-full overflow-hidden', className)}
+      className={cn('relative h-full w-full overflow-hidden', className)}
     >
       <div
         aria-hidden

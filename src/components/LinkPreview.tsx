@@ -1,5 +1,5 @@
 import Image, { type StaticImageData } from 'next/image'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
 type LinkPreviewProps = {
@@ -39,7 +39,7 @@ export function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={clsx(
+      className={cn(
         'not-prose my-10 flex flex-row items-center gap-4 rounded-2xl bg-background p-4 ring-1 ring-border sm:gap-6 sm:p-6',
         className,
       )}

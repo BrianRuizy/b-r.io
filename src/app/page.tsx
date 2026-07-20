@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Description, Field, Fieldset, Label, Legend } from '@headlessui/react'
-import { BriefcaseIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { BriefcaseIcon } from '@heroicons/react/24/outline'
 
 import { Container } from '@/components/Container'
 import {
@@ -11,7 +10,7 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { Button } from '@/components/Button'
-import { Input } from '@/components/Input'
+import { Newsletter } from '@/components/Newsletter'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -48,38 +47,6 @@ function SocialLink({
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="size-6 fill-muted-foreground transition group-hover:fill-foreground" />
     </Link>
-  )
-}
-
-function Newsletter() {
-  return (
-    <form action="/thank-you" className="rounded-2xl border border-border p-6">
-      <Fieldset>
-        <Legend className="flex text-sm/6 font-semibold text-foreground">
-          <EnvelopeIcon className="size-6 flex-none text-muted-foreground" />
-          <span className="ml-3">Stay up to date</span>
-        </Legend>
-        <Field className="mt-2">
-          <Label className="sr-only">Email address</Label>
-          <Description className="text-sm/6 text-muted-foreground">
-            Join 1,400+ other readers. Get notified when I publish something
-            new, and unsubscribe at any time.
-          </Description>
-          <div className="mt-6 flex items-center gap-4">
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              required
-              className="min-w-0 flex-auto"
-            />
-            <Button type="submit" className="flex-none">
-              Join
-            </Button>
-          </div>
-        </Field>
-      </Fieldset>
-    </form>
   )
 }
 
@@ -130,7 +97,7 @@ function Resume() {
   let resume: Array<Role> = [
     {
       company: 'Hines',
-      title: 'Senior Software Engineer',
+      title: 'Sr. Software Engineer',
       initials: 'H',
       start: '2024',
       end: {
@@ -196,7 +163,7 @@ export default async function Home() {
             Software engineer, designer, and part-time YouTuber.
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
-            Senior Software Engineer at Hines currently building{' '}
+            Software Engineer at Hines, and building{' '}
             <Link
               href="https://github.com/brianruizy/taskss"
               className="inline-flex items-center gap-1 underline underline-offset-4"
@@ -217,16 +184,15 @@ export default async function Home() {
               />
               Beam
             </Link>
-            , an iPhone-first project manager. I care about polished interfaces
-            and products that feel fast and human. Based in New York City. I
-            also make{' '}
+            , an iPhone-first project manager. I obsess over craft, design, and
+            products that feel fast and human. Based in NYC. I also make{' '}
             <Link
               href="https://www.youtube.com/@brianruizy"
               className="underline underline-offset-4"
             >
               videos
             </Link>{' '}
-            about tech, productivity, and just daily life.
+            about tech, and daily life for a community of 100K+ subscribers.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

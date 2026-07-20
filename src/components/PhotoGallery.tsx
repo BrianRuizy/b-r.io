@@ -3,13 +3,15 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion } from 'motion/react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 import bikingImage from '@/images/photos/biking.jpeg'
 import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
 import juneImage from '@/images/photos/june.jpeg'
 import selfieImage from '@/images/photos/selfie.jpeg'
 import empireImage from '@/images/photos/empire.jpeg'
+import portraitImage from '@/images/photos/me.jpeg'
+
 
 const photos = [
   {
@@ -93,7 +95,7 @@ export function PhotoGallery() {
                 duration: 0.55,
                 delay: imageIndex * 0.1,
               }}
-              className={clsx(
+              className={cn(
                 'relative w-44 flex-none overflow-hidden rounded-xl bg-muted sm:w-72 sm:rounded-2xl',
                 rotations[imageIndex % rotations.length],
               )}
@@ -129,7 +131,7 @@ export function PhotoGallery() {
           {photos.map(({ image, alt }, imageIndex) => (
             <motion.div
               key={image.src}
-              className={clsx(
+              className={cn(
                 'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
                 rotations[imageIndex % rotations.length],
               )}

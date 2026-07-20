@@ -7,7 +7,7 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/24/outline'
 import { motion, useReducedMotion, type PanInfo } from 'motion/react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 export type CarouselImage = {
   src: StaticImageData | string
@@ -67,7 +67,7 @@ export function ImageCarousel({
   let maxDrag = Math.max(0, (images.length - 1) * width)
 
   return (
-    <div className={clsx('not-prose my-8', className)}>
+    <div className={cn('not-prose my-8', className)}>
       <div className="relative">
         <div
           ref={containerRef}
@@ -150,7 +150,7 @@ export function ImageCarousel({
               className="group flex size-6 items-center justify-center"
             >
               <span
-                className={clsx(
+                className={cn(
                   'size-2 rounded-full transition',
                   i === index
                     ? 'bg-foreground'

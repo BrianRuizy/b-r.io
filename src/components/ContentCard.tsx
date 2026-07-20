@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 import { Halo } from '@/components/Halo'
 
@@ -15,7 +15,7 @@ export function ContentCard({
 }) {
   return (
     <Component
-      className={clsx('group relative flex flex-col items-start', className)}
+      className={cn('group relative flex flex-col items-start', className)}
     >
       {children}
     </Component>
@@ -37,7 +37,7 @@ export function ContentCardTitle({
 }) {
   return (
     <Component
-      className={clsx(
+      className={cn(
         'text-base font-semibold tracking-tight text-foreground',
         className,
       )}
@@ -92,7 +92,7 @@ export function ContentCardEyebrow<T extends React.ElementType = 'p'>({
 
   return (
     <Component
-      className={clsx(
+      className={cn(
         className,
         'relative z-10 order-first mb-3 flex items-center text-sm text-muted-foreground',
         decorate && 'pl-3.5',

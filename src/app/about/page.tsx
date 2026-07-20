@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EnvelopeIcon } from '@heroicons/react/24/solid'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
 import {
@@ -26,7 +26,7 @@ function SocialLink({
   children: React.ReactNode
 }) {
   return (
-    <li className={clsx(className, 'flex')}>
+    <li className={cn(className, 'flex')}>
       <Link
         href={href}
         className="group flex text-sm font-medium text-foreground transition hover:text-accent"
@@ -74,15 +74,14 @@ export default function About() {
               I currently work at Hines as a Senior Software Engineer, building
               web applications at the enterprise level. Most of my time goes
               into making complex systems feel straightforward for the people
-              using them. On the side I&apos;m building Beam, a project and
-              task manager built for iPhone first, with a companion Mac app.
+              using them. On the side I&apos;m building Beam, a project and task
+              manager built for iPhone first, with a companion Mac app.
             </p>
             <p>
               I also run a YouTube channel with more than 100,000 subscribers.
               It started with photography and cameras, then grew into videos
               about tech, productivity, and what building things day to day
-              actually looks like, sometimes with a little filmmaking mixed
-              in.
+              actually looks like, sometimes with a little filmmaking mixed in.
             </p>
             <p>
               I consider myself an engineer with a designer&apos;s eye, and I

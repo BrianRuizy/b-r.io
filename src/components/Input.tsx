@@ -1,5 +1,5 @@
 import { Input as HeadlessInput } from '@headlessui/react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 export function Input({
   className,
@@ -7,7 +7,7 @@ export function Input({
 }: React.ComponentPropsWithoutRef<'input'>) {
   return (
     <HeadlessInput
-      className={clsx(
+      className={cn(
         'w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-card px-3 py-[calc(--spacing(2)-1px)] text-foreground shadow-md shadow-foreground/5 outline outline-border placeholder:text-muted-foreground data-focus:ring-4 data-focus:ring-ring/20 data-focus:outline-ring sm:text-sm dark:bg-muted/30',
         className,
       )}

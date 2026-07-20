@@ -12,7 +12,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
@@ -165,13 +165,13 @@ function MobileNavigation({ className }: { className?: string }) {
     : { duration: 0.14, ease: 'easeInOut' as const }
 
   return (
-    <div className={clsx('relative', className)}>
+    <div className={cn('relative', className)}>
       <button
         ref={triggerRef}
         type="button"
         aria-expanded={open}
         aria-haspopup="dialog"
-        className={clsx(
+        className={cn(
           'pointer-events-auto flex items-center rounded-full bg-card px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border transition dark:bg-muted',
           !suppressTriggerChrome && 'dark:hover:ring-foreground/20',
           trayMounted && 'invisible',
@@ -328,7 +328,7 @@ function NavItem({
     <li>
       <Link
         href={href}
-        className={clsx(
+        className={cn(
           'relative block px-3 py-2 transition',
           isActive ? 'text-accent' : 'hover:text-accent',
         )}
@@ -347,7 +347,7 @@ function DesktopNavigation({
   ...props
 }: React.ComponentPropsWithoutRef<'nav'>) {
   return (
-    <nav {...props} className={clsx('group', className)}>
+    <nav {...props} className={cn('group', className)}>
       <div className="relative rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
           <Halo strength={18} size={280} />
@@ -401,7 +401,7 @@ function AvatarContainer({
 }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
-      className={clsx(
+      className={cn(
         className,
         'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90',
       )}
@@ -421,14 +421,14 @@ function Avatar({
     <Link
       href="/"
       aria-label="Home"
-      className={clsx(className, 'pointer-events-auto')}
+      className={cn(className, 'pointer-events-auto')}
       {...props}
     >
       <Image
         src={avatarImage}
         alt="Brian Ruiz"
         sizes={large ? '4rem' : '2.25rem'}
-        className={clsx(
+        className={cn(
           'rounded-full bg-muted object-cover',
           large ? 'h-16 w-16' : 'h-9 w-9',
         )}
