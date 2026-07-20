@@ -196,7 +196,7 @@ export default async function Home() {
             Software engineer, designer, and part-time YouTuber.
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
-            Software Engineer at Hines, and building{' '}
+            Software Engineer at Hines, and currently building{' '}
             <Link
               href="https://github.com/brianruizy/taskss"
               className="link-underline inline-flex items-center gap-1"
@@ -217,8 +217,8 @@ export default async function Home() {
               />
               Beam
             </Link>
-            , an iPhone-first project manager. I obsess over craft, speed, and
-            software that still feels human. Based in NYC. I also make{' '}
+            . I obsess over craft, speed, and software that still feels human.
+            Based in NYC. I also make{' '}
             <Link
               href="https://www.youtube.com/@brianruizy"
               className="link-underline"
