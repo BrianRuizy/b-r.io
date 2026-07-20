@@ -1,6 +1,11 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
+import coverImage from './og.png'
+import phonesImage from './phones.png'
+import tabletImage from './tablet.png'
+import darkComputerImage from './dark-computer.png'
+import lightComputerImage from './light-computer.png'
 
 export const post = {
   type: 'article',
@@ -9,7 +14,7 @@ export const post = {
   title: 'Building a Medium-inspired blog with Gatsby.js',
   description:
     'I wanted a personal site that felt as comfortable to read as Medium, without rebuilding Medium from scratch. Here is the Gatsby starter that came out of that, with MDX, dark mode, search, and a layout that works as both a blog and a portfolio.',
-  coverImage: '/blog/gatsby-medium/og.png',
+  coverImage: coverImage.src,
 }
 
 export const metadata = createPostMetadata(post)
@@ -37,7 +42,7 @@ The stack is Gatsby, React, MUI, MDX, and Vercel.
   <Image
     width={1531}
     height={1021}
-    src="/blog/gatsby-medium/phones.png"
+    src={phonesImage}
     alt="Mobile views of the Gatsby Medium blog starter"
   />
   <figcaption>
@@ -54,7 +59,7 @@ Publishing is meant to stay out of your way. Day to day you write markdown (or M
   <Image
     width={1134}
     height={640}
-    src="/blog/gatsby-medium/tablet.png"
+    src={tabletImage}
     alt="Tablet view of a responsive blog post layout"
   />
   <figcaption>
@@ -71,11 +76,11 @@ There is a toggle in the header for switching themes. Your choice is stored in l
   caption="Desktop view of the starter in dark mode and light mode."
   images={[
     {
-      src: '/blog/gatsby-medium/dark-computer.png',
+      src: darkComputerImage,
       alt: 'Gatsby Medium blog starter in dark mode on a desktop display',
     },
     {
-      src: '/blog/gatsby-medium/light-computer.png',
+      src: lightComputerImage,
       alt: 'Gatsby Medium blog starter in light mode on a desktop display',
     },
   ]}

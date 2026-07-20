@@ -1,3 +1,4 @@
+import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 
@@ -19,6 +20,9 @@ import {
 } from '@/components/SocialIcons'
 import { PhotoGallery } from '@/components/PhotoGallery'
 import logoBeamIcon from '@/images/logos/beam-icon-borderless.png'
+import logoCams from '@/images/logos/cams-white.png'
+import logoHines from '@/images/logos/hines.svg'
+import logoPeriship from '@/images/logos/periship.png'
 import { formatDate } from '@/lib/formatDate'
 import { getAllPosts, type Post } from '@/lib/posts'
 
@@ -54,6 +58,10 @@ interface Role {
   company: string
   title: string
   initials: string
+  logo?: ImageProps['src']
+  logoInset?: 'muted' | 'white'
+  logoBgClass?: string
+  logoPadding?: string
   start: string | { label: string; dateTime: string }
   end: string | { label: string; dateTime: string }
 }
@@ -69,8 +77,34 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-card text-xs font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:bg-muted">
-        {role.initials}
+      <div className="relative mt-1 flex size-12 flex-none items-center justify-center rounded-full bg-card text-xs font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0">
+        {role.logo ? (
+          role.logoInset || role.logoBgClass ? (
+            <div
+              className={`flex size-8 items-center justify-center rounded-full ${role.logoPadding ?? 'p-1.5'} ${role.logoInset === 'white' ? 'bg-white' : role.logoInset === 'muted' ? 'bg-muted' : ''} ${role.logoBgClass ?? ''}`}
+            >
+              <Image
+                src={role.logo}
+                alt=""
+                width={32}
+                height={32}
+                className="size-full object-contain"
+                unoptimized
+              />
+            </div>
+          ) : (
+            <Image
+              src={role.logo}
+              alt=""
+              width={32}
+              height={32}
+              className="size-8 rounded-full"
+              unoptimized
+            />
+          )
+        ) : (
+          role.initials
+        )}
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -99,23 +133,19 @@ function Resume() {
       company: 'Hines',
       title: 'Sr. Software Engineer',
       initials: 'H',
-      start: '2024',
+      logo: logoHines,
+      start: '2021',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
     },
     {
-      company: 'Hines',
-      title: 'Full Stack Engineer',
-      initials: 'H',
-      start: '2021',
-      end: '2024',
-    },
-    {
       company: 'PeriShip',
       title: 'Software Engineer',
       initials: 'P',
+      logo: logoPeriship,
+      logoInset: 'muted',
       start: '2020',
       end: '2021',
     },
@@ -123,6 +153,9 @@ function Resume() {
       company: 'CAMS',
       title: 'Python Developer',
       initials: 'C',
+      logo: logoCams,
+      logoBgClass: 'bg-sky-600',
+      logoPadding: 'p-2',
       start: '2019',
       end: '2020',
     },

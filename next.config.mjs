@@ -4,7 +4,7 @@ import nextMDX from '@next/mdx'
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
-    '/posts/*': ['./src/app/posts/**/*.mdx'],
+    '/posts/*': ['./src/app/posts/**/*.{mdx,png,jpg,jpeg,webp,gif}'],
   },
   images: {
     remotePatterns: [

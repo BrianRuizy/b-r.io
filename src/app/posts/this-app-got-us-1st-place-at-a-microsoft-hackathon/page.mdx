@@ -1,5 +1,8 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
+import coverImage from './image.webp'
+import techImage from './tech.webp'
+import mockupImage from './mockup-clear.png'
 
 export const post = {
   type: 'article',
@@ -8,7 +11,7 @@ export const post = {
   title: 'This App Got Us 1st Place at a Microsoft Hackathon',
   description:
     'A 24-hour Microsoft Azure hackathon where we tackled road potholes, a $6.4 billion infrastructure problem. Phone telemetry, computer vision, and a minimal interface that helped us take first place.',
-  coverImage: '/blog/microsoft-hackathon/image.webp',
+  coverImage: coverImage.src,
 }
 
 export const metadata = createPostMetadata(post)
@@ -27,7 +30,7 @@ Python also allowed us to create data visualizations (matplotlib) of our data wh
 
 <figure>
   <Image
-    src="/blog/microsoft-hackathon/tech.webp"
+    src={techImage}
     alt="Tech stack"
     className="bg-transparent"
     width={1000}
@@ -98,7 +101,7 @@ Unfortunately, we didn't have enough time to implement both the backend logic an
 
 <figure>
   <Image
-    src="/blog/microsoft-hackathon/mockup-clear.png"
+    src={mockupImage}
     alt="UI mockup"
     className="bg-muted"
     width={1080}

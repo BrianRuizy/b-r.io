@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <circle cx="16" cy="16" r="16" fill="#B70021" />
+  <text
+    x="16"
+    y="16"
+    fill="#FFFFFF"
+    font-family="Georgia, 'Times New Roman', Times, serif"
+    font-size="18"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >
+    H
+  </text>
+</svg>

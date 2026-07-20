@@ -2,6 +2,12 @@ import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
 import { LinkPreview } from '@/components/LinkPreview'
+import coverImage from './image.png'
+import thumbnailImage from './thumbnail.png'
+import deskPhoto1 from './DSC00166.jpg'
+import deskPhoto2 from './DSC00150.jpg'
+import deskPhoto3 from './DSC00160.jpg'
+import deskPhoto4 from './DSC_3253.jpg'
 
 export const post = {
   type: 'article',
@@ -10,7 +16,7 @@ export const post = {
   title: 'My Desk Setup for 2023. Minimalist but functional.',
   description:
     "I've curated a minimalist, clean workspace for coding and creating. Here's the 2023 desk, shelf, and cable setup, plus the links for everything that made the white oak and white combo work.",
-  coverImage: '/blog/desk/image.png',
+  coverImage: coverImage.src,
 }
 
 export const metadata = createPostMetadata(post)
@@ -22,7 +28,7 @@ I've already created a video covering my desk setup. If you'd rather watch that,
 To provide some background, I'm a software engineer by day and part-time creator in the evenings. I spend a lot of hours at this desk coding, editing, and learning, so I put together a setup that works for both.
 
 <LinkPreview
-  image="/blog/desk/thumbnail.png"
+  image={thumbnailImage}
   title="Software Engineer's Productive and Minimal Desk Setup (2023)"
   subtitle="A deep dive into the tech gadgets and home office products that make up this workspace."
   url="https://www.youtube.com/watch?v=Q9Qu-ddjDEE"
@@ -42,19 +48,19 @@ The Ergonofis team also sent their solid wood monitor riser / desk shelf. Having
   caption="Captures of the setup, including the cable management rack and desk shelf. I went with the white oak and white color combo."
   images={[
     {
-      src: '/blog/desk/DSC00166.jpg',
+      src: deskPhoto1,
       alt: 'Desk setup with cable management rack',
     },
     {
-      src: '/blog/desk/DSC00150.jpg',
+      src: deskPhoto2,
       alt: 'Desk shelf and white oak surface',
     },
     {
-      src: '/blog/desk/DSC00160.jpg',
+      src: deskPhoto3,
       alt: 'Desk setup underside and cable management',
     },
     {
-      src: '/blog/desk/DSC_3253.jpg',
+      src: deskPhoto4,
       alt: 'Full desk setup with white oak and white combo',
     },
   ]}

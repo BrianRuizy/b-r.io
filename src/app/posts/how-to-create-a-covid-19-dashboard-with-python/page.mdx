@@ -1,5 +1,8 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
+import coverImage from './floating.png'
+import tabletImage from './tablet.png'
+import phonesImage from './phones.png'
 
 export const post = {
   type: 'article',
@@ -8,7 +11,7 @@ export const post = {
   title: 'How to create a COVID-19 dashboard with Python',
   description:
     'An open-source Django and Plotly dashboard for the pandemic: trusted data sources, a responsive card layout, and the Python and JavaScript that powered more than 200k visits.',
-  coverImage: '/blog/covid/floating.png',
+  coverImage: coverImage.src,
 }
 
 export const metadata = createPostMetadata(post)
@@ -38,7 +41,7 @@ This project began with Python-based Jupyter Notebooks, and the use of Plotly, "
   <Image
     width={1290}
     height={846}
-    src="/blog/covid/tablet.png"
+    src={tabletImage}
     alt="Tablet view of the COVID-19 dashboard home page"
   />
   <figcaption>
@@ -57,7 +60,7 @@ I designed the dashboard with a mobile-first approach, ensuring the layout worke
   <Image
     width={953}
     height={705}
-    src="/blog/covid/phones.png"
+    src={phonesImage}
     alt="Mobile views of the COVID-19 dashboard"
   />
   <figcaption>
