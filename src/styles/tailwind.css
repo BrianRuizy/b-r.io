@@ -42,8 +42,9 @@
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria,
-    'Times New Roman', Times, serif;
+  --font-serif:
+    var(--font-source-serif), ui-serif, Georgia, Cambria, 'Times New Roman',
+    Times, serif;
   --blur-xs: 2px;
 
   --text-xs: 0.8125rem;
@@ -112,7 +113,7 @@
 .dark {
   --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.20 0 0);
+  --card: oklch(0.2 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -155,7 +156,6 @@
 
 @layer components {
   .link-underline {
-    font-weight: 500;
     text-decoration-line: underline;
     text-underline-offset: 4px;
     text-decoration-color: color-mix(
@@ -166,14 +166,6 @@
     transition-property: text-decoration-color;
     transition-duration: 150ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark .link-underline {
-    text-decoration-color: color-mix(
-      in oklab,
-      var(--muted-foreground) 50%,
-      transparent
-    );
   }
 
   .link-underline:hover {
