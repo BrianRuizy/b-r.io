@@ -44,6 +44,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria,
     'Times New Roman', Times, serif;
+  --blur-xs: 2px;
 
   --text-xs: 0.8125rem;
   --text-xs--line-height: 1.5rem;

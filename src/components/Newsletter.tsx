@@ -18,17 +18,13 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { subscribeToNewsletter } from '@/app/actions/newsletter'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { ModalOverlay } from '@/components/ModalOverlay'
 
 // Matches Header `mobileNavSpring`
 const panelSpring = {
   type: 'spring' as const,
   bounce: 0.28,
   duration: 0.55,
-}
-
-const contentFade = {
-  duration: 0.14,
-  ease: 'easeInOut' as const,
 }
 
 const messageSpring = {
@@ -55,10 +51,8 @@ export function Newsletter() {
   let [error, setError] = useState<string | null>(null)
   let reduceMotion = useReducedMotion()
 
-  let overlayTransition = reduceMotion ? { duration: 0 } : { duration: 0.2 }
   let panelTransition = reduceMotion ? { duration: 0 } : panelSpring
-  let messageTransition = reduceMotion ? { duration: 0 } : panelSpring
-  let innerContentFade = reduceMotion ? { duration: 0 } : contentFade
+  let messageTransition = reduceMotion ? { duration: 0 } : messageSpring
 
   useEffect(() => {
     if (!error) {
@@ -141,15 +135,9 @@ export function Newsletter() {
             onClose={setDialogOpen}
             className="relative z-50"
           >
-            <motion.button
-              type="button"
+            <ModalOverlay
               aria-label="Close dialog"
-              className="fixed inset-0 z-40 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={overlayTransition}
-              onClick={() => setDialogOpen(false)}
+              onClose={() => setDialogOpen(false)}
             />
 
             <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4">

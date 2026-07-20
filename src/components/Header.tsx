@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
+import { ModalOverlay } from '@/components/ModalOverlay'
 import avatarImage from '@/images/brian-avatar.webp'
 
 // Closer to SwiftUI `.bouncy()` — moderate overshoot, not critically damped.
@@ -201,16 +202,10 @@ function MobileNavigation({ className }: { className?: string }) {
       >
         {open && origin && target && (
           <>
-            <motion.button
+            <ModalOverlay
               key="backdrop"
-              type="button"
               aria-label="Close menu"
-              className="fixed inset-0 z-40 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.2 }}
-              onClick={closeMenu}
+              onClose={closeMenu}
             />
 
             <motion.div
