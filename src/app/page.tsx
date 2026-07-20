@@ -145,7 +145,7 @@ function Resume() {
       title: 'Software Engineer',
       initials: 'P',
       logo: logoPeriship,
-      logoInset: 'muted',
+      logoBgClass: 'bg-white',
       start: '2020',
       end: '2021',
     },
