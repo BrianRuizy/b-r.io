@@ -30,6 +30,8 @@ export type Post = PostMeta & {
 }
 
 export function createPostMetadata(post: PostMeta): Metadata {
+  const hasCover = Boolean(post.coverImage)
+
   return {
     title: post.title,
     description: post.description,
@@ -38,7 +40,22 @@ export function createPostMetadata(post: PostMeta): Metadata {
       description: post.description,
       type: 'article',
       publishedTime: post.date,
-      ...(post.coverImage ? { images: [post.coverImage] } : {}),
+      ...(hasCover
+        ? {
+            images: [
+              {
+                url: post.coverImage!,
+                alt: post.title,
+              },
+            ],
+          }
+        : {}),
+    },
+    twitter: {
+      card: hasCover ? 'summary_large_image' : 'summary',
+      title: post.title,
+      description: post.description,
+      ...(hasCover ? { images: [post.coverImage!] } : {}),
     },
   }
 }
