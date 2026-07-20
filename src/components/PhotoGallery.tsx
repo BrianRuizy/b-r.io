@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { cn } from '@/lib/utils'
+import { bouncySpring, dragSpring, dragTransition } from '@/lib/transitions'
 
 import bikingImage from '@/images/photos/biking.jpeg'
 import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
@@ -90,9 +91,7 @@ export function PhotoGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                type: 'spring',
-                bounce: 0.28,
-                duration: 0.55,
+                ...bouncySpring,
                 delay: imageIndex * 0.1,
               }}
               className={cn(
@@ -124,8 +123,8 @@ export function PhotoGallery() {
           drag="x"
           dragElastic={0.15}
           dragConstraints={{ right: 0, left: -width }}
-          dragTransition={{ bounceStiffness: 400, bounceDamping: 40 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 40, mass: 0.8 }}
+          dragTransition={dragTransition}
+          transition={dragSpring}
           className="flex cursor-grab gap-5 will-change-transform active:cursor-grabbing"
         >
           {photos.map(({ image, alt }, imageIndex) => (

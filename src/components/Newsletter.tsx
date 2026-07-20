@@ -4,9 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 import {
   Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
   Field,
   Fieldset,
   Label,
@@ -18,20 +15,14 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { subscribeToNewsletter } from '@/app/actions/newsletter'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import { ModalOverlay } from '@/components/ModalOverlay'
-
-// Matches Header `mobileNavSpring`
-const panelSpring = {
-  type: 'spring' as const,
-  bounce: 0.28,
-  duration: 0.55,
-}
-
-const messageSpring = {
-  type: 'spring' as const,
-  bounce: 0.22,
-  duration: 0.48,
-}
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/Dialog'
+import { motionTransition, smoothSpring } from '@/lib/transitions'
 
 const errorMessage = 'Something went wrong. Please try again.'
 
@@ -51,8 +42,7 @@ export function Newsletter() {
   let [error, setError] = useState<string | null>(null)
   let reduceMotion = useReducedMotion()
 
-  let panelTransition = reduceMotion ? { duration: 0 } : panelSpring
-  let messageTransition = reduceMotion ? { duration: 0 } : messageSpring
+  let messageTransition = motionTransition(smoothSpring, reduceMotion)
 
   useEffect(() => {
     if (!error) {
@@ -127,54 +117,26 @@ export function Newsletter() {
         </Fieldset>
       </form>
 
-      <AnimatePresence>
-        {dialogOpen && (
-          <Dialog
-            static
-            open={dialogOpen}
-            onClose={setDialogOpen}
-            className="relative z-50"
+      <Dialog open={dialogOpen} onClose={setDialogOpen}>
+        <DialogContent>
+          <CheckCircleIcon className="size-6 flex-none text-accent" />
+          <DialogHeader>
+            <DialogTitle>You&apos;re on the list</DialogTitle>
+            <DialogDescription>
+              Check your email to confirm. I&apos;ll send you a note when I
+              publish something new.
+            </DialogDescription>
+          </DialogHeader>
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-fit"
+            onClick={() => setDialogOpen(false)}
           >
-            <ModalOverlay
-              aria-label="Close dialog"
-              onClose={() => setDialogOpen(false)}
-            />
-
-            <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4">
-              <DialogPanel className="pointer-events-auto w-full max-w-sm">
-                <motion.div
-                  initial={
-                    reduceMotion ? false : { opacity: 0, scale: 0.95, y: 8 }
-                  }
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={
-                    reduceMotion ? undefined : { opacity: 0, scale: 0.95, y: 8 }
-                  }
-                  transition={panelTransition}
-                  className="overflow-hidden rounded-2xl bg-card p-6 shadow-lg ring-1 shadow-foreground/5 ring-border"
-                >
-                  <CheckCircleIcon className="mb-4! size-6 flex-none text-accent" />
-                  <DialogTitle className="text-base font-semibold tracking-tight text-foreground">
-                    You&apos;re on the list
-                  </DialogTitle>
-                  <Description className="mt-2 text-sm/6 text-muted-foreground">
-                    Check your email to confirm. I&apos;ll send you a note when
-                    I publish something new.
-                  </Description>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="mt-6"
-                    onClick={() => setDialogOpen(false)}
-                  >
-                    Got it, thanks!
-                  </Button>
-                </motion.div>
-              </DialogPanel>
-            </div>
-          </Dialog>
-        )}
-      </AnimatePresence>
+            Got it, thanks!
+          </Button>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

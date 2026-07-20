@@ -8,6 +8,7 @@ interface ArticleMeta {
   description: string
   author: string
   date: string
+  coverImage?: string
 }
 
 interface VideoMeta {
@@ -17,6 +18,7 @@ interface VideoMeta {
   author: string
   date: string
   youtubeId: string
+  coverImage?: string
 }
 
 export type PostMeta = ArticleMeta | VideoMeta

@@ -1,0 +1,234 @@
+import { PostLayout } from '@/components/PostLayout'
+import { MapDemo } from '@/components/MapDemo'
+import { MapLocationBadge } from '@/components/MapLocationBadge'
+
+export const post = {
+  type: 'article',
+  author: 'Brian Ruiz',
+  date: '2024-04-27',
+  title: 'Add beautiful maps to your React app with MapBox GL',
+  description:
+    'A walkthrough of Mapbox GL JS in React: set up a token, spin up an interactive map, sync lighting with your app theme, and add a location badge plus custom marker. Built step by step toward a dusk view of The Met in Central Park.',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+<MapDemo />
+
+I recently had to add a map to a React app I was working on. I hadn't worked with maps in a while, so I was a bit nervous about what to choose. After some research, I decided to use [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) to add the map to my app. I was pleasantly surprised by how easy it was to get started and how powerful the library is.
+
+That map above is the finished piece. Below we build it chronologically: create the map, configure it, pick a lighting theme, then drop in a marker. Go ahead and play around with it first: zoom, `ctrl + drag` for pitch and rotation, or `shift + drag` to scale.
+
+## Getting Started
+
+But before we can use the Mapbox API, we need to create an account and get an access token. You can sign up for a free account at [Mapbox Account](https://account.mapbox.com/). Once you have an account, you should be able to find your access token right on the account home page.
+
+The free tier is quite generous and gives you 50,000 map views per month, which should be more than enough for most hobby projects.
+
+Once you have your token you can install the Mapbox GL JS library using npm or whatever package manager you prefer: `npm install mapbox-gl`. And then import it into your React component. For this example I'm using Next.js so the way you access your environment variables is a bit different.
+
+```jsx showLineNumbers
+'use client'
+
+import React, { useRef, useEffect } from 'react'
+import mapboxgl from 'mapbox-gl' // import the mapbox library
+import 'mapbox-gl/dist/mapbox-gl.css' // import the mapbox styles
+import { useTheme } from 'next-themes'
+
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN // set the access token
+```
+
+## Creating the Map Component
+
+Next we build a reusable `Map` component. Two refs keep things stable across renders: one for the DOM container, and one for the Mapbox instance so we don't recreate it on every update. Props like `lng`, `lat`, `zoom`, and `pitch` make it easy to point the camera wherever you want. Play with the 3D settings until it feels right. Full options are in the [Map API reference](https://docs.mapbox.com/mapbox-gl-js/api/map/).
+
+Initialize once inside `useEffect`. If `map.current` already exists, bail early; otherwise create the Mapbox instance with your container and camera props.
+
+```jsx showLineNumbers {5-12}
+export default function Map({ lng, lat, zoom = 2.5, pitch = 25 }) {
+  const mapContainer = useRef(null)
+  const map = useRef(null)
+
+  useEffect(() => {
+    if (map.current) return // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      center: [lng, lat],
+      zoom: zoom,
+      pitch: pitch,
+    })
+    // ...
+  })
+
+  return ()
+}
+```
+
+## Configuring the Map
+
+Once the map's style has loaded, we wire up the basemap and a little padding. `lightPreset` is how you control the lighting (more on the options in a second). Padding reserves space for UI like the location badge and nudges the center so the pin doesn't sit under the overlay on wide layouts.
+
+```jsx showLineNumbers {10-14}
+useEffect(() => {
+  if (map.current) return
+  map.current = new mapboxgl.Map({
+    container: mapContainer.current,
+    center: [lng, lat],
+    zoom: zoom,
+    pitch: pitch,
+  })
+
+  map.current.on('style.load', () => {
+    map.current.setConfigProperty('basemap', 'lightPreset', mapTheme)
+    map.current.setPadding({ left: 150 })
+    // ...
+  })
+})
+```
+
+<div className="not-prose relative my-8 overflow-hidden rounded-3xl bg-muted" style={{ height: '300px' }}>
+  <MapLocationBadge />
+</div>
+
+## Applying Themes
+
+Mapbox Standard ships four light presets: `day`, `night`, `dusk`, and `dawn` (you'll also see them called light/dark in screenshots). That `lightPreset` call above is where you pick one.
+
+I sync the map with the rest of the site using `next-themes`, so it follows light and dark mode automatically. You can also hardcode something like `dusk` when you want a specific mood, like the Met cover at the top of this post.
+
+```jsx showLineNumbers {1}
+let mapTheme
+const { resolvedTheme } = useTheme()
+
+if (resolvedTheme === 'dark') {
+  mapTheme = 'night'
+} else if (resolvedTheme === 'light') {
+  mapTheme = 'day'
+}
+```
+
+<div className="not-prose my-8 grid grid-cols-2 gap-3">
+  <div className="overflow-hidden rounded-3xl border border-border bg-muted">
+    <Image
+      src="/blog/maps/nyc-light.png"
+      alt="Light map"
+      width={320}
+      height={320}
+    />
+  </div>
+  <div className="overflow-hidden rounded-3xl border border-border bg-muted">
+    <Image
+      src="/blog/maps/nyc-dark.png"
+      alt="Dark map"
+      width={320}
+      height={320}
+    />
+  </div>
+</div>
+
+<figcaption>
+  One World Trade Center in New York City. Light is clean and easy to read, great
+  when the map is mostly functional. Dark is where Standard gets fun: building
+  windows light up and 3D landmarks pick up a warm glow that feels almost
+  cinematic. Dusk and dawn sit in between if you want atmosphere without going
+  full night.
+</figcaption>
+
+## Adding a Marker
+
+Finally, add a marker for the point of interest. It can be any HTML element. I'm using a simple span with a class, styled in CSS. Keep it recognizable, or make it your own.
+
+```jsx showLineNumbers {5-7}
+map.current.on('style.load', () => {
+  map.current.setConfigProperty('basemap', 'lightPreset', mapTheme)
+  map.current.setPadding({ left: 150 })
+
+  const el = document.createElement('span')
+  el.className = 'map-marker'
+  new mapboxgl.Marker({ element: el }).setLngLat([lng, lat]).addTo(map.current)
+})
+```
+
+```css showLineNumbers
+.map-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+}
+```
+
+<div className="not-prose relative my-8 overflow-hidden rounded-3xl bg-muted" style={{ height: '300px' }}>
+  <MapLocationBadge />
+  <span
+    className="absolute z-10 size-8 rounded-full border-[3px] border-white bg-blue-500"
+    style={{
+      bottom: '50%',
+      right: '33%',
+    }}
+  />
+</div>
+
+## Conclusion
+
+Lastly, remember to include `ref={mapContainer}` within the div that will house the map. This directive enables the map to identify its rendering location, while the class `map-container` serves as the canvas where Mapbox applies styles and generates the map itself.
+
+Adding a map to a React app can seem daunting at first, but with the right tools and libraries, it can be a fun and rewarding experience. Mapbox GL JS is a powerful library that makes it easy to add beautiful, interactive maps to your app.
+
+Here is the final code for our Map component for reference. I hope this article has helped you get started with adding maps to your React app.
+
+```jsx showLineNumbers {42}
+export default function Map({ lng, lat, zoom = 2.5, pitch = 25 }) {
+  const mapContainer = useRef(null)
+  const map = useRef(null)
+
+  const { resolvedTheme } = useTheme()
+  let mapTheme
+
+  if (resolvedTheme === 'dark') {
+    mapTheme = 'night'
+  } else if (resolvedTheme === 'light') {
+    mapTheme = 'day'
+  }
+
+  useEffect(() => {
+    if (map.current) return
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      center: [lng, lat],
+      zoom: zoom,
+      pitch: pitch,
+    })
+
+    // set config properties
+    map.current.on('style.load', () => {
+      map.current.setConfigProperty('basemap', 'lightPreset', mapTheme)
+      map.current.setPadding({ left: 150 })
+
+      const el = document.createElement('span')
+      el.className = 'map-marker'
+
+      new mapboxgl.Marker({ element: el })
+        .setLngLat([lng, lat])
+        .addTo(map.current)
+    })
+  })
+
+  return (
+    <div
+      className="overflow-hidden rounded-3xl border border-border"
+      style={{ height: '400px' }}
+    >
+      <div ref={mapContainer} className="map-container h-full w-full" />
+    </div>
+  )
+}
+```
+
+<figcaption>Our final Map component `Map.jsx`.</figcaption>

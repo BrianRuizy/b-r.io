@@ -1,0 +1,117 @@
+import { PostLayout } from '@/components/PostLayout'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import { LinkPreview } from '@/components/LinkPreview'
+
+export const post = {
+  type: 'article',
+  author: 'Brian Ruiz',
+  date: '2023-10-17',
+  title: 'My Desk Setup for 2023. Minimalist but functional.',
+  description:
+    "I've curated a minimalist, clean workspace for coding and creating. Here's the 2023 desk, shelf, and cable setup, plus the links for everything that made the white oak and white combo work.",
+  coverImage: '/blog/desk/image.png',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+I've already created a video covering my desk setup. If you'd rather watch that, use the card below. This post is the written companion with all the links and resources in one place.
+
+To provide some background, I'm a software engineer by day and part-time creator in the evenings. I spend a lot of hours at this desk coding, editing, and learning, so I put together a setup that works for both.
+
+<LinkPreview
+  image="/blog/desk/thumbnail.png"
+  title="Software Engineer's Productive and Minimal Desk Setup (2023)"
+  subtitle="A deep dive into the tech gadgets and home office products that make up this workspace."
+  url="https://www.youtube.com/watch?v=Q9Qu-ddjDEE"
+/>
+
+## The Desk
+
+First things first: the desk. It's the centerpiece of the setup. I got to test the [Ergonofis Sway Desk](https://shrsl.com/49346), which was gifted to me. It's a game-changer, with a slick control interface and aesthetics that match the functionality. They also built in an anti-collision system.
+
+The Ergonofis team also sent their solid wood monitor riser / desk shelf. Having your monitor at eye level is better for posture, and the shelf is a clean way to get there while adding some style.
+
+- [Ergonofis Sway Desk](https://shrsl.com/49346): A versatile standing desk with intuitive preset heights
+- [Ergonofis Desk Shelf](https://shrsl.com/49342): Solid wood shelf to elevate the display
+- [Ergonofis Cable Management](https://shrsl.com/4933x): Keeps the underside tidy
+
+<ImageCarousel
+  caption="Captures of the setup, including the cable management rack and desk shelf. I went with the white oak and white color combo."
+  images={[
+    {
+      src: '/blog/desk/DSC00166.jpg',
+      alt: 'Desk setup with cable management rack',
+    },
+    {
+      src: '/blog/desk/DSC00150.jpg',
+      alt: 'Desk shelf and white oak surface',
+    },
+    {
+      src: '/blog/desk/DSC00160.jpg',
+      alt: 'Desk setup underside and cable management',
+    },
+    {
+      src: '/blog/desk/DSC_3253.jpg',
+      alt: 'Full desk setup with white oak and white combo',
+    },
+  ]}
+/>
+
+## Monitors and Lighting
+
+A high-quality monitor matters for my work, and I chose the LG 34WN780. Its ergonomic stand gives full control over screen positioning. I also added the BenQ Screen Bar Halo, a USB-powered lamp that gives consistent, glare-free light across the desk.
+
+- [LG 34WN780 Monitor](https://amzn.to/3DJd86G): Strong monitor with ergonomic versatility
+- [BenQ Screen Bar Halo](https://amzn.to/3fUAfCi): USB-powered lamp for consistent desk illumination
+
+## Computer Setup
+
+My primary machine is the 16-inch MacBook Pro. To streamline connections and cut cable clutter, I use an Anker USB-C hub. For audio, I reach for AirPods Max when I want to focus without distractions.
+
+- [16-inch MacBook Pro](https://amzn.to/41fkhEH): Reliable laptop for day-to-day work
+- [Anker USB-C Hub](https://amzn.to/3Dk9vCV): Simplifies connections for a cleaner desk
+- [Nomad MagSafe Dock](https://nomadgoods.com/products/stand-one-silver): Premium dock for MagSafe-compatible devices
+
+## Audio
+
+I prefer headphones over the monitor speakers. AirPods Max are the main pair for quality and focus.
+
+- [AirPods Max](https://amzn.to/3mie64b): Primary headphones for deep work
+- [Apple AirPods Pro](https://amzn.to/3UmMQhq): Compact earbuds for lighter tasks
+- [Sonos Beam Soundbar](https://amzn.to/46h5E6H): Wall-mounted soundbar when I want the room to feel like a mini theater
+
+## Peripherals
+
+I'm a mechanical keyboard enthusiast, and my favorite at the time was the Envoy by Mode Designs. Paired with the GMK Dracula keycap set and a Tomorrow-themed set, it added a personal touch. For pointing, I used the Logitech MX Master III for the extra buttons and ergonomics.
+
+- [Orbitkey Desk Mat](https://amzn.to/3Dm37eu): Desk mat with built-in storage
+- [Mode Envoy Keyboard](http://modedesigns.com): Favorite keyboard of that year
+- [Alexotos Linear Switches](https://modedesigns.com/products/alexotos-edition-switches): Smooth linear switches; I get a lot of compliments on the sound
+- [GMK Dracula Keycap Set](https://geekhack.org/): Custom keycaps with a personal look
+- [Logitech MX Master III](https://amzn.to/3U5syHG): Productive, ergonomic mouse
+- [Magic Trackpad](https://amzn.to/46gxWyf): Gesture-friendly alternative to a traditional mouse
+
+## Chair and Ergonomics
+
+For long sessions, I chose the Herman Miller Aeron. Fully adjustable, with lumbar support that keeps posture comfortable through the day.
+
+- [Herman Miller Aeron Chair](https://www.hermanmiller.com): Ergonomic chair built for long hours
+
+## Miscellaneous Items
+
+A few extras that round out the workspace:
+
+- [Ikea Pegboard](https://www.ikea.com/us/en/p/skadis-pegboard-white-10321618/): Keeps essentials within reach
+- [Govee RGB Floor Lamp](https://amzn.to/46m0CA): Ambient lighting for the room
+- [Fellow Products Coffee Grinder](https://amzn.to/46CdXK8): For a better cup at the desk
+- [Electric Kettle](https://amzn.to/46fGa9M): Quick brewing
+- [Larq Water Bottle](https://amzn.to/48HyP4v): Self-cleaning bottle for all-day hydration
+
+## Conclusion
+
+That was the 2023 workspace. I've since moved and updated parts of the setup (see the later NYC desk tour), but this one still captures where I was that year: minimal, functional, and tuned for long coding and creating sessions.

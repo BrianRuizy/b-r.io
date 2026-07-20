@@ -10,7 +10,7 @@
   --prism-string: #ff9086;
   --prism-number: #d9c97c;
   --prism-variable: #67b7a4;
-  --prism-highlight-bg: color-mix(in oklab, white 5%, transparent);
+  --prism-highlight-bg: color-mix(in oklab, white 10%, transparent);
   --prism-highlight-border: color-mix(in oklab, white 35%, transparent);
 }
 
@@ -26,7 +26,7 @@
   --prism-string: #d12f1b;
   --prism-number: #272ad8;
   --prism-variable: #326d74;
-  --prism-highlight-bg: color-mix(in oklab, var(--foreground) 7%, transparent);
+  --prism-highlight-bg: color-mix(in oklab, var(--foreground) 10%, transparent);
   --prism-highlight-border: color-mix(
     in oklab,
     var(--foreground) 25%,

@@ -16,15 +16,14 @@ import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
-import { ModalOverlay } from '@/components/ModalOverlay'
+import { DialogOverlay } from '@/components/Dialog'
 import avatarImage from '@/images/brian-avatar.webp'
-
-// Closer to SwiftUI `.bouncy()` — moderate overshoot, not critically damped.
-const mobileNavSpring = {
-  type: 'spring' as const,
-  bounce: 0.28,
-  duration: 0.55,
-}
+import {
+  bouncySpring,
+  contentFade,
+  motionTransition,
+  snappySpring,
+} from '@/lib/transitions'
 
 type TrayBounds = {
   top: number
@@ -156,14 +155,12 @@ function MobileNavigation({ className }: { className?: string }) {
     }
   }, [open])
 
-  let transition = reduceMotion ? { duration: 0 } : mobileNavSpring
+  let transition = motionTransition(bouncySpring, reduceMotion)
   // Half the pill height (= true capsule). Avoid 9999 → 24, which stays
   // fully round for most of the spring and only "settles" at the end.
   let pillRadius = origin ? origin.height / 2 : 20
   let cardRadius = 24
-  let labelFade = reduceMotion
-    ? { duration: 0 }
-    : { duration: 0.14, ease: 'easeInOut' as const }
+  let labelFade = motionTransition(contentFade, reduceMotion)
 
   return (
     <div className={cn('relative', className)}>
@@ -202,7 +199,7 @@ function MobileNavigation({ className }: { className?: string }) {
       >
         {open && origin && target && (
           <>
-            <ModalOverlay
+            <DialogOverlay
               key="backdrop"
               aria-label="Close menu"
               onClose={closeMenu}
@@ -362,11 +359,15 @@ function ThemeToggle() {
   let { resolvedTheme, setTheme } = useTheme()
   let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
   let [mounted, setMounted] = useState(false)
+  let reduceMotion = useReducedMotion()
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
+
+  let isDark = mounted && resolvedTheme === 'dark'
+  let transition = motionTransition(snappySpring, reduceMotion)
 
   return (
     <button
@@ -378,8 +379,26 @@ function ThemeToggle() {
       <div className="absolute inset-0 max-md:hidden">
         <Halo strength={18} size={120} />
       </div>
-      <SunIcon className="relative z-10 size-6 text-muted-foreground transition group-hover:text-foreground dark:hidden" />
-      <MoonIcon className="relative z-10 hidden size-6 text-accent transition dark:block" />
+      <span className="relative z-10 block size-6 overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={isDark ? 'dark' : 'light'}
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={
+              reduceMotion ? undefined : { opacity: 0, scale: 0.4 }
+            }
+            transition={transition}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            {isDark ? (
+              <MoonIcon className="size-6 text-accent" />
+            ) : (
+              <SunIcon className="size-6 text-muted-foreground group-hover:text-foreground" />
+            )}
+          </motion.span>
+        </AnimatePresence>
+      </span>
     </button>
   )
 }

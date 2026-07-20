@@ -6,6 +6,14 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/posts/*': ['./src/app/posts/**/*.mdx'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'miro.medium.com',
+      },
+    ],
+  },
   async redirects() {
     return [
       {

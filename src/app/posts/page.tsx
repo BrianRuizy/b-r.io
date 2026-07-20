@@ -8,7 +8,7 @@ import { getAllPosts } from '@/lib/posts'
 export const metadata: Metadata = {
   title: 'Posts',
   description:
-    'Articles and videos about software engineering, technology, design, productivity, and life in New York City.',
+    'Articles and videos on software engineering, design, productivity, and life in New York City.',
 }
 
 export default async function Posts() {
@@ -16,8 +16,8 @@ export default async function Posts() {
 
   return (
     <SimpleLayout
-      title="Here are my posts, from tech and productivity, to life updates."
-      intro="Articles and videos about engineering, design, productivity, and the tools I use along the way. Plus the occasional note on creative work, systems, and life in the city."
+      title="Writing on engineering, design, and building a life around it."
+      intro="Longer posts and videos covering the work I do, the tools I use, and the occasional update from NYC. Some technical, some personal, all things I wanted to write down."
     >
       <Suspense fallback={null}>
         <PostsList posts={posts} />

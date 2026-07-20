@@ -1,6 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 
@@ -47,7 +48,24 @@ export function PostLayout({
                 <span className="h-4 w-0.5 rounded-full bg-border" />
                 <span className="ml-3">{formatDate(post.date)}</span>
               </time>
+              <p className="mt-6 text-base text-muted-foreground">
+                {post.description}
+              </p>
             </header>
+
+            {post.coverImage && (
+              <div className="mt-8 overflow-hidden rounded-2xl bg-muted">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  width={1200}
+                  height={630}
+                  className="h-auto w-full object-cover"
+                  sizes="(min-width: 768px) 42rem, 100vw"
+                  priority
+                />
+              </div>
+            )}
 
             {post.type === 'video' && (
               <YouTubeEmbed id={post.youtubeId} title={post.title} />

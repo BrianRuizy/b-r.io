@@ -46,8 +46,8 @@ export function LinkPreview({
     >
       <div className="min-w-0 flex-1 space-y-1.5">
         <div className="flex items-center gap-2 text-sm leading-6 text-muted-foreground">
-          <ArrowUpRightIcon className="size-4 shrink-0" />
           <span className="line-clamp-1">{getDomain(url)}</span>
+          <ArrowUpRightIcon className="size-4 shrink-0" />
         </div>
         <div className="line-clamp-2 font-semibold text-foreground">
           {title}

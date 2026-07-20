@@ -1,0 +1,88 @@
+import { PostLayout } from '@/components/PostLayout'
+import { ImageCarousel } from '@/components/ImageCarousel'
+
+export const post = {
+  type: 'article',
+  author: 'Brian Ruiz',
+  date: '2022-11-15',
+  title: 'Building a Medium-inspired blog with Gatsby.js',
+  description:
+    'I wanted a personal site that felt as comfortable to read as Medium, without rebuilding Medium from scratch. Here is the Gatsby starter that came out of that, with MDX, dark mode, search, and a layout that works as both a blog and a portfolio.',
+  coverImage: '/blog/gatsby-medium/og.png',
+}
+
+export const metadata = {
+  title: post.title,
+  description: post.description,
+}
+
+export default (props) => <PostLayout post={post} {...props} />
+
+I spend a lot of time reading on Medium, and I always liked how little the interface got in the way. When I needed a personal blog and portfolio of my own, I did not want another generic theme that looked like every other developer site. I wanted something closer to that quieter reading experience, built on tools I already knew.
+
+That led to a [Gatsby.js starter](https://gatsby-medium.vercel.app) inspired by Medium’s earlier design. Clean typography, a focused post layout, and enough structure underneath to run a full site: posts, a contact page, gear links, search, and dark mode.
+
+## Features
+
+Out of the box it includes:
+
+- 📲 PWA support so it can be installed on Android and iOS
+- 🔎 Algolia search across post attributes
+- 📧 A Getform.io contact form that is simple to wire up
+- 📝 MDX-based blog posts
+- 🌗 A theme toggle for light and dark mode
+- 💻 SEO-friendly meta descriptions
+
+The stack is Gatsby, React, MUI, MDX, and Vercel.
+
+<figure>
+  <Image
+    width={1531}
+    height={1021}
+    src="/blog/gatsby-medium/phones.png"
+    alt="Mobile views of the Gatsby Medium blog starter"
+  />
+  <figcaption>
+    Mobile view, featuring a blog post detail page, the post list, a contact
+    form, and a gear page with affiliate links.
+  </figcaption>
+</figure>
+
+## Writing in MDX
+
+Publishing is meant to stay out of your way. Day to day you write markdown (or MDX) in `content/posts/` and the site picks it up. You do not need to touch HTML or CSS for a normal post, though you still can if you want to change the design or drop in custom React components.
+
+<figure>
+  <Image
+    width={1134}
+    height={640}
+    src="/blog/gatsby-medium/tablet.png"
+    alt="Tablet view of a responsive blog post layout"
+  />
+  <figcaption>
+    Blog posts adapt to the screen. On larger viewports, sidebars for navigation
+    and metadata come back into view.
+  </figcaption>
+</figure>
+
+## Light and dark mode
+
+There is a toggle in the header for switching themes. Your choice is stored in local storage so it sticks between visits, or you can leave it following the system preference.
+
+<ImageCarousel
+  caption="Desktop view of the starter in dark mode and light mode."
+  images={[
+    {
+      src: '/blog/gatsby-medium/dark-computer.png',
+      alt: 'Gatsby Medium blog starter in dark mode on a desktop display',
+    },
+    {
+      src: '/blog/gatsby-medium/light-computer.png',
+      alt: 'Gatsby Medium blog starter in light mode on a desktop display',
+    },
+  ]}
+/>
+
+## Try the demo
+
+You can see the live site at [gatsby-medium.vercel.app](https://gatsby-medium.vercel.app). If you want a Medium-like reading experience on Gatsby without starting from a blank theme, this should get you most of the way there.

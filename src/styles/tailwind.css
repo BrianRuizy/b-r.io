@@ -152,3 +152,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Mapbox Standard map used in blog posts */
+.mapboxgl-control-container {
+  display: none;
+}
+
+.map-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  /* Do not set transform — Mapbox uses it to position the marker */
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+}

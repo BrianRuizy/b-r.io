@@ -111,6 +111,7 @@ export default {
           // Images
           img: {
             borderRadius: theme('borderRadius.3xl'),
+            backgroundColor: 'var(--muted)',
           },
 
           // Inline elements
@@ -175,10 +176,12 @@ export default {
 
           // Figures
           figcaption: {
-            color: 'var(--tw-prose-captions)',
+            color:
+              'color-mix(in oklab, var(--tw-prose-captions) 75%, transparent)',
             fontSize: theme('fontSize.sm')[0],
             lineHeight: theme('lineHeight.6'),
-            marginTop: theme('spacing.3'),
+            marginTop: theme('spacing.4'),
+            textWrap: 'pretty',
           },
           'figcaption > p': {
             margin: 0,
@@ -222,6 +225,7 @@ export default {
           pre: {
             color: 'var(--tw-prose-pre-code)',
             fontSize: theme('fontSize.sm')[0],
+            lineHeight: theme('lineHeight.6'),
             fontWeight: theme('fontWeight.medium'),
             backgroundColor: 'var(--tw-prose-pre-bg)',
             borderRadius: theme('borderRadius.3xl'),
