@@ -2,8 +2,6 @@
 
 Personal site for [b-r.io](https://b-r.io) — portfolio, writing, projects, and uses.
 
-Built from the [Tailwind Plus Spotlight](https://tailwindcss.com/plus/templates/spotlight) template, customized with my content and design. This is a live personal website, not a redistributable starter kit.
-
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router) + TypeScript
