@@ -22,7 +22,7 @@ type HaloProps = {
 export function Halo({
   children,
   size = 600,
-  strength = 10,
+  strength = 16,
   className,
 }: HaloProps) {
   let ref = useRef<HTMLDivElement>(null)

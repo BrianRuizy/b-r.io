@@ -223,6 +223,10 @@ export default {
           },
 
           // Code blocks
+          '.code-block-label': {
+            display: 'block',
+            marginBottom: theme('spacing.2'),
+          },
           pre: {
             color: 'var(--tw-prose-pre-code)',
             fontSize: theme('fontSize.sm')[0],
@@ -230,10 +234,16 @@ export default {
             fontWeight: theme('fontWeight.medium'),
             backgroundColor: 'var(--tw-prose-pre-bg)',
             borderRadius: theme('borderRadius.3xl'),
-            padding: theme('spacing.8'),
+            paddingTop: theme('spacing.5'),
+            paddingBottom: theme('spacing.5'),
+            paddingRight: theme('spacing.4'),
+            paddingLeft: theme('spacing.4'),
             overflowX: 'auto',
             border: '1px solid',
             borderColor: 'var(--tw-prose-pre-border)',
+            '@variant sm': {
+              padding: theme('spacing.8'),
+            },
           },
           'pre code': {
             display: 'inline',

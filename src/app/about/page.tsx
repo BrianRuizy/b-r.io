@@ -1,5 +1,4 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { EnvelopeIcon } from '@heroicons/react/24/solid'
 import { cn } from '@/lib/utils'
@@ -12,7 +11,7 @@ import {
   XIcon,
   YouTubeIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/photos/me.jpeg'
+import { Portrait } from '@/app/about/Portrait'
 
 function SocialLink({
   className,
@@ -49,33 +48,32 @@ export default function About() {
     <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
-          <div className="max-w-xs px-2.5 lg:max-w-none">
-            <Image
-              src={portraitImage}
-              alt="Brian Ruiz in New York City"
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-muted object-cover"
-            />
-          </div>
+          <Portrait />
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            I&apos;m Brian. I live in New York City, building and
-            sharing the journey.
+            I&apos;m Brian. I live in New York City, building and sharing the
+            journey.
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
               I was born in Honduras, grew up in Texas, and now live in New York
-              City. I got into coding because I liked making things from
+              City. I got into coding because I liked creating things from
               scratch. That same instinct still drives the work I do, both in
               software and on camera.
             </p>
             <p>
-              I currently work at Hines as a Senior Software Engineer, building
-              web applications at the enterprise level. Most of my time goes
+              I currently work at Hines as a Sr. Software Engineer, building
+              web apps at the enterprise level. Most of my time goes
               into making complex systems feel straightforward for the people
               using them. On the side I&apos;m building Beam, a project and task
               manager built for iPhone first, with a companion Mac app.
+            </p>
+            <p>
+              My expertise is in full-stack web development, but I really love
+              the front-end side of it. There&apos;s something about crafting a
+              pixel-perfect layout, tweaking spring animations, or simply making
+              apps delightful to use that I find the most rewarding.
             </p>
             <p>
               I also run a YouTube channel with more than 100,000 subscribers.
@@ -84,11 +82,9 @@ export default function About() {
               actually looks like, sometimes with a little filmmaking mixed in.
             </p>
             <p>
-              I consider myself an engineer with a designer&apos;s eye, and I
-              care about the details that make products feel polished, fast, and
-              human. When I&apos;m not working, you&apos;ll usually find me at
-              the gym, riding my e-bike around the city, or at a coffee shop
-              with a laptop nearby.
+              When I&apos;m not working, you&apos;ll usually find me at the gym,
+              riding my e-bike around the city, or at a coffee shop with a
+              laptop nearby.
             </p>
           </div>
         </div>

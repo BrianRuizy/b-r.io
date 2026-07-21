@@ -11,8 +11,6 @@ import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
 import juneImage from '@/images/photos/june.jpeg'
 import selfieImage from '@/images/photos/selfie.jpeg'
 import empireImage from '@/images/photos/empire.jpeg'
-import portraitImage from '@/images/photos/me.jpeg'
-
 
 const photos = [
   {
@@ -130,6 +128,13 @@ export function PhotoGallery() {
           {photos.map(({ image, alt }, imageIndex) => (
             <motion.div
               key={image.src}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                ...bouncySpring,
+                delay: imageIndex * 0.1,
+              }}
               className={cn(
                 'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
                 rotations[imageIndex % rotations.length],

@@ -45,10 +45,7 @@ export function ContentCardTitle({
       {href ? (
         <>
           <div className="pointer-events-none absolute -inset-x-4 -inset-y-6 z-0 sm:-inset-x-6">
-            <Halo
-              strength={16}
-              className="h-full w-full scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100"
-            />
+            <Halo className="h-full w-full scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100" />
           </div>
           <Link
             href={href}

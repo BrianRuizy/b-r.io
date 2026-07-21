@@ -12,6 +12,15 @@
   --prism-variable: #67b7a4;
   --prism-highlight-bg: color-mix(in oklab, white 10%, transparent);
   --prism-highlight-border: color-mix(in oklab, white 35%, transparent);
+  --prism-line-number-width: 1rem;
+  --prism-line-number-gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --prism-line-number-width: 1.5rem;
+    --prism-line-number-gap: 1.5rem;
+  }
 }
 
 /* Add this class to a post or container to opt into light code blocks later. */
@@ -50,23 +59,38 @@ pre[class*='language-'] {
 
 /* Highlighted lines (```lang {1,3-5}```) */
 .code-line.highlight-line {
-  margin-right: -2rem;
-  margin-left: -2rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
   background-color: var(--prism-highlight-bg);
   box-shadow: inset 3px 0 0 0 var(--prism-highlight-border);
 }
 
+@media (min-width: 640px) {
+  .code-line.highlight-line {
+    margin-right: -2rem;
+    margin-left: -2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
 .line-number::before {
   display: inline-block;
-  width: 1.5rem;
-  margin-right: 1.5rem;
+  width: var(--prism-line-number-width);
+  margin-right: var(--prism-line-number-gap);
   color: var(--prism-comment);
   text-align: right;
   user-select: none;
   content: attr(line);
   opacity: 0.5;
+}
+
+pre:has(.line-number) .code-block-label {
+  padding-left: calc(
+    var(--prism-line-number-width) + var(--prism-line-number-gap)
+  );
 }
 
 /* Comments */

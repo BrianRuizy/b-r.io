@@ -342,7 +342,7 @@ function DesktopNavigation({
     <nav {...props} className={cn('group', className)}>
       <div className="relative rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
-          <Halo strength={18} size={280} />
+          <Halo />
         </div>
         <ul className="relative z-10 flex px-3 text-sm font-medium text-foreground">
           <NavItem href="/about">About</NavItem>
@@ -377,7 +377,7 @@ function ThemeToggle() {
       onClick={() => setTheme(otherTheme)}
     >
       <div className="absolute inset-0 max-md:hidden">
-        <Halo strength={18} size={120} />
+        <Halo />
       </div>
       <span className="relative z-10 block size-6 overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
