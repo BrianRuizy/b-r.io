@@ -16,7 +16,7 @@ export default async function Posts() {
 
   return (
     <SimpleLayout
-      title="Writing on programming, productivity, and life updates."
+      title="My posts on programming, productivity, and life updates."
       intro="Longer posts and videos covering the work I do, the tools I use, and the occasional update from NYC. Some technical, some personal, all things I wanted to write down."
     >
       <Suspense fallback={null}>
