@@ -31,6 +31,11 @@ const nextConfig = {
         destination: '/posts/desk-setup',
         permanent: true,
       },
+      {
+        source: '/gear',
+        destination: '/uses',
+        permanent: true,
+      },
     ]
   },
 }
