@@ -10,7 +10,6 @@ Built from the [Tailwind Plus Spotlight](https://tailwindcss.com/plus/templates/
 - [MDX](https://mdxjs.com) for posts
 - [Tailwind CSS](https://tailwindcss.com) v4
 - [Motion](https://motion.dev) for animation
-- [Mapbox GL](https://www.mapbox.com) for the map demo post
 
 ## Getting started
 
