@@ -154,7 +154,7 @@ export function ImageCarousel({
       )}
 
       {count > 1 && (
-        <div className="mt-4 flex items-center justify-center gap-1">
+        <div className="mt-4 flex items-center justify-center">
           {images.map((_, i) => (
             <button
               key={i}
@@ -162,7 +162,7 @@ export function ImageCarousel({
               aria-label={`Image ${i + 1} of ${count}`}
               aria-current={i === index ? 'true' : undefined}
               onClick={() => goTo(i)}
-              className="group flex size-6 items-center justify-center"
+              className="group flex items-center justify-center p-2.5"
             >
               <span
                 className={cn(

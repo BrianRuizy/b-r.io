@@ -11,7 +11,7 @@ export const post = {
   date: '2024-04-27',
   title: 'Add beautiful maps to your React app with Mapbox GL',
   description:
-    'How to add an interactive Mapbox Standard map to React: 3D camera controls, theme-aware lighting, a location badge, and a custom marker, built step by step toward a dusk view of The Met in Central Park.',
+    'A step-by-step guide to embedding Mapbox Standard in React: set up the map component, configure the camera, sync light presets with your theme, add a location badge overlay, and place a custom marker.',
 }
 
 export const metadata = createPostMetadata(post)
@@ -21,9 +21,7 @@ export default (props) => <PostLayout post={post} {...props} />
 <figure>
   <MapDemo />
   <figcaption>
-    The Met on the edge of Central Park at dusk. Mapbox Standard&apos;s dusk
-    preset is rich in detail. This is what we will build: camera, lighting, badge,
-    then marker.
+    The Met on the edge of Central Park at dusk (which is one my favorite places to visit). Mapbox Standard&apos;s dusk preset pulls a surprising amount of detail out of the buildings and tree line. It gives like an Apple Maps level of quality to your maps. This is the component we&apos;ll build toward below.
   </figcaption>
 </figure>
 

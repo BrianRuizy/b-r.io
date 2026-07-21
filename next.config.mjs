@@ -26,6 +26,11 @@ const nextConfig = {
         destination: '/posts/:slug',
         permanent: true,
       },
+      {
+        source: '/posts/my-desk-setup-for-2023',
+        destination: '/posts/desk-setup',
+        permanent: true,
+      },
     ]
   },
 }

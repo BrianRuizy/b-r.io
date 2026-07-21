@@ -53,7 +53,11 @@ export function PostLayout({
               </p>
             </header>
 
-            {post.coverImage && (
+            {post.type === 'video' && (
+              <YouTubeEmbed id={post.youtubeId} title={post.title} />
+            )}
+
+            {post.type === 'article' && post.coverImage && (
               <div className="mt-8 overflow-hidden rounded-2xl bg-muted">
                 <Image
                   src={post.coverImage}
@@ -65,10 +69,6 @@ export function PostLayout({
                   priority
                 />
               </div>
-            )}
-
-            {post.type === 'video' && (
-              <YouTubeEmbed id={post.youtubeId} title={post.title} />
             )}
 
             <Prose className="mt-8" data-mdx-content>

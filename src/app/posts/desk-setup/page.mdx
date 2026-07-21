@@ -1,5 +1,10 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import coverImage from './image.png'
+import deskPhoto1 from './DSC00166.jpg'
+import deskPhoto3 from './DSC00160.jpg'
+import deskPhoto4 from './DSC_3253.jpg'
 
 export const post = {
   type: 'video',
@@ -7,74 +12,106 @@ export const post = {
   date: '2023-10-04',
   title: "Software Engineer's Productive and Minimal Desk Setup",
   description:
-    'A walkthrough of the minimalist desk I built for coding and creating: standing desk, monitors, peripherals, and the gear that makes long sessions sustainable.',
+    "I've curated a minimalist, clean workspace for coding and creating. Here's the 2023 desk, shelf, and cable setup, plus links for everything that made the white oak and white combo work.",
   youtubeId: 'Q9Qu-ddjDEE',
+  coverImage: coverImage.src,
 }
 
 export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 
-This post is the companion guide to the video, with all of the links and resources in one place.
+This is the companion guide to the video above, with every product link and photo in one place.
 
-I'm a software engineer by day and a part-time creator in the evenings. I spend a lot of hours at this desk coding, editing, and learning, so I put together a setup that stays productive for both.
+I'm a software engineer by day and a part-time creator in the evenings. I spend a lot of hours at this desk coding, editing, and learning, so I built a setup that stays minimal, functional, and productive for both.
 
-## The desk
+## The Desk
 
-The centerpiece is the [Ergonofis Sway Desk](https://shrsl.com/49346). It has a slick control interface, an anti-collision system, and the kind of build quality that makes standing all day feel natural. They also sent their solid wood monitor riser / desk shelf, which keeps the display at eye level and adds a bit of structure to the surface.
+The centerpiece is the [Ergonofis Sway Desk](https://shrsl.com/49346), which Ergonofis gifted me for this build. It's a game-changer: a slick control interface, an anti-collision system, and build quality that makes standing all day feel natural. They also sent their solid wood monitor riser / desk shelf, which keeps the display at eye level, improves posture, and adds structure to the surface.
 
-- [Ergonofis Sway Desk](https://shrsl.com/49346): standing desk with intuitive preset heights
-- [Ergonofis Desk Shelf](https://shrsl.com/49342): solid wood shelf for posture and organization
-- [Ergonofis Cable Management](https://shrsl.com/4933x): keeps the underside tidy
+- [Ergonofis Sway Desk](https://shrsl.com/49346): Versatile standing desk with intuitive preset heights
+- [Ergonofis Desk Shelf](https://shrsl.com/49342): Solid wood shelf to elevate the display
+- [Ergonofis Cable Management](https://shrsl.com/4933x): Keeps the underside tidy
 
-## Monitors and lighting
+<ImageCarousel
+  images={[
+    {
+      src: coverImage,
+      alt: 'Wide shot of the full desk setup',
+      caption:
+        'A wide shot of the full setup. I was going for a clean, minimal Scandinavian look — white oak and white, with black accessories to keep things grounded.',
+    },
+    {
+      src: deskPhoto1,
+      alt: 'Close-up of the white oak desk surface and monitor stand',
+      caption:
+        'Up close, the solid hardwood white oak feels super nice and premium to the touch, with the same finish carried through on the monitor stand.',
+    },
+    {
+      src: deskPhoto3,
+      alt: 'Cable management system under the desk',
+      caption:
+        'Under the desk, a cable management rack, large power strip, and cable pouch keep everything tucked away and out of sight.',
+    },
+    {
+      src: deskPhoto4,
+      alt: 'Swipe control panel for adjusting desk height',
+      caption:
+        'And finally, the desk controls use a touch swipe gesture to adjust height — much nicer than the traditional up-and-down buttons you see on most standing desks.',
+    },
+  ]}
+/>
 
-A good monitor is non-negotiable for my work. I use the LG 34WN780 for its ergonomic stand and wide canvas, plus a BenQ ScreenBar Halo for consistent, glare-free light.
+## Monitors and Lighting
 
-- [LG 34WN780 Monitor](https://amzn.to/3DJd86G)
-- [BenQ ScreenBar Halo](https://amzn.to/3fUAfCi)
+A high-quality monitor matters for my work. I chose the LG 34WN780 for its ergonomic stand and wide canvas, and added the BenQ ScreenBar Halo for consistent, glare-free light across the desk.
 
-## Computer setup
+- [LG 34WN780 Monitor](https://amzn.to/3DJd86G): Strong monitor with ergonomic versatility
+- [BenQ ScreenBar Halo](https://amzn.to/3fUAfCi): USB-powered lamp for consistent desk illumination
 
-My daily driver is a 16-inch MacBook Pro. An Anker USB-C hub cuts down cable clutter, and a Nomad MagSafe dock keeps the phone out of the way.
+## Computer Setup
 
-- [16-inch MacBook Pro](https://amzn.to/41fkhEH)
-- [Anker USB-C Hub](https://amzn.to/3Dk9vCV)
-- [Nomad MagSafe Dock](https://nomadgoods.com/products/stand-one-silver)
+My primary machine is the 16-inch MacBook Pro. An Anker USB-C hub streamlines connections and cuts cable clutter, and a Nomad MagSafe dock keeps my phone out of the way.
+
+- [16-inch MacBook Pro](https://amzn.to/41fkhEH): Reliable laptop for day-to-day work
+- [Anker USB-C Hub](https://amzn.to/3Dk9vCV): Simplifies connections for a cleaner desk
+- [Nomad MagSafe Dock](https://nomadgoods.com/products/stand-one-silver): Premium dock for MagSafe-compatible devices
 
 ## Audio
 
-I mostly work in headphones because monitor speakers aren't enough for editing or focus sessions.
+I prefer headphones over the monitor speakers. AirPods Max are my main pair for quality and focus, with AirPods Pro for lighter tasks and a Sonos Beam when I want the room to feel like a mini theater.
 
-- [AirPods Max](https://amzn.to/3mie64b)
-- [Apple AirPods Pro](https://amzn.to/3UmMQhq)
-- [Sonos Beam Soundbar](https://amzn.to/46h5E6H)
+- [AirPods Max](https://amzn.to/3mie64b): Primary headphones for deep work
+- [Apple AirPods Pro](https://amzn.to/3UmMQhq): Compact earbuds for lighter tasks
+- [Sonos Beam Soundbar](https://amzn.to/46h5E6H): Wall-mounted soundbar for room-filling audio
 
 ## Peripherals
 
-I'm a mechanical keyboard person. The Mode Envoy with Alexotos linear switches and a GMK Dracula set is still my favorite daily typer. For pointing, I switch between a Logitech MX Master III and an Apple Magic Trackpad.
+I'm a mechanical keyboard enthusiast. The Mode Envoy with Alexotos linear switches and a GMK Dracula keycap set is still my favorite daily typer. For pointing, I switch between a Logitech MX Master III and an Apple Magic Trackpad.
 
-- [Orbitkey Desk Mat](https://amzn.to/3Dm37eu)
-- [Mode Envoy Keyboard](https://modedesigns.com/pages/envoy)
-- [Alexotos Linear Switches](https://modedesigns.com/products/alexotos-edition-switches)
-- [GMK Dracula Keycap Set](https://geekhack.org/)
-- [Logitech MX Master III](https://amzn.to/3U5syHG)
-- [Magic Trackpad](https://amzn.to/46gxWyf)
+- [Orbitkey Desk Mat](https://amzn.to/3Dm37eu): Desk mat with built-in storage
+- [Mode Envoy Keyboard](https://modedesigns.com/pages/envoy): Favorite keyboard of that year
+- [Alexotos Linear Switches](https://modedesigns.com/products/alexotos-edition-switches): Smooth linear switches; I get a lot of compliments on the sound
+- [GMK Dracula Keycap Set](https://geekhack.org/): Custom keycaps with a personal look
+- [Logitech MX Master III](https://amzn.to/3U5syHG): Productive, ergonomic mouse
+- [Magic Trackpad](https://amzn.to/46gxWyf): Gesture-friendly alternative to a traditional mouse
 
-## Chair and ergonomics
+## Chair and Ergonomics
 
-Long sessions need a chair that stays out of the way. The Herman Miller Aeron covers that with full adjustability and solid lumbar support.
+For long sessions, I chose the Herman Miller Aeron. Fully adjustable, with lumbar support that keeps posture comfortable through the day.
 
-- [Herman Miller Aeron Chair](https://www.hermanmiller.com)
+- [Herman Miller Aeron Chair](https://www.hermanmiller.com): Ergonomic chair built for long hours
 
-## Miscellaneous
+## Miscellaneous Items
 
-- [Ikea Skådis Pegboard](https://www.ikea.com/us/en/p/skadis-pegboard-white-10321618/)
-- [Govee RGB Floor Lamp](https://amzn.to/46m0CA)
-- [Fellow Products Coffee Grinder](https://amzn.to/46CdXK8)
-- [Electric Kettle](https://amzn.to/46fGa9M)
-- [Larq Water Bottle](https://amzn.to/48HyP4v)
+A few extras that round out the workspace:
 
-## Closing
+- [Ikea Skådis Pegboard](https://www.ikea.com/us/en/p/skadis-pegboard-white-10321618/): Keeps essentials within reach
+- [Govee RGB Floor Lamp](https://amzn.to/46m0CA): Ambient lighting for the room
+- [Fellow Products Coffee Grinder](https://amzn.to/46CdXK8): For a better cup at the desk
+- [Electric Kettle](https://amzn.to/46fGa9M): Quick brewing
+- [Larq Water Bottle](https://amzn.to/48HyP4v): Self-cleaning bottle for all-day hydration
 
-That's the workspace as of this write-up. It keeps evolving — if you have suggestions for what to improve around the edges of the desk, I'm always open to them.
+## Conclusion
+
+That was the 2023 workspace. I've since moved and updated parts of the setup — see my [NYC desk tour](/posts/my-desk-setup-tour-in-nyc) for my next version, but this one still captures where I was that year: minimal, functional, and tuned for long coding and creating sessions.
