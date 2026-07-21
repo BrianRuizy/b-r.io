@@ -60,7 +60,7 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            I&apos;m Brian. I live in New York City, building software and
+            I&apos;m Brian. I live in New York City, building and
             sharing the journey.
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
