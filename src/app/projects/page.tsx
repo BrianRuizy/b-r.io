@@ -27,8 +27,8 @@ const projects: Array<Project> = [
     description:
       'A project and task manager built for iPhone first, with widgets, calendar views, Siri, and a companion Mac app.',
     link: {
-      href: 'https://beam-website-xi.vercel.app',
-      label: 'beam-website-xi.vercel.app',
+      href: 'https://trybeam.vercel.app',
+      label: 'trybeam.vercel.app',
     },
     logo: logoBeam,
   },
