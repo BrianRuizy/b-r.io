@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import { Inter, Source_Serif_4 } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
@@ -66,6 +67,7 @@ export default function RootLayout({
           <div className="flex w-full">
             <Layout>{children}</Layout>
           </div>
+          <Analytics />
         </Providers>
       </body>
     </html>
