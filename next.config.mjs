@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/uses',
         permanent: true,
       },
+      {
+        source: '/favicon.ico',
+        destination: '/favicon/favicon.ico',
+        permanent: true,
+      },
     ]
   },
 }
