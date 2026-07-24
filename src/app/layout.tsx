@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import { Inter, Source_Serif_4 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
@@ -81,6 +82,7 @@ export default function RootLayout({
             <Layout>{children}</Layout>
           </div>
           <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
