@@ -22,8 +22,3 @@ Personal site for [b-r.io](https://b-r.io) — portfolio, writing, projects, and
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL (OG, sitemap, RSS) |
 | `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox GL (blog map demo) |
 | `CONVERTKIT_API_KEY` / `CONVERTKIT_FORM_ID` | Newsletter signup |
-
-## Version history
-
-- **3.0** — Spotlight-based rebuild (this repo)
-- **2.x** — Previous Contentlayer site (archived on the `archive/v2` branch of [b-r.io](https://github.com/BrianRuizy/b-r.io))
