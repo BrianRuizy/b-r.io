@@ -23,6 +23,7 @@ import {
   bouncySpring,
   contentFade,
   motionTransition,
+  symbolReplace,
 } from '@/lib/transitions'
 
 type TrayBounds = {
@@ -360,6 +361,8 @@ function ThemeToggle() {
   let { resolvedTheme, setTheme } = useTheme()
   let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
   let [mounted, setMounted] = useState(false)
+  let [iconDark, setIconDark] = useState(false)
+  let iconSynced = useRef(false)
   let reduceMotion = useReducedMotion()
 
   useEffect(() => {
@@ -367,36 +370,72 @@ function ThemeToggle() {
     setMounted(true)
   }, [])
 
-  let isDark = mounted && resolvedTheme === 'dark'
-  let transition = motionTransition(bouncy({ duration: 0.3 }), reduceMotion)
+  useEffect(() => {
+    if (!mounted) {
+      return
+    }
+
+    if (!iconSynced.current) {
+      iconSynced.current = true
+      setIconDark(resolvedTheme === 'dark')
+      return
+    }
+
+    if (reduceMotion) {
+      setIconDark(resolvedTheme === 'dark')
+      return
+    }
+
+    let timeout = window.setTimeout(() => {
+      setIconDark(resolvedTheme === 'dark')
+    }, 120)
+
+    return () => window.clearTimeout(timeout)
+  }, [mounted, reduceMotion, resolvedTheme])
+
+  let transition = motionTransition(symbolReplace(), reduceMotion)
+  let hidden = { opacity: 0, scale: 0.001 }
+  let visible = { opacity: 1, scale: 1 }
 
   return (
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group relative overflow-hidden rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
+      className="group relative rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
       onClick={() => setTheme(otherTheme)}
     >
-      <div className="absolute inset-0 max-md:hidden">
+      <div className="absolute inset-0 overflow-hidden rounded-full max-md:hidden">
         <Halo />
       </div>
-      <span className="relative z-10 block size-6 overflow-hidden">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={isDark ? 'dark' : 'light'}
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.4 }}
-            transition={transition}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            {isDark ? (
-              <MoonIcon className="size-6 text-accent" />
-            ) : (
+      <span className="relative z-10 block size-6 overflow-visible">
+        {!mounted ? (
+          <span className="absolute inset-0 flex items-center justify-center">
+            <SunIcon className="size-6 text-muted-foreground" />
+          </span>
+        ) : (
+          <>
+            <motion.span
+              initial={false}
+              animate={iconDark ? hidden : visible}
+              transition={transition}
+              style={{ transformOrigin: 'center', zIndex: iconDark ? 0 : 1 }}
+              className="absolute inset-0 flex items-center justify-center"
+              aria-hidden={iconDark}
+            >
               <SunIcon className="size-6 text-muted-foreground group-hover:text-foreground" />
-            )}
-          </motion.span>
-        </AnimatePresence>
+            </motion.span>
+            <motion.span
+              initial={false}
+              animate={iconDark ? visible : hidden}
+              transition={transition}
+              style={{ transformOrigin: 'center', zIndex: iconDark ? 1 : 0 }}
+              className="absolute inset-0 flex items-center justify-center"
+              aria-hidden={!iconDark}
+            >
+              <MoonIcon className="size-6 text-accent" />
+            </motion.span>
+          </>
+        )}
       </span>
     </button>
   )

@@ -1,34 +1,30 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { Button } from '@/components/Button'
-import { LinkPreview } from '@/components/LinkPreview'
 import imageRoadmap from './roadmap.png'
 import imageContentManager from './content-manager.png'
-import imageThumb from './notion-setup-thumbnail.png'
+import imageAppDevNotes from './app-dev-notes.png'
+import imagePersonalFinance from './personal-finance.png'
+import imageReadingList from './reading-list.png'
+import imageSnippets from './snippets.png'
+import imageLeetcode from './leetcode.png'
 
 export const post = {
-  type: 'article',
+  type: 'video',
   author: 'Brian Ruiz',
   date: '2024-03-19',
-  title: 'The Notion System I Actually Use as a Developer and Creator',
+  title: 'The Notion System I Use as a Developer and Creator',
   description:
     'A walkthrough of the Notion templates that actually stuck for me: a full-stack roadmap, content OS, notes, and the day-to-day workflows I use as a developer and creator.',
+  youtubeId: '53KFVt2GRkE',
+  ogImage: imageContentManager.src,
 }
 
 export const metadata = createPostMetadata(post)
 
 export default (props) => <PostLayout post={post} {...props} />
 
-I’ve been using Notion for years. What started as a simple note-taking app became the system I use for content creation, development work, learning, and personal projects.
-
-I get a lot of questions about the templates, so this post breaks down the ones that actually matter day to day. There’s also a [video walkthrough](https://www.youtube.com/watch?v=53KFVt2GRkE) if you’d rather see the workspace in motion.
-
-<LinkPreview
-  title="My Complete Notion Setup (2024) — Templates & Systems"
-  subtitle="A tour of my Notion workspace, including templates for content creation, development work, and personal productivity systems."
-  image={imageThumb}
-  url="https://www.youtube.com/watch?v=53KFVt2GRkE"
-/>
+I've been using Notion for years. What started as a simple note-taking app became the system I use for content creation, development work, learning, and personal projects. I get a lot of questions about the templates, so this post breaks down the ones that actually matter day to day.
 
 ## Full-stack developer roadmap
 
@@ -39,10 +35,17 @@ I get a lot of questions about the templates, so this post breaks down the ones 
   </figcaption>
 </figure>
 
-This roadmap gives a general overview of full-stack development without pretending to be a complete tutorial. It’s organized into chapters and modules — Fundamentals, Frontend, Backend, Databases — with curated resources so you can move at your own pace.
+As promised in my full video, I said I would put together a full-stack developer roadmap for new learners and beginners, so I'm starting with that first.
+
+This roadmap gives a general overview of full-stack development without pretending to be a complete tutorial. It’s organized into chapters and modules (Fundamentals, Frontend, Backend, Databases) with curated resources so you can move at your own pace.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brianroadmap" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brianroadmap"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     🧭 Start learning
   </Button>
 </div>
@@ -52,7 +55,8 @@ This roadmap gives a general overview of full-stack development without pretendi
 <figure>
   <Image src={imageContentManager} alt="Content Manager OS Notion template" />
   <figcaption>
-    The operating system behind my content workflow. This is the only paid template in the list — the rest are free.
+    The operating system behind my content workflow. This is the only paid
+    template in the list. The rest are free.
   </figcaption>
 </figure>
 
@@ -61,61 +65,115 @@ This is home base for content creation: projects, tasks, partners, and earnings.
 It’s flexible enough for YouTube, writing, or other formats. Building the system once saved me from reinventing it every time a new project started.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brcontentmanager" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brcontentmanager"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     🖼️ Start creating
   </Button>
 </div>
 
+---
+
+The rest of these templates are more secondary. Tiny systems that I've used over time for a range of different productivity tasks, some a little more built out than others. But I still wanted to share them anyway, so here you are!
+
 ## App development notes
 
-This is my personal worklog for standups, sprint planning, postmortems, and weekly notes. Team task tracking lives elsewhere — this space is for preserving context and making past decisions easier to find. Notion’s AI summary and Q&A features are especially useful here.
+<figure>
+  <Image src={imageAppDevNotes} alt="App development notes Notion template" />
+</figure>
+
+Starting with my app dev notes: a worklog for standups, sprint planning, postmortems, and weekly notes. Team task tracking lives elsewhere. This space is for preserving context and making past decisions easier to find. Notion’s AI summary and Q&A features are especially useful here.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brappnotes" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brappnotes"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     💻 Get the template
   </Button>
 </div>
 
 ## Personal finance
 
-A simple budget and recurring-expense tracker with table calculations, categories, and tags. I don’t use it as heavily anymore — Notion isn’t ideal for granular money tracking when income and spend aren’t perfectly consistent — but it’s still a solid lightweight option.
+<figure>
+  <Image src={imagePersonalFinance} alt="Personal finance Notion template" />
+</figure>
+
+A lightweight budget and recurring-expense tracker with table calculations, categories, and tags. I don’t use it as heavily anymore. Notion isn’t ideal for granular money tracking when income and spend aren’t perfectly consistent, but it’s still a solid option.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brpersonalfinance" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brpersonalfinance"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     💷 Get the template
   </Button>
 </div>
 
 ## Reading list
 
-Built around the Notion Web Clipper. It’s not perfect, but it’s fast: turn any page into something readable and open it on any device later.
+<figure>
+  <Image src={imageReadingList} alt="Reading list Notion template" />
+</figure>
+
+Built around the Notion Web Clipper. Save articles from the web and read them on any device later. It’s not perfect, but it’s fast.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brreadinglist" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brreadinglist"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     📚 Get the template
   </Button>
 </div>
 
 ## Snippets
 
-A home for email templates and other text I reuse often. I’d like to add a quick fill-in-variables → copy-to-clipboard flow eventually.
+<figure>
+  <Image src={imageSnippets} alt="Snippets Notion template" />
+</figure>
+
+A home for reusable email templates, code blocks, and other text you reach for often. I’d like to add a quick fill-in-variables → copy-to-clipboard flow eventually.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brsnippets" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brsnippets"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     🔗 Get the template
   </Button>
 </div>
 
 ## LeetCode template
 
-Interview practice without pure memorization: define the problem, capture the thought process, sketch on a whiteboard block, add code, and note complexity. It keeps practice problems organized in one place.
+<figure>
+  <Image src={imageLeetcode} alt="LeetCode Notion template" />
+</figure>
+
+Interview practice without pure memorization: define the problem, capture your approach, sketch on a whiteboard block, add code, and note complexity. It keeps practice problems organized in one place.
 
 <div className="not-prose my-6">
-  <Button href="https://ntn.so/brleetcode" variant="secondary" target="_blank" rel="noopener noreferrer">
+  <Button
+    href="https://ntn.so/brleetcode"
+    variant="secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     💻 Get the template
   </Button>
 </div>
 
 ---
 
-These templates have been the backbone of how I stay organized. They’re not perfect, and they keep changing — grab what helps and make it yours.
+These templates have been the backbone of how I stay organized. They’re not perfect, and they keep changing. Grab what helps and make it yours.

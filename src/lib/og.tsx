@@ -20,7 +20,8 @@ const logoPath = join(
   process.cwd(),
   'public/favicon/web-app-manifest-512x512.png',
 )
-const logoDisplaySize = 40
+const logoDisplaySize = 48
+const brandLabelFontSize = 40
 
 type Weight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 type FontStyle = 'normal' | 'italic'
@@ -47,9 +48,9 @@ async function loadGoogleFont(font: string, text: string, weight?: Weight) {
   return null
 }
 
-// Hero-style title: bold + tight tracking, sized up for OG readability.
+// Line height uses text-4xl ratio (2.5rem / 2rem = 1.25), slightly airier at OG size.
 const titleFontSize = 64
-const titleLineHeight = 74 / 64
+const titleLineHeight = 1.25
 const titleLetterSpacing = '-0.025em'
 const titleMaxLines = 3
 // ~64 chars fits 3 lines at 64px within 900px (Satori line-clamp is unsupported).
@@ -124,7 +125,7 @@ export async function generateOgImage({ title }: { title: string }) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '16px',
+            gap: '20px',
           }}
         >
           <img
@@ -135,7 +136,7 @@ export async function generateOgImage({ title }: { title: string }) {
           />
           <div
             style={{
-              fontSize: 32,
+              fontSize: brandLabelFontSize,
               color: ogTheme.mutedForeground,
               fontFamily: 'Inter, system-ui, sans-serif',
               fontWeight: 400,
@@ -156,7 +157,7 @@ export async function generateOgImage({ title }: { title: string }) {
             letterSpacing: titleLetterSpacing,
             lineHeight: titleLineHeight,
             fontFamily: 'Inter, system-ui, sans-serif',
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           {displayTitle}

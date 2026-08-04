@@ -18,6 +18,7 @@ import type { Transition } from 'motion/react'
 type SpringOptions = {
   duration?: number
   extraBounce?: number
+  delay?: number
 }
 
 function spring(
@@ -44,6 +45,22 @@ export function snappy(options?: SpringOptions): Transition {
 /** More underdamped — visible bounce. SwiftUI `.bouncy()` */
 export function bouncy(options?: SpringOptions): Transition {
   return spring(0.3, options)
+}
+
+/**
+ * SF Symbol `.contentTransition(.symbolEffect(.replace))` / `.downUp`.
+ * Outgoing scales down, incoming scales up — scale leads, opacity trails.
+ *
+ * @see https://developer.apple.com/documentation/symbols/replacesymboleffect
+ */
+export function symbolReplace({
+  delay = 0,
+  ...options
+}: SpringOptions = {}): Transition {
+  return {
+    scale: { ...spring(0.4, { duration: 0.75, ...options }), delay },
+    opacity: { duration: 0.3, ease: 'easeOut', delay: delay + 0.04 },
+  }
 }
 
 /** Default presets */

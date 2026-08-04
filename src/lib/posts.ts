@@ -16,6 +16,7 @@ interface ArticleMeta {
   author: string
   date: string
   coverImage?: string
+  ogImage?: string
 }
 
 interface VideoMeta {
@@ -26,6 +27,7 @@ interface VideoMeta {
   date: string
   youtubeId: string
   coverImage?: string
+  ogImage?: string
 }
 
 export type PostMeta = ArticleMeta | VideoMeta
@@ -40,6 +42,10 @@ export function getYouTubeThumbnailUrl(youtubeId: string) {
 }
 
 function getPostShareImage(post: PostMeta) {
+  if (post.ogImage) {
+    return { url: post.ogImage, size: undefined }
+  }
+
   if (post.coverImage) {
     return { url: post.coverImage, size: undefined }
   }
