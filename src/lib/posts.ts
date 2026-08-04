@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import glob from 'fast-glob'
 
+import {
+  siteOpenGraphImages,
+  siteTwitterMetadata,
+} from '@/lib/metadata'
+
 export type PostType = 'article' | 'video'
 
 interface ArticleMeta {
@@ -30,8 +35,6 @@ export type Post = PostMeta & {
 }
 
 export function createPostMetadata(post: PostMeta): Metadata {
-  const hasCover = Boolean(post.coverImage)
-
   return {
     title: post.title,
     description: post.description,
@@ -40,22 +43,12 @@ export function createPostMetadata(post: PostMeta): Metadata {
       description: post.description,
       type: 'article',
       publishedTime: post.date,
-      ...(hasCover
-        ? {
-            images: [
-              {
-                url: post.coverImage!,
-                alt: post.title,
-              },
-            ],
-          }
-        : {}),
+      images: siteOpenGraphImages,
     },
     twitter: {
-      card: hasCover ? 'summary_large_image' : 'summary',
+      ...siteTwitterMetadata,
       title: post.title,
       description: post.description,
-      ...(hasCover ? { images: [post.coverImage!] } : {}),
     },
   }
 }

@@ -5,6 +5,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
+import {
+  siteOpenGraphImages,
+  siteTwitterMetadata,
+} from '@/lib/metadata'
 
 import '@/styles/tailwind.css'
 
@@ -46,9 +50,10 @@ export const metadata: Metadata = {
     siteName: 'Brian Ruiz',
     locale: 'en_US',
     type: 'website',
+    images: siteOpenGraphImages,
   },
   twitter: {
-    card: 'summary_large_image',
+    ...siteTwitterMetadata,
   },
   icons: {
     icon: [
