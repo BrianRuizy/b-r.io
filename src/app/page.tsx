@@ -219,8 +219,8 @@ export default async function Home() {
               />
               Beam
             </Link>
-            . I obsess over craft, speed, and software that still feels human.
-            Based in NYC. I also make{' '}
+            . Focused on crafting delightful digital products. Based in NYC. I
+            also make{' '}
             <Link
               href="https://www.youtube.com/@brianruizy"
               className="link-underline"

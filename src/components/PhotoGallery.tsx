@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { cn } from '@/lib/utils'
-import { bouncySpring, dragSpring, dragTransition } from '@/lib/transitions'
+import { bouncy, dragSpring, dragTransition } from '@/lib/transitions'
 
 import bikingImage from '@/images/photos/biking.jpeg'
 import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
@@ -89,7 +89,7 @@ export function PhotoGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                ...bouncySpring,
+                ...bouncy({ duration: 0.6, extraBounce: 0.15 }),
                 delay: imageIndex * 0.1,
               }}
               className={cn(
@@ -132,7 +132,7 @@ export function PhotoGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                ...bouncySpring,
+                ...bouncy({ duration: 0.6, extraBounce: 0.15 }),
                 delay: imageIndex * 0.1,
               }}
               className={cn(

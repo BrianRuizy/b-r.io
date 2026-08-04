@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'motion/react'
-import { smoothSpring } from '@/lib/transitions'
+import { bouncy } from '@/lib/transitions'
 import portraitImage from '@/images/photos/me.jpeg'
 
 export function Portrait() {
@@ -11,7 +11,7 @@ export function Portrait() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={smoothSpring}
+      transition={bouncy({ duration: 0.65, extraBounce: 0.15 })}
       className="max-w-xs px-2.5 lg:max-w-none"
     >
       <Image
