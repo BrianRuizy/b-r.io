@@ -1,4 +1,3 @@
-import { type Metadata } from 'next'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
 import {
@@ -8,6 +7,7 @@ import {
 } from '@/components/ContentCard'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { createPageMetadata } from '@/lib/metadata'
 
 function ToolsSection({
   children,
@@ -49,16 +49,20 @@ function Tool({
   )
 }
 
-export const metadata: Metadata = {
+const heroTitle =
+  'What I use every day to build, create, and stay productive.'
+
+export const metadata = createPageMetadata({
   title: 'Uses',
   description:
     'Gear and apps I use every day to build, create, and stay productive.',
-}
+  heroTitle,
+})
 
 export default function Uses() {
   return (
     <SimpleLayout
-      title="What I use every day to build, create, and stay productive."
+      title={heroTitle}
       intro="Gear and apps I actually own and enjoy using. Mostly tech. Links are affiliate where available, which means I may earn a commission if you buy something, at no extra cost to you."
     >
       <div className="space-y-20">

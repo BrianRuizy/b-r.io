@@ -25,6 +25,7 @@ import logoHines from '@/images/logos/hines.svg'
 import logoPeriship from '@/images/logos/periship.png'
 import { formatDate } from '@/lib/formatDate'
 import { getAllPosts, type Post } from '@/lib/posts'
+import { homeHeroTitle } from '@/lib/site-copy'
 
 function LatestPost({ post }: { post: Post }) {
   return (
@@ -194,7 +195,7 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Software engineer, designer, and part-time YouTuber.
+            {homeHeroTitle}
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
             Software Engineer at Hines, and currently building{' '}

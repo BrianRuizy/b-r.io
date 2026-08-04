@@ -203,6 +203,7 @@ function MobileNavigation({ className }: { className?: string }) {
               key="backdrop"
               aria-label="Close menu"
               onClose={closeMenu}
+              className="bg-transparent"
             />
 
             <motion.div

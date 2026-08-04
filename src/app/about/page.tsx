@@ -1,4 +1,3 @@
-import { type Metadata } from 'next'
 import Link from 'next/link'
 import { EnvelopeIcon } from '@heroicons/react/24/solid'
 import { cn } from '@/lib/utils'
@@ -12,6 +11,10 @@ import {
   YouTubeIcon,
 } from '@/components/SocialIcons'
 import { Portrait } from '@/app/about/Portrait'
+import { createPageMetadata } from '@/lib/metadata'
+
+const heroTitle =
+  "I'm Brian. I live in New York City, building and sharing the journey."
 
 function SocialLink({
   className,
@@ -37,11 +40,12 @@ function SocialLink({
   )
 }
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'About',
   description:
     'Brian Ruiz is a software engineer and creator based in New York City.',
-}
+  heroTitle,
+})
 
 export default function About() {
   return (
@@ -52,8 +56,7 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            I&apos;m Brian. I live in New York City, building and sharing the
-            journey.
+            {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>

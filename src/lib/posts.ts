@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import glob from 'fast-glob'
 
 import {
-  siteOpenGraphImages,
-  siteTwitterMetadata,
+  createCoverOpenGraphImages,
+  createOpenGraphImages,
+  createTwitterMetadata,
 } from '@/lib/metadata'
 
 export type PostType = 'article' | 'video'
@@ -34,7 +35,36 @@ export type Post = PostMeta & {
   href: string
 }
 
+export function getYouTubeThumbnailUrl(youtubeId: string) {
+  return `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
+}
+
+function getPostShareImage(post: PostMeta) {
+  if (post.coverImage) {
+    return { url: post.coverImage, size: undefined }
+  }
+
+  if (post.type === 'video') {
+    return {
+      url: getYouTubeThumbnailUrl(post.youtubeId),
+      size: { width: 1280, height: 720 },
+    }
+  }
+
+  return null
+}
+
 export function createPostMetadata(post: PostMeta): Metadata {
+  const shareImage = getPostShareImage(post)
+  const openGraphImages = shareImage
+    ? createCoverOpenGraphImages(
+        shareImage.url,
+        post.title,
+        shareImage.size,
+      )
+    : createOpenGraphImages(post.title)
+  const twitterImage = shareImage?.url
+
   return {
     title: post.title,
     description: post.description,
@@ -43,10 +73,10 @@ export function createPostMetadata(post: PostMeta): Metadata {
       description: post.description,
       type: 'article',
       publishedTime: post.date,
-      images: siteOpenGraphImages,
+      images: openGraphImages,
     },
     twitter: {
-      ...siteTwitterMetadata,
+      ...createTwitterMetadata(post.title, twitterImage),
       title: post.title,
       description: post.description,
     },

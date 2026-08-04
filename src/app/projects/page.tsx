@@ -1,4 +1,3 @@
-import { type Metadata } from 'next'
 import Image, { type ImageProps } from 'next/image'
 import { LinkIcon } from '@heroicons/react/24/outline'
 
@@ -8,6 +7,7 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { createPageMetadata } from '@/lib/metadata'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
@@ -74,15 +74,19 @@ const projects: Array<Project> = [
   },
 ]
 
-export const metadata: Metadata = {
+const heroTitle =
+  "Side projects, work apps, and things I've shipped along the way."
+
+export const metadata = createPageMetadata({
   title: 'Projects',
   description: "Apps, tools, and experiments I've built.",
-}
+  heroTitle,
+})
 
 export default function Projects() {
   return (
     <SimpleLayout
-      title="Side projects, work apps, and things I've shipped along the way."
+      title={heroTitle}
       intro={
         <>
           A mix of open-source experiments and products I&apos;ve built at work,
