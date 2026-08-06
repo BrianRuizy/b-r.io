@@ -32,6 +32,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/posts/cursor-xcode-agentic-build-loop',
+        destination: '/posts/cursor-xcode-loop',
+        permanent: true,
+      },
+      {
         source: '/gear',
         destination: '/uses',
         permanent: true,
@@ -48,7 +53,7 @@ const nextConfig = {
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: ['remark-gfm'],
+    remarkPlugins: ['remark-gfm', 'remark-code-filename'],
     rehypePlugins: ['rehype-prism-plus'],
   },
 })

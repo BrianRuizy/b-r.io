@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "bash .cursor/automations/xcode-ios-loop/hooks/on-save.sh",
+        "timeout": 20
+      }
+    ],
+    "stop": [
+      {
+        "command": "bash .cursor/automations/xcode-ios-loop/hooks/on-stop.sh",
+        "timeout": 15
+      }
+    ]
+  }
+}

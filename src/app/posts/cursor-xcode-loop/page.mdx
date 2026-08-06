@@ -1,0 +1,308 @@
+import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
+import { Button } from '@/components/Button'
+import { CopyPrompt } from '@/components/CopyPrompt'
+import { FileTree } from '@/components/FileTree'
+import coverImage from './cover.png'
+
+export const setupPrompt = `I've copied the xcode-ios-loop .cursor folder into this repo. Set up the Xcode build loop:
+
+- Make all .sh files executable.
+- If jq is missing, install it (brew install jq).
+- Run .cursor/automations/xcode-ios-loop/doctor.sh and report the output.
+- Run .cursor/automations/xcode-ios-loop/run.sh once to verify Xcode builds.
+- If doctor lists multiple schemes and picks the wrong one, write the correct scheme name to .cursor/automations/xcode-ios-loop/.scheme.
+
+When you edit Swift:
+- Hooks build and run in Xcode after Swift edits (debounced) and when your turn ends.
+- Read .build/xcodebuild-status.txt and .build/xcodebuild-issues.txt before claiming success.
+- Fix compile errors and let the hook rerun. Do not spam ./run.sh.`
+
+export const cursorLoopFileTree = {
+  name: '.cursor',
+  children: [
+    { name: 'hooks.json' },
+    {
+      name: 'automations',
+      children: [
+        {
+          name: 'xcode-ios-loop',
+          children: [
+            {
+              name: '.scheme',
+              comment: 'optional — auto-detected from project if empty',
+            },
+            { name: '.xcode-loop', comment: 'on | off' },
+            { name: 'run.sh', comment: 'orchestrates build + finish' },
+            { name: 'start.applescript' },
+            { name: 'finish.sh' },
+            {
+              name: 'hooks',
+              children: [
+                {
+                  name: 'shared.sh',
+                  comment: 'helpers (debounce, cooldown, toggles)',
+                },
+                { name: 'on-save.sh' },
+                { name: 'on-stop.sh' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'skills',
+      children: [
+        {
+          name: 'xcode-ios-loop',
+          children: [{ name: 'SKILL.md' }],
+        },
+      ],
+    },
+  ],
+}
+
+export const post = {
+  type: 'article',
+  author: 'Brian Ruiz',
+  date: '2026-08-06',
+  title: 'Building an agentic loop for Xcode in Cursor',
+  description:
+    'Building Beam in Cursor, I kept ping-ponging into Xcode: Run, copy errors, paste, repeat. I wired a loop so saves trigger builds, Xcode runs in the background, and the agent reads compiler output on its own.',
+  coverImage: coverImage.src,
+}
+
+export const metadata = createPostMetadata(post)
+
+export default (props) => <PostLayout post={post} {...props} />
+
+## The current problem of iOS development
+
+I've been building [Beam](https://trybeam.vercel.app), a project and task management app. The agent writes Swift fine; verifying it meant Xcode ping-pong (Run, copy errors, paste, repeat) and constant context switching between Cursor and Xcode. Tedious, low-value work.
+
+As a web developer, I'm used to closing that loop with runtime feedback: test output, a dev server log, a failing API call. iOS is different: the gate is **compile time**. Swift has to build before anything runs, and that feedback lives in **Xcode** (builds, simulators, compiler errors). Cursor can write the Swift; it cannot see whether it compiled until something bridges the two.
+
+## What is an agentic loop?
+
+An **agentic loop** is when the agent and the environment take turns automatically: the agent changes something, the environment runs and produces output, and the agent reads that output on the next turn. You wire it up once. After that, you're not the one copying errors or switching apps in between.
+
+On web, that feedback might be test output or a dev server log. For iOS, it's compile errors from Xcode. The agent edits Swift, a build runs, errors come back as text, the agent fixes and tries again.
+
+The phrase is still fairly new. In June 2026 <OgLink url="https://x.com/steipete/status/2063697162748260627" title="Peter Steinberger posted on X" />: "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents." Anthropic's Claude Code team wrote it up in <OgLink url="https://claude.com/blog/getting-started-with-loops" title="getting started with loops" />.
+
+The pattern is always the same: **act → observe → repeat**. Without that feedback channel, you are the loop.
+
+> **TL;DR:** I wired a loop: when Swift files are updated in Cursor, hooks trigger shell scripts that tell Xcode to build. When the build finishes, the agent reads build status and error logs, edits again, and builds again. Rinse and repeat. [Skip to the prompt →](#try-it)
+
+<div id="deep-dive" className="not-prose scroll-mt-28" aria-hidden="true" />
+
+## Deep dive
+
+Three layers: **hooks** decide when to build, **shell + AppleScript** drive Xcode, and **plain-text output** gives the agent something reliable to read. Below is a look at what each file does and how they work together.
+
+### Project layout
+
+<FileTree tree={cursorLoopFileTree} className="my-6" />
+
+After each run, the agent reads files in `.build/` at your repo root:
+
+| File | What the agent sees |
+|------|---------------------|
+| `xcodebuild-status.txt` | `succeeded YourScheme` or `failed YourScheme` |
+| `xcodebuild-issues.txt` | Errors like `ContentView.swift:42:0: error: …` |
+| `xcode-build-hook.log` | Hook activity when something misfires |
+
+### Cursor hooks
+
+Cursor calls these when Swift files are edited and when the agent stops. They decide whether to kick off a build.
+
+**`hooks.json`** wires those events to the shell scripts. `afterFileEdit` fires after a Swift edit; `stop` fires when the agent ends a turn.
+
+```json hooks.json
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "bash .cursor/automations/xcode-ios-loop/hooks/on-save.sh",
+        "timeout": 20
+      }
+    ],
+    "stop": [
+      {
+        "command": "bash .cursor/automations/xcode-ios-loop/hooks/on-stop.sh",
+        "timeout": 15
+      }
+    ]
+  }
+}
+```
+
+If you already have a `.cursor/hooks.json`, merge these two entries. Do not overwrite unrelated hooks.
+
+**`on-save.sh`** reads the edited file path from stdin via **jq** (JSON from Cursor hooks), ignores non-Swift files, debounces for six seconds, then calls `run.sh`. Only the last save in a burst wins, so ten quick agent edits become one build, not ten.
+
+```bash on-save.sh
+input=$(cat)
+file_path="$(echo "$input" | jq -r '.file_path // empty')"
+
+[[ -n "$file_path" && "$file_path" == *.swift ]] || exit 0
+
+# debounce: only the last save in a burst wins
+token="$$-$(date +%s%N)"
+echo "$token" > "$STAMP"
+
+nohup bash -c "
+  sleep \"${DEBOUNCE_SEC}\"
+  [[ \"\$(cat \"$STAMP\" 2>/dev/null)\" == \"$token\" ]] || exit 0
+  xcode_run_build \"afterFileEdit\"
+" >> "$HOOK_LOG" 2>&1 &
+```
+
+**`on-stop.sh`** is the safety net: always triggers a build when the agent finishes, bypassing debounce and cooldown. Even if saves were skipped or debounced away, you still get a run after each turn.
+
+```bash on-stop.sh
+xcode_log_hook "stop hook"
+xcode_run_build "stop"
+```
+
+### Build pipeline
+
+Once a hook fires, these scripts talk to Xcode and write results back for Cursor.
+
+**`shared.sh`** is imported by every hook and script. It reads `.xcode-loop` and `.scheme`, finds your `.xcworkspace` or `.xcodeproj` (up to four levels deep), auto-detects a scheme if `.scheme` is empty, enforces a cooldown between hook builds, skips duplicate watchers, and decides whether to call `run.sh`:
+
+```bash shared.sh
+xcode_run_build() {
+  if ! xcode_automation_enabled; then return 0; fi
+  if xcode_within_cooldown; then return 0; fi
+  if xcode_action_running; then return 0; fi
+
+  XCODE_BUILD_TRIGGER="$reason" "$AUTOMATION_DIR/run.sh" >> "$log" 2>&1 &
+}
+```
+
+**`run.sh`** is the orchestrator. Everything eventually flows through here. It opens Xcode if needed, kicks off the build, watches for completion, then calls `finish.sh`:
+
+```bash run.sh
+SCHEME="$(xcode_scheme)"
+PROJECT="$(xcode_find_project "$ROOT")"
+
+# open Xcode in background if workspace isn't loaded
+osascript "$TMP_START" "$SCHEME" "$XCODE_ACTION" "$XCODE_ACTIVATE"
+echo "running $SCHEME" > "$STATUS_FILE"
+
+# poll until build finishes, then write status + errors
+(
+  while (( SECONDS < deadline )); do
+    completed="$(osascript -e "... completed of last scheme action result ...")"
+    [[ "$completed" == "true" ]] && break
+    sleep 2
+  done
+  "$FINISH_SCRIPT" "$ISSUES_FILE" "$STATUS_FILE" "$SCHEME"
+) &
+```
+
+**`start.applescript`** tells Xcode to switch to your scheme and hit **Run**. Not headless `xcodebuild`, so signing, simulators, and provisioning behave like normal development.
+
+```applescript start.applescript
+tell application "Xcode"
+  tell active workspace document
+    repeat with s in schemes
+      if name of s is schemeName then
+        set active scheme to s
+        exit repeat
+      end if
+    end repeat
+
+    try
+      set lastResult to last scheme action result
+      if completed of lastResult is false then stop
+    end try
+
+    run
+  end tell
+end tell
+```
+
+By default Xcode stays in the background (`XCODE_ACTIVATE=0`) so Cursor keeps keyboard focus.
+
+**`finish.sh`** queries Xcode's last scheme action result and writes compiler errors in a format agents already understand, plus a one-line status file.
+
+```bash finish.sh
+while IFS=$'\t' read -r fp ln msg; do
+  echo "$fp:$ln:0: error: $msg" >> "$ISSUES_FILE"
+done < <(osascript <<'APPLESCRIPT'
+tell application "Xcode"
+  tell active workspace document
+    set r to last scheme action result
+    repeat with e in build errors of r
+      set out to out & (file path of e) & tab & (starting line number of e) & tab & (message of e) & linefeed
+    end repeat
+    return out
+  end tell
+end tell
+APPLESCRIPT
+)
+
+echo "succeeded $SCHEME" > "$STATUS_FILE"  # or "failed $SCHEME"
+```
+
+The agent workflow becomes: fix Swift → wait for hook build → read status and issues → repeat. No screenshots, no copy-paste from Xcode.
+
+### Agent instructions
+
+**`SKILL.md`** teaches the agent how to participate. Hooks handle *when* to build; the skill handles *how*: read `.build/xcodebuild-status.txt` and `.build/xcodebuild-issues.txt` before claiming success, fix compile errors, let hooks rerun, and do not spam `./run.sh` in a tight loop.
+
+Swift errors often cascade; the loop lets the agent chew through them turn by turn instead of you pasting each batch manually.
+
+### Safeguards
+
+The loop is aggressive by design. These guardrails keep it from melting your machine:
+
+| Guard | What it does |
+|-------|----------------|
+| `.xcode-loop` | Master on/off toggle |
+| Debounce | 6s quiet after last Swift save |
+| Cooldown | 30s between hook builds (`stop` bypasses) |
+| In-progress | Skips if a build watcher is already running |
+| Path filter | Ignores `.build/` and `DerivedData/` |
+
+Toggle the loop anytime by editing `.cursor/automations/xcode-ios-loop/.xcode-loop` (one line: `on` or `off`).
+
+Two settings I keep on while this runs: **Xcode build notifications** (so you know when a build finishes without switching apps) and **Cursor's prompt finished sound** (so you know when the agent is done and Xcode is about to build again). Small things, but they make the loop feel much less blind.
+
+<div id="try-it" className="not-prose scroll-mt-28" aria-hidden="true" />
+
+## Try it on your project
+
+You need **Xcode** open, **Cursor** with <OgLink url="https://cursor.com/docs/agent/hooks" title="hooks" />, and an iOS project. The starter zip is ~10 files.
+
+### Step 1: Copy the files
+
+<div className="not-prose my-6">
+  <Button href="/downloads/xcode-ios-loop.zip">
+    Download the iOS loop starter
+  </Button>
+</div>
+
+Unzip the download and copy the `.cursor` folder into the root of your Xcode project. If you already have a `.cursor/hooks.json`, merge the `afterFileEdit` and `stop` entries. Do not overwrite unrelated hooks.
+
+### Step 2: Prompt Cursor
+
+Open your `.xcodeproj` or `.xcworkspace` in **Xcode** and leave it running. Then open the same project in **Cursor** and paste:
+
+<div id="prompt" className="not-prose scroll-mt-28" aria-hidden="true" />
+
+<CopyPrompt text={setupPrompt} />
+
+The agent wires everything up and runs a sanity check. Scheme detection is automatic — doctor lists what's available if you need to override. You write in Cursor, Xcode builds, the agent reads errors and tries again.
+
+## Going further
+
+The zip is deliberately minimal: one scheme at a time, no path inference, no runtime log capture. For my app I extended the same pattern for macOS + iOS: scheme selection from file paths, focus pins for shared code, and simulator console output after a successful run.
+
+If you only ship iOS, the starter is enough. If you add a macOS target later, the architecture scales; you mainly need scheme selection logic for shared folders.
+
+This was a fun one to build, and I use it daily on Beam. Maybe Xcode or Cursor ship something like this as a built-in setting someday. Apple is investing in agentic development, but not at the pace AI tools are moving. Worth wiring up if you're building iOS in Cursor today. Hope you find it helpful!

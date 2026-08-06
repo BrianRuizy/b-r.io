@@ -19,6 +19,8 @@ const LANGUAGE_LABELS: Record<string, string> = {
   markdown: 'Markdown',
   md: 'Markdown',
   mdx: 'MDX',
+  applescript: 'AppleScript',
+  swift: 'Swift',
 }
 
 function formatLanguage(lang: string) {
@@ -40,11 +42,36 @@ function languageFromClassName(className?: string) {
   return formatLanguage(lang)
 }
 
-function languageFromChildren(children: ReactNode) {
+function codeChildProps(children: ReactNode) {
   const child = Children.toArray(children)[0]
-  if (!isValidElement<{ className?: string }>(child)) return null
+  if (!isValidElement(child)) return null
+  return child.props as Record<string, unknown>
+}
 
-  return languageFromClassName(child.props.className)
+function languageFromChildren(children: ReactNode) {
+  const props = codeChildProps(children)
+  if (!props) return null
+
+  return languageFromClassName(props.className as string | undefined)
+}
+
+function filenameFromChildren(children: ReactNode) {
+  const props = codeChildProps(children)
+  if (!props) return null
+
+  const filename =
+    props['data-filename'] ?? props.dataFilename ?? props['data-title']
+
+  return typeof filename === 'string' && filename.trim() ? filename : null
+}
+
+function labelFromPreProps(props: Record<string, unknown>) {
+  const filename =
+    props['data-filename'] ?? props.dataFilename ?? props['data-title']
+
+  if (typeof filename === 'string' && filename.trim()) return filename
+
+  return null
 }
 
 export function CodePre({
@@ -52,10 +79,13 @@ export function CodePre({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'pre'>) {
-  const language =
-    languageFromClassName(className) ?? languageFromChildren(children)
+  const label =
+    labelFromPreProps(props) ??
+    filenameFromChildren(children) ??
+    languageFromClassName(className) ??
+    languageFromChildren(children)
 
-  if (!language) {
+  if (!label) {
     return (
       <pre className={className} {...props}>
         {children}
@@ -66,7 +96,7 @@ export function CodePre({
   return (
     <pre className={cn(className)} {...props}>
       <span className="code-block-label font-sans text-sm font-semibold text-white/90">
-        {language}
+        {label}
       </span>
       {children}
     </pre>
