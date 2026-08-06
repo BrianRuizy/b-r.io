@@ -69,7 +69,7 @@ export const post = {
   date: '2026-08-06',
   title: 'Building an agentic loop for Xcode in Cursor',
   description:
-    'Building Beam in Cursor, I kept ping-ponging into Xcode: Run, copy errors, paste, repeat. I wired a loop so saves trigger builds, Xcode runs in the background, and the agent reads compiler output on its own.',
+    'Your agent can write Swift, but it can\'t see if it compiled. I wired Cursor and Xcode into a loop so builds run in the background and errors go straight to the agent. Free starter kit inside.',
   coverImage: coverImage.src,
 }
 
@@ -79,7 +79,9 @@ export default (props) => <PostLayout post={post} {...props} />
 
 ## The current problem of iOS development
 
-I've been building [Beam](https://trybeam.vercel.app), a project and task management app. The agent writes Swift fine; verifying it meant Xcode ping-pong (Run, copy errors, paste, repeat) and constant context switching between Cursor and Xcode. Tedious, low-value work.
+I've been developing my own iOS app, [Beam](https://trybeam.vercel.app), a project and task manager, in **Cursor**, my editor of choice. The agent writes Swift fine; verifying it meant constantly switching between Cursor and **Xcode**: Run, copy errors, paste, repeat. Tedious, low-value work.
+
+That's the manual back-and-forth this post is about fixing. Here's how the **agentic loop** I wired up while building it works, plus a starter kit so you can use it on your own iOS project too.
 
 As a web developer, I'm used to closing that loop with runtime feedback: test output, a dev server log, a failing API call. iOS is different: the gate is **compile time**. Swift has to build before anything runs, and that feedback lives in **Xcode** (builds, simulators, compiler errors). Cursor can write the Swift; it cannot see whether it compiled until something bridges the two.
 
