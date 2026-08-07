@@ -101,11 +101,11 @@ The pattern is always the same: **act → observe → repeat**. Without that fee
 
 Three layers: **hooks** decide when to build, **shell + AppleScript** drive Xcode, and **plain-text output** gives the agent something reliable to read. Below is a look at what each file does and how they work together.
 
-### Project layout
+### Starter kit layout
 
 <FileTree tree={cursorLoopFileTree} className="my-6" />
 
-After each run, the agent reads files in `.build/` at your repo root:
+After each run, the agent also reads generated files in `.build/` at your repo root:
 
 | File | What the agent sees |
 |------|---------------------|
