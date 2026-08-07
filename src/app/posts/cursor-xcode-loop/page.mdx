@@ -83,7 +83,7 @@ I've been developing my own iOS app, [Beam](https://trybeam.vercel.app), a proje
 
 As a web developer, I'm used to closing that loop with runtime feedback: test output, a dev server log, a failing API call. iOS is different. The gate is **compile time**: Swift has to build before anything runs, and that feedback lives in **Xcode** (builds, simulators, compiler errors). Cursor can write the Swift; it cannot see whether it compiled.
 
-I couldn't believe there still wasn't a built-in setting for this. So I wired up an **agentic loop** while building the app. Here's how it works, plus a starter kit so you can use it on your own iOS project too.
+I couldn't believe there still wasn't a built-in setting for this. Recent Xcode betas actually have one (<OgLink url="https://developer.apple.com/documentation/xcode/giving-external-agents-access-to-xcode" title="giving external agents access to Xcode" />): Intelligence → allow external agents via MCP. But that's the agent calling Xcode tools when you ask—not a closed loop that builds and feeds errors back on its own. So I wired up my own **agentic loop** instead. Here's how it works, plus a starter kit for your iOS project.
 
 ## What is an agentic loop?
 
@@ -307,4 +307,4 @@ The zip is deliberately minimal: one scheme at a time, no path inference, no run
 
 If you only ship iOS, the starter is enough. If you add a macOS target later, the architecture scales; you mainly need scheme selection logic for shared folders.
 
-This was a fun one to build, and I use it daily on Beam. Maybe Xcode or Cursor ship something like this as a built-in setting someday. Apple is investing in agentic development, but not at the pace AI tools are moving. Worth wiring up if you're building iOS in Cursor today. Hope you find it helpful!
+This was a fun one to build, and I use it daily on Beam. Hope you find it helpful!
