@@ -1,4 +1,8 @@
-import { Children, isValidElement, type ReactNode } from 'react'
+'use client'
+
+import { Children, isValidElement, useMemo, type ReactNode } from 'react'
+
+import { CopyCodeButton } from '@/components/CopyCodeButton'
 import { cn } from '@/lib/utils'
 
 const LANGUAGE_LABELS: Record<string, string> = {
@@ -74,6 +78,16 @@ function labelFromPreProps(props: Record<string, unknown>) {
   return null
 }
 
+function extractText(node: ReactNode): string {
+  if (typeof node === 'string') return node
+  if (typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(extractText).join('')
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return extractText(node.props.children)
+  }
+  return ''
+}
+
 export function CodePre({
   children,
   className,
@@ -85,6 +99,8 @@ export function CodePre({
     languageFromClassName(className) ??
     languageFromChildren(children)
 
+  const copyText = useMemo(() => extractText(children).trimEnd(), [children])
+
   if (!label) {
     return (
       <pre className={className} {...props}>
@@ -94,11 +110,17 @@ export function CodePre({
   }
 
   return (
-    <pre className={cn(className)} {...props}>
-      <span className="code-block-label font-sans text-sm font-semibold text-white/90">
-        {label}
-      </span>
-      {children}
-    </pre>
+    <div className="relative">
+      <CopyCodeButton
+        text={copyText}
+        className="absolute top-3 right-3 z-10 sm:top-5 sm:right-5"
+      />
+      <pre className={cn(className)} {...props}>
+        <span className="code-block-label font-sans text-sm font-semibold text-white/90">
+          {label}
+        </span>
+        {children}
+      </pre>
+    </div>
   )
 }

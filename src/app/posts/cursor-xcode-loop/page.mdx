@@ -81,13 +81,13 @@ export default (props) => <PostLayout post={post} {...props} />
 
 I've been developing my own iOS app, [Beam](https://trybeam.vercel.app), a project and task manager, in **Cursor**, my editor of choice. The agent writes Swift fine; verifying it meant constantly switching between Cursor and **Xcode**: Run, copy errors, paste, repeat. Tedious, and the context-switching made my dev workflow more time consuming.
 
-As a web developer, I'm used to closing that loop with runtime feedback: test output, a dev server log, a failing API call. iOS is different. The gate is **compile time**: Swift has to build before anything runs, and that feedback lives in **Xcode** (builds, simulators, compiler errors). Cursor can write the Swift; it cannot see whether it compiled.
+As a web developer, I'm used to closing that loop with runtime feedback: test output, a dev server log, a failing API call. iOS is different. The gate is **compile time**: Swift has to build before anything runs, and that feedback lives in Xcode (builds, simulators, compiler errors). Cursor can write the Swift; it cannot see whether it compiled.
 
 I couldn't believe there still wasn't a built-in setting for this. Recent Xcode betas actually have one (<OgLink url="https://developer.apple.com/documentation/xcode/giving-external-agents-access-to-xcode" title="giving external agents access to Xcode" />): Intelligence → allow external agents via MCP. But that's the agent calling Xcode tools when you ask—not a closed loop that builds and feeds errors back on its own. So I wired up my own **agentic loop** instead. Here's how it works, plus a starter kit for your iOS project.
 
 ## What is an agentic loop?
 
-An **agentic loop** is when the agent and the environment take turns automatically: the agent changes something, the environment runs and produces output, and the agent reads that output on the next turn. You wire it up once. After that, you're not the one copying errors or switching apps in between.
+An agentic loop is when the agent and the environment take turns automatically: the agent changes something, the environment runs and produces output, and the agent reads that output on the next turn. You wire it up once. After that, you're not the one copying errors or switching apps in between.
 
 The phrase is still fairly new. In June 2026 <OgLink url="https://x.com/steipete/status/2063697162748260627" title="Peter Steinberger posted on X" />: "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents." Anthropic's Claude Code team wrote it up in <OgLink url="https://claude.com/blog/getting-started-with-loops" title="getting started with loops" />.
 
