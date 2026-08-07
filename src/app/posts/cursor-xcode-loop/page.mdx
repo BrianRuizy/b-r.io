@@ -43,7 +43,7 @@ export const cursorLoopFileTree = {
                   name: 'shared.sh',
                   comment: 'helpers (debounce, cooldown, toggles)',
                 },
-                { name: 'on-save.sh' },
+                { name: 'on-save.sh', comment: 'afterFileEdit hook' },
                 { name: 'on-stop.sh' },
               ],
             },
@@ -88,8 +88,6 @@ I couldn't believe there still wasn't a built-in setting for this. Recent Xcode 
 ## What is an agentic loop?
 
 An **agentic loop** is when the agent and the environment take turns automatically: the agent changes something, the environment runs and produces output, and the agent reads that output on the next turn. You wire it up once. After that, you're not the one copying errors or switching apps in between.
-
-On web, that feedback might be test output or a dev server log. For iOS, it's compile errors from Xcode. The agent edits Swift, a build runs, errors come back as text, the agent fixes and tries again.
 
 The phrase is still fairly new. In June 2026 <OgLink url="https://x.com/steipete/status/2063697162748260627" title="Peter Steinberger posted on X" />: "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents." Anthropic's Claude Code team wrote it up in <OgLink url="https://claude.com/blog/getting-started-with-loops" title="getting started with loops" />.
 
@@ -143,15 +141,15 @@ Cursor calls these when Swift files are edited and when the agent stops. They de
 
 If you already have a `.cursor/hooks.json`, merge these two entries. Do not overwrite unrelated hooks.
 
-**`on-save.sh`** reads the edited file path from stdin via **jq** (JSON from Cursor hooks), ignores non-Swift files, debounces for six seconds, then calls `run.sh`. Only the last save in a burst wins, so ten quick agent edits become one build, not ten.
+**`on-save.sh`** (wired to `afterFileEdit`) reads the edited file path from stdin via **jq**, ignores non-Swift files and build artifacts, debounces for six seconds, then calls `run.sh`. Only the last edit in a burst wins, so ten quick agent edits become one build, not ten.
 
 ```bash on-save.sh
 input=$(cat)
 file_path="$(echo "$input" | jq -r '.file_path // empty')"
 
 [[ -n "$file_path" && "$file_path" == *.swift ]] || exit 0
+case "$file_path" in */.build/*|*/DerivedData/*) exit 0 ;; esac
 
-# debounce: only the last save in a burst wins
 token="$$-$(date +%s%N)"
 echo "$token" > "$STAMP"
 
@@ -177,9 +175,10 @@ Once a hook fires, these scripts talk to Xcode and write results back for Cursor
 
 ```bash shared.sh
 xcode_run_build() {
-  if ! xcode_automation_enabled; then return 0; fi
+  [[ "$reason" == "stop" ]] && XCODE_FORCE_BUILD=1  # bypass cooldown
+
   if xcode_within_cooldown; then return 0; fi
-  if xcode_action_running; then return 0; fi
+  if xcode_action_running && [[ "${XCODE_FORCE_BUILD:-}" != "1" ]]; then return 0; fi
 
   XCODE_BUILD_TRIGGER="$reason" "$AUTOMATION_DIR/run.sh" >> "$log" 2>&1 &
 }
@@ -188,18 +187,18 @@ xcode_run_build() {
 **`run.sh`** is the orchestrator. Everything eventually flows through here. It opens Xcode if needed, kicks off the build, watches for completion, then calls `finish.sh`:
 
 ```bash run.sh
-SCHEME="$(xcode_scheme)"
-PROJECT="$(xcode_find_project "$ROOT")"
-
-# open Xcode in background if workspace isn't loaded
 osascript "$TMP_START" "$SCHEME" "$XCODE_ACTION" "$XCODE_ACTIVATE"
 echo "running $SCHEME" > "$STATUS_FILE"
 
-# poll until build finishes, then write status + errors
+# poll Xcode for completed / failed / errors; finalize on device Run
+# when status stays "running" with 0 errors (~45s stable)
 (
   while (( SECONDS < deadline )); do
-    completed="$(osascript -e "... completed of last scheme action result ...")"
+    snapshot="$(xcode_action_snapshot)"  # completed, status, err_count
     [[ "$completed" == "true" ]] && break
+    [[ "$build_status" == "failed" || "$err_count" != "0" ]] && break
+    # device Run: break when status=running, 0 errors, stable ~10s (after 45s min)
+    [[ "$device_run_stable" == "1" ]] && break
     sleep 2
   done
   "$FINISH_SCRIPT" "$ISSUES_FILE" "$STATUS_FILE" "$SCHEME"
@@ -211,18 +210,8 @@ echo "running $SCHEME" > "$STATUS_FILE"
 ```applescript start.applescript
 tell application "Xcode"
   tell active workspace document
-    repeat with s in schemes
-      if name of s is schemeName then
-        set active scheme to s
-        exit repeat
-      end if
-    end repeat
-
-    try
-      set lastResult to last scheme action result
-      if completed of lastResult is false then stop
-    end try
-
+    -- switch scheme, stop any in-flight Run, then build or run
+    if completed of last scheme action result is false then stop
     run
   end tell
 end tell
@@ -233,22 +222,22 @@ By default Xcode stays in the background (`XCODE_ACTIVATE=0`) so Cursor keeps ke
 **`finish.sh`** queries Xcode's last scheme action result and writes compiler errors in a format agents already understand, plus a one-line status file.
 
 ```bash finish.sh
+# write errors as file:line: error: message
 while IFS=$'\t' read -r fp ln msg; do
   echo "$fp:$ln:0: error: $msg" >> "$ISSUES_FILE"
-done < <(osascript <<'APPLESCRIPT'
-tell application "Xcode"
-  tell active workspace document
-    set r to last scheme action result
-    repeat with e in build errors of r
-      set out to out & (file path of e) & tab & (starting line number of e) & tab & (message of e) & linefeed
-    end repeat
-    return out
-  end tell
-end tell
-APPLESCRIPT
-)
+done < <(osascript ...)  # reads build errors from Xcode
 
-echo "succeeded $SCHEME" > "$STATUS_FILE"  # or "failed $SCHEME"
+xcode_build_succeeded() {
+  [[ "$build_status" == "succeeded" ]] && return 0
+  # device Run: status stays "running" while the app is open
+  [[ "${XCODE_ACTION:-run}" == "run" && "$build_status" == "running" && "${err_count:-1}" == "0" ]]
+}
+
+if xcode_build_succeeded; then
+  echo "succeeded $SCHEME" > "$STATUS_FILE"
+else
+  echo "failed $SCHEME" > "$STATUS_FILE"
+fi
 ```
 
 The agent workflow becomes: fix Swift → wait for hook build → read status and issues → repeat. No screenshots, no copy-paste from Xcode.
@@ -270,8 +259,15 @@ The loop is aggressive by design. These guardrails keep it from melting your mac
 | Cooldown | 30s between hook builds (`stop` bypasses) |
 | In-progress | Skips if a build watcher is already running |
 | Path filter | Ignores `.build/` and `DerivedData/` |
+| Device Run | Finalizes when Xcode stays `running` with 0 errors (~55s) |
 
 Toggle the loop anytime by editing `.cursor/automations/xcode-ios-loop/.xcode-loop` (one line: `on` or `off`).
+
+### Troubleshooting
+
+- **Status stuck on `running`?** On a physical device, Run can take ~60s to finalize. Wait, then re-read `.build/xcodebuild-status.txt`.
+- **Already have `hooks.json`?** Merge the `afterFileEdit` and `stop` entries. Do not overwrite unrelated hooks.
+- **Wrong scheme?** Run `doctor.sh` and write the correct name to `.cursor/automations/xcode-ios-loop/.scheme`.
 
 Two settings I keep on while this runs: **Xcode build notifications** (so you know when a build finishes without switching apps) and **Cursor's prompt finished sound** (so you know when the agent is done and Xcode is about to build again). Small things, but they make the loop feel much less blind.
 
