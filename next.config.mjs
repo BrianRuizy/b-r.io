@@ -32,11 +32,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/posts/cursor-xcode-agentic-build-loop',
-        destination: '/posts/cursor-xcode-loop',
-        permanent: true,
-      },
-      {
         source: '/gear',
         destination: '/uses',
         permanent: true,
