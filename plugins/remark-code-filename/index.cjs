@@ -7,6 +7,8 @@ function walk(node, visitor) {
   }
 }
 
+const META_FLAGS = new Set(['showlinenumbers'])
+
 function parseFilename(meta) {
   const trimmed = meta.trim()
   if (!trimmed) return null
@@ -19,7 +21,18 @@ function parseFilename(meta) {
   const quoted = trimmed.match(/^["']([^"']+)["']$/)
   if (quoted) return quoted[1]
 
-  if (/^[\w./-]+$/.test(trimmed)) return trimmed
+  const leftover = trimmed
+    .replace(/\{[^}]*\}/g, '')
+    .split(/\s+/)
+    .filter((token) => token && !META_FLAGS.has(token.toLowerCase()))
+    .join(' ')
+
+  if (!leftover) return null
+
+  const leftoverQuoted = leftover.match(/^["']([^"']+)["']$/)
+  if (leftoverQuoted) return leftoverQuoted[1]
+
+  if (/^[\w./-]+$/.test(leftover)) return leftover
 
   return null
 }

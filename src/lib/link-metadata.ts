@@ -4,20 +4,7 @@ import { cache } from 'react'
 export type LinkMetadata = {
   title: string | null
   image: string | null
-  favicon: string
-}
-
-function getHostname(url: string) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '')
-  } catch {
-    return url
-  }
-}
-
-function faviconFromDomain(url: string) {
-  const hostname = getHostname(url)
-  return `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`
+  favicon: string | null
 }
 
 function resolveUrl(value: string | undefined, base: string) {
@@ -42,29 +29,55 @@ function pickIcon($: cheerio.CheerioAPI, pageUrl: string) {
     if (resolved) return resolved
   }
 
-  return faviconFromDomain(pageUrl)
+  return null
 }
+
+const fetchHeaders = {
+  'User-Agent':
+    'Mozilla/5.0 (compatible; BrianRuizBot/1.0; +https://brianruiz.co)',
+  Accept: 'text/html,application/xhtml+xml',
+}
+
+const getOriginFavicon = cache(async (origin: string) => {
+  try {
+    const iconUrl = `${origin}/favicon.ico`
+    const response = await fetch(iconUrl, {
+      headers: {
+        ...fetchHeaders,
+        Accept: 'image/*,*/*',
+      },
+      next: { revalidate: 60 * 60 * 24 },
+      signal: AbortSignal.timeout(5000),
+    })
+
+    if (!response.ok) return null
+
+    const type = response.headers.get('content-type') ?? ''
+    if (!type.startsWith('image/')) return null
+
+    return response.url || iconUrl
+  } catch {
+    return null
+  }
+})
 
 async function fetchLinkMetadata(url: string): Promise<LinkMetadata> {
   const fallback: LinkMetadata = {
     title: null,
     image: null,
-    favicon: faviconFromDomain(url),
+    favicon: null,
   }
 
   try {
     const response = await fetch(url, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (compatible; BrianRuizBot/1.0; +https://brianruiz.co)',
-        Accept: 'text/html,application/xhtml+xml',
-      },
+      headers: fetchHeaders,
       next: { revalidate: 60 * 60 * 24 },
       signal: AbortSignal.timeout(8000),
     })
 
     if (!response.ok) return fallback
 
+    const pageUrl = response.url || url
     const html = await response.text()
     const $ = cheerio.load(html)
 
@@ -77,13 +90,17 @@ async function fetchLinkMetadata(url: string): Promise<LinkMetadata> {
     const image = resolveUrl(
       $('meta[property="og:image"]').attr('content') ||
         $('meta[name="twitter:image"]').attr('content'),
-      url,
+      pageUrl,
     )
+
+    const favicon =
+      pickIcon($, pageUrl) ??
+      (await getOriginFavicon(new URL(pageUrl).origin))
 
     return {
       title,
       image,
-      favicon: pickIcon($, url),
+      favicon,
     }
   } catch {
     return fallback

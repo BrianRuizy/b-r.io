@@ -5,7 +5,6 @@ import { CheckIcon, Square2StackIcon } from '@heroicons/react/24/outline'
 import { motion, useReducedMotion } from 'motion/react'
 
 import { Button } from '@/components/Button'
-import { cn } from '@/lib/utils'
 import { motionTransition, symbolReplace } from '@/lib/transitions'
 
 type CopyCodeButtonProps = {
@@ -58,10 +57,10 @@ export function CopyCodeButton({
   let visible = { opacity: 1, scale: 1 }
 
   return (
-    <span className={cn('dark', className)}>
+    <span className={className}>
       <Button
         type="button"
-        variant="secondary"
+        variant="ghost"
         onClick={copy}
         aria-label={showCheck ? 'Copied' : label}
         className="size-9 p-0 text-muted-foreground"
@@ -94,4 +93,4 @@ export function CopyCodeButton({
 }
 
 export const codeBlockSurfaceClass =
-  'overflow-x-auto rounded-3xl border border-[var(--tw-prose-pre-border)] bg-[var(--tw-prose-pre-bg)] text-[var(--tw-prose-pre-code)]'
+  'overflow-x-auto rounded-3xl bg-[var(--tw-prose-pre-bg)] text-[var(--tw-prose-pre-code)]'

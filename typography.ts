@@ -43,10 +43,9 @@ export default {
           '--tw-prose-quote-borders': 'var(--border)',
           '--tw-prose-captions': 'var(--muted-foreground)',
           '--tw-prose-code': 'var(--foreground)',
-          '--tw-prose-code-bg':
-            'color-mix(in oklab, var(--muted-foreground) 15%, transparent)',
-          '--tw-prose-pre-code': 'var(--color-neutral-100)',
-          '--tw-prose-pre-bg': 'var(--foreground)',
+          '--tw-prose-code-bg': 'var(--muted)',
+          '--tw-prose-pre-code': 'var(--foreground)',
+          '--tw-prose-pre-bg': 'var(--muted)',
           '--tw-prose-pre-border': 'transparent',
           '--tw-prose-th-borders': 'var(--border)',
           '--tw-prose-td-borders': 'var(--border)',
@@ -65,13 +64,10 @@ export default {
           '--tw-prose-invert-quote-borders': 'var(--muted-foreground)',
           '--tw-prose-invert-captions': 'var(--muted-foreground)',
           '--tw-prose-invert-code': 'var(--foreground)',
-          '--tw-prose-invert-code-bg':
-            'color-mix(in oklab, var(--foreground) 5%, transparent)',
+          '--tw-prose-invert-code-bg': 'var(--muted)',
           '--tw-prose-invert-pre-code': 'var(--color-neutral-100)',
-          '--tw-prose-invert-pre-bg':
-            'color-mix(in oklab, black 40%, transparent)',
-          '--tw-prose-invert-pre-border':
-            'color-mix(in oklab, var(--foreground) 10%, transparent)',
+          '--tw-prose-invert-pre-bg': 'var(--muted)',
+          '--tw-prose-invert-pre-border': 'transparent',
           '--tw-prose-invert-th-borders': 'var(--border)',
           '--tw-prose-invert-td-borders': 'var(--border)',
 
@@ -234,15 +230,13 @@ export default {
             fontWeight: theme('fontWeight.medium'),
             backgroundColor: 'var(--tw-prose-pre-bg)',
             borderRadius: theme('borderRadius.3xl'),
-            paddingTop: theme('spacing.5'),
-            paddingBottom: theme('spacing.5'),
-            paddingRight: theme('spacing.4'),
-            paddingLeft: theme('spacing.4'),
+            paddingTop: theme('spacing.3'),
+            paddingBottom: theme('spacing.3'),
+            paddingRight: theme('spacing.3'),
+            paddingLeft: theme('spacing.3'),
             overflowX: 'auto',
-            border: '1px solid',
-            borderColor: 'var(--tw-prose-pre-border)',
             '@variant sm': {
-              padding: theme('spacing.8'),
+              padding: theme('spacing.4'),
             },
           },
           'pre code': {

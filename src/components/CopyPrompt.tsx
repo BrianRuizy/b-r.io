@@ -18,12 +18,12 @@ export function CopyPrompt({ text, className }: CopyPromptProps) {
       <CopyCodeButton
         text={text}
         label="Copy prompt"
-        className="absolute top-3 right-3 sm:top-5 sm:right-5"
+        className="absolute top-2 right-2 sm:top-3 sm:right-3"
       />
       <pre
         className={cn(
           codeBlockSurfaceClass,
-          'p-5 text-sm leading-6 font-medium sm:p-8',
+          'p-3 text-sm leading-6 font-medium sm:p-4',
         )}
       >
         <code className="font-[inherit] text-[inherit]">{text}</code>

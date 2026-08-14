@@ -59,23 +59,29 @@ function languageFromChildren(children: ReactNode) {
   return languageFromClassName(props.className as string | undefined)
 }
 
+function displayableFilename(value: unknown) {
+  if (typeof value !== 'string') return null
+
+  const filename = value.trim()
+  if (!filename) return null
+  if (filename.toLowerCase() === 'showlinenumbers') return null
+
+  return filename
+}
+
 function filenameFromChildren(children: ReactNode) {
   const props = codeChildProps(children)
   if (!props) return null
 
-  const filename =
-    props['data-filename'] ?? props.dataFilename ?? props['data-title']
-
-  return typeof filename === 'string' && filename.trim() ? filename : null
+  return displayableFilename(
+    props['data-filename'] ?? props.dataFilename ?? props['data-title'],
+  )
 }
 
 function labelFromPreProps(props: Record<string, unknown>) {
-  const filename =
-    props['data-filename'] ?? props.dataFilename ?? props['data-title']
-
-  if (typeof filename === 'string' && filename.trim()) return filename
-
-  return null
+  return displayableFilename(
+    props['data-filename'] ?? props.dataFilename ?? props['data-title'],
+  )
 }
 
 function extractText(node: ReactNode): string {
@@ -113,10 +119,10 @@ export function CodePre({
     <div className="relative">
       <CopyCodeButton
         text={copyText}
-        className="absolute top-3 right-3 z-10 sm:top-5 sm:right-5"
+        className="absolute top-2 right-2 z-10 sm:top-3 sm:right-3"
       />
       <pre className={cn(className)} {...props}>
-        <span className="code-block-label font-sans text-sm font-semibold text-white/90">
+        <span className="code-block-label font-sans text-sm font-medium text-foreground">
           {label}
         </span>
         {children}
