@@ -93,4 +93,4 @@ export function CopyCodeButton({
 }
 
 export const codeBlockSurfaceClass =
-  'overflow-x-auto rounded-3xl bg-[var(--tw-prose-pre-bg)] text-[var(--tw-prose-pre-code)]'
+  'overflow-x-auto rounded-3xl border border-border bg-background text-[var(--tw-prose-pre-code)]'
