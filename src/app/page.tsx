@@ -200,7 +200,7 @@ export default async function Home() {
           <p className="mt-6 text-base text-muted-foreground">
             Software Engineer at Hines, and currently building{' '}
             <Link
-              href="https://trybeam.vercel.app"
+              href="https://joinbeam.app"
               className="link-underline inline-flex items-center gap-1"
             >
               <span
