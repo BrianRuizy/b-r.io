@@ -19,7 +19,7 @@ import {
   YouTubeIcon,
 } from '@/components/SocialIcons'
 import { PhotoGallery } from '@/components/PhotoGallery'
-import logoBeamIcon from '@/images/logos/beam-icon-borderless.png'
+import logoBeamIcon from '@/images/logos/beam-icon-borderless.svg'
 import logoCams from '@/images/logos/cams-white.png'
 import logoHines from '@/images/logos/hines.svg'
 import logoPeriship from '@/images/logos/periship.png'
