@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
 import { DialogOverlay } from '@/components/Dialog'
-import avatarImage from '@/images/brian-avatar.webp'
+import avatarImage from '@/images/brian-avatar.jpg'
 import {
   bouncy,
   bouncySpring,
