@@ -103,11 +103,10 @@ export default function Uses() {
             workspace.
           </Tool>
           <Tool
-            title="Mode Designs Envoy keyboard"
-            href="https://modedesigns.com/pages/envoy"
+            title="Apple Magic Keyboard with Touch ID"
+            href="https://amzn.to/4hqtEeo"
           >
-            Probably my end-game keyboard. Logitech MX Master 3S and an Apple
-            Magic Trackpad round out the desk.
+            I moved away from mechanical keyboards in favor of something wireless and simple. Touch ID is handy, too. I pair it with a Logitech MX Master 3S.
           </Tool>
           <Tool title="Shure SM7dB" href="https://amzn.to/4w5vRRS">
             This microphone is perfect for podcasting and streaming. Get clear,
@@ -145,7 +144,7 @@ export default function Uses() {
         <ToolsSection title="Apps">
           <Tool
             title="Bevel"
-            href="https://apps.apple.com/us/app/bevel-ai-health-coach/id6456176249"
+            href="https://join.bevel.health/U444GM"
           >
             I use this for various health metrics to extend Apple Health,
             including fitness tracking, food logging, and sleep.
