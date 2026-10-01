@@ -43,7 +43,8 @@ import hueBulbDark from '@/images/uses/dark/hue-bulb.png'
 import lgOled from '@/images/uses/lg-oled.png'
 import lgOledDark from '@/images/uses/dark/lg-oled.png'
 import appBevel from '@/images/uses/app-bevel.png'
-import appCodex from '@/images/uses/app-codex.png'
+import appCursor from '@/images/uses/app-cursor.png'
+import appCursorDark from '@/images/uses/dark/app-cursor.png'
 import appFigma from '@/images/uses/app-figma.png'
 import appFinalCut from '@/images/uses/app-finalcut.png'
 import appNotion from '@/images/uses/app-notion.png'
@@ -242,11 +243,12 @@ export const toolGroups: ToolGroup[] = [
         rotate: 0,
       },
       {
-        title: 'Codex',
-        href: 'https://openai.com/codex',
+        title: 'Cursor',
+        href: 'https://www.cursor.com/',
         description:
-          'My primary coding agent for software development and AI-assisted coding.',
-        image: appCodex,
+          'My primary IDE for software development and AI-assisted coding.',
+        image: appCursor,
+        imageDark: appCursorDark,
         kind: 'app',
         rotate: 0,
       },

@@ -41,8 +41,16 @@ export function Sticker({
             src={src}
             alt={alt}
             sizes={imageSizes}
-            className="size-full object-cover"
+            className={cn('size-full object-cover', srcDark && 'dark:hidden')}
           />
+          {srcDark ? (
+            <Image
+              src={srcDark}
+              alt={alt}
+              sizes={imageSizes}
+              className="hidden size-full object-cover dark:block"
+            />
+          ) : null}
         </div>
       </div>
     )
