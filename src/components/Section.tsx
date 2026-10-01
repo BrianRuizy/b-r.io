@@ -14,8 +14,11 @@ export function Section({
       aria-labelledby={id}
       className="md:border-l md:border-border md:pl-6"
     >
-      <div className="grid max-w-3xl grid-cols-1 items-baseline gap-y-8 md:grid-cols-4">
-        <h2 id={id} className="text-sm font-semibold text-foreground">
+      <div className="grid max-w-3xl grid-cols-1 items-start gap-y-8 md:grid-cols-4">
+        <h2
+          id={id}
+          className="text-sm font-semibold text-foreground md:pt-0.5"
+        >
           {title}
         </h2>
         <div className="md:col-span-3">{children}</div>
