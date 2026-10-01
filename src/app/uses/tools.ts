@@ -179,7 +179,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Peak Design carbon fiber tripod',
         href: 'https://amzn.to/43CoF31',
         description:
-          'Light enough to actually bring along, sturdy enough for real work — and it looks so nice.',
+          'Light enough to actually bring along, sturdy enough for real work, and it looks so nice.',
         image: peakTripod,
         imageDark: peakTripodDark,
         kind: 'device',
@@ -209,7 +209,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Sony 24–70mm f/2.8 GM II',
         href: 'https://amzn.to/3TABciO',
         description:
-          'The workhorse lens on the FX3 — what I reach for to capture tight cinematic shots.',
+          'The workhorse lens on the FX3, what I reach for to capture tight cinematic shots.',
         image: sony2470,
         imageDark: sony2470Dark,
         kind: 'device',
@@ -326,7 +326,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Figma',
         href: 'https://www.figma.com/',
         description:
-          'Where I explore interfaces and turn ideas into visual direction — also video titles, thumbnails, and the occasional animation.',
+          'Where I explore interfaces and turn ideas into visual direction, also video titles, thumbnails, and the occasional animation.',
         image: appFigma,
         kind: 'app',
         rotate: 0,
