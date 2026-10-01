@@ -56,12 +56,29 @@ export function Sticker({
       )}
       style={{ '--sticker-rotate': `${rotate}deg` } as React.CSSProperties}
     >
-      <Image
-        src={src}
-        alt={alt}
-        sizes={imageSizes}
-        className="size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]"
-      />
+      <div className="relative isolate size-full">
+        <Image
+          src={src}
+          alt={alt}
+          sizes={imageSizes}
+          className="size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]"
+        />
+        {/* Tint the baked-in white vinyl so it isn't a hard white-on-black edge. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 hidden bg-[oklch(0.8_0_0)] mix-blend-multiply dark:block"
+          style={{
+            maskImage: `url(${src.src})`,
+            WebkitMaskImage: `url(${src.src})`,
+            maskSize: 'contain',
+            WebkitMaskSize: 'contain',
+            maskRepeat: 'no-repeat',
+            WebkitMaskRepeat: 'no-repeat',
+            maskPosition: 'center',
+            WebkitMaskPosition: 'center',
+          }}
+        />
+      </div>
     </div>
   )
 }
