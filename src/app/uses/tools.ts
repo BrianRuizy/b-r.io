@@ -214,8 +214,7 @@ export const toolGroups: ToolGroup[] = [
       {
         title: 'Sony 40mm f/2.5 G',
         href: 'https://amzn.to/3YTBdCz',
-        description:
-          'Small, sharp, and easy to carry for everyday street shooting.',
+        description: 'Perfect for lightweight, minimal street photography.',
         image: sony40mm,
         imageDark: sony40mmDark,
         kind: 'device',
