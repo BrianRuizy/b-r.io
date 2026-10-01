@@ -67,8 +67,8 @@ export function Sticker({
   return (
     <div
       className={cn(
-        'relative z-10 shrink-0 origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
-        'rotate-[var(--sticker-rotate)] scale-[var(--sticker-scale)] group-hover:rotate-0',
+        'relative z-10 shrink-0 origin-center overflow-visible motion-reduce:rotate-0',
+        'rotate-[var(--sticker-rotate)] scale-[var(--sticker-scale)]',
         sizes[size],
         className,
       )}
