@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils'
 import { iconChromeClassName } from '@/lib/iconChrome'
 
 const sizes = {
-  sm: 'size-12',
-  md: 'size-16 sm:size-[4.75rem]',
+  sm: 'size-11',
+  md: 'size-14 sm:size-[4.25rem]',
 } as const
 
 export function Sticker({
