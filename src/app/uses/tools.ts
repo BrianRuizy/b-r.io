@@ -24,8 +24,8 @@ import shureSm7db from '@/images/uses/shure-sm7db.png'
 import shureSm7dbDark from '@/images/uses/dark/shure-sm7db.png'
 import peakTripod from '@/images/uses/peak-tripod.png'
 import peakTripodDark from '@/images/uses/dark/peak-tripod.png'
-import mke600 from '@/images/uses/mke-600.png'
-import mke600Dark from '@/images/uses/dark/mke-600.png'
+import mke400 from '@/images/uses/mke-400.png'
+import mke400Dark from '@/images/uses/dark/mke-400.png'
 import sony2470 from '@/images/uses/sony-24-70.png'
 import sony2470Dark from '@/images/uses/dark/sony-24-70.png'
 import sony1635 from '@/images/uses/sony-16-35.png'
@@ -182,12 +182,12 @@ export const toolGroups: ToolGroup[] = [
         rotate: -4,
       },
       {
-        title: 'Sennheiser MKE 600',
-        href: 'https://amzn.to/3ZlA32w',
+        title: 'Sennheiser MKE 400',
+        href: 'https://www.amazon.com/dp/B08YS34YRS',
         description:
-          "Don't underestimate a good mic. The DJI Mic covers on-the-go recording.",
-        image: mke600,
-        imageDark: mke600Dark,
+          'Shotgun mic for talking directly to camera. Adds very little weight to the setup, still crispy sound.',
+        image: mke400,
+        imageDark: mke400Dark,
         kind: 'device',
         rotate: 2,
       },
