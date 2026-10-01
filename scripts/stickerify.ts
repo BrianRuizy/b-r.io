@@ -6,6 +6,7 @@
  *   npm run stickerify -- photo.png src/images/uses/my-item.png
  *   npm run stickerify -- --app icon.png src/images/uses/app-foo.png
  *   npm run stickerify -- --mode alpha --tol 28 in.png out.png
+ *   npm run stickerify -- --vinyl 38,38,38 in.png uses/dark/name.png
  *   npm run stickerify -- --recolor-vinyl 38,38,38 in.png uses/dark/in.png
  *
  * Then import the PNG in src/app/uses/tools.ts.
@@ -29,6 +30,8 @@ type StickerifyOptions = {
   maxSide?: number
   /** Normalized crop box: left, top, right, bottom in 0–1. */
   crop?: [number, number, number, number]
+  /** Vinyl fill RGB. Default white. Use 38,38,38 for dark `--muted`. */
+  vinyl?: [number, number, number]
 }
 
 const INF = 1e10
@@ -415,6 +418,7 @@ export async function stickerify(src: string, options: StickerifyOptions) {
   let tol = options.tol ?? 36
   let outSize = options.outSize ?? 720
   let maxSide = options.maxSide ?? 1800
+  let [vr, vg, vb] = options.vinyl ?? [255, 255, 255]
 
   let pipeline = sharp(src).ensureAlpha()
   let meta = await pipeline.metadata()
@@ -503,9 +507,9 @@ export async function stickerify(src: string, options: StickerifyOptions) {
   let sticker = Buffer.alloc(width * height * 4)
   for (let i = 0; i < fg.length; i++) {
     let o = i * 4
-    sticker[o] = 255
-    sticker[o + 1] = 255
-    sticker[o + 2] = 255
+    sticker[o] = vr
+    sticker[o + 1] = vg
+    sticker[o + 2] = vb
     sticker[o + 3] = whiteA[i]!
     let prodA = Math.max(
       0,
@@ -638,6 +642,7 @@ function parseArgs(argv: string[]) {
   let mode: Mode = 'auto'
   let app = false
   let recolorVinylRgb: [number, number, number] | undefined
+  let vinylRgb: [number, number, number] | undefined
   let tol: number | undefined
   let crop: [number, number, number, number] | undefined
   let positional: string[] = []
@@ -647,7 +652,7 @@ function parseArgs(argv: string[]) {
     if (arg === '--app') app = true
     else if (arg === '--help' || arg === '-h') {
       console.log(
-        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--recolor-vinyl r,g,b] <input> <output.png>',
+        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
       )
       process.exit(0)
     } else if (arg === '--mode') mode = argv[++i] as Mode
@@ -658,6 +663,12 @@ function parseArgs(argv: string[]) {
         throw new Error('Use --recolor-vinyl r,g,b with 0–255 values')
       }
       recolorVinylRgb = parts as [number, number, number]
+    } else if (arg === '--vinyl') {
+      let parts = argv[++i]!.split(',').map(Number)
+      if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) {
+        throw new Error('Use --vinyl r,g,b with 0–255 values')
+      }
+      vinylRgb = parts as [number, number, number]
     } else if (arg === '--crop') {
       let parts = argv[++i]!.split(',').map(Number)
       if (parts.length !== 4 || parts.some((n) => Number.isNaN(n))) {
@@ -673,7 +684,7 @@ function parseArgs(argv: string[]) {
 
   if (positional.length !== 2) {
     throw new Error(
-      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--recolor-vinyl r,g,b] <input> <output.png>',
+      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
     )
   }
 
@@ -682,6 +693,7 @@ function parseArgs(argv: string[]) {
     mode,
     tol,
     crop,
+    vinylRgb,
     recolorVinylRgb,
     src: positional[0]!,
     dest: positional[1]!,
@@ -702,6 +714,7 @@ if (isMain) {
       mode: args.mode,
       tol: args.tol,
       crop: args.crop,
+      vinyl: args.vinylRgb,
     })
   }
 }

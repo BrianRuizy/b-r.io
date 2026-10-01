@@ -2,6 +2,7 @@ import { type StaticImageData } from 'next/image'
 
 // Hardware PNGs are die-cut with `npm run stickerify -- photo.png src/images/uses/name.png`
 // Dark vinyl (project-icon --muted): `npm run stickerify -- --recolor-vinyl 38,38,38 in.png src/images/uses/dark/name.png`
+// White products (desk frames, etc.): generate dark with `--mode alpha --vinyl 38,38,38` so the product stays white.
 
 import airpodsMax from '@/images/uses/airpods-max.png'
 import airpodsMaxDark from '@/images/uses/dark/airpods-max.png'
@@ -124,10 +125,10 @@ export const toolGroups: ToolGroup[] = [
         rotate: 3,
       },
       {
-        title: 'Ergonofis Sway standing desk',
-        href: 'https://shrsl.com/49346',
+        title: 'Vernal Core3 hardwood standing desk',
+        href: 'https://www.vernalspace.com/products/vernal-solid-wood-standing-desk',
         description:
-          'Paired with the Ergonofis desk shelf. A clean, comfortable foundation for long coding sessions that still feels minimal.',
+          'Solid walnut hardwood on a white frame. A clean, comfortable foundation for long coding sessions that still feels minimal.',
         image: standingDesk,
         imageDark: standingDeskDark,
         kind: 'device',
