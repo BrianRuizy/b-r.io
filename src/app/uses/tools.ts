@@ -216,7 +216,7 @@ export const toolGroups: ToolGroup[] = [
         image: a7cIi,
         imageDark: a7cIiDark,
         kind: 'device',
-        rotate: -4,
+        rotate: 0,
       },
       {
         title: 'Sony FX3',
@@ -226,7 +226,7 @@ export const toolGroups: ToolGroup[] = [
         image: sonyFx3,
         imageDark: sonyFx3Dark,
         kind: 'device',
-        rotate: 3,
+        rotate: 0,
       },
     ],
   },
@@ -256,7 +256,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Figma',
         href: 'https://www.figma.com/',
         description:
-          'Where I explore interfaces and turn ideas into visual direction.',
+          'Where I explore interfaces and turn ideas into visual direction — also video titles, thumbnails, and the occasional animation.',
         image: appFigma,
         kind: 'app',
         rotate: 0,
