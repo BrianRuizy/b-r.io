@@ -1,28 +1,28 @@
 import { type StaticImageData } from 'next/image'
 
-import airpodsMax from '@/images/uses/airpods-max.webp'
-import macbookPro from '@/images/uses/macbook-pro.webp'
-import t7Ssd from '@/images/uses/t7-ssd.webp'
-import urthBackpack from '@/images/uses/urth-backpack.webp'
-import studioDisplay from '@/images/uses/studio-display.webp'
-import standingDesk from '@/images/uses/standing-desk.webp'
-import aeronChair from '@/images/uses/aeron-chair.webp'
-import magicKeyboard from '@/images/uses/magic-keyboard.webp'
-import shureSm7db from '@/images/uses/shure-sm7db.webp'
-import peakTripod from '@/images/uses/peak-tripod.webp'
-import mke600 from '@/images/uses/mke-600.webp'
-import sony2470 from '@/images/uses/sony-24-70.webp'
-import sony40mm from '@/images/uses/sony-40mm.webp'
-import a7cIi from '@/images/uses/a7c-ii.webp'
-import sonyFx3 from '@/images/uses/sony-fx3.webp'
-import cowboyBike from '@/images/uses/cowboy-bike.webp'
-import fellowOde from '@/images/uses/fellow-ode.webp'
-import lgOled from '@/images/uses/lg-oled.webp'
-import appBevel from '@/images/uses/app-bevel.webp'
-import appCursor from '@/images/uses/app-cursor.webp'
-import appFigma from '@/images/uses/app-figma.webp'
-import appFinalCut from '@/images/uses/app-finalcut.webp'
-import appNotion from '@/images/uses/app-notion.webp'
+import airpodsMax from '@/images/uses/airpods-max.png'
+import macbookPro from '@/images/uses/macbook-pro.png'
+import t7Ssd from '@/images/uses/t7-ssd.png'
+import urthBackpack from '@/images/uses/urth-backpack.png'
+import studioDisplay from '@/images/uses/studio-display.png'
+import standingDesk from '@/images/uses/standing-desk.png'
+import aeronChair from '@/images/uses/aeron-chair.png'
+import magicKeyboard from '@/images/uses/magic-keyboard.png'
+import shureSm7db from '@/images/uses/shure-sm7db.png'
+import peakTripod from '@/images/uses/peak-tripod.png'
+import mke600 from '@/images/uses/mke-600.png'
+import sony2470 from '@/images/uses/sony-24-70.png'
+import sony40mm from '@/images/uses/sony-40mm.png'
+import a7cIi from '@/images/uses/a7c-ii.png'
+import sonyFx3 from '@/images/uses/sony-fx3.png'
+import cowboyBike from '@/images/uses/cowboy-bike.png'
+import fellowOde from '@/images/uses/fellow-ode.png'
+import lgOled from '@/images/uses/lg-oled.png'
+import appBevel from '@/images/uses/app-bevel.png'
+import appCursor from '@/images/uses/app-cursor.png'
+import appFigma from '@/images/uses/app-figma.png'
+import appFinalCut from '@/images/uses/app-finalcut.png'
+import appNotion from '@/images/uses/app-notion.png'
 
 export type ToolKind = 'device' | 'app'
 
@@ -33,7 +33,6 @@ export type ToolItem = {
   image: StaticImageData
   kind: ToolKind
   rotate: number
-  featured?: boolean
 }
 
 export type ToolGroup = {
@@ -53,7 +52,6 @@ export const toolGroups: ToolGroup[] = [
         image: airpodsMax,
         kind: 'device',
         rotate: -7,
-        featured: true,
       },
       {
         title: 'M1 Pro MacBook Pro 16-inch',
@@ -63,7 +61,6 @@ export const toolGroups: ToolGroup[] = [
         image: macbookPro,
         kind: 'device',
         rotate: 5,
-        featured: true,
       },
       {
         title: 'Samsung T7 Shield SSD',
@@ -96,7 +93,6 @@ export const toolGroups: ToolGroup[] = [
         image: studioDisplay,
         kind: 'device',
         rotate: 6,
-        featured: true,
       },
       {
         title: 'Ergonofis Sway standing desk',
@@ -190,7 +186,6 @@ export const toolGroups: ToolGroup[] = [
         image: sonyFx3,
         kind: 'device',
         rotate: 5,
-        featured: true,
       },
     ],
   },
@@ -276,19 +271,3 @@ export const toolGroups: ToolGroup[] = [
   },
 ]
 
-const featuredTitles = [
-  'M1 Pro MacBook Pro 16-inch',
-  'AirPods Max',
-  'Sony FX3',
-  'Apple Studio Display',
-]
-
-export const featuredTools: ToolItem[] = featuredTitles.map((title) => {
-  let tool = toolGroups
-    .flatMap((group) => group.tools)
-    .find((item) => item.title === title)
-  if (!tool) {
-    throw new Error(`Featured tool not found: ${title}`)
-  }
-  return tool
-})

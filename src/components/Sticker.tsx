@@ -3,8 +3,7 @@ import { cn } from '@/lib/utils'
 
 const sizes = {
   sm: 'size-14 sm:size-16',
-  md: 'size-16 sm:size-[4.75rem]',
-  lg: 'size-[4.75rem] sm:size-28',
+  md: 'size-[4.5rem] sm:size-[5.5rem]',
 } as const
 
 export function Sticker({
@@ -13,7 +12,6 @@ export function Sticker({
   rotate = -6,
   size = 'md',
   variant = 'device',
-  priority = false,
   className,
 }: {
   src: StaticImageData
@@ -21,53 +19,35 @@ export function Sticker({
   rotate?: number
   size?: keyof typeof sizes
   variant?: 'device' | 'app'
-  priority?: boolean
   className?: string
 }) {
   let imageSizes =
-    size === 'lg'
-      ? '(min-width: 640px) 7rem, 4.75rem'
-      : '(min-width: 640px) 4.75rem, 4rem'
-
-  if (variant === 'app') {
-    return (
-      <div
-        className={cn(
-          'relative z-10 shrink-0 transition duration-300 ease-out group-hover:-translate-y-0.5',
-          sizes[size],
-          className,
-        )}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          sizes={imageSizes}
-          priority={priority}
-          className="size-full rounded-[22%] object-cover shadow-md ring-1 ring-black/10 dark:ring-white/10"
-        />
-      </div>
-    )
-  }
+    size === 'sm'
+      ? '(min-width: 640px) 4rem, 3.5rem'
+      : '(min-width: 640px) 5.5rem, 4.5rem'
 
   return (
     <div
       className={cn(
         'relative z-10 shrink-0 origin-center transition duration-300 ease-out motion-reduce:rotate-0',
-        'rotate-[var(--sticker-rotate)] group-hover:-translate-y-1 group-hover:rotate-0',
+        variant === 'device' &&
+          'rotate-[var(--sticker-rotate)] group-hover:-translate-y-1 group-hover:rotate-0',
+        variant === 'app' && 'group-hover:-translate-y-0.5',
         sizes[size],
         className,
       )}
-      style={{ '--sticker-rotate': `${rotate}deg` } as React.CSSProperties}
+      style={
+        variant === 'device'
+          ? ({ '--sticker-rotate': `${rotate}deg` } as React.CSSProperties)
+          : undefined
+      }
     >
-      <div className="size-full rounded-[1.15rem] bg-white p-[3px] shadow-[0_1px_1px_rgba(0,0,0,0.04),0_10px_24px_-10px_rgba(0,0,0,0.45),0_0_0_1px_rgba(0,0,0,0.05)] ring-1 ring-black/5 dark:bg-zinc-100">
-        <Image
-          src={src}
-          alt={alt}
-          sizes={imageSizes}
-          priority={priority}
-          className="size-full rounded-[0.95rem] object-cover"
-        />
-      </div>
+      <Image
+        src={src}
+        alt={alt}
+        sizes={imageSizes}
+        className="size-full object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.12),0_10px_20px_-8px_rgba(0,0,0,0.5)]"
+      />
     </div>
   )
 }

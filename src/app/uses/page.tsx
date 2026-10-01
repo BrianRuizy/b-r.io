@@ -5,11 +5,10 @@ import {
   ContentCardDescription,
   ContentCardTitle,
 } from '@/components/ContentCard'
-import { Container } from '@/components/Container'
 import { Section } from '@/components/Section'
+import { SimpleLayout } from '@/components/SimpleLayout'
 import { Sticker } from '@/components/Sticker'
-import { KitStickers } from '@/app/uses/KitStickers'
-import { featuredTools, toolGroups, type ToolItem } from '@/app/uses/tools'
+import { toolGroups, type ToolItem } from '@/app/uses/tools'
 import { createPageMetadata } from '@/lib/metadata'
 
 function ToolsSection({
@@ -64,22 +63,11 @@ export const metadata = createPageMetadata({
 
 export default function Uses() {
   return (
-    <Container className="mt-16 sm:mt-32">
-      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:gap-12">
-        <header className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            {heroTitle}
-          </h1>
-          <p className="mt-6 text-base text-muted-foreground">
-            Gear and apps I actually own and enjoy using. Mostly tech. Links are
-            affiliate where available, which means I may earn a commission if
-            you buy something, at no extra cost to you.
-          </p>
-        </header>
-        <KitStickers items={featuredTools} />
-      </div>
-
-      <div className="mt-16 space-y-20 sm:mt-20">
+    <SimpleLayout
+      title={heroTitle}
+      intro="Gear and apps I actually own and enjoy using. Mostly tech. Links are affiliate where available, which means I may earn a commission if you buy something, at no extra cost to you."
+    >
+      <div className="space-y-20">
         {toolGroups.map((group) => (
           <ToolsSection key={group.title} title={group.title}>
             {group.tools.map((tool) => (
@@ -88,6 +76,6 @@ export default function Uses() {
           </ToolsSection>
         ))}
       </div>
-    </Container>
+    </SimpleLayout>
   )
 }
