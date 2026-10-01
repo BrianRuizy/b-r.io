@@ -272,7 +272,8 @@ export const toolGroups: ToolGroup[] = [
       {
         title: 'LG C4 OLED',
         href: 'https://amzn.to/3ZRVet8',
-        description: 'The living-room TV, with a Sonos Beam for sound.',
+        description:
+          'The living-room TV. I have the 55 inch, which feels perfect, not too big, not too small. Pair it with a Sonos Beam for sound.',
         image: lgOled,
         imageDark: lgOledDark,
         kind: 'device',
