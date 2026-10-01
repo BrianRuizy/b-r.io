@@ -553,7 +553,8 @@ export async function stickerify(src: string, options: StickerifyOptions) {
     )
   }
 
-  let marginFrac = options.margin ?? 0.05
+  // Extra canvas room so CSS drop-shadows are not flush with the PNG edge.
+  let marginFrac = options.margin ?? 0.1
   let margin = Math.max(extra, Math.round(Math.max(cw, ch) * marginFrac))
   let side = Math.max(cw, ch) + margin * 2
   let canvas = Buffer.alloc(side * side * 4)

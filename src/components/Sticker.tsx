@@ -59,10 +59,12 @@ export function Sticker({
   }
 
   return (
+    // Drop-shadow sits outside the rotate/scale transform so WebKit does not
+    // clip it to the sticker box. Image is inset so tall packshots (Hue,
+    // Sonos, lenses) keep room for the soft shadow inside the layout size.
     <div
       className={cn(
-        'relative z-10 shrink-0 origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
-        'rotate-[var(--sticker-rotate)] scale-[var(--sticker-scale)] group-hover:rotate-0',
+        'relative z-10 flex shrink-0 items-center justify-center overflow-visible',
         sizes[size],
         className,
       )}
@@ -73,18 +75,20 @@ export function Sticker({
         } as React.CSSProperties
       }
     >
-      {/*
-        Keep drop-shadow on this overflow-visible wrapper (not the <img>).
-        Filters on replaced images get clipped when the die-cut nearly fills
-        the box — tall upright stickers like the 16–35 were losing the shadow.
-      */}
-      <div className="relative isolate size-full overflow-visible drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]">
-        <Image
-          src={src}
-          alt={alt}
-          sizes={imageSizes}
-          className="size-full object-contain"
-        />
+      <div className="size-[88%] overflow-visible drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.12),0_2px_4px_rgb(0_0_0_/_0.10)]">
+        <div
+          className={cn(
+            'size-full origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
+            'rotate-[var(--sticker-rotate)] scale-[var(--sticker-scale)] group-hover:rotate-0',
+          )}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            sizes={imageSizes}
+            className="size-full object-contain"
+          />
+        </div>
       </div>
     </div>
   )
