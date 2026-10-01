@@ -26,7 +26,7 @@ export function Sticker({
   scale?: number
   className?: string
 }) {
-  let imageSizes = size === 'sm' ? '3rem' : '(min-width: 640px) 4.75rem, 4rem'
+  let imageSizes = size === 'sm' ? '2.75rem' : '(min-width: 640px) 4.25rem, 3.5rem'
 
   if (variant === 'app') {
     return (
