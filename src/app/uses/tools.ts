@@ -271,7 +271,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Philips Hue',
         href: 'https://www.philips-hue.com/en-us/p/hue-white-and-color-ambiance-75w-a19-e26-smart-bulb/046677591168',
         description:
-          'Color bulbs around the apartment. It started with a single A19 in a lamp.',
+          'Started with a single bulb in a lamp, then added a couple around the space for nice ambience.',
         image: hueBulb,
         imageDark: hueBulbDark,
         kind: 'device',
