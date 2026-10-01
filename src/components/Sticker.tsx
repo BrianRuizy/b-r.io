@@ -29,31 +29,37 @@ export function Sticker({
   let imageSizes = size === 'sm' ? '3rem' : '(min-width: 640px) 4.25rem, 3.5rem'
 
   if (variant === 'app') {
+    // Same inset as /projects logos: size-12 plate, size-8 mark.
     return (
       <div
         className={cn(
-          'relative z-20 shrink-0 rounded-xl',
+          'relative z-20 flex shrink-0 items-center justify-center rounded-xl',
           iconChromeClassName,
           sizes[size],
           className,
         )}
       >
-        <div className="size-full overflow-hidden rounded-[inherit]">
+        <Image
+          src={src}
+          alt={alt}
+          width={32}
+          height={32}
+          sizes={imageSizes}
+          className={cn(
+            'size-8 object-contain',
+            srcDark && 'dark:hidden',
+          )}
+        />
+        {srcDark ? (
           <Image
-            src={src}
+            src={srcDark}
             alt={alt}
+            width={32}
+            height={32}
             sizes={imageSizes}
-            className={cn('size-full object-cover', srcDark && 'dark:hidden')}
+            className="hidden size-8 object-contain dark:block"
           />
-          {srcDark ? (
-            <Image
-              src={srcDark}
-              alt={alt}
-              sizes={imageSizes}
-              className="hidden size-full object-cover dark:block"
-            />
-          ) : null}
-        </div>
+        ) : null}
       </div>
     )
   }
