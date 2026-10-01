@@ -51,6 +51,7 @@ import appCursor from '@/images/uses/app-cursor.png'
 import appCursorDark from '@/images/uses/dark/app-cursor.png'
 import appFigma from '@/images/uses/app-figma.png'
 import appFinalCut from '@/images/uses/app-finalcut.png'
+import appLightroom from '@/images/uses/app-lightroom.png'
 import appNotion from '@/images/uses/app-notion.png'
 
 export type ToolKind = 'device' | 'app'
@@ -337,6 +338,15 @@ export const toolGroups: ToolGroup[] = [
         href: 'https://www.apple.com/final-cut-pro/',
         description: 'Where the YouTube videos come together.',
         image: appFinalCut,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Lightroom',
+        href: 'https://www.adobe.com/products/photoshop-lightroom.html',
+        description:
+          'Where I finish stills from the a7C II. Gives me additional fine-grain control over my images.',
+        image: appLightroom,
         kind: 'app',
         rotate: 0,
       },
