@@ -192,7 +192,8 @@ export const toolGroups: ToolGroup[] = [
       {
         title: 'Sony 24–70mm f/2.8 GM II',
         href: 'https://amzn.to/3TABciO',
-        description: 'The workhorse lens on the FX3 for most video work.',
+        description:
+          'The workhorse lens on the FX3 — what I reach for to capture tight cinematic shots.',
         image: sony2470,
         imageDark: sony2470Dark,
         kind: 'device',
