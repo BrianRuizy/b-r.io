@@ -161,7 +161,7 @@ export const toolGroups: ToolGroup[] = [
         rotate: 4,
       },
       {
-        title: 'Vernal Core3 hardwood standing desk',
+        title: 'Vernal Core3 standing desk',
         href: 'https://www.vernalspace.com/products/vernal-solid-wood-standing-desk',
         description:
           'Solid walnut hardwood on a white frame. A clean, comfortable foundation for long coding sessions that still feels minimal.',
