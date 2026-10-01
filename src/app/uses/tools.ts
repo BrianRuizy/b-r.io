@@ -42,6 +42,8 @@ import appleTv4k from '@/images/uses/apple-tv-4k.png'
 import appleTv4kDark from '@/images/uses/dark/apple-tv-4k.png'
 import hueBulb from '@/images/uses/hue-bulb.png'
 import hueBulbDark from '@/images/uses/dark/hue-bulb.png'
+import sonosEra100 from '@/images/uses/sonos-era-100.png'
+import sonosEra100Dark from '@/images/uses/dark/sonos-era-100.png'
 import lgOled from '@/images/uses/lg-oled.png'
 import lgOledDark from '@/images/uses/dark/lg-oled.png'
 import appBevel from '@/images/uses/app-bevel.png'
@@ -323,6 +325,16 @@ export const toolGroups: ToolGroup[] = [
         imageDark: hueBulbDark,
         kind: 'device',
         rotate: -3,
+      },
+      {
+        title: 'Sonos Era 100',
+        href: 'https://www.sonos.com/en-us/shop/era-100',
+        description:
+          'In the room for rich, full jamming sessions when I don\'t want headphones.',
+        image: sonosEra100,
+        imageDark: sonosEra100Dark,
+        kind: 'device',
+        rotate: 3,
       },
       {
         title: 'LG C4 OLED',
