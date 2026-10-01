@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
+import logoCovidDashboard from '@/images/logos/covid-dashboard.png'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 
 interface Project {
@@ -62,7 +62,7 @@ const projects: Array<Project> = [
       href: 'https://github.com/brianruizy/covid19-dashboard',
       label: 'github.com/brianruizy/covid19-dashboard',
     },
-    logo: logoHelioStream,
+    logo: logoCovidDashboard,
   },
   {
     name: 'Next Notion Portfolio',
