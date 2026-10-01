@@ -63,6 +63,7 @@ export type ToolItem = {
   imageDark?: StaticImageData
   kind: ToolKind
   rotate: number
+  scale?: number
 }
 
 export type ToolGroup = {
@@ -103,6 +104,7 @@ export const toolGroups: ToolGroup[] = [
         imageDark: t7SsdDark,
         kind: 'device',
         rotate: -2,
+        scale: 0.86,
       },
       {
         title: 'Urth backpack',

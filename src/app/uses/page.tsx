@@ -32,6 +32,7 @@ function Tool({
   imageDark,
   kind,
   rotate,
+  scale,
 }: ToolItem) {
   return (
     <ContentCard as="li" className="flex-row items-start gap-4 sm:gap-5">
@@ -40,6 +41,7 @@ function Tool({
         srcDark={imageDark}
         alt=""
         rotate={kind === 'app' ? 0 : rotate}
+        scale={scale}
         size={kind === 'app' ? 'sm' : 'md'}
         variant={kind}
       />
