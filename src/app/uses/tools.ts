@@ -83,7 +83,7 @@ export const toolGroups: ToolGroup[] = [
         image: airpodsMax,
         imageDark: airpodsMaxDark,
         kind: 'device',
-        rotate: -7,
+        rotate: -10,
       },
       {
         title: 'Apple M1 Pro MacBook Pro 16 in',
