@@ -30,7 +30,7 @@ export function Sticker({
     return (
       <div
         className={cn(
-          'relative z-20 shrink-0 rounded-lg transition duration-300 ease-out group-hover:-translate-y-0.5',
+          'relative z-20 shrink-0 rounded-lg',
           iconChromeClassName,
           sizes[size],
           className,
@@ -52,7 +52,7 @@ export function Sticker({
     <div
       className={cn(
         'relative z-10 shrink-0 origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
-        'rotate-[var(--sticker-rotate)] group-hover:-translate-y-1 group-hover:rotate-0',
+        'rotate-[var(--sticker-rotate)] group-hover:rotate-0',
         sizes[size],
         className,
       )}
