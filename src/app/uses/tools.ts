@@ -71,6 +71,7 @@ export const toolGroups: ToolGroup[] = [
         image: macbookPro,
         kind: 'device',
         rotate: 0,
+        scale: 0.9,
       },
       {
         title: 'Samsung T7 Shield SSD',

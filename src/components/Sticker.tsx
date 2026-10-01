@@ -67,10 +67,7 @@ export function Sticker({
   return (
     <div
       className={cn(
-        // Keep rotate + drop-shadow together (splitting them glitched on hover).
-        // Light padding insets the packshot so bottom/side shadows are less
-        // likely to clip against the fixed size box.
-        'relative z-10 shrink-0 origin-center overflow-visible p-1.5 transition duration-300 ease-out motion-reduce:rotate-0',
+        'relative z-10 shrink-0 origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
         'rotate-[var(--sticker-rotate)] scale-[var(--sticker-scale)] group-hover:rotate-0',
         sizes[size],
         className,
