@@ -9,6 +9,7 @@ const sizes = {
 
 export function Sticker({
   src,
+  srcDark,
   alt,
   rotate = -3,
   size = 'md',
@@ -16,6 +17,7 @@ export function Sticker({
   className,
 }: {
   src: StaticImageData
+  srcDark?: StaticImageData
   alt: string
   rotate?: number
   size?: keyof typeof sizes
@@ -61,8 +63,19 @@ export function Sticker({
           src={src}
           alt={alt}
           sizes={imageSizes}
-          className="size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]"
+          className={cn(
+            'size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]',
+            srcDark && 'dark:hidden',
+          )}
         />
+        {srcDark ? (
+          <Image
+            src={srcDark}
+            alt={alt}
+            sizes={imageSizes}
+            className="hidden size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)] dark:block"
+          />
+        ) : null}
       </div>
     </div>
   )

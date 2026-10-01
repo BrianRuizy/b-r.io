@@ -6,6 +6,7 @@
  *   npm run stickerify -- photo.png src/images/uses/my-item.png
  *   npm run stickerify -- --app icon.png src/images/uses/app-foo.png
  *   npm run stickerify -- --mode alpha --tol 28 in.png out.png
+ *   npm run stickerify -- --recolor-vinyl 38,38,38 in.png uses/dark/in.png
  *
  * Then import the PNG in src/app/uses/tools.ts.
  *
@@ -581,9 +582,62 @@ export async function exportAppIcon(src: string, dest: string, outSize = 512) {
   console.log(`wrote app ${path.basename(dest)}`)
 }
 
+/** Dark-mode `--muted` (oklch 0.269) — same plate as project icons. */
+export const vinylMutedRgb: [number, number, number] = [38, 38, 38]
+
+/**
+ * Recolor the baked white vinyl ring on an existing sticker PNG.
+ * Product pixels stay as-is; only near-white outline / die-cut fill changes.
+ */
+export async function recolorVinyl(
+  src: string,
+  dest: string,
+  rgb: [number, number, number] = vinylMutedRgb,
+) {
+  let raw = await sharp(src).ensureAlpha().raw().toBuffer({
+    resolveWithObject: true,
+  })
+  let w = raw.info.width
+  let h = raw.info.height
+  let rgba = Buffer.from(raw.data)
+  let n = w * h
+  let opaque = new Uint8Array(n)
+  for (let i = 0; i < n; i++) opaque[i] = rgba[i * 4 + 3]! > 20 ? 1 : 0
+  let sdf = signedDistance(opaque, w, h)
+  let vinylMax = Math.max(28, Math.round(Math.min(w, h) * 0.055))
+  let [vr, vg, vb] = rgb
+  let count = 0
+  for (let i = 0; i < n; i++) {
+    let o = i * 4
+    let a = rgba[o + 3]!
+    if (a <= 20) continue
+    let r = rgba[o]!
+    let g = rgba[o + 1]!
+    let b = rgba[o + 2]!
+    let minc = Math.min(r, g, b)
+    let maxc = Math.max(r, g, b)
+    let dist = sdf[i]!
+    let exactWhite = minc >= 254 && maxc - minc <= 4
+    let edgeWhite = minc >= 248 && maxc - minc <= 12 && dist <= vinylMax
+    if (!exactWhite && !edgeWhite) continue
+    rgba[o] = vr
+    rgba[o + 1] = vg
+    rgba[o + 2] = vb
+    count++
+  }
+  await mkdir(path.dirname(dest), { recursive: true })
+  await sharp(rgba, { raw: { width: w, height: h, channels: 4 } })
+    .png({ compressionLevel: 9 })
+    .toFile(dest)
+  console.log(
+    `recolored ${path.basename(dest)}  vinyl=${(count / n).toFixed(3)}  rgb=${vr},${vg},${vb}`,
+  )
+}
+
 function parseArgs(argv: string[]) {
   let mode: Mode = 'auto'
   let app = false
+  let recolorVinylRgb: [number, number, number] | undefined
   let tol: number | undefined
   let crop: [number, number, number, number] | undefined
   let positional: string[] = []
@@ -593,12 +647,18 @@ function parseArgs(argv: string[]) {
     if (arg === '--app') app = true
     else if (arg === '--help' || arg === '-h') {
       console.log(
-        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] <input> <output.png>',
+        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--recolor-vinyl r,g,b] <input> <output.png>',
       )
       process.exit(0)
     } else if (arg === '--mode') mode = argv[++i] as Mode
     else if (arg === '--tol') tol = Number(argv[++i])
-    else if (arg === '--crop') {
+    else if (arg === '--recolor-vinyl') {
+      let parts = argv[++i]!.split(',').map(Number)
+      if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) {
+        throw new Error('Use --recolor-vinyl r,g,b with 0–255 values')
+      }
+      recolorVinylRgb = parts as [number, number, number]
+    } else if (arg === '--crop') {
       let parts = argv[++i]!.split(',').map(Number)
       if (parts.length !== 4 || parts.some((n) => Number.isNaN(n))) {
         throw new Error('Use --crop left,top,right,bottom with 0–1 values')
@@ -613,11 +673,19 @@ function parseArgs(argv: string[]) {
 
   if (positional.length !== 2) {
     throw new Error(
-      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] <input> <output.png>',
+      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--recolor-vinyl r,g,b] <input> <output.png>',
     )
   }
 
-  return { app, mode, tol, crop, src: positional[0]!, dest: positional[1]! }
+  return {
+    app,
+    mode,
+    tol,
+    crop,
+    recolorVinylRgb,
+    src: positional[0]!,
+    dest: positional[1]!,
+  }
 }
 
 let isMain =
@@ -626,6 +694,8 @@ if (isMain) {
   let args = parseArgs(process.argv.slice(2))
   if (args.app) {
     await exportAppIcon(args.src, args.dest)
+  } else if (args.recolorVinylRgb) {
+    await recolorVinyl(args.src, args.dest, args.recolorVinylRgb)
   } else {
     await stickerify(args.src, {
       dest: args.dest,

@@ -24,11 +24,20 @@ function ToolsSection({
   )
 }
 
-function Tool({ title, href, description, image, kind, rotate }: ToolItem) {
+function Tool({
+  title,
+  href,
+  description,
+  image,
+  imageDark,
+  kind,
+  rotate,
+}: ToolItem) {
   return (
     <ContentCard as="li" className="flex-row items-start gap-4 sm:gap-5">
       <Sticker
         src={image}
+        srcDark={imageDark}
         alt=""
         rotate={kind === 'app' ? 0 : rotate}
         size={kind === 'app' ? 'sm' : 'md'}
