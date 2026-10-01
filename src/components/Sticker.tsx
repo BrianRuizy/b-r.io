@@ -46,7 +46,7 @@ export function Sticker({
           height={32}
           sizes={imageSizes}
           className={cn(
-            'size-8 rounded-full object-contain',
+            'size-8 rounded-md object-contain',
             srcDark && 'dark:hidden',
           )}
         />
@@ -57,7 +57,7 @@ export function Sticker({
             width={32}
             height={32}
             sizes={imageSizes}
-            className="hidden size-8 rounded-full object-contain dark:block"
+            className="hidden size-8 rounded-md object-contain dark:block"
           />
         ) : null}
       </div>
