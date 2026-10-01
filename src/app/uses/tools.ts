@@ -230,7 +230,7 @@ export const toolGroups: ToolGroup[] = [
         image: a7cIi,
         imageDark: a7cIiDark,
         kind: 'device',
-        rotate: 0,
+        rotate: -3,
       },
       {
         title: 'Sony FX3',
