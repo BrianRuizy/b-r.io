@@ -1,8 +1,8 @@
 import { type StaticImageData } from 'next/image'
 
 // Hardware PNGs are die-cut with `npm run stickerify -- photo.png src/images/uses/name.png`
-// Dark vinyl (project-icon --muted): `npm run stickerify -- --recolor-vinyl 38,38,38 in.png src/images/uses/dark/name.png`
-// White products (desk frames, etc.): generate dark with `--mode alpha --vinyl 38,38,38` so the product stays white.
+// Dark vinyl (#333333, between muted and item hover): `npm run stickerify -- --recolor-vinyl 51,51,51 in.png src/images/uses/dark/name.png`
+// White products (desk frames, etc.): generate dark with `--mode alpha --vinyl 51,51,51` so the product stays white.
 
 import airpodsMax from '@/images/uses/airpods-max.png'
 import airpodsMaxDark from '@/images/uses/dark/airpods-max.png'

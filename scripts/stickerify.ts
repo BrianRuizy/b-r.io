@@ -6,8 +6,8 @@
  *   npm run stickerify -- photo.png src/images/uses/my-item.png
  *   npm run stickerify -- --app icon.png src/images/uses/app-foo.png
  *   npm run stickerify -- --mode alpha --tol 28 in.png out.png
- *   npm run stickerify -- --vinyl 38,38,38 in.png uses/dark/name.png
- *   npm run stickerify -- --recolor-vinyl 38,38,38 in.png uses/dark/in.png
+ *   npm run stickerify -- --vinyl 51,51,51 in.png uses/dark/name.png
+ *   npm run stickerify -- --recolor-vinyl 51,51,51 in.png uses/dark/in.png
  *
  * Then import the PNG in src/app/uses/tools.ts.
  *
@@ -32,7 +32,7 @@ type StickerifyOptions = {
   margin?: number
   /** Normalized crop box: left, top, right, bottom in 0–1. */
   crop?: [number, number, number, number]
-  /** Vinyl fill RGB. Default white. Use 38,38,38 for dark `--muted`. */
+  /** Vinyl fill RGB. Default white. Use 51,51,51 for dark sticker chrome. */
   vinyl?: [number, number, number]
 }
 
@@ -589,8 +589,11 @@ export async function exportAppIcon(src: string, dest: string, outSize = 512) {
   console.log(`wrote app ${path.basename(dest)}`)
 }
 
-/** Dark-mode `--muted` (oklch 0.269) — same plate as project icons. */
-export const vinylMutedRgb: [number, number, number] = [38, 38, 38]
+/**
+ * Dark sticker chrome: between `--muted` (#262626) and the uses-item hover
+ * plate, so the vinyl rim reads on a black page.
+ */
+export const vinylMutedRgb: [number, number, number] = [51, 51, 51]
 
 /**
  * Recolor the baked white vinyl ring on an existing sticker PNG.

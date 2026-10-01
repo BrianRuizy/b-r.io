@@ -34,6 +34,8 @@ export function Sticker({
         className={cn(
           'relative z-20 shrink-0 rounded-xl',
           iconChromeClassName,
+          // Match dark hardware vinyl (#333) — between muted and item hover.
+          'dark:bg-[#333333]',
           sizes[size],
           className,
         )}
