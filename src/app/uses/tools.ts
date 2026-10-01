@@ -144,7 +144,7 @@ export const toolGroups: ToolGroup[] = [
       {
         title: 'Herman Miller Aeron',
         description:
-          'Bought secondhand. Still one of the most important parts of the workspace.',
+          'A design icon. Bought secondhand, still one of the most important parts of the workspace.',
         image: aeronChair,
         imageDark: aeronChairDark,
         kind: 'device',
