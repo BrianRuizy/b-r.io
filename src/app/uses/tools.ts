@@ -51,7 +51,7 @@ export const toolGroups: ToolGroup[] = [
           'For focused desk work, commuting, and travel. AirPods Pro are the lighter everyday pair.',
         image: airpodsMax,
         kind: 'device',
-        rotate: -7,
+        rotate: -4,
       },
       {
         title: 'M1 Pro MacBook Pro 16-inch',
@@ -60,7 +60,7 @@ export const toolGroups: ToolGroup[] = [
           'Holding strong as the portable center of engineering and creative work.',
         image: macbookPro,
         kind: 'device',
-        rotate: 5,
+        rotate: 3,
       },
       {
         title: 'Samsung T7 Shield SSD',
@@ -69,7 +69,7 @@ export const toolGroups: ToolGroup[] = [
           'Portable storage for editing projects and recording ProRes footage.',
         image: t7Ssd,
         kind: 'device',
-        rotate: -4,
+        rotate: -2,
       },
       {
         title: 'Urth backpack',
@@ -78,7 +78,7 @@ export const toolGroups: ToolGroup[] = [
           'Sleek and water resistant. Holds the daily tech essentials.',
         image: urthBackpack,
         kind: 'device',
-        rotate: 8,
+        rotate: 4,
       },
     ],
   },
@@ -92,7 +92,7 @@ export const toolGroups: ToolGroup[] = [
           'Main display for development, design, and editing. BenQ ScreenBar Halo sits on top for reducing eye strain.',
         image: studioDisplay,
         kind: 'device',
-        rotate: 6,
+        rotate: 3,
       },
       {
         title: 'Ergonofis Sway standing desk',
@@ -101,7 +101,7 @@ export const toolGroups: ToolGroup[] = [
           'Paired with the Ergonofis desk shelf. A clean, comfortable foundation for long coding sessions that still feels minimal.',
         image: standingDesk,
         kind: 'device',
-        rotate: -6,
+        rotate: -3,
       },
       {
         title: 'Herman Miller Aeron',
@@ -109,7 +109,7 @@ export const toolGroups: ToolGroup[] = [
           'Bought secondhand. Still one of the most important parts of the workspace.',
         image: aeronChair,
         kind: 'device',
-        rotate: 4,
+        rotate: 2,
       },
       {
         title: 'Apple Magic Keyboard with Touch ID',
@@ -118,7 +118,7 @@ export const toolGroups: ToolGroup[] = [
           'I moved away from mechanical keyboards in favor of something wireless and simple. Touch ID is handy, too. I pair it with a Logitech MX Master 3S.',
         image: magicKeyboard,
         kind: 'device',
-        rotate: -5,
+        rotate: -3,
       },
       {
         title: 'Shure SM7dB',
@@ -127,7 +127,7 @@ export const toolGroups: ToolGroup[] = [
           'This microphone is perfect for podcasting and streaming. Get clear, warm vocals every time.',
         image: shureSm7db,
         kind: 'device',
-        rotate: 7,
+        rotate: 4,
       },
     ],
   },
@@ -141,7 +141,7 @@ export const toolGroups: ToolGroup[] = [
           'Light enough to actually bring along, sturdy enough for real work.',
         image: peakTripod,
         kind: 'device',
-        rotate: -8,
+        rotate: -4,
       },
       {
         title: 'Sennheiser MKE 600',
@@ -150,7 +150,7 @@ export const toolGroups: ToolGroup[] = [
           "Don't underestimate a good mic. The DJI Mic covers on-the-go recording.",
         image: mke600,
         kind: 'device',
-        rotate: 3,
+        rotate: 2,
       },
       {
         title: 'Sony 24–70mm f/2.8 GM II',
@@ -158,7 +158,7 @@ export const toolGroups: ToolGroup[] = [
         description: 'The workhorse lens on the FX3 for most video work.',
         image: sony2470,
         kind: 'device',
-        rotate: -3,
+        rotate: -2,
       },
       {
         title: 'Sony 40mm f/2.5 G',
@@ -167,7 +167,7 @@ export const toolGroups: ToolGroup[] = [
           'Small, sharp, and easy to carry for everyday street shooting.',
         image: sony40mm,
         kind: 'device',
-        rotate: 6,
+        rotate: 3,
       },
       {
         title: 'Sony a7C II',
@@ -176,7 +176,7 @@ export const toolGroups: ToolGroup[] = [
           'Compact full-frame body for street photography around New York City.',
         image: a7cIi,
         kind: 'device',
-        rotate: -7,
+        rotate: -4,
       },
       {
         title: 'Sony FX3',
@@ -185,7 +185,7 @@ export const toolGroups: ToolGroup[] = [
           "My dream camera. It can feel like overkill, but using it you understand why it's so loved. This camera forces you to learn more about videography, and that's why I love it myself.",
         image: sonyFx3,
         kind: 'device',
-        rotate: 5,
+        rotate: 3,
       },
     ],
   },
@@ -247,7 +247,7 @@ export const toolGroups: ToolGroup[] = [
           "My e-bike. I love the design. From a distance it still looks like an ordinary classic bike, but it's perfect for zipping around the city.",
         image: cowboyBike,
         kind: 'device',
-        rotate: -5,
+        rotate: -3,
       },
       {
         title: 'Fellow Ode',
@@ -256,7 +256,7 @@ export const toolGroups: ToolGroup[] = [
           'Coffee grinder at home, with a Fellow kettle alongside it.',
         image: fellowOde,
         kind: 'device',
-        rotate: 7,
+        rotate: 4,
       },
       {
         title: 'LG C4 OLED',
@@ -265,7 +265,7 @@ export const toolGroups: ToolGroup[] = [
           'Living-room essentials with a Sonos Beam and Apple TV 4K.',
         image: lgOled,
         kind: 'device',
-        rotate: -4,
+        rotate: -2,
       },
     ],
   },

@@ -2,14 +2,18 @@ import Image, { type StaticImageData } from 'next/image'
 import { cn } from '@/lib/utils'
 
 const sizes = {
-  sm: 'size-14 sm:size-16',
-  md: 'size-[4.5rem] sm:size-[5.5rem]',
+  sm: 'size-12',
+  md: 'size-16 sm:size-[4.75rem]',
 } as const
+
+/** Same treatment as project logos, but a rounded square instead of a circle. */
+const projectIconShadow =
+  'shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0'
 
 export function Sticker({
   src,
   alt,
-  rotate = -6,
+  rotate = -3,
   size = 'md',
   variant = 'device',
   className,
@@ -21,32 +25,43 @@ export function Sticker({
   variant?: 'device' | 'app'
   className?: string
 }) {
-  let imageSizes =
-    size === 'sm'
-      ? '(min-width: 640px) 4rem, 3.5rem'
-      : '(min-width: 640px) 5.5rem, 4.5rem'
+  let imageSizes = size === 'sm' ? '3rem' : '(min-width: 640px) 4.75rem, 4rem'
+
+  if (variant === 'app') {
+    return (
+      <div
+        className={cn(
+          'relative z-10 shrink-0 overflow-hidden rounded-2xl bg-card transition duration-300 ease-out group-hover:-translate-y-0.5',
+          projectIconShadow,
+          sizes[size],
+          className,
+        )}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          sizes={imageSizes}
+          className="size-full object-cover"
+        />
+      </div>
+    )
+  }
 
   return (
     <div
       className={cn(
-        'relative z-10 shrink-0 origin-center transition duration-300 ease-out motion-reduce:rotate-0',
-        variant === 'device' &&
-          'rotate-[var(--sticker-rotate)] group-hover:-translate-y-1 group-hover:rotate-0',
-        variant === 'app' && 'group-hover:-translate-y-0.5',
+        'relative z-10 shrink-0 origin-center overflow-visible transition duration-300 ease-out motion-reduce:rotate-0',
+        'rotate-[var(--sticker-rotate)] group-hover:-translate-y-1 group-hover:rotate-0',
         sizes[size],
         className,
       )}
-      style={
-        variant === 'device'
-          ? ({ '--sticker-rotate': `${rotate}deg` } as React.CSSProperties)
-          : undefined
-      }
+      style={{ '--sticker-rotate': `${rotate}deg` } as React.CSSProperties}
     >
       <Image
         src={src}
         alt={alt}
         sizes={imageSizes}
-        className="size-full object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.12),0_10px_20px_-8px_rgba(0,0,0,0.5)]"
+        className="size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]"
       />
     </div>
   )
