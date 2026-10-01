@@ -309,6 +309,12 @@ function foreground(
   let hasAlpha = alphaMin < 250 && lowAlpha / n > 0.02
   let useAlpha = mode === 'alpha' || (mode === 'auto' && hasAlpha)
 
+  if (mode === 'alpha') {
+    let fg = new Uint8Array(n)
+    for (let i = 0; i < n; i++) fg[i] = rgba[i * 4 + 3]! > 24 ? 1 : 0
+    return { fg, hasAlpha: true }
+  }
+
   if (useAlpha) {
     let edge = new Uint8Array(n)
     for (let i = 0; i < n; i++) {

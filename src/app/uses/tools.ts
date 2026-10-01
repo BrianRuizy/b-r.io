@@ -18,7 +18,8 @@ import sony40mm from '@/images/uses/sony-40mm.png'
 import a7cIi from '@/images/uses/a7c-ii.png'
 import sonyFx3 from '@/images/uses/sony-fx3.png'
 import cowboyBike from '@/images/uses/cowboy-bike.png'
-import fellowOde from '@/images/uses/fellow-ode.png'
+import appleTv4k from '@/images/uses/apple-tv-4k.png'
+import hueBulb from '@/images/uses/hue-bulb.png'
 import lgOled from '@/images/uses/lg-oled.png'
 import appBevel from '@/images/uses/app-bevel.png'
 import appCursor from '@/images/uses/app-cursor.png'
@@ -252,19 +253,27 @@ export const toolGroups: ToolGroup[] = [
         rotate: -3,
       },
       {
-        title: 'Fellow Ode',
-        href: 'https://fellow.com/products/ode',
+        title: 'Apple TV 4K',
+        href: 'https://www.apple.com/apple-tv-4k/',
         description:
-          'Coffee grinder at home, with a Fellow kettle alongside it.',
-        image: fellowOde,
+          'What actually drives the living-room TV. Sports, movies, and YouTube.',
+        image: appleTv4k,
         kind: 'device',
-        rotate: 4,
+        rotate: 3,
+      },
+      {
+        title: 'Philips Hue',
+        href: 'https://www.philips-hue.com/en-us/p/hue-white-and-color-ambiance-75w-a19-e26-smart-bulb/046677591168',
+        description:
+          'Color bulbs around the apartment. It started with a single A19 in a lamp.',
+        image: hueBulb,
+        kind: 'device',
+        rotate: -3,
       },
       {
         title: 'LG C4 OLED',
         href: 'https://amzn.to/3ZRVet8',
-        description:
-          'Living-room essentials with a Sonos Beam and Apple TV 4K.',
+        description: 'The living-room TV, with a Sonos Beam for sound.',
         image: lgOled,
         kind: 'device',
         rotate: -2,
