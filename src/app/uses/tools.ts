@@ -67,7 +67,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Apple MacBook Pro M1 Pro',
         href: 'https://amzn.to/41fkhEH',
         description:
-          'Holding strong as the portable center of engineering and creative work.',
+          'Awesome Liquid Retina XDR nano-texture display in 16 inch, perfect for multitasking on the go, though it is a bit hefty.',
         image: macbookPro,
         kind: 'device',
         rotate: 0,
