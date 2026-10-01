@@ -589,10 +589,7 @@ export async function exportAppIcon(src: string, dest: string, outSize = 512) {
   console.log(`wrote app ${path.basename(dest)}`)
 }
 
-/**
- * Dark sticker chrome: between `--muted` (#262626) and the uses-item hover
- * plate, so the vinyl rim reads on a black page.
- */
+/** Optional gray vinyl if a dark plate is ever needed again. Uses stickers stay white. */
 export const vinylMutedRgb: [number, number, number] = [51, 51, 51]
 
 /**

@@ -1,51 +1,29 @@
 import { type StaticImageData } from 'next/image'
 
 // Hardware PNGs are die-cut with `npm run stickerify -- photo.png src/images/uses/name.png`
-// Dark vinyl (#333333, between muted and item hover): `npm run stickerify -- --recolor-vinyl 51,51,51 in.png src/images/uses/dark/name.png`
-// White products (desk frames, etc.): generate dark with `--mode alpha --vinyl 51,51,51` so the product stays white.
+// White vinyl always (light + dark). Optional: `--mode alpha` for transparent cutouts.
 
 import airpodsMax from '@/images/uses/airpods-max.png'
-import airpodsMaxDark from '@/images/uses/dark/airpods-max.png'
 import macbookPro from '@/images/uses/macbook-pro.png'
-import macbookProDark from '@/images/uses/dark/macbook-pro.png'
 import t7Ssd from '@/images/uses/t7-ssd.png'
-import t7SsdDark from '@/images/uses/dark/t7-ssd.png'
 import urthBackpack from '@/images/uses/urth-backpack.png'
-import urthBackpackDark from '@/images/uses/dark/urth-backpack.png'
 import studioDisplay from '@/images/uses/studio-display.png'
-import studioDisplayDark from '@/images/uses/dark/studio-display.png'
 import standingDesk from '@/images/uses/standing-desk.png'
-import standingDeskDark from '@/images/uses/dark/standing-desk.png'
 import aeronChair from '@/images/uses/aeron-chair.png'
-import aeronChairDark from '@/images/uses/dark/aeron-chair.png'
 import magicKeyboard from '@/images/uses/magic-keyboard.png'
-import magicKeyboardDark from '@/images/uses/dark/magic-keyboard.png'
 import shureSm7db from '@/images/uses/shure-sm7db.png'
-import shureSm7dbDark from '@/images/uses/dark/shure-sm7db.png'
 import peakTripod from '@/images/uses/peak-tripod.png'
-import peakTripodDark from '@/images/uses/dark/peak-tripod.png'
 import mke400 from '@/images/uses/mke-400.png'
-import mke400Dark from '@/images/uses/dark/mke-400.png'
 import sony2470 from '@/images/uses/sony-24-70.png'
-import sony2470Dark from '@/images/uses/dark/sony-24-70.png'
 import sony1635 from '@/images/uses/sony-16-35.png'
-import sony1635Dark from '@/images/uses/dark/sony-16-35.png'
 import sony40mm from '@/images/uses/sony-40mm.png'
-import sony40mmDark from '@/images/uses/dark/sony-40mm.png'
 import a7cIi from '@/images/uses/a7c-ii.png'
-import a7cIiDark from '@/images/uses/dark/a7c-ii.png'
 import sonyFx3 from '@/images/uses/sony-fx3.png'
-import sonyFx3Dark from '@/images/uses/dark/sony-fx3.png'
 import cowboyBike from '@/images/uses/cowboy-bike.png'
-import cowboyBikeDark from '@/images/uses/dark/cowboy-bike.png'
 import appleTv4k from '@/images/uses/apple-tv-4k.png'
-import appleTv4kDark from '@/images/uses/dark/apple-tv-4k.png'
 import hueBulb from '@/images/uses/hue-bulb.png'
-import hueBulbDark from '@/images/uses/dark/hue-bulb.png'
 import sonosEra100 from '@/images/uses/sonos-era-100.png'
-import sonosEra100Dark from '@/images/uses/dark/sonos-era-100.png'
 import lgOled from '@/images/uses/lg-oled.png'
-import lgOledDark from '@/images/uses/dark/lg-oled.png'
 import appBevel from '@/images/uses/app-bevel.png'
 import appCursor from '@/images/uses/app-cursor.png'
 import appCursorDark from '@/images/uses/dark/app-cursor.png'
@@ -82,7 +60,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'For focused desk work, commuting, and travel. AirPods Pro are the lighter everyday pair.',
         image: airpodsMax,
-        imageDark: airpodsMaxDark,
         kind: 'device',
         rotate: -10,
       },
@@ -92,7 +69,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Holding strong as the portable center of engineering and creative work.',
         image: macbookPro,
-        imageDark: macbookProDark,
         kind: 'device',
         rotate: 0,
       },
@@ -102,7 +78,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Portable storage for editing projects and recording ProRes footage.',
         image: t7Ssd,
-        imageDark: t7SsdDark,
         kind: 'device',
         rotate: -2,
         scale: 0.86,
@@ -113,7 +88,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Sleek and water resistant. Holds the daily tech essentials.',
         image: urthBackpack,
-        imageDark: urthBackpackDark,
         kind: 'device',
         rotate: 4,
       },
@@ -128,7 +102,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'I moved away from mechanical keyboards in favor of something wireless and simple. Touch ID is handy, too. I pair it with a Logitech MX Master 3S.',
         image: magicKeyboard,
-        imageDark: magicKeyboardDark,
         kind: 'device',
         rotate: -3,
       },
@@ -138,7 +111,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Main display for development, design, and editing. BenQ ScreenBar Halo sits on top for reducing eye strain.',
         image: studioDisplay,
-        imageDark: studioDisplayDark,
         kind: 'device',
         rotate: 3,
       },
@@ -147,7 +119,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'A design icon. Bought secondhand, still one of the most important parts of the workspace.',
         image: aeronChair,
-        imageDark: aeronChairDark,
         kind: 'device',
         rotate: 2,
       },
@@ -157,7 +128,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'A near-perfect mic that stays mounted on the desk for meetings and the voiceovers I do.',
         image: shureSm7db,
-        imageDark: shureSm7dbDark,
         kind: 'device',
         rotate: 4,
       },
@@ -167,7 +137,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Solid walnut hardwood on a white frame. A clean, comfortable foundation for long coding sessions that still feels minimal.',
         image: standingDesk,
-        imageDark: standingDeskDark,
         kind: 'device',
         rotate: -3,
       },
@@ -182,7 +151,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Light enough to actually bring along, sturdy enough for real work, and it looks so nice.',
         image: peakTripod,
-        imageDark: peakTripodDark,
         kind: 'device',
         rotate: -4,
       },
@@ -192,7 +160,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Shotgun mic for talking directly to camera. Adds very little weight to the setup, still crispy sound.',
         image: mke400,
-        imageDark: mke400Dark,
         kind: 'device',
         rotate: 2,
       },
@@ -202,7 +169,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'My ultra-wide. Cost a pretty penny, but perfect for capturing small settings or the full picture.',
         image: sony1635,
-        imageDark: sony1635Dark,
         kind: 'device',
         rotate: 3,
       },
@@ -212,7 +178,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'The workhorse lens on the FX3, what I reach for to capture tight cinematic shots.',
         image: sony2470,
-        imageDark: sony2470Dark,
         kind: 'device',
         rotate: -2,
       },
@@ -221,7 +186,6 @@ export const toolGroups: ToolGroup[] = [
         href: 'https://amzn.to/3YTBdCz',
         description: 'Perfect for lightweight, minimal street photography.',
         image: sony40mm,
-        imageDark: sony40mmDark,
         kind: 'device',
         rotate: 3,
       },
@@ -231,7 +195,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Compact full-frame body for street photography around New York City.',
         image: a7cIi,
-        imageDark: a7cIiDark,
         kind: 'device',
         rotate: -3,
       },
@@ -241,7 +204,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           "My dream camera. It can feel like overkill, but using it you understand why it's so loved. This camera forces you to learn more about videography, and that's why I love it myself.",
         image: sonyFx3,
-        imageDark: sonyFx3Dark,
         kind: 'device',
         rotate: 0,
       },
@@ -256,7 +218,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'What actually drives the living-room TV. Sports, movies, and YouTube.',
         image: appleTv4k,
-        imageDark: appleTv4kDark,
         kind: 'device',
         rotate: 3,
       },
@@ -266,7 +227,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           "My e-bike. I love the design. From a distance it still looks like an ordinary classic bike, but it's perfect for zipping around the city.",
         image: cowboyBike,
-        imageDark: cowboyBikeDark,
         kind: 'device',
         rotate: -3,
       },
@@ -276,7 +236,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'The living-room TV. I have the 55 inch, which feels perfect, not too big, not too small. Pair it with a Sonos Beam for sound.',
         image: lgOled,
-        imageDark: lgOledDark,
         kind: 'device',
         rotate: -2,
       },
@@ -286,7 +245,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'Started with a single bulb in a lamp, then added a couple around the space for nice ambience.',
         image: hueBulb,
-        imageDark: hueBulbDark,
         kind: 'device',
         rotate: -3,
       },
@@ -296,7 +254,6 @@ export const toolGroups: ToolGroup[] = [
         description:
           'In the room for rich, full jamming sessions when I don\'t want headphones.',
         image: sonosEra100,
-        imageDark: sonosEra100Dark,
         kind: 'device',
         rotate: 3,
       },

@@ -34,8 +34,6 @@ export function Sticker({
         className={cn(
           'relative z-20 shrink-0 rounded-xl',
           iconChromeClassName,
-          // Match dark hardware vinyl (#333) — between muted and item hover.
-          'dark:bg-[#333333]',
           sizes[size],
           className,
         )}
@@ -85,16 +83,8 @@ export function Sticker({
           src={src}
           alt={alt}
           sizes={imageSizes}
-          className={cn('size-full object-contain', srcDark && 'dark:hidden')}
+          className="size-full object-contain"
         />
-        {srcDark ? (
-          <Image
-            src={srcDark}
-            alt={alt}
-            sizes={imageSizes}
-            className="hidden size-full object-contain dark:block"
-          />
-        ) : null}
       </div>
     </div>
   )
