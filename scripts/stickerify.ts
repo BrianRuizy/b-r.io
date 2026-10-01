@@ -28,6 +28,8 @@ type StickerifyOptions = {
   border?: number
   outSize?: number
   maxSide?: number
+  /** Extra transparent canvas margin as a fraction of the die-cut size. Default 0.05. */
+  margin?: number
   /** Normalized crop box: left, top, right, bottom in 0–1. */
   crop?: [number, number, number, number]
   /** Vinyl fill RGB. Default white. Use 38,38,38 for dark `--muted`. */
@@ -551,7 +553,8 @@ export async function stickerify(src: string, options: StickerifyOptions) {
     )
   }
 
-  let margin = Math.max(extra, Math.round(Math.max(cw, ch) * 0.05))
+  let marginFrac = options.margin ?? 0.05
+  let margin = Math.max(extra, Math.round(Math.max(cw, ch) * marginFrac))
   let side = Math.max(cw, ch) + margin * 2
   let canvas = Buffer.alloc(side * side * 4)
   let ox = ((side - cw) / 2) | 0
@@ -644,6 +647,7 @@ function parseArgs(argv: string[]) {
   let recolorVinylRgb: [number, number, number] | undefined
   let vinylRgb: [number, number, number] | undefined
   let tol: number | undefined
+  let margin: number | undefined
   let crop: [number, number, number, number] | undefined
   let positional: string[] = []
 
@@ -652,11 +656,12 @@ function parseArgs(argv: string[]) {
     if (arg === '--app') app = true
     else if (arg === '--help' || arg === '-h') {
       console.log(
-        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
+        'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--margin 0.05] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
       )
       process.exit(0)
     } else if (arg === '--mode') mode = argv[++i] as Mode
     else if (arg === '--tol') tol = Number(argv[++i])
+    else if (arg === '--margin') margin = Number(argv[++i])
     else if (arg === '--recolor-vinyl') {
       let parts = argv[++i]!.split(',').map(Number)
       if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) {
@@ -684,7 +689,7 @@ function parseArgs(argv: string[]) {
 
   if (positional.length !== 2) {
     throw new Error(
-      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
+      'Usage: npm run stickerify -- [--app] [--mode auto|alpha] [--tol 36] [--margin 0.05] [--crop l,t,r,b] [--vinyl r,g,b] [--recolor-vinyl r,g,b] <input> <output.png>',
     )
   }
 
@@ -692,6 +697,7 @@ function parseArgs(argv: string[]) {
     app,
     mode,
     tol,
+    margin,
     crop,
     vinylRgb,
     recolorVinylRgb,
@@ -713,6 +719,7 @@ if (isMain) {
       dest: args.dest,
       mode: args.mode,
       tol: args.tol,
+      margin: args.margin,
       crop: args.crop,
       vinyl: args.vinylRgb,
     })

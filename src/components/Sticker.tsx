@@ -73,22 +73,24 @@ export function Sticker({
         } as React.CSSProperties
       }
     >
-      <div className="relative isolate size-full">
+      {/*
+        Keep drop-shadow on this overflow-visible wrapper (not the <img>).
+        Filters on replaced images get clipped when the die-cut nearly fills
+        the box — tall upright stickers like the 16–35 were losing the shadow.
+      */}
+      <div className="relative isolate size-full overflow-visible drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]">
         <Image
           src={src}
           alt={alt}
           sizes={imageSizes}
-          className={cn(
-            'size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]',
-            srcDark && 'dark:hidden',
-          )}
+          className={cn('size-full object-contain', srcDark && 'dark:hidden')}
         />
         {srcDark ? (
           <Image
             src={srcDark}
             alt={alt}
             sizes={imageSizes}
-            className="hidden size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)] dark:block"
+            className="hidden size-full object-contain dark:block"
           />
         ) : null}
       </div>

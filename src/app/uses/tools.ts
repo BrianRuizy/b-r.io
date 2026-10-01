@@ -107,7 +107,7 @@ export const toolGroups: ToolGroup[] = [
         scale: 0.86,
       },
       {
-        title: 'Urth backpack',
+        title: 'Urth Arkose backpack',
         href: 'https://amzn.to/49d888x',
         description:
           'Sleek and water resistant. Holds the daily tech essentials.',
