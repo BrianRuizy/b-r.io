@@ -63,12 +63,12 @@ function Tool({
   )
 }
 
-const heroTitle = 'What I use every day to build, create, and stay productive.'
+const heroTitle = 'Gear I use every day to build, create, and stay productive.'
 
 export const metadata = createPageMetadata({
   title: 'Uses',
   description:
-    'Gear and apps I use every day to build, create, and stay productive.',
+    'Gear I use every day to build, create, and stay productive.',
   heroTitle,
 })
 
@@ -76,7 +76,7 @@ export default function Uses() {
   return (
     <SimpleLayout
       title={heroTitle}
-      intro="Gear and apps I actually own and enjoy using. Mostly tech. Links are affiliate where available, which means I may earn a commission if you buy something, at no extra cost to you."
+      intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliates; I may earn a commission at no extra cost to you."
     >
       <div className="space-y-20">
         {toolGroups.map((group) => (
