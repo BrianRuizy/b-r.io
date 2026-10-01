@@ -76,7 +76,7 @@ export default function Uses() {
   return (
     <SimpleLayout
       title={heroTitle}
-      intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliates; I may earn a little commission at no extra cost to you."
+      intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliate; I may earn a little commission at no extra cost to you."
     >
       <div className="space-y-20">
         {toolGroups.map((group) => (
