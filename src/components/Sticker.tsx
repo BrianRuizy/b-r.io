@@ -32,7 +32,7 @@ export function Sticker({
     return (
       <div
         className={cn(
-          'relative z-20 shrink-0 rounded-lg',
+          'relative z-20 shrink-0 rounded-xl',
           iconChromeClassName,
           sizes[size],
           className,
