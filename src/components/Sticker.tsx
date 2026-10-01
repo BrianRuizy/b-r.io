@@ -1,14 +1,11 @@
 import Image, { type StaticImageData } from 'next/image'
 import { cn } from '@/lib/utils'
+import { iconChromeClassName } from '@/lib/iconChrome'
 
 const sizes = {
   sm: 'size-12',
   md: 'size-16 sm:size-[4.75rem]',
 } as const
-
-/** Same treatment as project logos, but a rounded square instead of a circle. */
-const projectIconShadow =
-  'shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0'
 
 export function Sticker({
   src,
@@ -31,18 +28,20 @@ export function Sticker({
     return (
       <div
         className={cn(
-          'relative z-10 shrink-0 overflow-hidden rounded-2xl bg-card transition duration-300 ease-out group-hover:-translate-y-0.5',
-          projectIconShadow,
+          'relative z-20 shrink-0 rounded-lg transition duration-300 ease-out group-hover:-translate-y-0.5',
+          iconChromeClassName,
           sizes[size],
           className,
         )}
       >
-        <Image
-          src={src}
-          alt={alt}
-          sizes={imageSizes}
-          className="size-full object-cover"
-        />
+        <div className="size-full overflow-hidden rounded-[inherit]">
+          <Image
+            src={src}
+            alt={alt}
+            sizes={imageSizes}
+            className="size-full object-cover"
+          />
+        </div>
       </div>
     )
   }

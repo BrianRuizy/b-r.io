@@ -7,7 +7,9 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { iconChromeClassName } from '@/lib/iconChrome'
 import { createPageMetadata } from '@/lib/metadata'
+import { cn } from '@/lib/utils'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
@@ -108,7 +110,12 @@ export default function Projects() {
         {projects.map((project) => (
           <li key={project.name}>
             <ContentCard className="h-full">
-              <div className="relative z-20 flex size-12 items-center justify-center rounded-full bg-card text-sm font-semibold text-foreground shadow-md ring-1 shadow-foreground/5 ring-border dark:border dark:border-border dark:bg-muted dark:ring-0">
+              <div
+                className={cn(
+                  'relative z-20 flex size-12 items-center justify-center rounded-full text-sm font-semibold text-foreground',
+                  iconChromeClassName,
+                )}
+              >
                 {project.logo ? (
                   <Image
                     src={project.logo}
