@@ -245,55 +245,6 @@ export const toolGroups: ToolGroup[] = [
     ],
   },
   {
-    title: 'Apps',
-    tools: [
-      {
-        title: 'Bevel',
-        href: 'https://join.bevel.health/U444GM',
-        description:
-          'I use this for various health metrics to extend Apple Health, including fitness tracking, food logging, and sleep.',
-        image: appBevel,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Cursor',
-        href: 'https://www.cursor.com/',
-        description:
-          'My primary IDE for software development and AI-assisted coding.',
-        image: appCursor,
-        imageDark: appCursorDark,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Figma',
-        href: 'https://www.figma.com/',
-        description:
-          'Where I explore interfaces and turn ideas into visual direction — also video titles, thumbnails, and the occasional animation.',
-        image: appFigma,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Final Cut Pro',
-        href: 'https://www.apple.com/final-cut-pro/',
-        description: 'Where the YouTube videos come together.',
-        image: appFinalCut,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Notion',
-        href: 'https://www.notion.so/',
-        description: 'Planning, notes, and systems.',
-        image: appNotion,
-        kind: 'app',
-        rotate: 0,
-      },
-    ],
-  },
-  {
     title: 'Home',
     tools: [
       {
@@ -344,6 +295,55 @@ export const toolGroups: ToolGroup[] = [
         imageDark: lgOledDark,
         kind: 'device',
         rotate: -2,
+      },
+    ],
+  },
+  {
+    title: 'Apps',
+    tools: [
+      {
+        title: 'Bevel',
+        href: 'https://join.bevel.health/U444GM',
+        description:
+          'I use this for various health metrics to extend Apple Health, including fitness tracking, food logging, and sleep.',
+        image: appBevel,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Cursor',
+        href: 'https://www.cursor.com/',
+        description:
+          'My primary IDE for software development and AI-assisted coding.',
+        image: appCursor,
+        imageDark: appCursorDark,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Figma',
+        href: 'https://www.figma.com/',
+        description:
+          'Where I explore interfaces and turn ideas into visual direction — also video titles, thumbnails, and the occasional animation.',
+        image: appFigma,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Final Cut Pro',
+        href: 'https://www.apple.com/final-cut-pro/',
+        description: 'Where the YouTube videos come together.',
+        image: appFinalCut,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Notion',
+        href: 'https://www.notion.so/',
+        description: 'Planning, notes, and systems.',
+        image: appNotion,
+        kind: 'app',
+        rotate: 0,
       },
     ],
   },
