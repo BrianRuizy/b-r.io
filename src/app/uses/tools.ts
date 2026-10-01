@@ -64,7 +64,7 @@ export const toolGroups: ToolGroup[] = [
         rotate: -10,
       },
       {
-        title: 'Apple M1 Pro MacBook Pro 16 in',
+        title: 'Apple MacBook Pro M1 Pro',
         href: 'https://amzn.to/41fkhEH',
         description:
           'Holding strong as the portable center of engineering and creative work.',
