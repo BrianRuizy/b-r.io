@@ -28,6 +28,8 @@ import mke600 from '@/images/uses/mke-600.png'
 import mke600Dark from '@/images/uses/dark/mke-600.png'
 import sony2470 from '@/images/uses/sony-24-70.png'
 import sony2470Dark from '@/images/uses/dark/sony-24-70.png'
+import sony1635 from '@/images/uses/sony-16-35.png'
+import sony1635Dark from '@/images/uses/dark/sony-16-35.png'
 import sony40mm from '@/images/uses/sony-40mm.png'
 import sony40mmDark from '@/images/uses/dark/sony-40mm.png'
 import a7cIi from '@/images/uses/a7c-ii.png'
@@ -198,6 +200,16 @@ export const toolGroups: ToolGroup[] = [
         imageDark: sony2470Dark,
         kind: 'device',
         rotate: -2,
+      },
+      {
+        title: 'Sony 16–35mm f/2.8 GM II',
+        href: 'https://www.amazon.com/dp/B0CGTW24VF',
+        description:
+          'My ultra-wide. Cost a pretty penny, but perfect for capturing small settings or the full picture.',
+        image: sony1635,
+        imageDark: sony1635Dark,
+        kind: 'device',
+        rotate: 3,
       },
       {
         title: 'Sony 40mm f/2.5 G',
