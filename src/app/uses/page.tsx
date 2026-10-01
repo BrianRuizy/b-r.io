@@ -35,7 +35,7 @@ function Tool({
   scale,
 }: ToolItem) {
   return (
-    <ContentCard as="li" className="flex-row items-start gap-4 sm:gap-5">
+    <ContentCard as="li" className="flex-row items-start gap-6">
       {/* Fixed icon column so app + hardware text share the same left edge. */}
       <div className="flex w-14 shrink-0 justify-center sm:w-[4.25rem]">
         <Sticker
