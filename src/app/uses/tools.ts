@@ -120,6 +120,16 @@ export const toolGroups: ToolGroup[] = [
     title: 'Workstation',
     tools: [
       {
+        title: 'Apple Magic Keyboard with Touch ID',
+        href: 'https://amzn.to/4hqtEeo',
+        description:
+          'I moved away from mechanical keyboards in favor of something wireless and simple. Touch ID is handy, too. I pair it with a Logitech MX Master 3S.',
+        image: magicKeyboard,
+        imageDark: magicKeyboardDark,
+        kind: 'device',
+        rotate: -3,
+      },
+      {
         title: 'Apple Studio Display',
         href: 'https://amzn.to/3TTDg7d',
         description:
@@ -128,16 +138,6 @@ export const toolGroups: ToolGroup[] = [
         imageDark: studioDisplayDark,
         kind: 'device',
         rotate: 3,
-      },
-      {
-        title: 'Vernal Core3 hardwood standing desk',
-        href: 'https://www.vernalspace.com/products/vernal-solid-wood-standing-desk',
-        description:
-          'Solid walnut hardwood on a white frame. A clean, comfortable foundation for long coding sessions that still feels minimal.',
-        image: standingDesk,
-        imageDark: standingDeskDark,
-        kind: 'device',
-        rotate: -3,
       },
       {
         title: 'Herman Miller Aeron',
@@ -149,16 +149,6 @@ export const toolGroups: ToolGroup[] = [
         rotate: 2,
       },
       {
-        title: 'Apple Magic Keyboard with Touch ID',
-        href: 'https://amzn.to/4hqtEeo',
-        description:
-          'I moved away from mechanical keyboards in favor of something wireless and simple. Touch ID is handy, too. I pair it with a Logitech MX Master 3S.',
-        image: magicKeyboard,
-        imageDark: magicKeyboardDark,
-        kind: 'device',
-        rotate: -3,
-      },
-      {
         title: 'Shure SM7dB',
         href: 'https://amzn.to/4w5vRRS',
         description:
@@ -167,6 +157,16 @@ export const toolGroups: ToolGroup[] = [
         imageDark: shureSm7dbDark,
         kind: 'device',
         rotate: 4,
+      },
+      {
+        title: 'Vernal Core3 hardwood standing desk',
+        href: 'https://www.vernalspace.com/products/vernal-solid-wood-standing-desk',
+        description:
+          'Solid walnut hardwood on a white frame. A clean, comfortable foundation for long coding sessions that still feels minimal.',
+        image: standingDesk,
+        imageDark: standingDeskDark,
+        kind: 'device',
+        rotate: -3,
       },
     ],
   },
@@ -194,16 +194,6 @@ export const toolGroups: ToolGroup[] = [
         rotate: 2,
       },
       {
-        title: 'Sony 24–70mm f/2.8 GM II',
-        href: 'https://amzn.to/3TABciO',
-        description:
-          'The workhorse lens on the FX3 — what I reach for to capture tight cinematic shots.',
-        image: sony2470,
-        imageDark: sony2470Dark,
-        kind: 'device',
-        rotate: -2,
-      },
-      {
         title: 'Sony 16–35mm f/2.8 GM II',
         href: 'https://www.amazon.com/dp/B0CGTW24VF',
         description:
@@ -212,6 +202,16 @@ export const toolGroups: ToolGroup[] = [
         imageDark: sony1635Dark,
         kind: 'device',
         rotate: 3,
+      },
+      {
+        title: 'Sony 24–70mm f/2.8 GM II',
+        href: 'https://amzn.to/3TABciO',
+        description:
+          'The workhorse lens on the FX3 — what I reach for to capture tight cinematic shots.',
+        image: sony2470,
+        imageDark: sony2470Dark,
+        kind: 'device',
+        rotate: -2,
       },
       {
         title: 'Sony 40mm f/2.5 G',
@@ -248,6 +248,16 @@ export const toolGroups: ToolGroup[] = [
     title: 'Home',
     tools: [
       {
+        title: 'Apple TV 4K',
+        href: 'https://www.apple.com/apple-tv-4k/',
+        description:
+          'What actually drives the living-room TV. Sports, movies, and YouTube.',
+        image: appleTv4k,
+        imageDark: appleTv4kDark,
+        kind: 'device',
+        rotate: 3,
+      },
+      {
         title: 'Cowboy Classic v4',
         href: 'https://cowboy.bike/',
         description:
@@ -258,14 +268,13 @@ export const toolGroups: ToolGroup[] = [
         rotate: -3,
       },
       {
-        title: 'Apple TV 4K',
-        href: 'https://www.apple.com/apple-tv-4k/',
-        description:
-          'What actually drives the living-room TV. Sports, movies, and YouTube.',
-        image: appleTv4k,
-        imageDark: appleTv4kDark,
+        title: 'LG C4 OLED',
+        href: 'https://amzn.to/3ZRVet8',
+        description: 'The living-room TV, with a Sonos Beam for sound.',
+        image: lgOled,
+        imageDark: lgOledDark,
         kind: 'device',
-        rotate: 3,
+        rotate: -2,
       },
       {
         title: 'Philips Hue',
@@ -286,15 +295,6 @@ export const toolGroups: ToolGroup[] = [
         imageDark: sonosEra100Dark,
         kind: 'device',
         rotate: 3,
-      },
-      {
-        title: 'LG C4 OLED',
-        href: 'https://amzn.to/3ZRVet8',
-        description: 'The living-room TV, with a Sonos Beam for sound.',
-        image: lgOled,
-        imageDark: lgOledDark,
-        kind: 'device',
-        rotate: -2,
       },
     ],
   },
