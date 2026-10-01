@@ -160,7 +160,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Shure SM7dB',
         href: 'https://amzn.to/4w5vRRS',
         description:
-          'This microphone is perfect for podcasting and streaming. Get clear, warm vocals every time.',
+          'A near-perfect mic that stays mounted on the desk for meetings and the voiceovers I do.',
         image: shureSm7db,
         imageDark: shureSm7dbDark,
         kind: 'device',
