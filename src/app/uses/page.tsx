@@ -36,15 +36,18 @@ function Tool({
 }: ToolItem) {
   return (
     <ContentCard as="li" className="flex-row items-start gap-4 sm:gap-5">
-      <Sticker
-        src={image}
-        srcDark={imageDark}
-        alt=""
-        rotate={kind === 'app' ? 0 : rotate}
-        scale={scale}
-        size={kind === 'app' ? 'sm' : 'md'}
-        variant={kind}
-      />
+      {/* Fixed icon column so app + hardware text share the same left edge. */}
+      <div className="flex w-14 shrink-0 justify-center sm:w-[4.25rem]">
+        <Sticker
+          src={image}
+          srcDark={imageDark}
+          alt=""
+          rotate={kind === 'app' ? 0 : rotate}
+          scale={scale}
+          size={kind === 'app' ? 'sm' : 'md'}
+          variant={kind}
+        />
+      </div>
       <div className="min-w-0 flex-1 pt-0.5">
         <ContentCardTitle as="h3" href={href} external={Boolean(href)}>
           <span className="inline-flex items-center gap-2">
