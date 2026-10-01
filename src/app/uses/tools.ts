@@ -1,5 +1,7 @@
 import { type StaticImageData } from 'next/image'
 
+// Hardware PNGs are die-cut with `npm run stickerify -- photo.png src/images/uses/name.png`
+
 import airpodsMax from '@/images/uses/airpods-max.png'
 import macbookPro from '@/images/uses/macbook-pro.png'
 import t7Ssd from '@/images/uses/t7-ssd.png'
@@ -270,4 +272,3 @@ export const toolGroups: ToolGroup[] = [
     ],
   },
 ]
-

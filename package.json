@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "stickerify": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/stickerify.ts"
   },
   "type": "module",
   "browserslist": "defaults, not ie <= 11",

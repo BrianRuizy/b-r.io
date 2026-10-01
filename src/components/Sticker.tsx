@@ -66,7 +66,7 @@ export function Sticker({
         {/* Tint the baked-in white vinyl so it isn't a hard white-on-black edge. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 hidden bg-[oklch(0.8_0_0)] mix-blend-multiply dark:block"
+          className="pointer-events-none absolute inset-0 hidden bg-card mix-blend-multiply dark:block dark:bg-[color-mix(in_oklab,var(--muted)_32%,white)]"
           style={{
             maskImage: `url(${src.src})`,
             WebkitMaskImage: `url(${src.src})`,
