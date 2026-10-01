@@ -175,7 +175,7 @@ export const toolGroups: ToolGroup[] = [
         title: 'Peak Design carbon fiber tripod',
         href: 'https://amzn.to/43CoF31',
         description:
-          'Light enough to actually bring along, sturdy enough for real work.',
+          'Light enough to actually bring along, sturdy enough for real work — and it looks so nice.',
         image: peakTripod,
         imageDark: peakTripodDark,
         kind: 'device',
