@@ -63,21 +63,6 @@ export function Sticker({
           sizes={imageSizes}
           className="size-full object-contain drop-shadow-[0_4px_6px_rgb(0_0_0_/_0.10),0_2px_4px_rgb(0_0_0_/_0.10)]"
         />
-        {/* Tint the baked-in white vinyl so it isn't a hard white-on-black edge. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 hidden bg-card mix-blend-multiply dark:block dark:bg-[color-mix(in_oklab,var(--muted)_32%,white)]"
-          style={{
-            maskImage: `url(${src.src})`,
-            WebkitMaskImage: `url(${src.src})`,
-            maskSize: 'contain',
-            WebkitMaskSize: 'contain',
-            maskRepeat: 'no-repeat',
-            WebkitMaskRepeat: 'no-repeat',
-            maskPosition: 'center',
-            WebkitMaskPosition: 'center',
-          }}
-        />
       </div>
     </div>
   )
