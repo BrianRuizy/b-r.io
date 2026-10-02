@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { type Collab } from '@/app/projects/collabs'
 import { Halo } from '@/components/Halo'
+import { SlackLockup } from '@/components/SlackLockup'
 import { cn } from '@/lib/utils'
 
 function cellBorders(index: number, count: number) {
@@ -30,23 +31,27 @@ export function BrandCloud({ brands }: { brands: Array<Collab> }) {
             className="group relative flex aspect-[5/3] items-center justify-center"
           >
             <Halo className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100" />
-            <span
-              aria-hidden
-              className={cn(
-                'relative z-10 bg-foreground opacity-70 transition group-hover:opacity-100',
-                brand.mark === 'wordmark' ? 'h-7 w-[68%]' : 'size-8',
-              )}
-              style={{
-                maskImage: `url(${brand.logo.src})`,
-                maskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskImage: `url(${brand.logo.src})`,
-                WebkitMaskSize: 'contain',
-                WebkitMaskRepeat: 'no-repeat',
-                WebkitMaskPosition: 'center',
-              }}
-            />
+            {brand.name === 'Slack' ? (
+              <SlackLockup className="relative z-10 h-8 w-[82%] opacity-80 transition group-hover:opacity-100" />
+            ) : (
+              <span
+                aria-hidden
+                className={cn(
+                  'relative z-10 bg-foreground opacity-70 transition group-hover:opacity-100',
+                  brand.mark === 'wordmark' ? 'h-7 w-[68%]' : 'size-8',
+                )}
+                style={{
+                  maskImage: `url(${brand.logo.src})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${brand.logo.src})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+            )}
           </Link>
         </li>
       ))}
