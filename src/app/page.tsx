@@ -258,7 +258,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="space-y-10">
             <h2 className="text-sm font-semibold tracking-tight">
-              Recent Posts
+              Latest
             </h2>
             <div className="flex flex-col gap-16">
               {posts.map((post) => (

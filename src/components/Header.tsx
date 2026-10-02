@@ -12,7 +12,6 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
@@ -25,6 +24,8 @@ import {
   motionTransition,
   symbolReplace,
 } from '@/lib/transitions'
+import { cn } from '@/lib/utils'
+import { isWritingPath } from '@/lib/writing'
 
 type TrayBounds = {
   top: number
@@ -286,8 +287,8 @@ function MobileNavigation({ className }: { className?: string }) {
                       <MobileNavItem href="/about" onNavigate={closeMenu}>
                         About
                       </MobileNavItem>
-                      <MobileNavItem href="/posts" onNavigate={closeMenu}>
-                        Posts
+                      <MobileNavItem href="/writing" onNavigate={closeMenu}>
+                        Writing
                       </MobileNavItem>
                       <MobileNavItem href="/projects" onNavigate={closeMenu}>
                         Projects
@@ -316,7 +317,7 @@ function NavItem({
 }) {
   let pathname = usePathname()
   let isActive =
-    pathname === href || (href === '/posts' && pathname.startsWith('/posts/'))
+    pathname === href || (href === '/writing' && isWritingPath(pathname))
 
   return (
     <li>
@@ -348,7 +349,7 @@ function DesktopNavigation({
         </div>
         <ul className="relative z-10 flex px-3 text-sm font-medium text-foreground">
           <NavItem href="/about">About</NavItem>
-          <NavItem href="/posts">Posts</NavItem>
+          <NavItem href="/writing">Writing</NavItem>
           <NavItem href="/projects">Projects</NavItem>
           <NavItem href="/uses">Uses</NavItem>
         </ul>

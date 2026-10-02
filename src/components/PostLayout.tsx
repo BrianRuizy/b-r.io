@@ -30,7 +30,7 @@ export function PostLayout({
             <button
               type="button"
               onClick={() => router.back()}
-              aria-label="Go back to posts"
+              aria-label="Go back to writing"
               className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-card shadow-md ring-1 shadow-foreground/5 ring-border transition lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 dark:bg-muted dark:ring-0 dark:hover:ring-1 dark:hover:ring-foreground/20"
             >
               <ArrowLeftIcon className="size-4 text-muted-foreground transition group-hover:text-foreground" />
