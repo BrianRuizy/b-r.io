@@ -15,7 +15,6 @@ import { createPageMetadata } from '@/lib/metadata'
 import { cn } from '@/lib/utils'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
-import logoCosmos from '@/images/logos/cosmos.svg'
 import logoCovidDashboard from '@/images/logos/covid-dashboard.png'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 
@@ -65,17 +64,7 @@ const projects: Array<Project> = [
       href: 'https://github.com/brianruizy/covid19-dashboard',
       label: 'github.com/brianruizy/covid19-dashboard',
     },
-    logo: logoCovidDashboard,
-  },
-  {
-    name: 'Next Notion Portfolio',
-    description:
-      'A Next.js portfolio template that uses Notion as a flexible content management system.',
-    link: {
-      href: 'https://github.com/brianruizy/next-notion-portfolio',
-      label: 'github.com/brianruizy/next-notion-portfolio',
-    },
-    logo: logoCosmos,
+      logo: logoCovidDashboard,
   },
 ]
 
