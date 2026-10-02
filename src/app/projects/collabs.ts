@@ -2,70 +2,69 @@ import { type StaticImageData } from 'next/image'
 
 import logoFramer from '@/images/logos/brands/framer.svg'
 import logoIbm from '@/images/logos/brands/ibm.svg'
-import logoLg from '@/images/logos/brands/lg.svg'
 import logoLogitech from '@/images/logos/brands/logitech.svg'
-import logoMicrosoft from '@/images/logos/brands/microsoft.svg'
+import logoMobbin from '@/images/logos/brands/mobbin.svg'
+import logoMonday from '@/images/logos/brands/monday.svg'
 import logoNotion from '@/images/logos/brands/notion.svg'
+import logoRaycast from '@/images/logos/brands/raycast.svg'
 import logoSlack from '@/images/logos/brands/slack.svg'
-import { writingHref } from '@/lib/writing'
+import logoSuperhuman from '@/images/logos/brands/superhuman.svg'
 
 export type Collab = {
   name: string
   href: string
-  logo?: StaticImageData
-  external?: boolean
+  logo: StaticImageData
   mark?: 'icon' | 'wordmark'
 }
 
 export const collabs: Array<Collab> = [
   {
     name: 'Notion',
-    href: writingHref('my-notion-productivity-setup'),
+    href: 'https://www.youtube.com/watch?v=53KFVt2GRkE',
     logo: logoNotion,
   },
   {
     name: 'Slack',
-    href: 'https://www.youtube.com/results?search_query=brianruizy+slack',
+    href: 'https://www.youtube.com/watch?v=F89JTZzJJnI',
     logo: logoSlack,
-    external: true,
   },
   {
     name: 'Logitech',
     href: 'https://www.youtube.com/watch?v=AIZ5LJ2IeZo',
     logo: logoLogitech,
-    external: true,
+    mark: 'wordmark',
   },
   {
     name: 'Superhuman',
     href: 'https://www.youtube.com/watch?v=jT5C70zLQMM',
-    external: true,
-    mark: 'wordmark',
+    logo: logoSuperhuman,
   },
   {
     name: 'IBM',
-    href: 'https://www.youtube.com/results?search_query=brianruizy+ibm',
+    href: 'https://www.youtube.com/watch?v=CIi1M-9oTHM',
     logo: logoIbm,
-    external: true,
+    mark: 'wordmark',
   },
   {
-    name: 'LG',
-    href: writingHref('desk-setup'),
-    logo: logoLg,
+    name: 'monday.com',
+    href: 'https://www.youtube.com/watch?v=6nvnKjzwjaI',
+    logo: logoMonday,
+    mark: 'wordmark',
   },
   {
-    name: 'Microsoft',
-    href: writingHref('this-app-got-us-1st-place-at-a-microsoft-hackathon'),
-    logo: logoMicrosoft,
-  },
-  {
-    name: 'Liquid I.V.',
-    href: 'https://www.instagram.com/brianruizy/',
-    external: true,
+    name: 'Mobbin',
+    href: 'https://www.youtube.com/watch?v=uMvJlTk0w9U',
+    logo: logoMobbin,
     mark: 'wordmark',
   },
   {
     name: 'Framer',
-    href: writingHref('moving-into-my-dream-nyc-apartment'),
+    href: 'https://www.youtube.com/watch?v=lD84PGERjP8',
     logo: logoFramer,
+  },
+  {
+    name: 'Raycast',
+    href: 'https://www.youtube.com/watch?v=mH4Fs1Pxomo',
+    logo: logoRaycast,
   },
 ]

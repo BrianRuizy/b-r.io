@@ -4,47 +4,49 @@ import { type Collab } from '@/app/projects/collabs'
 import { Halo } from '@/components/Halo'
 import { cn } from '@/lib/utils'
 
+function cellBorders(index: number, count: number) {
+  const lastRow2 = count - (count % 2 || 2)
+  const lastRow3 = count - (count % 3 || 3)
+
+  return cn(
+    'border-border',
+    (index + 1) % 2 !== 0 && 'max-sm:border-r',
+    index < lastRow2 && 'max-sm:border-b',
+    (index + 1) % 3 !== 0 && 'sm:border-r',
+    index < lastRow3 && 'sm:border-b',
+  )
+}
+
 export function BrandCloud({ brands }: { brands: Array<Collab> }) {
   return (
-    <ul
-      role="list"
-      className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4"
-    >
-      {brands.map((brand) => (
-        <li key={brand.name}>
+    <ul role="list" className="grid grid-cols-2 sm:grid-cols-3">
+      {brands.map((brand, index) => (
+        <li key={brand.name} className={cellBorders(index, brands.length)}>
           <Link
             href={brand.href}
-            target={brand.external ? '_blank' : undefined}
-            rel={brand.external ? 'noopener noreferrer' : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={`${brand.name} — see related work`}
-            className="group relative flex aspect-[5/3] items-center justify-center overflow-hidden rounded-2xl bg-card ring-1 ring-border transition dark:bg-muted dark:ring-0 dark:hover:ring-1 dark:hover:ring-foreground/20"
+            className="group relative flex aspect-[5/3] items-center justify-center"
           >
             <Halo className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100" />
-            {brand.mark === 'wordmark' || !brand.logo ? (
-              <span className="relative z-10 px-3 text-center text-sm font-semibold tracking-tight text-foreground opacity-70 transition group-hover:opacity-100">
-                {brand.name}
-              </span>
-            ) : (
-              <span
-                aria-hidden
-                className={cn(
-                  'relative z-10 bg-foreground opacity-70 transition group-hover:opacity-100',
-                  brand.name === 'IBM' || brand.name === 'Logitech'
-                    ? 'h-6 w-[62%]'
-                    : 'size-8',
-                )}
-                style={{
-                  maskImage: `url(${brand.logo.src})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${brand.logo.src})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-            )}
+            <span
+              aria-hidden
+              className={cn(
+                'relative z-10 bg-foreground opacity-70 transition group-hover:opacity-100',
+                brand.mark === 'wordmark' ? 'h-7 w-[68%]' : 'size-8',
+              )}
+              style={{
+                maskImage: `url(${brand.logo.src})`,
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskImage: `url(${brand.logo.src})`,
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+              }}
+            />
           </Link>
         </li>
       ))}
