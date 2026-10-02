@@ -5,24 +5,14 @@ import { Halo } from '@/components/Halo'
 import { SlackLockup } from '@/components/SlackLockup'
 import { cn } from '@/lib/utils'
 
-function cellBorders(index: number, count: number) {
-  const lastRow = count - (count % 2 || 2)
-
-  return cn(
-    'border-border',
-    index % 2 === 0 && 'border-r',
-    index < lastRow && 'border-b',
-  )
-}
-
 const logoClassName =
   'relative z-10 h-7 w-auto max-w-[84%] opacity-80 transition group-hover:opacity-100'
 
 export function BrandCloud({ brands }: { brands: Array<Collab> }) {
   return (
     <ul role="list" className="grid grid-cols-2">
-      {brands.map((brand, index) => (
-        <li key={brand.name} className={cellBorders(index, brands.length)}>
+      {brands.map((brand) => (
+        <li key={brand.name}>
           <Link
             href={brand.href}
             target="_blank"
