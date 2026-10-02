@@ -90,7 +90,7 @@ export function createPostMetadata(post: PostMeta): Metadata {
 }
 
 async function importPost(postFilename: string): Promise<Post> {
-  let { post } = (await import(`../app/posts/${postFilename}`)) as {
+  let { post } = (await import(`../app/writing/${postFilename}`)) as {
     default: React.ComponentType
     post: PostMeta
   }
@@ -99,14 +99,14 @@ async function importPost(postFilename: string): Promise<Post> {
 
   return {
     slug,
-    href: `/posts/${slug}`,
+    href: `/writing/${slug}`,
     ...post,
   }
 }
 
 export async function getAllPosts() {
   let postFilenames = await glob('*/page.mdx', {
-    cwd: './src/app/posts',
+    cwd: './src/app/writing',
   })
 
   let posts = await Promise.all(postFilenames.map(importPost))

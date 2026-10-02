@@ -1,12 +1,15 @@
 import Image, { type ImageProps } from 'next/image'
 import { LinkIcon } from '@heroicons/react/24/outline'
 
+import { BrandCloud } from '@/components/BrandCloud'
 import {
   ContentCard,
   ContentCardDescription,
   ContentCardTitle,
 } from '@/components/ContentCard'
+import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { collabs } from '@/app/projects/collabs'
 import { iconChromeClassName } from '@/lib/iconChrome'
 import { createPageMetadata } from '@/lib/metadata'
 import { cn } from '@/lib/utils'
@@ -77,11 +80,11 @@ const projects: Array<Project> = [
 ]
 
 const heroTitle =
-  "Side projects, work apps, and things I've shipped along the way."
+  "Apps I've shipped, and companies I've worked with along the way."
 
 export const metadata = createPageMetadata({
   title: 'Projects',
-  description: "Apps, tools, and experiments I've built.",
+  description: "Apps I've built, and companies I've worked with.",
   heroTitle,
 })
 
@@ -91,8 +94,9 @@ export default function Projects() {
       title={heroTitle}
       intro={
         <>
-          A mix of open-source experiments and products I&apos;ve built at work,
-          across a range of frameworks and languages. You can find even more on my{' '}
+          A mix of products I&apos;ve built and brands I&apos;ve partnered with
+          — from open-source experiments to campaigns with teams I like.
+          You can find even more on my{' '}
           <a
             href="https://www.github.com/brianruizy"
             className="link-underline"
@@ -103,50 +107,58 @@ export default function Projects() {
         </>
       }
     >
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {projects.map((project) => (
-          <li key={project.name}>
-            <ContentCard className="h-full">
-              <div
-                className={cn(
-                  'relative z-20 flex size-12 items-center justify-center rounded-full text-sm font-semibold text-foreground',
-                  iconChromeClassName,
-                )}
-              >
-                {project.logo ? (
-                  <Image
-                    src={project.logo}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className="size-8 rounded-full"
-                    unoptimized
-                  />
-                ) : (
-                  project.name.slice(0, 2).toUpperCase()
-                )}
-              </div>
-              <ContentCardTitle
-                href={project.link.href}
-                external
-                className="mt-6"
-              >
-                {project.name}
-              </ContentCardTitle>
-              <ContentCardDescription>
-                {project.description}
-              </ContentCardDescription>
-              <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">
-                <LinkIcon className="size-4 flex-none" />
-                <span className="line-clamp-1">{project.link.label}</span>
-              </p>
-            </ContentCard>
-          </li>
-        ))}
-      </ul>
+      <div className="space-y-20">
+        <Section title="Apps">
+          <ul
+            role="list"
+            className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2"
+          >
+            {projects.map((project) => (
+              <li key={project.name}>
+                <ContentCard className="h-full">
+                  <div
+                    className={cn(
+                      'relative z-20 flex size-12 items-center justify-center rounded-full text-sm font-semibold text-foreground',
+                      iconChromeClassName,
+                    )}
+                  >
+                    {project.logo ? (
+                      <Image
+                        src={project.logo}
+                        alt=""
+                        width={32}
+                        height={32}
+                        className="size-8 rounded-full"
+                        unoptimized
+                      />
+                    ) : (
+                      project.name.slice(0, 2).toUpperCase()
+                    )}
+                  </div>
+                  <ContentCardTitle
+                    href={project.link.href}
+                    external
+                    className="mt-6"
+                  >
+                    {project.name}
+                  </ContentCardTitle>
+                  <ContentCardDescription>
+                    {project.description}
+                  </ContentCardDescription>
+                  <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">
+                    <LinkIcon className="size-4 flex-none" />
+                    <span className="line-clamp-1">{project.link.label}</span>
+                  </p>
+                </ContentCard>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section title="Companies I've worked with">
+          <BrandCloud brands={collabs} />
+        </Section>
+      </div>
     </SimpleLayout>
   )
 }

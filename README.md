@@ -5,7 +5,7 @@ Personal site for [b-r.io](https://b-r.io) — portfolio, writing, projects, and
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router) + TypeScript
-- [MDX](https://mdxjs.com) for posts
+- [MDX](https://mdxjs.com) for writing
 - [Tailwind CSS](https://tailwindcss.com) v4
 - [Motion](https://motion.dev) for animation
 

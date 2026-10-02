@@ -4,7 +4,7 @@ import nextMDX from '@next/mdx'
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
-    '/posts/*': ['./src/app/posts/**/*.{mdx,png,jpg,jpeg,webp,gif}'],
+    '/writing/*': ['./src/app/writing/**/*.{mdx,png,jpg,jpeg,webp,gif}'],
   },
   images: {
     remotePatterns: [
@@ -17,18 +17,28 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/posts/my-desk-setup-for-2023',
+        destination: '/writing/desk-setup',
+        permanent: true,
+      },
+      {
         source: '/articles/:slug',
-        destination: '/posts/:slug',
+        destination: '/writing/:slug',
         permanent: true,
       },
       {
         source: '/videos/:slug',
-        destination: '/posts/:slug',
+        destination: '/writing/:slug',
         permanent: true,
       },
       {
-        source: '/posts/my-desk-setup-for-2023',
-        destination: '/posts/desk-setup',
+        source: '/posts',
+        destination: '/writing',
+        permanent: true,
+      },
+      {
+        source: '/posts/:slug',
+        destination: '/writing/:slug',
         permanent: true,
       },
       {
