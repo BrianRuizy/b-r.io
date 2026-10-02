@@ -1,0 +1,18 @@
+import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2026-09-26',
+  title: 'Day in the Life of a Remote Software Engineer in NYC',
+  description:
+    'A simple, productive day in the life as a fully remote software engineer in New York, from a new gym routine to personal projects and video editing.',
+  youtubeId: 'jT5C70zLQMM',
+}
+
+export const metadata = createPostMetadata(post)
+
+export default (props) => <PostLayout post={post} {...props} />
+
+I know, I know. It's been a minute. I was shocked to see the last video was seven months ago. This one takes it back to the basics: a simple, productive day in the life, and a look at life as a fully remote software engineer here in NYC. New gym routine, personal projects, video editing, and everything in between.
