@@ -1,0 +1,28 @@
+import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2026-09-26',
+  title: 'Day in the Life of a Remote Software Engineer in NYC',
+  description:
+    'A simple, productive day as a fully remote software engineer in New York, and where I land on AI coding: useful for bug fixes, and still not something I trust to build a whole feature.',
+  youtubeId: 'jT5C70zLQMM',
+}
+
+export const metadata = createPostMetadata(post)
+
+export default (props) => <PostLayout post={post} {...props} />
+
+I know, I know. It's been a minute. I was shocked to see the last video was seven months ago. This one takes it back to the basics: a simple, productive day in the life, and a look at life as a fully remote software engineer here in NYC. New gym routine, personal projects, video editing, and everything in between.
+
+## On AI coding
+
+In the video I talked about how coding has started to feel weird. I'll be reviewing a pull request from someone on my team, and with coding agents everywhere now, it sometimes feels less like I'm reading their work and more like I'm reading whatever their AI generated.
+
+I mentioned that I still don't trust it to build an entire feature from scratch. It needs a lot of handholding, and it can still put out questionable stuff. Bug fixes are where it actually helps me. The awkward part is the symmetry: while I'm reviewing code that someone else's AI helped write, my team is probably doing the same thing with mine.
+
+I also talked about what that does to the craft. When I was learning to code, I'd get so stuck that I'd go to sleep and sometimes dream up a solution. Figuring it out yourself was the satisfying part. Lately it feels like we're sliding into a loop where AI writes more of the code and we mostly review it, and I wonder if we start losing the critical thinking that used to come from being stuck.
+
+To extend on that, I've been thinking the review is becoming the job. If a first draft is cheap, the part that still matters is knowing what to throw out, what to keep, and which problems are worth sitting with until you can explain them. I use it for the small stuff. I still want the harder pieces to be ones I understand. I asked in the video what you think, and I'm still sitting with it.

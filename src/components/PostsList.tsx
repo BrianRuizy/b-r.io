@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/Button'
 import { formatDate } from '@/lib/formatDate'
 import { type Post } from '@/lib/posts'
+import { writingHref } from '@/lib/writing'
 
 type Filter = 'all' | 'article' | 'video'
 
@@ -27,7 +28,7 @@ function parseFilter(value: string | null): Filter {
 }
 
 function hrefFor(filter: Filter) {
-  return filter === 'all' ? '/posts' : `/posts?type=${filter}`
+  return filter === 'all' ? writingHref() : `${writingHref()}?type=${filter}`
 }
 
 function yearOf(date: string) {
@@ -88,7 +89,7 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
 
   return (
     <div className="space-y-20">
-      <div className="flex gap-1" aria-label="Filter posts">
+      <div className="flex gap-1" aria-label="Filter writing">
         {filters.map((item) => (
           <Button
             key={item.value}
