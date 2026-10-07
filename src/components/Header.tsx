@@ -480,6 +480,7 @@ function Avatar({
       <Image
         src={avatarImage}
         alt="Brian Ruiz"
+        quality={100}
         sizes={large ? '4rem' : '2.25rem'}
         className={cn(
           'rounded-full bg-muted object-cover',

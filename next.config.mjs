@@ -7,6 +7,7 @@ const nextConfig = {
     '/writing/*': ['./src/app/writing/**/*.{mdx,png,jpg,jpeg,webp,gif}'],
   },
   images: {
+    qualities: [100],
     remotePatterns: [
       {
         protocol: 'https',
