@@ -49,16 +49,15 @@ export const metadata = createPageMetadata({
 
 export default function About() {
   return (
-    <Container className="mt-16 sm:mt-32">
-      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        <div className="lg:pl-20">
+    <Container className="page-space">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.25fr_1fr] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-12">
+        <div className="lg:pl-4">
           <Portrait />
         </div>
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            {heroTitle}
-          </h1>
-          <div className="mt-6 space-y-7 text-base text-muted-foreground">
+          <p className="section-label mb-5">About me</p>
+          <h1 className="page-title">{heroTitle}</h1>
+          <div className="mt-8 space-y-7 text-base leading-8 text-muted-foreground">
             <p>
               I was born in Honduras, grew up in Texas, and now live in New York
               City. I got into coding because I liked creating things from
@@ -66,11 +65,11 @@ export default function About() {
               software and on camera.
             </p>
             <p>
-              I currently work at Hines as a Sr. Software Engineer, building
-              web apps at the enterprise level. Most of my time goes
-              into making complex systems feel straightforward for the people
-              using them. On the side I&apos;m building Beam, a project and task
-              manager built for iPhone first, with a companion Mac app.
+              I currently work at Hines as a Sr. Software Engineer, building web
+              apps at the enterprise level. Most of my time goes into making
+              complex systems feel straightforward for the people using them. On
+              the side I&apos;m building Beam, a project and task manager built
+              for iPhone first, with a companion Mac app.
             </p>
             <p>
               My expertise is in full-stack web development, but I really love
@@ -91,8 +90,11 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="lg:pl-20">
-          <ul role="list">
+        <div className="lg:pl-4">
+          <ul
+            role="list"
+            className="rounded-3xl border border-border bg-muted p-7 sm:p-9"
+          >
             <SocialLink
               href="https://www.instagram.com/brianruizy"
               icon={InstagramIcon}

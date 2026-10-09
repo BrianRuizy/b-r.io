@@ -17,7 +17,7 @@ function ToolsSection({
 }: React.ComponentPropsWithoutRef<typeof Section>) {
   return (
     <Section {...props}>
-      <ul role="list" className="space-y-12 sm:space-y-14">
+      <ul role="list" className="grid gap-5 sm:grid-cols-2">
         {children}
       </ul>
     </Section>
@@ -35,9 +35,12 @@ function Tool({
   scale,
 }: ToolItem) {
   return (
-    <ContentCard as="li" className="flex-row items-start gap-6">
+    <ContentCard
+      as="li"
+      className="h-full flex-row flex-wrap items-start gap-5 rounded-2xl border border-border bg-card p-6 transition hover:border-muted-foreground/40"
+    >
       {/* Fixed icon column so app + hardware text share the same left edge. */}
-      <div className="flex w-14 shrink-0 justify-center sm:w-[4.25rem]">
+      <div className="flex w-12 shrink-0 justify-center">
         <Sticker
           src={image}
           srcDark={imageDark}
@@ -48,7 +51,7 @@ function Tool({
           variant={kind}
         />
       </div>
-      <div className="min-w-0 flex-1 pt-0.5">
+      <div className="min-w-0 flex-1 basis-[12rem] pt-0.5">
         <ContentCardTitle as="h3" href={href} external={Boolean(href)}>
           <span className="inline-flex items-center gap-2">
             {title}
@@ -66,12 +69,11 @@ function Tool({
   )
 }
 
-const heroTitle = 'Gear I use every day to build, create, and stay productive.'
+const heroTitle = 'Tools of the trade.'
 
 export const metadata = createPageMetadata({
   title: 'Uses',
-  description:
-    'Gear I use every day to build, create, and stay productive.',
+  description: 'Gear I use every day to build, create, and stay productive.',
   heroTitle,
 })
 
@@ -79,9 +81,10 @@ export default function Uses() {
   return (
     <SimpleLayout
       title={heroTitle}
+      eyebrow="Uses"
       intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliate; I may earn a little commission at no extra cost to you."
     >
-      <div className="space-y-20">
+      <div className="space-y-12">
         {toolGroups.map((group) => (
           <ToolsSection key={group.title} title={group.title}>
             {group.tools.map((tool) => (

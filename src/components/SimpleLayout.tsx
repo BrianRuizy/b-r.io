@@ -3,21 +3,26 @@ import { Container } from '@/components/Container'
 export function SimpleLayout({
   title,
   intro,
+  eyebrow,
   children,
 }: {
   title: string
   intro: React.ReactNode
+  eyebrow?: string
   children?: React.ReactNode
 }) {
   return (
-    <Container className="mt-16 sm:mt-32">
-      <header className="max-w-2xl">
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-6 text-base text-muted-foreground">{intro}</p>
+    <Container className="page-space">
+      <header className="grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:items-end lg:gap-20">
+        <div>
+          {eyebrow ? <p className="section-label mb-5">{eyebrow}</p> : null}
+          <h1 className="page-title">{title}</h1>
+        </div>
+        <p className="max-w-xl text-base leading-7 text-muted-foreground lg:pb-1">
+          {intro}
+        </p>
       </header>
-      {children && <div className="mt-16 sm:mt-20">{children}</div>}
+      {children ? <div className="mt-12 sm:mt-16">{children}</div> : null}
     </Container>
   )
 }

@@ -2,14 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useFormStatus } from 'react-dom'
-import {
-  Description,
-  Field,
-  Fieldset,
-  Label,
-  Legend,
-} from '@headlessui/react'
-import { CheckCircleIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { Description, Field, Fieldset, Label, Legend } from '@headlessui/react'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
 import { subscribeToNewsletter } from '@/app/actions/newsletter'
@@ -76,20 +70,19 @@ export function Newsletter() {
       <form
         ref={formRef}
         action={handleSubmit}
-        className="rounded-2xl border border-border p-6"
+        className="rounded-3xl border border-border bg-muted p-7 sm:p-10"
       >
         <Fieldset>
-          <Legend className="flex text-sm font-semibold text-foreground">
-            <EnvelopeIcon className="size-6 flex-none text-muted-foreground" />
-            <span className="ml-3">Stay up to date</span>
+          <Legend className="text-3xl font-semibold tracking-tight text-foreground">
+            Stay in the loop
           </Legend>
           <Field className="mt-2">
             <Label className="sr-only">Email address</Label>
-            <Description className="text-sm text-muted-foreground">
+            <Description className="block max-w-lg text-base leading-7 text-muted-foreground">
               Join 1,400+ other readers. Get notified when I publish something
               new, and unsubscribe at any time.
             </Description>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <Input
                 type="email"
                 name="email"

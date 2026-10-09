@@ -7,9 +7,7 @@ import {
   ContentCardTitle,
 } from '@/components/ContentCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { iconChromeClassName } from '@/lib/iconChrome'
 import { createPageMetadata } from '@/lib/metadata'
-import { cn } from '@/lib/utils'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
@@ -76,8 +74,7 @@ const projects: Array<Project> = [
   },
 ]
 
-const heroTitle =
-  "Side projects, work apps, and things I've shipped along the way."
+const heroTitle = "Things I've built."
 
 export const metadata = createPageMetadata({
   title: 'Projects',
@@ -89,10 +86,12 @@ export default function Projects() {
   return (
     <SimpleLayout
       title={heroTitle}
+      eyebrow="Projects"
       intro={
         <>
           A mix of open-source experiments and products I&apos;ve built at work,
-          across a range of frameworks and languages. You can find even more on my{' '}
+          across a range of frameworks and languages. You can find even more on
+          my{' '}
           <a
             href="https://www.github.com/brianruizy"
             className="link-underline"
@@ -103,26 +102,18 @@ export default function Projects() {
         </>
       }
     >
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {projects.map((project) => (
           <li key={project.name}>
-            <ContentCard className="h-full">
-              <div
-                className={cn(
-                  'relative z-20 flex size-12 items-center justify-center rounded-full text-sm font-semibold text-foreground',
-                  iconChromeClassName,
-                )}
-              >
+            <ContentCard className="h-full rounded-3xl border border-border bg-card p-7 transition hover:border-muted-foreground/40 sm:p-9">
+              <div className="flex size-16 items-center justify-center rounded-2xl border border-border bg-muted text-sm font-semibold text-foreground">
                 {project.logo ? (
                   <Image
                     src={project.logo}
                     alt=""
-                    width={32}
-                    height={32}
-                    className="size-8 rounded-full"
+                    width={40}
+                    height={40}
+                    className="size-10 rounded-xl object-contain"
                     unoptimized
                   />
                 ) : (
@@ -132,14 +123,14 @@ export default function Projects() {
               <ContentCardTitle
                 href={project.link.href}
                 external
-                className="mt-6"
+                className="mt-8 text-2xl"
               >
                 {project.name}
               </ContentCardTitle>
               <ContentCardDescription>
                 {project.description}
               </ContentCardDescription>
-              <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">
+              <p className="mt-auto flex w-full items-center gap-2 pt-8 text-sm font-medium text-muted-foreground transition group-hover:text-foreground">
                 <LinkIcon className="size-4 flex-none" />
                 <span className="line-clamp-1">{project.link.label}</span>
               </p>
