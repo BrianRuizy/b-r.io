@@ -1,59 +1,17 @@
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
-
 import { Container } from '@/components/Container'
-import {
-  ContentCard,
-  ContentCardCta,
-  ContentCardDescription,
-  ContentCardEyebrow,
-  ContentCardTitle,
-} from '@/components/ContentCard'
 import { Button } from '@/components/Button'
 import { Newsletter } from '@/components/Newsletter'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  XIcon,
-  YouTubeIcon,
-} from '@/components/SocialIcons'
 import { PhotoGallery } from '@/components/PhotoGallery'
+import { PostCard } from '@/components/PostCard'
 import logoBeamIcon from '@/images/logos/beam-icon-borderless.svg'
 import logoCams from '@/images/logos/cams-white.png'
 import logoHines from '@/images/logos/hines.svg'
 import logoPeriship from '@/images/logos/periship.png'
-import { formatDate } from '@/lib/formatDate'
-import { getAllPosts, type Post } from '@/lib/posts'
+import { getAllPosts } from '@/lib/posts'
 import { homeHeroTitle } from '@/lib/site-copy'
-
-function LatestPost({ post }: { post: Post }) {
-  return (
-    <ContentCard as="article">
-      <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
-      <ContentCardEyebrow as="time" dateTime={post.date} decorate>
-        {formatDate(post.date)}
-      </ContentCardEyebrow>
-      <ContentCardDescription>{post.description}</ContentCardDescription>
-      <ContentCardCta>
-        {post.type === 'article' ? 'Read article' : 'Watch video'}
-      </ContentCardCta>
-    </ContentCard>
-  )
-}
-
-function SocialLink({
-  icon: Icon,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>
-}) {
-  return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="size-6 fill-muted-foreground transition group-hover:fill-foreground" />
-    </Link>
-  )
-}
 
 interface Role {
   company: string
@@ -113,10 +71,10 @@ function Role({ role }: { role: Role }) {
           {role.company}
         </dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-muted-foreground">{role.title}</dd>
+        <dd className="text-sm text-muted-foreground">{role.title}</dd>
         <dt className="sr-only">Date</dt>
         <dd
-          className="ml-auto text-xs text-muted-foreground"
+          className="ml-auto text-sm text-muted-foreground"
           aria-label={`${startLabel} until ${endLabel}`}
         >
           <time dateTime={startDate}>{startLabel}</time>{' '}
@@ -164,12 +122,12 @@ function Resume() {
   ]
 
   return (
-    <div className="rounded-2xl border border-border p-6">
-      <h2 className="flex text-sm font-semibold text-foreground">
-        <BriefcaseIcon className="size-6 flex-none text-muted-foreground" />
+    <div className="rounded-3xl border border-border bg-card p-7 sm:p-10">
+      <h2 className="flex items-center text-2xl font-semibold tracking-tight text-foreground">
+        <BriefcaseIcon className="size-5 flex-none text-muted-foreground" />
         <span className="ml-3">Work</span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-8 space-y-6">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
@@ -179,7 +137,7 @@ function Resume() {
         target="_blank"
         rel="noopener noreferrer"
         variant="secondary"
-        className="mt-6 w-full"
+        className="mt-8 w-full"
       >
         View LinkedIn
       </Button>
@@ -188,91 +146,160 @@ function Resume() {
 }
 
 export default async function Home() {
-  let posts = (await getAllPosts()).slice(0, 4)
+  const [featuredPost, ...recentPosts] = (await getAllPosts()).slice(0, 4)
 
   return (
     <>
-      <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            {homeHeroTitle}
-          </h1>
-          <p className="mt-6 text-base text-muted-foreground">
-            Software Engineer at Hines, and currently building{' '}
-            <Link
-              href="https://joinbeam.app"
-              className="link-underline inline-flex items-center gap-1"
-            >
-              <span
-                aria-hidden
-                className="inline-block size-3 shrink-0 bg-current"
-                style={{
-                  maskImage: `url(${logoBeamIcon.src})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${logoBeamIcon.src})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-              Beam
-            </Link>
-            . Focused on crafting delightful digital products. Based in NYC. I
-            also make{' '}
-            <Link
-              href="https://www.youtube.com/@brianruizy"
-              className="link-underline"
-            >
-              videos
-            </Link>{' '}
-            about tech, and daily life for a community of 100K+ subscribers.
-          </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink
-              href="https://www.instagram.com/brianruizy"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="https://www.youtube.com/@brianruizy"
-              aria-label="Follow on YouTube"
-              icon={YouTubeIcon}
-            />
-            <SocialLink
-              href="https://www.github.com/brianruizy"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://x.com/brianruizy"
-              aria-label="Follow on X"
-              icon={XIcon}
-            />
-          </div>
-        </div>
-      </Container>
-      <PhotoGallery />
-      <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="space-y-10">
-            <h2 className="text-sm font-semibold tracking-tight">
-              Latest
-            </h2>
-            <div className="flex flex-col gap-16">
-              {posts.map((post) => (
-                <LatestPost key={post.href} post={post} />
-              ))}
+      <Container className="page-space">
+        <header className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-20">
+          <div>
+            <p className="section-label mb-5">Brian Ruiz / New York City</p>
+            <h1 className="page-title max-w-2xl">
+              {homeHeroTitle.split(/(part-time)/).map((part, index) =>
+                part === 'part-time' ? (
+                  <span key={index} className="whitespace-nowrap">
+                    {part}
+                  </span>
+                ) : (
+                  part
+                ),
+              )}
+            </h1>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/projects">Explore my work</Button>
+              <Button
+                href="https://www.youtube.com/@brianruizy"
+                variant="outline"
+              >
+                Watch on YouTube
+              </Button>
             </div>
           </div>
-
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
-            <Resume />
+          <div className="max-w-lg lg:pt-8">
+            <p className="text-lg leading-8 text-muted-foreground">
+              Software Engineer at Hines, and currently building{' '}
+              <Link
+                href="https://joinbeam.app"
+                className="link-underline text-foreground"
+              >
+                Beam
+              </Link>
+              . Focused on crafting delightful digital products. Based in NYC.
+            </p>
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
+              I also make videos about tech and daily life for a community of
+              100K+ subscribers.
+            </p>
+            <Link
+              href="/about"
+              className="mt-6 inline-block text-sm font-medium"
+            >
+              A little more about me
+            </Link>
           </div>
-        </div>
+        </header>
+        <section aria-labelledby="latest-heading" className="mt-16 sm:mt-20">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+            <h2 id="latest-heading" className="section-label">
+              The latest
+            </h2>
+            <Link
+              href="/writing"
+              className="text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              All writing &amp; videos
+            </Link>
+          </div>
+          {featuredPost ? (
+            <PostCard post={featuredPost} featured priority />
+          ) : null}
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {recentPosts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </section>
+        <section
+          aria-labelledby="building-heading"
+          className="mt-20 border-t border-border pt-10 sm:mt-28 sm:pt-14"
+        >
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_2fr] lg:gap-20">
+            <div>
+              <p className="section-label mb-4">Currently building</p>
+              <h2
+                id="building-heading"
+                className="text-3xl leading-tight font-semibold tracking-tight sm:text-4xl"
+              >
+                Small details.
+                <br />
+                Better products.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-muted-foreground">
+                From enterprise web apps at Hines to a task manager built for
+                iPhone, I care about making complex things feel straightforward.
+              </p>
+              <Link
+                href="/projects"
+                className="mt-6 inline-block text-sm font-medium"
+              >
+                See all projects
+              </Link>
+            </div>
+            <a
+              href="https://joinbeam.app"
+              className="group flex flex-col justify-between gap-12 rounded-3xl border border-border bg-muted p-8 transition hover:border-muted-foreground/40 sm:p-10"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-foreground text-background">
+                    <span
+                      aria-hidden="true"
+                      className="size-6 bg-current"
+                      style={{
+                        maskImage: `url(${logoBeamIcon.src})`,
+                        maskSize: 'contain',
+                        maskRepeat: 'no-repeat',
+                        maskPosition: 'center',
+                        WebkitMaskImage: `url(${logoBeamIcon.src})`,
+                        WebkitMaskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                      }}
+                    />
+                  </span>
+                  <span className="text-2xl font-semibold tracking-tight">
+                    Beam
+                  </span>
+                </div>
+                <span className="rounded-full border border-border bg-card px-3 py-1 text-sm text-muted-foreground">
+                  iPhone &amp; Mac
+                </span>
+              </div>
+              <div>
+                <h3 className="max-w-lg text-3xl leading-tight font-semibold tracking-tight">
+                  A little more focus.
+                  <br />A little less friction.
+                </h3>
+                <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground">
+                  A project and task manager built for iPhone first, with
+                  widgets, calendar views, Siri, and a companion Mac app.
+                </p>
+                <span className="mt-6 inline-block rounded-full bg-primary px-5 py-2 text-sm text-primary-foreground">
+                  Explore Beam
+                </span>
+              </div>
+            </a>
+          </div>
+        </section>
+        <section
+          aria-label="Updates and work experience"
+          className="mt-20 grid items-start gap-6 sm:mt-28 lg:grid-cols-2"
+        >
+          <Newsletter />
+          <Resume />
+        </section>
       </Container>
+      <PhotoGallery />
     </>
   )
 }

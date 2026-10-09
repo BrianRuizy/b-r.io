@@ -7,7 +7,7 @@ const variantStyles = {
   secondary:
     'bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
   outline:
-    'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+    'border border-border bg-card hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
   ghost:
     'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
 }
@@ -27,7 +27,7 @@ export function Button({
   return typeof props.href === 'undefined' ? (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium outline-offset-2 transition-all active:not-aria-[haspopup]:translate-y-px',
+        'inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-medium outline-offset-4 transition-colors disabled:pointer-events-none disabled:opacity-50',
         variantStyles[variant],
         className,
       )}
@@ -36,7 +36,7 @@ export function Button({
   ) : (
     <Link
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium outline-offset-2 transition-all active:not-aria-[haspopup]:translate-y-px',
+        'inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-medium outline-offset-4 transition-colors disabled:pointer-events-none disabled:opacity-50',
         variantStyles[variant],
         className,
       )}

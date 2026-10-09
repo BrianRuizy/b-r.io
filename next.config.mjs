@@ -9,6 +9,7 @@ const nextConfig = {
   images: {
     qualities: [100],
     remotePatterns: [
+      { protocol: 'https', hostname: 'i.ytimg.com' },
       {
         protocol: 'https',
         hostname: 'miro.medium.com',

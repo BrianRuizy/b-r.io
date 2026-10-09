@@ -10,9 +10,9 @@ export const ogSize = {
 
 // Matches :root tokens in src/styles/tailwind.css
 const ogTheme = {
-  background: '#fafafa',
-  foreground: '#252525',
-  mutedForeground: '#737373',
+  background: '#fcfcfc',
+  foreground: '#111111',
+  mutedForeground: '#716e69',
 } as const
 
 const brandLabel = 'b-r.io'
@@ -51,7 +51,7 @@ async function loadGoogleFont(font: string, text: string, weight?: Weight) {
 // Line height uses text-4xl ratio (2.5rem / 2rem = 1.25), slightly airier at OG size.
 const titleFontSize = 64
 const titleLineHeight = 1.25
-const titleLetterSpacing = '-0.025em'
+const titleLetterSpacing = '-0.045em'
 const titleMaxLines = 3
 // ~64 chars fits 3 lines at 64px within 900px (Satori line-clamp is unsupported).
 const titleMaxLength = 72
@@ -81,20 +81,20 @@ function formatOgTitle(title: string) {
 export async function generateOgImage({ title }: { title: string }) {
   const displayTitle = formatOgTitle(title)
 
-  const [interBoldFont, interRegularFont, logoDataUrl] = await Promise.all([
-    loadGoogleFont('Inter', displayTitle, 700),
+  const [interSemiboldFont, interRegularFont, logoDataUrl] = await Promise.all([
+    loadGoogleFont('Inter', displayTitle, 600),
     loadGoogleFont('Inter', brandLabel, 400),
     getLogoDataUrl(),
   ])
 
   const fonts = []
 
-  if (interBoldFont) {
+  if (interSemiboldFont) {
     fonts.push({
       name: 'Inter',
-      data: interBoldFont,
+      data: interSemiboldFont,
       style: 'normal' as FontStyle,
-      weight: 700 as Weight,
+      weight: 600 as Weight,
     })
   }
 
@@ -108,62 +108,60 @@ export async function generateOgImage({ title }: { title: string }) {
   }
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        background: ogTheme.background,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        padding: '120px',
+      }}
+    >
       <div
         style={{
-          background: ogTheme.background,
-          width: '100%',
-          height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          padding: '120px',
+          alignItems: 'center',
+          gap: '20px',
         }}
       >
+        <img
+          src={logoDataUrl}
+          width={logoDisplaySize}
+          height={logoDisplaySize}
+          alt=""
+        />
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-          }}
-        >
-          <img
-            src={logoDataUrl}
-            width={logoDisplaySize}
-            height={logoDisplaySize}
-            alt=""
-          />
-          <div
-            style={{
-              fontSize: brandLabelFontSize,
-              color: ogTheme.mutedForeground,
-              fontFamily: 'Inter, system-ui, sans-serif',
-              fontWeight: 400,
-            }}
-          >
-            {brandLabel}
-          </div>
-        </div>
-        <div
-          style={{
-            marginTop: '64px',
-            fontSize: titleFontSize,
-            color: ogTheme.foreground,
-            textAlign: 'left',
-            maxWidth: '900px',
-            maxHeight: titleFontSize * titleLineHeight * titleMaxLines,
-            overflow: 'hidden',
-            letterSpacing: titleLetterSpacing,
-            lineHeight: titleLineHeight,
+            fontSize: brandLabelFontSize,
+            color: ogTheme.mutedForeground,
             fontFamily: 'Inter, system-ui, sans-serif',
-            fontWeight: 700,
+            fontWeight: 400,
           }}
         >
-          {displayTitle}
+          {brandLabel}
         </div>
       </div>
-    ),
+      <div
+        style={{
+          marginTop: '64px',
+          fontSize: titleFontSize,
+          color: ogTheme.foreground,
+          textAlign: 'left',
+          maxWidth: '900px',
+          maxHeight: titleFontSize * titleLineHeight * titleMaxLines,
+          overflow: 'hidden',
+          letterSpacing: titleLetterSpacing,
+          lineHeight: titleLineHeight,
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontWeight: 600,
+        }}
+      >
+        {displayTitle}
+      </div>
+    </div>,
     {
       ...ogSize,
       fonts,

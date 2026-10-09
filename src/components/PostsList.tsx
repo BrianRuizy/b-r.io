@@ -1,122 +1,63 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-
-import {
-  ContentCard,
-  ContentCardCta,
-  ContentCardDescription,
-  ContentCardEyebrow,
-  ContentCardTitle,
-} from '@/components/ContentCard'
 import { Button } from '@/components/Button'
-import { formatDate } from '@/lib/formatDate'
+import { PostCard } from '@/components/PostCard'
 import { type Post } from '@/lib/posts'
 import { writingHref } from '@/lib/writing'
 
 type Filter = 'all' | 'article' | 'video'
-
 const filters: Array<{ label: string; value: Filter }> = [
-  { label: 'All', value: 'all' },
+  { label: 'All posts', value: 'all' },
   { label: 'Articles', value: 'article' },
   { label: 'Videos', value: 'video' },
 ]
 
-function parseFilter(value: string | null): Filter {
-  if (value === 'article' || value === 'video') return value
-  return 'all'
-}
-
-function hrefFor(filter: Filter) {
-  return filter === 'all' ? writingHref() : `${writingHref()}?type=${filter}`
-}
-
-function yearOf(date: string) {
-  return new Date(date).getFullYear()
-}
-
-function groupPostsByYear(posts: Array<Post>) {
-  let groups = new Map<number, Array<Post>>()
-
-  for (let post of posts) {
-    let year = yearOf(post.date)
-    let list = groups.get(year)
-    if (list) {
-      list.push(post)
-    } else {
-      groups.set(year, [post])
-    }
-  }
-
-  return Array.from(groups.entries()).sort(([a], [b]) => b - a)
-}
-
-function PostItem({ post }: { post: Post }) {
-  return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
-      <ContentCard className="md:col-span-3">
-        <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
-        <ContentCardEyebrow
-          as="time"
-          dateTime={post.date}
-          className="md:hidden"
-          decorate
-        >
-          {formatDate(post.date)}
-        </ContentCardEyebrow>
-        <ContentCardDescription>{post.description}</ContentCardDescription>
-        <ContentCardCta>
-          {post.type === 'article' ? 'Read article' : 'Watch video'}
-        </ContentCardCta>
-      </ContentCard>
-      <ContentCardEyebrow
-        as="time"
-        dateTime={post.date}
-        className="mt-1 max-md:hidden"
-      >
-        {formatDate(post.date)}
-      </ContentCardEyebrow>
-    </article>
-  )
-}
-
 export function PostsList({ posts }: { posts: Array<Post> }) {
-  let searchParams = useSearchParams()
-  let filter = parseFilter(searchParams.get('type'))
-  let filteredPosts =
+  const searchParams = useSearchParams()
+  const rawFilter = searchParams.get('type')
+  const filter: Filter =
+    rawFilter === 'article' || rawFilter === 'video' ? rawFilter : 'all'
+  const filteredPosts =
     filter === 'all' ? posts : posts.filter((post) => post.type === filter)
-  let postsByYear = groupPostsByYear(filteredPosts)
+  const [featured, ...remaining] = filteredPosts
 
   return (
-    <div className="space-y-20">
-      <div className="flex gap-1" aria-label="Filter writing">
+    <div>
+      <nav
+        aria-label="Filter writing"
+        className="mb-10 flex flex-wrap gap-2 border-t border-border pt-6"
+      >
         {filters.map((item) => (
           <Button
             key={item.value}
-            href={hrefFor(item.value)}
+            href={
+              item.value === 'all'
+                ? writingHref()
+                : `${writingHref()}?type=${item.value}`
+            }
             scroll={false}
-            variant={filter === item.value ? 'secondary' : 'ghost'}
+            variant={filter === item.value ? 'outline' : 'ghost'}
             aria-current={filter === item.value ? 'page' : undefined}
           >
             {item.label}
           </Button>
         ))}
-      </div>
-
-      <div className="space-y-20">
-        {postsByYear.map(([year, yearPosts]) => (
-          <section
-            key={year}
-            className="md:border-l md:border-border md:pl-6"
-          >
-            <div className="flex max-w-3xl flex-col space-y-16">
-              {yearPosts.map((post) => (
-                <PostItem key={post.href} post={post} />
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
+      </nav>
+      {featured ? (
+        <PostCard post={featured} featured priority />
+      ) : (
+        <p className="py-12 text-muted-foreground">
+          No posts in this category yet.
+        </p>
+      )}
+      {remaining.length > 0 ? (
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {remaining.map((post) => (
+            <PostCard key={post.slug} post={post} />
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }

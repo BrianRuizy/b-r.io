@@ -7,21 +7,14 @@ export function Section({
   title: string
   children: React.ReactNode
 }) {
-  let id = useId()
-
+  const id = useId()
   return (
-    <section
-      aria-labelledby={id}
-      className="md:border-l md:border-border md:pl-6"
-    >
-      <div className="grid max-w-3xl grid-cols-1 items-start gap-y-8 md:grid-cols-4">
-        <h2
-          id={id}
-          className="text-sm font-semibold text-foreground md:pt-0.5"
-        >
+    <section aria-labelledby={id} className="border-t border-border pt-8">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_3fr] lg:gap-16">
+        <h2 id={id} className="text-2xl font-semibold tracking-tight">
           {title}
         </h2>
-        <div className="md:col-span-3">{children}</div>
+        <div>{children}</div>
       </div>
     </section>
   )

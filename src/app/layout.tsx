@@ -5,10 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
-import {
-  siteOpenGraphImages,
-  siteTwitterMetadata,
-} from '@/lib/metadata'
+import { siteOpenGraphImages, siteTwitterMetadata } from '@/lib/metadata'
 
 import '@/styles/tailwind.css'
 
@@ -23,8 +20,7 @@ const sourceSerif = Source_Serif_4({
   variable: '--font-source-serif',
 })
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 const title = 'Brian Ruiz - Software engineer and creator in NYC'
 const description =
@@ -81,7 +77,7 @@ export default function RootLayout({
       className={`${inter.className} ${inter.variable} ${sourceSerif.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex h-full bg-card sm:bg-background">
+      <body className="min-h-full bg-background text-foreground">
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>
