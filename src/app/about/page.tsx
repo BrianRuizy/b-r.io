@@ -55,7 +55,7 @@ export default function About() {
           <Portrait />
         </div>
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">

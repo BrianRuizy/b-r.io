@@ -38,7 +38,7 @@ export function PostLayout({
           )}
           <article>
             <header className="flex flex-col">
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 {post.title}
               </h1>
               <time
