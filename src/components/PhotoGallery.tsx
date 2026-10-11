@@ -1,48 +1,53 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 import { motion } from 'motion/react'
-import { cn } from '@/lib/utils'
 import { bouncy, dragSpring, dragTransition } from '@/lib/transitions'
+import { PhotoCard } from '@/components/PhotoCard'
 
 import bikingImage from '@/images/photos/biking.jpeg'
 import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
 import juneImage from '@/images/photos/june.jpeg'
-import lilyAndMeImage from '@/images/photos/lily-and-me.jpeg'
+import lilyAndMeImage from '@/images/photos/lily-and-me-kyoto.jpeg'
 import empireImage from '@/images/photos/empire.jpeg'
 
 const photos = [
   {
     image: empireImage,
     alt: 'Empire State Building',
+    caption: 'view from my apartment',
+    filename: 'empire.jpeg',
   },
   {
     image: bikingImage,
     alt: 'Brian Ruiz on an e-bike',
+    caption: 'riding my ebike to work',
+    filename: 'biking.jpeg',
   },
   {
     image: deskSunsetImage,
     alt: 'Desk setup at sunset',
+    caption: 'desk setup at sunset',
+    filename: 'desk-sunset.jpeg',
   },
   {
     image: lilyAndMeImage,
     alt: 'Brian Ruiz and Lily beneath a red shrine roof',
+    caption: 'exploring Kyoto with lily',
+    filename: 'lily-and-me.jpeg',
+    objectPosition: 'bottom',
   },
   {
     image: juneImage,
-    alt: 'Brian Ruiz in June',
+    alt: 'Small dog holding a toy',
+    caption: 'my pup ૮ • ﻌ • ა',
+    filename: 'june.jpeg',
   },
 ]
 
+const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
+
 export function PhotoGallery() {
-  const rotations = [
-    'rotate-2',
-    '-rotate-2',
-    'rotate-2',
-    'rotate-2',
-    '-rotate-2',
-  ]
   const [isMobile, setIsMobile] = useState(false)
   const [width, setWidth] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -60,12 +65,7 @@ export function PhotoGallery() {
   useEffect(() => {
     if (!isMobile || !carouselRef.current) return
 
-    // This is the key: scrollWidth (total content) - offsetWidth (visible area)
-    const calculatedWidth =
-      carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
-    setWidth(calculatedWidth)
-
-    const handleResize = () => {
+    const updateWidth = () => {
       if (carouselRef.current) {
         setWidth(
           carouselRef.current.scrollWidth - carouselRef.current.offsetWidth,
@@ -73,86 +73,44 @@ export function PhotoGallery() {
       }
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    updateWidth()
+    window.addEventListener('resize', updateWidth)
+    return () => window.removeEventListener('resize', updateWidth)
   }, [isMobile])
 
-  // Desktop: static layout
-  if (!isMobile) {
-    return (
-      <div className="mt-16 sm:mt-20">
-        <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-          {photos.map(({ image, alt }, imageIndex) => (
-            <motion.div
-              key={image.src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                ...bouncy({ duration: 0.6, extraBounce: 0.15 }),
-                delay: imageIndex * 0.1,
-              }}
-              className={cn(
-                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted sm:w-72 sm:rounded-2xl',
-                rotations[imageIndex % rotations.length],
-              )}
-            >
-              <div className="aspect-9/10">
-                <Image
-                  src={image}
-                  alt={alt}
-                  sizes="(min-width: 640px) 18rem, 11rem"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    )
-  }
+  const cards = photos.map((photo, imageIndex) => (
+    <PhotoCard
+      key={photo.image.src}
+      {...photo}
+      index={imageIndex}
+      isDraggable={!isMobile}
+      rotationClassName={rotations[imageIndex % rotations.length]}
+    />
+  ))
 
-  // Mobile: draggable carousel with spring physics
   return (
     <div className="mt-16 sm:mt-20">
-      <div className="relative -my-4 overflow-hidden py-4">
-        <motion.div
-          ref={carouselRef}
-          drag="x"
-          dragElastic={0.15}
-          dragConstraints={{ right: 0, left: -width }}
-          dragTransition={dragTransition}
-          transition={dragSpring}
-          className="flex cursor-grab gap-5 will-change-transform active:cursor-grabbing"
+      {isMobile ? (
+        <div className="relative -my-4 overflow-hidden py-4">
+          <motion.div
+            ref={carouselRef}
+            drag="x"
+            dragElastic={0.15}
+            dragConstraints={{ right: 0, left: -width }}
+            dragTransition={dragTransition}
+            transition={dragSpring}
+            className="flex cursor-grab gap-5 will-change-transform active:cursor-grabbing"
+          >
+            {cards}
+          </motion.div>
+        </div>
+      ) : (
+        <div
+          className="-my-4 flex justify-center gap-5 overflow-visible py-4 sm:gap-8"
         >
-          {photos.map(({ image, alt }, imageIndex) => (
-            <motion.div
-              key={image.src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                ...bouncy({ duration: 0.6, extraBounce: 0.15 }),
-                delay: imageIndex * 0.1,
-              }}
-              className={cn(
-                'relative w-44 flex-none overflow-hidden rounded-xl bg-muted',
-                rotations[imageIndex % rotations.length],
-              )}
-            >
-              <div className="aspect-9/10">
-                <Image
-                  src={image}
-                  alt={alt}
-                  sizes="11rem"
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-                  draggable={false}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+          {cards}
+        </div>
+      )}
     </div>
   )
 }

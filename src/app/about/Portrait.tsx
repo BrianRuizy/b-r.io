@@ -1,25 +1,21 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'motion/react'
-import { bouncy } from '@/lib/transitions'
 import portraitImage from '@/images/photos/me.jpeg'
+import { PhotoCard } from '@/components/PhotoCard'
 
 export function Portrait() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={bouncy({ duration: 0.65, extraBounce: 0.15 })}
-      className="max-w-xs px-2.5 lg:max-w-none"
-    >
-      <Image
-        src={portraitImage}
+    <div className="max-w-xs px-2.5 lg:max-w-none">
+      <PhotoCard
+        image={portraitImage}
         alt="Brian Ruiz in New York City"
+        caption="Brian Ruiz in New York City"
+        filename="me.jpeg"
         sizes="(min-width: 1024px) 32rem, 20rem"
-        className="aspect-square rotate-3 rounded-2xl bg-muted object-cover"
+        aspectClassName="aspect-[4/5]"
+        className="w-full sm:w-full"
+        rotationClassName="rotate-3"
       />
-    </motion.div>
+    </div>
   )
 }

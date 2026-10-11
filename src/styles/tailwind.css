@@ -6,6 +6,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Ticketing';
+  src: url('/ticketing.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -45,6 +53,7 @@
   --font-serif:
     var(--font-source-serif), ui-serif, Georgia, Cambria, 'Times New Roman',
     Times, serif;
+  --font-ticketing: 'Ticketing', ui-monospace, monospace;
   --blur-xs: 2px;
 
   --text-xs: 0.8125rem;
