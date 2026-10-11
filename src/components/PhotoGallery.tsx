@@ -15,13 +15,13 @@ const photos = [
   {
     image: empireImage,
     alt: 'Empire State Building',
-    caption: 'view from my apartment',
+    caption: 'view from home',
     filename: 'empire.jpeg',
   },
   {
     image: bikingImage,
     alt: 'Brian Ruiz on an e-bike',
-    caption: 'riding my ebike to work',
+    caption: 'riding my ebike',
     filename: 'biking.jpeg',
   },
   {
@@ -33,7 +33,7 @@ const photos = [
   {
     image: lilyAndMeImage,
     alt: 'Brian Ruiz and Lily beneath a red shrine roof',
-    caption: 'exploring Kyoto with lily',
+    caption: 'exploring Kyoto <3',
     filename: 'lily-and-me.jpeg',
     objectPosition: 'bottom',
   },

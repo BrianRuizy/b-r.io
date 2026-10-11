@@ -12,6 +12,7 @@ export function Portrait() {
         caption="Brian Ruiz in New York City"
         filename="me.jpeg"
         sizes="(min-width: 1024px) 32rem, 20rem"
+        quality={100}
         aspectClassName="aspect-[4/5]"
         className="w-full sm:w-full"
         rotationClassName="rotate-3"

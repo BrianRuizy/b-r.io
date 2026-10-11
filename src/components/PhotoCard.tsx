@@ -18,6 +18,7 @@ type PhotoCardProps = {
   className?: string
   rotationClassName?: string
   sizes?: string
+  quality?: number
   isDraggable?: boolean
   index?: number
 }
@@ -32,6 +33,7 @@ export function PhotoCard({
   className,
   rotationClassName,
   sizes = '(min-width: 640px) 18rem, 11rem',
+  quality,
   isDraggable = true,
   index = 0,
 }: PhotoCardProps) {
@@ -114,6 +116,7 @@ export function PhotoCard({
               alt=""
               fill
               sizes={sizes}
+              quality={quality}
               className="pointer-events-none object-cover"
               style={{ objectPosition: objectPosition ?? 'center' }}
               draggable={false}
