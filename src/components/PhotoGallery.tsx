@@ -9,7 +9,7 @@ import { bouncy, dragSpring, dragTransition } from '@/lib/transitions'
 import bikingImage from '@/images/photos/biking.jpeg'
 import deskSunsetImage from '@/images/photos/desk-sunset.jpeg'
 import juneImage from '@/images/photos/june.jpeg'
-import selfieImage from '@/images/photos/selfie.jpeg'
+import lilyAndMeImage from '@/images/photos/lily-and-me.jpeg'
 import empireImage from '@/images/photos/empire.jpeg'
 
 const photos = [
@@ -26,8 +26,8 @@ const photos = [
     alt: 'Desk setup at sunset',
   },
   {
-    image: selfieImage,
-    alt: 'Brian Ruiz selfie',
+    image: lilyAndMeImage,
+    alt: 'Brian Ruiz and Lily looking out over a garden',
   },
   {
     image: juneImage,
