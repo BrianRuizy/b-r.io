@@ -27,7 +27,7 @@ const photos = [
   },
   {
     image: lilyAndMeImage,
-    alt: 'Brian Ruiz and Lily looking out over a garden',
+    alt: 'Brian Ruiz and Lily beneath a red shrine roof',
   },
   {
     image: juneImage,
