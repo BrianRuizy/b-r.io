@@ -268,7 +268,8 @@ export const toolGroups: ToolGroup[] = [
       {
         title: 'OpenAI Codex',
         href: 'https://openai.com/codex/',
-        description: 'My primary coding agent for software development.',
+        description:
+          'My primary coding agent. I occasionally use Cursor for a more direct look at my files and better autocomplete.',
         image: appCodex,
         kind: 'app',
         rotate: 0,
