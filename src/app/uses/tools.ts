@@ -25,12 +25,13 @@ import hueBulb from '@/images/uses/hue-bulb.png'
 import sonosEra100 from '@/images/uses/sonos-era-100.png'
 import lgOled from '@/images/uses/lg-oled.png'
 import appBevel from '@/images/uses/app-bevel.png'
-import appCursor from '@/images/uses/app-cursor.png'
-import appCursorDark from '@/images/uses/dark/app-cursor.png'
+import appCodex from '@/images/uses/app-codex.png'
 import appFigma from '@/images/uses/app-figma.png'
 import appFinalCut from '@/images/uses/app-finalcut.png'
 import appLightroom from '@/images/uses/app-lightroom.png'
 import appNotion from '@/images/uses/app-notion.png'
+import appScreenStudio from '@/images/uses/app-screen-studio.png'
+import appSuperhumanMail from '@/images/uses/app-superhuman-mail.jpg'
 
 export type ToolKind = 'device' | 'app'
 
@@ -40,6 +41,7 @@ export type ToolItem = {
   description: string
   image: StaticImageData
   imageDark?: StaticImageData
+  imageClassName?: string
   kind: ToolKind
   rotate: number
   scale?: number
@@ -264,30 +266,10 @@ export const toolGroups: ToolGroup[] = [
     title: 'Apps',
     tools: [
       {
-        title: 'Bevel',
-        href: 'https://join.bevel.health/U444GM',
-        description:
-          'I use this for various health metrics to extend Apple Health, including fitness tracking, food logging, and sleep.',
-        image: appBevel,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Cursor',
-        href: 'https://www.cursor.com/',
-        description:
-          'My primary IDE for software development and AI-assisted coding.',
-        image: appCursor,
-        imageDark: appCursorDark,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Figma',
-        href: 'https://www.figma.com/',
-        description:
-          'Where I explore interfaces and turn ideas into visual direction, also video titles, thumbnails, and the occasional animation.',
-        image: appFigma,
+        title: 'OpenAI Codex',
+        href: 'https://openai.com/codex/',
+        description: 'My primary coding agent for software development.',
+        image: appCodex,
         kind: 'app',
         rotate: 0,
       },
@@ -300,11 +282,20 @@ export const toolGroups: ToolGroup[] = [
         rotate: 0,
       },
       {
-        title: 'Lightroom',
-        href: 'https://www.adobe.com/products/photoshop-lightroom.html',
+        title: 'Screen Studio',
+        href: 'https://screen.studio/',
+        description: 'For recording polished screen demos and walkthroughs.',
+        image: appScreenStudio,
+        imageClassName: 'scale-[1.21]',
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Figma',
+        href: 'https://www.figma.com/',
         description:
-          'Where I finish stills from the a7C II. Gives me additional fine-grain control over my images.',
-        image: appLightroom,
+          'What started as UI design turned into a versatile tool for anything design-related: video thumbnails, titles, and more.',
+        image: appFigma,
         kind: 'app',
         rotate: 0,
       },
@@ -313,6 +304,35 @@ export const toolGroups: ToolGroup[] = [
         href: 'https://www.notion.so/',
         description: 'Planning, notes, and systems.',
         image: appNotion,
+        imageClassName: 'scale-[0.96]',
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Superhuman Mail',
+        href: 'https://superhuman.com/brianruizy',
+        description:
+          'Seriously, the fastest email app I\'ve used. Inbox Zero is a game changer.',
+        image: appSuperhumanMail,
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Lightroom',
+        href: 'https://www.adobe.com/products/photoshop-lightroom.html',
+        description:
+          'Oh, Adobe. Love it or hate it, nothing like it for full control of your images and getting the best edits.',
+        image: appLightroom,
+        imageClassName: 'scale-[1.17]',
+        kind: 'app',
+        rotate: 0,
+      },
+      {
+        title: 'Bevel',
+        href: 'https://join.bevel.health/U444GM',
+        description:
+          'I use this for various health metrics to extend Apple Health, including fitness tracking, food logging, and sleep.',
+        image: appBevel,
         kind: 'app',
         rotate: 0,
       },

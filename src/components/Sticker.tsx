@@ -15,6 +15,7 @@ export function Sticker({
   size = 'md',
   variant = 'device',
   scale = 1,
+  imageClassName,
   className,
 }: {
   src: StaticImageData
@@ -24,6 +25,7 @@ export function Sticker({
   size?: keyof typeof sizes
   variant?: 'device' | 'app'
   scale?: number
+  imageClassName?: string
   className?: string
 }) {
   let imageSizes = size === 'sm' ? '3rem' : '(min-width: 640px) 4.25rem, 3.5rem'
@@ -45,8 +47,10 @@ export function Sticker({
           width={32}
           height={32}
           sizes={imageSizes}
+          unoptimized={src.src.startsWith('https://')}
           className={cn(
             'size-8 rounded-md object-contain',
+            imageClassName,
             srcDark && 'dark:hidden',
           )}
         />

@@ -30,6 +30,7 @@ function Tool({
   description,
   image,
   imageDark,
+  imageClassName,
   kind,
   rotate,
   scale,
@@ -41,6 +42,7 @@ function Tool({
         <Sticker
           src={image}
           srcDark={imageDark}
+          imageClassName={imageClassName}
           alt=""
           rotate={kind === 'app' ? 0 : rotate}
           scale={scale}
