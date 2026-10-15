@@ -30,7 +30,6 @@ import appFigma from '@/images/uses/app-figma.png'
 import appFinalCut from '@/images/uses/app-finalcut.png'
 import appLightroom from '@/images/uses/app-lightroom.png'
 import appNotion from '@/images/uses/app-notion.png'
-import appScreenStudio from '@/images/uses/app-screen-studio.png'
 import appSuperhumanMail from '@/images/uses/app-superhuman-mail.jpg'
 
 export type ToolKind = 'device' | 'app'
@@ -279,15 +278,6 @@ export const toolGroups: ToolGroup[] = [
         href: 'https://www.apple.com/final-cut-pro/',
         description: 'Where the YouTube videos come together.',
         image: appFinalCut,
-        kind: 'app',
-        rotate: 0,
-      },
-      {
-        title: 'Screen Studio',
-        href: 'https://screen.studio/',
-        description: 'For recording polished screen demos and walkthroughs.',
-        image: appScreenStudio,
-        imageClassName: 'scale-[1.21]',
         kind: 'app',
         rotate: 0,
       },

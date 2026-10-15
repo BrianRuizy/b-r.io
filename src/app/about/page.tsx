@@ -67,11 +67,13 @@ export default function About() {
               camera.
             </p>
             <p>
-              I currently work at Hines as a Sr. Software Engineer, building web
-              apps at the enterprise level. Most of my time goes into making
-              complex systems feel straightforward for the people using them. On
-              the side I&apos;m building Beam, a project and task manager built
-              for iPhone first, with a companion Mac app.
+              I currently work at{' '}
+              <a href="https://www.hines.com" className="link-underline">
+                Hines
+              </a>{' '}
+              as a Sr. Software Engineer, building web apps at the enterprise
+              level. Most of my time goes into making complex systems feel
+              straightforward.
             </p>
             <p>
               My expertise is in full-stack web development, but I really love
