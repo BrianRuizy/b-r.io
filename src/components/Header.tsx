@@ -446,7 +446,7 @@ function ThemeToggle() {
               className="absolute inset-0 flex items-center justify-center"
               aria-hidden={!iconDark}
             >
-              <MoonIcon className="size-6 text-accent" />
+              <MoonIcon className="size-6 text-muted-foreground group-hover:text-foreground" />
             </motion.span>
           </>
         )}
