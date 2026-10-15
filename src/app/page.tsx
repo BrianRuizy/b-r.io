@@ -35,7 +35,9 @@ function LatestPost({ post }: { post: Post }) {
       <ContentCardEyebrow as="time" dateTime={post.date}>
         {formatDate(post.date)}
       </ContentCardEyebrow>
-      <ContentCardDescription>{post.description}</ContentCardDescription>
+      <ContentCardDescription className="text-pretty">
+        {post.description}
+      </ContentCardDescription>
       <ContentCardCta>
         {post.type === 'article' ? 'Read article' : 'Watch video'}
       </ContentCardCta>
@@ -195,7 +197,7 @@ export default async function Home() {
     <>
       <Container className="mt-9">
         <PageEnter className="max-w-2xl">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
             {homeHeroTitle}
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
@@ -259,9 +261,7 @@ export default async function Home() {
         <PageEnter index={3}>
           <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
             <div className="space-y-10">
-              <h2 className="text-sm font-semibold tracking-tight">
-                Latest
-              </h2>
+              <h2 className="text-sm font-semibold tracking-tight">Latest</h2>
               <div className="flex flex-col gap-16">
                 {posts.map((post) => (
                   <LatestPost key={post.href} post={post} />

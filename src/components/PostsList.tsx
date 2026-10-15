@@ -53,7 +53,9 @@ function PostItem({ post }: { post: Post }) {
   return (
     <ContentCard as="article">
       <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
-      <ContentCardDescription>{post.description}</ContentCardDescription>
+      <ContentCardDescription className="text-pretty">
+        {post.description}
+      </ContentCardDescription>
       <ContentCardCta>
         {post.type === 'article' ? 'Read article' : 'Watch video'}
       </ContentCardCta>

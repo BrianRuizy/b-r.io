@@ -92,7 +92,8 @@ export default function Projects() {
       intro={
         <>
           A mix of open-source experiments and products I&apos;ve built at work,
-          across a range of frameworks and languages. You can find even more on my{' '}
+          across a range of frameworks and languages. You can find even more on
+          my{' '}
           <a
             href="https://www.github.com/brianruizy"
             className="link-underline"
@@ -136,7 +137,7 @@ export default function Projects() {
               >
                 {project.name}
               </ContentCardTitle>
-              <ContentCardDescription>
+              <ContentCardDescription className="text-pretty">
                 {project.description}
               </ContentCardDescription>
               <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">

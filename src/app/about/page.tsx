@@ -56,22 +56,22 @@ export default function About() {
           <Portrait />
         </div>
         <PageEnter className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
             {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
               I was born in Honduras, grew up in Texas, and now live in NYC. I
-              got into coding because I liked creating things from
-              scratch. That same instinct still drives the work I do, both in
-              software and on camera.
+              got into coding because I liked creating things from scratch. That
+              same instinct still drives the work I do, both in software and on
+              camera.
             </p>
             <p>
-              I currently work at Hines as a Sr. Software Engineer, building
-              web apps at the enterprise level. Most of my time goes
-              into making complex systems feel straightforward for the people
-              using them. On the side I&apos;m building Beam, a project and task
-              manager built for iPhone first, with a companion Mac app.
+              I currently work at Hines as a Sr. Software Engineer, building web
+              apps at the enterprise level. Most of my time goes into making
+              complex systems feel straightforward for the people using them. On
+              the side I&apos;m building Beam, a project and task manager built
+              for iPhone first, with a companion Mac app.
             </p>
             <p>
               My expertise is in full-stack web development, but I really love

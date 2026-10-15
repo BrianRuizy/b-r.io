@@ -63,7 +63,9 @@ function Tool({
             ) : null}
           </span>
         </ContentCardTitle>
-        <ContentCardDescription>{description}</ContentCardDescription>
+        <ContentCardDescription className="text-pretty">
+          {description}
+        </ContentCardDescription>
       </div>
     </ContentCard>
   )
@@ -73,8 +75,7 @@ const heroTitle = 'Things I use to build, create, and stay productive.'
 
 export const metadata = createPageMetadata({
   title: 'Gear',
-  description:
-    'Things I use to build, create, and stay productive.',
+  description: 'Things I use to build, create, and stay productive.',
   heroTitle,
 })
 

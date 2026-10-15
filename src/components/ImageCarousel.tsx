@@ -3,8 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Image, { type StaticImageData } from 'next/image'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import { motion, useReducedMotion, type PanInfo } from 'motion/react'
-import { motionTransition, snappySpring } from '@/lib/transitions'
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type PanInfo,
+} from 'motion/react'
+import { motionTransition, smoothSpring, snappySpring } from '@/lib/transitions'
 import { cn } from '@/lib/utils'
 
 export type CarouselImage = {
@@ -173,9 +178,23 @@ export function ImageCarousel({
       </div>
 
       {captionText && (
-        <figcaption className="mt-4 text-sm leading-6 text-pretty text-muted-foreground/75">
-          {captionText}
-        </figcaption>
+        <div className="mt-4 grid h-[9rem] content-start sm:h-[7.5rem] lg:h-[4.5rem]">
+          <AnimatePresence mode="sync" initial={false}>
+            <motion.figcaption
+              key={index}
+              initial={{ opacity: 0, filter: 'blur(2px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, filter: 'blur(2px)' }}
+              transition={motionTransition(
+                { ...smoothSpring, duration: 0.4 },
+                reduceMotion,
+              )}
+              className="col-start-1 row-start-1 text-sm leading-6 text-pretty text-muted-foreground/75"
+            >
+              {captionText}
+            </motion.figcaption>
+          </AnimatePresence>
+        </div>
       )}
 
       {count > 1 && (

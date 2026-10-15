@@ -65,11 +65,18 @@ export function ContentCardTitle({
 
 export function ContentCardDescription({
   children,
+  className,
 }: {
   children: React.ReactNode
+  className?: string
 }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-muted-foreground">
+    <p
+      className={cn(
+        'relative z-10 mt-2 text-sm text-muted-foreground',
+        className,
+      )}
+    >
       {children}
     </p>
   )
