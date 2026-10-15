@@ -1,6 +1,6 @@
 # Brian Ruiz
 
-Personal site for [b-r.io](https://b-r.io) — portfolio, writing, projects, and uses.
+Personal site for [b-r.io](https://b-r.io) — portfolio, writing, projects, and gear.
 
 ## Stack
 

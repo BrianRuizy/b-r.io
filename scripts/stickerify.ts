@@ -1,5 +1,5 @@
 /**
- * Die-cut a product photo into a uses-page sticker PNG.
+ * Die-cut a product photo into a gear-page sticker PNG.
  *
  * Local/on-demand only — Next.js never runs this at build or request time.
  *
@@ -9,7 +9,7 @@
  *   npm run stickerify -- --vinyl 51,51,51 in.png uses/dark/name.png
  *   npm run stickerify -- --recolor-vinyl 51,51,51 in.png uses/dark/in.png
  *
- * Then import the PNG in src/app/uses/tools.ts.
+ * Then import the PNG in src/app/gear/tools.ts.
  *
  * Best inputs: official packshots with a transparent background, or a
  * product on a flat white studio background. Dark-on-dark photos cut poorly.

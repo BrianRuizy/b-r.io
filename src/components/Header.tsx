@@ -68,8 +68,8 @@ function MobileNavigation({ className }: { className?: string }) {
           ? 'Writing'
           : pathname.startsWith('/projects')
             ? 'Projects'
-            : pathname.startsWith('/uses')
-              ? 'Uses'
+            : pathname.startsWith('/gear') || pathname.startsWith('/uses')
+              ? 'Gear'
               : 'Menu'
   let [pathnameWhenOpen, setPathnameWhenOpen] = useState(pathname)
   let reduceMotion = useReducedMotion()
@@ -305,8 +305,8 @@ function MobileNavigation({ className }: { className?: string }) {
                       <MobileNavItem href="/projects" onNavigate={closeMenu}>
                         Projects
                       </MobileNavItem>
-                      <MobileNavItem href="/uses" onNavigate={closeMenu}>
-                        Uses
+                      <MobileNavItem href="/gear" onNavigate={closeMenu}>
+                        Gear
                       </MobileNavItem>
                     </ul>
                   </nav>
@@ -363,7 +363,7 @@ function DesktopNavigation({
           <NavItem href="/about">About</NavItem>
           <NavItem href="/writing">Writing</NavItem>
           <NavItem href="/projects">Projects</NavItem>
-          <NavItem href="/uses">Uses</NavItem>
+          <NavItem href="/gear">Gear</NavItem>
         </ul>
       </div>
     </nav>

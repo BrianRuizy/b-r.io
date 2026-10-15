@@ -43,8 +43,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/gear',
-        destination: '/uses',
+        source: '/uses',
+        destination: '/gear',
         permanent: true,
       },
       {

@@ -8,7 +8,7 @@ import {
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Sticker } from '@/components/Sticker'
-import { toolGroups, type ToolItem } from '@/app/uses/tools'
+import { toolGroups, type ToolItem } from '@/app/gear/tools'
 import { createPageMetadata } from '@/lib/metadata'
 
 function ToolsSection({
@@ -68,20 +68,20 @@ function Tool({
   )
 }
 
-const heroTitle = 'Gear I use every day to build, create, and stay productive.'
+const heroTitle = 'Things I use every day to build, create, and stay productive.'
 
 export const metadata = createPageMetadata({
-  title: 'Uses',
+  title: 'Gear',
   description:
-    'Gear I use every day to build, create, and stay productive.',
+    'Things I use every day to build, create, and stay productive.',
   heroTitle,
 })
 
-export default function Uses() {
+export default function Gear() {
   return (
     <SimpleLayout
       title={heroTitle}
-      intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliate; I may earn a little commission at no extra cost to you."
+      intro="Here are some of the tools I actually own and enjoy using. Mostly tech. Some links are affiliate links, I may earn a commission."
     >
       <div className="space-y-20">
         {toolGroups.map((group) => (
