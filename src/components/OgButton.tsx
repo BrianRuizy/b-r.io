@@ -1,11 +1,14 @@
 import { Button } from '@/components/Button'
 import { getLinkMetadata } from '@/lib/link-metadata'
 
-export async function OgButton({
-  href,
-  children,
-  ...props
-}: Omit<React.ComponentProps<typeof Button>, 'href'> & { href: string }) {
+type OgButtonProps = {
+  href: string
+  children: React.ReactNode
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  className?: string
+}
+
+export async function OgButton({ href, children, ...props }: OgButtonProps) {
   const metadata = await getLinkMetadata(href)
 
   return (
