@@ -59,6 +59,18 @@ function MobileNavigation({ className }: { className?: string }) {
   // Avoid a stuck :hover/focus ring when the trigger remounts under the cursor.
   let [suppressTriggerChrome, setSuppressTriggerChrome] = useState(false)
   let pathname = usePathname()
+  let currentPage =
+    pathname === '/'
+      ? 'Home'
+      : pathname.startsWith('/about')
+        ? 'About'
+        : pathname.startsWith('/writing')
+          ? 'Writing'
+          : pathname.startsWith('/projects')
+            ? 'Projects'
+            : pathname.startsWith('/uses')
+              ? 'Uses'
+              : 'Menu'
   let [pathnameWhenOpen, setPathnameWhenOpen] = useState(pathname)
   let reduceMotion = useReducedMotion()
   let titleId = useId()
@@ -188,7 +200,7 @@ function MobileNavigation({ className }: { className?: string }) {
           }
         }}
       >
-        Menu
+        {currentPage}
         <ChevronDownIcon className="ml-3 size-3 text-muted-foreground" />
       </button>
 
@@ -237,7 +249,7 @@ function MobileNavigation({ className }: { className?: string }) {
               }}
               transition={transition}
             >
-              {/* Same surface carries the Menu label so it never pops off */}
+              {/* Keep the current page label on the same surface during the morph. */}
               <motion.div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm font-medium text-foreground"
@@ -247,7 +259,7 @@ function MobileNavigation({ className }: { className?: string }) {
                 transition={labelFade}
               >
                 <span className="flex items-center">
-                  Menu
+                  {currentPage}
                   <ChevronDownIcon className="ml-3 size-3 text-muted-foreground" />
                 </span>
               </motion.div>
