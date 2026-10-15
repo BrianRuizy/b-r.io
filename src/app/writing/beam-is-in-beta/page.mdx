@@ -1,0 +1,80 @@
+import { PostLayout } from '@/components/PostLayout'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import { OgButton } from '@/components/OgButton'
+import { createPostMetadata } from '@/lib/posts'
+import todayImage from './today.png'
+import todayDarkImage from './today-dark.png'
+import projectsImage from './projects.png'
+import projectsDarkImage from './projects-dark.png'
+import notesImage from './notes.png'
+import notesDarkImage from './notes-dark.png'
+import chatImage from './chat.png'
+import chatDarkImage from './chat-dark.png'
+
+export const post = {
+  type: 'article',
+  author: 'Brian Ruiz',
+  date: '2026-10-15',
+  title: 'Beam Is in Beta',
+  description:
+    'I’m building Beam to bring tasks, projects, notes, and calendar into one thoughtful app, with your data kept private, everything available offline, and small details that make it a pleasure to use.',
+}
+
+export const metadata = createPostMetadata(post)
+
+export default (props) => (
+  <PostLayout post={post} showDescription={false} {...props} />
+)
+
+I’m excited to share that [Beam](https://joinbeam.app) is now available to try through TestFlight. I’ve been sharing bits of this side project in my [YouTube videos](https://www.youtube.com/@brianruizy) for a while, so reaching this point feels like a big milestone after months of work. It’s exciting to finally let people try it for themselves.
+
+<ImageCarousel
+  className="mt-0"
+  imageClassName="aspect-4/3"
+  images={[
+    {
+      src: todayImage,
+      darkSrc: todayDarkImage,
+      alt: 'Beam’s Today view with tasks and calendar events',
+      caption:
+        'The Today view puts tasks beside calendar events, so you can see the shape of your day in one place. It works with calendars connected to your phone through Internet Accounts, including Google and Outlook. Capture a task in seconds and keep working offline.',
+    },
+    {
+      src: projectsImage,
+      darkSrc: projectsDarkImage,
+      alt: 'A Beam project with notes, properties, progress, and tasks',
+      caption:
+        'Projects bring tasks, progress, and rich Markdown notes together in one focused space. Custom properties let you track the details that matter to each project.',
+    },
+    {
+      src: notesImage,
+      darkSrc: notesDarkImage,
+      alt: 'A formatted script in Beam Notes',
+      caption:
+        'Rich notes were a priority for me because I write detailed scripts for my YouTube videos. Beam supports nearly all the Markdown features I rely on, including headings, images, and code blocks. When a note is ready, you can share it as a PDF, Markdown file, or web page.',
+    },
+    {
+      src: chatImage,
+      darkSrc: chatDarkImage,
+      alt: 'Beam Assistant helping plan tasks and projects',
+      caption:
+        'Of course, Beam needed some AI features too. You can ask what is due, get help planning your day, or add a task by voice. The assistant uses on-device AI and understands the context of your workspace.',
+    },
+  ]}
+/>
+
+Beam began as a way to manage my own projects and tasks. I wanted one place where I could plan my day, keep track of ongoing projects, and hold onto the notes and details that go with them. I also wanted it to feel simple to use, while still being useful as my needs changed. That idea has grown into a product guided by a few values I keep coming back to:
+
+- **Your data stays yours.** Beam doesn’t require a separate account. If you need to use Beam across devices, it syncs through iCloud.
+- **It works offline.** Your plans should be there when you need them, even without a connection.
+- **Delight to use.** I want Beam to feel considered in everyday use, with small choices that make it more enjoyable to plan, capture, and move through your work.
+
+On the surface, Beam is meant to feel simple. Underneath, it’s more than a to-do list: you can write rich Markdown notes with keyboard shortcuts, and use a chat assistant powered by local AI models to work with your plans. There’s more to it, but I want those capabilities to sit behind an app that stays clear and easy to use.
+
+I’d love for Beam to eventually support as many devices as possible. For now, I’ve chosen to build it natively for Apple devices. That gives me room to make the most of the hardware, create fluid animations, and integrate deeply with the devices people use every day. The beta is live, and I’m sharing a look at what I’ve been building. I’ll keep refining it around these values as it finds its way into more daily routines.
+
+<div className="not-prose mt-6">
+  <OgButton href="https://joinbeam.app" variant="secondary">
+    Visit Beam
+  </OgButton>
+</div>

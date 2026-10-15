@@ -20,7 +20,7 @@ export default async function Writing() {
   return (
     <SimpleLayout
       title={heroTitle}
-      intro="Longer writing and videos covering the work I do, the tools I use, and the occasional update from NYC. Some technical, some personal, all things I wanted to write down."
+      intro="Longer writing and videos covering the work I do, the tools I use, and the occasional life update. Some technical, some personal, all things I wanted to write down."
     >
       <Suspense fallback={null}>
         <PostsList posts={posts} />

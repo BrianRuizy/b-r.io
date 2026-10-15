@@ -5,6 +5,7 @@ export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
         <iframe
           src={`https://www.youtube.com/embed/${id}`}
           title={title}
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           referrerPolicy="strict-origin-when-cross-origin"

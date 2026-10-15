@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 
 export type CarouselImage = {
   src: StaticImageData | string
+  darkSrc?: StaticImageData | string
   alt?: string
   caption?: string
 }
@@ -27,10 +28,12 @@ export function ImageCarousel({
   images,
   caption,
   className,
+  imageClassName,
 }: {
   images: CarouselImage[]
   caption?: string
   className?: string
+  imageClassName?: string
 }) {
   let count = images.length
   let [index, setIndex] = useState(0)
@@ -80,7 +83,7 @@ export function ImageCarousel({
   let maxDrag = Math.max(0, (count - 1) * width)
 
   return (
-    <div className={cn('not-prose my-8', className)}>
+    <figure className={cn('not-prose my-8', className)}>
       {/*
         On desktop, pull out with negative margin and pad back in so the image
         stays content-width while nav buttons sit in the side gutters (not clipped).
@@ -101,22 +104,44 @@ export function ImageCarousel({
           >
             {images.map((image, i) => {
               let size = imageSize(image.src)
+              let darkSize = image.darkSrc ? imageSize(image.darkSrc) : size
               return (
                 <div
                   key={i}
                   className="shrink-0 grow-0"
                   style={{ width: width || '100%' }}
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt ?? ''}
-                    width={size.width}
-                    height={size.height}
-                    sizes="(min-width: 768px) 672px, 100vw"
-                    className="pointer-events-none aspect-3/2 h-auto w-full object-cover"
-                    priority={i === 0}
-                    draggable={false}
-                  />
+                  <>
+                    <Image
+                      src={image.src}
+                      alt={image.alt ?? ''}
+                      width={size.width}
+                      height={size.height}
+                      sizes="(min-width: 768px) 672px, 100vw"
+                      className={cn(
+                        'pointer-events-none aspect-3/2 h-auto w-full object-cover',
+                        image.darkSrc && 'dark:hidden',
+                        imageClassName,
+                      )}
+                      priority={i === 0}
+                      draggable={false}
+                    />
+                    {image.darkSrc && (
+                      <Image
+                        src={image.darkSrc}
+                        alt={image.alt ?? ''}
+                        width={darkSize.width}
+                        height={darkSize.height}
+                        sizes="(min-width: 768px) 672px, 100vw"
+                        className={cn(
+                          'pointer-events-none hidden aspect-3/2 h-auto w-full object-cover dark:block',
+                          imageClassName,
+                        )}
+                        priority={i === 0}
+                        draggable={false}
+                      />
+                    )}
+                  </>
                 </div>
               )
             })}
@@ -179,6 +204,6 @@ export function ImageCarousel({
           </span>
         </div>
       )}
-    </div>
+    </figure>
   )
 }

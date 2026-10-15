@@ -8,6 +8,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
+import { PageEnter } from '@/components/PageEnter'
 import { YouTubeEmbed } from '@/components/YouTubeEmbed'
 import { type PostMeta } from '@/lib/posts'
 import { formatDate } from '@/lib/formatDate'
@@ -15,9 +16,11 @@ import { formatDate } from '@/lib/formatDate'
 export function PostLayout({
   post,
   children,
+  showDescription = true,
 }: {
   post: PostMeta
   children: React.ReactNode
+  showDescription?: boolean
 }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
@@ -37,7 +40,7 @@ export function PostLayout({
             </button>
           )}
           <article>
-            <header className="flex flex-col">
+            <PageEnter as="header" className="flex flex-col">
               <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 {post.title}
               </h1>
@@ -45,35 +48,39 @@ export function PostLayout({
                 dateTime={post.date}
                 className="order-first flex items-center text-base text-muted-foreground"
               >
-                <span className="h-4 w-0.5 rounded-full bg-border" />
+                <span className="h-4 w-0.5 rounded-full bg-border/50" />
                 <span className="ml-3">{formatDate(post.date)}</span>
               </time>
-              <p className="mt-6 text-base text-muted-foreground">
-                {post.description}
-              </p>
-            </header>
+              {showDescription && (
+                <p className="mt-6 text-base text-muted-foreground">
+                  {post.description}
+                </p>
+              )}
+            </PageEnter>
 
-            {post.type === 'video' && (
-              <YouTubeEmbed id={post.youtubeId} title={post.title} />
-            )}
+            <PageEnter index={1}>
+              {post.type === 'video' && (
+                <YouTubeEmbed id={post.youtubeId} title={post.title} />
+              )}
 
-            {post.type === 'article' && post.coverImage && (
-              <div className="mt-8 overflow-hidden rounded-2xl bg-muted">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  width={1200}
-                  height={630}
-                  className="h-auto w-full object-cover"
-                  sizes="(min-width: 768px) 42rem, 100vw"
-                  priority
-                />
-              </div>
-            )}
+              {post.type === 'article' && post.coverImage && (
+                <div className="mt-8 overflow-hidden rounded-2xl bg-muted">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    width={1200}
+                    height={630}
+                    className="h-auto w-full object-cover"
+                    sizes="(min-width: 768px) 42rem, 100vw"
+                    priority
+                  />
+                </div>
+              )}
 
-            <Prose className="mt-8" data-mdx-content>
-              {children}
-            </Prose>
+              <Prose className="mt-8" data-mdx-content>
+                {children}
+              </Prose>
+            </PageEnter>
           </article>
         </div>
       </div>

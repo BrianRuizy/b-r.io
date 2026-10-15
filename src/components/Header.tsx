@@ -15,6 +15,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
 import { Container } from '@/components/Container'
 import { Halo } from '@/components/Halo'
+import { PageEnter } from '@/components/PageEnter'
 import { DialogOverlay } from '@/components/Dialog'
 import avatarImage from '@/images/brian-avatar.jpg'
 import {
@@ -640,7 +641,7 @@ export function Header() {
                     'var(--header-inner-position)' as React.CSSProperties['position'],
                 }}
               >
-                <div className="relative">
+                <PageEnter className="relative">
                   <AvatarContainer
                     className="absolute top-3 left-0 origin-left transition-opacity"
                     style={{
@@ -653,7 +654,7 @@ export function Header() {
                     className="block h-16 w-16 origin-left"
                     style={{ transform: 'var(--avatar-image-transform)' }}
                   />
-                </div>
+                </PageEnter>
               </div>
             </Container>
           </>

@@ -3,6 +3,7 @@ import { EnvelopeIcon } from '@heroicons/react/24/solid'
 import { cn } from '@/lib/utils'
 
 import { Container } from '@/components/Container'
+import { PageEnter } from '@/components/PageEnter'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -54,14 +55,14 @@ export default function About() {
         <div className="lg:pl-20">
           <Portrait />
         </div>
-        <div className="lg:order-first lg:row-span-2">
+        <PageEnter className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I was born in Honduras, grew up in Texas, and now live in New York
-              City. I got into coding because I liked creating things from
+              I was born in Honduras, grew up in Texas, and now live in NYC. I
+              got into coding because I liked creating things from
               scratch. That same instinct still drives the work I do, both in
               software and on camera.
             </p>
@@ -90,8 +91,8 @@ export default function About() {
               laptop nearby.
             </p>
           </div>
-        </div>
-        <div className="lg:pl-20">
+        </PageEnter>
+        <PageEnter className="lg:pl-20">
           <ul role="list">
             <SocialLink
               href="https://www.instagram.com/brianruizy"
@@ -135,7 +136,7 @@ export default function About() {
               partners@b-r.io
             </SocialLink>
           </ul>
-        </div>
+        </PageEnter>
       </div>
     </Container>
   )

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { BriefcaseIcon } from '@heroicons/react/24/outline'
 
 import { Container } from '@/components/Container'
+import { PageEnter } from '@/components/PageEnter'
 import {
   ContentCard,
   ContentCardCta,
@@ -31,7 +32,7 @@ function LatestPost({ post }: { post: Post }) {
   return (
     <ContentCard as="article">
       <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
-      <ContentCardEyebrow as="time" dateTime={post.date} decorate>
+      <ContentCardEyebrow as="time" dateTime={post.date}>
         {formatDate(post.date)}
       </ContentCardEyebrow>
       <ContentCardDescription>{post.description}</ContentCardDescription>
@@ -188,12 +189,12 @@ function Resume() {
 }
 
 export default async function Home() {
-  let posts = (await getAllPosts()).slice(0, 4)
+  let posts = (await getAllPosts()).slice(0, 3)
 
   return (
     <>
       <Container className="mt-9">
-        <div className="max-w-2xl">
+        <PageEnter className="max-w-2xl">
           <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {homeHeroTitle}
           </h1>
@@ -251,27 +252,29 @@ export default async function Home() {
               icon={GitHubIcon}
             />
           </div>
-        </div>
+        </PageEnter>
       </Container>
       <PhotoGallery />
       <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="space-y-10">
-            <h2 className="text-sm font-semibold tracking-tight">
-              Latest
-            </h2>
-            <div className="flex flex-col gap-16">
-              {posts.map((post) => (
-                <LatestPost key={post.href} post={post} />
-              ))}
+        <PageEnter index={3}>
+          <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
+            <div className="space-y-10">
+              <h2 className="text-sm font-semibold tracking-tight">
+                Latest
+              </h2>
+              <div className="flex flex-col gap-16">
+                {posts.map((post) => (
+                  <LatestPost key={post.href} post={post} />
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-10 lg:pl-16 xl:pl-24">
+              <Newsletter />
+              <Resume />
             </div>
           </div>
-
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
-            <Resume />
-          </div>
-        </div>
+        </PageEnter>
       </Container>
     </>
   )
