@@ -225,9 +225,9 @@ export default async function Home() {
               href="https://www.youtube.com/@brianruizy"
               className="link-underline"
             >
-              videos
+              tech videos
             </Link>{' '}
-            about tech, and daily life for a community of 100K+ subscribers.
+            for 100K+ subscribers.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
