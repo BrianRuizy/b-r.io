@@ -424,7 +424,7 @@ function ThemeToggle() {
       <span className="relative z-10 block size-6 overflow-visible">
         {!mounted ? (
           <span className="absolute inset-0 flex items-center justify-center">
-            <SunIcon className="size-6 text-muted-foreground" />
+            <SunIcon className="size-6 text-accent" />
           </span>
         ) : (
           <>
@@ -436,7 +436,7 @@ function ThemeToggle() {
               className="absolute inset-0 flex items-center justify-center"
               aria-hidden={iconDark}
             >
-              <SunIcon className="size-6 text-muted-foreground group-hover:text-foreground" />
+              <SunIcon className="size-6 text-accent group-hover:text-foreground" />
             </motion.span>
             <motion.span
               initial={false}
@@ -446,7 +446,7 @@ function ThemeToggle() {
               className="absolute inset-0 flex items-center justify-center"
               aria-hidden={!iconDark}
             >
-              <MoonIcon className="size-6 text-muted-foreground group-hover:text-foreground" />
+              <MoonIcon className="size-6 text-accent group-hover:text-foreground" />
             </motion.span>
           </>
         )}
