@@ -29,6 +29,13 @@ const siteUrl =
 const title = 'Brian Ruiz - Software engineer and creator in NYC'
 const description =
   'Software engineer in New York City crafting delightful user experiences and sharing videos about technology, productivity, design, and life.'
+const websiteStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Brian Ruiz',
+  alternateName: 'b-r.io',
+  url: siteUrl,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -82,6 +89,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex h-full bg-card sm:bg-background">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteStructuredData).replace(/</g, '\\u003c'),
+          }}
+        />
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>
