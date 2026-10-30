@@ -14,7 +14,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 I know, I know! It&apos;s been a minute. I was shocked to realize the last video was 7 months ago 🫪. This one gets back to the basics: a productive day in the life of a remote software engineer in New York.
 

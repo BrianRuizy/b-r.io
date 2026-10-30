@@ -21,7 +21,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 I've been using Notion for years. What started as a simple note-taking app became the system I use for content creation, development work, learning, and personal projects. I get a lot of questions about the templates, so this post breaks down the ones that actually matter day to day.
 
