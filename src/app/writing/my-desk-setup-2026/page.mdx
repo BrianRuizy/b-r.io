@@ -1,0 +1,92 @@
+import { PostLayout } from '@/components/PostLayout'
+import { createPostMetadata } from '@/lib/posts'
+import { ImageCarousel } from '@/components/ImageCarousel'
+import coverImage from './desk-2026-1.jpg'
+import deskPhoto from './desk-2026-2.jpg'
+import standingPhoto from './desk-2026-3.jpg'
+import roomPhoto from './desk-2026-4.jpg'
+
+export const post = {
+  type: 'video',
+  author: 'Brian Ruiz',
+  date: '2026-10-30',
+  title: 'My Desk Setup for 2026',
+  description:
+    'A warmer, simpler workspace for coding and creating in my NYC apartment.',
+  youtubeId: 'z8uwt1Ea3Ao',
+  coverImage: coverImage.src,
+}
+
+export const metadata = createPostMetadata(post)
+
+export default (props) => <PostLayout post={post} {...props} />
+
+Every setup feels like a snapshot of where I am. This year, I wanted something warmer, with more room to work, without letting the desk take over the apartment.
+
+## The Room
+
+The desk lives in my living room, so it needs to feel at home here. I placed it by the windows for the natural light and kept the rest of the setup simple. The view definitely helps.
+
+<ImageCarousel
+  images={[
+    {
+      src: deskPhoto,
+      alt: 'Walnut desk with Studio Display, keyboard, mouse, and iPad by the window',
+      caption: 'A warmer finish, with the everyday essentials kept within reach.',
+    },
+    {
+      src: standingPhoto,
+      alt: 'Working at the standing desk with headphones on and the NYC skyline outside',
+      caption: 'A change of pace between sitting and standing.',
+    },
+    {
+      src: roomPhoto,
+      alt: 'Full desk setup with an Aeron chair, plants, and a lounge chair in the living room',
+      caption: 'Enough room to work and create without taking over the living room.',
+    },
+  ]}
+/>
+
+## The Desk
+
+I switched from light oak to a Vernal hardwood standing desk in walnut. The darker wood took some getting used to, but I really like the warmth it brings to the room. At nearly 30 inches deep, it also gives me more space to spread out.
+
+Vernal sponsored the video. I’m also using their matching monitor shelf, drawer, and cable-management rack. The laptops sit under the shelf, the smaller tech goes in the felt-lined drawer, and a large power strip underneath keeps things down to one cable running to the wall.
+
+## The Chair
+
+Still using the Herman Miller Aeron. I got it when a previous office was moving out, and it’s been one of the best additions to the setup. It feels a little office-y at home, but the adjustability and lumbar support make it worth keeping.
+
+## Computers and Display
+
+An M1 Pro MacBook Pro handles personal projects and video editing, while an M3 Pro is my work machine. Both live under the monitor shelf, so switching between them is a single cable swap. An external SSD gives me extra room for footage.
+
+I’ve tried dual and vertical monitors, but I keep coming back to one good display. The Apple Studio Display gives me plenty of space at 5K, and its brightness holds up well in front of these windows. I use the built-in webcam, too.
+
+## Lighting
+
+The BenQ ScreenBar Halo keeps the desk lit without taking up surface space. I use the dial to warm things up in the evenings. This is probably when the setup feels its best.
+
+## Peripherals
+
+I’ve moved from mechanical keyboards to the Magic Keyboard with Touch ID. It’s quiet, wireless, and simple, and I like having Touch ID right there.
+
+The Logitech MX Master has stayed. I’ve used it for years; this time I just changed the color. Underneath both is a basic felt desk mat. Nothing fancy, but it does the job.
+
+## Audio
+
+For recording, I use a Shure SM7dB on a low-profile Elgato arm, connected to a Behringer audio interface. The arm keeps the microphone easy to reach without sitting in the middle of the setup.
+
+My older AirPods Max still work well for everyday listening. Otherwise, I use the Studio Display speakers, or AirPlay music to the Sonos Beam in the living room.
+
+## Accessories
+
+The Nomad Stand One keeps my phone charged and easy to grab. Turning it sideways gives me a little StandBy display, too.
+
+I also keep an iPad mini below the monitor for music or a video. Universal Control lets me use the same mouse across both devices when I need that extra screen.
+
+## Seating and Decor
+
+A few plants, my camera, and the Silver Play Button give the space some personality. The lounge chair next to the desk gives me somewhere to take a break without staying in work mode.
+
+That’s the setup for 2026. Enough room to code and create, while still feeling like home.
