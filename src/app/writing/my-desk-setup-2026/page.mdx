@@ -1,10 +1,10 @@
+import Image from 'next/image'
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
 import coverImage from './desk-2026-1.jpg'
 import deskPhoto from './desk-2026-2.jpg'
-import standingPhoto from './desk-2026-3.jpg'
-import roomPhoto from './desk-2026-4.jpg'
+import roomPhoto from './desk-2026-3.jpg'
 
 export const post = {
   type: 'video',
@@ -32,19 +32,14 @@ The desk lives in my living room, so it needs to feel at home here. I placed it 
 <ImageCarousel
   images={[
     {
+      src: coverImage,
+      alt: 'Walnut desk beside the corner windows, with an Aeron chair and lounge chair',
+      caption: 'The setup by the windows, with room to work and take a break.',
+    },
+    {
       src: deskPhoto,
-      alt: 'Walnut desk with Studio Display, keyboard, mouse, and iPad by the window',
-      caption: 'A warmer finish, with the everyday essentials kept within reach.',
-    },
-    {
-      src: standingPhoto,
-      alt: 'Working at the standing desk with headphones on and the NYC skyline outside',
-      caption: 'A change of pace between sitting and standing.',
-    },
-    {
-      src: roomPhoto,
-      alt: 'Full desk setup with an Aeron chair, plants, and a lounge chair in the living room',
-      caption: 'Enough room to work and create without taking over the living room.',
+      alt: 'Front view of the walnut desk, Studio Display, and Aeron chair against the NYC skyline',
+      caption: 'A single display and the everyday essentials, with the city right outside.',
     },
   ]}
 />
@@ -122,6 +117,13 @@ I also keep an iPad mini below the monitor for music or a video. Universal Contr
 ## Seating & Decor
 
 A few plants, my camera, and the Silver Play Button give the space some personality. The lounge chair next to the desk gives me somewhere to take a break without staying in work mode.
+
+<Image
+  src={roomPhoto}
+  alt="The desk in the living room, with a sofa, lounge chair, glass coffee table, and linen curtains"
+  sizes="(min-width: 768px) 672px, 100vw"
+  className="h-auto w-full rounded-3xl"
+/>
 
 - Lounge chair
 - [Fujifilm X100VI](https://link.amazon/B0aX7V9fD)
