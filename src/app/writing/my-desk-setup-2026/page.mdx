@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
@@ -30,6 +29,7 @@ Here's a look at my latest desk setup for 2026 as a software engineer and creato
 The desk lives in my living room, so it needs to feel at home here. I placed it by the windows for the natural light and kept the rest of the setup simple. The view definitely helps.
 
 <ImageCarousel
+  imageClassName="object-contain"
   images={[
     {
       src: coverImage,
@@ -40,6 +40,11 @@ The desk lives in my living room, so it needs to feel at home here. I placed it 
       src: deskPhoto,
       alt: 'Front view of the walnut desk, Studio Display, and Aeron chair against the NYC skyline',
       caption: 'A single display and the everyday essentials, with the city right outside.',
+    },
+    {
+      src: roomPhoto,
+      alt: 'The desk in the living room, with a sofa, lounge chair, glass coffee table, and linen curtains',
+      caption: 'The full living room, with the workspace tucked by the windows.',
     },
   ]}
 />
@@ -117,13 +122,6 @@ I also keep an iPad mini below the monitor for music or a video. Universal Contr
 ## Seating & Decor
 
 A few plants, my camera, and the Silver Play Button give the space some personality. The lounge chair next to the desk gives me somewhere to take a break without staying in work mode.
-
-<Image
-  src={roomPhoto}
-  alt="The desk in the living room, with a sofa, lounge chair, glass coffee table, and linen curtains"
-  sizes="(min-width: 768px) 672px, 100vw"
-  className="h-auto w-full rounded-3xl"
-/>
 
 - Lounge chair
 - [Fujifilm X100VI](https://link.amazon/B0aX7V9fD)
