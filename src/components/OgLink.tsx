@@ -24,6 +24,8 @@ function isExternalHttp(href?: string): href is string {
 }
 
 const faviconOverrides: Record<string, string> = {
+  'store.hermanmiller.com': '/link-icons/herman-miller.png',
+  'www.hermanmiller.com': '/link-icons/herman-miller.png',
   'www.vernalspace.com':
     'https://www.vernalspace.com/cdn/shop/files/android-chrome-512x512.png?crop=center&height=32&v=1677553397&width=32',
   'modedesigns.com':
