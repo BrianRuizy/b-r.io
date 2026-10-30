@@ -1,12 +1,11 @@
 import Image, { type StaticImageData } from 'next/image'
-import { getLinkMetadata } from '@/lib/link-metadata'
 import { cn } from '@/lib/utils'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
 type LinkPreviewProps = {
   title: string
-  subtitle?: string
-  image?: StaticImageData | string
+  subtitle: string
+  image: StaticImageData | string
   url: string
   className?: string
 }
@@ -26,16 +25,14 @@ function imageSize(src: StaticImageData | string) {
   return { width: src.width, height: src.height }
 }
 
-export async function LinkPreview({
+export function LinkPreview({
   title,
   subtitle,
   image,
   url,
   className,
 }: LinkPreviewProps) {
-  const metadata = image ? null : await getLinkMetadata(url)
-  const previewImage = image ?? metadata?.image
-  const size = previewImage ? imageSize(previewImage) : null
+  let { width, height } = imageSize(image)
 
   return (
     <a
@@ -55,26 +52,18 @@ export async function LinkPreview({
         <div className="line-clamp-2 font-semibold text-foreground">
           {title}
         </div>
-        {subtitle && (
-          <p className="line-clamp-2 text-muted-foreground">{subtitle}</p>
-        )}
+        <p className="line-clamp-2 text-muted-foreground">{subtitle}</p>
       </div>
-      {previewImage && size && (
-        <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl md:w-48">
-          <Image
-            src={previewImage}
-            alt=""
-            unoptimized={
-              typeof previewImage === 'string' &&
-              /^https?:\/\//.test(previewImage)
-            }
-            width={size.width}
-            height={size.height}
-            sizes="(max-width: 768px) 96px, 192px"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      )}
+      <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl md:w-48">
+        <Image
+          src={image}
+          alt=""
+          width={width}
+          height={height}
+          sizes="(max-width: 768px) 96px, 192px"
+          className="h-full w-full object-cover"
+        />
+      </div>
     </a>
   )
 }
