@@ -39,7 +39,7 @@ function LatestPost({ post }: { post: Post }) {
         {post.description}
       </ContentCardDescription>
       <ContentCardCta>
-        {post.type === 'article' ? 'Read article' : 'Watch video'}
+        View post
       </ContentCardCta>
     </ContentCard>
   )
