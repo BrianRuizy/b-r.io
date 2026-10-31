@@ -88,7 +88,7 @@ export default function RootLayout({
       className={`${inter.className} ${inter.variable} ${sourceSerif.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex h-full bg-card sm:bg-background">
+      <body className="flex h-full bg-white dark:bg-black">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
