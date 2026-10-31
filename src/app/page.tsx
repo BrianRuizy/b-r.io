@@ -259,7 +259,7 @@ export default async function Home() {
       <PhotoGallery />
       <Container className="mt-24 md:mt-28">
         <PageEnter index={3}>
-          <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
+          <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 md:max-w-none md:grid-cols-2">
             <div className="space-y-10">
               <h2 className="text-sm font-semibold tracking-tight">Latest</h2>
               <div className="flex flex-col gap-16">
@@ -269,7 +269,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="space-y-10 lg:pl-16 xl:pl-24">
+            <div className="space-y-10 md:pl-8 lg:pl-16 xl:pl-24">
               <Newsletter />
               <Resume />
             </div>

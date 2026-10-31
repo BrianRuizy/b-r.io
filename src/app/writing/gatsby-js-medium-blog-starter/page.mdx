@@ -19,7 +19,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 I spend a lot of time reading on Medium, and I always liked how little the interface got in the way. When I needed a personal blog and portfolio of my own, I did not want another generic theme that looked like every other developer site. I wanted something closer to that quieter reading experience, built on tools I already knew.
 

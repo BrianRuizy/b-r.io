@@ -16,7 +16,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 <figure>
   <MapDemo />

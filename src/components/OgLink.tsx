@@ -1,3 +1,4 @@
+import { LinkFavicon } from '@/components/LinkFavicon'
 import { getLinkMetadata } from '@/lib/link-metadata'
 import { cn } from '@/lib/utils'
 
@@ -22,6 +23,24 @@ function isExternalHttp(href?: string): href is string {
   return Boolean(href && /^https?:\/\//i.test(href))
 }
 
+const faviconOverrides: Record<string, string> = {
+  'store.hermanmiller.com': '/link-icons/herman-miller.png',
+  'www.hermanmiller.com': '/link-icons/herman-miller.png',
+  'www.vernalspace.com':
+    'https://www.vernalspace.com/cdn/shop/files/android-chrome-512x512.png?crop=center&height=32&v=1677553397&width=32',
+  'modedesigns.com':
+    'https://modedesigns.com/cdn/shop/files/favicon_809c7ad6-ee45-42b5-b2bc-c33d0a8965b2.png?crop=center&height=32&v=1761636258&width=32',
+}
+
+function getFaviconUrl(href: string) {
+  const url = new URL(href)
+  // Affiliate redirects should use the destination brand's icon.
+  if (['amzn.to', 'link.amazon', 'a.co'].includes(url.hostname)) {
+    return 'https://www.amazon.com/favicon.ico'
+  }
+  return faviconOverrides[url.hostname] ?? `${url.origin}/favicon.ico`
+}
+
 export async function OgLink({
   url,
   href,
@@ -34,8 +53,10 @@ export async function OgLink({
   const targetHref = url ?? href
   const external = isExternalHttp(targetHref)
   const showFavicon = favicon !== false
-  const needsMetadata = external && (showFavicon || (!children && !title))
+  const needsMetadata = external && !children && !title
   const meta = needsMetadata ? await getLinkMetadata(targetHref) : null
+  const faviconUrl =
+    meta?.favicon ?? (external ? getFaviconUrl(targetHref) : null)
   const label =
     children ?? title ?? meta?.title ?? (targetHref ? getHostname(targetHref) : null)
 
@@ -49,17 +70,7 @@ export async function OgLink({
       )}
       {...props}
     >
-      {showFavicon && meta?.favicon ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={meta.favicon}
-          alt=""
-          width={16}
-          height={16}
-          className="mr-1 inline size-[0.95em] max-h-4 translate-y-[-0.08em] rounded-sm"
-          loading="lazy"
-        />
-      ) : null}
+      {showFavicon && faviconUrl && <LinkFavicon src={faviconUrl} />}
       {label}
     </a>
   )

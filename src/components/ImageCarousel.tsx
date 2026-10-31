@@ -178,8 +178,8 @@ export function ImageCarousel({
       </div>
 
       {captionText && (
-        <div className="mt-4 grid h-[9rem] content-start sm:h-[7.5rem] lg:h-[4.5rem]">
-          <AnimatePresence mode="sync" initial={false}>
+        <div className="relative mt-4">
+          <AnimatePresence mode="popLayout" initial={false}>
             <motion.figcaption
               key={index}
               initial={{ opacity: 0, filter: 'blur(2px)' }}
@@ -189,7 +189,7 @@ export function ImageCarousel({
                 { ...smoothSpring, duration: 0.4 },
                 reduceMotion,
               )}
-              className="col-start-1 row-start-1 text-sm leading-6 text-pretty text-muted-foreground/75"
+              className="text-sm leading-6 text-pretty text-muted-foreground/75"
             >
               {captionText}
             </motion.figcaption>

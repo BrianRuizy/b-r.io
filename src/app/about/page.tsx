@@ -51,12 +51,12 @@ export const metadata = createPageMetadata({
 export default function About() {
   return (
     <Container className="mt-16 sm:mt-32">
-      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        <div className="lg:pl-20">
+      <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:grid-rows-[auto_1fr] md:gap-y-12">
+        <div className="md:pl-8 lg:pl-20">
           <Portrait />
         </div>
-        <PageEnter className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
+        <PageEnter className="md:order-first md:row-span-2">
+          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl md:text-4xl lg:text-5xl">
             {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
@@ -94,7 +94,7 @@ export default function About() {
             </p>
           </div>
         </PageEnter>
-        <PageEnter className="lg:pl-20">
+        <PageEnter className="md:pl-8 lg:pl-20">
           <ul role="list">
             <SocialLink
               href="https://www.instagram.com/brianruizy"

@@ -13,7 +13,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 A walkthrough of the desk I use in New York for coding, editing, and long creative sessions — focused on comfort, cable management, and keeping the setup simple.
 

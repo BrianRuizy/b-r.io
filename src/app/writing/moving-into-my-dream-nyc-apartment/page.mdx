@@ -13,7 +13,7 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 This is my second place in the city in just under two years. After a rough stretch getting here, I walk through how this apartment came to be, the move-in, and how I'm settling in: unpacking, setting up a workspace, and finding a new routine.
 

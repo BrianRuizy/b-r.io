@@ -13,6 +13,6 @@ export const post = {
 
 export const metadata = createPostMetadata(post)
 
-export default (props) => <PostLayout post={post} {...props} />
+export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
 
 The early days of living in New York as a software engineer — settling in, building a rhythm, and figuring out how work and creative projects fit into city life.
