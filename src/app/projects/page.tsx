@@ -49,8 +49,8 @@ const projects: Array<Project> = [
     description:
       'The internal design system for Hines — 40+ accessible components powering our web apps.',
     link: {
-      href: 'https://www.hines.com',
-      label: '@hines/ui',
+      href: 'https://hines-ui-gallery.vercel.app',
+      label: 'Explore the gallery',
     },
     logo: logoOpenShuttle,
   },
