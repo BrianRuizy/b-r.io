@@ -26,7 +26,7 @@ const wordmarks: Record<
   Framer: { file: 'framer', width: 93, height: 24 },
   Raycast: { file: 'raycast', width: 103, height: 24 },
   Mobbin: { file: 'mobbin-balanced', width: 112, height: 22 },
-  'Even Realities': { file: 'even', width: 127, height: 17 },
+  'Even Realities': { file: 'even', width: 130.55, height: 21.53 },
   Brilliant: { file: 'brilliant', width: 76, height: 18 },
 }
 
@@ -421,7 +421,6 @@ export function BrandCollaborations() {
                   sizes="(min-width: 1024px) 45vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-white/30 via-white/0 to-transparent dark:from-black/30 dark:via-black/0" />
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span
                     aria-hidden="true"
