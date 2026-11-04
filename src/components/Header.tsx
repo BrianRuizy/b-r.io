@@ -185,7 +185,7 @@ function MobileNavigation({ className }: { className?: string }) {
         aria-expanded={open}
         aria-haspopup="dialog"
         className={cn(
-          'pointer-events-auto flex items-center rounded-full bg-card px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border dark:ring-white/14 transition dark:bg-muted',
+          'pointer-events-auto flex items-center rounded-full bg-card px-4 py-2 text-sm font-medium text-foreground shadow-lg ring-1 shadow-foreground/5 ring-border transition dark:bg-muted',
           !suppressTriggerChrome && 'dark:hover:ring-foreground/20',
           trayMounted && 'invisible',
         )}
@@ -226,7 +226,7 @@ function MobileNavigation({ className }: { className?: string }) {
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="pointer-events-auto fixed z-50 overflow-hidden bg-card shadow-lg ring-1 shadow-foreground/5 ring-border dark:ring-white/14 dark:bg-muted"
+              className="pointer-events-auto fixed z-50 overflow-hidden bg-card shadow-lg ring-1 shadow-foreground/5 ring-border dark:bg-muted"
               initial={{
                 top: origin.top,
                 left: origin.left,
@@ -356,7 +356,7 @@ function DesktopNavigation({
 }: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props} className={cn('group', className)}>
-      <div className="relative rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border dark:ring-white/14 backdrop-blur-sm dark:bg-muted/90">
+      <div className="relative rounded-full bg-card/90 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90">
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
           <Halo />
         </div>
@@ -407,7 +407,7 @@ function ThemeToggle() {
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group relative rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border dark:ring-white/14 backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
+      className="group relative rounded-full bg-card/90 px-3 py-2 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm transition dark:bg-muted/90 dark:hover:ring-foreground/20"
       onClick={() => setTheme(otherTheme)}
     >
       <div className="absolute inset-0 overflow-hidden rounded-full max-md:hidden">
@@ -461,7 +461,7 @@ function AvatarContainer({
     <div
       className={cn(
         className,
-        'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border dark:ring-white/14 backdrop-blur-sm dark:bg-muted/90',
+        'h-10 w-10 rounded-full bg-card/90 p-0.5 shadow-lg ring-1 shadow-foreground/5 ring-border backdrop-blur-sm dark:bg-muted/90',
       )}
       {...props}
     />
