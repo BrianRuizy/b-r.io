@@ -1,7 +1,6 @@
 import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { ImageCarousel } from '@/components/ImageCarousel'
-import coverImage from './og.png'
 import phonesImage from './phones.png'
 import tabletImage from './tablet.png'
 import darkComputerImage from './dark-computer.png'
@@ -13,13 +12,13 @@ export const post = {
   date: '2022-11-15',
   title: 'Building a Medium-inspired blog with Gatsby.js',
   description:
-    'A Gatsby starter for a quiet, Medium-inspired blog and portfolio, with MDX, search, and dark mode.',
-  coverImage: coverImage.src,
+    'I built a Gatsby starter inspired by the quieter reading experience of Medium’s earlier design. A look at the blog and portfolio, with MDX posts, search, light and dark mode, a contact form, and a gear page.',
+  coverImage: lightComputerImage.src,
 }
 
 export const metadata = createPostMetadata(post)
 
-export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
+export default ({ children }) => <PostLayout post={post} showCover={false}>{children}</PostLayout>
 
 I spend a lot of time reading on Medium, and I always liked how little the interface got in the way. When I needed a personal blog and portfolio of my own, I did not want another generic theme that looked like every other developer site. I wanted something closer to that quieter reading experience, built on tools I already knew.
 

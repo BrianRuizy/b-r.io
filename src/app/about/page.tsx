@@ -11,7 +11,7 @@ import {
   XIcon,
   YouTubeIcon,
 } from '@/components/SocialIcons'
-import { Portrait } from '@/app/about/Portrait'
+import { Portrait, SocialLinksEnter } from '@/app/about/Portrait'
 import { createPageMetadata } from '@/lib/metadata'
 
 const heroTitle = "I'm Brian. I live in NYC, building and sharing the journey."
@@ -93,7 +93,7 @@ export default function About() {
             </p>
           </div>
         </PageEnter>
-        <PageEnter className="md:pl-8 lg:pl-20">
+        <SocialLinksEnter>
           <ul role="list">
             <SocialLink
               href="https://www.instagram.com/brianruizy"
@@ -137,7 +137,7 @@ export default function About() {
               partners@b-r.io
             </SocialLink>
           </ul>
-        </PageEnter>
+        </SocialLinksEnter>
       </div>
     </Container>
   )

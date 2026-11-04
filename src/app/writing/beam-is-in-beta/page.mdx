@@ -16,6 +16,7 @@ export const post = {
   author: 'Brian Ruiz',
   date: '2026-10-15',
   title: 'Beam Is in Beta',
+  coverImage: todayImage.src,
   description:
     'I’m building Beam to bring tasks, projects, notes, and calendar into one thoughtful app, with your data kept private, everything available offline, and small details that make it a pleasure to use.',
 }
@@ -23,7 +24,7 @@ export const post = {
 export const metadata = createPostMetadata(post)
 
 export default ({ children }) => (
-  <PostLayout post={post} showDescription={false}>{children}</PostLayout>
+  <PostLayout post={post} showDescription={false} showCover={false}>{children}</PostLayout>
 )
 
 I’m excited to share that [Beam](https://joinbeam.app) is now available to try through TestFlight. I’ve been sharing bits of this side project in my [YouTube videos](https://www.youtube.com/@brianruizy) for a while, so reaching this point feels like a big milestone after months of work. It feels good to finally let people try it for themselves.

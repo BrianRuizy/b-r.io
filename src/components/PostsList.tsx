@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import { formatDate } from '@/lib/formatDate'
 import { useSearchParams } from 'next/navigation'
 
 import {
@@ -51,14 +53,57 @@ function groupPostsByYear(posts: Array<Post>) {
 
 function PostItem({ post }: { post: Post }) {
   return (
-    <ContentCard as="article">
+    <div className="grid grid-cols-1 items-start gap-y-4 md:grid-cols-4">
+      <time
+        dateTime={post.date}
+        className="text-sm text-muted-foreground md:pt-0.5"
+      >
+        {formatDate(post.date)}
+      </time>
+      <ContentCard as="article" className="md:col-span-3">
+        <ContentCardTitle as="h3" href={post.href}>
+          {post.title}
+        </ContentCardTitle>
+        <ContentCardDescription className="text-pretty">
+          {post.description}
+        </ContentCardDescription>
+        <ContentCardCta>View post</ContentCardCta>
+      </ContentCard>
+    </div>
+  )
+}
+
+function FeaturedPost({ post }: { post: Post }) {
+  const cover =
+    post.coverImage ??
+    (post.type === 'video'
+      ? `https://i.ytimg.com/vi/${post.youtubeId}/maxresdefault.jpg`
+      : null)
+  return (
+    <ContentCard as="article" className="w-full">
+      <div className="relative z-10 mb-5 aspect-3/2 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-border sm:rounded-2xl">
+        {cover ? (
+          <Image
+            src={cover}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+            unoptimized={cover.startsWith('https://i.ytimg.com')}
+            className="object-cover"
+          />
+        ) : null}
+      </div>
       <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
-      <ContentCardDescription className="text-pretty">
+      <time
+        dateTime={post.date}
+        className="relative z-10 mt-2 text-sm text-muted-foreground"
+      >
+        {formatDate(post.date)}
+      </time>
+      <ContentCardDescription className="line-clamp-3 text-pretty">
         {post.description}
       </ContentCardDescription>
-      <ContentCardCta>
-        View post
-      </ContentCardCta>
+      <ContentCardCta>View post</ContentCardCta>
     </ContentCard>
   )
 }
@@ -68,7 +113,7 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
   let filter = parseFilter(searchParams.get('type'))
   let filteredPosts =
     filter === 'all' ? posts : posts.filter((post) => post.type === filter)
-  let postsByYear = groupPostsByYear(filteredPosts)
+  let postsByYear = groupPostsByYear(filteredPosts.slice(3))
 
   return (
     <div className="space-y-20">
@@ -86,18 +131,21 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
         ))}
       </div>
 
+      <div className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredPosts.slice(0, 3).map((post) => (
+          <FeaturedPost key={post.href} post={post} />
+        ))}
+      </div>
+
       <div className="space-y-20">
         {postsByYear.map(([year, yearPosts]) => (
           <section
             key={year}
             aria-label={`${year} writing`}
-            className="md:border-l md:border-border md:pl-6"
+            className="max-w-4xl md:border-l md:border-border md:pl-6"
           >
-            <div className="grid max-w-3xl grid-cols-1 items-start gap-y-8 md:grid-cols-4">
-              <h2 className="text-sm font-semibold text-foreground md:pt-0.5">
-                {year}
-              </h2>
-              <div className="flex flex-col space-y-16 md:col-span-3">
+            <div className="space-y-10">
+              <div className="flex flex-col space-y-16">
                 {yearPosts.map((post) => (
                   <PostItem key={post.href} post={post} />
                 ))}

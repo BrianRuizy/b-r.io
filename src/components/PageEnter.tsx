@@ -8,15 +8,17 @@ export function PageEnter({
   children,
   className,
   index = 0,
+  delay = index * 0.13,
   as = 'div',
   ...props
 }: React.ComponentProps<typeof motion.div> & {
   index?: number
+  delay?: number
   as?: 'div' | 'header'
 }) {
   let reduceMotion = useReducedMotion()
   let transition = motionTransition(
-    { ...smoothSpring, duration: 0.6, delay: index * 0.13 },
+    { ...smoothSpring, duration: 0.6, delay },
     reduceMotion,
   )
 
@@ -27,9 +29,7 @@ export function PageEnter({
       {...props}
       className={className}
       initial={
-        reduceMotion
-          ? false
-          : { opacity: 0, y: 18, filter: 'blur(2px)' }
+        reduceMotion ? false : { opacity: 0, y: 18, filter: 'blur(2px)' }
       }
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={transition}

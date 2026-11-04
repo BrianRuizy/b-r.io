@@ -17,10 +17,12 @@ export function PostLayout({
   post,
   children,
   showDescription = true,
+  showCover = true,
 }: {
   post: PostMeta
   children: React.ReactNode
   showDescription?: boolean
+  showCover?: boolean
 }) {
   let router = useRouter()
   let { previousPathname } = useContext(AppContext)
@@ -63,7 +65,7 @@ export function PostLayout({
                 <YouTubeEmbed id={post.youtubeId} title={post.title} />
               )}
 
-              {post.type === 'article' && post.coverImage && (
+              {showCover && post.type === 'article' && post.coverImage && (
                 <div className="mt-8 overflow-hidden rounded-2xl bg-muted">
                   <Image
                     src={post.coverImage}

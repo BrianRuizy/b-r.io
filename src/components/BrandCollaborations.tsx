@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { PlayCircleIcon } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Halo } from '@/components/Halo'
@@ -34,6 +34,7 @@ type Collaboration = {
   brand: string
   domain: string
   videoId: string
+  startSeconds?: number
   title: string
   excerpt?: string
 }
@@ -43,6 +44,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Superhuman',
     domain: 'superhuman.com',
     videoId: 'jT5C70zLQMM',
+    startSeconds: 417, // Verified YouTube chapter start.
     title: 'Day in the Life of a Remote Software Engineer (in NYC)', // Promotion script: https://www.notion.so/3c82f3148528803fa314d40a1c95ac31
     excerpt:
       'Featured Superhuman Mail’s inbox tools and ChatGPT integration for managing email across my accounts.',
@@ -51,6 +53,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Framer',
     domain: 'framer.com',
     videoId: 'lD84PGERjP8',
+    startSeconds: 522, // Verified YouTube chapter start.
     title: 'Moving Into My Dream NYC Apartment as a Software Engineer', // Promotion script: https://www.notion.so/2c82f3148528809a9799ff8fc4a9c61b
     excerpt:
       'Featured the Framer Creator Micro by Work Louder, showing how its keys and dial fit my coding and video editing workflow.',
@@ -59,6 +62,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Even Realities',
     domain: 'evenrealities.com',
     videoId: 'DT7oJEmIls4',
+    startSeconds: 104, // Verified YouTube chapter start.
     title: 'Day in the Life with Invisible Smart Glasses', // Promotion script: https://www.notion.so/2952f314852880e69d22d84825f0bec6
     excerpt:
       'Tested the Even G2 glasses and R1 ring through teleprompter, navigation, and everyday use.',
@@ -67,6 +71,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'LG Electronics',
     domain: 'lg.com',
     videoId: 'xt50CiiTsc8',
+    startSeconds: 300, // Verified YouTube chapter start.
     title: 'NYC Productive Day | DITL',
     // Product confirmed by Brian: LG monitor.
     excerpt:
@@ -84,6 +89,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Monday.com',
     domain: 'monday.com',
     videoId: '6nvnKjzwjaI',
+    startSeconds: 575, // Verified YouTube chapter start.
     title: 'Getting My Life Together as a Software Engineer', // Promotion script: https://www.notion.so/2542f3148528807b9629dc640f0f0fd5
     excerpt:
       'Demonstrated monday sidekick reviewing project priorities, drafting a client follow-up, and creating a task.',
@@ -118,6 +124,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Logitech',
     domain: 'logitech.com',
     videoId: 'AIZ5LJ2IeZo',
+    startSeconds: 520, // Verified YouTube chapter start.
     title: '6am Morning Routine | Software Engineer Habits', // Promotion script: https://www.notion.so/7cfbaed769104e5f8607aa60630acc24
     excerpt:
       'Featured the Logitech MX Brio 4K webcam as part of my setup for communicating in work meetings.',
@@ -126,6 +133,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Notion',
     domain: 'notion.so',
     videoId: '53KFVt2GRkE',
+    startSeconds: 100, // Verified YouTube chapter start.
     title: 'My Complete Notion Setup as a Software Engineer & Creator', // Promotion script: https://www.notion.so/56e7287ef36e4faf92b3e546a61518ff
     excerpt:
       'Shared my Notion systems for development notes, learning, personal finances, and managing my YouTube channel.',
@@ -134,6 +142,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Raycast',
     domain: 'raycast.com',
     videoId: 'mH4Fs1Pxomo',
+    startSeconds: 245, // Verified YouTube chapter start.
     title: '5 Productivity Apps I Use as a Developer', // Promotion script: https://www.notion.so/408a5173ae33474dbd8584131e565a36
     excerpt:
       'Demonstrated Raycast’s launcher, window management, AI features, and extensions in my Mac workflow.',
@@ -162,6 +171,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Brilliant',
     domain: 'brilliant.org',
     videoId: 'vrr8RmAvyVo',
+    startSeconds: 232, // Verified YouTube chapter start.
     title: '15” M2 MacBook Air Review for Programming',
     // Promotion script: https://www.notion.so/4e2578d71f9041b0bd52702adcdc665a
     excerpt:
@@ -195,6 +205,7 @@ const allCollaborations: Collaboration[] = [
     brand: 'Slack',
     domain: 'slack.com',
     videoId: 'F89JTZzJJnI',
+    startSeconds: 240, // Verified YouTube chapter start.
     title: 'The Reality of Being a Software Engineer', // Promotion script: https://www.notion.so/79e90c147db54465b9d87d7d93f045fc
     excerpt:
       'Demonstrated Slack Workflow Builder and highlighted its Developer Program for building automations and Slack apps.',
@@ -272,25 +283,52 @@ const collaborations = featuredBrandOrder
     Boolean(collaboration),
   )
 
+function collaborationVideoUrl(collaboration: Collaboration) {
+  const start = collaboration.startSeconds
+  return `https://www.youtube.com/watch?v=${collaboration.videoId}${start ? `&t=${start}s` : ''}`
+}
+
+const desktopQuery = '(min-width: 1024px)'
+function subscribeToDesktop(callback: () => void) {
+  const query = window.matchMedia(desktopQuery)
+  query.addEventListener('change', callback)
+  return () => query.removeEventListener('change', callback)
+}
+function getDesktopSnapshot() {
+  return window.matchMedia(desktopQuery).matches
+}
+function getServerDesktopSnapshot() {
+  return false
+}
+
 export function BrandCollaborations() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const [activeGroup, setActiveGroup] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const reduceMotion = useReducedMotion()
-  const groupSize = 4
+  const isDesktop = useSyncExternalStore(
+    subscribeToDesktop,
+    getDesktopSnapshot,
+    getServerDesktopSnapshot,
+  )
+  const groupSize = isDesktop ? 4 : 6
   const groupCount = Math.ceil(collaborations.length / groupSize)
-  const groupStart = activeGroup * groupSize
+  const groupStart = (activeGroup % groupCount) * groupSize
   const visibleCollaborations = collaborations.slice(
     groupStart,
     groupStart + groupSize,
   )
-  const active = activeIndex === null ? null : collaborations[activeIndex]
-  const videoUrl = active
-    ? `https://www.youtube.com/watch?v=${active.videoId}`
-    : null
+  const active =
+    !isDesktop || activeIndex === null ? null : collaborations[activeIndex]
+  const videoUrl = active ? collaborationVideoUrl(active) : null
 
   useEffect(() => {
-    if (reduceMotion !== false || isPaused || activeIndex !== null) return
+    if (
+      reduceMotion !== false ||
+      isPaused ||
+      (isDesktop && activeIndex !== null)
+    )
+      return
 
     const interval = window.setInterval(() => {
       setActiveGroup((current) => (current + 1) % groupCount)
@@ -298,12 +336,12 @@ export function BrandCollaborations() {
     }, 5000)
 
     return () => window.clearInterval(interval)
-  }, [activeIndex, groupCount, isPaused, reduceMotion])
+  }, [activeIndex, groupCount, isPaused, reduceMotion, isDesktop])
 
   return (
     <section
       aria-labelledby="brand-collaborations-heading"
-      className="mt-24 sm:mt-32"
+      className="mt-20 sm:mt-24"
     >
       <div className="flex w-full items-center gap-6">
         <h2
@@ -316,7 +354,9 @@ export function BrandCollaborations() {
       </div>
 
       <div
-        onMouseEnter={() => setIsPaused(true)}
+        onMouseEnter={() => {
+          if (isDesktop) setIsPaused(true)
+        }}
         onMouseLeave={() => {
           setIsPaused(false)
           setActiveIndex(null)
@@ -333,7 +373,7 @@ export function BrandCollaborations() {
       >
         <ul
           role="list"
-          className="mt-14 grid w-full grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2 sm:gap-y-6 lg:grid-cols-4"
+          className="mt-14 grid w-full grid-cols-2 gap-x-12 gap-y-4 sm:gap-y-6 lg:grid-cols-4"
         >
           <AnimatePresence initial={false} mode="popLayout">
             {visibleCollaborations.map((collaboration, index) => {
@@ -364,11 +404,17 @@ export function BrandCollaborations() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <button
-                    type="button"
-                    aria-label={`Show ${collaboration.brand} collaboration`}
-                    onMouseEnter={() => setActiveIndex(collaborationIndex)}
-                    onFocus={() => setActiveIndex(collaborationIndex)}
+                  <a
+                    href={collaborationVideoUrl(collaboration)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Watch ${collaboration.brand} collaboration on YouTube`}
+                    onMouseEnter={() => {
+                      if (isDesktop) setActiveIndex(collaborationIndex)
+                    }}
+                    onFocus={() => {
+                      if (isDesktop) setActiveIndex(collaborationIndex)
+                    }}
                     onBlur={() => setActiveIndex(null)}
                     className="group relative isolate flex min-h-20 w-full items-center justify-start gap-4 px-0 py-6 text-left text-base font-medium text-foreground lg:justify-center lg:text-center"
                   >
@@ -392,7 +438,7 @@ export function BrandCollaborations() {
                         }}
                       />
                     </span>
-                  </button>
+                  </a>
                 </motion.li>
               )
             })}
@@ -401,7 +447,7 @@ export function BrandCollaborations() {
 
         <div
           aria-hidden={!active}
-          className={`mt-12 grid gap-y-6 transition-opacity duration-200 lg:grid-cols-2 lg:items-center lg:gap-x-12 ${active ? 'opacity-100' : 'pointer-events-none invisible opacity-0'}`}
+          className={`mt-8 hidden gap-y-6 transition-opacity duration-200 lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-12 ${active ? 'opacity-100' : 'pointer-events-none invisible opacity-0'}`}
         >
           <div className="min-w-0">
             {active && videoUrl ? (

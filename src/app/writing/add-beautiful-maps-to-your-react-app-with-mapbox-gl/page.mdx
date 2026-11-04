@@ -2,6 +2,7 @@ import { PostLayout } from '@/components/PostLayout'
 import { createPostMetadata } from '@/lib/posts'
 import { MapDemo } from '@/components/MapDemo'
 import { MapLocationBadge } from '@/components/MapLocationBadge'
+import coverImage from './cover.png'
 import nycLightImage from './nyc-light.png'
 import nycDarkImage from './nyc-dark.png'
 
@@ -9,14 +10,15 @@ export const post = {
   type: 'article',
   author: 'Brian Ruiz',
   date: '2024-04-27',
+  coverImage: coverImage.src,
   title: 'Add beautiful maps to your React app with Mapbox GL',
   description:
-    'Build a polished Mapbox map in React with theme-aware styling, a location badge, and custom markers.',
+    'Build a Mapbox map in React, starting with the component and camera settings, then adding lighting themes, a location badge, and custom markers.',
 }
 
 export const metadata = createPostMetadata(post)
 
-export default ({ children }) => <PostLayout post={post}>{children}</PostLayout>
+export default ({ children }) => <PostLayout post={post} showCover={false}>{children}</PostLayout>
 
 <figure>
   <MapDemo />
