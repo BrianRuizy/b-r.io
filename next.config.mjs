@@ -2,6 +2,7 @@ import nextMDX from '@next/mdx'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ['192.168.1.157'],
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
     '/writing/*': ['./src/app/writing/**/*.{mdx,png,jpg,jpeg,webp,gif}'],
@@ -17,7 +18,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: '/projects/hines-ui', destination: 'https://hinesui.b-r.io', permanent: true },
+      { source: '/work', destination: '/projects', permanent: true },
+      {
+        source: '/projects/hines-ui',
+        destination: 'https://hinesui.b-r.io',
+        permanent: true,
+      },
       {
         source: '/posts/my-desk-setup-for-2023',
         destination: '/writing/desk-setup',

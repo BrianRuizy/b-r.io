@@ -389,20 +389,12 @@ function ThemeToggle() {
       return
     }
 
-    if (!iconSynced.current) {
-      iconSynced.current = true
-      setIconDark(resolvedTheme === 'dark')
-      return
-    }
-
-    if (reduceMotion) {
-      setIconDark(resolvedTheme === 'dark')
-      return
-    }
+    const delay = !iconSynced.current || reduceMotion ? 0 : 120
+    iconSynced.current = true
 
     let timeout = window.setTimeout(() => {
       setIconDark(resolvedTheme === 'dark')
-    }, 120)
+    }, delay)
 
     return () => window.clearTimeout(timeout)
   }, [mounted, reduceMotion, resolvedTheme])

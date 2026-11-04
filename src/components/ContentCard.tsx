@@ -27,12 +27,14 @@ export function ContentCardTitle({
   href,
   children,
   external = false,
+  hoverBackground = true,
   className,
 }: {
   as?: 'h2' | 'h3'
   href?: string
   children: React.ReactNode
   external?: boolean
+  hoverBackground?: boolean
   className?: string
 }) {
   return (
@@ -44,9 +46,11 @@ export function ContentCardTitle({
     >
       {href ? (
         <>
-          <div className="pointer-events-none absolute -inset-x-4 -inset-y-6 z-0 sm:-inset-x-6">
-            <Halo className="h-full w-full scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100" />
-          </div>
+          {hoverBackground ? (
+            <div className="pointer-events-none absolute -inset-x-4 -inset-y-6 z-0 sm:-inset-x-6">
+              <Halo className="h-full w-full scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100" />
+            </div>
+          ) : null}
           <Link
             href={href}
             target={external ? '_blank' : undefined}

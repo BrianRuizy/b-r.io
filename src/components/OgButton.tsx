@@ -14,7 +14,6 @@ export async function OgButton({ href, children, ...props }: OgButtonProps) {
   return (
     <Button href={href} target="_blank" rel="noopener noreferrer" {...props}>
       {metadata.favicon ? (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={metadata.favicon}
           alt=""

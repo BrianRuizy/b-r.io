@@ -35,29 +35,9 @@ Every decision below exists because the aggregate of invisible correctness creat
 
 People select tools based on the overall experience, not just functionality. Good defaults and good animations are real differentiators. Beauty is underutilized in software. Use it as leverage to stand out.
 
-## Review Format (Required)
+## Applying this skill in b-r.io
 
-When reviewing UI code, you MUST use a markdown table with Before/After columns. Do NOT use a list with "Before:" and "After:" on separate lines. Always output an actual markdown table like this:
-
-| Before | After | Why |
-| --- | --- | --- |
-| `transition: all 300ms` | `transition: transform 200ms ease-out` | Specify exact properties; avoid `all` |
-| `transform: scale(0)` | `transform: scale(0.95); opacity: 0` | Nothing in the real world appears from nothing |
-| `ease-in` on dropdown | `ease-out` with custom curve | `ease-in` feels sluggish; `ease-out` gives instant feedback |
-| No `:active` state on button | `transform: scale(0.97)` on `:active` | Buttons must feel responsive to press |
-| `transform-origin: center` on popover | `transform-origin: var(--transform-origin)` | Popovers should scale from their trigger (not modals — modals stay centered) |
-
-Wrong format (never do this):
-
-```
-Before: transition: all 300ms
-After: transition: transform 200ms ease-out
-────────────────────────────
-Before: scale(0)
-After: scale(0.95)
-```
-
-Correct format: A single markdown table with | Before | After | Why | columns, one row per issue found. The "Why" column briefly explains the reasoning.
+Use these principles as design heuristics when implementing or reviewing interface details. Preserve the site's established components, typography, spacing, color tokens, and interaction patterns. Prefer the smallest change that improves the experience; do not add motion or interaction details mechanically. Respect accessibility, touch input, and reduced-motion preferences. Choose the clearest review format for the task; a comparison table is useful when it makes alternatives easier to evaluate, but is not required.
 
 ## The Animation Decision Framework
 

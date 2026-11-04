@@ -22,8 +22,8 @@ export function Footer() {
       <ContainerOuter>
         <div className="border-t border-border pt-10 pb-16">
           <ContainerInner>
-            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-foreground">
+            <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+              <div className="flex flex-col items-start gap-4 text-sm font-medium text-foreground md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-1">
                 <NavLink href="/about">About</NavLink>
                 <NavLink href="/writing">Writing</NavLink>
                 <NavLink href="/projects">Projects</NavLink>

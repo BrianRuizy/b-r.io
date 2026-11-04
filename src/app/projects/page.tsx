@@ -6,6 +6,7 @@ import {
   ContentCardDescription,
   ContentCardTitle,
 } from '@/components/ContentCard'
+import { BrandCollaborations } from '@/components/BrandCollaborations'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { iconChromeClassName } from '@/lib/iconChrome'
 import { createPageMetadata } from '@/lib/metadata'
@@ -37,7 +38,7 @@ const projects: Array<Project> = [
   {
     name: '@hines/ui',
     description:
-      'A React library I built for Hines with 40+ accessible components, dark mode, internationalization, and RTL support.',
+      'A React component library for Hines with 40+ reusable components, dark mode, i18n, and RTL support.',
     link: {
       href: 'https://hinesui.b-r.io',
       label: 'hinesui.b-r.io',
@@ -138,7 +139,7 @@ export default function Projects() {
               >
                 {project.name}
               </ContentCardTitle>
-              <ContentCardDescription className="text-pretty">
+              <ContentCardDescription className="line-clamp-3 text-pretty">
                 {project.description}
               </ContentCardDescription>
               <p className="relative z-20 mt-6 flex items-center gap-2 text-sm font-medium text-muted-foreground transition group-hover:text-accent">
@@ -149,6 +150,7 @@ export default function Projects() {
           </li>
         ))}
       </ul>
+      <BrandCollaborations />
     </SimpleLayout>
   )
 }

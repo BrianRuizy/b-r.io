@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CheckIcon, Square2StackIcon } from '@heroicons/react/24/outline'
 import { motion, useReducedMotion } from 'motion/react'
 
@@ -20,24 +20,15 @@ export function CopyCodeButton({
 }: CopyCodeButtonProps) {
   const [copied, setCopied] = useState(false)
   const [showCheck, setShowCheck] = useState(false)
-  const iconSynced = useRef(false)
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
-    if (!iconSynced.current) {
-      iconSynced.current = true
-      setShowCheck(copied)
-      return
-    }
-
-    if (reduceMotion) {
-      setShowCheck(copied)
-      return
-    }
-
-    let timeout = window.setTimeout(() => {
-      setShowCheck(copied)
-    }, 120)
+    let timeout = window.setTimeout(
+      () => {
+        setShowCheck(copied)
+      },
+      reduceMotion ? 0 : 120,
+    )
 
     return () => window.clearTimeout(timeout)
   }, [copied, reduceMotion])

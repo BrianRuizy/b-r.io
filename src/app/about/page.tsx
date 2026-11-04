@@ -110,6 +110,13 @@ export default function About() {
               Subscribe on YouTube
             </SocialLink>
             <SocialLink
+              href="https://x.com/brianruizy"
+              icon={XIcon}
+              className="mt-4"
+            >
+              Follow on X
+            </SocialLink>
+            <SocialLink
               href="https://www.github.com/brianruizy"
               icon={GitHubIcon}
               className="mt-4"
@@ -122,13 +129,6 @@ export default function About() {
               className="mt-4"
             >
               Connect on LinkedIn
-            </SocialLink>
-            <SocialLink
-              href="https://x.com/brianruizy"
-              icon={XIcon}
-              className="mt-4"
-            >
-              Follow on X
             </SocialLink>
             <SocialLink
               href="mailto:partners@b-r.io"
