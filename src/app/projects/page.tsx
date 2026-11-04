@@ -47,7 +47,7 @@ const projects: Array<Project> = [
   {
     name: '@hines/ui',
     description:
-      'I built Hines’ React component library with 40+ reusable components and form controls, accessible interactions, dark mode, internationalization, and RTL support.',
+      'A React library I built for Hines with 40+ accessible components, dark mode, internationalization, and RTL support.',
     link: {
       href: 'https://hinesui.b-r.io',
       label: 'Explore the gallery',
