@@ -387,8 +387,8 @@ export function BrandCollaborations() {
                         unoptimized
                         className={`max-w-full object-contain object-left ${collaboration.brand === 'LG Electronics' ? 'invert dark:invert-0' : 'dark:invert'}`}
                         style={{
-                          width: wordmarks[collaboration.brand].width,
-                          height: wordmarks[collaboration.brand].height,
+                          width: wordmarks[collaboration.brand].width * 0.9,
+                          height: wordmarks[collaboration.brand].height * 0.9,
                         }}
                       />
                     </span>
