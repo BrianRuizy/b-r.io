@@ -35,16 +35,6 @@ const projects: Array<Project> = [
     logo: logoBeam,
   },
   {
-    name: 'GDH App',
-    description:
-      'A React Router 7 investment management and reporting app for Hines private commercial real estate.',
-    link: {
-      href: 'https://www.hines.com',
-      label: 'hines.com',
-    },
-    logo: logoAnimaginary,
-  },
-  {
     name: '@hines/ui',
     description:
       'A React library I built for Hines with 40+ accessible components, dark mode, internationalization, and RTL support.',
@@ -54,6 +44,17 @@ const projects: Array<Project> = [
     },
     logo: logoOpenShuttle,
   },
+  {
+    name: 'GDH App',
+    description:
+      'A React Router 7 investment management and reporting app for Hines private commercial real estate.',
+    link: {
+      href: 'https://www.hines.com',
+      label: 'hines.com',
+    },
+    logo: logoAnimaginary,
+  },
+
   {
     name: 'COVID-19 Dashboard',
     description:
