@@ -14,7 +14,7 @@ import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoCovidDashboard from '@/images/logos/covid-dashboard.png'
-import logoHines from '@/images/logos/hines.svg'
+import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 
 interface Project {
   name: string
@@ -52,7 +52,7 @@ const projects: Array<Project> = [
       href: 'https://hinesui.b-r.io',
       label: 'Explore the gallery',
     },
-    logo: logoHines,
+    logo: logoOpenShuttle,
   },
   {
     name: 'COVID-19 Dashboard',
