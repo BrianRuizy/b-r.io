@@ -17,6 +17,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: '/projects/hines-ui', destination: 'https://hinesui.b-r.io', permanent: true },
       {
         source: '/posts/my-desk-setup-for-2023',
         destination: '/writing/desk-setup',

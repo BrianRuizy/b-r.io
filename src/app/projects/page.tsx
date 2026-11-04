@@ -14,7 +14,7 @@ import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoBeam from '@/images/logos/beam-dark.png'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoCovidDashboard from '@/images/logos/covid-dashboard.png'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
+import logoHines from '@/images/logos/hines.svg'
 
 interface Project {
   name: string
@@ -47,12 +47,12 @@ const projects: Array<Project> = [
   {
     name: '@hines/ui',
     description:
-      'The internal design system for Hines — 40+ accessible components powering our web apps.',
+      'I built Hines’ React component library with 40+ reusable components and form controls, accessible interactions, dark mode, internationalization, and RTL support.',
     link: {
-      href: 'https://hines-ui-gallery.vercel.app',
+      href: 'https://hinesui.b-r.io',
       label: 'Explore the gallery',
     },
-    logo: logoOpenShuttle,
+    logo: logoHines,
   },
   {
     name: 'COVID-19 Dashboard',
@@ -132,7 +132,7 @@ export default function Projects() {
               </div>
               <ContentCardTitle
                 href={project.link.href}
-                external
+                external={!project.link.href.startsWith('/')}
                 className="mt-6"
               >
                 {project.name}
