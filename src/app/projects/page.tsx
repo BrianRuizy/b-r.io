@@ -40,7 +40,7 @@ const projects: Array<Project> = [
       'A React library I built for Hines with 40+ accessible components, dark mode, internationalization, and RTL support.',
     link: {
       href: 'https://hinesui.b-r.io',
-      label: 'Explore the gallery',
+      label: 'hinesui.b-r.io',
     },
     logo: logoOpenShuttle,
   },
