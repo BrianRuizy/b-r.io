@@ -14,8 +14,7 @@ import {
 import { Portrait } from '@/app/about/Portrait'
 import { createPageMetadata } from '@/lib/metadata'
 
-const heroTitle =
-  "I'm Brian. I live in New York City, building and sharing the journey."
+const heroTitle = "I'm Brian. I live in NYC, building and sharing the journey."
 
 function SocialLink({
   className,
@@ -61,10 +60,10 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">
             <p>
-              I was born in Honduras, grew up in Texas, and now live in NYC. I
-              got into coding because I liked creating things from scratch. That
-              same instinct still drives the work I do, both in software and on
-              camera.
+              I was born in Honduras, grew up in Texas, and now live in New York
+              City. I got into coding because I liked creating things from
+              scratch. That same instinct still drives the work I do, both in
+              software and on camera.
             </p>
             <p>
               I currently work at{' '}
@@ -103,18 +102,18 @@ export default function About() {
               Follow on Instagram
             </SocialLink>
             <SocialLink
-              href="https://www.youtube.com/@brianruizy"
-              icon={YouTubeIcon}
-              className="mt-4"
-            >
-              Subscribe on YouTube
-            </SocialLink>
-            <SocialLink
               href="https://x.com/brianruizy"
               icon={XIcon}
               className="mt-4"
             >
               Follow on X
+            </SocialLink>
+            <SocialLink
+              href="https://www.youtube.com/@brianruizy"
+              icon={YouTubeIcon}
+              className="mt-4"
+            >
+              Subscribe on YouTube
             </SocialLink>
             <SocialLink
               href="https://www.github.com/brianruizy"

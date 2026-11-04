@@ -28,7 +28,7 @@ const projects: Array<Project> = [
   {
     name: 'Beam',
     description:
-      'A project and task manager built for iPhone first, with widgets, calendar views, Siri, and a companion Mac app.',
+      'A task and project manager for iPhone and Mac, bringing notes, calendars, and daily planning into one place.',
     link: {
       href: 'https://joinbeam.app',
       label: 'joinbeam.app',
@@ -43,7 +43,7 @@ const projects: Array<Project> = [
       href: 'https://hinesui.b-r.io',
       label: 'hinesui.b-r.io',
     },
-    logo: logoOpenShuttle,
+    logo: logoAnimaginary,
   },
   {
     name: 'GDH App',
@@ -53,7 +53,7 @@ const projects: Array<Project> = [
       href: 'https://www.hines.com',
       label: 'hines.com',
     },
-    logo: logoAnimaginary,
+    logo: logoOpenShuttle,
   },
 
   {
@@ -62,7 +62,7 @@ const projects: Array<Project> = [
       'A Django and Plotly dashboard for exploring pandemic data through an interactive, data-driven interface.',
     link: {
       href: 'https://github.com/brianruizy/covid19-dashboard',
-      label: 'github.com/brianruizy/covid19-dashboard',
+      label: 'github.com…',
     },
     logo: logoCovidDashboard,
   },
@@ -72,18 +72,18 @@ const projects: Array<Project> = [
       'A Next.js portfolio template that uses Notion as a flexible content management system.',
     link: {
       href: 'https://github.com/brianruizy/next-notion-portfolio',
-      label: 'github.com/brianruizy/next-notion-portfolio',
+      label: 'github.com…',
     },
     logo: logoCosmos,
   },
 ]
 
-const heroTitle =
-  "Side projects, work apps, and things I've shipped along the way."
+const heroTitle = 'Apps, side projects, and other things I’ve shipped.'
 
 export const metadata = createPageMetadata({
   title: 'Projects',
-  description: "Apps, tools, and experiments I've built.",
+  description:
+    'Personal projects, open-source tools, products I’ve helped build at Hines, and brand collaborations.',
   heroTitle,
 })
 
@@ -93,9 +93,9 @@ export default function Projects() {
       title={heroTitle}
       intro={
         <>
-          A mix of open-source experiments and products I&apos;ve built at work,
-          across a range of frameworks and languages. You can find even more on
-          my{' '}
+          Personal projects, open-source tools, and products I’ve built at work,
+          plus collaborations and companies I’ve worked with. You can find more
+          of my code on{' '}
           <a
             href="https://www.github.com/brianruizy"
             className="link-underline"

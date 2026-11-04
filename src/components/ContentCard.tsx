@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ArrowUpRightIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { cn } from '@/lib/utils'
 
 import { Halo } from '@/components/Halo'
@@ -120,14 +120,21 @@ export function ContentCardEyebrow<T extends React.ElementType = 'p'>({
   )
 }
 
-export function ContentCardCta({ children }: { children: React.ReactNode }) {
+export function ContentCardCta({
+  children,
+  external = false,
+}: {
+  children: React.ReactNode
+  external?: boolean
+}) {
+  const Icon = external ? ArrowUpRightIcon : ChevronRightIcon
   return (
     <div
       aria-hidden="true"
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-accent"
     >
       {children}
-      <ChevronRightIcon className="ml-1 size-4" />
+      <Icon className="ml-1 size-4" />
     </div>
   )
 }

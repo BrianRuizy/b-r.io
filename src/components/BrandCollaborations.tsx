@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { PlayIcon } from '@heroicons/react/24/outline'
+import { PlayCircleIcon } from '@heroicons/react/24/solid'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Halo } from '@/components/Halo'
 import {
@@ -11,18 +11,24 @@ import {
   ContentCardDescription,
   ContentCardTitle,
 } from '@/components/ContentCard'
-import ibmLogo from '@/images/logos/ibm.png'
-import evenRealitiesMark from '@/images/logos/even-realities-mark.png'
-import lgMark from '@/images/logos/lg-mark.png'
-import mondayMark from '@/images/logos/monday-mark.png'
-import mobbinMark from '@/images/logos/mobbin-mark.png'
-import superhumanDarkLogo from '@/images/logos/superhuman-dark.png'
-import superhumanLightLogo from '@/images/logos/superhuman-light.png'
-
-const raycastLightLogo =
-  'https://fz1sd71lwhbqy6sh.public.blob.vercel-storage.com/press/images/logo/raycast-logo-light.svg'
-const raycastDarkLogo =
-  'https://fz1sd71lwhbqy6sh.public.blob.vercel-storage.com/press/images/logo/raycast-logo-dark.svg'
+// Original wordmark artwork; see public/logos/wordmarks/SOURCES.md.
+const wordmarks: Record<
+  string,
+  { file: string; width: number; height: number }
+> = {
+  Notion: { file: 'notion-balanced', width: 97, height: 24 },
+  IBM: { file: 'ibm', width: 57, height: 23 },
+  Slack: { file: 'slack', width: 89, height: 24 },
+  Logitech: { file: 'logitech', width: 86, height: 23 },
+  'LG Electronics': { file: 'lg-electronics', width: 128, height: 27 },
+  'Monday.com': { file: 'monday', width: 117, height: 24 },
+  Superhuman: { file: 'superhuman', width: 127, height: 22 },
+  Framer: { file: 'framer', width: 93, height: 24 },
+  Raycast: { file: 'raycast', width: 103, height: 24 },
+  Mobbin: { file: 'mobbin-balanced', width: 112, height: 22 },
+  'Even Realities': { file: 'even', width: 127, height: 17 },
+  Brilliant: { file: 'brilliant', width: 76, height: 18 },
+}
 
 type Collaboration = {
   brand: string
@@ -58,13 +64,13 @@ const allCollaborations: Collaboration[] = [
       'Tested the Even G2 glasses and R1 ring through teleprompter, navigation, and everyday use.',
   },
   {
-    brand: 'LG',
+    brand: 'LG Electronics',
     domain: 'lg.com',
     videoId: 'xt50CiiTsc8',
     title: 'NYC Productive Day | DITL',
     // Product confirmed by Brian: LG monitor.
     excerpt:
-      'Partnered with LG to feature its monitor in my desk setup as a software engineer.',
+      'Partnered with LG Electronics to feature its monitor in my desk setup as a software engineer.',
   },
   {
     brand: 'Laifen',
@@ -150,7 +156,7 @@ const allCollaborations: Collaboration[] = [
     videoId: 'CIi1M-9oTHM',
     title: 'Building a Subway Chatbot with IBM SkillsBuild', // Promotion script: https://www.notion.so/2432f314852880e1bbd6f732d98c66fe
     excerpt:
-      'Applied IBM SkillsBuild’s chatbot course to a project that helps answer questions about NYC subway arrivals.',
+      'Partnered with IBM SkillsBuild to feature its free “Build Your First Chatbot” course through a NYC subway chatbot project.',
   },
   {
     brand: 'Brilliant',
@@ -244,18 +250,18 @@ const allCollaborations: Collaboration[] = [
 ]
 
 const featuredBrandOrder = [
-  'Notion',
   'IBM',
+  'Notion',
   'Slack',
   'Logitech',
-  'LG',
-  'Monday.com',
-  'Superhuman',
   'Framer',
   'Raycast',
+  'Superhuman',
+  'LG Electronics',
+  'Monday.com',
   'Mobbin',
-  'Even Realities',
   'Brilliant',
+  'Even Realities',
 ]
 
 const collaborations = featuredBrandOrder
@@ -265,10 +271,6 @@ const collaborations = featuredBrandOrder
   .filter((collaboration): collaboration is Collaboration =>
     Boolean(collaboration),
   )
-
-function brandIconUrl({ domain }: Collaboration) {
-  return `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(`https://${domain}`)}&sz=64`
-}
 
 export function BrandCollaborations() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -293,7 +295,7 @@ export function BrandCollaborations() {
     const interval = window.setInterval(() => {
       setActiveGroup((current) => (current + 1) % groupCount)
       setActiveIndex(null)
-    }, 6000)
+    }, 5000)
 
     return () => window.clearInterval(interval)
   }, [activeIndex, groupCount, isPaused, reduceMotion])
@@ -331,7 +333,7 @@ export function BrandCollaborations() {
       >
         <ul
           role="list"
-          className="mt-14 grid w-full grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-6 lg:grid-cols-4"
+          className="mt-14 grid w-full grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2 sm:gap-y-6 lg:grid-cols-4"
         >
           <AnimatePresence initial={false} mode="popLayout">
             {visibleCollaborations.map((collaboration, index) => {
@@ -345,7 +347,12 @@ export function BrandCollaborations() {
                       ? false
                       : { opacity: 0, y: 4, filter: 'blur(3px)' }
                   }
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    transitionEnd: { filter: 'none' },
+                  }}
                   exit={
                     reduceMotion
                       ? undefined
@@ -363,89 +370,27 @@ export function BrandCollaborations() {
                     onMouseEnter={() => setActiveIndex(collaborationIndex)}
                     onFocus={() => setActiveIndex(collaborationIndex)}
                     onBlur={() => setActiveIndex(null)}
-                    className="group relative isolate flex min-h-20 w-full items-center justify-center gap-4 px-4 py-6 text-center text-base font-medium text-foreground sm:px-6"
+                    className="group relative isolate flex min-h-20 w-full items-center justify-start gap-4 px-0 py-6 text-left text-base font-medium text-foreground lg:justify-center lg:text-center"
                   >
                     <Halo
-                      className={`pointer-events-none absolute inset-0 z-0 scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 ${activeIndex === collaborationIndex ? 'scale-100 opacity-100' : ''}`}
+                      className={`pointer-events-none absolute -inset-x-4 inset-y-0 z-0 h-auto w-auto scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 ${activeIndex === collaborationIndex ? 'scale-100 opacity-100' : ''}`}
                     />
-                    {collaboration.brand === 'Superhuman' ? (
-                      <>
-                        <Image
-                          src={superhumanDarkLogo}
-                          alt=""
-                          width={24}
-                          height={24}
-                          className="relative z-10 size-6 dark:hidden"
-                        />
-                        <Image
-                          src={superhumanLightLogo}
-                          alt=""
-                          width={24}
-                          height={24}
-                          className="relative z-10 hidden size-6 dark:block"
-                        />
-                      </>
-                    ) : collaboration.brand === 'Raycast' ? (
-                      <>
-                        <Image
-                          src={raycastLightLogo}
-                          alt=""
-                          width={24}
-                          height={24}
-                          unoptimized
-                          className="relative z-10 size-6 dark:hidden"
-                        />
-                        <Image
-                          src={raycastDarkLogo}
-                          alt=""
-                          width={24}
-                          height={24}
-                          unoptimized
-                          className="relative z-10 hidden size-6 dark:block"
-                        />
-                      </>
-                    ) : (
+                    <span
+                      className="relative z-10 flex max-w-full items-center gap-2"
+                      aria-hidden="true"
+                    >
                       <Image
-                        src={
-                          collaboration.brand === 'IBM'
-                            ? ibmLogo
-                            : collaboration.brand === 'Monday.com'
-                              ? mondayMark
-                              : collaboration.brand === 'LG'
-                                ? lgMark
-                                : collaboration.brand === 'Mobbin'
-                                  ? mobbinMark
-                                  : collaboration.brand === 'Even Realities'
-                                    ? evenRealitiesMark
-                                    : brandIconUrl(collaboration)
-                        }
+                        src={`/logos/wordmarks/${wordmarks[collaboration.brand].file}.${collaboration.brand === 'LG Electronics' ? 'png' : 'svg'}`}
                         alt=""
-                        width={
-                          collaboration.brand === 'IBM'
-                            ? 82
-                            : collaboration.brand === 'Mobbin'
-                              ? 51
-                              : collaboration.brand === 'Monday.com'
-                                ? 40
-                                : collaboration.brand === 'Even Realities'
-                                  ? 24
-                                  : 24
-                        }
-                        height={
-                          collaboration.brand === 'IBM'
-                            ? 24
-                            : collaboration.brand === 'Mobbin'
-                              ? 24
-                              : collaboration.brand === 'Even Realities'
-                                ? 24
-                                : 24
-                        }
+                        width={wordmarks[collaboration.brand].width}
+                        height={wordmarks[collaboration.brand].height}
                         unoptimized
-                        className={`relative z-10 flex-none object-contain ${collaboration.brand === 'IBM' ? 'h-6 w-auto' : collaboration.brand === 'Mobbin' ? 'h-6 w-auto invert dark:invert-0' : collaboration.brand === 'Monday.com' ? 'h-6 w-auto' : collaboration.brand === 'Even Realities' ? 'h-6 w-auto mix-blend-multiply dark:mix-blend-screen dark:invert' : 'size-6'} ${collaboration.brand === 'Framer' ? 'dark:invert' : ''}`}
+                        className={`max-w-full object-contain object-left ${collaboration.brand === 'LG Electronics' ? 'invert dark:invert-0' : 'dark:invert'}`}
+                        style={{
+                          width: wordmarks[collaboration.brand].width,
+                          height: wordmarks[collaboration.brand].height,
+                        }}
                       />
-                    )}
-                    <span className="relative z-10 whitespace-nowrap">
-                      {collaboration.brand}
                     </span>
                   </button>
                 </motion.li>
@@ -465,7 +410,7 @@ export function BrandCollaborations() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Watch ${active.title} on YouTube`}
-                className="group relative block aspect-video w-full max-w-xl overflow-hidden rounded-2xl bg-muted ring-1 ring-border focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="group relative block aspect-video w-full max-w-xl overflow-hidden rounded-xl bg-muted ring-1 ring-border focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:rounded-2xl"
               >
                 <Image
                   key={active.videoId}
@@ -476,10 +421,14 @@ export function BrandCollaborations() {
                   sizes="(min-width: 1024px) 45vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+                <span className="absolute inset-0 bg-gradient-to-t from-white/30 via-white/0 to-transparent dark:from-black/30 dark:via-black/0" />
                 <span className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex size-14 items-center justify-center rounded-full bg-white/95 text-neutral-950 shadow-lg transition group-hover:scale-105">
-                    <PlayIcon className="ml-1 size-6 fill-current" />
+                  <span
+                    aria-hidden="true"
+                    className="relative block size-9 drop-shadow-sm"
+                  >
+                    <span className="absolute inset-1 rounded-full bg-white" />
+                    <PlayCircleIcon className="relative size-9 text-neutral-800" />
                   </span>
                 </span>
               </a>
@@ -503,7 +452,7 @@ export function BrandCollaborations() {
                     {active.excerpt}
                   </ContentCardDescription>
                 ) : null}
-                <ContentCardCta>Watch on YouTube</ContentCardCta>
+                <ContentCardCta external>Watch on YouTube</ContentCardCta>
               </>
             ) : null}
           </ContentCard>
