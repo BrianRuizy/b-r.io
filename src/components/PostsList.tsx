@@ -98,7 +98,10 @@ function FeaturedPost({ post }: { post: Post }) {
           />
         ) : null}
       </div>
-      <ContentCardTitle href={post.href} className="[&>a>span:last-child]:line-clamp-2">
+      <ContentCardTitle
+        href={post.href}
+        className="[&>a>span:last-child]:line-clamp-2"
+      >
         {post.title}
       </ContentCardTitle>
       <time
