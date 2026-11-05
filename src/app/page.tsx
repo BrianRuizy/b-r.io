@@ -204,7 +204,8 @@ export default async function Home() {
             {homeHeroTitle}
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
-            Software Engineer at Hines, and currently building{' '}
+            I&apos;m Brian Ruiz, a software engineer at Hines and indie developer
+            building{' '}
             <Link
               href="https://joinbeam.app"
               className="link-underline inline-flex items-center gap-1"
@@ -225,8 +226,7 @@ export default async function Home() {
               />
               Beam
             </Link>
-            . Focused on crafting delightful digital products. Based in NYC. I
-            also make{' '}
+            . Based in NYC, I also make{' '}
             <Link
               href="https://www.youtube.com/@brianruizy"
               className="link-underline"
