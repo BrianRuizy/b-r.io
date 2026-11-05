@@ -31,11 +31,16 @@ import { homeHeroTitle } from '@/lib/site-copy'
 function LatestPost({ post }: { post: Post }) {
   return (
     <ContentCard as="article">
-      <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
+      <ContentCardTitle
+        href={post.href}
+        className="[&>a>span:last-child]:line-clamp-2"
+      >
+        {post.title}
+      </ContentCardTitle>
       <ContentCardEyebrow as="time" dateTime={post.date}>
         {formatDate(post.date)}
       </ContentCardEyebrow>
-      <ContentCardDescription className="text-pretty">
+      <ContentCardDescription className="line-clamp-2 text-pretty">
         {post.description}
       </ContentCardDescription>
       <ContentCardCta>View post</ContentCardCta>

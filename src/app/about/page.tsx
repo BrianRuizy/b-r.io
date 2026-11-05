@@ -66,15 +66,6 @@ export default function About() {
               and on camera.
             </p>
             <p>
-              I currently work at{' '}
-              <a href="https://www.hines.com" className="link-underline">
-                Hines
-              </a>{' '}
-              as a Sr. Software Engineer, building web apps at the enterprise
-              level. Most of my time goes into making complex systems feel
-              straightforward.
-            </p>
-            <p>
               My expertise is in full-stack web development, but I really love
               the front-end side of it. There&apos;s something about crafting a
               pixel-perfect layout, tweaking spring animations, or simply making

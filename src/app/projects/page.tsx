@@ -78,7 +78,7 @@ const projects: Array<Project> = [
   },
 ]
 
-const heroTitle = 'Apps, side projects, and other things I’ve shipped.'
+const heroTitle = 'Apps, side projects, and things I’ve shipped.'
 
 export const metadata = createPageMetadata({
   title: 'Projects',
