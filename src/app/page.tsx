@@ -204,7 +204,7 @@ export default async function Home() {
             {homeHeroTitle}
           </h1>
           <p className="mt-6 text-base text-muted-foreground">
-            I&apos;m Brian Ruiz, a software engineer at Hines, currently
+            I&apos;m Brian Ruiz, a software engineer at Hines, and currently
             building{' '}
             <Link
               href="https://joinbeam.app"
