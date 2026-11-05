@@ -82,7 +82,7 @@ function FeaturedPost({ post }: { post: Post }) {
       : null)
   return (
     <ContentCard as="article" className="w-full">
-      <div className="relative z-10 mb-5 aspect-3/2 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-border sm:rounded-2xl">
+      <div className="relative z-10 mb-5 aspect-3/2 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-border">
         {cover ? (
           <Image
             src={cover}
@@ -94,16 +94,15 @@ function FeaturedPost({ post }: { post: Post }) {
           />
         ) : null}
       </div>
-      <ContentCardTitle href={post.href}>{post.title}</ContentCardTitle>
+      <ContentCardTitle href={post.href} className="line-clamp-2">
+        {post.title}
+      </ContentCardTitle>
       <time
         dateTime={post.date}
         className="relative z-10 mt-2 text-sm text-muted-foreground"
       >
         {formatDate(post.date)}
       </time>
-      <ContentCardDescription className="line-clamp-3 text-pretty">
-        {post.description}
-      </ContentCardDescription>
       <ContentCardCta>View post</ContentCardCta>
     </ContentCard>
   )

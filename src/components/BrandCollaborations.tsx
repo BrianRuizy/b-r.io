@@ -341,7 +341,7 @@ export function BrandCollaborations() {
     const interval = window.setInterval(() => {
       setActiveGroup((current) => (current + 1) % groupCount)
       setActiveIndex(null)
-    }, 5000)
+    }, 4000)
 
     return () => window.clearInterval(interval)
   }, [activeIndex, groupCount, isPaused, reduceMotion, isDesktop])
