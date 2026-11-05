@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useSyncExternalStore } from 'react'
 import { formatDate } from '@/lib/formatDate'
 import { useSearchParams } from 'next/navigation'
 
@@ -108,12 +109,30 @@ function FeaturedPost({ post }: { post: Post }) {
   )
 }
 
+function subscribeToLargeScreen(callback: () => void) {
+  const query = window.matchMedia('(min-width: 1024px)')
+  query.addEventListener('change', callback)
+  return () => query.removeEventListener('change', callback)
+}
+function getLargeScreenSnapshot() {
+  return window.matchMedia('(min-width: 1024px)').matches
+}
+function getServerSnapshot() {
+  return false
+}
+
 export function PostsList({ posts }: { posts: Array<Post> }) {
+  const isLargeScreen = useSyncExternalStore(
+    subscribeToLargeScreen,
+    getLargeScreenSnapshot,
+    getServerSnapshot,
+  )
+  const featuredCount = isLargeScreen ? 3 : 2
   let searchParams = useSearchParams()
   let filter = parseFilter(searchParams.get('type'))
   let filteredPosts =
     filter === 'all' ? posts : posts.filter((post) => post.type === filter)
-  let postsByYear = groupPostsByYear(filteredPosts.slice(3))
+  let postsByYear = groupPostsByYear(filteredPosts.slice(featuredCount))
 
   return (
     <div className="space-y-20">
@@ -132,7 +151,7 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
       </div>
 
       <div className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredPosts.slice(0, 3).map((post) => (
+        {filteredPosts.slice(0, featuredCount).map((post) => (
           <FeaturedPost key={post.href} post={post} />
         ))}
       </div>
