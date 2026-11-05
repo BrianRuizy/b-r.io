@@ -385,6 +385,10 @@ export function BrandCollaborations() {
         >
           {visibleCollaborations.map((collaboration, index) => {
             const collaborationIndex = groupStart + index
+            const replacementOrder = isDesktop
+              ? index
+              : (index % 2) * Math.ceil(visibleCollaborations.length / 2) +
+                Math.floor(index / 2)
 
             return (
               <li key={index} className="relative min-h-20 min-w-0">
@@ -410,7 +414,7 @@ export function BrandCollaborations() {
                             filter: 'blur(4px)',
                             transition: {
                               duration: 0.16,
-                              delay: index * 0.1,
+                              delay: replacementOrder * 0.1,
                               ease: [0.4, 0, 1, 1],
                             },
                           }
