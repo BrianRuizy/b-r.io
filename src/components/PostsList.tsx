@@ -62,10 +62,14 @@ function PostItem({ post }: { post: Post }) {
         {formatDate(post.date)}
       </time>
       <ContentCard as="article" className="md:col-span-3">
-        <ContentCardTitle as="h3" href={post.href}>
+        <ContentCardTitle
+          as="h3"
+          href={post.href}
+          className="[&>a>span:last-child]:line-clamp-2"
+        >
           {post.title}
         </ContentCardTitle>
-        <ContentCardDescription className="text-pretty">
+        <ContentCardDescription className="line-clamp-2 text-pretty">
           {post.description}
         </ContentCardDescription>
         <ContentCardCta>View post</ContentCardCta>
@@ -94,7 +98,7 @@ function FeaturedPost({ post }: { post: Post }) {
           />
         ) : null}
       </div>
-      <ContentCardTitle href={post.href} className="line-clamp-2">
+      <ContentCardTitle href={post.href} className="[&>a>span:last-child]:line-clamp-2">
         {post.title}
       </ContentCardTitle>
       <time
