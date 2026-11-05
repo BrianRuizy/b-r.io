@@ -354,7 +354,7 @@ export function BrandCollaborations() {
       <div className="flex w-full items-center gap-6">
         <h2
           id="brand-collaborations-heading"
-          className="text-base font-semibold whitespace-nowrap text-muted-foreground"
+          className="text-base font-normal whitespace-nowrap text-muted-foreground"
         >
           In good company
         </h2>
