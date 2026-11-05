@@ -55,7 +55,7 @@ export default function About() {
           <Portrait />
         </div>
         <PageEnter className="md:order-first md:row-span-2">
-          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl md:text-4xl lg:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
             {heroTitle}
           </h1>
           <div className="mt-6 space-y-7 text-base text-muted-foreground">

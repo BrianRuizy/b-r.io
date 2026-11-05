@@ -323,6 +323,14 @@ export function BrandCollaborations() {
   const videoUrl = active ? collaborationVideoUrl(active) : null
 
   useEffect(() => {
+    // Warm every logo before its first replacement, avoiding empty image frames.
+    for (const [brand, wordmark] of Object.entries(wordmarks)) {
+      const image = new window.Image()
+      image.src = `/logos/wordmarks/${wordmark.file}.${brand === 'LG Electronics' ? 'png' : 'svg'}`
+    }
+  }, [])
+
+  useEffect(() => {
     if (
       reduceMotion !== false ||
       isPaused ||
@@ -375,74 +383,84 @@ export function BrandCollaborations() {
           role="list"
           className="mt-14 grid w-full grid-cols-2 gap-x-12 gap-y-4 sm:gap-y-6 lg:grid-cols-4"
         >
-          <AnimatePresence initial={false} mode="popLayout">
-            {visibleCollaborations.map((collaboration, index) => {
-              const collaborationIndex = groupStart + index
+          {visibleCollaborations.map((collaboration, index) => {
+            const collaborationIndex = groupStart + index
 
-              return (
-                <motion.li
-                  key={collaboration.brand}
-                  initial={
-                    reduceMotion
-                      ? false
-                      : { opacity: 0, y: 4, filter: 'blur(3px)' }
-                  }
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: 'blur(0px)',
-                    transitionEnd: { filter: 'none' },
-                  }}
-                  exit={
-                    reduceMotion
-                      ? undefined
-                      : { opacity: 0, y: -4, filter: 'blur(3px)' }
-                  }
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.4,
-                    delay: reduceMotion ? 0 : index * 0.15,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <a
-                    href={collaborationVideoUrl(collaboration)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Watch ${collaboration.brand} collaboration on YouTube`}
-                    onMouseEnter={() => {
-                      if (isDesktop) setActiveIndex(collaborationIndex)
+            return (
+              <li key={index} className="relative min-h-20 min-w-0">
+                <AnimatePresence initial={false} mode="wait">
+                  <motion.div
+                    key={collaboration.brand}
+                    initial={
+                      reduceMotion
+                        ? false
+                        : { opacity: 0, y: 3, filter: 'blur(4px)' }
+                    }
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      filter: 'blur(0px)',
                     }}
-                    onFocus={() => {
-                      if (isDesktop) setActiveIndex(collaborationIndex)
+                    exit={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            opacity: 0,
+                            y: -2,
+                            filter: 'blur(4px)',
+                            transition: {
+                              duration: 0.16,
+                              delay: index * 0.1,
+                              ease: [0.4, 0, 1, 1],
+                            },
+                          }
+                    }
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.24,
+                      delay: 0,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
-                    onBlur={() => setActiveIndex(null)}
-                    className="group relative isolate flex min-h-20 w-full items-center justify-start gap-4 px-0 py-6 text-left text-base font-medium text-foreground lg:justify-center lg:text-center"
                   >
-                    <Halo
-                      className={`pointer-events-none absolute -inset-x-4 inset-y-0 z-0 h-auto w-auto scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 ${activeIndex === collaborationIndex ? 'scale-100 opacity-100' : ''}`}
-                    />
-                    <span
-                      className="relative z-10 flex max-w-full items-center gap-2"
-                      aria-hidden="true"
+                    <a
+                      href={collaborationVideoUrl(collaboration)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Watch ${collaboration.brand} collaboration on YouTube`}
+                      onMouseEnter={() => {
+                        if (isDesktop) setActiveIndex(collaborationIndex)
+                      }}
+                      onFocus={() => {
+                        if (isDesktop) setActiveIndex(collaborationIndex)
+                      }}
+                      onBlur={() => setActiveIndex(null)}
+                      className="group relative isolate flex min-h-20 w-full items-center justify-start gap-4 px-0 py-6 text-left text-base font-medium text-foreground lg:justify-center lg:text-center"
                     >
-                      <Image
-                        src={`/logos/wordmarks/${wordmarks[collaboration.brand].file}.${collaboration.brand === 'LG Electronics' ? 'png' : 'svg'}`}
-                        alt=""
-                        width={wordmarks[collaboration.brand].width}
-                        height={wordmarks[collaboration.brand].height}
-                        unoptimized
-                        className={`max-w-full object-contain object-left ${collaboration.brand === 'LG Electronics' ? 'invert dark:invert-0' : 'dark:invert'}`}
-                        style={{
-                          width: wordmarks[collaboration.brand].width * 0.9,
-                          height: wordmarks[collaboration.brand].height * 0.9,
-                        }}
+                      <Halo
+                        className={`pointer-events-none absolute -inset-x-4 inset-y-0 z-0 h-auto w-auto scale-95 rounded-2xl bg-muted opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 ${activeIndex === collaborationIndex ? 'scale-100 opacity-100' : ''}`}
                       />
-                    </span>
-                  </a>
-                </motion.li>
-              )
-            })}
-          </AnimatePresence>
+                      <span
+                        className="relative z-10 flex max-w-full items-center gap-2"
+                        aria-hidden="true"
+                      >
+                        <Image
+                          src={`/logos/wordmarks/${wordmarks[collaboration.brand].file}.${collaboration.brand === 'LG Electronics' ? 'png' : 'svg'}`}
+                          alt=""
+                          width={wordmarks[collaboration.brand].width}
+                          height={wordmarks[collaboration.brand].height}
+                          unoptimized
+                          className={`max-w-full object-contain object-left ${collaboration.brand === 'LG Electronics' ? 'invert dark:invert-0' : 'dark:invert'}`}
+                          style={{
+                            width: wordmarks[collaboration.brand].width * 0.9,
+                            height: wordmarks[collaboration.brand].height * 0.9,
+                          }}
+                        />
+                      </span>
+                    </a>
+                  </motion.div>
+                </AnimatePresence>
+              </li>
+            )
+          })}
         </ul>
 
         <div

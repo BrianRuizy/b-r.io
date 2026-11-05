@@ -4,7 +4,7 @@ import { getLinkMetadata } from '@/lib/link-metadata'
 type OgButtonProps = {
   href: string
   children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link'
   className?: string
 }
 

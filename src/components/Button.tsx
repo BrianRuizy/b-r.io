@@ -10,6 +10,7 @@ const variantStyles = {
     'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
   ghost:
     'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
+  link: 'h-auto px-0 py-0 text-foreground underline-offset-4 hover:text-foreground hover:underline',
 }
 
 type ButtonProps = {

@@ -1,21 +1,31 @@
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { EncryptedText } from '@/components/EncryptedText'
+import { NotFoundPageTitle } from '@/components/NotFoundPageTitle'
+import { PageEnter } from '@/components/PageEnter'
 
 export default function NotFound() {
   return (
-    <Container className="flex h-full items-center pt-16 sm:pt-32">
-      <div className="flex flex-col items-center">
-        <p className="text-base font-semibold text-muted-foreground">404</p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
-          Page not found
+    <Container className="mt-16 sm:mt-32">
+      <NotFoundPageTitle />
+      <PageEnter as="header" className="max-w-2xl">
+        <h1 className="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
+          <EncryptedText
+            text="404"
+            encryptedClassName="text-muted-foreground"
+            revealedClassName="text-foreground"
+            revealDelayMs={65}
+            initialDelayMs={350}
+          />
         </h1>
-        <p className="mt-4 text-base text-muted-foreground">
-          Sorry, we couldn’t find the page you’re looking for.
+        <p className="mt-6 text-base text-muted-foreground">
+          Page not found. Sorry, looks like the page you’re looking for doesn’t
+          exist or may have been removed.
         </p>
-        <Button href="/" variant="secondary" className="mt-4">
+        <Button href="/" variant="link" className="mt-6">
           Go back home
         </Button>
-      </div>
+      </PageEnter>
     </Container>
   )
 }
