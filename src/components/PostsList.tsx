@@ -160,7 +160,7 @@ export function PostsList({ posts }: { posts: Array<Post> }) {
           <section
             key={year}
             aria-label={`${year} writing`}
-            className="max-w-4xl md:border-l md:border-border md:pl-6"
+            className="max-w-4xl md:border-l md:border-foreground/20 md:pl-6"
           >
             <div className="space-y-10">
               <div className="flex flex-col space-y-16">

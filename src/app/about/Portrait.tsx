@@ -29,8 +29,8 @@ export function Portrait() {
       <PhotoCard
         index={isDesktop ? 3 : 0}
         image={portraitImage}
-        alt="Brian Ruiz in New York City"
-        caption="Brian Ruiz in New York City"
+        alt="Portrait in Central Park"
+        caption="Portrait in Central Park"
         filename="me.jpeg"
         sizes="(min-width: 1280px) 28rem, (min-width: 768px) calc((100vw - 12rem) / 2), 18rem"
         quality={100}

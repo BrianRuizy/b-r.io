@@ -9,6 +9,7 @@ import {
   useReducedMotion,
   type PanInfo,
 } from 'motion/react'
+import { Button } from '@/components/Button'
 import { motionTransition, smoothSpring, snappySpring } from '@/lib/transitions'
 import { cn } from '@/lib/utils'
 
@@ -27,7 +28,7 @@ function imageSize(src: StaticImageData | string) {
 }
 
 const navButtonClassName =
-  'absolute top-1/2 z-10 hidden size-9 -translate-y-1/2 items-center justify-center rounded-full bg-card text-foreground shadow-md ring-1 shadow-foreground/5 ring-border transition hover:bg-muted disabled:pointer-events-none disabled:opacity-30 md:flex dark:bg-muted dark:hover:bg-muted/80'
+  'absolute top-1/2 z-10 -mt-[18px] hidden size-9 items-center justify-center rounded-full p-0 shadow-md ring-1 shadow-foreground/5 ring-border disabled:pointer-events-none disabled:opacity-30 md:flex'
 
 export function ImageCarousel({
   images,
@@ -155,24 +156,26 @@ export function ImageCarousel({
 
         {count > 1 && (
           <>
-            <button
+            <Button
               type="button"
+              variant="secondary"
               onClick={() => goTo(index - 1)}
               aria-label="Previous image"
               disabled={!canGoPrev}
               className={cn(navButtonClassName, 'left-0')}
             >
               <ChevronLeftIcon className="size-4" />
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="secondary"
               onClick={() => goTo(index + 1)}
               aria-label="Next image"
               disabled={!canGoNext}
               className={cn(navButtonClassName, 'right-0')}
             >
               <ChevronRightIcon className="size-4" />
-            </button>
+            </Button>
           </>
         )}
       </div>

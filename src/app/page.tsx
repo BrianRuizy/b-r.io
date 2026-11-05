@@ -138,7 +138,7 @@ function Resume() {
       logo: logoHines,
       start: '2021',
       end: {
-        label: 'Present',
+        label: 'Now',
         dateTime: new Date().getFullYear().toString(),
       },
     },

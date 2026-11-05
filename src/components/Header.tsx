@@ -23,7 +23,6 @@ import {
   bouncySpring,
   contentFade,
   motionTransition,
-  symbolReplace,
 } from '@/lib/transitions'
 import { cn } from '@/lib/utils'
 import { isWritingPath } from '@/lib/writing'
@@ -399,9 +398,13 @@ function ThemeToggle() {
     return () => window.clearTimeout(timeout)
   }, [mounted, reduceMotion, resolvedTheme])
 
-  let transition = motionTransition(symbolReplace(), reduceMotion)
-  let hidden = { opacity: 0, scale: 0.001 }
-  let visible = { opacity: 1, scale: 1 }
+  let transition = motionTransition(
+    { type: 'spring', duration: 0.36, bounce: 0.15 },
+    reduceMotion,
+  )
+  let hiddenSun = { opacity: 0, y: 12 }
+  let hiddenMoon = { opacity: 0, y: -12 }
+  let visible = { opacity: 1, y: 0 }
 
   return (
     <button
@@ -422,7 +425,7 @@ function ThemeToggle() {
           <>
             <motion.span
               initial={false}
-              animate={iconDark ? hidden : visible}
+              animate={iconDark ? hiddenSun : visible}
               transition={transition}
               style={{ transformOrigin: 'center', zIndex: iconDark ? 0 : 1 }}
               className="absolute inset-0 flex items-center justify-center"
@@ -432,7 +435,7 @@ function ThemeToggle() {
             </motion.span>
             <motion.span
               initial={false}
-              animate={iconDark ? visible : hidden}
+              animate={iconDark ? visible : hiddenMoon}
               transition={transition}
               style={{ transformOrigin: 'center', zIndex: iconDark ? 1 : 0 }}
               className="absolute inset-0 flex items-center justify-center"
