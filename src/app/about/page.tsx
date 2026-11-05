@@ -14,7 +14,7 @@ import {
 import { Portrait, SocialLinksEnter } from '@/app/about/Portrait'
 import { createPageMetadata } from '@/lib/metadata'
 
-const heroTitle = "I'm Brian. I live in New York, building and sharing the journey."
+const heroTitle = "Hey, I’m Brian. I build things and share the journey."
 
 function SocialLink({
   className,
